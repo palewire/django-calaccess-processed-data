@@ -1,4 +1,3 @@
-import json
 from django.db import models
 from django.db.models import Sum
 from calaccess_processed import managers
