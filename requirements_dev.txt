@@ -10,3 +10,4 @@ python-coveralls
 requests
 sphinx-autobuild
 tox
+pep8
