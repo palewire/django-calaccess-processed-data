@@ -36,7 +36,7 @@ setup(
     version='0.0.0',
     license='MIT',
     description='A Django app to transform and refine campaign finance data \
-drawn from the California Secretary of State’s CAL-ACCESS database.',
+from the California Secretary of State’s CAL-ACCESS database',
     url='http://django-calaccess-campaign-browser.californiacivicdata.org',
     author='California Civic Data Coalition',
     author_email='cacivicdata@gmail.com',
