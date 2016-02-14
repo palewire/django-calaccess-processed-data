@@ -32,7 +32,7 @@ class TestCommand(Command):
 
 
 setup(
-    name='django-calaccess-campaign-browser',
+    name='django-calaccess-processed-data',
     version='0.0.0',
     license='MIT',
     description='A Django app to transform and refine campaign finance data \
