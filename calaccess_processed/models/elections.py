@@ -1,5 +1,5 @@
 from django.db import models
-from calaccess_campaign_browser.utils.models import BaseModel
+from calaccess_processed.utils.models import BaseModel
 
 
 class Election(BaseModel):
@@ -30,7 +30,7 @@ class Election(BaseModel):
 
     class Meta:
         ordering = ('-sort_index',)
-        app_label = 'calaccess_campaign_browser'
+        app_label = 'calaccess_processed'
 
     def __unicode__(self):
         return self.name
@@ -86,7 +86,7 @@ class Office(BaseModel):
 
     class Meta:
         ordering = ('name', 'seat',)
-        app_label = 'calaccess_campaign_browser'
+        app_label = 'calaccess_processed'
 
     def __unicode__(self):
         s = u'%s' % (self.get_name_display(),)
@@ -119,7 +119,7 @@ class Candidate(BaseModel):
 
     class Meta:
         ordering = ("election", "office", "filer")
-        app_label = 'calaccess_campaign_browser'
+        app_label = 'calaccess_processed'
 
     def __unicode__(self):
         return u'%s: %s [%s]' % (self.filer, self.office, self.election)
@@ -145,7 +145,7 @@ class Proposition(BaseModel):
 
     class Meta:
         ordering = ("election", "name")
-        app_label = 'calaccess_campaign_browser'
+        app_label = 'calaccess_processed'
 
     def __unicode__(self):
         return self.name
@@ -173,7 +173,7 @@ class PropositionFiler(BaseModel):
     )
 
     class Meta:
-        app_label = 'calaccess_campaign_browser'
+        app_label = 'calaccess_processed'
 
     def __unicode__(self):
         return '%s %s' % (self.proposition, self.filer)

@@ -28,7 +28,7 @@ class TestCommand(Command):
         from django.core.management import call_command
         import django
         django.setup()
-        call_command('test', 'calaccess_campaign_browser')
+        call_command('test', 'calaccess_processed')
 
 
 setup(

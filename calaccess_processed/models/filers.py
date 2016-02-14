@@ -1,7 +1,7 @@
 from .filings import Filing
 from django.db import models
 from django.template.defaultfilters import slugify
-from calaccess_campaign_browser.utils.models import AllCapsNameMixin
+from calaccess_processed.utils.models import AllCapsNameMixin
 import time
 
 
@@ -69,11 +69,7 @@ class Filer(AllCapsNameMixin):
 
     class Meta:
         ordering = ("name",)
-        app_label = 'calaccess_campaign_browser'
-
-    @models.permalink
-    def get_absolute_url(self):
-        return ('filer_detail', [str(self.pk)])
+        app_label = 'calaccess_processed'
 
     @property
     def slug(self):
@@ -173,11 +169,7 @@ class Committee(AllCapsNameMixin):
 
     class Meta:
         ordering = ("name",)
-        app_label = 'calaccess_campaign_browser'
-
-    @models.permalink
-    def get_absolute_url(self):
-        return ('committee_detail', [str(self.pk)])
+        app_label = 'calaccess_processed'
 
     def get_calaccess_url(self):
         url = "http://cal-access.ss.ca.gov/Campaign/Committees/Detail.aspx?id="

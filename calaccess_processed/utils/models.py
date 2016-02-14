@@ -1,9 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import title
-from django.utils.datastructures import SortedDict
-from calaccess_campaign_browser.templatetags.calaccesscampaignbrowser import (
-    jsonify
-)
+from collections import OrderedDict as SortedDict
 
 
 class BaseModel(models.Model):
@@ -25,9 +22,6 @@ class BaseModel(models.Model):
         for f in self._meta.fields:
             d[f.verbose_name] = getattr(self, f.name)
         return d
-
-    def to_json(self):
-        return jsonify(self)
 
 
 class AllCapsNameMixin(BaseModel):

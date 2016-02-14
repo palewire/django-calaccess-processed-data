@@ -25,7 +25,6 @@ class ModelTest(TestCase):
         obj.klass()
         obj.doc()
         obj.to_dict()
-        obj.to_json()
         obj.short_name
         obj.clean_name
 

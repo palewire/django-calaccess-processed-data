@@ -1,12 +1,9 @@
 import json
 from django.db import models
 from django.db.models import Sum
-from calaccess_campaign_browser import managers
-from calaccess_campaign_browser.utils.models import BaseModel
-from calaccess_campaign_browser.models import Contribution, Expenditure
-from calaccess_campaign_browser.templatetags.calaccesscampaignbrowser import (
-    jsonify
-)
+from calaccess_processed import managers
+from calaccess_processed.utils.models import BaseModel
+from calaccess_processed.models import Contribution, Expenditure
 
 
 class Cycle(BaseModel):
@@ -14,7 +11,7 @@ class Cycle(BaseModel):
 
     class Meta:
         ordering = ("-name",)
-        app_label = 'calaccess_campaign_browser'
+        app_label = 'calaccess_processed'
 
     def __unicode__(self):
         return unicode(self.name)
@@ -49,22 +46,10 @@ or was filed unnecessarily. Should be excluded from most analysis."
     real = managers.RealFilingManager()
 
     class Meta:
-        app_label = 'calaccess_campaign_browser'
+        app_label = 'calaccess_processed'
 
     def __unicode__(self):
         return unicode(self.filing_id_raw)
-
-    @models.permalink
-    def get_absolute_url(self):
-        return ('filing_detail', [str(self.pk)])
-
-    def to_json(self):
-        js = json.loads(jsonify(self))
-        s = self.summary or {}
-        if s:
-            s = json.loads(jsonify(s))
-        js['summary'] = s
-        return json.dumps(js)
 
     def get_calaccess_pdf_url(self):
         url = "http://cal-access.ss.ca.gov/PDFGen/pdfgen.prg"
@@ -196,7 +181,7 @@ class Summary(BaseModel):
 
     class Meta:
         verbose_name_plural = "summaries"
-        app_label = 'calaccess_campaign_browser'
+        app_label = 'calaccess_processed'
 
     def __unicode__(self):
         return unicode(self.filing_id_raw)

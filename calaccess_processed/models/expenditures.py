@@ -1,8 +1,7 @@
 from django.db import models
-from django.utils.datastructures import SortedDict
-
-from calaccess_campaign_browser import managers
-from calaccess_campaign_browser.utils.models import BaseModel
+from collections import OrderedDict as SortedDict
+from calaccess_processed import managers
+from calaccess_processed.utils.models import BaseModel
 
 
 class Expenditure(BaseModel):
@@ -124,11 +123,7 @@ class Expenditure(BaseModel):
     real = managers.RealExpenditureManager()
 
     class Meta:
-        app_label = 'calaccess_campaign_browser'
-
-    @models.permalink
-    def get_absolute_url(self):
-        return ('expenditure_detail', [str(self.pk)])
+        app_label = 'calaccess_processed'
 
     @property
     def raw(self):

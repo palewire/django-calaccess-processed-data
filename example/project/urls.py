@@ -5,7 +5,6 @@ admin.autodiscover()
 
 
 urlpatterns = patterns('',
-    url(r'^', include('calaccess_campaign_browser.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.STATIC_ROOT,
