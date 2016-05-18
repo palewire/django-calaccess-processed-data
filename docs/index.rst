@@ -1,6 +1,12 @@
 django-calaccess-processed-data
 ===============================
 
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+   
+   changelog
+
 .. meta::
    :http-equiv=refresh: 0;URL='http://django-calaccess.readthedocs.io/en/latest/'
 
