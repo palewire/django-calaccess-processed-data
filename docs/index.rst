@@ -1,6 +1,9 @@
 django-calaccess-processed-data
 ===============================
 
+.. meta::
+   :http-equiv=refresh: 0;URL='http://django-calaccess.readthedocs.io/en/latest/'
+
 A Django app to transform and refine campaign finance data from the California Secretary of State’s `CAL-ACCESS <http://www.sos.ca.gov/prd/cal-access/>`__ database.
 
 Intended as a second layer atop `django-calaccess-raw-data <https://github.com california-civic-data-coalition/django-calaccess-raw-data>`_ that transforms the source data and loads it into simplified models that serve as a platform for analysis.
