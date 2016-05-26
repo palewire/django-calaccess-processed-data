@@ -7,7 +7,7 @@ from the California Secretary of State’s `CAL-ACCESS <http://www.sos.ca.gov/pr
 |Build Status| |PyPI version| |Coverage Status| |Documentation Status|
 
 -  Documentation:
-   `django-calaccess-processed-data.californiacivicdata.org <http://django-calaccess-processed-data.californiacivicdata.org>`__
+   `django-calaccess-processed-data.californiacivicdata.org <http://django-calaccess.californiacivicdata.org>`__
 -  Issues:
    `github.com/california-civic-data-coalition/django-calaccess-processed-data/issues <https://github.com/california-civic-data-coalition/django-calaccess-processed-data/issues>`__
 -  Packaging:
