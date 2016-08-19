@@ -53,11 +53,6 @@ DATABASES = {
     }
 }
 
-BUILD_DIR = os.path.join(BASE_DIR, '..', '_build')
-BAKERY_VIEWS = (
-    'campaign_finance.views.IndexView',
-)
-
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
