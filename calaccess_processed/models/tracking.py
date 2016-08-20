@@ -41,7 +41,7 @@ class ProcessedDataVersion(models.Model):
         help_text='An archive zip of processed files'
     )
     zip_size = models.BigIntegerField(
-        null=False,
+        null=True,
         verbose_name='zip of size (in bytes)',
         help_text='The expected size (in bytes) of the zip of processed files'
     )
