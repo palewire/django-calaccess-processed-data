@@ -9,6 +9,7 @@ from hurry.filesize import size as sizeformat
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_raw import archive_directory_path
 
+
 @python_2_unicode_compatible
 class ProcessedDataVersion(models.Model):
     """
@@ -23,12 +24,14 @@ class ProcessedDataVersion(models.Model):
     process_start_datetime = models.DateTimeField(
         null=True,
         verbose_name='date and time processing started',
-        help_text='Date and time when the processing of the CAL-ACCESS version started',
+        help_text='Date and time when the processing of the CAL-ACCESS version'
+                  ' started',
     )
     process_finish_datetime = models.DateTimeField(
         null=True,
         verbose_name='date and time update finished',
-        help_text='Date and time when the processing of the CAL-ACCESS version finished',
+        help_text='Date and time when the processing of the CAL-ACCESS version'
+                  ' finished',
     )
     zip_archive = models.FileField(
         blank=True,
@@ -125,7 +128,8 @@ class ProcessedDataFile(models.Model):
 
     def pretty_file_size(self):
         """
-        Returns a prettified version (e.g., "725M") of the processed file's size.
+        Returns a prettified version (e.g., "725M") of the processed file's
+        size.
         """
         return sizeformat(self.file_size)
     pretty_file_size.short_description = 'processed file size'
