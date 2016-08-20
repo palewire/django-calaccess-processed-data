@@ -1,13 +1,20 @@
+# The app
+django-calaccess-raw-data==1.4.0rc10
 Django
-MySQL-python
-Sphinx
-beautifulsoup4
-coverage
-django-calaccess-raw-data
 hurry.filesize
-pyflakes
+pytz
+
+# Databases
+mysqlclient
+psycopg2
+
+# Testing
+agate
+subsample
+flake8
+flake8_docstrings
+coverage
 python-coveralls
-requests
-sphinx-autobuild
-tox
-pep8
+
+# Packaging
+wheel
