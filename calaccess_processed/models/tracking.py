@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 from django.db import models
 from hurry.filesize import size as sizeformat
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_raw import archive_directory_path
+from calaccess_processed import archive_directory_path
 
 
 @python_2_unicode_compatible
