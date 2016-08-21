@@ -1,12 +1,25 @@
-import requests
-from time import sleep
-from bs4 import BeautifulSoup
-from requests.exceptions import HTTPError
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import logging
 from django.utils.termcolors import colorize
 from django.core.management.base import BaseCommand
 logger = logging.getLogger(__name__)
 
 class CalAccessCommand(BaseCommand):
+    """
+    Base management command that provides common functionality for the other commands in this app.
+    """
+    def handle(self, *args, **options):
+        """
+        Sets options common to all commands.
+
+        Any command subclassing this object should implement its own
+        handle method, as is standard in Django, and run this method
+        via a super call to inherit its functionality.
+        """
+        # Set global options
+        self.verbosity = options.get("verbosity")
+        self.no_color = options.get("no_color")
 
     def header(self, string):
         """
@@ -45,7 +58,7 @@ class CalAccessCommand(BaseCommand):
         """
         Writes out a string to stdout formatted red to communicate failure.
         """
-        logger.debug(string)
+        logger.error(string)
         if not self.no_color:
             string = colorize(string, fg="red")
         self.stdout.write(string)
