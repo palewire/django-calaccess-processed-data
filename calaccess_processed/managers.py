@@ -18,7 +18,7 @@ class ProcessedDataManager(models.Manager):
     @property
     def raw_data_load_query_path(self):
         return os.path.join(
-            'calaccess_processed',
+            os.path.dirname(__file__),
             'sql',
             'load_%s_model.sql' % self.model._meta.model_name,
         )
