@@ -62,7 +62,9 @@ class ProcessedDataVersion(models.Model):
         """
         Returns a prettified version (e.g., "725M") of the zip's size.
         """
-        return sizeformat(self.zip_size)
+        if not self.zip_size:
+            return None
+        return sizeformat(self.clean_zip_size)
     pretty_zip_size.short_description = 'processed zip size'
     pretty_zip_size.admin_order_field = 'processed zip size'
 
