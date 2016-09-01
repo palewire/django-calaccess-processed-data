@@ -1,9 +1,17 @@
 INSERT INTO calaccess_processed_candidate (
-    filer_id,
-    full_name,
+    f501_filer_id,
+    title,
+    last_name,
+    first_name,
+    middle_name,
+    name_suffix,
+    f501_filing_id,
+    last_f501_amend_id,
+    controlled_committee_filer_id,
     office,
     district,
     agency,
+    jurisdiction,
     party,
     election_year,
     city,
@@ -14,45 +22,50 @@ INSERT INTO calaccess_processed_candidate (
     email
 )
 SELECT
-    ff."FILER_ID",
-    REPLACE(
-        TRIM(
-            CONCAT(ci."CAND_NAMT", ' ', ci."CAND_NAMF", ' ', ci."CAND_NAML", ' ', ci."CAND_NAMS")
-        ),
-        '  ',
-        ' '
-    ) as full_name,
-    o."CODE_DESC" as office,
-    d."CODE_DESC" as district,
+    ci."FILER_ID" as f501_filer_id,
+    ci."CAND_NAMT" as title,
+    ci."CAND_NAML" as last_name,
+    ci."CAND_NAMF" as first_name,
+    ci."CAN_NAMM" as middle_name,
+    ci."CAND_NAMS" as name_suffix,
+    dedupe."FILING_ID" as f501_filing_id,
+    dedupe.amend_id as last_f501_amend_id,
+    ci."COMMITTEE_ID" as controlled_committee_filer_id,
+    UPPER(COALESCE(o."CODE_DESC", ci."OFFIC_DSCR")) as office,
+    UPPER(COALESCE(d."CODE_DESC", ci."DIST_NO")) as district,
     ci."AGENCY_NAM" as agency,
-    p."CODE_DESC" as party,
+    UPPER(COALESCE(j."CODE_DESC", '')) as jurisdiction,
+    UPPER(COALESCE(p."CODE_DESC", ci."PARTY")) as party,
     ci."YR_OF_ELEC" as election_year,
     ci."CAND_CITY" as city,
-    ci."CAND_ST" as st,
-    ci."CAND_ZIP4" as zip,
+    ci."CAND_ST" as state,
+    ci."CAND_ZIP4" as zip_code,
     ci."CAND_PHON" as phone,
     ci."CAND_FAX" as fax,
     ci."CAND_EMAIL" as email
 FROM (
-        --include only the most recent amendment to each filers Form 501 (Candidate Intention)
-        SELECT "FILER_ID", "FILING_ID", MAX("FILING_SEQUENCE") as amend_id
-        FROM "FILER_FILINGS_CD" 
-        WHERE "FORM_ID" = 'F501'
-        GROUP BY 1, 2
-) as ff
+    --include only the most recent amendment to each Form 501
+    SELECT "FILING_ID", MAX("AMEND_ID") as amend_id
+    FROM "F501_502_CD"
+    WHERE "FORM_TYPE" = 'F501'
+    GROUP BY 1
+) as dedupe
 JOIN "F501_502_CD" as ci
-ON ff."FILING_ID" = ci."FILING_ID"
-AND ff.amend_id = ci."AMEND_ID"
--- include office
-JOIN "LOOKUP_CODES_CD" as o
-ON ci."OFFICE_CD" = o."CODE_ID"
+ON dedupe."FILING_ID" = ci."FILING_ID"
+AND dedupe.amend_id = ci."AMEND_ID"
+-- include offices
+LEFT JOIN "LOOKUP_CODES_CD" as o
+ON NULLIF(ci."OFFICE_CD", 0) = o."CODE_ID"
 AND o."CODE_TYPE" IN (30000, 50000)
-AND ci."OFFICE_CD" <> 0
--- include district
+-- include districts
 LEFT JOIN "LOOKUP_CODES_CD" as d
-ON ci."DISTRICT_CD" = d."CODE_ID"
+ON NULLIF(ci."DISTRICT_CD", 0) = d."CODE_ID"
 AND d."CODE_TYPE" = 17000
+-- include jurisdictions
+LEFT JOIN "LOOKUP_CODES_CD" as j
+ON NULLIF(ci."JURIS_CD", 0) = j."CODE_ID"
+AND j."CODE_TYPE" = 40500
 -- include party
 LEFT JOIN "LOOKUP_CODES_CD" as p
-ON ci."PARTY_CD" = p."CODE_ID"
+ON NULLIF(ci."PARTY_CD", 0) = p."CODE_ID"
 AND p."CODE_TYPE" = 16000;
