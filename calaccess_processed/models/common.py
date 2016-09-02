@@ -19,6 +19,7 @@ class FilerIDValue(models.Model):
     table_name = models.CharField(
         verbose_name="table_name",
         max_length=30,
+        db_index=True,
         null=False,
         blank=False,
         help_text="Name of the database table with the column where the "
@@ -29,6 +30,7 @@ class FilerIDValue(models.Model):
         max_length=20,
         null=False,
         blank=False,
+        db_index=True,
         help_text="Name of the database column where the filer_id value was "
                   "observed.",
     )
@@ -37,11 +39,13 @@ class FilerIDValue(models.Model):
         max_length=15,
         null=False,
         blank=False,
+        db_index=True,
         help_text="Unique value in the given database table and column.",
     )
     occur_count = models.IntegerField(
         verbose_name="occurence count",
         null=False,
+        db_index=True,
         help_text="Count of occurences of the filer_id value in the given "
                   "database table and column.",
     )
