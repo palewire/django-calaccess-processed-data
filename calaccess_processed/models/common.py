@@ -40,7 +40,7 @@ class FilerIDValue(models.Model):
         null=False,
         blank=False,
         db_index=True,
-        help_text="Unique value in the given database table and column.",
+        help_text="Unique filer_id value in the given database table and column.",
     )
     occur_count = models.IntegerField(
         verbose_name="occurence count",
