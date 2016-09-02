@@ -19,3 +19,16 @@ class FilerIDValueAdmin(BaseAdmin):
         "value",
         "occur_count",
     )
+
+
+@admin.register(models.FilingIDValue)
+class FilerIDValueAdmin(BaseAdmin):
+    """
+    Custom admin for the FilingIDValue model.
+    """
+    list_display = (
+        "table_name",
+        "column_name",
+        "value",
+        "occur_count",
+    )
