@@ -7,6 +7,9 @@ from calaccess_raw.admin.base import BaseAdmin
 from calaccess_processed.admin.campaign import (
     CandidateAdmin,
 )
+from calaccess_processed.admin.common import (
+    FilerIDValueAdmin,
+)
 from calaccess_processed.admin.tracking import (
     ProcessedDataVersionAdmin,
     ProcessedDataFileAdmin,
@@ -15,6 +18,7 @@ from calaccess_processed.admin.tracking import (
 __all__ = (
     'BaseAdmin',
     'CandidateAdmin',
+    'FilerIDValueAdmin',
     'ProcessedDataVersionAdmin',
     'ProcessedDataFileAdmin',
 )
