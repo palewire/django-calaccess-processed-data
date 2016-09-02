@@ -12,7 +12,10 @@ def get_model_list():
     model_list = apps.get_app_config("calaccess_processed").models.values()
     return [
         m for m in model_list
-        if m.__module__.split('.')[-1] != 'tracking'
+        if (
+            m.__module__.split('.')[-1] != 'tracking' and
+            m.__module__.split('.')[-1] != 'common'
+        )
     ]
 
 def archive_directory_path(instance, filename):
