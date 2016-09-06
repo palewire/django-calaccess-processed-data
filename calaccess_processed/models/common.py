@@ -57,6 +57,7 @@ class FilerIDValue(models.Model):
         Meta model options.
         """
         app_label = 'calaccess_processed'
+        unique_together = (('table_name', 'column_name', 'value'),)
 
     def __str__(self):
         return str(self.value)
@@ -100,6 +101,7 @@ class FilingIDValue(models.Model):
         Meta model options.
         """
         app_label = 'calaccess_processed'
+        unique_together = (('table_name', 'value'),)
 
     def __str__(self):
         return str(self.value)
