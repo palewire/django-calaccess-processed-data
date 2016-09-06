@@ -78,15 +78,6 @@ class FilingIDValue(models.Model):
         help_text="Name of the database table with the column where the "
                   "filing_id value was observed.",
     )
-    column_name = models.CharField(
-        verbose_name="column_name",
-        max_length=20,
-        null=False,
-        blank=False,
-        db_index=True,
-        help_text="Name of the database column where the filing_id value was "
-                  "observed.",
-    )
     value = models.IntegerField(
         verbose_name="filing_id value",
         null=False,

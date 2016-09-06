@@ -28,7 +28,6 @@ class FilerIDValueAdmin(BaseAdmin):
     """
     list_display = (
         "table_name",
-        "column_name",
         "value",
         "occur_count",
     )
