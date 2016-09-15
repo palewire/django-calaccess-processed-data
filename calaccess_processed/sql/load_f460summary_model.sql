@@ -5,7 +5,7 @@ INSERT INTO calaccess_processed_f460summary (
     filer_lastname,
     filer_firstname,
     monetary_contributions,
-    loan_received,
+    loans_received,
     subtotal_cash_contributions,
     nonmonetary_contributions,
     total_contributions,
@@ -25,12 +25,13 @@ INSERT INTO calaccess_processed_f460summary (
     outstanding_debts
 )
 SELECT 
-    x."FILING_ID" as filing_id,
+    cvr."FILING_ID" as filing_id,
     cvr."AMEND_ID" as amend_id,
-    cvr."FILER_ID" as filer_id
+    x."FILER_ID" as filer_id,
     UPPER(cvr."FILER_NAML") as filer_lastname,
-    CASE UPPER(cvr."FILER_NAMF")
-        WHEN ('.', '-') THEN ''
+    CASE 
+        WHEN cvr."FILER_NAMF" IN ('.', '-') THEN ''
+        ELSE UPPER(cvr."FILER_NAMF")
     END as filer_firstname,
     line_1."AMOUNT_A" as monetary_contributions,
     line_2."AMOUNT_A" as loans_received,
