@@ -9,8 +9,6 @@ mysqlclient
 psycopg2
 
 # Testing
-agate
-subsample
 flake8
 flake8_docstrings
 coverage

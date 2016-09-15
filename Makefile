@@ -31,10 +31,8 @@ sh:
 	python example/manage.py shell_plus
 
 test:
-	clear
-	pep8 --exclude='*/migrations' calaccess_campaign_browser
-	pyflakes calaccess_campaign_browser
-	coverage run setup.py test
+	flake8 calaccess_raw
+	coverage run example/manage.py test calaccess_raw
 	coverage report -m
 
 downloaddb:
