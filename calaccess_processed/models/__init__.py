@@ -3,7 +3,10 @@
 """
 Import all of the models from submodules and thread them together.
 """
-from calaccess_processed.models.campaign import Candidate
+from calaccess_processed.models.campaign import (
+    Candidate,
+    F460Summary,
+)
 from calaccess_processed.models.common import (
     FilerIDValue,
     FilingIDValue,
@@ -17,6 +20,7 @@ __all__ = (
     'ProcessedDataVersion',
     'ProcessedDataFile',
     'Candidate',
+    'F460Summary',
     'FilerIDValue',
     'FilingIDValue',
 )
