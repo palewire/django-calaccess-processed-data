@@ -14,7 +14,7 @@ class CandidateAdmin(BaseAdmin):
     Custom admin for the Candidate model.
     """
     list_display = (
-        'f501_filer_id',
+        'filer_id',
         'last_name',
         'first_name',
         'middle_name',

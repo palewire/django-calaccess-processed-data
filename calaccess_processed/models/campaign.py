@@ -16,13 +16,12 @@ class Candidate(models.Model):
     
     Derived from filers of Form 501 (Candidate Intention Statement).
     """
-    f501_filer_id = models.CharField(
-        verbose_name="f501 filer ID",
-        max_length=9,
+    filer_id = models.IntegerField(
+        verbose_name="filer ID",
         null=False,
-        # some of these filings have blank filer_ids
-        blank=True,
-        help_text="filer identification number attached to Form 501",
+        help_text="Filer's unique id translated to numeric form (via "
+                  "FILER_XREF_CD). In cases without an XREF translation, "
+                  "the F501 filer_id is simply cast as an integer.",
     )
     title = models.CharField(
         verbose_name="name title",

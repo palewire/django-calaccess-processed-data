@@ -1,5 +1,5 @@
 INSERT INTO calaccess_processed_candidate (
-    f501_filer_id,
+    filer_id,
     title,
     last_name,
     first_name,
@@ -22,7 +22,7 @@ INSERT INTO calaccess_processed_candidate (
     email
 )
 SELECT
-    ci."FILER_ID" as f501_filer_id,
+    COALESCE(x."FILER_ID", ci."FILER_ID"::int) as filer_id,
     UPPER(ci."CAND_NAMT") as title,
     UPPER(ci."CAND_NAML") as last_name,
     UPPER(ci."CAND_NAMF") as first_name,
@@ -53,6 +53,9 @@ FROM (
 JOIN "F501_502_CD" as ci
 ON dedupe."FILING_ID" = ci."FILING_ID"
 AND dedupe.amend_id = ci."AMEND_ID"
+-- get the numeric filer_id
+LEFT JOIN "FILER_XREF_CD" x
+ON ci."FILER_ID" = x."XREF_ID"
 -- include offices
 LEFT JOIN "LOOKUP_CODES_CD" as o
 ON NULLIF(ci."OFFICE_CD", 0) = o."CODE_ID"
@@ -68,4 +71,6 @@ AND j."CODE_TYPE" = 40500
 -- include party
 LEFT JOIN "LOOKUP_CODES_CD" as p
 ON NULLIF(ci."PARTY_CD", 0) = p."CODE_ID"
-AND p."CODE_TYPE" = 16000;
+AND p."CODE_TYPE" = 16000
+-- ignore half a dozen cases where F501_502_CD.FILER_ID is 
+WHERE ci."FILER_ID" <> '';
