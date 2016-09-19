@@ -23,11 +23,11 @@ INSERT INTO calaccess_processed_candidate (
 )
 SELECT
     ci."FILER_ID" as f501_filer_id,
-    ci."CAND_NAMT" as title,
-    ci."CAND_NAML" as last_name,
-    ci."CAND_NAMF" as first_name,
-    ci."CAN_NAMM" as middle_name,
-    ci."CAND_NAMS" as name_suffix,
+    UPPER(ci."CAND_NAMT") as title,
+    UPPER(ci."CAND_NAML") as last_name,
+    UPPER(ci."CAND_NAMF") as first_name,
+    UPPER(ci."CAN_NAMM") as middle_name,
+    UPPER(ci."CAND_NAMS") as name_suffix,
     dedupe."FILING_ID" as f501_filing_id,
     dedupe.amend_id as last_f501_amend_id,
     ci."COMMITTEE_ID" as controlled_committee_filer_id,
