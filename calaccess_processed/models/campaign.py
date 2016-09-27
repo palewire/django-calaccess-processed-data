@@ -10,6 +10,69 @@ from calaccess_processed.managers import ProcessedDataManager
 
 
 @python_2_unicode_compatible
+class Election(models.Model):
+    election_id = models.CharField(
+        verbose_name="election identification number",
+        max_length=3,
+        null=False,
+        blank=True,
+        help_text="Election identification number",
+    )
+    election_year = models.IntegerField(
+        verbose_name='year of election',
+        db_index=True,
+        null=False,
+        help_text='Year of election',
+    )
+    election_type = models.CharField(
+        verbose_name="election type",
+        max_length=100,
+        null=False,
+        blank=True,
+        help_text="Election type",
+    )
+    sort_index = models.IntegerField(
+        verbose_name="sort index",
+        null=False,
+        help_text="The index value is used to preserve sorting of elections, \
+        since multiple elections may occur in a year. A greater sort index \
+        corresponds to a more recent election."
+    )
+
+    def __str__(self):
+        return '{} {}'.format(self.election_year, self.election_type)
+
+
+@python_2_unicode_compatible
+class Race(models.Model):
+    office_name = models.CharField(
+        verbose_name="office name",
+        max_length=100,
+        null=False,
+        blank=True,
+        help_text="Office name",
+    )
+    # Preserve leading zeroes
+    office_seat = models.CharField(
+        verbose_name="office seat number",
+        max_length=3,
+        null=False,
+        blank=True,
+        help_text="Office seat number",
+    )
+    election = models.ForeignKey(
+        'Election',
+        null=True
+    )
+
+    def __str__(self):
+        return '{} {}'.format(
+            self.office_name,
+            self.office_seat
+        )
+
+
+@python_2_unicode_compatible
 class Candidate(models.Model):
     """
     Name, office/district/agency sought and contact info of each candidate.
@@ -165,6 +228,15 @@ class Candidate(models.Model):
         help_text="Candidate's email address",
     )
 
+    race = models.ForeignKey(
+        'Race',
+        null=True
+    )
+    election = models.ForeignKey(
+        'Election',
+        null=True
+    )
+
     objects = ProcessedDataManager()
 
     class Meta:
@@ -174,7 +246,10 @@ class Candidate(models.Model):
         app_label = 'calaccess_processed'
 
     def __str__(self):
-        return str(self.full_name)
+        return '{} {}'.format(
+            self.first_name,
+            self.last_name
+        )
 
 
 @python_2_unicode_compatible
