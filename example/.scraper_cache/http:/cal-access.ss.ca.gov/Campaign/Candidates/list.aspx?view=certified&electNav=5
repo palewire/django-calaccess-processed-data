@@ -1,0 +1,896 @@
+
+			<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>
+			<html>
+				<head>
+					<title>California Secretary of State - CalAccess - Campaign Finance</title> 
+					<link rel='Stylesheet' href='/Resources/Stylesheets/calaccess.css' type='text/css'>
+					<META http-equiv=Content-Type content='text/html; charset=windows-1252'>
+				<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-5354926-18', 'auto');ga('send', 'pageview');</script></head>
+				<body leftmargin=0 topmargin=0>
+				<form name="_ctl0" method="post" action="list.aspx?view=certified&amp;electNav=5" id="_ctl0">
+<input type="hidden" name="__VIEWSTATE" value="dDwtMTY5MjM3MDEwNjs7bDxfY3RsMjpTZWFyY2hfTGVmdE5hdjE6c2VhcmNoQnV0dG9uOz4+OHX1jrfATnzQe3tsG9AKjsCMEa0=" />
+
+<table border="0" cellpadding="0" cellspacing="0" width="784" bgcolor="#000066">
+	<!-- Header -- Blue Section -->
+	<TR>
+		<TD>
+			<A HREF="/Misc/OffSite.aspx?id=SS">
+				<IMG SRC="http://www.sos.ca.gov/images/header.gif" ALT="California Secretary of State Home"
+					BORDER="0"></A></TD>
+		<!-- 		
+		<td align="RIGHT">
+			<table border="0" cellpadding="0" cellspacing="0" >
+				<tr>
+					<td>
+						<A HREF="/Misc/OffSite.aspx?id=SS">
+						<IMG SRC="/Resources/Images/home.gif" ALT="Home" BORDER="0" HSPACE=15></A></td>
+				</tr>
+				<tr>
+					<td>
+						<A HREF="/Misc/OffSite.aspx?id=SSSEARCH">
+						<IMG SRC="/Resources/Images/sitesearch.gif" ALT="Site Search" BORDER="0" HSPACE=15></A></td>
+				</tr>
+				<tr>
+					<td>
+						<A HREF="/Misc/OffSite.aspx?id=SSCONTACT">
+						<IMG SRC="/Resources/Images/contactus.gif" ALT="Contact Us" BORDER="0" HSPACE=15></A></td>
+				</tr>
+				tr>
+					<td>
+						<A HREF="/Misc/OffSite.aspx?id=SSCONTACT">
+						<IMG SRC="/Resources/Images/contactus.gif" ALT="Contact Us" BORDER="0" HSPACE=15></A></td>
+					</tr 
+			</table>
+		</TD>-->
+	</TR>
+	<!-- Header -- Black Line -->
+	<TR>
+		<td colspan="2" bgcolor="#000000">
+			<IMG SRC="/Resources/Images/spacer.gif" WIDTH=1 HEIGHT=1 alt="spacer"></td>
+	</TR>
+	<!-- Header -- Red Section -->
+	<TR>
+		<td colspan="2" bgcolor="#990000">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<TR>
+					<TD>
+						<IMG SRC="/Resources/Images/spacer.gif" WIDTH=8 HEIGHT=1 alt="spacer"></TD>
+					<!-- Header Red Section -- Secretary of State Button-->
+					<td align="center" width="113">
+						<A HREF="/Misc/OffSite.aspx?id=SSEXEC">
+							<IMG SRC="/Resources/Images/ss.gif" WIDTH=77 HEIGHT=17 ALT="Secretary of State" BORDER="0"></A></td>
+					<td align="center">
+						<IMG SRC="/Resources/Images/divider.gif" WIDTH=8 HEIGHT=17 alt="divider"></td>
+					<!-- Header Red Section -- Elections & Voter Information Button-->
+					<td align="center" width="113">
+						<A HREF="/Misc/OffSite.aspx?id=SSELECT">
+							<IMG SRC="/Resources/Images/elections.gif" WIDTH=96 HEIGHT=17 ALT="Elections" BORDER=0></A></td>
+					<td align="center">
+						<IMG SRC="/Resources/Images/divider.gif" WIDTH=3 HEIGHT=17 alt="divider"></td>
+					<!-- Header Red Section -- Political Reform Button-->
+					<td align="center" bgcolor="#ffcc66" width="123">
+						<A HREF="/Misc/OffSite.aspx?id=SSPRD">
+							<IMG SRC="/Resources/Images/finance_selected.gif" WIDTH=78 HEIGHT=17 ALT="Campaign & Lobbying" BORDER=0></A></td>
+					<td align="center">
+						<IMG SRC="/Resources/Images/divider.gif" WIDTH=3 HEIGHT=17 alt="divider"></td>
+					<!-- Header Red Section -- California Business Portal Button-->
+					<td align="center">
+						<A HREF="/Misc/OffSite.aspx?id=SSBPD">
+							<IMG SRC="/Resources/Images/business.gif" WIDTH=123 HEIGHT=17 ALT="Business Programs" BORDER=0></A></td>
+					<td align="center">
+						<IMG SRC="/Resources/Images/divider.gif" WIDTH=8 HEIGHT=17 alt="divider"></td>
+					<!-- Header Red Section -- Archives & Museum Button-->
+					<td align="center">
+						<A HREF="/Misc/OffSite.aspx?id=SSARC">
+							<IMG SRC="/Resources/Images/archives.gif" WIDTH=139 HEIGHT=17 ALT="State Archives" BORDER=0></A></td>
+					<td align="center">
+						<IMG SRC="/Resources/Images/divider.gif" WIDTH=8 HEIGHT=17 alt="divider"></td>
+					<!-- Header Red Section -- Special Programs Button-->
+					<td align="center" width="113">
+						<A HREF="/Misc/OffSite.aspx?id=SSSPEC">
+							<IMG SRC="/Resources/Images/special.gif" WIDTH=77 HEIGHT=17 ALT="Registries" BORDER=0></A></td>
+					<TD>
+						<IMG SRC="/Resources/Images/spacer.gif" WIDTH=8 HEIGHT=1 alt="spacer"></TD>
+				</TR>
+			</table>
+		</td>
+	</TR>
+	<!-- Header -- Black Line -->
+	<TR>
+		<td colspan="2" bgcolor="#000000">
+			<IMG SRC="/Resources/Images/spacer.gif" WIDTH=1 HEIGHT=1 alt="spacer"></td>
+	</TR>
+	<!-- Temporary Message Box beginning. Comment out when not in use.
+	<tr>
+		<td colspan="6"><br />
+			<table cellpadding="8" cellspacing="0" border="3" bordercolor="#3149AA" width="100%">
+	<tr>
+		<td><span class="hdr13">CAL-ACCESS will be temporarily unavailable due to maintanence beginning at 5:00 pm on Friday, January 16, 2004. Please try again on Saturday, January 17, 2004.</span></td>
+	</tr>
+</table></td>
+	</tr>
+Temporary Message Box ending -->
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="784">
+	<tr>
+		<td bgcolor="#FFE4AF" rowspan="2" width="140" valign="top">
+			<!-- category side nav starts here -->
+			<table cellSpacing="0" cellPadding="0" width="140" bgColor="#ffcc66" border="0">
+				<!-- category links here -->
+				
+<tr>
+	<td vAlign="top" style="BACKGROUND-COLOR: #ffcc66">
+		<!-- category side nav starts here -->
+		<div title="Public Disclosure Search and Advanced Search." >
+			<label for="searchText"><img src="/Resources/Images/CalAccessSearch.gif" id="_ctl2_Search_LeftNav1_imgCalAccessSearch" alt="CalAccess Search" style="width:140px;" /></label><br>
+			<input name="_ctl2:Search_LeftNav1:searchText" type="text" id="_ctl2_Search_LeftNav1_searchText" onkeydown="trapEnter(document.all._ctl2_Search_LeftNav1_searchText)" style="width:90px; float:left; margin-left:10px;" />
+			<input type="image" name="_ctl2:Search_LeftNav1:searchButton" id="_ctl2_Search_LeftNav1_searchButton" src="/Resources/Images/go_button.gif" alt="Search" border="0" style="float:right; margin-right:3px; " /><br><br>
+			<a class="sublink2bAdvSrch" title="Advanced Search" style="margin-left:15px;" href="http://dbsearch.sos.ca.gov/">Advanced Search</a><br><br>
+		</div>
+	</td>
+</tr>
+				<tr>
+					<td vAlign="top" colSpan="2">
+						<a href="/default.aspx">
+							<img src="/Resources/Images/CalAccessHome_off.gif" id="_ctl2_imgCalAccessHome" border="0" onMouseOut="this.src='/Resources/Images/CalAccessHome_off.gif'" onMouseOver="this.src='/Resources/Images/CalAccessHome_on.gif'" /></a></td>
+				</tr>
+				<tr>
+					<td colSpan="2">
+						<img src="/Resources/Images/common/spacer.gif" id="_ctl2_imgSpacer7" height="1" width="1" border="0" /></td>
+				</tr>
+				<tr bgcolor="#7183c6">
+					<td vAlign="top" colSpan="2">
+						<a href="/Campaign/">
+							<IMG alt="" border="0" src="/Resources/Images/CampaignFinance_selected.gif"></a>
+						<table>
+							<tr>
+								<td rowspan="7"><IMG height="1" src="/Resources/Images/common/spacer.gif" width="15" border="0"></td>
+								<td><a class="sublink7" href="/Campaign/Candidates/">Candidates 
+										&<br />
+										Elected Officials</a></td>
+							</tr>
+							<tr>
+								<td><IMG height="5" src="/Resources/Images/common/spacer.gif" width="1" border="0"></td>
+							</tr>
+							<tr>
+								<td><a class="sublink7" href="/Campaign/Measures/">Propositions 
+										&<br />
+										Ballot Measures</a></td>
+							</tr>
+							<tr>
+								<td><IMG height="5" src="/Resources/Images/common/spacer.gif" width="1" border="0"></td>
+							</tr>
+							<tr>
+								<td><a class="sublink7" href="/Campaign/Committees/">Committees, 
+										Parties,<br />
+										Major Donors &amp; Slate Mailers</a></td>
+							</tr>
+							<tr>
+								<td><IMG height="5" src="/Resources/Images/common/spacer.gif" width="1" border="0"></td>
+							</tr>
+							<tr>
+								<td><a class="sublink7" href="/Campaign/Other/">Daily/Late/<br />
+										Special Filings</a></td>
+							</tr>
+							<tr>
+								<td><IMG height="5" src="/Resources/Images/common/spacer.gif" width="1" border="0"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colSpan="2">
+						<img src="/Resources/Images/common/spacer.gif" id="_ctl2_imgSpacer8" height="1" width="1" border="0" /></td>
+				</tr>
+				<tr>
+					<td vAlign="top" colSpan="2">
+						<a href="/Lobbying/">
+							<img src="/Resources/Images/LobbyingActivity_off.gif" id="_ctl2_imgLobbyingActivity" border="0" onMouseOut="this.src='/Resources/Images/LobbyingActivity_off.gif'" onMouseOver="this.src='/Resources/Images/LobbyingActivity_on.gif'" /></a></td>
+				</tr>
+				<tr>
+					<td colSpan="2">
+						<img src="/Resources/Images/common/spacer.gif" id="_ctl2_imgSpacer10" height="1" width="1" border="0" /></td>
+				</tr>
+				<tr>
+					<td vAlign="top" colSpan="2">
+						<a href="/CalAccessResources/">
+							<img src="/Resources/Images/Resources_off.gif" id="_ctl2_imgResources" border="0" onMouseOut="this.src='/Resources/Images/Resources_off.gif'" onMouseOver="this.src='/Resources/Images/Resources_on.gif'" /></td>
+				</tr>
+				<tr>
+					<td colSpan="2">
+						<img src="/Resources/Images/common/spacer.gif" id="_ctl2_imgSpacer11" height="1" width="1" border="0" /></td>
+				</tr>
+				<tr>
+					<td vAlign="top" colSpan="2">
+						<a href="http://www.ss.ca.gov/prd/for_filers_only.htm"><img src="/Resources/Images/ForFilersOnly_off.gif" id="_ctl2_imgForFilersOnly" border="0" onMouseOut="this.src='/Resources/Images/ForFilersOnly_off.gif'" onMouseOver="this.src='/Resources/Images/ForFilersOnly_on.gif'" /></a></td>
+				</tr>
+				<tr>
+					<td colSpan="2">
+						<img src="/Resources/Images/common/spacer.gif" id="_ctl2_imgSpacer9" height="1" width="1" border="0" /></td>
+				</tr>
+				<tr>
+					<td vAlign="top" colSpan="2">
+						<A HREF="/Misc/OffSite.aspx?id=SSPRD">
+							<img src="/Resources/Images/PoliticalReform_off.gif" id="_ctl2_imgPoliticalReform" border="0" onMouseOut="this.src='/Resources/Images/PoliticalReform_off.gif'" onMouseOver="this.src='/Resources/Images/PoliticalReform_on.gif'" /></A></td>
+				</tr>
+				<tr>
+					<td colSpan="2"><img src="/Resources/Images/common/spacer.gif" id="_ctl2_imgSpacer12" height="1" width="1" border="0" /></td>
+				</tr>
+				<tr>
+					<td vAlign="top" colSpan="2"><A 
+href="/Misc/OffSite.aspx?id=USERMANUAL"
+><img src="/Resources/Images/UserManual_off.gif" id="_ctl2_imgUserManual" alt="Link to the User's Manual" border="0" onMouseOut="this.src='/Resources/Images/UserManual_off.gif'" onMouseOver="this.src='/Resources/Images/UserManual_on.gif'" /></A></td>
+				</tr>
+			</table>
+		</td>
+		<td colspan="2" valign="top" width="644">
+			<img src="/Resources/Images/cal_access_banner.jpg" id="_ctl2_imgCalAccessBanner" border="0" width="644" /></td>
+	</tr>
+	<tr>
+		<!-- spacer lane here -->
+		<td width="30" valign="top">
+			<img src="/Resources/Images/common/spacer.gif" border="0" width="30" height="50">
+		</td>
+		<td width="614" valign="top">
+<!-- content cell table starts here -->
+
+<span class="hdr10">CAMPAIGN FINANCE:</span>
+<br>
+<span class="hdr11">Candidates &amp; 
+Elected Officials</span>
+<br>
+<br>
+
+<table>
+	<TR>
+		<TD width="50%">
+			<!--Added the span tag to indent the text for SR C43D171524 -->
+			<span id="view" class="hdr12">Choose a Listing:</span><br />
+<a href="/Campaign/Candidates/list.aspx?view=certified"><img border="0" align="absmiddle" src="/Resources/Images/selected.gif" alt="Selected" border="2" /></a><span class="txt5">&nbsp;&nbsp;Certified Election Candidates</span><br />
+<a href="/Campaign/Candidates/list.aspx?view=incumbent"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" alt="Not Selected" border="2" /></a><span class="txt5">&nbsp;&nbsp;Incumbent Elected State Officials</span><br />
+<a href="/Campaign/Candidates/list.aspx?view=name"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" alt="Not Selected" border="2" /></a><span class="txt5">&nbsp;&nbsp;Candidates and Elected Officials By Name</span><br />
+<a href="/Campaign/Candidates/list.aspx?view=intention"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" alt="Not Selected" border="2" /></a><span class="txt5">&nbsp;&nbsp;Who filed a Statement of Intention to run for What State Office? (Filers may not have qualified for the ballot)</span><br />
+<a href="/Campaign/Candidates/list.aspx?view=f900"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" alt="Not Selected" border="2" /></a><span class="txt5">&nbsp;&nbsp;CalPERS and CalSTRS Candidate Filings, Scanned Images</span><br />
+
+			<br>
+		</TD>
+		<TD vAlign="top" width="50%">
+<TABLE class="txt5" id="Table1" cellSpacing="1" cellPadding="1" width="300" border="0">
+	<tr>
+		<DIV class="hdr12" style="DISPLAY: inline; WIDTH: 240px; HEIGHT: 19px" ms_positioning="FlowLayout">Go 
+			to Section:</DIV>
+	</tr>
+	<TR>
+		<TD style="WIDTH: 11px"></TD>
+		<TD><IMG src="../../Resources/Images/arrow.gif"> <A href="#statewide" class="sublink4">Statewide Candidates</A></TD>
+	</TR>
+	<TR>
+		<TD style="WIDTH: 11px"></TD>
+		<TD><IMG src="../../Resources/Images/arrow.gif">&#32;<A href="#senate" class="sublink4">State Senate Candidates</A></TD>
+	</TR>
+	<TR>
+		<TD style="WIDTH: 11px"></TD>
+		<TD><IMG src="../../Resources/Images/arrow.gif">&#32;<A href="#assembly" class="sublink4">State Assembly Candidates</A></TD>
+	</TR>
+</TABLE>
+</TD>
+	</TR>
+</table>
+<br>
+<span class="hdr12">Choose an Election:</span><br />
+<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=65"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2016 GENERAL</span><br />
+<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=64"><img border="0" align="absmiddle" src="/Resources/Images/selected.gif" border="2" /></a><span class="txt5">Prior Elections</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=64"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2016 PRIMARY</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=106"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2016 SPECIAL ELECTION (ASSEMBLY 31)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=101"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2015 SPECIAL RUNOFF (STATE SENATE 07)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=97"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2015 SPECIAL ELECTION (STATE SENATE 07)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=99"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2015 SPECIAL ELECTION (STATE SENATE 21)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=100"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2015 SPECIAL ELECTION (STATE SENATE 37)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=93"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2014 SPECIAL ELECTION (STATE SENATE 35)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=41"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2014 GENERAL</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=40"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2014 PRIMARY</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=89"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2014 SPECIAL ELECTION (STATE SENATE 23)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=88"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2013 SPECIAL ELECTION (ASSEMBLY 54)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=85"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2013 SPECIAL RUNOFF (ASSEMBLY 45)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=83"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2013 SPECIAL RUNOFF (ASSEMBLY 52)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=86"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2013 SPECIAL ELECTION (STATE SENATE 26)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=84"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2013 SPECIAL ELECTION (ASSEMBLY 45)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=82"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2013 SPECIAL ELECTION (ASSEMBLY 52)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=77"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2013 SPECIAL RUNOFF (STATE SENATE 16)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=78"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2013 SPECIAL ELECTION (ASSEMBLY 80)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=76"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2013 SPECIAL ELECTION (STATE SENATE 16)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=80"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2013 SPECIAL RUNOFF (STATE SENATE 32)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=74"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2013 SPECIAL ELECTION (STATE SENATE 40)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=75"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2013 SPECIAL ELECTION (STATE SENATE 32)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=73"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2013 SPECIAL ELECTION (STATE SENATE 04)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=26"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2012 GENERAL</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=72"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2012 SPECIAL ELECTION (STATE SENATE 04)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=25"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2012 PRIMARY</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=69"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2011 SPECIAL RUNOFF (ASSEMBLY 04)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=68"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2011 SPECIAL ELECTION (ASSEMBLY 04)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=59"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2011 SPECIAL ELECTION (STATE SENATE 28)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=61"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2011 SPECIAL ELECTION (STATE SENATE 17)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=56"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2011 SPECIAL RUNOFF (STATE SENATE 01)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=21"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2010 GENERAL</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=55"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2010 SPECIAL ELECTION (STATE SENATE 01)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=54"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2010 SPECIAL RUNOFF (STATE SENATE 15)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=53"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2010 SPECIAL ELECTION (STATE SENATE 15)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=22"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2010 PRIMARY</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=51"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2010 SPECIAL RUNOFF (STATE SENATE 37)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=52"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2010 SPECIAL RUNOFF (ASSEMBLY 43)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=48"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2010 SPECIAL ELECTION (STATE SENATE 37)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=49"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2010 SPECIAL ELECTION (ASSEMBLY 43)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=47"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2010 SPECIAL RUNOFF (ASSEMBLY 72)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=46"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2009 SPECIAL ELECTION (ASSEMBLY 72)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=45"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2009 SPECIAL ELECTION (ASSEMBLY 51)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=44"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2009 SPECIAL RUNOFF (STATE SENATE 26)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=42"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2009 SPECIAL ELECTION (STATE SENATE 26)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=16"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2008 GENERAL</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=15"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2008 PRIMARY</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=38"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2008 RECALL (STATE SENATE 12)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=37"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2008 SPECIAL RUNOFF (ASSEMBLY 55)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=32"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2007 SPECIAL ELECTION (ASSEMBLY 55)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=28"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2007 SPECIAL ELECTION (ASSEMBLY 39)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=8"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2006 GENERAL</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=7"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2006 PRIMARY</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=27"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2006 SPECIAL RUNOFF (STATE SENATE 35)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=24"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2006 SPECIAL ELECTION (STATE SENATE 35)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=19"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2005 SPECIAL ELECTION (ASSEMBLY 53)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=6"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2004 GENERAL</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=5"><img border="0" align="absmiddle" src="/Resources/Images/selected.gif" border="2" /></a><span class="txt5">2004 PRIMARY</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=14"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2003 SPECIAL ELECTION (GOVERNOR)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=4"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2002 GENERAL</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=3"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2002 PRIMARY</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=13"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2001 SPECIAL ELECTION (ASSEMBLY 49)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=11"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2001 SPECIAL RUNOFF (ASSEMBLY 65)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=39"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2001 SPECIAL ELECTION (STATE SENATE 24)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=10"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2001 SPECIAL ELECTION (ASSEMBLY 65)</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=2"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2000 GENERAL</span><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Candidates/list.aspx?view=certified&amp;electNav=1"><img border="0" align="absmiddle" src="/Resources/Images/unselected.gif" border="2" /></a><span class="txt5">2000 PRIMARY</span><br />
+
+<br />
+<table cellpadding="8" cellspacing="0" border="3" bordercolor="#3149AA" width="100%">
+	<tr>
+		<td><span class="hdr13">Also check Late Contribution filings. These reports are independent of the comprehensive disclosure reports that are linked here until semi-annual filings are submitted.</span></td>
+	</tr>
+</table>
+<br />
+
+<a name="statewide"></a>
+<a name="board"></a>
+<a name="senate"><table cellspacing="0" cellpadding="4" border="3" bordercolor="#3149AA" bgcolor="#7183C6" width="100%">
+	<tr>
+		<td colspan="2" valign="top"><span class="hdr14">SENATE DISTRICTS</span></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">STATE SENATE 01</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1004452" class="sublink2">COX, DAVE<br /></a><span class="txt7">LEIBMAN, ROBERTO</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1260595" class="sublink2">MC DONALD, KRISTINE L.<br /></a><span class="txt7">SCHNEIDER, CHRISTOPHER D.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">STATE SENATE 03</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">FELDER, ANDREW</span><br /><span class="txt7">GRIMES, IAN J.</span><br /><span class="txt7">JONES, DAVY</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1005175" class="sublink2">MIGDEN, CAROLE<br /></a><span class="txt7">RHODES, DAVID</span><br /></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">STATE SENATE 05</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1003830" class="sublink2">MACHADO, MICHAEL J.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1256414" class="sublink2">PODESTO, GARY<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">STATE SENATE 07</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1004711" class="sublink2">TORLAKSON, TOM<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">STATE SENATE 09</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">CONDIT, TOM</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1260636" class="sublink2">DEUTSCHE, PATRICIA A.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1005184" class="sublink2">PERATA, DON<br /></a><span class="txt7">VON PINNON, PETER J.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">STATE SENATE 11</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1002880" class="sublink2">LEMPERT, TED<br /></a><span class="txt7">RICE, ALLEN M.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1004819" class="sublink2">SIMITIAN, S. JOSEPH<br /></a><span class="txt7">ZELLHOEFER, JON W.</span><br /></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">STATE SENATE 13</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1004827" class="sublink2">ALQUIST, ELAINE<br /></a><span class="txt7">CONNOLLY, SHANE PATRICK</span><br /><span class="txt7">DIAZ, ANDREW G. ABE</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1220783" class="sublink2">DIAZ, MANNY<br /></a><span class="txt7">LAURSEN, MICHAEL V.</span><br /><span class="txt7">MEDEIROS, JOSE FRANCIS</span><br /><span class="txt7">WEBSTER, JOHN H.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">STATE SENATE 15</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">MADSEN, RYEN BROOK JUDE</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1005389" class="sublink2">MALDONADO, ABEL<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1260404" class="sublink2">PINARD, MARGARET ANN<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">STATE SENATE 17</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">BALLARD, JOHN</span><br /><span class="txt7">KRAUT, JONATHAN DANIEL</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1005399" class="sublink2">RUNNER, GEORGE C.<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">STATE SENATE 19</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">GRABER, PAUL J.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1001573" class="sublink2">MC CLINTOCK, THOMAS<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">STATE SENATE 21</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">NEW, BOB</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1004873" class="sublink2">SCOTT, JACK<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">STATE SENATE 23</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">GOLDMAN, COLIN S.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1004301" class="sublink2">KUEHL, SHEILA J.<br /></a><span class="txt7">LANZI, LEONARD MICHAEL</span><br /></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">STATE SENATE 25</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">GREEN, BRENDA CAROL</span><br /><span class="txt7">OGDEN, DALE F.</span><br /><span class="txt7">SPENCER, JAMES A.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1004240" class="sublink2">VINCENT, EDWARD<br /></a><span class="txt7">WOODS, ERNEST L.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">STATE SENATE 27</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1241076" class="sublink2">CASTELLANOS, CESAR N.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1256547" class="sublink2">JACKSON, MICHAEL A.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1005392" class="sublink2">LOWENTHAL, ALAN<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">STATE SENATE 29</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">BAUTISTA, RUFINO M.</span><br /><span class="txt7">FERNANDES, FRED D.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1004700" class="sublink2">MARGETT, ROBERT<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">STATE SENATE 31</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1233959" class="sublink2">DUTTON, BOB<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1260421" class="sublink2">MIKELS, MARJORIE M.<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">STATE SENATE 33</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1004825" class="sublink2">ACKERMAN, RICHARD<br /></a><span class="txt7">DAUGHERTY, RANDALL A.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">STATE SENATE 35</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005647" class="sublink2">CAMPBELL, JOHN B.T.<br /></a><span class="txt7">JOHNSON, TIMOTHY</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1005211" class="sublink2">MADDOX, KENNETH<br /></a><span class="txt7">SIEBERT, RITA B.</span><br /><span class="txt7">SNYDER, JOSEPH</span><br /></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">STATE SENATE 37</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1004831" class="sublink2">BATTIN JR., JAMES F.<br /></a><span class="txt7">JOHANSEN, PATRICIA ANN</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">STATE SENATE 39</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">BOURKE, KENNETH P.</span><br /><span class="txt7">DENNY, RALPH ELLSWORTH</span><br /><span class="txt7">GALLEY, JAMES F.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1005669" class="sublink2">KEHOE, CHRISTINE<br /></a><span class="txt7">MURPHY, JOHN</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1001128" class="sublink2">STIRLING, LARRY<br /></a></td>
+			</tr>
+		</table></td>
+	</tr>
+</table><br /></a>
+<a name="assembly"><table cellspacing="0" cellpadding="4" border="3" bordercolor="#3149AA" bgcolor="#7183C6" width="100%">
+	<tr>
+		<td colspan="2" valign="top"><span class="hdr14">ASSEMBLY DISTRICTS</span></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 01</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">ANTON, KENNETH R.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1233578" class="sublink2">BERG, PATTY<br /></a><span class="txt7">FOPPOLI, DOMINIC J.</span><br /><span class="txt7">TYRONE, RAY</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 02</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1239935" class="sublink2">LA MALFA, DOUG<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1260448" class="sublink2">MC IVER, BARBARA G.<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 03</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">BURK, ROBERT C.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1239063" class="sublink2">KEENE, RICHARD J.<br /></a><span class="txt7">WOODS, ROBERT A.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 04</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1002067" class="sublink2">LESLIE, R. TIM<br /></a><span class="txt7">SCHWENK, TODD W.</span><br /></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 05</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">CAREY, SANDRA A.</span><br /><span class="txt7">FOX, MICHAEL A.</span><br /><span class="txt7">LOREE, TIMOTHY R.</span><br /><span class="txt7">MANFRE, MELISSA</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1251659" class="sublink2">NIELLO, ROGER<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 06</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005654" class="sublink2">NATION, JOE<br /></a><span class="txt7">PATRICK, CAROLYN F.</span><br /></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 07</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1227859" class="sublink2">EVANS, NOREEN M.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1260409" class="sublink2">KRUEGER, PATRICIA "PAT"<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1250540" class="sublink2">LEDDY, JIM<br /></a><span class="txt7">SMITH, F. AARON</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 08</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005833" class="sublink2">MUNN, JOHN R.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1235630" class="sublink2">WOLK, LOIS<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 09</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">BEGAY, DONNA R.</span><br /><span class="txt7">COCHRAN, LESLIE T.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1251341" class="sublink2">DICKINSON, ROGER<br /></a><span class="txt7">GARCIA, GASPAR R.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1245151" class="sublink2">HAMMOND, LAUREN<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1251832" class="sublink2">HERNANDEZ, MANUEL P.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1224542" class="sublink2">JONES, DAVE<br /></a><span class="txt7">MORGAN, GALE R.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 10</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">LANG, CULLENE</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1005260" class="sublink2">NAKANISHI, ALAN S.<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 11</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005727" class="sublink2">CANCIAMILLA, JOSEPH<br /></a><span class="txt7">MANSKE, FRANK J.</span><br /><span class="txt7">SANTIAGO, PAUL E.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 12</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">EPSTEIN, HOWARD</span><br /><span class="txt7">MADEN, CHRISTOPHER R.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1226856" class="sublink2">YEE, LELAND Y.<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 13</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">GALLAGHER, COLIN V.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1226645" class="sublink2">LENO, MARK<br /></a><span class="txt7">MARVIN, JONATHAN SCOTT</span><br /><span class="txt7">NEIRA, GAIL E.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 14</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1238901" class="sublink2">HANCOCK, LONI<br /></a><span class="txt7">MONTAUK, LANCE</span><br /><span class="txt7">O'NEAL, KEVIN D.</span><br /></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 15</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1226434" class="sublink2">HOUSTON, GUY<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1260782" class="sublink2">SHAW, ELAINE D.<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 16</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005709" class="sublink2">CHAN, WILMA<br /></a><span class="txt7">UDINSKY, JERALD</span><br /></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 17</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005671" class="sublink2">MATTHEWS, BARBARA<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1260420" class="sublink2">MC GARRY, NELLIE<br /></a><span class="txt7">SANCHEZ, MOSES ARIEL</span><br /><span class="txt7">SHULTS, CHARLES W.</span><br /><span class="txt7">SWEET, WILLIAM RALPH JR.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 18</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">COLFER, RONALD J.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1001372" class="sublink2">KLEHS, JOHAN<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 19</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">BRINKMAN, CATHERINE S.</span><br /><span class="txt7">GILSTER, MILES C.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1239028" class="sublink2">MULLIN, GENE R.<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 20</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1254611" class="sublink2">BHATT, ASHIK K.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1256412" class="sublink2">HAYASHI, DENNIS<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1255423" class="sublink2">MANAYAN, HENRY C.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1226606" class="sublink2">PICO JR., THOMAS P.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1253526" class="sublink2">TORRICO, ALBERTO<br /></a><span class="txt7">WILLIAMS, CLIFFORD R.</span><br /></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 21</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1252082" class="sublink2">BARTON, JOHN H.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1254583" class="sublink2">CARCIONE, JOHN P.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1253676" class="sublink2">NESBET, BARBARA<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1256885" class="sublink2">POIZNER, STEVE<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1252810" class="sublink2">RUSKIN, IRA<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 22</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">DOMINGUEZ-GASSON, MARIE C.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1231723" class="sublink2">LIEBER, SALLY<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 23</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">BLOOMBERG III, WARNER S.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1253525" class="sublink2">COTO, JOE<br /></a><span class="txt7">MARTINEZ-ROACH, PATRICIA</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1255728" class="sublink2">NAPOLI, KATHY CHAVEZ<br /></a><span class="txt7">PATROSSO, MARK</span><br /><span class="txt7">TRAN, KHANH D.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 24</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005705" class="sublink2">COHN, REBECCA<br /></a><span class="txt7">COLLIER III, ZANDER Y.</span><br /><span class="txt7">JANKOWIAK, FRED</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1000902" class="sublink2">KONNYU, ERNEST L.<br /></a><span class="txt7">REDICK, DAVID</span><br /></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 25</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005678" class="sublink2">COGDILL, DAVID E.<br /></a><span class="txt7">MARKS, BRYAN JUSTIN</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 26</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005692" class="sublink2">AGHAZARIAN, GREG<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1220774" class="sublink2">WEINTZ, TIM P.<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 27</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">BARLICH, JACK D.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1226901" class="sublink2">LAIRD, JOHN S.<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 28</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1260596" class="sublink2">PERKINS, ROBERT E.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1005673" class="sublink2">SALINAS, SIMON<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 29</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1004800" class="sublink2">BRIGGS, MIKE<br /></a><span class="txt7">CROCKFORD, JOHN</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1261012" class="sublink2">MACIAS, MICHAEL R.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1254432" class="sublink2">MATHYS, CHRIS<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1255183" class="sublink2">VILLINES, MICHAEL N.<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 30</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1237532" class="sublink2">GARDNER, M. DEAN<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1234191" class="sublink2">PARRA, NICOLE<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 31</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1250945" class="sublink2">ARAMBULA, JUAN<br /></a><span class="txt7">BETANCOURT, PAUL</span><br /><span class="txt7">WARKENTIN, STANLEY R.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 32</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">ARMAS, ANTHONY M.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1234228" class="sublink2">MC CARTHY, KEVIN<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 33</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1234847" class="sublink2">BLAKESLEE, SAM<br /></a><span class="txt7">HUTCHINGS, THOMAS A.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1260452" class="sublink2">JENKINS, STEWART D.<br /></a><span class="txt7">KIRKLAND, GARY L.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1236050" class="sublink2">KOKKONEN, MATT<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1254662" class="sublink2">ZIMMERMAN, MICHAEL<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 34</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">FLOREZ, MAGGIE</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1005213" class="sublink2">MAZE, BILL<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 35</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1237583" class="sublink2">NAVA, PEDRO I.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1240644" class="sublink2">POHL, BOB<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 36</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">SCIONEAUX, HORTON</span><br /></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 37</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1236048" class="sublink2">GORELL, JEFF<br /></a><span class="txt7">MC CLENDON, ERIC R.</span><br /><span class="txt7">PRINCE, ADRIENNE M.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1253645" class="sublink2">ROBINSON, MIKE<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1251045" class="sublink2">STRICKLAND, AUDRA<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 38</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">DAVIS, BRIAN JOSEPH</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1005656" class="sublink2">RICHMAN, KEITH STUART<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 39</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">AYAO, ELY DE LA CRUZ</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1238513" class="sublink2">MONTANEZ, CINDY<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 40</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">ISLER, MARK</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1233568" class="sublink2">LEVINE, LLOYD<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 41</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1256380" class="sublink2">BONHACH, HEATHER PETERS<br /></a><span class="txt7">KOFFLER, RICHARD P.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1005757" class="sublink2">PAVLEY, FRAN<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 42</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">FREDRIX, PAUL MORGAN</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1004239" class="sublink2">KORETZ, PAUL<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 43</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005786" class="sublink2">FROMMER, DARIO<br /></a><span class="txt7">WOREN, SANDOR J.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 44</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1261348" class="sublink2">GABRIEL, LYNN<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1005704" class="sublink2">LIU, CAROL<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1256087" class="sublink2">WILCOX, DAVID C.<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 45</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005703" class="sublink2">GOLDBERG, JACKIE<br /></a><span class="txt7">GUTIERREZ, OSCAR A.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 46</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1239991" class="sublink2">ALDANA JR., MANUEL<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1238937" class="sublink2">NUNEZ, FABIAN<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 47</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1259008" class="sublink2">BASS, KAREN<br /></a><span class="txt7">COOPER, DAVID A.</span><br /><span class="txt7">DE BAETS, PETER D.</span><br /><span class="txt7">EVERETT, DALE V.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1253517" class="sublink2">GROPER, RICHARD P.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1259132" class="sublink2">HOLDEN, NATE<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1255129" class="sublink2">IVIE, RICKEY<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 48</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">ALEXANDER, SEBASTIAN</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1240873" class="sublink2">RIDLEY-THOMAS, MARK<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 49</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">BROWN, LAURA G.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1004242" class="sublink2">CHU, JUDY<br /></a><span class="txt7">NEEDS, SANDRA L.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 50</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1254971" class="sublink2">CHACON, HECTOR<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1253966" class="sublink2">DE LA TORRE, HECTOR<br /></a><span class="txt7">MENDEZ, JUAN CARLOS</span><br /><span class="txt7">MILLER, GLADYS O.</span><br /><span class="txt7">REYES, XAVIER</span><br /></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 51</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1220801" class="sublink2">HORTON, JEROME E.<br /></a><span class="txt7">SHERMAN, DANIEL R.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 52</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1238979" class="sublink2">DYMALLY, MERVYN M.<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 53</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">BOIVIE, ETHAN M.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1252137" class="sublink2">GORDON, MIKE<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1255064" class="sublink2">HILL, GREGORY CHARLES<br /></a><span class="txt7">SMITH, JAMES R.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 54</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1003821" class="sublink2">KARNETTE, BETTY<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1257367" class="sublink2">KUYKENDALL, STEVEN T.<br /></a><span class="txt7">STERNE, JOHN HOWARD</span><br /></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 55</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005665" class="sublink2">OROPEZA, JENNY<br /></a><span class="txt7">UNDERHILL, MARGHERITA</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 56</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005170" class="sublink2">BERMUDEZ, RUDY<br /></a><span class="txt7">BRANTUK, JOHN W.</span><br /></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 57</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005674" class="sublink2">CHAVEZ, EDWARD "ED"<br /></a><span class="txt7">VALENZUELA, VICTOR M.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 58</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1235391" class="sublink2">CALDERON, RONALD<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1259659" class="sublink2">TOPALIAN, RITA H.<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 59</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1253907" class="sublink2">HARDEN, DANIEL V.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1220842" class="sublink2">MOUNTJOY, DENNIS<br /></a><span class="txt7">WARD, FRITZ R.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 60</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005380" class="sublink2">HUFF, ROBERT 'BOB'<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1256405" class="sublink2">MAC ALONEY, WILLIAM<br /></a><span class="txt7">MARTINEZ, PATRICK JOHN</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1252686" class="sublink2">PACHECO, GAYLE E.<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 61</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005234" class="sublink2">MC LEOD, GLORIA NEGRETE<br /></a><span class="txt7">MOORE, SHIRLEY R.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1260456" class="sublink2">WAPNER, ALAN D.<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 62</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1251583" class="sublink2">BACA JR., JOE<br /></a><span class="txt7">HAWKINS, WALTER S.</span><br /><span class="txt7">MENDOZA-WARE, MARGE</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1252396" class="sublink2">PRUITT, DAVID ROA<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 63</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1261353" class="sublink2">EMMERSON, BILL<br /></a><span class="txt7">KEEDY, MAUREEN K.</span><br /><span class="txt7">LYON, GEOFFREY</span><br /><span class="txt7">MC NAMEE, D'ANDRE</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1252076" class="sublink2">MORRELL, MICHAEL L.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1253677" class="sublink2">PIROZZI, ELIA V.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1260424" class="sublink2">ROBLES, SYLVIA A.<br /></a><span class="txt7">STAVROS, SAM</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 64</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1240093" class="sublink2">BENOIT, JOHN J.<br /></a><span class="txt7">MELSH, ROBERT J.</span><br /></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 65</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1005640" class="sublink2">BOGH, RUSSELL V.<br /></a><span class="txt7">RAMIREZ-DEAN, RITA</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 66</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1003467" class="sublink2">HAYNES, RAYMOND N.<br /></a><span class="txt7">LEE, JACK N.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1253533" class="sublink2">NICHOLSON, LAUREL A.<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 67</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">SILVA, DAVID P.</span><br /><span class="txt7">WESTWELL, NORM S.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 68</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1233415" class="sublink2">LEYES, MARK A.<br /></a><span class="txt7">SNOOK, AL</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1228283" class="sublink2">TRAN, VAN<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 69</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1253556" class="sublink2">ALVAREZ, CLAUDIA<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1256415" class="sublink2">BADE, OTTO R.<br /></a><span class="txt7">REIS, GEORGE</span><br /><span class="txt7">ROSS, REUBEN A.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 70</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">BALDWIN, MARK</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1253519" class="sublink2">CRISTICH, CRISTI L.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1254089" class="sublink2">DE VORE, CHARLES S.<br /></a><span class="txt7">GUPTA, CHONCHOL D.</span><br /><span class="txt7">MARIZ, CARL L.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1260613" class="sublink2">PHAM, LONG K.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1260382" class="sublink2">WAGNER, DON<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1254092" class="sublink2">ZIPPI, MARIANNE<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 71</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">FOSTER, BEA</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1230744" class="sublink2">SPITZER, TODD<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 72</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">CROSS, BRIAN LEE</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1005667" class="sublink2">DAUCHER, LYNN<br /></a><span class="txt7">JOHNSON, ROSS W.</span><br /></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 73</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">CALZADA, KATHLEEN</span><br /><span class="txt7">FAVOR, ANDREW H.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1254184" class="sublink2">GIBSON, JAMES E.<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1251751" class="sublink2">WALTERS, MIMI<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1241312" class="sublink2">WILSON, THOMAS W.<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 74</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">KING, PAUL H.</span><br /><span class="txt7">UNDERWOOD, KAREN</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1005714" class="sublink2">WYLAND, MARK B.<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 75</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1254760" class="sublink2">HEUMANN, KAREN A<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1240145" class="sublink2">PLESCIA, GEORGE A.<br /></a><span class="txt7">SENECAL, RICHARD J.</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 76</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1233427" class="sublink2">HALL, VINCE HENRY<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1003099" class="sublink2">HUNTER, TRICIA RAE<br /></a><span class="txt7">OSBORNE, JENNIFER</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1252223" class="sublink2">SALDANA, LORI<br /></a><span class="txt7">STAMPS, BILL</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1255130" class="sublink2">VON SZELISKI, HEIDI J.<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 77</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">HALL, VIRGIL R.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1005766" class="sublink2">LA SUER, JAY<br /></a><span class="txt7">LARKIN, CHRISTOPHER</span><br /></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 78</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1254541" class="sublink2">DAVIS, PATRICIA S.<br /></a><span class="txt7">HALE, JOSH</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1240526" class="sublink2">HORTON, SHIRLEY<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1255515" class="sublink2">RICASA, ARLIE<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1241244" class="sublink2">SHERARD, MAXINE J.<br /></a></td>
+			</tr>
+		</table></td>
+	</tr><tr>
+		<td width="50%" valign="top" bgcolor="#FADEA5"><span class="hdr13">ASSEMBLY 79</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><span class="txt7">CONROE, ELI W.</span><br /><a href="/Campaign/Candidates/Detail.aspx?id=1005741" class="sublink2">VARGAS, JUAN C.<br /></a></td>
+			</tr>
+		</table></td><td width="50%" valign="top" bgcolor="#FDEFD3"><span class="hdr13">ASSEMBLY 80</span><br /><table cellspacing="0" cellpadding="0" border="0">
+			<tr>
+				<td><a href="/Campaign/Candidates/Detail.aspx?id=1255182" class="sublink2">ANDREAS, MARY ANN<br /></a><a href="/Campaign/Candidates/Detail.aspx?id=1240067" class="sublink2">GARCIA, BONNIE<br /></a></td>
+			</tr>
+		</table></td>
+	</tr>
+</table><br /></a>
+
+
+			<script language='javascript' type='text/javascript'>
+			function trapEnter(btn)
+			{
+				if (document.all)
+				{
+					if (event.keyCode == 13)
+					{ 
+						event.returnValue=false;
+						event.cancel = true;
+						btn.click();
+					} 
+				} 
+			}
+			</script>
+
+</form>
+									</td>
+								</tr>
+							</table>
+						</form>
+					</body>
+				</html>
+			

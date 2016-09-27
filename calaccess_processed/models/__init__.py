@@ -35,6 +35,10 @@ from calaccess_processed.models.campaign.filings.schedule497 import (
     Schedule497Part2Item,
     Schedule497Part2ItemVersion,
 )
+from calaccess_processed.models.scraped import (
+    ScrapedElection,
+    ScrapedCandidate,
+)
 from calaccess_processed.models.common import (
     FilerIDValue,
     FilingIDValue,
@@ -73,4 +77,8 @@ __all__ = (
     'Schedule497Part1ItemVersion',
     'Schedule497Part2Item',
     'Schedule497Part2ItemVersion',
+    'ScrapedElection',
+    'ScrapedCandidate',
+    'FilerIDValue',
+    'FilingIDValue',
 )
