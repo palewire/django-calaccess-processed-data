@@ -6,6 +6,7 @@ import urlparse
 from time import sleep
 from bs4 import BeautifulSoup
 from calaccess_raw import get_download_directory
+from calaccess_processed.models.campaign import Election, Race, Candidate
 from calaccess_processed.management.commands import CalAccessCommand
 
 
@@ -14,13 +15,6 @@ class ScrapeCommand(CalAccessCommand):
 
     def handle(self, *args, **options):
         super(ScrapeCommand, self).handle(*args, **options)
-        # set up scraped data directory
-        self.scraped_data_dir = os.path.join(
-            get_download_directory(),
-            'scraped',
-        )
-        if not os.path.exists(self.scraped_data_dir):
-            os.makedirs(self.scraped_data_dir)
         self.verbosity = int(options['verbosity'])
         results = self.build_results()
         self.process_results(results)
@@ -80,7 +74,7 @@ class ScrapeCommand(CalAccessCommand):
         Translates a raw office name into one of
         our canonical names and a seat (if available).
         """
-        seat = None
+        seat = ''
         raw_name = raw_name.upper()
         if 'LIEUTENANT GOVERNOR' in raw_name:
             clean_name = 'LIEUTENANT_GOVERNOR'
@@ -197,7 +191,7 @@ class Command(ScrapeCommand):
 
                 # Log what we're up to
                 if self.verbosity > 2:
-                    self.log('Scraping office %s' % title_el.text)
+                    self.log('   Scraping office %s' % title_el.text)
 
                 # Pull the candidates out
                 people = []
@@ -225,48 +219,51 @@ class Command(ScrapeCommand):
         """
         Process the scraped data.
         """
-        path = os.path.join(self.scraped_data_dir, 'scraped_candidates.csv')
-        with open(path, 'wb') as f:
-            fieldnames = [
-                'candidate_name',
-                'candidate_id',
-                'office_name',
-                'office_seat',
-                'year',
-                'election_type',
-                'election_id',
-                'sort_index'
-            ]
-            writer = csv.DictWriter(f, fieldnames=fieldnames)
-            writer.writeheader()
+        self.log('Processing %s elections.' % len(results))
 
-            self.log('Processing %s elections.' % len(results))
+        # Loop through all the results
+        for d in results:
 
-            # Loop through all the results
-            for d in results:
+            self.log('  Processing %s' % d['raw_name'])
 
-                self.log('  Processing %s' % d['raw_name'])
+            election, c = Election.objects.get_or_create(
+                election_year=d['year'],
+                election_type=d['election_type'],
+                election_id=d['election_id'],
+                sort_index=d['sort_index'],
+            )
 
-                election = {
-                    'year': d['year'],
-                    'election_type': d['election_type'],
-                    'election_id': d['election_id'],
-                    'sort_index': d['sort_index']
-                }
+            if self.verbosity > 2:
+                if c:
+                    self.log('  Created %s' % election)
 
-                # Loop through the data list from the scraped page
-                for office_dict in d['data'].values():
+            # Loop through the data list from the scraped page
+            for office_dict in d['data'].values():
 
-                    # Loop through each of the offices we found there
-                    for office_name, candidates in office_dict.items():
+                # Loop through each of the offices we found there
+                for office_name, candidates in office_dict.items():
 
-                        # Create an office dict
-                        office = self.parse_office_name(office_name)
+                    # Create an race object
+                    race, c = Race.objects.get_or_create(**self.parse_office_name(office_name))
+                    race.election = election
+                    race.save()
 
-                        # Loop through each of the candidates
-                        for candidate in candidates:
-                            row = {}
-                            row.update(candidate)
-                            row.update(office)
-                            row.update(election)
-                            writer.writerow(row)
+                    if self.verbosity > 2:
+                        if c:
+                            self.log('  Created %s' % race)
+
+                    # Loop through each of the candidates
+                    for candidate_data in candidates:
+                        # See if we have filing information for them
+                        candidate = Candidate.objects.filter(
+                            filer_id=candidate_data['candidate_id'],
+                            office=race.office_name,
+                            district=race.office_seat,
+                            election_year=election.election_year
+                        ).first()
+
+                        # If so, associate them with a race and election object
+                        if candidate:
+                            candidate.race = race
+                            candidate.election = election
+                            candidate.save()
