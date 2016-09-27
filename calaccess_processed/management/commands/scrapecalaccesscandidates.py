@@ -1,113 +1,8 @@
-import os
 import re
-import csv
-import requests
 import urlparse
 from time import sleep
-from bs4 import BeautifulSoup
-from calaccess_raw import get_download_directory
-from calaccess_processed.models.campaign import Election, Race, Candidate
-from calaccess_processed.management.commands import CalAccessCommand
-
-
-class ScrapeCommand(CalAccessCommand):
-    base_url = 'http://cal-access.ss.ca.gov/'
-
-    def handle(self, *args, **options):
-        super(ScrapeCommand, self).handle(*args, **options)
-        self.verbosity = int(options['verbosity'])
-        results = self.build_results()
-        self.process_results(results)
-
-    def build_results(self):
-        """
-        This method should perform the actual scraping
-        and return the structured data.
-        """
-        raise NotImplementedError
-
-    def process_results(self, results):
-        """
-        This method receives the structured data returned
-        by `build_results` and should process it.
-        """
-        raise NotImplementedError
-
-    def get(self, url, retries=1):
-        """
-        Makes a request for a URL and returns the HTML
-        as a BeautifulSoup object.
-        """
-        if self.verbosity > 2:
-            self.log(" Retrieving %s" % url)
-        tries = 0
-        while tries < retries:
-            response = requests.get(url)
-            if response.status_code == 200:
-                return BeautifulSoup(response.text)
-            else:
-                tries += 1
-                sleep(2.0)
-        raise HTTPError
-
-    def parse_election_name(self, name):
-        """
-        Translates a raw election name into
-        one of our canonical names.
-        """
-        name = name.upper()
-        if 'PRIMARY' in name:
-            return 'PRIMARY'
-        elif 'GENERAL' in name:
-            return 'GENERAL'
-        elif 'SPECIAL RUNOFF' in name:
-            return 'SPECIAL_RUNOFF'
-        elif 'SPECIAL' in name:
-            return 'SPECIAL'
-        elif 'RECALL' in name:
-            return 'RECALL'
-        else:
-            return 'OTHER'
-
-    def parse_office_name(self, raw_name):
-        """
-        Translates a raw office name into one of
-        our canonical names and a seat (if available).
-        """
-        seat = ''
-        raw_name = raw_name.upper()
-        if 'LIEUTENANT GOVERNOR' in raw_name:
-            clean_name = 'LIEUTENANT_GOVERNOR'
-        elif 'GOVERNOR' in raw_name:
-            clean_name = 'GOVERNOR'
-        elif 'SECRETARY OF STATE' in raw_name:
-            clean_name = 'SECRETARY_OF_STATE'
-        elif 'CONTROLLER' in raw_name:
-            clean_name = 'CONTROLLER'
-        elif 'TREASURER' in raw_name:
-            clean_name = 'TREASURER'
-        elif 'ATTORNEY GENERAL' in raw_name:
-            clean_name = 'ATTORNEY_GENERAL'
-        elif 'SUPERINTENDENT OF PUBLIC INSTRUCTION' in raw_name:
-            clean_name = 'SUPERINTENDENT_OF_PUBLIC_INSTRUCTION'
-        elif 'INSURANCE COMMISSIONER' in raw_name:
-            clean_name = 'INSURANCE_COMMISSIONER'
-        elif 'MEMBER BOARD OF EQUALIZATION' in raw_name:
-            clean_name = 'BOARD_OF_EQUALIZATION'
-            seat = raw_name.split()[-1]
-        elif 'SENATE' in raw_name:
-            clean_name = 'SENATE'
-            seat = raw_name.split()[-1]
-        elif 'ASSEMBLY' in raw_name:
-            clean_name = 'ASSEMBLY'
-            seat = raw_name.split()[-1]
-        else:
-            clean_name = 'OTHER'
-        return {
-            'office_name': clean_name,
-            'office_seat': seat
-        }
-
+from calaccess_processed.models.scraped import ScrapedElection, ScrapedCandidate
+from calaccess_processed.management.commands import ScrapeCommand
 
 class Command(ScrapeCommand):
     """
@@ -142,7 +37,7 @@ class Command(ScrapeCommand):
             # Parse out the name and year
             data['raw_name'] = link.find_next_sibling('span').text.strip()
             data['election_type'] = self.parse_election_name(data['raw_name'])
-            data['year'] = int(data['raw_name'][:4])
+            data['election_year'] = int(data['raw_name'][:4])
             # The index value is used to preserve sorting of elections,
             # since multiple elections may occur in a year.
             # BeautifulSoup goes from top to bottom,
@@ -204,7 +99,7 @@ class Command(ScrapeCommand):
                 for p in office.findAll('span', {'class': 'txt7'}):
                     people.append({
                         'candidate_name': p.text,
-                        'candidate_id':  None
+                        'candidate_id':  ''
                     })
 
                 # Add it to the data dictionary
@@ -226,8 +121,8 @@ class Command(ScrapeCommand):
 
             self.log('  Processing %s' % d['raw_name'])
 
-            election, c = Election.objects.get_or_create(
-                election_year=d['year'],
+            election, c = ScrapedElection.objects.get_or_create(
+                election_year=d['election_year'],
                 election_type=d['election_type'],
                 election_id=d['election_id'],
                 sort_index=d['sort_index'],
@@ -243,27 +138,14 @@ class Command(ScrapeCommand):
                 # Loop through each of the offices we found there
                 for office_name, candidates in office_dict.items():
 
-                    # Create an race object
-                    race, c = Race.objects.get_or_create(**self.parse_office_name(office_name))
-                    race.election = election
-                    race.save()
-
-                    if self.verbosity > 2:
-                        if c:
-                            self.log('  Created %s' % race)
-
                     # Loop through each of the candidates
                     for candidate_data in candidates:
-                        # See if we have filing information for them
-                        candidate = Candidate.objects.filter(
-                            filer_id=candidate_data['candidate_id'],
-                            office=race.office_name,
-                            district=race.office_seat,
-                            election_year=election.election_year
-                        ).first()
-
-                        # If so, associate them with a race and election object
-                        if candidate:
-                            candidate.race = race
+                        # Add the office information to the candidate dict
+                        candidate_data.update(self.parse_office_name(office_name))
+                        candidate, c = ScrapedCandidate.objects.get_or_create(**candidate_data)
+                        
+                        if c:
                             candidate.election = election
                             candidate.save()
+                            if self.verbosity > 2:
+                                self.log('  Created %s' % candidate)

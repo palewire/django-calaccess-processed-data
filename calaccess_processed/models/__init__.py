@@ -7,6 +7,10 @@ from calaccess_processed.models.campaign import (
     Candidate,
     F460Summary,
 )
+from calaccess_processed.models.scraped import (
+    ScrapedElection,
+    ScrapedCandidate,
+)
 from calaccess_processed.models.common import (
     FilerIDValue,
     FilingIDValue,
@@ -21,6 +25,8 @@ __all__ = (
     'ProcessedDataFile',
     'Candidate',
     'F460Summary',
+    'ScrapedElection',
+    'ScrapedCandidate',
     'FilerIDValue',
     'FilingIDValue',
 )
