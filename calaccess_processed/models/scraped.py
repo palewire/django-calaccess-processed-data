@@ -17,11 +17,16 @@ class ScrapedElection(models.Model):
         blank=True,
         help_text="Election identification number",
     )
-    election_year = models.IntegerField(
+    year = models.IntegerField(
         verbose_name='year of election',
         db_index=True,
         null=False,
         help_text='Year of election',
+    )
+    date = models.DateField(
+        verbose_name='date of election',
+        null=True,
+        help_text='Date of election',
     )
     election_type = models.CharField(
         verbose_name="election type",
@@ -44,14 +49,14 @@ class ScrapedElection(models.Model):
 
 @python_2_unicode_compatible
 class ScrapedCandidate(models.Model):
-    candidate_name = models.CharField(
+    name = models.CharField(
         verbose_name="candidate name",
         max_length=200,
         null=False,
         blank=False,
         help_text="Scraped candidate name",
     )
-    candidate_id = models.CharField(
+    scraped_id = models.CharField(
         verbose_name="candidate id",
         max_length=7,
         null=False,
@@ -80,4 +85,67 @@ class ScrapedCandidate(models.Model):
     )
 
     def __str__(self):
-        return str(self.candidate_name)
+        return self.candidate_name
+
+
+@python_2_unicode_compatible
+class ScrapedProposition(models.Model):
+    # Most of the time, this is a number, however,
+    # it can be a bona fide name, e.g.
+    # '2003 Recall Question'
+    name = models.CharField(
+        verbose_name="proposition name",
+        max_length=200,
+        null=False,
+        blank=False,
+        help_text="Scraped proposition name",
+    )
+    description = models.TextField(
+        verbose_name="proposition description",
+        null=False,
+        blank=True,
+        help_text="Scraped proposition description",
+    )
+    scraped_id = models.CharField(
+        verbose_name="proposition id",
+        max_length=200,
+        null=False,
+        blank=False,
+        help_text="Scraped proposition id",
+    )
+    election = models.ForeignKey(
+        'ScrapedElection',
+        null=True
+    )
+
+    def __str__(self):
+        return 'Proposition: {}'.format(self.name)
+
+
+@python_2_unicode_compatible
+class ScrapedCommittee(models.Model):
+    name = models.CharField(
+        verbose_name="committee name",
+        max_length=500,
+        null=False,
+        blank=False,
+        help_text="Scraped committee name",
+    )
+    scraped_id = models.CharField(
+        verbose_name="committee id",
+        max_length=7,
+        null=False,
+        blank=False,
+        help_text="Scraped committee id",
+    )
+    support = models.BooleanField(
+        verbose_name="supports proposition",
+        help_text="Whether the committee supports the proposition",
+    )
+    proposition = models.ForeignKey(
+        'ScrapedProposition',
+        null=False
+    )
+
+    def __str__(self):
+        return self.name
