@@ -1,8 +1,8 @@
 import re
 import urlparse
 from time import sleep
-from calaccess_processed.models.scraped import ScrapedElection, ScrapedCandidate
 from calaccess_processed.management.commands import ScrapeCommand
+from calaccess_processed.models.scraped import ScrapedElection, ScrapedCandidate
 
 class Command(ScrapeCommand):
     """
@@ -37,7 +37,7 @@ class Command(ScrapeCommand):
             # Parse out the name and year
             data['raw_name'] = link.find_next_sibling('span').text.strip()
             data['election_type'] = self.parse_election_name(data['raw_name'])
-            data['election_year'] = int(data['raw_name'][:4])
+            data['year'] = int(data['raw_name'][:4])
             # The index value is used to preserve sorting of elections,
             # since multiple elections may occur in a year.
             # BeautifulSoup goes from top to bottom,
@@ -92,14 +92,14 @@ class Command(ScrapeCommand):
                 people = []
                 for p in office.findAll('a', {'class': 'sublink2'}):
                     people.append({
-                        'candidate_name': p.text,
-                        'candidate_id': re.match(r'.+id=(\d+)', p['href']).group(1)
+                        'name': p.text,
+                        'scraped_id': re.match(r'.+id=(\d+)', p['href']).group(1)
                     })
 
                 for p in office.findAll('span', {'class': 'txt7'}):
                     people.append({
-                        'candidate_name': p.text,
-                        'candidate_id':  ''
+                        'name': p.text,
+                        'scraped_id':  ''
                     })
 
                 # Add it to the data dictionary
@@ -122,9 +122,9 @@ class Command(ScrapeCommand):
             self.log('  Processing %s' % d['raw_name'])
 
             election, c = ScrapedElection.objects.get_or_create(
-                election_year=d['election_year'],
+                year=d['year'],
                 election_type=d['election_type'],
-                election_id=d['election_id'],
+                election_id=d['scraped_id'],
                 sort_index=d['sort_index'],
             )
 
