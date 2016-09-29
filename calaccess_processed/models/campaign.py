@@ -195,6 +195,27 @@ class F460Summary(models.Model):
         null=False,
         help_text='Amendment identification number',
     )
+    date_filed = models.DateField(
+        verbose_name='date filed',
+        db_index=True,
+        null=False,
+        help_text="Date this report was filed, according to the filer "
+                  "(from CVR_CAMPAIGN_DISCLOSURE.RPT_DATE)",
+    )
+    from_date = models.DateField(
+        verbose_name='from date',
+        db_index=True,
+        null=False,
+        help_text="The first date of the filing period covered by the statement "
+                  "(from CVR_CAMPAIGN_DISCLOSURE.FROM_DATE)",
+    )
+    thru_date = models.DateField(
+        verbose_name='thru date',
+        db_index=True,
+        null=False,
+        help_text="The last date of the filing period covered by the statement "
+                  "(from CVR_CAMPAIGN_DISCLOSURE.THRU_DATE)",
+    )
     filer_id = models.IntegerField(
         verbose_name='filer id',
         db_index=True,
@@ -215,6 +236,13 @@ class F460Summary(models.Model):
         blank=True,
         help_text="First name of the filer (from "
                   "CVR_CAMPAIGN_DISCLOSURE.FILER_NAMF)",
+    )
+    election_date = models.DateField(
+        verbose_name='election date',
+        db_index=True,
+        null=True,
+        help_text="Date of the election in which the filer is participating "
+                  "(from CVR_CAMPAIGN_DISCLOSURE.ELECT_DATE)",
     )
     monetary_contributions = models.IntegerField(
         verbose_name='monetary contributions',
