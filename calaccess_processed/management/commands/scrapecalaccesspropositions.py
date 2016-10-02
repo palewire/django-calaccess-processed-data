@@ -5,6 +5,7 @@ from datetime import datetime
 from calaccess_processed.management.commands import ScrapeCommand
 from calaccess_processed.models.scraped import ScrapedElection, ScrapedProposition, ScrapedCommittee
 
+
 class Command(ScrapeCommand):
     """
     Scrape propositions and ballot measures.
@@ -196,7 +197,7 @@ class Command(ScrapeCommand):
                     if self.verbosity > 2:
                         if c:
                             self.log(' Created %s' % prop_obj)
-                    
+
                     # Set the election if we have it
                     try:
                         election = ScrapedElection.objects.get(
