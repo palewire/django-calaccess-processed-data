@@ -1,11 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import urllib2
 import logging
 import requests
+from time import sleep
 from bs4 import BeautifulSoup
 from django.utils.termcolors import colorize
 from django.core.management.base import BaseCommand
 logger = logging.getLogger(__name__)
+
 
 class CalAccessCommand(BaseCommand):
     """
@@ -115,7 +118,7 @@ class ScrapeCommand(CalAccessCommand):
             else:
                 tries += 1
                 sleep(2.0)
-        raise HTTPError
+        raise urllib2.HTTPError
 
     def parse_election_name(self, name):
         """
