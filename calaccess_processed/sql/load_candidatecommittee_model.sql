@@ -13,7 +13,7 @@ INSERT INTO calaccess_processed_candidatecommittee (
 SELECT   
         candidate_filer_id,
         committee_filer_id,
-        @link_type as link_type_id,
+        @link_type AS link_type_id,
         lu."CODE_DESC" AS link_type_description,
         MIN(session) AS first_session,
         MAX(session) AS last_session,
@@ -22,7 +22,7 @@ SELECT
         MIN(termination_date) AS first_termination_date,
         MAX(termination_date) AS last_termination_date
 FROM (
-        -- select all LINK records where FILER_A was ever a candidate
+        -- select all FILER_LINKS_CD records where FILER_A was ever a candidate
         SELECT 
                 links."FILER_ID_A" AS candidate_filer_id,
                 links."FILER_ID_B" AS committee_filer_id,
@@ -33,8 +33,7 @@ FROM (
                 END AS session,
                 "ACTIVE_FLG" AS active,
                 "EFFECT_DT" AS effective_date,
-                "TERMINATION_DT" AS termination_date,
-                links.id
+                "TERMINATION_DT" AS termination_date
         FROM "FILER_LINKS_CD" links
         JOIN (
                 SELECT DISTINCT "FILER_ID"
@@ -42,6 +41,7 @@ FROM (
                 WHERE "FILER_TYPE" = 8
         ) cands
         ON cands."FILER_ID" = links."FILER_ID_A"
+        -- and FILER_B was ever a recipient committee
         JOIN (
                 SELECT DISTINCT "FILER_ID"
                 FROM "FILER_TO_FILER_TYPE_CD"
@@ -51,7 +51,7 @@ FROM (
         -- union with all LINK records where FILER B was ever a candidate
         UNION ALL
         SELECT 
-                links."FILER_ID_B" AS cand_filer_id,
+                links."FILER_ID_B" AS candidate_filer_id,
                 links."FILER_ID_A" AS committee_filer_id,
                 "LINK_TYPE" as link_type,
                 CASE "SESSION_ID" 
@@ -60,8 +60,7 @@ FROM (
                 END AS session,
                 "ACTIVE_FLG" AS active,
                 "EFFECT_DT" AS effective_date,
-                "TERMINATION_DT" AS termination_date,
-                links.id
+                "TERMINATION_DT" AS termination_date
         FROM "FILER_LINKS_CD" links
         JOIN (
                 SELECT DISTINCT "FILER_ID"
@@ -69,6 +68,7 @@ FROM (
                 WHERE "FILER_TYPE" = 8
         ) cands
         ON cands."FILER_ID" = links."FILER_ID_B"
+        -- and FILER_A was ever a recipient committee
         JOIN (
                 SELECT DISTINCT "FILER_ID"
                 FROM "FILER_TO_FILER_TYPE_CD"
