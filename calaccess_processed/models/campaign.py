@@ -178,6 +178,105 @@ class Candidate(models.Model):
 
 
 @python_2_unicode_compatible
+class CandidateCommittee(models.Model):
+    """
+    Maps links between candidates and recipient committees.
+
+    Derived from FILER_LINKS_CD.
+    """
+    candidate_filer_id = models.IntegerField(
+        verbose_name='candidate filer ID',
+        null=False,
+        help_text="Unique filer_id of the candidate. Derived from FILER_ID_A "
+                  "and FILER_ID_B columns on FILER_LINKS_CD, includes any "
+                  "filer_id ever categorized as a candidate in "
+                  "FILER_TO_FILER_TYPES_CD.",
+    )
+    committee_filer_id = models.IntegerField(
+        verbose_name='committee filer ID',
+        null=False,
+        help_text="Unique filer_id of the committee linked to the candidate. "
+                  "Derived from FILER_ID_A and FILER_ID_B columns on "
+                  "FILER_LINKS_CD, includes any filer_id ever categorized as a"
+                  " recipient committee that is linked to a filer_id "
+                  "categorized as a candidate in FILER_TO_FILER_TYPES_CD.",
+    )
+    link_type_id = models.IntegerField(
+        verbose_name='link type identifier',
+        null=False,
+        help_text="Numeric identifier that describes how the candidate and "
+                  "committee are linked (the absolute value of FILER_LINKS_CD."
+                  "LINK_TYPE).",
+    )
+    link_type_description = models.CharField(
+        verbose_name='link type description',
+        max_length=100,
+        blank=False,
+        null=False,
+        help_text="Human-readable description of the link between the candidate"
+                  " and committee (from LOOKUP_CODES_CD.CODE_DESC).",
+    )
+    first_session = models.IntegerField(
+        verbose_name='first session',
+        null=True,
+        help_text="First session when the link between the candidate and "
+                  "commitee existed (minimum value of "
+                  "FILER_LINKS_CD.SESSION_ID).",
+    )
+    last_session = models.IntegerField(
+        verbose_name='last session',
+        null=True,
+        help_text="Last session when the link between the candidate and "
+                  "commitee existed (maximum value of "
+                  "FILER_LINKS_CD.SESSION_ID).",
+    )
+    first_effective_date = models.DateField(
+        verbose_name='first effective date',
+        null=False,
+        help_text="Earliest date when the link between the candidate and "
+                  "commitee was in effect (minimum value of "
+                  "FILER_LINKS_CD.EFFECTIVE_DATE).",
+    )
+    last_effective_date = models.DateField(
+        verbose_name='last effective date',
+        null=False,
+        help_text="Latest date when the link between the candidate and "
+                  "commitee was in effect (maximum value of "
+                  "FILER_LINKS_CD.EFFECTIVE_DATE).",
+    )
+    first_termination_date = models.DateField(
+        verbose_name='first termination date',
+        null=True,
+        help_text="Earliest date when the link between the candidate and "
+                  "commitee was terminated (minimum value of "
+                  "FILER_LINKS_CD.TERMINATION_DATE).",
+    )
+    last_termination_date = models.DateField(
+        verbose_name='last termination date',
+        null=True,
+        help_text="Latest date when the link between the candidate and "
+                  "commitee was terminated (minimum value of "
+                  "FILER_LINKS_CD.TERMINATION_DATE).",
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        """
+        Meta model options.
+        """
+        app_label = 'calaccess_processed'
+        unique_together = ((
+            'candidate_filer_id',
+            'committee_filer_id',
+            'link_type_id'
+        ),)
+
+    def __str__(self):
+        return str(self.committee_filer_id)
+
+
+@python_2_unicode_compatible
 class F460Summary(models.Model):
     """
     Totals from the Summary Page of Form 460 (Recipient Committee Campaign 

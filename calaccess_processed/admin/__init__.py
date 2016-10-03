@@ -6,6 +6,7 @@ Import all of the admins from submodules and thread them together.
 from calaccess_raw.admin.base import BaseAdmin
 from calaccess_processed.admin.campaign import (
     CandidateAdmin,
+    CandidateCommitteeAdmin,
     F460SummaryAdmin,
 )
 from calaccess_processed.admin.common import (
@@ -19,6 +20,7 @@ from calaccess_processed.admin.tracking import (
 __all__ = (
     'BaseAdmin',
     'CandidateAdmin',
+    'CandidateCommitteeAdmin',
     'F460SummaryAdmin',
     'FilerIDValueAdmin',
     'ProcessedDataVersionAdmin',
