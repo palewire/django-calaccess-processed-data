@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_f460amendment (
+INSERT INTO calaccess_processed_f460filingversion (
     filing_id,
     amend_id,
     filer_id,

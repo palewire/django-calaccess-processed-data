@@ -1,6 +1,6 @@
 INSERT INTO calaccess_processed_f460filing (
     filing_id,
-    last_amend_id,
+    amendment_count,
     filer_id,
     date_filed,
     from_date,
@@ -30,7 +30,7 @@ INSERT INTO calaccess_processed_f460filing (
 )
 SELECT 
     cvr."FILING_ID" as filing_id,
-    last_cvr.last_amend_id,
+    last_cvr.last_amend_id as amendment_count,
     x."FILER_ID" as filer_id,
     cvr."RPT_DATE" as date_filed,
     cvr."FROM_DATE" as from_date,

@@ -7,7 +7,7 @@ from calaccess_processed.models.campaign import (
     Candidate,
     CandidateCommittee,
     F460Filing,
-    F460Amendment,
+    F460FilingVersion,
 )
 from calaccess_processed.models.common import (
     FilerIDValue,
@@ -24,7 +24,7 @@ __all__ = (
     'Candidate',
     'CandidateCommittee',
     'F460Filing',
-    'F460Amendment',
+    'F460FilingVersion',
     'FilerIDValue',
     'FilingIDValue',
 )

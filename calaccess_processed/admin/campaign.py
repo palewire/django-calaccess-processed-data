@@ -53,7 +53,7 @@ class F460FilingAdmin(BaseAdmin):
     """
     list_display = (
         'filing_id',
-        'last_amend_id',
+        'amendment_count',
         'filer_id',
         'filer_lastname',
         'filer_firstname',
@@ -62,10 +62,10 @@ class F460FilingAdmin(BaseAdmin):
         'ending_cash_balance',
     )
 
-@admin.register(models.F460Amendment)
-class F460AmendmentAdmin(BaseAdmin):
+@admin.register(models.F460FilingVersion)
+class F460FilingVersionAdmin(BaseAdmin):
     """
-    Custom admin for the F460Amendment model.
+    Custom admin for the F460FilingVersion model.
     """
     list_display = (
         'filing_id',

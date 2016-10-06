@@ -444,10 +444,12 @@ class F460Base(models.Model):
 @python_2_unicode_compatible
 class F460Filing(F460Base):
     """
-    Filings of Form 460 (Campaign Disclosure Statement) by Recipient Committees.
+    The most recent version of each Form 460 (Campaign Disclosure Statement) 
+    filing by recipient committees.
 
-    Includes information fromthe cover sheet and summary page of the most 
-    recent amendment to each filing.
+    Includes information from the cover sheet and summary page of the most 
+    recent amendment to each filing. All versions of Form 460 filings can be
+    found in f460version.
     """
     filing_id = models.IntegerField(
         verbose_name='filing id',
@@ -456,12 +458,11 @@ class F460Filing(F460Base):
         null=False,
         help_text='Filing identification number',
     )
-    last_amend_id = models.IntegerField(
-        verbose_name='last amendment id',
+    amendment_count = models.IntegerField(
+        verbose_name='Count amendments',
         db_index=True,
         null=False,
-        help_text='Amendment identification number for the most recent '
-                  'amendment to the filing.',
+        help_text='Number of amendments to this filing.',
     )
 
     objects = ProcessedDataManager()
@@ -470,17 +471,17 @@ class F460Filing(F460Base):
         verbose_name_plural = "f460_filing"
 
     def __str__(self):
-        return str(self.filing_id_raw)
+        return str(self.filing_id)
 
 
 @python_2_unicode_compatible
-class F460Amendment(F460Base):
+class F460FilingVersion(F460Base):
     """
-    Every amendment to every filing of a Form 460 (Campaign Disclosure 
-    Statement).
+    Every version of each Form 460 (Campaign Disclosure Statement) filing by
+    recipient committees.
 
     Includes information found on the cover sheet and summary page of each
-    amendment.
+    amendment. For the most recent version of each filing, see f460filing.
     """
     filing_id = models.IntegerField(
         verbose_name='filing id',
@@ -505,4 +506,4 @@ class F460Amendment(F460Base):
         ),)
 
     def __str__(self):
-        return str(self.filing_id_raw)
+        return str(self.filing_id)
