@@ -46,10 +46,26 @@ class CandidateCommitteeAdmin(BaseAdmin):
         'last_termination_date',
     )
 
-@admin.register(models.F460Summary)
-class F460SummaryAdmin(BaseAdmin):
+@admin.register(models.F460Filing)
+class F460FilingAdmin(BaseAdmin):
     """
-    Custom admin for the F460Summary model.
+    Custom admin for the F460Filing model.
+    """
+    list_display = (
+        'filing_id',
+        'last_amend_id',
+        'filer_id',
+        'filer_lastname',
+        'filer_firstname',
+        'total_contributions',
+        'total_expenditures_made',
+        'ending_cash_balance',
+    )
+
+@admin.register(models.F460Amendment)
+class F460AmendmentAdmin(BaseAdmin):
+    """
+    Custom admin for the F460Amendment model.
     """
     list_display = (
         'filing_id',

@@ -1,6 +1,6 @@
-INSERT INTO calaccess_processed_f460summary (
+INSERT INTO calaccess_processed_f460filing (
     filing_id,
-    amend_id,
+    last_amend_id,
     filer_id,
     date_filed,
     from_date,
@@ -30,7 +30,7 @@ INSERT INTO calaccess_processed_f460summary (
 )
 SELECT 
     cvr."FILING_ID" as filing_id,
-    cvr."AMEND_ID" as amend_id,
+    last_cvr.last_amend_id,
     x."FILER_ID" as filer_id,
     cvr."RPT_DATE" as date_filed,
     cvr."FROM_DATE" as from_date,
@@ -60,7 +60,15 @@ SELECT
     line_17."AMOUNT_A" as loan_guarantees_received,
     line_18."AMOUNT_A" as cash_equivalents,
     line_19."AMOUNT_A" as outstanding_debts
-FROM "CVR_CAMPAIGN_DISCLOSURE_CD" cvr
+FROM (
+    -- get most recent amendment for each filing
+    SELECT "FILING_ID", MAX("AMEND_ID") AS last_amend_id
+    FROM "CVR_CAMPAIGN_DISCLOSURE_CD"
+    GROUP BY 1
+) AS last_cvr
+JOIN "CVR_CAMPAIGN_DISCLOSURE_CD" cvr
+ON last_cvr."FILING_ID" = cvr."FILING_ID"
+AND last_cvr.last_amend_id = cvr."AMEND_ID"
 -- get the numeric filer_id
 JOIN "FILER_XREF_CD" x
 ON x."XREF_ID" = cvr."FILER_ID"

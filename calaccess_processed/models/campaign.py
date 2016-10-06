@@ -277,23 +277,10 @@ class CandidateCommittee(models.Model):
 
 
 @python_2_unicode_compatible
-class F460Summary(models.Model):
+class F460Base(models.Model):
     """
-    Totals from the Summary Page of Form 460 (Recipient Committee Campaign 
-    Statement) filings.
+    Base and abstract model for Form 460 filings.
     """
-    filing_id = models.IntegerField(
-        verbose_name='filing id',
-        db_index=True,
-        null=False,
-        help_text='Filing identification number',
-    )
-    amend_id = models.IntegerField(
-        verbose_name='amendment id',
-        db_index=True,
-        null=False,
-        help_text='Amendment identification number',
-    )
     date_filed = models.DateField(
         verbose_name='date filed',
         db_index=True,
@@ -446,11 +433,76 @@ class F460Summary(models.Model):
                   "19)",
     )
 
+    class Meta:
+        app_label = 'calaccess_processed'
+        abstract = True
+
+    def __str__(self):
+        return str(self.filing_id_raw)
+
+
+@python_2_unicode_compatible
+class F460Filing(F460Base):
+    """
+    Filings of Form 460 (Campaign Disclosure Statement) by Recipient Committees.
+
+    Includes information fromthe cover sheet and summary page of the most 
+    recent amendment to each filing.
+    """
+    filing_id = models.IntegerField(
+        verbose_name='filing id',
+        primary_key=True,
+        db_index=True,
+        null=False,
+        help_text='Filing identification number',
+    )
+    last_amend_id = models.IntegerField(
+        verbose_name='last amendment id',
+        db_index=True,
+        null=False,
+        help_text='Amendment identification number for the most recent '
+                  'amendment to the filing.',
+    )
+
     objects = ProcessedDataManager()
 
     class Meta:
-        verbose_name_plural = "f460_summaries"
-        app_label = 'calaccess_processed'
+        verbose_name_plural = "f460_filing"
+
+    def __str__(self):
+        return str(self.filing_id_raw)
+
+
+@python_2_unicode_compatible
+class F460Amendment(F460Base):
+    """
+    Every amendment to every filing of a Form 460 (Campaign Disclosure 
+    Statement).
+
+    Includes information found on the cover sheet and summary page of each
+    amendment.
+    """
+    filing_id = models.IntegerField(
+        verbose_name='filing id',
+        db_index=True,
+        null=False,
+        help_text='Filing identification number',
+    )
+    amend_id = models.IntegerField(
+        verbose_name='amendment id',
+        db_index=True,
+        null=False,
+        help_text='Amendment identification number',
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        verbose_name_plural = "f460_amendment"
+        unique_together = ((
+            'filing_id',
+            'amend_id',
+        ),)
 
     def __str__(self):
         return str(self.filing_id_raw)

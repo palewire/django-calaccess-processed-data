@@ -7,7 +7,8 @@ from calaccess_raw.admin.base import BaseAdmin
 from calaccess_processed.admin.campaign import (
     CandidateAdmin,
     CandidateCommitteeAdmin,
-    F460SummaryAdmin,
+    F460FilingAdmin,
+    F460AmendmentAdmin,
 )
 from calaccess_processed.admin.common import (
     FilerIDValueAdmin,
@@ -21,7 +22,8 @@ __all__ = (
     'BaseAdmin',
     'CandidateAdmin',
     'CandidateCommitteeAdmin',
-    'F460SummaryAdmin',
+    'F460FilingAdmin',
+    'F460AmendmentAdmin',
     'FilerIDValueAdmin',
     'ProcessedDataVersionAdmin',
     'ProcessedDataFileAdmin',
