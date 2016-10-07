@@ -467,9 +467,6 @@ class F460Filing(F460Base):
 
     objects = ProcessedDataManager()
 
-    class Meta:
-        verbose_name_plural = "f460_filing"
-
     def __str__(self):
         return str(self.filing_id)
 
@@ -499,7 +496,6 @@ class F460FilingVersion(F460Base):
     objects = ProcessedDataManager()
 
     class Meta:
-        verbose_name_plural = "f460_amendment"
         unique_together = ((
             'filing_id',
             'amend_id',
