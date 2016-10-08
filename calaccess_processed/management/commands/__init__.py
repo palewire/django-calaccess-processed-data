@@ -85,7 +85,6 @@ class ScrapeCommand(CalAccessCommand):
 
     def handle(self, *args, **options):
         super(ScrapeCommand, self).handle(*args, **options)
-        self.verbosity = int(options['verbosity'])
         results = self.build_results()
         self.process_results(results)
 
@@ -119,61 +118,3 @@ class ScrapeCommand(CalAccessCommand):
                 tries += 1
                 sleep(2.0)
         raise urllib2.HTTPError
-
-    def parse_election_name(self, name):
-        """
-        Translates a raw election name into
-        one of our canonical names.
-        """
-        name = name.upper()
-        if 'PRIMARY' in name:
-            return 'PRIMARY'
-        elif 'GENERAL' in name:
-            return 'GENERAL'
-        elif 'SPECIAL RUNOFF' in name:
-            return 'SPECIAL_RUNOFF'
-        elif 'SPECIAL' in name:
-            return 'SPECIAL'
-        elif 'RECALL' in name:
-            return 'RECALL'
-        else:
-            return 'OTHER'
-
-    def parse_office_name(self, raw_name):
-        """
-        Translates a raw office name into one of
-        our canonical names and a seat (if available).
-        """
-        seat = ''
-        raw_name = raw_name.upper()
-        if 'LIEUTENANT GOVERNOR' in raw_name:
-            clean_name = 'LIEUTENANT_GOVERNOR'
-        elif 'GOVERNOR' in raw_name:
-            clean_name = 'GOVERNOR'
-        elif 'SECRETARY OF STATE' in raw_name:
-            clean_name = 'SECRETARY_OF_STATE'
-        elif 'CONTROLLER' in raw_name:
-            clean_name = 'CONTROLLER'
-        elif 'TREASURER' in raw_name:
-            clean_name = 'TREASURER'
-        elif 'ATTORNEY GENERAL' in raw_name:
-            clean_name = 'ATTORNEY_GENERAL'
-        elif 'SUPERINTENDENT OF PUBLIC INSTRUCTION' in raw_name:
-            clean_name = 'SUPERINTENDENT_OF_PUBLIC_INSTRUCTION'
-        elif 'INSURANCE COMMISSIONER' in raw_name:
-            clean_name = 'INSURANCE_COMMISSIONER'
-        elif 'MEMBER BOARD OF EQUALIZATION' in raw_name:
-            clean_name = 'BOARD_OF_EQUALIZATION'
-            seat = raw_name.split()[-1]
-        elif 'SENATE' in raw_name:
-            clean_name = 'SENATE'
-            seat = raw_name.split()[-1]
-        elif 'ASSEMBLY' in raw_name:
-            clean_name = 'ASSEMBLY'
-            seat = raw_name.split()[-1]
-        else:
-            clean_name = 'OTHER'
-        return {
-            'office_name': clean_name,
-            'office_seat': seat
-        }
