@@ -30,6 +30,28 @@ class ScrapedElectionAdmin(BaseAdmin):
     )
 
 
+@admin.register(models.ScrapedCandidate)
+class ScrapedCandidateAdmin(BaseAdmin):
+    list_display = (
+        "scraped_id",
+        "name",
+        "office_name",
+        "office_seat",
+        "election"
+    )
+    list_filter = (
+        "election__year",
+        "office_name",
+    )
+    list_per_page = 500
+    search_fields = (
+        "scraped_id",
+        "name",
+        "office_name",
+        "office_seat"
+    )
+
+
 @admin.register(models.ScrapedProposition)
 class ScrapedPropositionAdmin(BaseAdmin):
     list_display = (
