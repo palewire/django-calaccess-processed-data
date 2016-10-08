@@ -8,6 +8,7 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.managers import ProcessedDataManager
 
+
 @python_2_unicode_compatible
 class ScrapedElection(models.Model):
     election_id = models.CharField(
@@ -42,6 +43,9 @@ class ScrapedElection(models.Model):
         since multiple elections may occur in a year. A greater sort index \
         corresponds to a more recent election."
     )
+
+    class Meta:
+        ordering = ("-date",)
 
     def __str__(self):
         return '{} {}'.format(self.election_year, self.election_type)
@@ -117,6 +121,9 @@ class ScrapedProposition(models.Model):
         'ScrapedElection',
         null=True
     )
+
+    class Meta:
+        ordering = ("-election", "name")
 
     def __str__(self):
         return 'Proposition: {}'.format(self.name)
