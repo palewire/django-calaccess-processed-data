@@ -67,3 +67,19 @@ class ScrapedPropositionAdmin(BaseAdmin):
         "description",
         "scraped_id"
     )
+
+
+@admin.register(models.ScrapedCommittee)
+class ScrapedCommitteeAdmin(BaseAdmin):
+    list_display = (
+        "scraped_id",
+        "name",
+        "proposition",
+        "support",
+    )
+    list_filter = ("proposition__election__year", "support")
+    list_per_page = 500
+    search_fields = (
+        "scraped_id",
+        "name",
+    )
