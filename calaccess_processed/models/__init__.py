@@ -38,6 +38,7 @@ from calaccess_processed.models.campaign.filings.schedule497 import (
 from calaccess_processed.models.scraped import (
     ScrapedElection,
     ScrapedCandidate,
+    ScrapedCommittee,
     ScrapedProposition,
 )
 from calaccess_processed.models.common import (
@@ -80,6 +81,7 @@ __all__ = (
     'Schedule497Part2ItemVersion',
     'ScrapedElection',
     'ScrapedCandidate',
+    'ScrapedCommittee',
     'ScrapedProposition',
     'FilerIDValue',
     'FilingIDValue',

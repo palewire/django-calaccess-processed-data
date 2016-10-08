@@ -3,7 +3,11 @@ import urlparse
 from time import sleep
 from datetime import datetime
 from calaccess_processed.management.commands import ScrapeCommand
-from calaccess_processed.models.scraped import ScrapedElection, ScrapedProposition, ScrapedCommittee
+from calaccess_processed.models.scraped import (
+    ScrapedElection,
+    ScrapedProposition,
+    ScrapedCommittee
+)
 
 
 class Command(ScrapeCommand):
