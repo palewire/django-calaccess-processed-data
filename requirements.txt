@@ -16,3 +16,4 @@ python-coveralls
 
 # Packaging
 wheel
+twine
