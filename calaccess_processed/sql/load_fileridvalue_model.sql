@@ -767,4 +767,22 @@ SELECT
     COUNT(*) as occur_count
 FROM "LOBBYING_CHG_LOG_CD"
 WHERE "ENTITY_ID" IS NOT NULL
+GROUP BY 1, 2, 3
+UNION ALL
+SELECT
+    'FILER_LINKS_CD' as table_name,
+    'FILER_ID_A' as column_name,
+    "FILER_ID_A"::varchar as value,
+    COUNT(*) as occur_count
+FROM "FILER_LINKS_CD"
+WHERE "FILER_ID_A" IS NOT NULL
+GROUP BY 1, 2, 3
+UNION ALL
+SELECT
+    'FILER_LINKS_CD' as table_name,
+    'FILER_ID_B' as column_name,
+    "FILER_ID_B"::varchar as value,
+    COUNT(*) as occur_count
+FROM "FILER_LINKS_CD"
+WHERE "FILER_ID_B" IS NOT NULL
 GROUP BY 1, 2, 3;

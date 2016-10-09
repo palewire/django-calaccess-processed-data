@@ -180,22 +180,129 @@ class Candidate(models.Model):
 
 
 @python_2_unicode_compatible
-class F460Summary(models.Model):
+class CandidateCommittee(models.Model):
     """
-    Totals from the Summary Page of Form 460 (Recipient Committee Campaign 
-    Statement) filings.
+    Maps links between candidates and recipient committees.
+
+    Derived from FILER_LINKS_CD.
     """
-    filing_id = models.IntegerField(
-        verbose_name='filing id',
-        db_index=True,
+    candidate_filer_id = models.IntegerField(
+        verbose_name='candidate filer ID',
         null=False,
-        help_text='Filing identification number',
+        help_text="Unique filer_id of the candidate. Derived from FILER_ID_A "
+                  "and FILER_ID_B columns on FILER_LINKS_CD, includes any "
+                  "filer_id ever categorized as a candidate in "
+                  "FILER_TO_FILER_TYPES_CD.",
     )
-    amend_id = models.IntegerField(
-        verbose_name='amendment id',
+    committee_filer_id = models.IntegerField(
+        verbose_name='committee filer ID',
+        null=False,
+        help_text="Unique filer_id of the committee linked to the candidate. "
+                  "Derived from FILER_ID_A and FILER_ID_B columns on "
+                  "FILER_LINKS_CD, includes any filer_id ever categorized as a"
+                  " recipient committee that is linked to a filer_id "
+                  "categorized as a candidate in FILER_TO_FILER_TYPES_CD.",
+    )
+    link_type_id = models.IntegerField(
+        verbose_name='link type identifier',
+        null=False,
+        help_text="Numeric identifier that describes how the candidate and "
+                  "committee are linked (the absolute value of FILER_LINKS_CD."
+                  "LINK_TYPE).",
+    )
+    link_type_description = models.CharField(
+        verbose_name='link type description',
+        max_length=100,
+        blank=False,
+        null=False,
+        help_text="Human-readable description of the link between the candidate"
+                  " and committee (from LOOKUP_CODES_CD.CODE_DESC).",
+    )
+    first_session = models.IntegerField(
+        verbose_name='first session',
+        null=True,
+        help_text="First session when the link between the candidate and "
+                  "commitee existed (minimum value of "
+                  "FILER_LINKS_CD.SESSION_ID).",
+    )
+    last_session = models.IntegerField(
+        verbose_name='last session',
+        null=True,
+        help_text="Last session when the link between the candidate and "
+                  "commitee existed (maximum value of "
+                  "FILER_LINKS_CD.SESSION_ID).",
+    )
+    first_effective_date = models.DateField(
+        verbose_name='first effective date',
+        null=False,
+        help_text="Earliest date when the link between the candidate and "
+                  "commitee was in effect (minimum value of "
+                  "FILER_LINKS_CD.EFFECTIVE_DATE).",
+    )
+    last_effective_date = models.DateField(
+        verbose_name='last effective date',
+        null=False,
+        help_text="Latest date when the link between the candidate and "
+                  "commitee was in effect (maximum value of "
+                  "FILER_LINKS_CD.EFFECTIVE_DATE).",
+    )
+    first_termination_date = models.DateField(
+        verbose_name='first termination date',
+        null=True,
+        help_text="Earliest date when the link between the candidate and "
+                  "commitee was terminated (minimum value of "
+                  "FILER_LINKS_CD.TERMINATION_DATE).",
+    )
+    last_termination_date = models.DateField(
+        verbose_name='last termination date',
+        null=True,
+        help_text="Latest date when the link between the candidate and "
+                  "commitee was terminated (minimum value of "
+                  "FILER_LINKS_CD.TERMINATION_DATE).",
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        """
+        Meta model options.
+        """
+        app_label = 'calaccess_processed'
+        unique_together = ((
+            'candidate_filer_id',
+            'committee_filer_id',
+            'link_type_id'
+        ),)
+
+    def __str__(self):
+        return str(self.committee_filer_id)
+
+
+@python_2_unicode_compatible
+class F460Base(models.Model):
+    """
+    Base and abstract model for Form 460 filings.
+    """
+    date_filed = models.DateField(
+        verbose_name='date filed',
         db_index=True,
         null=False,
-        help_text='Amendment identification number',
+        help_text="Date this report was filed, according to the filer "
+                  "(from CVR_CAMPAIGN_DISCLOSURE.RPT_DATE)",
+    )
+    from_date = models.DateField(
+        verbose_name='from date',
+        db_index=True,
+        null=False,
+        help_text="The first date of the filing period covered by the statement "
+                  "(from CVR_CAMPAIGN_DISCLOSURE.FROM_DATE)",
+    )
+    thru_date = models.DateField(
+        verbose_name='thru date',
+        db_index=True,
+        null=False,
+        help_text="The last date of the filing period covered by the statement "
+                  "(from CVR_CAMPAIGN_DISCLOSURE.THRU_DATE)",
     )
     filer_id = models.IntegerField(
         verbose_name='filer id',
@@ -217,6 +324,13 @@ class F460Summary(models.Model):
         blank=True,
         help_text="First name of the filer (from "
                   "CVR_CAMPAIGN_DISCLOSURE.FILER_NAMF)",
+    )
+    election_date = models.DateField(
+        verbose_name='election date',
+        db_index=True,
+        null=True,
+        help_text="Date of the election in which the filer is participating "
+                  "(from CVR_CAMPAIGN_DISCLOSURE.ELECT_DATE)",
     )
     monetary_contributions = models.IntegerField(
         verbose_name='monetary contributions',
@@ -321,11 +435,73 @@ class F460Summary(models.Model):
                   "19)",
     )
 
-    objects = ProcessedDataManager()
-
     class Meta:
-        verbose_name_plural = "f460_summaries"
         app_label = 'calaccess_processed'
+        abstract = True
 
     def __str__(self):
         return str(self.filing_id_raw)
+
+
+@python_2_unicode_compatible
+class F460Filing(F460Base):
+    """
+    The most recent version of each Form 460 (Campaign Disclosure Statement) 
+    filing by recipient committees.
+
+    Includes information from the cover sheet and summary page of the most 
+    recent amendment to each filing. All versions of Form 460 filings can be
+    found in f460version.
+    """
+    filing_id = models.IntegerField(
+        verbose_name='filing id',
+        primary_key=True,
+        db_index=True,
+        null=False,
+        help_text='Filing identification number',
+    )
+    amendment_count = models.IntegerField(
+        verbose_name='Count amendments',
+        db_index=True,
+        null=False,
+        help_text='Number of amendments to this filing.',
+    )
+
+    objects = ProcessedDataManager()
+
+    def __str__(self):
+        return str(self.filing_id)
+
+
+@python_2_unicode_compatible
+class F460FilingVersion(F460Base):
+    """
+    Every version of each Form 460 (Campaign Disclosure Statement) filing by
+    recipient committees.
+
+    Includes information found on the cover sheet and summary page of each
+    amendment. For the most recent version of each filing, see f460filing.
+    """
+    filing_id = models.IntegerField(
+        verbose_name='filing id',
+        db_index=True,
+        null=False,
+        help_text='Filing identification number',
+    )
+    amend_id = models.IntegerField(
+        verbose_name='amendment id',
+        db_index=True,
+        null=False,
+        help_text='Amendment identification number',
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        unique_together = ((
+            'filing_id',
+            'amend_id',
+        ),)
+
+    def __str__(self):
+        return str(self.filing_id)

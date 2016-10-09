@@ -5,7 +5,9 @@ Import all of the models from submodules and thread them together.
 """
 from calaccess_processed.models.campaign import (
     Candidate,
-    F460Summary,
+    CandidateCommittee,
+    F460Filing,
+    F460FilingVersion,
 )
 from calaccess_processed.models.scraped import (
     ScrapedElection,
@@ -23,14 +25,17 @@ from calaccess_processed.models.tracking import (
 )
 
 __all__ = (
-    'ProcessedDataVersion',
-    'ProcessedDataFile',
     'Candidate',
+    'CandidateCommittee',
     'F460Summary',
+    'F460Filing',
+    'F460FilingVersion',
     'ScrapedElection',
     'ScrapedCandidate',
     'ScrapedCommittee',
     'ScrapedProposition',
     'FilerIDValue',
     'FilingIDValue',
+    'ProcessedDataVersion',
+    'ProcessedDataFile',
 )

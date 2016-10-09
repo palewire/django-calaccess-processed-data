@@ -56,15 +56,12 @@ TEMPLATES = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'calaccess',
-        'USER': '',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'calaccess_processed',
+        'USER': 'postgres',
         'PASSWORD': '',
-        'HOST': '',
-        'PORT': '3306',
-        'OPTIONS': {
-            'local_infile': 1,
-        }
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
 

@@ -28,10 +28,44 @@ class CandidateAdmin(BaseAdmin):
         'party',
     )
 
-@admin.register(models.F460Summary)
-class F460SummaryAdmin(BaseAdmin):
+@admin.register(models.CandidateCommittee)
+class CandidateCommitteeAdmin(BaseAdmin):
     """
-    Custom admin for the F460Summary model.
+    Custom admin for the CandidateCommittee model.
+    """
+    list_display = (
+        'candidate_filer_id',
+        'committee_filer_id',
+        'link_type_id',
+        'link_type_description',
+        'first_session',
+        'last_session',
+        'first_effective_date',
+        'last_effective_date',
+        'first_termination_date',
+        'last_termination_date',
+    )
+
+@admin.register(models.F460Filing)
+class F460FilingAdmin(BaseAdmin):
+    """
+    Custom admin for the F460Filing model.
+    """
+    list_display = (
+        'filing_id',
+        'amendment_count',
+        'filer_id',
+        'filer_lastname',
+        'filer_firstname',
+        'total_contributions',
+        'total_expenditures_made',
+        'ending_cash_balance',
+    )
+
+@admin.register(models.F460FilingVersion)
+class F460FilingVersionAdmin(BaseAdmin):
+    """
+    Custom admin for the F460FilingVersion model.
     """
     list_display = (
         'filing_id',
