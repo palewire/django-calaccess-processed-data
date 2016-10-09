@@ -1,10 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
+import urllib
 import urllib2
 import logging
+import urlparse
 import requests
 from time import sleep
 from bs4 import BeautifulSoup
+from django.conf import settings
 from django.utils.termcolors import colorize
 from django.core.management.base import BaseCommand
 logger = logging.getLogger(__name__)
@@ -82,11 +86,51 @@ class ScrapeCommand(CalAccessCommand):
     Base management command for scraping the CAL-ACCESS website.
     """
     base_url = 'http://cal-access.ss.ca.gov/'
+    cache_dir = os.path.join(
+        settings.BASE_DIR,
+        ".scraper_cache"
+    )
 
     def handle(self, *args, **options):
         super(ScrapeCommand, self).handle(*args, **options)
+        os.path.exists(self.cache_dir) or os.mkdir(self.cache_dir)
         results = self.build_results()
-        self.process_results(results)
+        #self.process_results(results)
+
+    def get(self, url, retries=1, base_url=None):
+        """
+        Makes a request for a URL and returns the HTML as a BeautifulSoup object.
+        """
+        cache_path = os.path.join(self.cache_dir, urllib.url2pathname(url.strip("/")))
+        if os.path.exists(cache_path):
+            if self.verbosity > 2:
+                self.log(" Returning cached {}".format(cache_path))
+            html = open(cache_path, 'r').read()
+            return BeautifulSoup(html, "html.parser")
+        tries = 0
+        while tries < retries:
+            if self.verbosity > 2:
+                self.log(" Retrieving {}".format(url))
+            full_url = urlparse.urljoin(
+                base_url or self.base_url,
+                url,
+            )
+            response = requests.get(full_url)
+            if response.status_code == 200:
+                html = response.text
+                if self.verbosity > 2:
+                    self.log(" Writing to cache {}".format(cache_path))
+                cache_subdir = os.path.dirname(cache_path)
+                os.path.exists(cache_subdir) or os.makedirs(cache_subdir)
+                with open(cache_path, 'w') as f:
+                    f.write(html)
+                return BeautifulSoup(html, "html.parser")
+            else:
+                if self.verbosity > 2:
+                    self.log("Request failed. Retrying.")
+                tries += 1
+                sleep(2.0)
+        raise urllib2.HTTPError
 
     def build_results(self):
         """
@@ -101,20 +145,3 @@ class ScrapeCommand(CalAccessCommand):
         by `build_results` and should process it.
         """
         raise NotImplementedError
-
-    def get(self, url, retries=1):
-        """
-        Makes a request for a URL and returns the HTML
-        as a BeautifulSoup object.
-        """
-        if self.verbosity > 2:
-            self.log(" Retrieving %s" % url)
-        tries = 0
-        while tries < retries:
-            response = requests.get(url)
-            if response.status_code == 200:
-                return BeautifulSoup(response.text, "html.parser")
-            else:
-                tries += 1
-                sleep(2.0)
-        raise urllib2.HTTPError
