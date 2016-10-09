@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import re
 import urlparse
 from time import sleep
@@ -12,20 +14,16 @@ from calaccess_processed.models.scraped import (
 
 class Command(ScrapeCommand):
     """
-    Scrape propositions and ballot measures.
+    Scrape links between filers and propositions from the official CAL-ACCESS site.
     """
-    help = "Scrape links between filers and propositions from the official CAL-ACCESS site"
+    help = "Scrape links between filers and propositions from the official CAL-ACCESS site."
 
     def build_results(self):
         self.header("Scraping propositions")
 
         # Build the link list from the 2013 page because otherwise the
         # other years are hidden under the "Historical" link.
-        url = urlparse.urljoin(
-            self.base_url,
-            'Campaign/Measures/list.aspx?session=2013'
-        )
-        soup = self.get(url)
+        soup = self.get('Campaign/Measures/list.aspx?session=2013')
 
         # Filter links for uniqueness.
         links = soup.findAll('a', href=re.compile(r'^.*\?session=\d+'))
@@ -33,7 +31,6 @@ class Command(ScrapeCommand):
 
         results = []
         for link in links:
-            link = urlparse.urljoin(self.base_url, link)
             data = self.scrape_year_page(link)
             # Parse the year from the URL
             data['year'] = int(re.match(r'.+session=(\d+)', link).group(1))
@@ -71,7 +68,6 @@ class Command(ScrapeCommand):
 
             # Pull the type
             election_type = election_title.replace(election_date, '').strip()
-            election_type = self.parse_election_name(election_type)
 
             # Get a list of the propositions in this table
             prop_links = table.findAll('a')
@@ -88,12 +84,8 @@ class Command(ScrapeCommand):
 
             # Scrape them one by one
             prop_list = [
-                self.scrape_prop_page(
-                    urlparse.urljoin(
-                        self.base_url,
-                        '/Campaign/Measures/%s' % link['href'],
-                    )
-                ) for link in prop_links
+                self.scrape_prop_page('/Campaign/Measures/%s' % link['href'])
+                    for link in prop_links
             ]
 
             # Add the data to our data dict

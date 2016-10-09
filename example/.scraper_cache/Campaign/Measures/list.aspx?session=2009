@@ -1,0 +1,355 @@
+
+			<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.0 Transitional//EN'>
+			<html>
+				<head>
+					<title>California Secretary of State - CalAccess - Campaign Finance</title> 
+					<link rel='Stylesheet' href='/Resources/Stylesheets/calaccess.css' type='text/css'>
+					<META http-equiv=Content-Type content='text/html; charset=windows-1252'>
+				<script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-5354926-18', 'auto');ga('send', 'pageview');</script></head>
+				<body leftmargin=0 topmargin=0>
+				<form name="_ctl0" method="post" action="list.aspx?session=2009" id="_ctl0">
+<input type="hidden" name="__VIEWSTATE" value="dDwxMzQ0MjEwMzg3OztsPF9jdGwyOlNlYXJjaF9MZWZ0TmF2MTpzZWFyY2hCdXR0b247Pj4Me4IEmJmJViolT2WGklJdZLQJ+Q==" />
+
+<table border="0" cellpadding="0" cellspacing="0" width="784" bgcolor="#000066">
+	<!-- Header -- Blue Section -->
+	<TR>
+		<TD>
+			<A HREF="/Misc/OffSite.aspx?id=SS">
+				<IMG SRC="http://www.sos.ca.gov/images/header.gif" ALT="California Secretary of State Home"
+					BORDER="0"></A></TD>
+		<!-- 		
+		<td align="RIGHT">
+			<table border="0" cellpadding="0" cellspacing="0" >
+				<tr>
+					<td>
+						<A HREF="/Misc/OffSite.aspx?id=SS">
+						<IMG SRC="/Resources/Images/home.gif" ALT="Home" BORDER="0" HSPACE=15></A></td>
+				</tr>
+				<tr>
+					<td>
+						<A HREF="/Misc/OffSite.aspx?id=SSSEARCH">
+						<IMG SRC="/Resources/Images/sitesearch.gif" ALT="Site Search" BORDER="0" HSPACE=15></A></td>
+				</tr>
+				<tr>
+					<td>
+						<A HREF="/Misc/OffSite.aspx?id=SSCONTACT">
+						<IMG SRC="/Resources/Images/contactus.gif" ALT="Contact Us" BORDER="0" HSPACE=15></A></td>
+				</tr>
+				tr>
+					<td>
+						<A HREF="/Misc/OffSite.aspx?id=SSCONTACT">
+						<IMG SRC="/Resources/Images/contactus.gif" ALT="Contact Us" BORDER="0" HSPACE=15></A></td>
+					</tr 
+			</table>
+		</TD>-->
+	</TR>
+	<!-- Header -- Black Line -->
+	<TR>
+		<td colspan="2" bgcolor="#000000">
+			<IMG SRC="/Resources/Images/spacer.gif" WIDTH=1 HEIGHT=1 alt="spacer"></td>
+	</TR>
+	<!-- Header -- Red Section -->
+	<TR>
+		<td colspan="2" bgcolor="#990000">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<TR>
+					<TD>
+						<IMG SRC="/Resources/Images/spacer.gif" WIDTH=8 HEIGHT=1 alt="spacer"></TD>
+					<!-- Header Red Section -- Secretary of State Button-->
+					<td align="center" width="113">
+						<A HREF="/Misc/OffSite.aspx?id=SSEXEC">
+							<IMG SRC="/Resources/Images/ss.gif" WIDTH=77 HEIGHT=17 ALT="Secretary of State" BORDER="0"></A></td>
+					<td align="center">
+						<IMG SRC="/Resources/Images/divider.gif" WIDTH=8 HEIGHT=17 alt="divider"></td>
+					<!-- Header Red Section -- Elections & Voter Information Button-->
+					<td align="center" width="113">
+						<A HREF="/Misc/OffSite.aspx?id=SSELECT">
+							<IMG SRC="/Resources/Images/elections.gif" WIDTH=96 HEIGHT=17 ALT="Elections" BORDER=0></A></td>
+					<td align="center">
+						<IMG SRC="/Resources/Images/divider.gif" WIDTH=3 HEIGHT=17 alt="divider"></td>
+					<!-- Header Red Section -- Political Reform Button-->
+					<td align="center" bgcolor="#ffcc66" width="123">
+						<A HREF="/Misc/OffSite.aspx?id=SSPRD">
+							<IMG SRC="/Resources/Images/finance_selected.gif" WIDTH=78 HEIGHT=17 ALT="Campaign & Lobbying" BORDER=0></A></td>
+					<td align="center">
+						<IMG SRC="/Resources/Images/divider.gif" WIDTH=3 HEIGHT=17 alt="divider"></td>
+					<!-- Header Red Section -- California Business Portal Button-->
+					<td align="center">
+						<A HREF="/Misc/OffSite.aspx?id=SSBPD">
+							<IMG SRC="/Resources/Images/business.gif" WIDTH=123 HEIGHT=17 ALT="Business Programs" BORDER=0></A></td>
+					<td align="center">
+						<IMG SRC="/Resources/Images/divider.gif" WIDTH=8 HEIGHT=17 alt="divider"></td>
+					<!-- Header Red Section -- Archives & Museum Button-->
+					<td align="center">
+						<A HREF="/Misc/OffSite.aspx?id=SSARC">
+							<IMG SRC="/Resources/Images/archives.gif" WIDTH=139 HEIGHT=17 ALT="State Archives" BORDER=0></A></td>
+					<td align="center">
+						<IMG SRC="/Resources/Images/divider.gif" WIDTH=8 HEIGHT=17 alt="divider"></td>
+					<!-- Header Red Section -- Special Programs Button-->
+					<td align="center" width="113">
+						<A HREF="/Misc/OffSite.aspx?id=SSSPEC">
+							<IMG SRC="/Resources/Images/special.gif" WIDTH=77 HEIGHT=17 ALT="Registries" BORDER=0></A></td>
+					<TD>
+						<IMG SRC="/Resources/Images/spacer.gif" WIDTH=8 HEIGHT=1 alt="spacer"></TD>
+				</TR>
+			</table>
+		</td>
+	</TR>
+	<!-- Header -- Black Line -->
+	<TR>
+		<td colspan="2" bgcolor="#000000">
+			<IMG SRC="/Resources/Images/spacer.gif" WIDTH=1 HEIGHT=1 alt="spacer"></td>
+	</TR>
+	<!-- Temporary Message Box beginning. Comment out when not in use.
+	<tr>
+		<td colspan="6"><br />
+			<table cellpadding="8" cellspacing="0" border="3" bordercolor="#3149AA" width="100%">
+	<tr>
+		<td><span class="hdr13">CAL-ACCESS will be temporarily unavailable due to maintanence beginning at 5:00 pm on Friday, January 16, 2004. Please try again on Saturday, January 17, 2004.</span></td>
+	</tr>
+</table></td>
+	</tr>
+Temporary Message Box ending -->
+</table>
+
+<table border="0" cellpadding="0" cellspacing="0" width="784">
+	<tr>
+		<td bgcolor="#FFE4AF" rowspan="2" width="140" valign="top">
+			<!-- category side nav starts here -->
+			<table cellSpacing="0" cellPadding="0" width="140" bgColor="#ffcc66" border="0">
+				<!-- category links here -->
+				
+<tr>
+	<td vAlign="top" style="BACKGROUND-COLOR: #ffcc66">
+		<!-- category side nav starts here -->
+		<div title="Public Disclosure Search and Advanced Search." >
+			<label for="searchText"><img src="/Resources/Images/CalAccessSearch.gif" id="_ctl2_Search_LeftNav1_imgCalAccessSearch" alt="CalAccess Search" style="width:140px;" /></label><br>
+			<input name="_ctl2:Search_LeftNav1:searchText" type="text" id="_ctl2_Search_LeftNav1_searchText" onkeydown="trapEnter(document.all._ctl2_Search_LeftNav1_searchText)" style="width:90px; float:left; margin-left:10px;" />
+			<input type="image" name="_ctl2:Search_LeftNav1:searchButton" id="_ctl2_Search_LeftNav1_searchButton" src="/Resources/Images/go_button.gif" alt="Search" border="0" style="float:right; margin-right:3px; " /><br><br>
+			<a class="sublink2bAdvSrch" title="Advanced Search" style="margin-left:15px;" href="http://dbsearch.sos.ca.gov/">Advanced Search</a><br><br>
+		</div>
+	</td>
+</tr>
+				<tr>
+					<td vAlign="top" colSpan="2">
+						<a href="/default.aspx">
+							<img src="/Resources/Images/CalAccessHome_off.gif" id="_ctl2_imgCalAccessHome" border="0" onMouseOut="this.src='/Resources/Images/CalAccessHome_off.gif'" onMouseOver="this.src='/Resources/Images/CalAccessHome_on.gif'" /></a></td>
+				</tr>
+				<tr>
+					<td colSpan="2">
+						<img src="/Resources/Images/common/spacer.gif" id="_ctl2_imgSpacer7" height="1" width="1" border="0" /></td>
+				</tr>
+				<tr bgcolor="#7183c6">
+					<td vAlign="top" colSpan="2">
+						<a href="/Campaign/">
+							<IMG alt="" border="0" src="/Resources/Images/CampaignFinance_selected.gif"></a>
+						<table>
+							<tr>
+								<td rowspan="7"><IMG height="1" src="/Resources/Images/common/spacer.gif" width="15" border="0"></td>
+								<td><a class="sublink7" href="/Campaign/Candidates/">Candidates 
+										&<br />
+										Elected Officials</a></td>
+							</tr>
+							<tr>
+								<td><IMG height="5" src="/Resources/Images/common/spacer.gif" width="1" border="0"></td>
+							</tr>
+							<tr>
+								<td><a class="sublink7" href="/Campaign/Measures/">Propositions 
+										&<br />
+										Ballot Measures</a></td>
+							</tr>
+							<tr>
+								<td><IMG height="5" src="/Resources/Images/common/spacer.gif" width="1" border="0"></td>
+							</tr>
+							<tr>
+								<td><a class="sublink7" href="/Campaign/Committees/">Committees, 
+										Parties,<br />
+										Major Donors &amp; Slate Mailers</a></td>
+							</tr>
+							<tr>
+								<td><IMG height="5" src="/Resources/Images/common/spacer.gif" width="1" border="0"></td>
+							</tr>
+							<tr>
+								<td><a class="sublink7" href="/Campaign/Other/">Daily/Late/<br />
+										Special Filings</a></td>
+							</tr>
+							<tr>
+								<td><IMG height="5" src="/Resources/Images/common/spacer.gif" width="1" border="0"></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td colSpan="2">
+						<img src="/Resources/Images/common/spacer.gif" id="_ctl2_imgSpacer8" height="1" width="1" border="0" /></td>
+				</tr>
+				<tr>
+					<td vAlign="top" colSpan="2">
+						<a href="/Lobbying/">
+							<img src="/Resources/Images/LobbyingActivity_off.gif" id="_ctl2_imgLobbyingActivity" border="0" onMouseOut="this.src='/Resources/Images/LobbyingActivity_off.gif'" onMouseOver="this.src='/Resources/Images/LobbyingActivity_on.gif'" /></a></td>
+				</tr>
+				<tr>
+					<td colSpan="2">
+						<img src="/Resources/Images/common/spacer.gif" id="_ctl2_imgSpacer10" height="1" width="1" border="0" /></td>
+				</tr>
+				<tr>
+					<td vAlign="top" colSpan="2">
+						<a href="/CalAccessResources/">
+							<img src="/Resources/Images/Resources_off.gif" id="_ctl2_imgResources" border="0" onMouseOut="this.src='/Resources/Images/Resources_off.gif'" onMouseOver="this.src='/Resources/Images/Resources_on.gif'" /></td>
+				</tr>
+				<tr>
+					<td colSpan="2">
+						<img src="/Resources/Images/common/spacer.gif" id="_ctl2_imgSpacer11" height="1" width="1" border="0" /></td>
+				</tr>
+				<tr>
+					<td vAlign="top" colSpan="2">
+						<a href="http://www.ss.ca.gov/prd/for_filers_only.htm"><img src="/Resources/Images/ForFilersOnly_off.gif" id="_ctl2_imgForFilersOnly" border="0" onMouseOut="this.src='/Resources/Images/ForFilersOnly_off.gif'" onMouseOver="this.src='/Resources/Images/ForFilersOnly_on.gif'" /></a></td>
+				</tr>
+				<tr>
+					<td colSpan="2">
+						<img src="/Resources/Images/common/spacer.gif" id="_ctl2_imgSpacer9" height="1" width="1" border="0" /></td>
+				</tr>
+				<tr>
+					<td vAlign="top" colSpan="2">
+						<A HREF="/Misc/OffSite.aspx?id=SSPRD">
+							<img src="/Resources/Images/PoliticalReform_off.gif" id="_ctl2_imgPoliticalReform" border="0" onMouseOut="this.src='/Resources/Images/PoliticalReform_off.gif'" onMouseOver="this.src='/Resources/Images/PoliticalReform_on.gif'" /></A></td>
+				</tr>
+				<tr>
+					<td colSpan="2"><img src="/Resources/Images/common/spacer.gif" id="_ctl2_imgSpacer12" height="1" width="1" border="0" /></td>
+				</tr>
+				<tr>
+					<td vAlign="top" colSpan="2"><A 
+href="/Misc/OffSite.aspx?id=USERMANUAL"
+><img src="/Resources/Images/UserManual_off.gif" id="_ctl2_imgUserManual" alt="Link to the User's Manual" border="0" onMouseOut="this.src='/Resources/Images/UserManual_off.gif'" onMouseOver="this.src='/Resources/Images/UserManual_on.gif'" /></A></td>
+				</tr>
+			</table>
+		</td>
+		<td colspan="2" valign="top" width="644">
+			<img src="/Resources/Images/cal_access_banner.jpg" id="_ctl2_imgCalAccessBanner" border="0" width="644" /></td>
+	</tr>
+	<tr>
+		<!-- spacer lane here -->
+		<td width="30" valign="top">
+			<img src="/Resources/Images/common/spacer.gif" border="0" width="30" height="50">
+		</td>
+		<td width="614" valign="top">
+<!-- content cell table starts here -->
+
+<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie3-2nav3-0">
+
+<span class="hdr10">Campaign Finance Activity</span><br>
+<span class="hdr11">Propositions &amp; Ballot Measures</span><br>
+<br>
+<table border="0" cellspacing="2" cellpadding="4" width="100%">
+	<tr>
+		<td valign="top"><span class="hdr12">Election Cycle:</span><br />
+		<a href="/Campaign/Measures/list.aspx?session=2015"><img src="/Resources/Images/unselected.gif" border="0" align="absmiddle" hspace="8" vspace="5" /></a><span class="txt5">2015 through 2016</span><br />
+		<span class="txt5"><a href="/Campaign/Measures/list.aspx?session=2013"><img src="/Resources/Images/selected.gif" border="0" align="absmiddle" hspace="8" vspace="5" /></a><span class="txt5">Historical</span><br />
+		</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Measures/list.aspx?session=2013"><img src="/Resources/Images/unselected.gif" border="0" align="absmiddle" hspace="8" vspace="5" /></a><span class="txt5">2013 through 2014</span><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Measures/list.aspx?session=2011"><img src="/Resources/Images/unselected.gif" border="0" align="absmiddle" hspace="8" vspace="5" /></a><span class="txt5">2011 through 2012</span><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Measures/list.aspx?session=2009"><img src="/Resources/Images/selected.gif" border="0" align="absmiddle" hspace="8" vspace="5" /></a><span class="txt5">2009 through 2010</span><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Measures/list.aspx?session=2007"><img src="/Resources/Images/unselected.gif" border="0" align="absmiddle" hspace="8" vspace="5" /></a><span class="txt5">2007 through 2008</span><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Measures/list.aspx?session=2005"><img src="/Resources/Images/unselected.gif" border="0" align="absmiddle" hspace="8" vspace="5" /></a><span class="txt5">2005 through 2006</span><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Measures/list.aspx?session=2003"><img src="/Resources/Images/unselected.gif" border="0" align="absmiddle" hspace="8" vspace="5" /></a><span class="txt5">2003 through 2004</span><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Measures/list.aspx?session=2001"><img src="/Resources/Images/unselected.gif" border="0" align="absmiddle" hspace="8" vspace="5" /></a><span class="txt5">2001 through 2002</span><br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/Campaign/Measures/list.aspx?session=1999"><img src="/Resources/Images/unselected.gif" border="0" align="absmiddle" hspace="8" vspace="5" /></a><span class="txt5">1999 through 2000</span><br />
+		</td>
+	</tr>
+</table>
+<table cellpadding="8" cellspacing="0" border="3" bordercolor="#3149AA" width="100%">
+	<tr>
+		<td><span class="hdr13">All of the campaign committees that have organized to support or oppose propositions and ballot measures on California's statewide ballot are available here. Click below on the proposition or ballot measure to learn who is involved in the campaign to win your vote on Election Day.</span></td>
+	</tr>
+</table>
+
+<p>
+	
+</p>
+<p>
+	<table id="ListElections1_Panel2" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td>
+	Prior Elections<table cellspacing="0" cellpadding="2" rules="all" bordercolor="#3149AD" border="3" id="ListElections1__ctl0">
+		<caption align="Left">
+			<span style="font: bold; font-size: 12pt">NOVEMBER 2, 2010 GENERAL</span><br>
+		</caption><tr bgcolor="#7382C6">
+			<td><font color="White" size="2">9 Measures</font></td>
+		</tr><tr bgcolor="#FFEFD6">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1321713&session=2009'>PROPOSITION 019 - CHANGES CALIFORNIA LAW TO LEGALIZE MARIJUANA AND ALLOW IT TO BE REGULATED AND TAXED.</a></font></td>
+		</tr><tr align="Left" bgcolor="#FFDFA5">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1322428&session=2009'>PROPOSITION 020 - REDISTRICTING OF CONGRESSIONAL DISTRICTS.</a></font></td>
+		</tr><tr bgcolor="#FFEFD6">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1323361&session=2009'>PROPOSITION 021 - ESTABLISHES $18 ANNUAL VEHICLE LICENSE SURCHARGE TO HELP FUND STATE PARKS AND WILDLIFE PROGRAMS AND GRANTS FREE ADMISSION TO ALL STATE PARKS TO SURCHARGED VEHICLES.</a></font></td>
+		</tr><tr align="Left" bgcolor="#FFDFA5">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1323281&session=2009'>PROPOSITION 022 - PROHIBITS THE STATE FROM TAKING FUNDS USED FOR TRANSPORTATION OR LOCAL GOVERNMENT PROJECTS AND SERVICES.</a></font></td>
+		</tr><tr bgcolor="#FFEFD6">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1324800&session=2009'>PROPOSITION 023 - SUSPENDS AIR POLLUTION CONTROL LAWS REQUIRING MAJOR POLLUTERS TO REPORT AND REDUCE GREENHOUSE GAS EMISSIONS THAT CAUSE GLOBAL WARMING UNTIL UNEMPLOYMENT DROPS BELOW SPECIFIED LEVEL</a></font></td>
+		</tr><tr align="Left" bgcolor="#FFDFA5">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1323279&session=2009'>PROPOSITION 024 - REPEALS RECENT LEGISLATION THAT WOULD ALLOW BUSINESSES TO CARRY BACK LOSSES, SHARE TAX CREDITS, AND USE A SALES-BASED INCOME CALCULATION TO LOWER TAXABLE INCOME.</a></font></td>
+		</tr><tr bgcolor="#FFEFD6">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1323274&session=2009'>PROPOSITION 025 - CHANGES LEGISLATIVE VOTE REQUIREMENT TO PASS A BUDGET FROM TWO-THIRDS TO A SIMPLE MAJORITY. RETAINS TWO-THIRDS VOTE REQUIREMENT FOR TAXES.</a></font></td>
+		</tr><tr align="Left" bgcolor="#FFDFA5">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1323965&session=2009'>PROPOSITION 026 - INCREASES LEGISLATIVE VOTE REQUIREMENT TO TWO-THIRDS FOR STATE LEVIES & CHARGES. IMPOSES ADDITIONAL REQUIREMENT FOR VOTERS TO APPROVE LOCAL LEVIES & CHARGES WITH LIMITED EXCEPTIONS.</a></font></td>
+		</tr><tr bgcolor="#FFEFD6">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1324469&session=2009'>PROPOSITION 027 - ELIMINATES STATE COMMISSION ON REDISTRICTING. CONSOLIDATES AUTHORITY FOR REDISTRICTING WITH ELECTED REPRESENTATIVES.</a></font></td>
+		</tr>
+	</table><br><table cellspacing="0" cellpadding="2" rules="all" bordercolor="#3149AD" border="3" id="ListElections1__ctl1">
+		<caption align="Left">
+			<span style="font: bold; font-size: 12pt">JUNE 8, 2010 PRIMARY</span><br>
+		</caption><tr bgcolor="#7382C6">
+			<td><font color="White" size="2">5 Measures</font></td>
+		</tr><tr bgcolor="#FFEFD6">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1316063&session=2009'>PROPOSITION 013 - PROPERTY TAX: NEW CONSTRUCTION EXCLUSION: SEISMIC RETROFITTING.</a></font></td>
+		</tr><tr align="Left" bgcolor="#FFDFA5">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1316969&session=2009'>PROPOSITION 014 - ELECTIONS: OPEN PRIMARIES.</a></font></td>
+		</tr><tr bgcolor="#FFEFD6">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1316967&session=2009'>PROPOSITION 015 - POLITICAL REFORM ACT OF 1974: CALIFORNIA FAIR ELECTIONS ACT OF 2008.</a></font></td>
+		</tr><tr align="Left" bgcolor="#FFDFA5">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1321695&session=2009'>PROPOSITION 016 - NEW TWO-THIRDS VOTE REQUIREMENT FOR LOCAL PUBLIC ELECTRICITY PROVIDERS.</a></font></td>
+		</tr><tr bgcolor="#FFEFD6">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1322446&session=2009'>PROPOSITION 017 - ALLOWS AUTO INSURANCE COMPANIES TO BASE THEIR PRICES IN PART ON A DRIVER'S HISTORY OF INSURANCE COVERAGE.</a></font></td>
+		</tr>
+	</table><br><table cellspacing="0" cellpadding="2" rules="all" bordercolor="#3149AD" border="3" id="ListElections1__ctl2">
+		<caption align="Left">
+			<span style="font: bold; font-size: 12pt">MAY 19, 2009 SPECIAL ELECTION</span><br>
+		</caption><tr bgcolor="#7382C6">
+			<td><font color="White" size="2">6 Measures</font></td>
+		</tr><tr bgcolor="#FFEFD6">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1316044&session=2009'>PROPOSITION 001A - STATE BUDGET. CHANGES CALIFORNIA BUDGET PROCESS. LIMITS STATE SPENDING. INCREASES "RAINY DAY " BUDGET STABILIZATION FUND.</a></font></td>
+		</tr><tr align="Left" bgcolor="#FFDFA5">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1316047&session=2009'>PROPOSITION 001B - EDUCATION FUNDING. PAYMENT PLAN.</a></font></td>
+		</tr><tr bgcolor="#FFEFD6">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1316048&session=2009'>PROPOSITION 001C -  LOTTERY MODERNIZATION ACT.</a></font></td>
+		</tr><tr align="Left" bgcolor="#FFDFA5">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1316060&session=2009'>PROPOSITION 001D - PROTECTS CHILDREN'S SERVICES FUNDING. HELPS BALANCE STATE BUDGET.</a></font></td>
+		</tr><tr bgcolor="#FFEFD6">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1316061&session=2009'>PROPOSITION 001E - MENTAL HEALTH SERVICES FUNDING. TEMPORARY REALLOCATION. HELPS BALANCE STATE BUDGET.</a></font></td>
+		</tr><tr align="Left" bgcolor="#FFDFA5">
+			<td><font color="#7382C6" size="2"><a href='Detail.aspx?id=1316062&session=2009'>PROPOSITION 001F - ELECTED OFFICIALS' SALARIES. PREVENTS PAY INCREASES DURING BUDGET DEFICIT YEARS.</a></font></td>
+		</tr>
+	</table><br>
+</td></tr></table>
+</p>
+
+
+			<script language='javascript' type='text/javascript'>
+			function trapEnter(btn)
+			{
+				if (document.all)
+				{
+					if (event.keyCode == 13)
+					{ 
+						event.returnValue=false;
+						event.cancel = true;
+						btn.click();
+					} 
+				} 
+			}
+			</script>
+
+</form>
+									</td>
+								</tr>
+							</table>
+						</form>
+					</body>
+				</html>
+			
