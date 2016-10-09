@@ -23,7 +23,7 @@ class Command(ScrapeCommand):
 
         # Build the link list from the 2013 page because otherwise the
         # other years are hidden under the "Historical" link.
-        soup = self.get('Campaign/Measures/list.aspx?session=2013')
+        soup = self.get_html('Campaign/Measures/list.aspx?session=2013')
 
         # Filter links for uniqueness.
         links = soup.findAll('a', href=re.compile(r'^.*\?session=\d+'))
@@ -47,7 +47,7 @@ class Command(ScrapeCommand):
         of propositions in a particular election year.
         """
         # Get the URL of the year page
-        soup = self.get(url)
+        soup = self.get_html(url)
 
         # Loop through all the tables on the page
         data_dict = {}
@@ -102,7 +102,7 @@ class Command(ScrapeCommand):
         Scrape data from a proposition detail page
         """
         # Pull the page
-        soup = self.get(url)
+        soup = self.get_html(url)
 
         # Create a data dictionary to put the good stuff in
         data_dict = {}

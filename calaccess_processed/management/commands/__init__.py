@@ -8,8 +8,10 @@ import urlparse
 import requests
 from time import sleep
 from bs4 import BeautifulSoup
+from datetime import datetime
 from django.conf import settings
 from django.utils.termcolors import colorize
+from calaccess_processed.decorators import retry
 from django.core.management.base import BaseCommand
 logger = logging.getLogger(__name__)
 
@@ -91,46 +93,108 @@ class ScrapeCommand(CalAccessCommand):
         ".scraper_cache"
     )
 
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--force-download',
+            action='store_true',
+            dest='force_download',
+            default=False,
+            help='Force the scraper to download URLs even if they are cached',
+        )
+        parser.add_argument(
+            '--cache-only',
+            action='store_false',
+            dest='update_cache',
+            default=True,
+            help="Skip the scraper's update checks. Use only cached files.",
+        )
+
     def handle(self, *args, **options):
         super(ScrapeCommand, self).handle(*args, **options)
+        self.force_download = options.get("force_download")
+        self.update_cache = options.get("update_cache")
         os.path.exists(self.cache_dir) or os.mkdir(self.cache_dir)
         results = self.build_results()
         #self.process_results(results)
 
-    def get(self, url, retries=1, base_url=None):
+    @retry(requests.exceptions.RequestException)
+    def get_url(self, url, retries=1, request_type='GET'):
+        """
+        Returns the response from a URL, retries if it fails.
+        """
+        headers = {
+            'User-Agent': 'California Civic Data Coalition (cacivicdata@gmail.com)',
+        }
+        if self.verbosity > 2:
+            self.log(" Making a {} request for {}".format(request_type, url))
+        return getattr(requests, request_type.lower())(url, headers=headers)
+
+    def get_headers(self, url):
+        """
+        Returns a dict with metadata about the current CAL-ACCESS snapshot.
+        """
+        response = self.get_url(url, request_type='HEAD')
+        length = int(response.headers['content-length'])
+        return {
+            'content-length': length,
+        }
+
+    def get_html(self, url, retries=1, base_url=None):
         """
         Makes a request for a URL and returns the HTML as a BeautifulSoup object.
         """
-        cache_path = os.path.join(self.cache_dir, urllib.url2pathname(url.strip("/")))
-        if os.path.exists(cache_path):
-            if self.verbosity > 2:
-                self.log(" Returning cached {}".format(cache_path))
-            html = open(cache_path, 'r').read()
-            return BeautifulSoup(html, "html.parser")
-        tries = 0
-        while tries < retries:
-            if self.verbosity > 2:
-                self.log(" Retrieving {}".format(url))
-            full_url = urlparse.urljoin(
-                base_url or self.base_url,
-                url,
-            )
-            response = requests.get(full_url)
-            if response.status_code == 200:
-                html = response.text
+        # Put together the full URL
+        full_url = urlparse.urljoin(base_url or self.base_url, url)
+        if self.verbosity > 2:
+            self.log(" Retrieving data for {}".format(url))
+
+        # Pull a cached version of the file, if it exists
+        cache_path = os.path.join(
+            self.cache_dir,
+            urllib.url2pathname(url.strip("/"))
+        )
+        if os.path.exists(cache_path) and not self.force_download:
+            # Make a HEAD request for the file size of the live page
+            if self.update_cache:
+                cache_file_size = os.path.getsize(cache_path)
+                head = self.get_headers(full_url)
+                web_file_size = head['content-length']
+
                 if self.verbosity > 2:
-                    self.log(" Writing to cache {}".format(cache_path))
-                cache_subdir = os.path.dirname(cache_path)
-                os.path.exists(cache_subdir) or os.makedirs(cache_subdir)
-                with open(cache_path, 'w') as f:
-                    f.write(html)
+                    msg = " Cached file sized {}. Web file size {}."
+                    self.log(msg.format(
+                        cache_file_size,
+                        web_file_size
+                    ))
+
+            # If our cache is the same size as the live page, return the cache
+            if not self.update_cache or cache_file_size == web_file_size:
+                if self.verbosity > 2:
+                    self.log(" Returning cached {}".format(cache_path))
+                html = open(cache_path, 'r').read()
+                return BeautifulSoup(html, "html.parser")
+
+        # Otherwise, retrieve the full page and cache it
+        try:
+            response = self.get_url(full_url)
+        except urllib2.HTTPError:
+            # If web requests fails, fall back to cached file, if it exists
+            if os.path.exists(cache_path):
+                if self.verbosity > 2:
+                    self.log(" Returning cached {}".format(cache_path))
+                html = open(cache_path, 'r').read()
                 return BeautifulSoup(html, "html.parser")
             else:
-                if self.verbosity > 2:
-                    self.log("Request failed. Retrying.")
-                tries += 1
-                sleep(2.0)
-        raise urllib2.HTTPError
+                raise urllib2.HTTPError
+
+        html = response.text
+        if self.verbosity > 2:
+            self.log(" Writing to cache {}".format(cache_path))
+        cache_subdir = os.path.dirname(cache_path)
+        os.path.exists(cache_subdir) or os.makedirs(cache_subdir)
+        with open(cache_path, 'w') as f:
+            f.write(html)
+        return BeautifulSoup(html, "html.parser")
 
     def build_results(self):
         """
