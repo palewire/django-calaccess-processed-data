@@ -27,7 +27,6 @@ from calaccess_processed.models.tracking import (
 __all__ = (
     'Candidate',
     'CandidateCommittee',
-    'F460Summary',
     'F460Filing',
     'F460FilingVersion',
     'ScrapedElection',
