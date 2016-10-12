@@ -115,7 +115,7 @@ class ScrapeCommand(CalAccessCommand):
         self.update_cache = options.get("update_cache")
         os.path.exists(self.cache_dir) or os.mkdir(self.cache_dir)
         results = self.build_results()
-        #self.process_results(results)
+        self.process_results(results)
 
     @retry(requests.exceptions.RequestException)
     def get_url(self, url, retries=1, request_type='GET'):

@@ -18,23 +18,18 @@ class ScrapedElection(models.Model):
         blank=True,
         help_text="Election identification number",
     )
+    name = models.CharField(
+        verbose_name="scraped election name",
+        max_length=200,
+        null=False,
+        blank=True,
+        help_text="Scraped election name",
+    )
     year = models.IntegerField(
         verbose_name='year of election',
         db_index=True,
         null=False,
         help_text='Year of election',
-    )
-    date = models.DateField(
-        verbose_name='date of election',
-        null=True,
-        help_text='Date of election',
-    )
-    election_type = models.CharField(
-        verbose_name="election type",
-        max_length=100,
-        null=False,
-        blank=True,
-        help_text="Election type",
     )
     sort_index = models.IntegerField(
         verbose_name="sort index",
@@ -45,10 +40,10 @@ class ScrapedElection(models.Model):
     )
 
     class Meta:
-        ordering = ("-date",)
+        ordering = ("-year",)
 
     def __str__(self):
-        return '{} {}'.format(self.election_year, self.election_type)
+        return self.name
 
 
 @python_2_unicode_compatible
@@ -75,21 +70,13 @@ class ScrapedCandidate(models.Model):
         blank=True,
         help_text="Office name",
     )
-    # Preserve leading zeroes
-    office_seat = models.CharField(
-        verbose_name="office seat number",
-        max_length=3,
-        null=False,
-        blank=True,
-        help_text="Office seat number",
-    )
     election = models.ForeignKey(
         'ScrapedElection',
         null=True
     )
 
     def __str__(self):
-        return self.candidate_name
+        return self.name
 
 
 @python_2_unicode_compatible

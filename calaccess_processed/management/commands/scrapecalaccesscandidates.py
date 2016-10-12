@@ -13,11 +13,7 @@ class Command(ScrapeCommand):
     def build_results(self):
         self.header("Scraping election candidates")
 
-        url = urlparse.urljoin(
-            self.base_url,
-            '/Campaign/Candidates/list.aspx?view=certified&electNav=93'
-        )
-        soup = self.get(url)
+        soup = self.get_html('/Campaign/Candidates/list.aspx?view=certified&electNav=93')
 
         # Get all the links out
         links = soup.findAll('a', href=re.compile(r'^.*&electNav=\d+'))
@@ -28,16 +24,15 @@ class Command(ScrapeCommand):
             if l.find_next_sibling('span').text != 'Prior Elections'
         ]
 
-        # Loop through the links...
+        # Loop through the links
         results = []
         for i, link in enumerate(links):
-            # .. go and get each page and its data
+            # Get each page and its data
             url = urlparse.urljoin(self.base_url, link["href"])
             data = self.scrape_page(url)
-            # Parse out the name and year
-            data['raw_name'] = link.find_next_sibling('span').text.strip()
-            data['election_type'] = self.parse_election_name(data['raw_name'])
-            data['year'] = int(data['raw_name'][:4])
+            # Add the name of the election
+            data['election_name'] = link.find_next_sibling('span').text.strip()
+            data['election_year'] = int(data['election_name'][:4])
             # The index value is used to preserve sorting of elections,
             # since multiple elections may occur in a year.
             # BeautifulSoup goes from top to bottom,
@@ -49,7 +44,6 @@ class Command(ScrapeCommand):
             # Take a rest
             sleep(0.5)
 
-        # Pass out the data
         return results
 
     def scrape_page(self, url):
@@ -57,22 +51,18 @@ class Command(ScrapeCommand):
         Pull the elections and candidates from a CAL-ACCESS page.
         """
         # Go and get the page
-        soup = self.get(url)
+        soup = self.get_html(url)
 
+        races = {}
         # Loop through all the election sets on the page
-        sections = {}
         for section in soup.findAll('a', {'name': re.compile(r'[a-z]+')}):
 
             # Check that this data matches the structure we expect.
             section_name_el = section.find('span', {'class': 'hdr14'})
 
-            # If it doesn't just skip this one
+            # If it doesn't, skip this one
             if not section_name_el:
                 continue
-
-            # Get the name out of page and key it in the data dictionary
-            section_name = section_name_el.text
-            sections[section_name] = {}
 
             # Loop thorugh all the rows in the section table
             for office in section.findAll('td'):
@@ -80,72 +70,72 @@ class Command(ScrapeCommand):
                 # Check that this data matches the structure we expect.
                 title_el = office.find('span', {'class': 'hdr13'})
 
-                # If it doesn't, just quit
+                # If it doesn't, skip
                 if not title_el:
                     continue
 
+                office_name = title_el.text
+
                 # Log what we're up to
                 if self.verbosity > 2:
-                    self.log('   Scraping office %s' % title_el.text)
+                    self.log(' Scraping office %s' % office_name)
 
                 # Pull the candidates out
-                people = []
-                for p in office.findAll('a', {'class': 'sublink2'}):
-                    people.append({
-                        'name': p.text,
-                        'scraped_id': re.match(r'.+id=(\d+)', p['href']).group(1)
+                candidates = []
+                for c in office.findAll('a', {'class': 'sublink2'}):
+                    candidates.append({
+                        'name': c.text,
+                        'scraped_id': re.match(r'.+id=(\d+)', c['href']).group(1)
                     })
 
-                for p in office.findAll('span', {'class': 'txt7'}):
-                    people.append({
-                        'name': p.text,
+                for c in office.findAll('span', {'class': 'txt7'}):
+                    candidates.append({
+                        'name': c.text,
                         'scraped_id':  ''
                     })
 
                 # Add it to the data dictionary
-                sections[section_name][title_el.text] = people
+                races[office_name] = candidates
 
         return {
             'election_id': int(re.match(r'.+electNav=(\d+)', url).group(1)),
-            'data': sections,
+            'races': races,
         }
 
     def process_results(self, results):
         """
         Process the scraped data.
         """
-        self.log('Processing %s elections.' % len(results))
+        self.log(' Processing %s elections.' % len(results))
 
         # Loop through all the results
-        for d in results:
+        for election_data in results:
 
-            self.log('  Processing %s' % d['raw_name'])
+            self.log(' Processing %s' % election_data['election_name'])
 
             election, c = ScrapedElection.objects.get_or_create(
-                year=d['year'],
-                election_type=d['election_type'],
-                election_id=d['scraped_id'],
-                sort_index=d['sort_index'],
+                name = election_data['election_name'],
+                year = election_data['election_year'],
+                election_id = election_data['election_id'],
+                sort_index = election_data['sort_index'],
             )
 
-            if self.verbosity > 2:
-                if c:
-                    self.log('  Created %s' % election)
+            if c and self.verbosity > 2:
+                self.log(' Created %s' % election)
+            
+            # Loop through each of the races
+            for office_name, candidates in election_data['races'].items():
 
-            # Loop through the data list from the scraped page
-            for office_dict in d['data'].values():
-
-                # Loop through each of the offices we found there
-                for office_name, candidates in office_dict.items():
-
-                    # Loop through each of the candidates
-                    for candidate_data in candidates:
-                        # Add the office information to the candidate dict
-                        candidate_data.update(self.parse_office_name(office_name))
-                        candidate, c = ScrapedCandidate.objects.get_or_create(**candidate_data)
-                        
-                        if c:
-                            candidate.election = election
-                            candidate.save()
-                            if self.verbosity > 2:
-                                self.log('  Created %s' % candidate)
+                # Loop through each of the candidates
+                for candidate_data in candidates:
+                    # Add the office information to the candidate dict
+                    candidate_data['office_name'] = office_name
+                    # Create the candidate object
+                    candidate, c = ScrapedCandidate.objects.get_or_create(**candidate_data)
+                    
+                    if c:
+                        # Associate with the election object
+                        candidate.election = election
+                        candidate.save()
+                        if self.verbosity > 2:
+                            self.log(' Created %s' % candidate)

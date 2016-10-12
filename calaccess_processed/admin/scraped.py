@@ -14,19 +14,14 @@ class ScrapedElectionAdmin(BaseAdmin):
     list_display = (
         "election_id",
         "year",
-        "date",
-        "election_type",
     )
     list_filter = (
         "year",
-        "election_type",
     )
     list_per_page = 500
-    date_hierarchy = "date"
     search_fields = (
         "election_id",
         "year",
-        "election_type",
     )
 
 
@@ -36,7 +31,6 @@ class ScrapedCandidateAdmin(BaseAdmin):
         "scraped_id",
         "name",
         "office_name",
-        "office_seat",
         "election"
     )
     list_filter = (
@@ -48,7 +42,6 @@ class ScrapedCandidateAdmin(BaseAdmin):
         "scraped_id",
         "name",
         "office_name",
-        "office_seat"
     )
 
 

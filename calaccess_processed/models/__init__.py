@@ -55,6 +55,7 @@ __all__ = (
     'ProcessedDataFile',
     'Candidate',
     'CandidateCommittee',
+<<<<<<< 5b29d4ab13134108b40b54de85afd96af400e3c8
     'Form460Filing',
     'Form460FilingVersion',
     'Form460ScheduleAItem',
@@ -79,6 +80,10 @@ __all__ = (
     'Schedule497Part1ItemVersion',
     'Schedule497Part2Item',
     'Schedule497Part2ItemVersion',
+=======
+    'F460Filing',
+    'F460FilingVersion',
+>>>>>>> reworking candidates scraper
     'ScrapedElection',
     'ScrapedCandidate',
     'ScrapedCommittee',
