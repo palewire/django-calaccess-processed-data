@@ -287,20 +287,6 @@ class CampaignFinanceFilingBase(models.Model):
         help_text="Date this report was filed, according to the filer "
                   "(from CVR_CAMPAIGN_DISCLOSURE.RPT_DATE)",
     )
-    from_date = models.DateField(
-        verbose_name='from date',
-        db_index=True,
-        null=False,
-        help_text="The first date of the filing period covered by the statement "
-                  "(from CVR_CAMPAIGN_DISCLOSURE.FROM_DATE)",
-    )
-    thru_date = models.DateField(
-        verbose_name='thru date',
-        db_index=True,
-        null=False,
-        help_text="The last date of the filing period covered by the statement "
-                  "(from CVR_CAMPAIGN_DISCLOSURE.THRU_DATE)",
-    )
     filer_id = models.IntegerField(
         verbose_name='filer id',
         db_index=True,
@@ -339,6 +325,20 @@ class F460Base(CampaignFinanceFilingBase):
     """
     Base and abstract model for Form 460 filings.
     """
+    from_date = models.DateField(
+        verbose_name='from date',
+        db_index=True,
+        null=False,
+        help_text="The first date of the filing period covered by the statement "
+                  "(from CVR_CAMPAIGN_DISCLOSURE.FROM_DATE)",
+    )
+    thru_date = models.DateField(
+        verbose_name='thru date',
+        db_index=True,
+        null=False,
+        help_text="The last date of the filing period covered by the statement "
+                  "(from CVR_CAMPAIGN_DISCLOSURE.THRU_DATE)",
+    )
     monetary_contributions = models.IntegerField(
         verbose_name='monetary contributions',
         null=True,
