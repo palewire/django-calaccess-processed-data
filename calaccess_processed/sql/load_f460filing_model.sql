@@ -40,7 +40,7 @@ SELECT
         WHEN cvr."FILER_NAMF" IN ('.', '-') THEN ''
         ELSE UPPER(cvr."FILER_NAMF")
     END as filer_firstname,
-    cvr."ELECT_DATE"as election_date,
+    cvr."ELECT_DATE" as election_date,
     line_1."AMOUNT_A" as monetary_contributions,
     line_2."AMOUNT_A" as loans_received,
     line_3."AMOUNT_A" as subtotal_cash_contributions,
