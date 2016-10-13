@@ -276,10 +276,9 @@ class CandidateCommittee(models.Model):
         return str(self.committee_filer_id)
 
 
-@python_2_unicode_compatible
-class F460Base(models.Model):
+class CampaignFinanceFilingBase(models.Model):
     """
-    Base and abstract model for Form 460 filings.
+    Base and abstract model for campaign finance-related filings.
     """
     date_filed = models.DateField(
         verbose_name='date filed',
@@ -330,6 +329,16 @@ class F460Base(models.Model):
         help_text="Date of the election in which the filer is participating "
                   "(from CVR_CAMPAIGN_DISCLOSURE.ELECT_DATE)",
     )
+
+    class Meta:
+        app_label = 'calaccess_processed'
+        abstract = True
+
+
+class F460Base(CampaignFinanceFilingBase):
+    """
+    Base and abstract model for Form 460 filings.
+    """
     monetary_contributions = models.IntegerField(
         verbose_name='monetary contributions',
         null=True,
@@ -434,11 +443,7 @@ class F460Base(models.Model):
     )
 
     class Meta:
-        app_label = 'calaccess_processed'
         abstract = True
-
-    def __str__(self):
-        return str(self.filing_id_raw)
 
 
 @python_2_unicode_compatible
@@ -456,13 +461,15 @@ class F460Filing(F460Base):
         primary_key=True,
         db_index=True,
         null=False,
-        help_text='Filing identification number',
+        help_text='Unique identification number for the Form 460 filing ('
+                  'from CVR_CAMPAIGN_DISCLOSURE_CD.FILING_ID)',
     )
     amendment_count = models.IntegerField(
         verbose_name='Count amendments',
         db_index=True,
         null=False,
-        help_text='Number of amendments to this filing.',
+        help_text='Number of amendments to the Form 460 filing (from '
+                  'maximum value of CVR_CAMPAIGN_DISCLOSURE_CD.AMEND_ID)',
     )
 
     objects = ProcessedDataManager()
@@ -484,13 +491,16 @@ class F460FilingVersion(F460Base):
         verbose_name='filing id',
         db_index=True,
         null=False,
-        help_text='Filing identification number',
+        help_text='Unique identification number for the Form 460 filing ('
+                  'from CVR_CAMPAIGN_DISCLOSURE_CD.FILING_ID)',
     )
     amend_id = models.IntegerField(
         verbose_name='amendment id',
         db_index=True,
         null=False,
-        help_text='Amendment identification number',
+        help_text='Identifies the version of the Form 497 filing, with 0 '
+                  'representing the initial filing (from CVR_CAMPAIGN_'
+                  'DISCLOSURE_CD.AMEND_ID)',
     )
 
     objects = ProcessedDataManager()
