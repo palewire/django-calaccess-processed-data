@@ -8,6 +8,8 @@ from calaccess_processed.models.campaign import (
     CandidateCommittee,
     F460Filing,
     F460FilingVersion,
+    S497Filing,
+    S497FilingVersion,
 )
 from calaccess_processed.models.common import (
     FilerIDValue,
@@ -27,4 +29,6 @@ __all__ = (
     'F460FilingVersion',
     'FilerIDValue',
     'FilingIDValue',
+    'S497Filing',
+    'S497FilingVersion',
 )

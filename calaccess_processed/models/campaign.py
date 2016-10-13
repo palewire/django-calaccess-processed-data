@@ -513,3 +513,71 @@ class F460FilingVersion(F460Base):
 
     def __str__(self):
         return str(self.filing_id)
+
+
+@python_2_unicode_compatible
+class S497Filing(CampaignFinanceFilingBase):
+    """
+    The most recent version of each Form 497 (Late Contribution Report) 
+    filing by recipient committees.
+
+    Includes information from the cover sheet of the most recent amendment to 
+    each filing. All versions of Form 497 filings can befound in f497version.
+    """
+    filing_id = models.IntegerField(
+        verbose_name='filing id',
+        primary_key=True,
+        db_index=True,
+        null=False,
+        help_text='Unique identification number for the Schedule 497 filing ('
+                  'from CVR_CAMPAIGN_DISCLOSURE_CD.FILING_ID)',
+    )
+    amendment_count = models.IntegerField(
+        verbose_name='Count amendments',
+        db_index=True,
+        null=False,
+        help_text='Number of amendments to the Form 497 filing (from '
+                  'maximum value of CVR_CAMPAIGN_DISCLOSURE_CD.AMEND_ID)',
+    )
+
+    objects = ProcessedDataManager()
+
+    def __str__(self):
+        return str(self.filing_id)
+
+
+@python_2_unicode_compatible
+class S497FilingVersion(CampaignFinanceFilingBase):
+    """
+    Every version of each Form 497 (Late Contribution Report) filing by
+    recipient committees.
+
+    Includes information found on the cover sheet of each amendment. For the 
+    most recent version of each filing, see f497filing.
+    """
+    filing_id = models.IntegerField(
+        verbose_name='filing id',
+        db_index=True,
+        null=False,
+        help_text='Unique identification number for the Schedule 497 filing ('
+                  'from S497_CD.FILING_ID)',
+    )
+    amend_id = models.IntegerField(
+        verbose_name='amendment id',
+        db_index=True,
+        null=False,
+        help_text='Identifies the version of the Schedule 497 filing, with 0 '
+                  'representing the initial filing (from CVR_CAMPAIGN_'
+                  'DISCLOSURE_CD.AMEND_ID)',
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        unique_together = ((
+            'filing_id',
+            'amend_id',
+        ),)
+
+    def __str__(self):
+        return str(self.filing_id)

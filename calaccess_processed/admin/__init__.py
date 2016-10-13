@@ -9,6 +9,8 @@ from calaccess_processed.admin.campaign import (
     CandidateCommitteeAdmin,
     F460FilingAdmin,
     F460FilingVersionAdmin,
+    S497FilingAdmin,
+    S497FilingVersionAdmin,
 )
 from calaccess_processed.admin.common import (
     FilerIDValueAdmin,
@@ -24,6 +26,8 @@ __all__ = (
     'CandidateCommitteeAdmin',
     'F460FilingAdmin',
     'F460FilingVersionAdmin',
+    'S497FilingAdmin',
+    'S497FilingVersionAdmin',
     'FilerIDValueAdmin',
     'ProcessedDataVersionAdmin',
     'ProcessedDataFileAdmin',

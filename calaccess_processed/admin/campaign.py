@@ -77,3 +77,33 @@ class F460FilingVersionAdmin(BaseAdmin):
         'total_expenditures_made',
         'ending_cash_balance',
     )
+
+@admin.register(models.S497Filing)
+class S497FilingAdmin(BaseAdmin):
+    """
+    Custom admin for the S497Filing model.
+    """
+    list_display = (
+        'filing_id',
+        'amendment_count',
+        'filer_id',
+        'filer_lastname',
+        'filer_firstname',
+        'date_filed',
+        'election_date',
+    )
+
+@admin.register(models.S497FilingVersion)
+class S497FilingVersionAdmin(BaseAdmin):
+    """
+    Custom admin for the S497FilingVersion model.
+    """
+    list_display = (
+        'filing_id',
+        'amend_id',
+        'filer_id',
+        'filer_lastname',
+        'filer_firstname',
+        'date_filed',
+        'election_date',
+    )
