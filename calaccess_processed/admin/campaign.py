@@ -111,3 +111,36 @@ class S497FilingVersionAdmin(BaseAdmin):
         'date_filed',
         'election_date',
     )
+
+@admin.register(models.LateContributionReceived)
+class LateContributionReceivedAdmin(BaseAdmin):
+    """
+    Custom admin for the LateContributionReceived model.
+    """
+    list_display = (
+        'filing_id',
+        'line_item',
+        'date_received',
+        'amount_received',
+        'transaction_id',
+        'contributor_code',
+        'contributor_lastname',
+        'contributor_firstname',
+    )
+
+@admin.register(models.LateContributionReceivedVersion)
+class LateContributionReceivedVersionAdmin(BaseAdmin):
+    """
+    Custom admin for the LateContributionReceivedVersion model.
+    """
+    list_display = (
+        'filing_id',
+        'amend_id',
+        'line_item',
+        'date_received',
+        'amount_received',
+        'transaction_id',
+        'contributor_code',
+        'contributor_lastname',
+        'contributor_firstname',
+    )
