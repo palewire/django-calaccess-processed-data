@@ -19,7 +19,6 @@ class ScrapedElection(models.Model):
         max_length=3,
         null=False,
         blank=True,
-        help_text="Election identification number",
     )
     name = models.CharField(
         verbose_name="scraped election name",
