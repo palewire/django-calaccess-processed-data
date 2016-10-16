@@ -21,20 +21,16 @@ class ScrapedElection(models.Model):
         blank=True,
     )
     name = models.CharField(
-        verbose_name="scraped election name",
         max_length=200,
         null=False,
         blank=True,
-        help_text="Scraped election name",
     )
     year = models.IntegerField(
         verbose_name='year of election',
         db_index=True,
         null=False,
-        help_text='Year of election',
     )
     sort_index = models.IntegerField(
-        verbose_name="sort index",
         null=False,
         help_text="The index value is used to preserve sorting of elections, \
         since multiple elections may occur in a year. A greater sort index \
