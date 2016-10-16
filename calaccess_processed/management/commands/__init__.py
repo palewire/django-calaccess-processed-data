@@ -18,7 +18,8 @@ logger = logging.getLogger(__name__)
 
 class CalAccessCommand(BaseCommand):
     """
-    Base management command that provides common functionality for the other commands in this app.
+    Base management command that provides common functionality for the other
+    commands in this app.
     """
     def handle(self, *args, **options):
         """
@@ -114,8 +115,8 @@ class ScrapeCommand(CalAccessCommand):
         self.force_download = options.get("force_download")
         self.update_cache = options.get("update_cache")
         os.path.exists(self.cache_dir) or os.mkdir(self.cache_dir)
-        results = self.build_results()
-        self.process_results(results)
+        results = self.scrape()
+        self.save(results)
 
     @retry(requests.exceptions.RequestException)
     def get_url(self, url, retries=1, request_type='GET'):
@@ -187,6 +188,7 @@ class ScrapeCommand(CalAccessCommand):
             else:
                 raise urllib2.HTTPError
 
+        # Grab the HTML and cache it
         html = response.text
         if self.verbosity > 2:
             self.log(" Writing to cache {}".format(cache_path))
@@ -194,16 +196,18 @@ class ScrapeCommand(CalAccessCommand):
         os.path.exists(cache_subdir) or os.makedirs(cache_subdir)
         with open(cache_path, 'w') as f:
             f.write(html)
+
+        # Finally return the HTML ready to parse with BeautifulSoup
         return BeautifulSoup(html, "html.parser")
 
-    def build_results(self):
+    def scrape(self):
         """
         This method should perform the actual scraping
         and return the structured data.
         """
         raise NotImplementedError
 
-    def process_results(self, results):
+    def save(self, results):
         """
         This method receives the structured data returned
         by `build_results` and should process it.
