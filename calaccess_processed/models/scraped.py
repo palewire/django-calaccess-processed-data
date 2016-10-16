@@ -140,7 +140,7 @@ class ScrapedCommittee(models.Model):
         help_text="Scraped committee name",
     )
     scraped_id = models.CharField(
-        verbose_name="committee id",
+        verbose_name="committee identification number",
         max_length=7,
         null=False,
         blank=False,
