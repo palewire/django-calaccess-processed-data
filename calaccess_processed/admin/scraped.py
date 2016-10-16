@@ -12,8 +12,9 @@ from calaccess_raw.admin.base import BaseAdmin
 @admin.register(models.ScrapedElection)
 class ScrapedElectionAdmin(BaseAdmin):
     list_display = (
-        "election_id",
+        "name",
         "year",
+        "election_id",
     )
     list_filter = (
         "year",
@@ -22,6 +23,7 @@ class ScrapedElectionAdmin(BaseAdmin):
     search_fields = (
         "election_id",
         "year",
+        "name",
     )
 
 

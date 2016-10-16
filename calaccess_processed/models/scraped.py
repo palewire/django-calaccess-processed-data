@@ -11,6 +11,9 @@ from calaccess_processed.managers import ProcessedDataManager
 
 @python_2_unicode_compatible
 class ScrapedElection(models.Model):
+    """
+    An election day scraped from the California Secretary of State's site.
+    """
     election_id = models.CharField(
         verbose_name="election identification number",
         max_length=3,
@@ -48,6 +51,9 @@ class ScrapedElection(models.Model):
 
 @python_2_unicode_compatible
 class ScrapedCandidate(models.Model):
+    """
+    A candidate for office scraped from the California Secretary of State's site.
+    """
     name = models.CharField(
         verbose_name="candidate name",
         max_length=200,
@@ -81,6 +87,10 @@ class ScrapedCandidate(models.Model):
 
 @python_2_unicode_compatible
 class ScrapedProposition(models.Model):
+    """
+    A yes or no ballot measure for voters scraped from the
+    California Secretary of State's site.
+    """
     # Most of the time, this is a number, however,
     # it can be a bona fide name, e.g.
     # '2003 Recall Question'
@@ -118,6 +128,10 @@ class ScrapedProposition(models.Model):
 
 @python_2_unicode_compatible
 class ScrapedCommittee(models.Model):
+    """
+    A committee supporting or opposing a proposition scraped from the
+    California Secretary of State's site.
+    """
     name = models.CharField(
         verbose_name="committee name",
         max_length=500,
