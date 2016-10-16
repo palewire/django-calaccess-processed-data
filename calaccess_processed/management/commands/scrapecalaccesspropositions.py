@@ -18,7 +18,7 @@ class Command(ScrapeCommand):
     """
     help = "Scrape links between filers and propositions from the official CAL-ACCESS site."
 
-    def build_results(self):
+    def scrape(self):
         self.header("Scraping propositions")
 
         # Build the link list from the 2013 page because otherwise the
@@ -164,7 +164,7 @@ class Command(ScrapeCommand):
         # Pass the data out
         return data_dict
 
-    def process_results(self, results):
+    def save(self, results):
         """
         Add the data to the database.
         """

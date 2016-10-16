@@ -10,7 +10,7 @@ class Command(ScrapeCommand):
     """
     help = "Scrape links between filers and elections from CAL-ACCESS site"
 
-    def build_results(self):
+    def scrape(self):
         self.header("Scraping election candidates")
 
         soup = self.get_html('/Campaign/Candidates/list.aspx?view=certified&electNav=93')
@@ -102,7 +102,7 @@ class Command(ScrapeCommand):
             'races': races,
         }
 
-    def process_results(self, results):
+    def save(self, results):
         """
         Process the scraped data.
         """
@@ -122,7 +122,7 @@ class Command(ScrapeCommand):
 
             if c and self.verbosity > 2:
                 self.log(' Created %s' % election)
-            
+
             # Loop through each of the races
             for office_name, candidates in election_data['races'].items():
 
@@ -132,7 +132,7 @@ class Command(ScrapeCommand):
                     candidate_data['office_name'] = office_name
                     # Create the candidate object
                     candidate, c = ScrapedCandidate.objects.get_or_create(**candidate_data)
-                    
+
                     if c:
                         # Associate with the election object
                         candidate.election = election
