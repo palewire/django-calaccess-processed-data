@@ -12,6 +12,8 @@ from calaccess_processed.models.campaign import (
     S497FilingVersion,
     LateContributionReceived,
     LateContributionReceivedVersion,
+    LateContributionMade,
+    LateContributionMadeVersion,
 )
 from calaccess_processed.models.common import (
     FilerIDValue,
@@ -35,4 +37,6 @@ __all__ = (
     'S497FilingVersion',
     'LateContributionReceived',
     'LateContributionReceivedVersion',
+    'LateContributionMade',
+    'LateContributionMadeVersion',
 )

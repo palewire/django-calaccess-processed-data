@@ -144,3 +144,36 @@ class LateContributionReceivedVersionAdmin(BaseAdmin):
         'contributor_lastname',
         'contributor_firstname',
     )
+
+@admin.register(models.LateContributionMade)
+class LateContributionMadeAdmin(BaseAdmin):
+    """
+    Custom admin for the LateContributionMade model.
+    """
+    list_display = (
+        'filing_id',
+        'line_item',
+        'date_received',
+        'amount_received',
+        'transaction_id',
+        'recipient_code',
+        'recipient_lastname',
+        'recipient_firstname',
+    )
+
+@admin.register(models.LateContributionMadeVersion)
+class LateContributionMadeVersionAdmin(BaseAdmin):
+    """
+    Custom admin for the LateContributionMadeVersion model.
+    """
+    list_display = (
+        'filing_id',
+        'amend_id',
+        'line_item',
+        'date_received',
+        'amount_received',
+        'transaction_id',
+        'recipient_code',
+        'recipient_lastname',
+        'recipient_firstname',
+    )

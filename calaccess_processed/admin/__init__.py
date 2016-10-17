@@ -13,6 +13,8 @@ from calaccess_processed.admin.campaign import (
     S497FilingVersionAdmin,
     LateContributionReceivedAdmin,
     LateContributionReceivedVersionAdmin,
+    LateContributionMadeAdmin,
+    LateContributionMadeVersionAdmin,
 )
 from calaccess_processed.admin.common import (
     FilerIDValueAdmin,
@@ -32,6 +34,8 @@ __all__ = (
     'S497FilingVersionAdmin',
     'LateContributionReceivedAdmin',
     'LateContributionReceivedVersionAdmin',
+    'LateContributionMadeAdmin',
+    'LateContributionMadeVersionAdmin',
     'FilerIDValueAdmin',
     'ProcessedDataVersionAdmin',
     'ProcessedDataFileAdmin',
