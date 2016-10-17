@@ -3,13 +3,17 @@
 """
 Import all of the models from submodules and thread them together.
 """
-from calaccess_processed.models.campaign import (
+from calaccess_processed.models.campaign.entities import (
     Candidate,
     CandidateCommittee,
+)
+from calaccess_processed.models.campaign.filings import (
     F460Filing,
     F460FilingVersion,
     S497Filing,
     S497FilingVersion,
+)
+from calaccess_processed.models.campaign.transactions import (
     LateContributionReceived,
     LateContributionReceivedVersion,
     LateContributionMade,
