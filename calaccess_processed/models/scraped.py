@@ -17,24 +17,20 @@ class ScrapedElection(models.Model):
     election_id = models.CharField(
         verbose_name="election identification number",
         max_length=3,
-        null=False,
         blank=True,
     )
     name = models.CharField(
         max_length=200,
-        null=False,
         blank=True,
     )
     year = models.IntegerField(
         verbose_name='year of election',
-        db_index=True,
-        null=False,
+        db_index=True
     )
     sort_index = models.IntegerField(
-        null=False,
         help_text="The index value is used to preserve sorting of elections, \
-        since multiple elections may occur in a year. A greater sort index \
-        corresponds to a more recent election."
+since multiple elections may occur in a year. A greater sort index \
+corresponds to a more recent election."
     )
 
     class Meta:
@@ -49,32 +45,14 @@ class ScrapedCandidate(models.Model):
     """
     A candidate for office scraped from the California Secretary of State's site.
     """
-    name = models.CharField(
-        verbose_name="candidate name",
-        max_length=200,
-        null=False,
-        blank=False,
-        help_text="Scraped candidate name",
-    )
+    name = models.CharField(max_length=200)
     scraped_id = models.CharField(
-        verbose_name="candidate id",
+        verbose_name="candidate identification number",
         max_length=7,
-        null=False,
-        # Some don't have IDs on the website
-        blank=True,
-        help_text="Scraped candidate id",
+        blank=True,  # Some don't have IDs on the website
     )
-    office_name = models.CharField(
-        verbose_name="office name",
-        max_length=100,
-        null=False,
-        blank=True,
-        help_text="Office name",
-    )
-    election = models.ForeignKey(
-        'ScrapedElection',
-        null=True
-    )
+    office_name = models.CharField(max_length=100, blank=True)
+    election = models.ForeignKey('ScrapedElection', null=True)
 
     def __str__(self):
         return self.name
@@ -89,30 +67,13 @@ class ScrapedProposition(models.Model):
     # Most of the time, this is a number, however,
     # it can be a bona fide name, e.g.
     # '2003 Recall Question'
-    name = models.CharField(
-        verbose_name="proposition name",
-        max_length=200,
-        null=False,
-        blank=False,
-        help_text="Scraped proposition name",
-    )
-    description = models.TextField(
-        verbose_name="proposition description",
-        null=False,
-        blank=True,
-        help_text="Scraped proposition description",
-    )
+    name = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
     scraped_id = models.CharField(
-        verbose_name="proposition id",
-        max_length=200,
-        null=False,
-        blank=False,
-        help_text="Scraped proposition id",
+        verbose_name="proposition identification number",
+        max_length=200
     )
-    election = models.ForeignKey(
-        'ScrapedElection',
-        null=True
-    )
+    election = models.ForeignKey('ScrapedElection', null=True)
 
     class Meta:
         ordering = ("-election", "name")
@@ -127,28 +88,16 @@ class ScrapedCommittee(models.Model):
     A committee supporting or opposing a proposition scraped from the
     California Secretary of State's site.
     """
-    name = models.CharField(
-        verbose_name="committee name",
-        max_length=500,
-        null=False,
-        blank=False,
-        help_text="Scraped committee name",
-    )
+    name = models.CharField(max_length=500)
     scraped_id = models.CharField(
         verbose_name="committee identification number",
-        max_length=7,
-        null=False,
-        blank=False,
-        help_text="Scraped committee id",
+        max_length=7
     )
     support = models.BooleanField(
         verbose_name="supports proposition",
         help_text="Whether the committee supports the proposition",
     )
-    proposition = models.ForeignKey(
-        'ScrapedProposition',
-        null=False
-    )
+    proposition = models.ForeignKey('ScrapedProposition')
 
     def __str__(self):
         return self.name
