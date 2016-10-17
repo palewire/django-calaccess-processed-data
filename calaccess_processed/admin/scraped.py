@@ -16,9 +16,7 @@ class ScrapedElectionAdmin(BaseAdmin):
         "year",
         "election_id",
     )
-    list_filter = (
-        "year",
-    )
+    list_filter = ("year",)
     list_per_page = 500
     search_fields = (
         "election_id",
