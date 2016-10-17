@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_s497filing (
+INSERT INTO calaccess_processed_schedule497 (
     filing_id,
     amendment_count,
     filer_id,
