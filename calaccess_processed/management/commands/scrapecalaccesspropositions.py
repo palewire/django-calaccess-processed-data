@@ -222,7 +222,7 @@ class Command(ScrapeCommand):
                             '1316061',
                             '1316062'
                         ]:
-                            election = ScrapedElection.objects.get(
+                            election, c = ScrapedElection.objects.get_or_create(
                                 year=2009,
                                 type='SPECIAL_RUNOFF'
                             )

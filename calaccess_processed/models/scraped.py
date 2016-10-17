@@ -39,7 +39,12 @@ class ScrapedElection(BaseScrapedModel):
         verbose_name='year of election',
         db_index=True
     )
+    date = models.DateField(
+        verbose_name="date of election",
+        null=True
+    )
     sort_index = models.IntegerField(
+        null=True,
         help_text="The index value is used to preserve sorting of elections, \
 since multiple elections may occur in a year. A greater sort index \
 corresponds to a more recent election."
