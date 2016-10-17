@@ -63,4 +63,8 @@ FROM (
 JOIN "S497_CD" s497
 ON latest."FILING_ID" = s497."FILING_ID"
 AND latest.amend_id = s497."AMEND_ID"
+-- exclude filings lacking a cover sheet
+JOIN "CVR_CAMPAIGN_DISCLOSURE_CD" cvr
+ON s497."FILING_ID" = cvr."FILING_ID"
+AND s497."AMEND_ID" = cvr."AMEND_ID"
 WHERE s497."FORM_TYPE" = 'F497P1';

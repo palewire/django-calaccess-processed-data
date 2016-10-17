@@ -8,26 +8,19 @@ INSERT INTO calaccess_processed_schedule497 (
     election_date
 )
 SELECT
-    cvr."FILING_ID" as filing_id,
-    last_cvr.last_amend_id as amendment_count,
-    x."FILER_ID" as filer_id,
-    cvr."RPT_DATE" as date_filed,
-    UPPER(cvr."FILER_NAML") as filer_lastname,
-    CASE 
-        WHEN cvr."FILER_NAMF" IN ('.', '-') THEN ''
-        ELSE UPPER(cvr."FILER_NAMF")
-    END as filer_firstname,
-    cvr."ELECT_DATE" as election_date
+    s497.filing_id AS filing_id,
+    latest.amend_id AS amendment_count,
+    s497.filer_id AS filer_id,
+    s497.date_filed AS date_filed,
+    s497.filer_lastname AS filer_lastname,
+    s497.filer_firstname AS filer_firstname,
+    s497.election_date AS election_date
 FROM (
     -- get most recent amendment for each filing
-    SELECT "FILING_ID", MAX("AMEND_ID") AS last_amend_id
-    FROM "CVR_CAMPAIGN_DISCLOSURE_CD"
+    SELECT filing_id, MAX(amend_id) AS amend_id
+    FROM calaccess_processed_schedule497version
     GROUP BY 1
-) AS last_cvr
-JOIN "CVR_CAMPAIGN_DISCLOSURE_CD" cvr
-ON last_cvr."FILING_ID" = cvr."FILING_ID"
-AND last_cvr.last_amend_id = cvr."AMEND_ID"
--- get the numeric filer_id
-JOIN "FILER_XREF_CD" x
-ON x."XREF_ID" = cvr."FILER_ID"
-WHERE cvr."FORM_TYPE" = 'F497';
+) AS latest
+JOIN calaccess_processed_schedule497version s497
+ON latest.filing_id = s497.filing_id
+AND latest.amend_id = s497.amend_id;
