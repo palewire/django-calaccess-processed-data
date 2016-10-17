@@ -9,8 +9,16 @@ from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.managers import ProcessedDataManager
 
 
+class BaseScrapedModel(models.Model):
+    created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+
+
 @python_2_unicode_compatible
-class ScrapedElection(models.Model):
+class ScrapedElection(BaseScrapedModel):
     """
     An election day scraped from the California Secretary of State's site.
     """
@@ -41,7 +49,7 @@ corresponds to a more recent election."
 
 
 @python_2_unicode_compatible
-class ScrapedCandidate(models.Model):
+class ScrapedCandidate(BaseScrapedModel):
     """
     A candidate for office scraped from the California Secretary of State's site.
     """
@@ -59,7 +67,7 @@ class ScrapedCandidate(models.Model):
 
 
 @python_2_unicode_compatible
-class ScrapedProposition(models.Model):
+class ScrapedProposition(BaseScrapedModel):
     """
     A yes or no ballot measure for voters scraped from the
     California Secretary of State's site.
@@ -83,7 +91,7 @@ class ScrapedProposition(models.Model):
 
 
 @python_2_unicode_compatible
-class ScrapedCommittee(models.Model):
+class ScrapedCommittee(BaseScrapedModel):
     """
     A committee supporting or opposing a proposition scraped from the
     California Secretary of State's site.
