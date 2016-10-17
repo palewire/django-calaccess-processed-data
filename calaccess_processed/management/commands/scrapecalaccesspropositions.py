@@ -202,7 +202,7 @@ class Command(ScrapeCommand):
                     try:
                         election = ScrapedElection.objects.get(
                             year=date.year,
-                            election_type=election_dict['type']
+                            type=election_dict['type']
                         )
                         # Set the election date since we have it here
                         if not election.date:
@@ -224,7 +224,7 @@ class Command(ScrapeCommand):
                         ]:
                             election = ScrapedElection.objects.get(
                                 year=2009,
-                                election_type='SPECIAL_RUNOFF'
+                                type='SPECIAL_RUNOFF'
                             )
                             if not election.date:
                                 election.date = datetime(2009, 5, 19)

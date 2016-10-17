@@ -31,6 +31,10 @@ class ScrapedElection(BaseScrapedModel):
         max_length=200,
         blank=True,
     )
+    type = models.CharField(
+        max_length=200,
+        blank=True,
+    )
     year = models.IntegerField(
         verbose_name='year of election',
         db_index=True
