@@ -662,6 +662,14 @@ class LateContributionReceivedBase(LateContributionBase):
         choices=CONTRIBUTOR_CD_CHOICES,
         help_text='Code describing the contributor (from S497_CD.ENTITY_CD)',
     )
+    contributor_committee_id = models.CharField(
+        verbose_name='committee id',
+        max_length=9,
+        db_index=True,
+        blank=True,
+        help_text='Filer identification number identifying the contributor if '
+                  'it is a committee (from S497_CD.CMTE_ID)',
+        )
     contributor_title = models.CharField(
         verbose_name='contributor title',
         max_length=10,
@@ -720,14 +728,6 @@ class LateContributionReceivedBase(LateContributionBase):
         verbose_name='contributor is self employed',
         default=False,
         help_text='(from S497_CD.CTRIB_SELF)',
-    )
-    committee_id = models.CharField(
-        verbose_name='committee id',
-        max_length=9,
-        db_index=True,
-        blank=True,
-        help_text='Filer identification number identifying the contributor '
-                  '(from S497_CD.CMTE_ID)',
     )
 
     class Meta:

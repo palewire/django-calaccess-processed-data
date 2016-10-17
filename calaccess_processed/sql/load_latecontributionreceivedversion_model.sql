@@ -8,6 +8,7 @@ INSERT INTO calaccess_processed_latecontributionreceivedversion (
     transaction_id,
     memo_reference_number,
     contributor_code,
+    contributor_committee_id,
     contributor_title,
     contributor_lastname,
     contributor_firstname,
@@ -17,8 +18,7 @@ INSERT INTO calaccess_processed_latecontributionreceivedversion (
     contributor_zip,
     contributor_employer,
     contributor_occupation,
-    contributor_is_self_employed,
-    committee_id
+    contributor_is_self_employed
 )
 SELECT 
     "FILING_ID" AS filing_id,
@@ -36,6 +36,11 @@ SELECT
         WHEN '0' THEN ''
         ELSE UPPER("ENTITY_CD")
     END AS contributor_code,
+    -- replace '#', '`' and '.' with empty string 
+    -- and trim leading/trailing whitespace
+    TRIM(
+        REPLACE(REPLACE(REPLACE("CMTE_ID", '#', ''), '`', ''), '.', '')
+    ) AS contributor_committee_id,
     UPPER("ENTY_NAMT") AS contributor_title,
     UPPER("ENTY_NAML") AS contributor_lastname,
     UPPER("ENTY_NAMF") AS contributor_firstname,
@@ -51,11 +56,6 @@ SELECT
         WHEN 'n' THEN false
         WHEN '0' THEN false
         ELSE false 
-    END AS contributor_is_self_employed,
-    -- replace '#', '`' and '.' with empty string 
-    -- and trim leading/trailing whitespace
-    TRIM(
-        REPLACE(REPLACE(REPLACE("CMTE_ID", '#', ''), '`', ''), '.', '')
-    ) AS committee_id
+    END AS contributor_is_self_employed
 FROM "S497_CD"
 WHERE "FORM_TYPE" = 'F497P1';
