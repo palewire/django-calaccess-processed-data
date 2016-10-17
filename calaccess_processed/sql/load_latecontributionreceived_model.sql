@@ -61,6 +61,6 @@ FROM (
     GROUP BY 1
 ) latest
 JOIN "S497_CD" s497
-ON latest."FILING_ID" = S497."FILING_ID"
-AND latest.amend_id = S497."AMEND_ID"
+ON latest."FILING_ID" = s497."FILING_ID"
+AND latest.amend_id = s497."AMEND_ID"
 WHERE s497."FORM_TYPE" = 'F497P1';
