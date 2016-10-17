@@ -11,7 +11,7 @@ from django.core.management.base import CommandError
 from django.db import connection
 from django.utils.timezone import now
 from calaccess_raw import get_download_directory
-from calaccess_processed import get_model_list
+from calaccess_processed import get_models_to_process
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed.models.tracking import (
     ProcessedDataVersion,
@@ -72,7 +72,7 @@ files and ZIP.'
             self.processed_version.save()
 
         # get all of the models
-        self.processed_models = get_model_list()
+        self.processed_models = get_models_to_process()
 
         # iterate over all of the processed models
         for m in self.processed_models:

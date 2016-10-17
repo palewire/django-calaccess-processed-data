@@ -4,18 +4,26 @@ import os
 default_app_config = 'calaccess_processed.apps.CalAccessProcessedConfig'
 
 
-def get_model_list():
+def get_models_to_process():
     """
-    Returns a model list of 
+    Returns a list of models to derive from raw CAL-ACCESS data.
+
+    Models are listed in the order in which they should be derived, as some 
+    of data tables derived earlier in the order are re-used in the load queries
+    of models later in the order.
     """
-    from django.apps import apps
-    model_list = apps.get_app_config("calaccess_processed").models.values()
+    from calaccess_processed.models import campaign
     return [
-        m for m in model_list
-        if (
-            m.__module__.split('.')[-1] != 'tracking' and
-            m.__module__.split('.')[-1] != 'common'
-        )
+        campaign.entities.Candidate,
+        campaign.entities.CandidateCommittee,
+        campaign.filings.Form460Version,
+        campaign.filings.Form460,
+        campaign.filings.Schedule497Version,
+        campaign.filings.Schedule497,
+        campaign.transactions.LateContributionReceivedVersion,
+        campaign.transactions.LateContributionReceived,
+        campaign.transactions.LateContributionMadeVersion,
+        campaign.transactions.LateContributionMade,
     ]
 
 def archive_directory_path(instance, filename):
