@@ -70,7 +70,7 @@ class Form460VersionAdmin(BaseAdmin):
     Custom admin for the Form460Version model.
     """
     list_display = (
-        'filing_id',
+        'filing',
         'amend_id',
         'filer_id',
         'filer_lastname',
@@ -103,7 +103,7 @@ class Schedule497VersionAdmin(BaseAdmin):
     Custom admin for the Schedule497Version model.
     """
     list_display = (
-        'filing_id',
+        'filing',
         'amend_id',
         'filer_id',
         'filer_lastname',
@@ -118,7 +118,7 @@ class LateContributionReceivedAdmin(BaseAdmin):
     Custom admin for the LateContributionReceived model.
     """
     list_display = (
-        'filing_id',
+        'filing',
         'line_item',
         'date_received',
         'amount_received',
@@ -151,7 +151,7 @@ class LateContributionMadeAdmin(BaseAdmin):
     Custom admin for the LateContributionMade model.
     """
     list_display = (
-        'filing_id',
+        'filing',
         'line_item',
         'date_received',
         'amount_received',

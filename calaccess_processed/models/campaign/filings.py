@@ -219,10 +219,11 @@ class Form460Version(Form460Base):
     Includes information found on the cover sheet and summary page of each
     amendment. For the most recent version of each filing, see form460.
     """
-    filing_id = models.IntegerField(
-        verbose_name='filing id',
-        db_index=True,
-        null=False,
+    filing = models.ForeignKey(
+        'Form460',
+        related_name='versions',
+        db_constraint=False,
+        on_delete=models.SET(0),
         help_text='Unique identification number for the Form 460 filing ('
                   'from CVR_CAMPAIGN_DISCLOSURE_CD.FILING_ID)',
     )
@@ -239,12 +240,12 @@ class Form460Version(Form460Base):
 
     class Meta:
         unique_together = ((
-            'filing_id',
+            'filing',
             'amend_id',
         ),)
 
     def __str__(self):
-        return str(self.filing_id)
+        return str(self.amend_id)
 
 
 @python_2_unicode_compatible
@@ -288,15 +289,15 @@ class Schedule497Version(CampaignFinanceFilingBase):
     Includes information found on the cover sheet of each amendment. For the 
     most recent version of each filing, see schedule497filing.
     """
-    filing_id = models.IntegerField(
-        verbose_name='filing id',
-        db_index=True,
-        null=False,
+    filing = models.ForeignKey(
+        'Schedule497',
+        related_name='versions',
+        db_constraint=False,
+        on_delete=models.SET(0),
         help_text='Unique identification number for the Schedule 497 filing ('
                   'from S497_CD.FILING_ID)',
     )
     amend_id = models.IntegerField(
-        verbose_name='amendment id',
         db_index=True,
         null=False,
         help_text='Identifies the version of the Schedule 497 filing, with 0 '
@@ -308,9 +309,9 @@ class Schedule497Version(CampaignFinanceFilingBase):
 
     class Meta:
         unique_together = ((
-            'filing_id',
+            'filing',
             'amend_id',
         ),)
 
     def __str__(self):
-        return str(self.filing_id)
+        return str(self.amend_id)

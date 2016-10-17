@@ -7,19 +7,13 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.managers import ProcessedDataManager
+from calaccess_processed.models.campaign.filings import Schedule497
 
 
 class LateContributionBase(models.Model):
     """
     Abstract base model for late contributions received or made.
     """
-    filing_id = models.IntegerField(
-        verbose_name='filing id',
-        db_index=True,
-        null=False,
-        help_text='Unique identification number for the Schedule 497 filing ('
-                  'from S497_CD.FILING_ID)',
-    )
     line_item = models.IntegerField(
         verbose_name='line item',
         db_index=True,
@@ -171,11 +165,20 @@ class LateContributionReceived(LateContributionReceivedBase):
 
     Derived from S497_CD records where FORM_TYPE is 'F497P1'.
     """
+    filing = models.ForeignKey(
+        'Schedule497',
+        related_name='contributions_received',
+        db_constraint=False,
+        on_delete=models.SET(0),
+        help_text='Unique identification number for the Schedule 497 filing ('
+                  'from S497_CD.FILING_ID)',
+    )
+
     objects = ProcessedDataManager()
 
     class Meta:
         unique_together = ((
-            'filing_id',
+            'filing',
             'line_item',
         ),)
         verbose_name_plural = 'Late contributions received'
@@ -195,6 +198,13 @@ class LateContributionReceivedVersion(LateContributionReceivedBase):
 
     Derived from S497_CD records where FORM_TYPE is 'F497P1'.
     """
+    filing_id = models.IntegerField(
+        verbose_name='filing id',
+        db_index=True,
+        null=False,
+        help_text='Unique identification number for the Schedule 497 filing ('
+                  'from S497_CD.FILING_ID)',
+    )
     amend_id = models.IntegerField(
         verbose_name='amendment id',
         db_index=True,
@@ -412,11 +422,20 @@ class LateContributionMade(LateContributionMadeBase):
 
     Derived from S497_CD records where FORM_TYPE is 'F497P2'.
     """
+    filing = models.ForeignKey(
+        'Schedule497',
+        related_name='contributions_made',
+        db_constraint=False,
+        on_delete=models.SET(0),
+        help_text='Unique identification number for the Schedule 497 filing ('
+                  'from S497_CD.FILING_ID)',
+    )
+
     objects = ProcessedDataManager()
 
     class Meta:
         unique_together = ((
-            'filing_id',
+            'filing',
             'line_item',
         ),)
         verbose_name_plural = 'Late contributions made'
@@ -436,6 +455,13 @@ class LateContributionMadeVersion(LateContributionMadeBase):
 
     Derived from S497_CD records where FORM_TYPE is 'F497P2'.
     """
+    filing_id = models.IntegerField(
+        verbose_name='filing id',
+        db_index=True,
+        null=False,
+        help_text='Unique identification number for the Schedule 497 filing ('
+                  'from S497_CD.FILING_ID)',
+    )
     amend_id = models.IntegerField(
         verbose_name='amendment id',
         db_index=True,
