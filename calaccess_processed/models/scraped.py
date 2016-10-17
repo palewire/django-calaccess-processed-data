@@ -88,16 +88,16 @@ class ScrapedCommittee(models.Model):
     A committee supporting or opposing a proposition scraped from the
     California Secretary of State's site.
     """
+    proposition = models.ForeignKey('ScrapedProposition')
     name = models.CharField(max_length=500)
     scraped_id = models.CharField(
         verbose_name="committee identification number",
         max_length=7
     )
-    support = models.BooleanField(
-        verbose_name="supports proposition",
-        help_text="Whether the committee supports the proposition",
+    position = models.CharField(
+        max_length=100,
+        help_text="Whether the committee supports or opposes the proposition",
     )
-    proposition = models.ForeignKey('ScrapedProposition')
 
     def __str__(self):
         return self.name

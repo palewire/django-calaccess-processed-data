@@ -70,9 +70,9 @@ class ScrapedCommitteeAdmin(BaseAdmin):
         "scraped_id",
         "name",
         "proposition",
-        "support",
+        "position",
     )
-    list_filter = ("proposition__election__year", "support")
+    list_filter = ("proposition__election__year", "position")
     list_per_page = 500
     search_fields = (
         "scraped_id",
