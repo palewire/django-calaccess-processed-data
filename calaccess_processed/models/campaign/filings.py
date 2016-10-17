@@ -53,7 +53,7 @@ class CampaignFinanceFilingBase(models.Model):
         abstract = True
 
 
-class F460Base(CampaignFinanceFilingBase):
+class Form460Base(CampaignFinanceFilingBase):
     """
     Base and abstract model for Form 460 filings.
     """
@@ -179,14 +179,14 @@ class F460Base(CampaignFinanceFilingBase):
 
 
 @python_2_unicode_compatible
-class F460Filing(F460Base):
+class Form460(Form460Base):
     """
     The most recent version of each Form 460 (Campaign Disclosure Statement) 
     filing by recipient committees.
 
     Includes information from the cover sheet and summary page of the most 
     recent amendment to each filing. All versions of Form 460 filings can be
-    found in f460version.
+    found in form460version.
     """
     filing_id = models.IntegerField(
         verbose_name='filing id',
@@ -211,13 +211,13 @@ class F460Filing(F460Base):
 
 
 @python_2_unicode_compatible
-class F460FilingVersion(F460Base):
+class Form460Version(Form460Base):
     """
     Every version of each Form 460 (Campaign Disclosure Statement) filing by
     recipient committees.
 
     Includes information found on the cover sheet and summary page of each
-    amendment. For the most recent version of each filing, see f460filing.
+    amendment. For the most recent version of each filing, see form460.
     """
     filing_id = models.IntegerField(
         verbose_name='filing id',
@@ -248,13 +248,14 @@ class F460FilingVersion(F460Base):
 
 
 @python_2_unicode_compatible
-class S497Filing(CampaignFinanceFilingBase):
+class Schedule497(CampaignFinanceFilingBase):
     """
-    The most recent version of each Form 497 (Late Contribution Report) 
+    The most recent version of each Schedule 497 (Late Contribution Report) 
     filing by recipient committees.
 
     Includes information from the cover sheet of the most recent amendment to 
-    each filing. All versions of Form 497 filings can befound in f497version.
+    each filing. All versions of Schedule 497 filings can be found in 
+    schedule497version.
     """
     filing_id = models.IntegerField(
         verbose_name='filing id',
@@ -268,7 +269,7 @@ class S497Filing(CampaignFinanceFilingBase):
         verbose_name='Count amendments',
         db_index=True,
         null=False,
-        help_text='Number of amendments to the Form 497 filing (from '
+        help_text='Number of amendments to the Schedule 497 filing (from '
                   'maximum value of CVR_CAMPAIGN_DISCLOSURE_CD.AMEND_ID)',
     )
 
@@ -279,13 +280,13 @@ class S497Filing(CampaignFinanceFilingBase):
 
 
 @python_2_unicode_compatible
-class S497FilingVersion(CampaignFinanceFilingBase):
+class Schedule497Version(CampaignFinanceFilingBase):
     """
-    Every version of each Form 497 (Late Contribution Report) filing by
+    Every version of each Schedule 497 (Late Contribution Report) filing by
     recipient committees.
 
     Includes information found on the cover sheet of each amendment. For the 
-    most recent version of each filing, see f497filing.
+    most recent version of each filing, see schedule497filing.
     """
     filing_id = models.IntegerField(
         verbose_name='filing id',

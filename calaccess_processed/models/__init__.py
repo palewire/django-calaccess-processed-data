@@ -8,10 +8,10 @@ from calaccess_processed.models.campaign.entities import (
     CandidateCommittee,
 )
 from calaccess_processed.models.campaign.filings import (
-    F460Filing,
-    F460FilingVersion,
-    S497Filing,
-    S497FilingVersion,
+    Form460,
+    Form460Version,
+    Schedule497,
+    Schedule497Version,
 )
 from calaccess_processed.models.campaign.transactions import (
     LateContributionReceived,
@@ -33,14 +33,14 @@ __all__ = (
     'ProcessedDataFile',
     'Candidate',
     'CandidateCommittee',
-    'F460Filing',
-    'F460FilingVersion',
-    'FilerIDValue',
-    'FilingIDValue',
-    'S497Filing',
-    'S497FilingVersion',
+    'Form460',
+    'Form460Version',
+    'Schedule497',
+    'Schedule497Version',
     'LateContributionReceived',
     'LateContributionReceivedVersion',
     'LateContributionMade',
     'LateContributionMadeVersion',
+    'FilerIDValue',
+    'FilingIDValue',
 )

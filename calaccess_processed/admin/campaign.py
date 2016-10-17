@@ -46,10 +46,10 @@ class CandidateCommitteeAdmin(BaseAdmin):
         'last_termination_date',
     )
 
-@admin.register(models.F460Filing)
-class F460FilingAdmin(BaseAdmin):
+@admin.register(models.Form460)
+class Form460Admin(BaseAdmin):
     """
-    Custom admin for the F460Filing model.
+    Custom admin for the Form460 model.
     """
     list_display = (
         'filing_id',
@@ -64,10 +64,10 @@ class F460FilingAdmin(BaseAdmin):
         'ending_cash_balance',
     )
 
-@admin.register(models.F460FilingVersion)
-class F460FilingVersionAdmin(BaseAdmin):
+@admin.register(models.Form460Version)
+class Form460VersionAdmin(BaseAdmin):
     """
-    Custom admin for the F460FilingVersion model.
+    Custom admin for the Form460Version model.
     """
     list_display = (
         'filing_id',
@@ -82,10 +82,10 @@ class F460FilingVersionAdmin(BaseAdmin):
         'ending_cash_balance',
     )
 
-@admin.register(models.S497Filing)
-class S497FilingAdmin(BaseAdmin):
+@admin.register(models.Schedule497)
+class Schedule497Admin(BaseAdmin):
     """
-    Custom admin for the S497Filing model.
+    Custom admin for the Schedule497 model.
     """
     list_display = (
         'filing_id',
@@ -97,10 +97,10 @@ class S497FilingAdmin(BaseAdmin):
         'election_date',
     )
 
-@admin.register(models.S497FilingVersion)
-class S497FilingVersionAdmin(BaseAdmin):
+@admin.register(models.Schedule497Version)
+class Schedule497VersionAdmin(BaseAdmin):
     """
-    Custom admin for the S497FilingVersion model.
+    Custom admin for the Schedule497Version model.
     """
     list_display = (
         'filing_id',
