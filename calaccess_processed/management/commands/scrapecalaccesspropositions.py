@@ -143,13 +143,13 @@ class Command(ScrapeCommand):
             id_ = data[0].text
 
             # Does the committee support or oppose the measure?
-            support = data[1].text.strip() == 'SUPPORT'
+            position = data[1].text.strip()
 
             # Put together a a data dictionary and add it to the list
             data_dict['committees'].append({
                 'name': name,
                 'id': id_,
-                'support': support
+                'position': position
             })
 
         if self.verbosity > 2:
@@ -240,7 +240,7 @@ class Command(ScrapeCommand):
                         committee_obj, c = ScrapedCommittee.objects.get_or_create(
                             name=committee['name'],
                             scraped_id=committee['id'],
-                            support=committee['support'],
+                            position=committee['position'],
                             proposition=prop_obj
                         )
 
