@@ -184,7 +184,7 @@ class LateContributionReceived(LateContributionReceivedBase):
         verbose_name_plural = 'Late contributions received'
 
     def __str__(self):
-        return str(self.filing_id)
+        return '%s-%s' % (self.filing, self.line_item)
 
 
 @python_2_unicode_compatible
@@ -223,7 +223,7 @@ class LateContributionReceivedVersion(LateContributionReceivedBase):
         ),)
 
     def __str__(self):
-        return str(self.filing_id)
+        return '%s-%s-%s' % (self.filing_id, self.amend_id, self.line_item)
 
 
 class LateContributionMadeBase(LateContributionBase):
@@ -441,7 +441,7 @@ class LateContributionMade(LateContributionMadeBase):
         verbose_name_plural = 'Late contributions made'
 
     def __str__(self):
-        return str(self.filing_id)
+        return '%s-%s' % (self.filing, self.line_item)
 
 
 @python_2_unicode_compatible
@@ -480,4 +480,4 @@ class LateContributionMadeVersion(LateContributionMadeBase):
         ),)
 
     def __str__(self):
-        return str(self.filing_id)
+        return '%s-%s-%s' % (self.filing_id, self.amend_id, self.line_item)

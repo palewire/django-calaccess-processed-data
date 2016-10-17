@@ -245,7 +245,7 @@ class Form460Version(Form460Base):
         ),)
 
     def __str__(self):
-        return str(self.amend_id)
+        return '%s-%s' % (self.filing, self.amend_id)
 
 
 @python_2_unicode_compatible
@@ -314,4 +314,4 @@ class Schedule497Version(CampaignFinanceFilingBase):
         ),)
 
     def __str__(self):
-        return str(self.amend_id)
+        return '%s-%s' % (self.filing, self.amend_id)
