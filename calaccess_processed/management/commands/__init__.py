@@ -96,6 +96,13 @@ class ScrapeCommand(CalAccessCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
+            '--flush',
+            action='store_true',
+            dest='force_flush',
+            default=False,
+            help='Flush database tables',
+        )
+        parser.add_argument(
             '--force-download',
             action='store_true',
             dest='force_download',
@@ -112,9 +119,15 @@ class ScrapeCommand(CalAccessCommand):
 
     def handle(self, *args, **options):
         super(ScrapeCommand, self).handle(*args, **options)
+
+        self.force_flush = options.get("force_flush")
         self.force_download = options.get("force_download")
         self.update_cache = options.get("update_cache")
+
         os.path.exists(self.cache_dir) or os.mkdir(self.cache_dir)
+
+        if self.force_flush:
+            self.flush()
         results = self.scrape()
         self.save(results)
 
@@ -199,6 +212,12 @@ class ScrapeCommand(CalAccessCommand):
 
         # Finally return the HTML ready to parse with BeautifulSoup
         return BeautifulSoup(html, "html.parser")
+
+    def flush(self):
+        """
+        Empties out database tables filled by this command.
+        """
+        raise NotImplementedError
 
     def scrape(self):
         """

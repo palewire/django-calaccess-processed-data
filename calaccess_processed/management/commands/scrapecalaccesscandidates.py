@@ -10,6 +10,10 @@ class Command(ScrapeCommand):
     """
     help = "Scrape links between filers and elections from CAL-ACCESS site"
 
+    def flush(self):
+        ScrapedCandidate.objects.all().delete()
+        ScrapedElection.objects.all().delete()
+
     def scrape(self):
         self.header("Scraping election candidates")
 

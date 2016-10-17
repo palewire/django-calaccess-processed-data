@@ -18,6 +18,11 @@ class Command(ScrapeCommand):
     """
     help = "Scrape links between filers and propositions from the official CAL-ACCESS site."
 
+    def flush(self):
+        ScrapedCommittee.objects.all().delete()
+        ScrapedProposition.objects.all().delete()
+        ScrapedElection.objects.all().delete()
+
     def scrape(self):
         self.header("Scraping propositions")
 
