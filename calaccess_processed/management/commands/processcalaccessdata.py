@@ -92,55 +92,10 @@ files and ZIP.'
             if self.verbosity > 2:
                 self.log(" Loading raw data into %s" % m._meta.db_table)
             m.objects.load_raw_data()
-            # export the processed model data
-            processed_file_path = os.path.join(
-                self.processed_data_dir,
-                '%s.csv' % m._meta.model_name,
-            )
-            if self.verbosity > 2:
-                self.log(" Exporting to %s" % processed_file_path)
-            with open(processed_file_path, 'wb') as f:
-                writer = csv.writer(f)
-                # write the header
-                headers = []
-                for field in m._meta.fields:
-                    headers.append(field.name)
-                writer.writerow(headers)
-                # write the rows
-                for obj in m.objects.all():
-                    row = []
-                    for field in headers:
-                        val = getattr(obj, field)
-                        if callable(val):
-                            val = val()
-                        row.append(val)
-                    writer.writerow(row)
-
-            # archive the processed file
-            if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
-                if self.verbosity > 2:
-                    self.log(" Archiving %s" % processed_file_path)
-                # Remove previously archived file
-                processed_file.file_archive.delete()
-                
-                # Add file size to the processed_file
-                processed_file.file_size = os.path.getsize(
-                    processed_file_path
-                ) or 0
-                
-                # Open up .csv file so we can wrap it in the Django File obj
-                with open(processed_file_path) as f:
-                    # Save .csv on the processed data file
-                    processed_file.file_archive.save(
-                        processed_file.file_name + ".csv",
-                        File(f),
-                    )
 
             processed_file.records_count = m.objects.count()
             processed_file.process_finish_datetime = now()
             processed_file.save()
-
-        
 
         self.processed_version.process_finish_datetime = now()
         self.processed_version.save()
