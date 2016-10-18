@@ -7,7 +7,10 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.managers import ProcessedDataManager
-from calaccess_processed.models.campaign.filings import Schedule497
+from calaccess_processed.models.campaign.filings import (
+    Schedule497,
+    Schedule497Version,
+)
 
 
 class LateContributionBase(models.Model):
@@ -211,6 +214,13 @@ class LateContributionReceivedVersion(LateContributionReceivedBase):
         null=False,
         help_text='Identifies the version of the Schedule 497 filing, with 0 '
                   'representing the initial filing (from S497_CD.AMEND_ID)',
+    )
+    filing_version = models.ForeignKey(
+        'Schedule497Version',
+        related_name='contributions_received',
+        on_delete=models.SET(0),
+        help_text='Foreign key referring to the version of the Schedule 497 '
+                  'that includes the received contribution'
     )
 
     objects = ProcessedDataManager()
@@ -468,6 +478,13 @@ class LateContributionMadeVersion(LateContributionMadeBase):
         null=False,
         help_text='Identifies the version of the Schedule 497 filing, with 0 '
                   'representing the initial filing (from S497_CD.AMEND_ID)',
+    )
+    filing_version = models.ForeignKey(
+        'Schedule497Version',
+        related_name='contributions_made',
+        on_delete=models.SET(0),
+        help_text='Foreign key referring to the version of the Schedule 497 '
+                  'that includes the given contribution'
     )
 
     objects = ProcessedDataManager()
