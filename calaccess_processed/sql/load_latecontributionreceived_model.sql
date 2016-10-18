@@ -20,43 +20,26 @@ INSERT INTO calaccess_processed_latecontributionreceived (
     contributor_is_self_employed
 )
 SELECT 
-    s497_line."FILING_ID" AS filing_id,
-    s497_line."LINE_ITEM" AS line_item,
-    COALESCE(s497_line."CTRIB_DATE", s497_line."DATE_THRU") AS date_received,
-    CASE 
-        WHEN s497_line."CTRIB_DATE" IS NULL THEN NULL
-        ELSE s497_line."DATE_THRU" 
-    END AS date_received_thru,
-    s497_line."AMOUNT" AS amount_received,
-    s497_line."TRAN_ID" AS transaction_id,
-    s497_line."MEMO_REFNO" AS memo_reference_number,
-    CASE s497_line."ENTITY_CD"
-        WHEN '0' THEN ''
-        ELSE UPPER(s497_line."ENTITY_CD")
-    END AS contributor_code,
-    -- replace '#', '`' and '.' with empty string 
-    -- and trim leading/trailing whitespace
-    TRIM(
-        REPLACE(REPLACE(REPLACE(s497_line."CMTE_ID", '#', ''), '`', ''), '.', '')
-    ) AS contributor_committee_id,
-    UPPER(s497_line."ENTY_NAMT") AS contributor_title,
-    UPPER(s497_line."ENTY_NAML") AS contributor_lastname,
-    UPPER(s497_line."ENTY_NAMF") AS contributor_firstname,
-    UPPER(s497_line."ENTY_NAMS") AS contributor_name_suffix,
-    UPPER(s497_line."ENTY_CITY") AS contributor_city,
-    UPPER(s497_line."ENTY_ST") AS contributor_state,
-    UPPER(s497_line."ENTY_ZIP4") AS contributor_zip,
-    UPPER(s497_line."CTRIB_EMP") AS contributor_employer,
-    UPPER(s497_line."CTRIB_OCC") AS contributor_occupation,
-    CASE s497_line."CTRIB_SELF"
-        WHEN 'y' THEN true
-        WHEN 'X' THEN true
-        WHEN 'n' THEN false
-        WHEN '0' THEN false
-        ELSE false 
-    END AS contributor_is_self_employed
-FROM "S497_CD" s497_line
+    contrib_version.filing_id,
+    contrib_version.line_item,
+    contrib_version.date_received,
+    contrib_version.date_received_thru,
+    contrib_version.amount_received,
+    contrib_version.transaction_id,
+    contrib_version.memo_reference_number,
+    contrib_version.contributor_code,
+    contrib_version.contributor_committee_id,
+    contrib_version.contributor_title,
+    contrib_version.contributor_lastname,
+    contrib_version.contributor_firstname,
+    contrib_version.contributor_name_suffix,
+    contrib_version.contributor_city,
+    contrib_version.contributor_state,
+    contrib_version.contributor_zip,
+    contrib_version.contributor_employer,
+    contrib_version.contributor_occupation,
+    contrib_version.contributor_is_self_employed
+FROM calaccess_processed_latecontributionreceivedversion contrib_version
 JOIN calaccess_processed_schedule497 filing
-ON s497_line."FILING_ID" = filing.filing_id
-AND s497_line."AMEND_ID" = filing.amendment_count
-WHERE s497_line."FORM_TYPE" = 'F497P1';
+ON contrib_version.filing_id = filing.filing_id
+AND contrib_version.amend_id = filing.amendment_count;
