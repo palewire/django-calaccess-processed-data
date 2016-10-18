@@ -6,7 +6,7 @@ from time import sleep
 from datetime import datetime
 from calaccess_processed.management.commands import ScrapeCommand
 from calaccess_processed.models.scraped import (
-    ScrapedElection,
+    PropositionScrapedElection,
     ScrapedProposition,
     ScrapedCommittee
 )
@@ -21,7 +21,7 @@ class Command(ScrapeCommand):
     def flush(self):
         ScrapedCommittee.objects.all().delete()
         ScrapedProposition.objects.all().delete()
-        ScrapedElection.objects.all().delete()
+        PropositionScrapedElection.objects.all().delete()
 
     def scrape(self):
         self.header("Scraping propositions")
@@ -37,8 +37,6 @@ class Command(ScrapeCommand):
         results = []
         for link in links:
             data = self.scrape_year_page(link)
-            # Parse the year from the URL
-            data['year'] = int(re.match(r'.+session=(\d+)', link).group(1))
             # Add it to the list
             results.append(data)
             sleep(0.5)
@@ -63,26 +61,16 @@ class Command(ScrapeCommand):
         for table in table_list:
 
             # Pull the title
-            election_title = table.select('caption span')[0].text
-
-            # Pull the date
-            election_date = re.match(
-                r'[A-Z]+ \d{1,2}, \d{4}',
-                election_title
-            ).group(0)
-
-            # Pull the type
-            election_type = election_title.replace(election_date, '').strip()
+            election_name = table.select('caption span')[0].text
 
             # Get a list of the propositions in this table
             prop_links = table.findAll('a')
 
             # Log what we're up to
             if self.verbosity > 2:
-                msg = " Scraped: %s %s (%s props)"
+                msg = " Scraped: %s (%s props)"
                 msg = msg % (
-                    election_date,
-                    election_type,
+                    election_name,
                     len(prop_links),
                 )
                 self.log(msg)
@@ -94,10 +82,7 @@ class Command(ScrapeCommand):
             ]
 
             # Add the data to our data dict
-            data_dict["%s|%s" % (election_date, election_type)] = {
-                'type': election_type,
-                'props': prop_list,
-            }
+            data_dict[election_name] = prop_list
 
         # Pass the data back out
         return data_dict
@@ -114,20 +99,7 @@ class Command(ScrapeCommand):
 
         # Add the title and id out of the page
         data_dict['name'] = soup.find('span', id='measureName').text
-        data_dict['description'] = ''
 
-        # If there is a " - " separating a name from a description
-        # split it out below.
-        if ' - ' in data_dict['name']:
-            split = data_dict['name'].split(" - ", 1)
-            data_dict['name'], data_dict['description'] = split
-            data_dict['name'] = data_dict['name'].strip()
-            data_dict['name'] = data_dict['name'].replace(
-                "PROPOSITION",
-                ""
-            ).strip()
-            data_dict['name'] = data_dict['name'].replace("PROP", "").strip()
-            data_dict['description'] = data_dict['description'].strip()
         data_dict['id'] = re.match(r'.+id=(\d+)', url).group(1)
 
         data_dict['committees'] = []
@@ -158,10 +130,9 @@ class Command(ScrapeCommand):
             })
 
         if self.verbosity > 2:
-            msg = " Scraped: %s %s (%s committees)"
+            msg = " Scraped: %s (%s committees)"
             msg = msg % (
                 data_dict['name'],
-                data_dict['description'],
                 len(data_dict['committees'])
             )
             self.log(msg)
@@ -173,73 +144,33 @@ class Command(ScrapeCommand):
         """
         Add the data to the database.
         """
+        # For each year page
         for d in results:
-            for datekey, election_dict in d.items():
 
-                # The years as extracted from the urls are actually not always
-                # right, so get it from the date.
-                date = datekey.split("|")[0].strip()
-                if date == 'year':
-                    continue
-                date = datetime.strptime(date, '%B %d, %Y').date()
+            # For each election on that page
+            for election_name, prop_list in d.items():
 
-                # Loop through the propositions
-                for prop in election_dict['props']:
+                # Get or create election object
+                election_obj, c = PropositionScrapedElection.objects.get_or_create(
+                    name = election_name,
+                )
 
-                    # Get or create it
+                # Loop through propositions
+                for prop_data in prop_list:
+
+                    # Get or create proposition object
                     prop_obj, c = ScrapedProposition.objects.get_or_create(
-                        name=prop['name'],
-                        description=prop['description'],
-                        scraped_id=prop['id']
+                        name=prop_data['name'],
+                        scraped_id=prop_data['id'],
+                        election=election_obj
                     )
 
                     # Log it
-                    if self.verbosity > 2:
-                        if c:
-                            self.log(' Created %s' % prop_obj)
-
-                    # Set the election if we have it
-                    try:
-                        election = ScrapedElection.objects.get(
-                            year=date.year,
-                            type=election_dict['type']
-                        )
-                        # Set the election date since we have it here
-                        if not election.date:
-                            election.date = date
-                            election.save()
-                    # Can't figure out to connect ambiguous elections...
-                    except (
-                        ScrapedElection.MultipleObjectsReturned,
-                        ScrapedElection.DoesNotExist
-                    ) as e:
-                        # Hardcode in some ones we've looked up
-                        if prop['id'] in [
-                            '1316044',
-                            '1316047',
-                            '1316048',
-                            '1316060',
-                            '1316061',
-                            '1316062'
-                        ]:
-                            election, c = ScrapedElection.objects.get_or_create(
-                                year=2009,
-                                type='SPECIAL_RUNOFF'
-                            )
-                            if not election.date:
-                                election.date = datetime(2009, 5, 19)
-                                election.save()
-                        # Put the other ones in with a null link
-                        else:
-                            election = None
-
-                    # Make the connection
-                    if election:
-                        prop_obj.election = election
-                        prop_obj.save()
+                    if c and self.verbosity > 2:
+                        self.log('Created %s' % prop_obj)
 
                     # Now loop through the committees
-                    for committee in prop['committees']:
+                    for committee in prop_data['committees']:
 
                         # Get or create it
                         committee_obj, c = ScrapedCommittee.objects.get_or_create(
@@ -250,6 +181,5 @@ class Command(ScrapeCommand):
                         )
 
                         # Log it
-                        if self.verbosity > 2:
-                            if c:
-                                self.log(' Created %s' % committee_obj)
+                        if c and self.verbosity > 2:
+                            self.log('Created %s' % committee_obj)

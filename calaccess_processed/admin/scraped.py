@@ -9,18 +9,13 @@ from calaccess_processed import models
 from calaccess_raw.admin.base import BaseAdmin
 
 
-@admin.register(models.ScrapedElection)
-class ScrapedElectionAdmin(BaseAdmin):
+@admin.register(models.CandidateScrapedElection)
+class CandidateScrapedElectionAdmin(BaseAdmin):
     list_display = (
         "name",
-        "year",
-        "election_id",
     )
-    list_filter = ("year",)
     list_per_page = 500
     search_fields = (
-        "election_id",
-        "year",
         "name",
     )
 
@@ -34,7 +29,6 @@ class ScrapedCandidateAdmin(BaseAdmin):
         "election"
     )
     list_filter = (
-        "election__year",
         "office_name",
     )
     list_per_page = 500
@@ -42,6 +36,17 @@ class ScrapedCandidateAdmin(BaseAdmin):
         "scraped_id",
         "name",
         "office_name",
+    )
+
+
+@admin.register(models.PropositionScrapedElection)
+class PropositionScrapedElectionAdmin(BaseAdmin):
+    list_display = (
+        "name",
+    )
+    list_per_page = 500
+    search_fields = (
+        "name",
     )
 
 
@@ -51,13 +56,10 @@ class ScrapedPropositionAdmin(BaseAdmin):
         "scraped_id",
         "name",
         "election",
-        "description"
     )
-    list_filter = ("election__year",)
     list_per_page = 500
     search_fields = (
         "name",
-        "description",
         "scraped_id"
     )
 
@@ -70,7 +72,6 @@ class ScrapedCommitteeAdmin(BaseAdmin):
         "proposition",
         "position",
     )
-    list_filter = ("proposition__election__year", "position")
     list_per_page = 500
     search_fields = (
         "scraped_id",

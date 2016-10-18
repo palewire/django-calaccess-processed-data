@@ -17,31 +17,31 @@ class BaseScrapedModel(models.Model):
         abstract = True
 
 
-@python_2_unicode_compatible
-class ScrapedElection(BaseScrapedModel):
+class BaseScrapedElection(BaseScrapedModel):
     """
     An election day scraped from the California Secretary of State's site.
+    This is an abstract base model that creates two tables, one for elections
+    scraped as part of the candidates scraper, and one for elections scraped
+    as part of the propositions scraper.
     """
-    election_id = models.CharField(
+    name = models.CharField(
+        max_length=200
+    )
+
+    class Meta:
+        abstract = True
+
+
+@python_2_unicode_compatible
+class CandidateScrapedElection(BaseScrapedElection):
+    """
+    An election day scraped as part of the `scrapecalaccesscandidates`
+    command.
+    """
+    scraped_id = models.CharField(
         verbose_name="election identification number",
         max_length=3,
         blank=True,
-    )
-    name = models.CharField(
-        max_length=200,
-        blank=True,
-    )
-    type = models.CharField(
-        max_length=200,
-        blank=True,
-    )
-    year = models.IntegerField(
-        verbose_name='year of election',
-        db_index=True
-    )
-    date = models.DateField(
-        verbose_name="date of election",
-        null=True
     )
     sort_index = models.IntegerField(
         null=True,
@@ -50,9 +50,6 @@ since multiple elections may occur in a year. A greater sort index \
 corresponds to a more recent election."
     )
 
-    class Meta:
-        ordering = ("-year",)
-
     def __str__(self):
         return self.name
 
@@ -60,7 +57,8 @@ corresponds to a more recent election."
 @python_2_unicode_compatible
 class ScrapedCandidate(BaseScrapedModel):
     """
-    A candidate for office scraped from the California Secretary of State's site.
+    A candidate for office scraped from the California Secretary of State's
+    site.
     """
     name = models.CharField(max_length=200)
     scraped_id = models.CharField(
@@ -69,8 +67,18 @@ class ScrapedCandidate(BaseScrapedModel):
         blank=True,  # Some don't have IDs on the website
     )
     office_name = models.CharField(max_length=100, blank=True)
-    election = models.ForeignKey('ScrapedElection', null=True)
+    election = models.ForeignKey('CandidateScrapedElection', null=True)
 
+    def __str__(self):
+        return self.name
+
+
+@python_2_unicode_compatible
+class PropositionScrapedElection(BaseScrapedElection):
+    """
+    An election day scraped as part of the `scrapecalaccesspropositions`
+    command.
+    """
     def __str__(self):
         return self.name
 
@@ -85,12 +93,11 @@ class ScrapedProposition(BaseScrapedModel):
     # it can be a bona fide name, e.g.
     # '2003 Recall Question'
     name = models.CharField(max_length=200)
-    description = models.TextField(blank=True)
     scraped_id = models.CharField(
         verbose_name="proposition identification number",
         max_length=200
     )
-    election = models.ForeignKey('ScrapedElection', null=True)
+    election = models.ForeignKey('PropositionScrapedElection', null=True)
 
     class Meta:
         ordering = ("-election", "name")

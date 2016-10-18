@@ -2,7 +2,11 @@ import re
 import urlparse
 from time import sleep
 from calaccess_processed.management.commands import ScrapeCommand
-from calaccess_processed.models.scraped import ScrapedElection, ScrapedCandidate
+from calaccess_processed.models.scraped import (
+    CandidateScrapedElection,
+    ScrapedCandidate
+)
+
 
 class Command(ScrapeCommand):
     """
@@ -12,7 +16,7 @@ class Command(ScrapeCommand):
 
     def flush(self):
         ScrapedCandidate.objects.all().delete()
-        ScrapedElection.objects.all().delete()
+        CandidateScrapedElection.objects.all().delete()
 
     def scrape(self):
         self.header("Scraping election candidates")
@@ -35,8 +39,7 @@ class Command(ScrapeCommand):
             url = urlparse.urljoin(self.base_url, link["href"])
             data = self.scrape_page(url)
             # Add the name of the election
-            data['election_name'] = link.find_next_sibling('span').text.strip()
-            data['election_year'] = int(data['election_name'][:4])
+            data['name'] = link.find_next_sibling('span').text.strip()
             # The index value is used to preserve sorting of elections,
             # since multiple elections may occur in a year.
             # BeautifulSoup goes from top to bottom,
@@ -68,7 +71,7 @@ class Command(ScrapeCommand):
             if not section_name_el:
                 continue
 
-            # Loop thorugh all the rows in the section table
+            # Loop through all the rows in the section table
             for office in section.findAll('td'):
 
                 # Check that this data matches the structure we expect.
@@ -82,7 +85,7 @@ class Command(ScrapeCommand):
 
                 # Log what we're up to
                 if self.verbosity > 2:
-                    self.log(' Scraping office %s' % office_name)
+                    self.log('Scraping office %s' % office_name)
 
                 # Pull the candidates out
                 candidates = []
@@ -102,44 +105,45 @@ class Command(ScrapeCommand):
                 races[office_name] = candidates
 
         return {
-            'election_id': int(re.match(r'.+electNav=(\d+)', url).group(1)),
+            'scraped_id': int(re.match(r'.+electNav=(\d+)', url).group(1)),
             'races': races,
         }
 
     def save(self, results):
         """
-        Process the scraped data.
+        Add the data to the database.
         """
-        self.log(' Processing %s elections.' % len(results))
+        self.log('Processing %s elections.' % len(results))
 
         # Loop through all the results
         for election_data in results:
 
-            self.log(' Processing %s' % election_data['election_name'])
+            self.log('Processing %s' % election_data['name'])
 
-            election, c = ScrapedElection.objects.get_or_create(
-                name = election_data['election_name'],
-                year = election_data['election_year'],
-                election_id = election_data['election_id'],
-                sort_index = election_data['sort_index'],
+            election_obj, c = CandidateScrapedElection.objects.get_or_create(
+                name=election_data['name'],
+                scraped_id=election_data['scraped_id'],
+                sort_index=election_data['sort_index']
             )
 
             if c and self.verbosity > 2:
-                self.log(' Created %s' % election)
+                self.log('Created %s' % election_obj)
 
             # Loop through each of the races
             for office_name, candidates in election_data['races'].items():
 
                 # Loop through each of the candidates
                 for candidate_data in candidates:
-                    # Add the office information to the candidate dict
-                    candidate_data['office_name'] = office_name
-                    # Create the candidate object
-                    candidate, c = ScrapedCandidate.objects.get_or_create(**candidate_data)
 
-                    if c:
-                        # Associate with the election object
-                        candidate.election = election
-                        candidate.save()
-                        if self.verbosity > 2:
-                            self.log(' Created %s' % candidate)
+                    # Add the office information to the candidate data dict
+                    candidate_data['office_name'] = office_name
+                    # Add the election object to the candidate data dict
+                    candidate_data['election'] = election_obj
+
+                    # Create the candidate object
+                    candidate_obj, c = ScrapedCandidate.objects.get_or_create(
+                        **candidate_data
+                    )
+
+                    if c and self.verbosity > 2:
+                        self.log('Created %s' % candidate_obj)

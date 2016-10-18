@@ -36,7 +36,8 @@ from calaccess_processed.models.campaign.filings.schedule497 import (
     Schedule497Part2ItemVersion,
 )
 from calaccess_processed.models.scraped import (
-    ScrapedElection,
+    CandidateScrapedElection,
+    PropositionScrapedElection,
     ScrapedCandidate,
     ScrapedCommittee,
     ScrapedProposition,
@@ -83,8 +84,13 @@ __all__ = (
 =======
     'F460Filing',
     'F460FilingVersion',
+<<<<<<< 5c6a68e4889de68c56075856bc0fb534d9e6b297
 >>>>>>> reworking candidates scraper
     'ScrapedElection',
+=======
+    'CandidateScrapedElection',
+    'PropositionScrapedElection',
+>>>>>>> reworked scraped models to separate elections from propositions scraper and from candidates scraper. for #13
     'ScrapedCandidate',
     'ScrapedCommittee',
     'ScrapedProposition',
