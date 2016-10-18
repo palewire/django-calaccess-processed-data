@@ -223,7 +223,8 @@ class Form460Version(Form460Base):
         'Form460',
         related_name='versions',
         db_constraint=False,
-        on_delete=models.SET(0),
+        null=True,
+        on_delete=models.SET_NULL,
         help_text='Unique identification number for the Form 460 filing ('
                   'from CVR_CAMPAIGN_DISCLOSURE_CD.FILING_ID)',
     )
@@ -293,7 +294,8 @@ class Schedule497Version(CampaignFinanceFilingBase):
         'Schedule497',
         related_name='versions',
         db_constraint=False,
-        on_delete=models.SET(0),
+        null=True,
+        on_delete=models.SET_NULL,
         help_text='Unique identification number for the Schedule 497 filing ('
                   'from S497_CD.FILING_ID)',
     )

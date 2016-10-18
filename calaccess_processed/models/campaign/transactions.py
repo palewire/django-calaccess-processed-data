@@ -171,8 +171,8 @@ class LateContributionReceived(LateContributionReceivedBase):
     filing = models.ForeignKey(
         'Schedule497',
         related_name='contributions_received',
-        db_constraint=False,
-        on_delete=models.SET(0),
+        null=True,
+        on_delete=models.SET_NULL,
         help_text='Unique identification number for the Schedule 497 filing ('
                   'from S497_CD.FILING_ID)',
     )
@@ -218,7 +218,8 @@ class LateContributionReceivedVersion(LateContributionReceivedBase):
     filing_version = models.ForeignKey(
         'Schedule497Version',
         related_name='contributions_received',
-        on_delete=models.SET(0),
+        null=True,
+        on_delete=models.SET_NULL,
         help_text='Foreign key referring to the version of the Schedule 497 '
                   'that includes the received contribution'
     )
@@ -436,7 +437,8 @@ class LateContributionMade(LateContributionMadeBase):
         'Schedule497',
         related_name='contributions_made',
         db_constraint=False,
-        on_delete=models.SET(0),
+        null=True,
+        on_delete=models.SET_NULL,
         help_text='Unique identification number for the Schedule 497 filing ('
                   'from S497_CD.FILING_ID)',
     )
@@ -482,7 +484,8 @@ class LateContributionMadeVersion(LateContributionMadeBase):
     filing_version = models.ForeignKey(
         'Schedule497Version',
         related_name='contributions_made',
-        on_delete=models.SET(0),
+        null=True,
+        on_delete=models.SET_NULL,
         help_text='Foreign key referring to the version of the Schedule 497 '
                   'that includes the given contribution'
     )
