@@ -10,7 +10,8 @@ from calaccess_processed.models.campaign import (
     F460FilingVersion,
 )
 from calaccess_processed.models.scraped import (
-    ScrapedElection,
+    CandidateScrapedElection,
+    PropositionScrapedElection,
     ScrapedCandidate,
     ScrapedCommittee,
     ScrapedProposition,
@@ -29,7 +30,8 @@ __all__ = (
     'CandidateCommittee',
     'F460Filing',
     'F460FilingVersion',
-    'ScrapedElection',
+    'CandidateScrapedElection',
+    'PropositionScrapedElection',
     'ScrapedCandidate',
     'ScrapedCommittee',
     'ScrapedProposition',

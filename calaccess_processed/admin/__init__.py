@@ -14,7 +14,7 @@ from calaccess_processed.admin.common import (
     FilerIDValueAdmin,
 )
 from .scraped import (
-    ScrapedElectionAdmin,
+    CandidateScrapedElectionAdmin,
     ScrapedPropositionAdmin,
 )
 from calaccess_processed.admin.tracking import (
@@ -31,6 +31,6 @@ __all__ = (
     'FilerIDValueAdmin',
     'ProcessedDataVersionAdmin',
     'ProcessedDataFileAdmin',
-    'ScrapedElectionAdmin',
+    'CandidateScrapedElectionAdmin',
     'ScrapedPropositionAdmin',
 )
