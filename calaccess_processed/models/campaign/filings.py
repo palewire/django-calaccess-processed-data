@@ -191,7 +191,6 @@ class Form460(Form460Base):
     filing_id = models.IntegerField(
         verbose_name='filing id',
         primary_key=True,
-        db_index=True,
         null=False,
         help_text='Unique identification number for the Form 460 filing ('
                   'from CVR_CAMPAIGN_DISCLOSURE_CD.FILING_ID)',
@@ -205,6 +204,12 @@ class Form460(Form460Base):
     )
 
     objects = ProcessedDataManager()
+
+    class Meta:
+        index_together = ((
+            'filing_id',
+            'amendment_count',
+        ),)
 
     def __str__(self):
         return str(self.filing_id)
@@ -244,6 +249,10 @@ class Form460Version(Form460Base):
             'filing',
             'amend_id',
         ),)
+        index_together = ((
+            'filing',
+            'amend_id',
+        ),)
 
     def __str__(self):
         return '%s-%s' % (self.filing, self.amend_id)
@@ -262,7 +271,6 @@ class Schedule497(CampaignFinanceFilingBase):
     filing_id = models.IntegerField(
         verbose_name='filing id',
         primary_key=True,
-        db_index=True,
         null=False,
         help_text='Unique identification number for the Schedule 497 filing ('
                   'from CVR_CAMPAIGN_DISCLOSURE_CD.FILING_ID)',
@@ -276,6 +284,12 @@ class Schedule497(CampaignFinanceFilingBase):
     )
 
     objects = ProcessedDataManager()
+
+    class Meta:
+        index_together = ((
+            'filing_id',
+            'amendment_count',
+        ),)
 
     def __str__(self):
         return str(self.filing_id)
@@ -311,6 +325,10 @@ class Schedule497Version(CampaignFinanceFilingBase):
 
     class Meta:
         unique_together = ((
+            'filing',
+            'amend_id',
+        ),)
+        index_together = ((
             'filing',
             'amend_id',
         ),)

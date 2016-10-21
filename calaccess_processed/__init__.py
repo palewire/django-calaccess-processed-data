@@ -18,12 +18,16 @@ def get_models_to_process():
         campaign.entities.CandidateCommittee,
         campaign.filings.Form460Version,
         campaign.filings.Form460,
+        campaign.contributions.MonetaryContributionVersion,
+        campaign.contributions.MonetaryContribution,
+        campaign.contributions.NonMonetaryContribution,
+        campaign.contributions.NonMonetaryContributionVersion,
         campaign.filings.Schedule497Version,
         campaign.filings.Schedule497,
-        campaign.transactions.LateContributionReceivedVersion,
-        campaign.transactions.LateContributionReceived,
-        campaign.transactions.LateContributionMadeVersion,
-        campaign.transactions.LateContributionMade,
+        campaign.contributions.LateContributionReceivedVersion,
+        campaign.contributions.LateContributionReceived,
+        campaign.contributions.LateContributionMadeVersion,
+        campaign.contributions.LateContributionMade,
     ]
 
 def archive_directory_path(instance, filename):

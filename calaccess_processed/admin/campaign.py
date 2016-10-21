@@ -28,6 +28,7 @@ class CandidateAdmin(BaseAdmin):
         'party',
     )
 
+
 @admin.register(models.CandidateCommittee)
 class CandidateCommitteeAdmin(BaseAdmin):
     """
@@ -45,6 +46,7 @@ class CandidateCommitteeAdmin(BaseAdmin):
         'first_termination_date',
         'last_termination_date',
     )
+
 
 @admin.register(models.Form460)
 class Form460Admin(BaseAdmin):
@@ -64,6 +66,7 @@ class Form460Admin(BaseAdmin):
         'ending_cash_balance',
     )
 
+
 @admin.register(models.Form460Version)
 class Form460VersionAdmin(BaseAdmin):
     """
@@ -82,6 +85,7 @@ class Form460VersionAdmin(BaseAdmin):
         'ending_cash_balance',
     )
 
+
 @admin.register(models.Schedule497)
 class Schedule497Admin(BaseAdmin):
     """
@@ -96,6 +100,7 @@ class Schedule497Admin(BaseAdmin):
         'date_filed',
         'election_date',
     )
+
 
 @admin.register(models.Schedule497Version)
 class Schedule497VersionAdmin(BaseAdmin):
@@ -112,6 +117,77 @@ class Schedule497VersionAdmin(BaseAdmin):
         'election_date',
     )
 
+
+@admin.register(models.MonetaryContribution)
+class MonetaryContributionAdmin(BaseAdmin):
+    """
+    Custom admin for the MonetaryContribution model.
+    """
+    list_display = (
+        'filing',
+        'line_item',
+        'date_received',
+        'amount',
+        'transaction_id',
+        'contributor_code',
+        'contributor_lastname',
+        'contributor_firstname',
+    )
+
+
+@admin.register(models.MonetaryContributionVersion)
+class MonetaryContributionVersionAdmin(BaseAdmin):
+    """
+    Custom admin for the MonetaryContributionVersion model.
+    """
+    list_display = (
+        'filing_id',
+        'amend_id',
+        'line_item',
+        'date_received',
+        'amount',
+        'transaction_id',
+        'contributor_code',
+        'contributor_lastname',
+        'contributor_firstname',
+    )
+
+
+@admin.register(models.NonMonetaryContribution)
+class NonMonetaryContributionAdmin(BaseAdmin):
+    """
+    Custom admin for the NonMonetaryContribution model.
+    """
+    list_display = (
+        'filing',
+        'line_item',
+        'date_received',
+        'fair_market_value',
+        'transaction_id',
+        'contributor_code',
+        'contributor_lastname',
+        'contributor_firstname',
+    )
+
+
+@admin.register(models.NonMonetaryContributionVersion)
+class NonMonetaryContributionVersionAdmin(BaseAdmin):
+    """
+    Custom admin for the NonMonetaryContributionVersion model.
+    """
+    list_display = (
+        'filing_id',
+        'amend_id',
+        'line_item',
+        'date_received',
+        'fair_market_value',
+        'transaction_id',
+        'contributor_code',
+        'contributor_lastname',
+        'contributor_firstname',
+    )
+
+
 @admin.register(models.LateContributionReceived)
 class LateContributionReceivedAdmin(BaseAdmin):
     """
@@ -127,6 +203,7 @@ class LateContributionReceivedAdmin(BaseAdmin):
         'contributor_lastname',
         'contributor_firstname',
     )
+
 
 @admin.register(models.LateContributionReceivedVersion)
 class LateContributionReceivedVersionAdmin(BaseAdmin):
@@ -145,6 +222,7 @@ class LateContributionReceivedVersionAdmin(BaseAdmin):
         'contributor_firstname',
     )
 
+
 @admin.register(models.LateContributionMade)
 class LateContributionMadeAdmin(BaseAdmin):
     """
@@ -160,6 +238,7 @@ class LateContributionMadeAdmin(BaseAdmin):
         'recipient_lastname',
         'recipient_firstname',
     )
+
 
 @admin.register(models.LateContributionMadeVersion)
 class LateContributionMadeVersionAdmin(BaseAdmin):

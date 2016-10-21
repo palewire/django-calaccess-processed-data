@@ -13,7 +13,11 @@ from calaccess_processed.models.campaign.filings import (
     Schedule497,
     Schedule497Version,
 )
-from calaccess_processed.models.campaign.transactions import (
+from calaccess_processed.models.campaign.contributions import (
+    MonetaryContribution,
+    MonetaryContributionVersion,
+    NonMonetaryContribution,
+    NonMonetaryContributionVersion,
     LateContributionReceived,
     LateContributionReceivedVersion,
     LateContributionMade,
