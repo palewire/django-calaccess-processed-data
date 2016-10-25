@@ -18,7 +18,6 @@ class ContributionBase(models.Model):
     """
     line_item = models.IntegerField(
         verbose_name='line item',
-        db_index=True,
         null=False,
         help_text='Line number of the filing form where the contribution is '
                   'itemized (from RCPT_CD.LINE_ITEM)',
@@ -51,7 +50,6 @@ class ContributionBase(models.Model):
     transaction_id = models.CharField(
         verbose_name='transaction id',
         max_length=20,
-        db_index=True,
         help_text='Identifies a unique transaction across versions of the a '
                   'given Form 460 filing (from RCPT_CD.TRAN_ID)'
     )
@@ -267,6 +265,7 @@ class MonetaryContribution(MonetaryContributionBase):
         related_name='itemized_monetary_contributions',
         null=True,
         on_delete=models.SET_NULL,
+        db_constraint=False,
         help_text='Foreign key referring to the Form 460 on which the monetary'
                   ' contribution was report (from RCPT_CD.FILING_ID)',
     )
@@ -311,6 +310,7 @@ class MonetaryContributionVersion(MonetaryContributionBase):
         related_name='itemized_monetary_contributions',
         null=True,
         on_delete=models.SET_NULL,
+        db_index=False,
         help_text='Foreign key referring to the version of the Form 460 that '
                   'that includes the received contribution'
     )
@@ -326,6 +326,7 @@ class MonetaryContributionVersion(MonetaryContributionBase):
         index_together = ((
             'filing_id',
             'amend_id',
+            'line_item',
         ),)
 
     def __str__(self):
@@ -436,6 +437,7 @@ class NonMonetaryContributionVersion(NonMonetaryContributionBase):
         index_together = ((
             'filing_id',
             'amend_id',
+            'line_item',
         ),)
 
     def __str__(self):
@@ -521,7 +523,6 @@ class LateContributionReceivedBase(LateContributionBase):
     contributor_committee_id = models.CharField(
         verbose_name='committee id',
         max_length=9,
-        db_index=True,
         blank=True,
         help_text="Contributor's filer identification number, if it is a "
                   "committee (from RCPT_CD.CMTE_ID)",
@@ -637,14 +638,12 @@ class LateContributionReceivedVersion(LateContributionReceivedBase):
     """
     filing_id = models.IntegerField(
         verbose_name='filing id',
-        db_index=True,
         null=False,
         help_text='Unique identification number for the Schedule 497 filing ('
                   'from S497_CD.FILING_ID)',
     )
     amend_id = models.IntegerField(
         verbose_name='amendment id',
-        db_index=True,
         null=False,
         help_text='Identifies the version of the Schedule 497 filing, with 0 '
                   'representing the initial filing (from S497_CD.AMEND_ID)',
@@ -662,6 +661,11 @@ class LateContributionReceivedVersion(LateContributionReceivedBase):
 
     class Meta:
         unique_together = ((
+            'filing_id',
+            'amend_id',
+            'line_item',
+        ),)
+        index_together = ((
             'filing_id',
             'amend_id',
             'line_item',
@@ -697,7 +701,6 @@ class LateContributionMadeBase(LateContributionBase):
     recipient_committee_id = models.CharField(
             verbose_name='recipient committee id',
             max_length=9,
-            db_index=True,
             blank=True,
             help_text='Filer identification number identifying the recipient if it'
                       'is a committee (from S497_CD.CMTE_ID)',
@@ -904,14 +907,12 @@ class LateContributionMadeVersion(LateContributionMadeBase):
     """
     filing_id = models.IntegerField(
         verbose_name='filing id',
-        db_index=True,
         null=False,
         help_text='Unique identification number for the Schedule 497 filing ('
                   'from S497_CD.FILING_ID)',
     )
     amend_id = models.IntegerField(
         verbose_name='amendment id',
-        db_index=True,
         null=False,
         help_text='Identifies the version of the Schedule 497 filing, with 0 '
                   'representing the initial filing (from S497_CD.AMEND_ID)',
@@ -933,6 +934,12 @@ class LateContributionMadeVersion(LateContributionMadeBase):
             'amend_id',
             'line_item',
         ),)
+        index_together = ((
+            'filing_id',
+            'amend_id',
+            'line_item',
+        ),)
+
 
     def __str__(self):
         return '%s-%s-%s' % (self.filing_id, self.amend_id, self.line_item)

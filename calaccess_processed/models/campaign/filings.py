@@ -235,7 +235,6 @@ class Form460Version(Form460Base):
     )
     amend_id = models.IntegerField(
         verbose_name='amendment id',
-        db_index=True,
         null=False,
         help_text='Identifies the version of the Form 497 filing, with 0 '
                   'representing the initial filing (from CVR_CAMPAIGN_'
@@ -277,7 +276,6 @@ class Schedule497(CampaignFinanceFilingBase):
     )
     amendment_count = models.IntegerField(
         verbose_name='Count amendments',
-        db_index=True,
         null=False,
         help_text='Number of amendments to the Schedule 497 filing (from '
                   'maximum value of CVR_CAMPAIGN_DISCLOSURE_CD.AMEND_ID)',
@@ -314,7 +312,6 @@ class Schedule497Version(CampaignFinanceFilingBase):
                   'from S497_CD.FILING_ID)',
     )
     amend_id = models.IntegerField(
-        db_index=True,
         null=False,
         help_text='Identifies the version of the Schedule 497 filing, with 0 '
                   'representing the initial filing (from CVR_CAMPAIGN_'
