@@ -12,6 +12,9 @@ class ProcessedDataManager(models.Manager):
     Utilities for loading raw CAL-ACCESS data into processed data models.
     """
     def add_constraints_and_indexes(self):
+        """
+        Re-create constraints and indexes on the model and its fields.
+        """
         with connection.schema_editor() as schema_editor:
             schema_editor.alter_unique_together(
                 self.model,
@@ -40,6 +43,9 @@ class ProcessedDataManager(models.Manager):
                 )
 
     def drop_constraints_and_indexes(self):
+        """
+        Temporarily drop constraints and indexes on the model and its fields.
+        """
         with connection.schema_editor() as schema_editor:
             schema_editor.alter_unique_together(
                 self.model,
@@ -68,6 +74,11 @@ class ProcessedDataManager(models.Manager):
                 )
 
     def load_raw_data(self):
+        """
+        Load the model by executing its raw sql load query.
+
+        Temporarily drops any constraints or indexes on the model.
+        """
         self.drop_constraints_and_indexes()
         with connection.cursor() as c:
             c.execute(self.raw_data_load_query)
@@ -75,6 +86,9 @@ class ProcessedDataManager(models.Manager):
 
     @property
     def constrained_fields(self):
+        """
+        Returns list of model's fields with db_constraint set to True.
+        """
         return [
             f for f in self.model._meta.fields
             if hasattr(f, 'db_constraint') and f.db_constraint
@@ -82,12 +96,18 @@ class ProcessedDataManager(models.Manager):
 
     @property
     def indexed_fields(self):
+        """
+        Returns list of model's fields with db_index set to True.
+        """
         return [
             f for f in self.model._meta.fields if f.db_index
         ]
 
     @property
     def has_raw_data_load_query(self):
+        """
+        Return true if the model has a .sql load query file.
+        """
         if os.path.exists(self.raw_data_load_query_path):
             return True
         else:
@@ -102,6 +122,9 @@ class ProcessedDataManager(models.Manager):
 
     @property
     def raw_data_load_query(self):
+        """
+        Return string of raw sql for loading the model
+        """
         sql = ''
         if self.has_raw_data_load_query:
             with open(self.raw_data_load_query_path) as f:
@@ -110,6 +133,9 @@ class ProcessedDataManager(models.Manager):
 
     @property
     def raw_data_load_query_path(self):
+        """
+        Return the path to the .sql file with the model's loading query.
+        """
         return os.path.join(
             os.path.dirname(__file__),
             'sql',
