@@ -265,7 +265,6 @@ class MonetaryContribution(MonetaryContributionBase):
         related_name='itemized_monetary_contributions',
         null=True,
         on_delete=models.SET_NULL,
-        db_constraint=False,
         help_text='Foreign key referring to the Form 460 on which the monetary'
                   ' contribution was report (from RCPT_CD.FILING_ID)',
     )
@@ -310,7 +309,6 @@ class MonetaryContributionVersion(MonetaryContributionBase):
         related_name='itemized_monetary_contributions',
         null=True,
         on_delete=models.SET_NULL,
-        db_index=False,
         help_text='Foreign key referring to the version of the Form 460 that '
                   'that includes the received contribution'
     )
@@ -405,14 +403,12 @@ class NonMonetaryContributionVersion(NonMonetaryContributionBase):
     """
     filing_id = models.IntegerField(
         verbose_name='filing id',
-        db_index=True,
         null=False,
         help_text='Unique identification number for the Form 460 filing ('
                   'from RCPT_CD.FILING_ID)',
     )
     amend_id = models.IntegerField(
         verbose_name='amendment id',
-        db_index=True,
         null=False,
         help_text='Identifies the version of the Form 460 filing, with 0 '
                   'representing the initial filing (from RCPT_CD.AMEND_ID)',
