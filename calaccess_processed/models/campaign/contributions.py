@@ -11,10 +11,10 @@ from calaccess_processed.managers import ProcessedDataManager
 
 class ContributionBase(models.Model):
     """
-    Abstract base model for contributions received or made, as itemized on
-    Schedules A and C of Form 460.
+    Abstract base model for contributions received or made by campaign filers.
 
-    Records are derived from the RCPT_CD table.
+    These transactions are itemized on Schedules A, C and I of Form 460
+    filings and stored in the RCPT_CD table.
     """
     line_item = models.IntegerField(
         verbose_name='line item',
@@ -234,8 +234,10 @@ class ContributionBase(models.Model):
 
 class MonetaryContributionBase(ContributionBase):
     """
-    Abstract base model for monetary contributions, as itemized in Schedule A 
-    of the Form 460 filings.
+    Abstract base model for monetary contributions received by campaign filers.
+
+    These transactions are itemized on Schedule A of Form 460 filings and 
+    stored in the RCPT_CD table.
     """
     amount = models.DecimalField(
         verbose_name='amount',
@@ -252,11 +254,11 @@ class MonetaryContributionBase(ContributionBase):
 @python_2_unicode_compatible
 class MonetaryContribution(MonetaryContributionBase):
     """
-    Monetary contributions, as itemized on Schedule A of Form 460 filings.
+    Monetary contributions received by campaign filers.
 
-    Includes transactions itemized on the most recent amendment to the given
-    Form 460 filing. For transactions itemized on any version of a Form 460
-    filing, see monetarycontributionversion.
+    These transactions are itemized on Schedule A of the most recent amendment
+    to each Form 460 filing. For monetary contributions itemized on any version
+    of any Form 460 filing, see monetarycontributionversion.
 
     Derived from RCPT_CD records where FORM_TYPE is 'A'.
     """
@@ -284,11 +286,10 @@ class MonetaryContribution(MonetaryContributionBase):
 @python_2_unicode_compatible
 class MonetaryContributionVersion(MonetaryContributionBase):
     """
-    Every version of a monetary contribution, as itemized on Schedule A of
-    each version of each Form 460 filing.
+    Every version of the monetary contributions received by campaign filers.
 
-    For contributions itemized on the most recent version of the Form 460 
-    filing, see monetarycontribution.
+    For monetary contributions itemized on Schedule A of the most recent
+    version of each Form 460 filing, see monetarycontribution.
 
     Derived from RCPT_CD records where FORM_TYPE is 'A'.
     """
@@ -333,8 +334,10 @@ class MonetaryContributionVersion(MonetaryContributionBase):
 
 class NonMonetaryContributionBase(ContributionBase):
     """
-    Abstract base model for non-monetary contributions, as itemized in Schedule
-    C of the Form 460 filings.
+    Abstract base model for nonmonetary contributions received by campaign filers.
+
+    These transactions are itemized on Schedule C of Form 460 filings and 
+    stored in the RCPT_CD table.
     """
     fair_market_value = models.DecimalField(
         verbose_name='fair market value',
@@ -359,11 +362,11 @@ class NonMonetaryContributionBase(ContributionBase):
 @python_2_unicode_compatible
 class NonMonetaryContribution(NonMonetaryContributionBase):
     """
-    Non-monetary contributions, as itemized on Schedule C of Form 460 filings.
+    Nonmonetary contributions received by campaign filers.
 
-    Includes transactions itemized on the most recent amendment to the given
-    Form 460 filing. For transactions itemized on any version of a Form 460
-    filing, see nonmonetarycontributionversion.
+    These transactions are itemized on Schedule C of the most recent amendment
+    to each Form 460 filing. For nonmonetary contributions itemized on any 
+    version of any Form 460 filing, see nonmonetarycontributionversion.
 
     Derived from RCPT_CD records where FORM_TYPE is 'C'.
     """
@@ -393,11 +396,10 @@ class NonMonetaryContribution(NonMonetaryContributionBase):
 @python_2_unicode_compatible
 class NonMonetaryContributionVersion(NonMonetaryContributionBase):
     """
-    Every version of a non-monetary contribution, as itemized on Schedule A of
-    each version of each Form 460 filing.
+    Every version of the nonmonetary contributions received by campaign filers.
 
-    For contributions itemized on the most recent version of the Form 460 
-    filing, see monetarycontribution.
+    For nonmonetary contributions itemized on Schedule C of the most recent
+    version of each Form 460 filing, see nonmonetarycontribution.
 
     Derived from RCPT_CD records where FORM_TYPE is 'C'.
     """
@@ -442,10 +444,13 @@ class NonMonetaryContributionVersion(NonMonetaryContributionBase):
 
 class MiscCashIncreaseBase(ContributionBase):
     """
-    Abstract base model for miscellaneous cash increases, as itemized on
-    Schedules I of Form 460.
+    Abstract base model for miscellaneous cash increases for campaign filers.
 
-    Records are derived from the RCPT_CD table.
+    Includes any transaction that increases the cash position of the filer, but
+    is not a monetary contribution, loan, or loan repayment.
+
+    These transactions are itemized on Schedule I of Form 460 filings and 
+    stored in the RCPT_CD table.
     """
     amount = models.DecimalField(
         verbose_name='amount',
@@ -468,14 +473,14 @@ class MiscCashIncreaseBase(ContributionBase):
 @python_2_unicode_compatible
 class MiscCashIncrease(MiscCashIncreaseBase):
     """
-    Miscellaneous cash increases, as itemized on Schedule I of Form 460 filings.
+    Miscellaneous cash increases to the coffers of campaign filers.
 
     Includes any transaction that increases the cash position of the filer, but
-    is not a monetary contribution, loan, or loan repayment, on Schedule I.
+    is not a monetary contribution, loan, or loan repayment.
 
-    Includes transactions itemized on the most recent amendment to the given
-    Form 460 filing. For transactions itemized on any version of a Form 460
-    filing, see misccashincreaseversion.
+    These transactions are itemized on Schedule C of the most recent amendment
+    to each Form 460 filing. For miscellaneous cash increases itemized on any
+    version of any Form 460 filing, see misccashincreaseversion.
 
     Derived from RCPT_CD records where FORM_TYPE is 'I'.
     """
@@ -505,14 +510,13 @@ class MiscCashIncrease(MiscCashIncreaseBase):
 @python_2_unicode_compatible
 class MiscCashIncreaseVersion(MiscCashIncreaseBase):
     """
-    Every version of a miscellaneous cash increase, as itemized on Schedule I of
-    each version of each Form 460 filing.
+    Every version of the miscellaneous cash increases for campaign filers.
 
     Includes any transaction that increases the cash position of the filer, but
-    is not a monetary contribution, loan, or loan repayment, on Schedule I.
+    is not a monetary contribution, loan, or loan repayment.
 
-    For contributions itemized on the most recent version of the Form 460 
-    filing, see misccashincrease.
+    For miscellaneous cash increases itemized on Schedule I of the most recent
+    version of each Form 460 filing, see misccashincreaseversion.
 
     Derived from RCPT_CD records where FORM_TYPE is 'I'.
     """
@@ -559,10 +563,10 @@ class MiscCashIncreaseVersion(MiscCashIncreaseBase):
 
 class LateContributionBase(models.Model):
     """
-    Abstract base model for late contributions received or made, as itemized on
-    Schedule 497.
+    Abstract base model for late contributions received or made by campaign filers.
 
-    Records are derived from the S497_CD table.
+    These transactions are itemized on Schedule 497 filings and stored in the
+    S497_CD table.
     """
     line_item = models.IntegerField(
         verbose_name='line item',
@@ -611,8 +615,10 @@ class LateContributionBase(models.Model):
 
 class LateContributionReceivedBase(LateContributionBase):
     """
-    Abstract base model for late contributions received, as itemized in Part 1
-    of Schedule 497.
+    Abstract base model for late contributions received by campaign filers.
+
+    These transactions are itemized on Part 1 of Schedule 497 filings and
+    stored in the S497_CD table.
     """
     CONTRIBUTOR_CD_CHOICES = (
         ('BNM', 'Ballot measure name/title'),
@@ -708,11 +714,12 @@ class LateContributionReceivedBase(LateContributionBase):
 @python_2_unicode_compatible
 class LateContributionReceived(LateContributionReceivedBase):
     """
-    Late contributions received, as itemized on Part 1 of Schedule 497 filings.
+    Late contributions received by campaign filers.
 
-    Includes transactions itemized on the most recent amendment to the given
-    Schedule 497 filing. For transactions itemized on any version of a 
-    Schedule 497 filing, see latecontributionreceivedversion.
+    These transactions are itemized on Part 1 of the most recent amendment
+    to each Schedule 497 filing. For receipts of late contributions itemized
+    on any version of any Schedule 497 filing, see 
+    latecontributionreceivedversion.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P1'.
     """
@@ -741,11 +748,10 @@ class LateContributionReceived(LateContributionReceivedBase):
 @python_2_unicode_compatible
 class LateContributionReceivedVersion(LateContributionReceivedBase):
     """
-    Every version of a late contribution received transaction, as itemized on 
-    Part 1 of each version of each Schedule 497 filings.
+    Every version of the late contributions received by campaign filers.
 
-    For contributions itemized on the most recent version of the Schedule 497 
-    filing, see latecontributionreceived.
+    For late contributions itemized on Part 1 of the most recent version of 
+    each Schedule 497 filing, see latecontributionreceived.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P1'.
     """
@@ -790,8 +796,10 @@ class LateContributionReceivedVersion(LateContributionReceivedBase):
 
 class LateContributionMadeBase(LateContributionBase):
     """
-    Abstract base model for late contributions made, as itemized in Part 2
-    of Schedule 497.
+    Abstract base model for late contributions made by campaign filers.
+
+    These transactions are itemized on Part 2 of Schedule 497 filings and
+    stored in the S497_CD table.
     """
     RECIPIENT_CD_CHOICES = (
         ('BNM', 'Ballot measure name/title'),
@@ -976,11 +984,11 @@ class LateContributionMadeBase(LateContributionBase):
 @python_2_unicode_compatible
 class LateContributionMade(LateContributionMadeBase):
     """
-    Late contributions made, as itemized on Part 2 of Schedule 497 filings.
+    Late contributions made by campaign filers.
 
-    Includes transactions itemized on the most recent amendment to the given
-    Schedule 497 filing. For transactions itemized on any version of a 
-    Schedule 497 filing, see latecontributionmadeversion.
+    These transactions are itemized on Part 2 of the most recent amendment
+    to each Schedule 497 filing. For gifts of late contributions itemized on 
+    any version of any Schedule 497 filing, see latecontributionmadeversion.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P2'.
     """
@@ -1010,11 +1018,10 @@ class LateContributionMade(LateContributionMadeBase):
 @python_2_unicode_compatible
 class LateContributionMadeVersion(LateContributionMadeBase):
     """
-    Every version of a late contribution made transaction, as itemized on 
-    Part 2 of each version of each Schedule 497 filings.
+    Every version of the late contributions made by campaign filers.
 
-    For contributions itemized on the most recent version of the Schedule 497 
-    filing, see latecontributionmade.
+    For late contributions itemized on Part 2 of the most recent version of 
+    Schedule 497 filing, see latecontributionmade.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P2'.
     """
