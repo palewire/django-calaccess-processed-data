@@ -266,7 +266,7 @@ class MonetaryContribution(MonetaryContributionBase):
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the Form 460 on which the monetary'
-                  ' contribution was report (from RCPT_CD.FILING_ID)',
+                  ' contribution was reported (from RCPT_CD.FILING_ID)',
     )
 
     objects = ProcessedDataManager()
@@ -310,7 +310,7 @@ class MonetaryContributionVersion(MonetaryContributionBase):
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the version of the Form 460 that '
-                  'that includes the received contribution'
+                  'includes the received contribution'
     )
 
     objects = ProcessedDataManager()
@@ -373,7 +373,7 @@ class NonMonetaryContribution(NonMonetaryContributionBase):
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the Form 460 on which the monetary'
-                  ' contribution was report (from RCPT_CD.FILING_ID)',
+                  ' contribution was reported (from RCPT_CD.FILING_ID)',
     )
 
     objects = ProcessedDataManager()
@@ -419,7 +419,7 @@ class NonMonetaryContributionVersion(NonMonetaryContributionBase):
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the version of the Form 460 that '
-                  'that includes the received contribution'
+                  'includes the received contribution'
     )
 
     objects = ProcessedDataManager()
