@@ -52,11 +52,9 @@ SELECT
     UPPER(s497_line."ENTY_ZIP4") AS contributor_zip,
     UPPER(s497_line."CTRIB_EMP") AS contributor_employer,
     UPPER(s497_line."CTRIB_OCC") AS contributor_occupation,
-    CASE s497_line."CTRIB_SELF"
-        WHEN 'y' THEN true
+    CASE UPPER(s497_line."CTRIB_SELF")
+        WHEN 'Y' THEN true
         WHEN 'X' THEN true
-        WHEN 'n' THEN false
-        WHEN '0' THEN false
         ELSE false 
     END AS contributor_is_self_employed
 FROM "S497_CD" s497_line
