@@ -440,6 +440,123 @@ class NonMonetaryContributionVersion(NonMonetaryContributionBase):
         return '%s-%s-%s' % (self.filing_id, self.amend_id, self.line_item)
 
 
+class MiscCashIncreaseBase(ContributionBase):
+    """
+    Abstract base model for miscellaneous cash increases, as itemized on
+    Schedules I of Form 460.
+
+    Records are derived from the RCPT_CD table.
+    """
+    amount = models.DecimalField(
+        verbose_name='amount',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Amount of cash increase from the contributor in the period "
+                  "covered by the filing (from RCPT_CD.AMOUNT)"
+    )
+    receipt_description = models.CharField(
+        verbose_name='receipt description',
+        max_length=90,
+        blank=True,
+        help_text="Description of the cash increase (from RCPT_CD.CTRIB_DSCR)"
+    )
+
+    class Meta:
+        abstract = True
+
+
+@python_2_unicode_compatible
+class MiscCashIncrease(MiscCashIncreaseBase):
+    """
+    Miscellaneous cash increases, as itemized on Schedule I of Form 460 filings.
+
+    Includes any transaction that increases the cash position of the filer, but
+    is not a monetary contribution, loan, or loan repayment, on Schedule I.
+
+    Includes transactions itemized on the most recent amendment to the given
+    Form 460 filing. For transactions itemized on any version of a Form 460
+    filing, see misccashincreaseversion.
+
+    Derived from RCPT_CD records where FORM_TYPE is 'I'.
+    """
+    filing = models.ForeignKey(
+        'Form460',
+        related_name='misc_cash_increases',
+        null=True,
+        on_delete=models.SET_NULL,
+        db_constraint=False,
+        help_text='Foreign key referring to the Form 460 on which the '
+                  'miscellaneous cash increase was report (from RCPT_CD.'
+                  'FILING_ID)',
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        unique_together = ((
+            'filing',
+            'line_item',
+        ),)
+
+    def __str__(self):
+        return '%s-%s' % (self.filing, self.line_item)
+
+
+@python_2_unicode_compatible
+class MiscCashIncreaseVersion(MiscCashIncreaseBase):
+    """
+    Every version of a miscellaneous cash increase, as itemized on Schedule I of
+    each version of each Form 460 filing.
+
+    Includes any transaction that increases the cash position of the filer, but
+    is not a monetary contribution, loan, or loan repayment, on Schedule I.
+
+    For contributions itemized on the most recent version of the Form 460 
+    filing, see misccashincrease.
+
+    Derived from RCPT_CD records where FORM_TYPE is 'I'.
+    """
+    filing_id = models.IntegerField(
+        verbose_name='filing id',
+        db_index=True,
+        null=False,
+        help_text='Unique identification number for the Form 460 filing ('
+                  'from RCPT_CD.FILING_ID)',
+    )
+    amend_id = models.IntegerField(
+        verbose_name='amendment id',
+        db_index=True,
+        null=False,
+        help_text='Identifies the version of the Form 460 filing, with 0 '
+                  'representing the initial filing (from RCPT_CD.AMEND_ID)',
+    )
+    filing_version = models.ForeignKey(
+        'Form460Version',
+        related_name='misc_cash_increases',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the version of the Form 460 that '
+                  'includes the miscellaneous cash increase'
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        unique_together = ((
+            'filing_id',
+            'amend_id',
+            'line_item',
+        ),)
+        index_together = ((
+            'filing_id',
+            'amend_id',
+            'line_item',
+        ),)
+
+    def __str__(self):
+        return '%s-%s-%s' % (self.filing_id, self.amend_id, self.line_item)
+
+
 class LateContributionBase(models.Model):
     """
     Abstract base model for late contributions received or made, as itemized on

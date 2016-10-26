@@ -22,6 +22,8 @@ def get_models_to_process():
         campaign.contributions.MonetaryContribution,
         campaign.contributions.NonMonetaryContribution,
         campaign.contributions.NonMonetaryContributionVersion,
+        campaign.contributions.MiscCashIncreaseVersion,
+        campaign.contributions.MiscCashIncrease,
         campaign.filings.Schedule497Version,
         campaign.filings.Schedule497,
         campaign.contributions.LateContributionReceivedVersion,

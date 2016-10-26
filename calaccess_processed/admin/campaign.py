@@ -188,6 +188,43 @@ class NonMonetaryContributionVersionAdmin(BaseAdmin):
     )
 
 
+@admin.register(models.MiscCashIncrease)
+class MiscCashIncreaseAdmin(BaseAdmin):
+    """
+    Custom admin for the MiscCashIncrease model.
+    """
+    list_display = (
+        'filing',
+        'line_item',
+        'date_received',
+        'amount',
+        'receipt_description',
+        'transaction_id',
+        'contributor_code',
+        'contributor_lastname',
+        'contributor_firstname',
+    )
+
+
+@admin.register(models.MiscCashIncreaseVersion)
+class MiscCashIncreaseVersionAdmin(BaseAdmin):
+    """
+    Custom admin for the MiscCashIncreaseVersion model.
+    """
+    list_display = (
+        'filing_id',
+        'amend_id',
+        'line_item',
+        'date_received',
+        'amount',
+        'receipt_description',
+        'transaction_id',
+        'contributor_code',
+        'contributor_lastname',
+        'contributor_firstname',
+    )
+
+
 @admin.register(models.LateContributionReceived)
 class LateContributionReceivedAdmin(BaseAdmin):
     """
