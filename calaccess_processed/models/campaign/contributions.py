@@ -237,7 +237,7 @@ class MonetaryContributionBase(ContributionBase):
     Abstract base model for monetary contributions received by campaign filers.
 
     These transactions are itemized on Schedule A of Form 460 filings and 
-    stored in the RCPT_CD table.
+    stored in the RCPT_CD table with a FORM_TYPE value of 'A'.
     """
     amount = models.DecimalField(
         verbose_name='amount',
@@ -337,7 +337,7 @@ class NonMonetaryContributionBase(ContributionBase):
     Abstract base model for nonmonetary contributions received by campaign filers.
 
     These transactions are itemized on Schedule C of Form 460 filings and 
-    stored in the RCPT_CD table.
+    stored in the RCPT_CD table with a FORM_TYPE value of 'C'.
     """
     fair_market_value = models.DecimalField(
         verbose_name='fair market value',
@@ -450,7 +450,7 @@ class MiscCashIncreaseBase(ContributionBase):
     is not a monetary contribution, loan, or loan repayment.
 
     These transactions are itemized on Schedule I of Form 460 filings and 
-    stored in the RCPT_CD table.
+    stored in the RCPT_CD table with a FORM_TYPE value of 'I'.
     """
     amount = models.DecimalField(
         verbose_name='amount',
@@ -618,7 +618,7 @@ class LateContributionReceivedBase(LateContributionBase):
     Abstract base model for late contributions received by campaign filers.
 
     These transactions are itemized on Part 1 of Schedule 497 filings and
-    stored in the S497_CD table.
+    stored in the S497_CD table with a FORM_TYPE value of 'F497P1'.
     """
     CONTRIBUTOR_CD_CHOICES = (
         ('BNM', 'Ballot measure name/title'),
@@ -799,7 +799,7 @@ class LateContributionMadeBase(LateContributionBase):
     Abstract base model for late contributions made by campaign filers.
 
     These transactions are itemized on Part 2 of Schedule 497 filings and
-    stored in the S497_CD table.
+    stored in the S497_CD table with a FORM_TYPE value of 'F497P2'.
     """
     RECIPIENT_CD_CHOICES = (
         ('BNM', 'Ballot measure name/title'),
