@@ -184,7 +184,7 @@ class PaymentMadeBase(models.Model):
         max_length=400,
         blank=True,
         help_text="Purpose of payment and/or description/explanation (from "
-                  "EXPN_CD.AMOUNT)",
+                  "EXPN_CD.EXPN_DSCR)",
     )
     amount = models.DecimalField(
         verbose_name='amount',
