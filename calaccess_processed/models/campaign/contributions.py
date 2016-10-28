@@ -60,7 +60,7 @@ class ContributionBase(models.Model):
         help_text='Reference number for the memo attached to the contribution '
                   '(from RCPT_CD.MEMO_REFNO)',
     )
-    CONTRIBUTOR_CD_CHOICES = (
+    CONTRIBUTOR_CODE_CHOICES = (
         ('COM', 'Committee'),
         ('IND', 'Individual'),
         ('OFF', 'Officer'),
@@ -73,7 +73,7 @@ class ContributionBase(models.Model):
         verbose_name='contributor code',
         max_length=3,
         blank=True,
-        choices=CONTRIBUTOR_CD_CHOICES,
+        choices=CONTRIBUTOR_CODE_CHOICES,
         help_text='Code describing the contributor (from RCPT_CD.ENTITY_CD)',
     )
     contributor_committee_id = models.CharField(
@@ -243,8 +243,8 @@ class MonetaryContributionBase(ContributionBase):
         verbose_name='amount',
         decimal_places=2,
         max_digits=14,
-        help_text="Amount received in the period covered by the filing (from "
-                  "RCPT_CD.AMOUNT)"
+        help_text="Amount received from the contributor in the period covered "
+                  "by the filing (from RCPT_CD.AMOUNT)"
     )
 
     class Meta:
@@ -620,7 +620,7 @@ class LateContributionReceivedBase(LateContributionBase):
     These transactions are itemized on Part 1 of Schedule 497 filings and
     stored in the S497_CD table with a FORM_TYPE value of 'F497P1'.
     """
-    CONTRIBUTOR_CD_CHOICES = (
+    CONTRIBUTOR_CODE_CHOICES = (
         ('BNM', 'Ballot measure name/title'),
         ('CAO', 'Candidate/officeholder'),
         ('COM', 'Committee'),
@@ -636,7 +636,7 @@ class LateContributionReceivedBase(LateContributionBase):
         verbose_name='contributor code',
         max_length=3,
         blank=True,
-        choices=CONTRIBUTOR_CD_CHOICES,
+        choices=CONTRIBUTOR_CODE_CHOICES,
         help_text='Code describing the contributor (from S497_CD.ENTITY_CD)',
     )
     contributor_committee_id = models.CharField(
@@ -801,7 +801,7 @@ class LateContributionMadeBase(LateContributionBase):
     These transactions are itemized on Part 2 of Schedule 497 filings and
     stored in the S497_CD table with a FORM_TYPE value of 'F497P2'.
     """
-    RECIPIENT_CD_CHOICES = (
+    RECIPIENT_CODE_CHOICES = (
         ('BNM', 'Ballot measure name/title'),
         ('CAO', 'Candidate/officeholder'),
         ('COM', 'Committee'),
@@ -816,7 +816,7 @@ class LateContributionMadeBase(LateContributionBase):
         verbose_name='recipient code',
         max_length=3,
         blank=True,
-        choices=RECIPIENT_CD_CHOICES,
+        choices=RECIPIENT_CODE_CHOICES,
         help_text='Code describing the recipient (from S497_CD.ENTITY_CD)',
     )
     recipient_committee_id = models.CharField(

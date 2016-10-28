@@ -25,6 +25,10 @@ from calaccess_processed.models.campaign.contributions import (
     LateContributionMade,
     LateContributionMadeVersion,
 )
+from calaccess_processed.models.campaign.expenditures import (
+    PaymentMade,
+    PaymentMadeVersion,
+)
 from calaccess_processed.models.common import (
     FilerIDValue,
     FilingIDValue,
@@ -53,6 +57,8 @@ __all__ = (
     'LateContributionReceivedVersion',
     'LateContributionMade',
     'LateContributionMadeVersion',
+    'PaymentMade',
+    'PaymentMadeVersion',
     'FilerIDValue',
     'FilingIDValue',
 )
