@@ -315,7 +315,7 @@ class ScheduleEItemVersion(CampaignExpenditureBase):
 
 class CampaignExpenditureSubItemBase(CampaignExpenditureBase):
     """
-    Abstract base model for sub-items or campaign expenditures.
+    Abstract base model for sub-items of campaign expenditures.
 
     A sub-item is a transaction where the amount is lumped into another
     "parent" payment reported elsewhere on the filing.
@@ -429,6 +429,7 @@ class ScheduleESubItemVersion(CampaignExpenditureSubItemBase):
 
 class ScheduleGItemBase(CampaignExpenditureSubItemBase):
     """
+    Abstract base model for items reported on Form 460 Schedule G.
     """
     agent_title = models.CharField(
         verbose_name='agent title',
