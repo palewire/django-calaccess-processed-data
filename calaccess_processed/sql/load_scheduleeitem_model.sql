@@ -20,7 +20,7 @@ INSERT INTO calaccess_processed_scheduleeitem (
     payment_code,
     payment_description,
     amount,
-    payment_date,
+    expense_date,
     check_number,
     transaction_id,
     memo_reference_number
@@ -47,7 +47,7 @@ SELECT
     items.payment_code,
     items.payment_description,
     items.amount,
-    items.payment_date,
+    items.expense_date,
     items.check_number,
     items.transaction_id,
     items.memo_reference_number

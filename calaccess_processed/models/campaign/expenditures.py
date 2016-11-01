@@ -193,10 +193,10 @@ class CampaignExpenditureBase(models.Model):
         help_text="Amount paid to the payee in the period covered by the "
                   "filing (from EXPN_CD.AMOUNT)",
     )
-    payment_date = models.DateField(
+    expense_date = models.DateField(
         verbose_name="expense date",
         null=True,
-        help_text="Date payment made (from EXPN_CD.EXPN_DATE)",
+        help_text="Date or expense (from EXPN_CD.EXPN_DATE)",
     )
     check_number = models.CharField(
         verbose_name='expense check number',

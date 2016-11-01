@@ -20,7 +20,7 @@ INSERT INTO calaccess_processed_scheduleeitemversion (
     payment_code,
     payment_description,
     amount,
-    payment_date,
+    expense_date,
     check_number,
     transaction_id,
     memo_reference_number
@@ -108,7 +108,7 @@ SELECT
     END AS payment_code,
     expn."EXPN_DSCR" AS payment_description,
     expn."AMOUNT" AS amount,
-    expn."EXPN_DATE" AS payment_date,
+    expn."EXPN_DATE" AS expense_date,
     expn."EXPN_CHKNO" AS check_number,
     expn."TRAN_ID" AS transaction_id,
     expn."MEMO_REFNO" AS memo_reference_number
