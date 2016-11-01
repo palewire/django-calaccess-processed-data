@@ -80,9 +80,12 @@ class ProcessedDataManager(models.Manager):
         Temporarily drops any constraints or indexes on the model.
         """
         self.drop_constraints_and_indexes()
-        with connection.cursor() as c:
+        c = connection.cursor()
+        try:
             c.execute(self.raw_data_load_query)
-        self.add_constraints_and_indexes()
+        finally:
+            c.close()
+            self.add_constraints_and_indexes()
 
     @property
     def constrained_fields(self):
