@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_paymentmade (
+INSERT INTO calaccess_processed_scheduleesubitem (
     filing_id,
     line_item,
     payee_code,
@@ -24,11 +24,10 @@ INSERT INTO calaccess_processed_paymentmade (
     check_number,
     transaction_id,
     parent_transaction_id,
-    informational_memo,
     memo_reference_number
 )
 SELECT 
-    items.filing_id,
+    filing_version.filing_id,
     items.line_item,
     items.payee_code,
     items.payee_committee_id,
@@ -53,9 +52,10 @@ SELECT
     items.check_number,
     items.transaction_id,
     items.parent_transaction_id,
-    items.informational_memo,
     items.memo_reference_number
-FROM calaccess_processed_paymentmadeversion items
-JOIN calaccess_processed_form460 filing_version
-ON items.filing_id = filing_version.filing_id
-AND items.amend_id = filing_version.amendment_count;
+FROM calaccess_processed_form460 filing
+JOIN calaccess_processed_form460version filing_version
+ON filing.filing_id = filing_version.filing_id
+AND filing.amendment_count = filing_version.amend_id
+JOIN calaccess_processed_scheduleesubitemversion items
+ON filing_version.id = items.filing_version_id;

@@ -9,7 +9,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.managers import ProcessedDataManager
 
 
-class PaymentMadeBase(models.Model):
+class CampaignExpenditureBase(models.Model):
     """
     Abstract base model for payments made by or on behalf of campaign filers.
 
@@ -211,20 +211,6 @@ class PaymentMadeBase(models.Model):
         help_text='Identifies a unique transaction across versions of the a '
                   'given Form 460 filing (from EXPN_CD.TRAN_ID)',
     )
-    parent_transaction_id = models.CharField(
-        verbose_name='parent transaction id',
-        max_length=20,
-        blank=True,
-        help_text='Refers to a parent transaction itemized on the same Form '
-                  '460 filing, though possibly on a different schedule (from '
-                  'EXPN_CD.BAKREF_TID)',
-    )
-    informational_memo = models.BooleanField(
-        verbose_name='informational_memo',
-        max_length=1,
-        default=False,
-        help_text="Date/amount are informational only (from EXPN_CD.MEMO_CODE)"
-    )
     memo_reference_number = models.CharField(
         verbose_name='memo reference number',
         max_length=20,
@@ -239,19 +225,19 @@ class PaymentMadeBase(models.Model):
 
 
 @python_2_unicode_compatible
-class PaymentMade(PaymentMadeBase):
+class ScheduleEItem(CampaignExpenditureBase):
     """
-    Payments made by campaign filers.
+    Payments made by campaign filers, itemized on Schedule E of Form 460.
 
-    These transactions are itemized on Schedule E of the most recent amendment
-    to each Form 460 filing. For payments itemized on any version of any Form
-    460 filing, see paymentsmadeversion.
+    These transactions are itemized on the most recent version of each Form 460
+    filing. For payments itemized on any version of any Form 460 filing, see
+    paymentsmadeversion.
 
     Does not include:
     * Interest paid on loans received
     * Loans made to others
-    * Payments by agents and independent contractors
     * Transfers of campaign funds into savings accounts
+    * Payments made by agents or contractors on behalf of the filer
     * Certificates of deposit
     * Money market accounts
     * Purchases of other assets that can readily be converted to cash
@@ -260,7 +246,7 @@ class PaymentMade(PaymentMadeBase):
     """
     filing = models.ForeignKey(
         'Form460',
-        related_name='itemized_payments_made',
+        related_name='schedule_e_items',
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the Form 460 on which the '
@@ -280,39 +266,27 @@ class PaymentMade(PaymentMadeBase):
 
 
 @python_2_unicode_compatible
-class PaymentMadeVersion(PaymentMadeBase):
+class ScheduleEItemVersion(CampaignExpenditureBase):
     """
-    Every version of the payments by campaign filers.
+    Every version of the payments made, itemized on Form 460 Schedule E.
 
-    For payments itemized on Schedule E of the most recent version of each Form
-    460 filing, see paymentsmade.
+    For payments itemized on the most recent version of each Form 460 filing,
+    see paymentsmade.
 
     Does not include:
     * Interest paid on loans received
     * Loans made to others
-    * Payments by agents and independent contractors
     * Transfers of campaign funds into savings accounts
+    * Payments made by agents or contractors on behalf of the filer
     * Certificates of deposit
     * Money market accounts
     * Purchases of other assets that can readily be converted to cash
 
     Derived from EXPN_CD records where FORM_TYPE is 'E'.
     """
-    filing_id = models.IntegerField(
-        verbose_name='filing id',
-        null=False,
-        help_text='Unique identification number for the Form 460 filing ('
-                  'from EXPN_CD.FILING_ID)',
-    )
-    amend_id = models.IntegerField(
-        verbose_name='amendment id',
-        null=False,
-        help_text='Identifies the version of the Form 460 filing, with 0 '
-                  'representing the initial filing (from EXPN_CD.AMEND_ID)',
-    )
     filing_version = models.ForeignKey(
         'Form460Version',
-        related_name='itemized_payments_made',
+        related_name='schedule_e_items',
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the version of the Form 460 that '
@@ -323,15 +297,244 @@ class PaymentMadeVersion(PaymentMadeBase):
 
     class Meta:
         unique_together = ((
-            'filing_id',
-            'amend_id',
+            'filing_version',
             'line_item',
         ),)
         index_together = ((
-            'filing_id',
-            'amend_id',
+            'filing_version',
             'line_item',
         ),)
 
     def __str__(self):
-        return '%s-%s-%s' % (self.filing_id, self.amend_id, self.line_item)
+        return '%s-%s-%s' % (
+            self.filing_version.filing_id,
+            self.filing_version.amend_id,
+            self.line_item
+        )
+
+
+class CampaignExpenditureSubItemBase(CampaignExpenditureBase):
+    """
+    Abstract base model for sub-items or campaign expenditures.
+
+    A sub-item is a transaction where the amount is lumped into another
+    "parent" payment reported elsewhere on the filing.
+    """
+    parent_transaction_id = models.CharField(
+        verbose_name='parent transaction id',
+        max_length=20,
+        blank=True,
+        help_text='Refers to a parent transaction itemized on the same Form '
+                  '460 filing (from EXPN_CD.BAKREF_TID)',
+    )
+
+    class Meta:
+        abstract = True
+
+
+@python_2_unicode_compatible
+class ScheduleESubItem(CampaignExpenditureSubItemBase):
+    """
+    Sub-items of payments made by campaign filers.
+
+    These transactions are itemized on Schedule E of the most recent version
+    of each Form 460 filing. For payments sub-itemitemized on any version of
+    any Form 460 filing, see paymentsmadesubitemversion.
+
+    A sub-item is a transaction where the amount is lumped into another 
+    "parent" payment reported elsewhere on the filing.
+
+    Includes:
+    * Payments supporting or opposing other candidates, ballot measures 
+    or committees, which are summarized on Schedule D
+    * Payments made to vendors over $100 included in credit card payments
+    * Payments made by agents or independent contractors on behalf of the 
+    campaign filer which were reported on Schedule E instead of G
+    * Payments made on the accrued expenses reported on Schedule F
+
+    Derived from EXPN_CD records where FORM_TYPE is 'E' and MEMO_CODE is not
+    blank.
+    """
+    filing = models.ForeignKey(
+        'Form460',
+        related_name='schedule_e_subitems',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the Form 460 on which the '
+                  'payment was reported (from RCPT_CD.FILING_ID)',
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        unique_together = ((
+            'filing',
+            'line_item',
+        ),)
+
+    def __str__(self):
+        return '%s-%s' % (self.filing, self.line_item)
+
+
+@python_2_unicode_compatible
+class ScheduleESubItemVersion(CampaignExpenditureSubItemBase):
+    """
+    Every version of the sub-items of payments by campaign filers.
+
+    For payments sub-itemized on Schedule E of the most recent version of each
+    Form 460 filing, see paymentsmadesubitem.
+
+    A sub-item is a transaction where the amount is lumped into another
+    "parent" payment reported elsewhere on the filing.
+
+    Includes:
+    * Payments supporting or opposing other candidates, ballot measures 
+    or committees, which are summarized on Schedule D
+    * Payments made to vendors over $100 included in credit card payments
+    * Payments made by agents or independent contractors on behalf of the 
+    campaign filer which were reported on Schedule E instead of G
+    * Payments made on the accrued expenses reported on Schedule F
+
+    Derived from EXPN_CD records where FORM_TYPE is 'E' and MEMO_CODE is not
+    blank.
+    """
+    filing_version = models.ForeignKey(
+        'Form460Version',
+        related_name='schedule_e_subitems',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the version of the Form 460 that '
+                  'includes the payment made'
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        unique_together = ((
+            'filing_version',
+            'line_item',
+        ),)
+        index_together = ((
+            'filing_version',
+            'line_item',
+        ),)
+
+    def __str__(self):
+        return '%s-%s-%s' % (
+            self.filing_version.filing_id,
+            self.filing_version.amend_id,
+            self.line_item
+        )
+
+
+class ScheduleGItemBase(CampaignExpenditureSubItemBase):
+    """
+    """
+    agent_title = models.CharField(
+        verbose_name='agent title',
+        max_length=10,
+        blank=True,
+        help_text='Name title of the agent (from EXPN_CD.AGENT_NAMT)',
+    )
+    agent_lastname = models.CharField(
+        verbose_name='agent lastname',
+        max_length=200,
+        blank=True,
+        help_text='Last name of the agent or business name (from '
+                  'EXPN_CD.AGENT_NAML)',
+    )
+    agent_firstname = models.CharField(
+        verbose_name='agent firstname',
+        max_length=45,
+        help_text='First name of the agent (from EXPN_CD.AGENT_NAMF)',
+    )
+    agent_name_suffix = models.CharField(
+        verbose_name='agent name suffix',
+        max_length=10,
+        blank=True,
+        help_text='Name suffix of the agent (from EXPN_CD.AGENT_NAMS)',
+    )
+    PARENT_SCHEDULE_CHOICES = (
+        ('E', 'Schedule E: Payments Made'),
+        ('F', 'Schedule F: Accrued Expenses (Unpaid Bills)')
+    )
+    parent_schedule = models.CharField(
+        max_length=1,
+        blank=True,
+        help_text="Indicates which schedule (E or F) includes the parent item "
+                  "(from EXPN_CD.G_FROM_E_F)",
+    )
+
+    class Meta:
+        abstract = True
+
+
+@python_2_unicode_compatible
+class ScheduleGItem(ScheduleGItemBase):
+    """
+    Payments made by on behalf of campaign filers.
+
+    These transactions are itemized on Schedule G of the most recent amendment
+    to each Form 460 filing. For payments itemized on any version of any Form
+    460 filing, see paymentsmadeonbehalfversion.
+
+    Derived from EXPN_CD records where FORM_TYPE is 'G'.
+    """
+    filing = models.ForeignKey(
+        'Form460',
+        related_name='schedule_g_items',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the Form 460 on which the '
+                  'payment was reported (from RCPT_CD.FILING_ID)',
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        unique_together = ((
+            'filing',
+            'line_item',
+        ),)
+
+    def __str__(self):
+        return '%s-%s' % (self.filing, self.line_item)
+
+
+@python_2_unicode_compatible
+class ScheduleGItemVersion(ScheduleGItemBase):
+    """
+    Every version of the payments made on behalf of campaign filers.
+
+    For payments itemized on Schedule G of the most recent version of each Form
+    460 filing, see paymentsmadeonbehalf.
+
+    Derived from EXPN_CD records where FORM_TYPE is 'G'.
+    """
+    filing_version = models.ForeignKey(
+        'Form460Version',
+        related_name='schedule_g_items',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the version of the Form 460 that '
+                  'includes the payment made'
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        unique_together = ((
+            'filing_version',
+            'line_item',
+        ),)
+        index_together = ((
+            'filing_version',
+            'line_item',
+        ),)
+
+    def __str__(self):
+        return '%s-%s-%s' % (
+            self.filing_version.filing_id,
+            self.filing_version.amend_id,
+            self.line_item
+        )

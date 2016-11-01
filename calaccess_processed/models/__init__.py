@@ -26,8 +26,12 @@ from calaccess_processed.models.campaign.contributions import (
     LateContributionMadeVersion,
 )
 from calaccess_processed.models.campaign.expenditures import (
-    PaymentMade,
-    PaymentMadeVersion,
+    ScheduleEItem,
+    ScheduleEItemVersion,
+    ScheduleESubItem,
+    ScheduleESubItemVersion,
+    ScheduleGItem,
+    ScheduleGItemVersion,
 )
 from calaccess_processed.models.common import (
     FilerIDValue,

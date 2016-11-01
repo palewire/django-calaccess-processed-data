@@ -1,6 +1,4 @@
-INSERT INTO calaccess_processed_paymentmadeversion (
-    filing_id,
-    amend_id,
+INSERT INTO calaccess_processed_scheduleesubitemversion (
     filing_version_id,
     line_item,
     payee_code,
@@ -26,12 +24,9 @@ INSERT INTO calaccess_processed_paymentmadeversion (
     check_number,
     transaction_id,
     parent_transaction_id,
-    informational_memo,
     memo_reference_number
 )
 SELECT 
-    expn."FILING_ID" AS filing_id,
-    expn."AMEND_ID" AS amend_id,
     filing_version.id AS filing_version_id,
     expn."LINE_ITEM" AS line_item,
     CASE
@@ -118,13 +113,10 @@ SELECT
     expn."EXPN_CHKNO" AS check_number,
     expn."TRAN_ID" AS transaction_id,
     expn."BAKREF_TID" AS parent_transaction_id,
-    CASE
-        WHEN UPPER("MEMO_CODE") IN ('0', 'X', 'Y', 'y') THEN true
-        ELSE false
-    END AS informational_memo,
     expn."MEMO_REFNO" AS memo_reference_number
 FROM "EXPN_CD" expn
 JOIN calaccess_processed_form460version filing_version
 ON expn."FILING_ID" = filing_version.filing_id
 AND expn."AMEND_ID" = filing_version.amend_id
-WHERE expn."FORM_TYPE" = 'E';
+WHERE expn."FORM_TYPE" = 'E'
+AND expn."MEMO_CODE" <> '';
