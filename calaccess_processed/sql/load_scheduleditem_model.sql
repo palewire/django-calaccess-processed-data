@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_scheduleeitem (
+INSERT INTO calaccess_processed_scheduleditem (
     filing_id,
     line_item,
     payee_code,
@@ -21,6 +21,7 @@ INSERT INTO calaccess_processed_scheduleeitem (
     payment_description,
     amount,
     cumulative_ytd_amount,
+    cumulative_election_amount,
     expense_date,
     check_number,
     transaction_id,
@@ -63,6 +64,7 @@ SELECT
     items.payment_description,
     items.amount,
     items.cumulative_ytd_amount,
+    items.cumulative_election_amount,
     items.expense_date,
     items.check_number,
     items.transaction_id,
@@ -85,5 +87,5 @@ FROM calaccess_processed_form460 filing
 JOIN calaccess_processed_form460version filing_version
 ON filing.filing_id = filing_version.filing_id
 AND filing.amendment_count = filing_version.amend_id
-JOIN calaccess_processed_scheduleeitemversion items
+JOIN calaccess_processed_scheduleditemversion items
 ON filing_version.id = items.filing_version_id;

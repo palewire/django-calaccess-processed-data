@@ -24,6 +24,8 @@ def get_models_to_process():
         campaign.contributions.NonMonetaryContributionVersion,
         campaign.contributions.MiscCashIncreaseVersion,
         campaign.contributions.MiscCashIncrease,
+        campaign.expenditures.ScheduleDItemVersion,
+        campaign.expenditures.ScheduleDItem,
         campaign.expenditures.ScheduleEItemVersion,
         campaign.expenditures.ScheduleEItem,
         campaign.expenditures.ScheduleESubItemVersion,

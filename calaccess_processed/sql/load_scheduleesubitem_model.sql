@@ -20,11 +20,26 @@ INSERT INTO calaccess_processed_scheduleesubitem (
     payment_code,
     payment_description,
     amount,
+    cumulative_ytd_amount,
     expense_date,
     check_number,
     transaction_id,
     parent_transaction_id,
-    memo_reference_number
+    memo_reference_number,
+    office_sought_held,
+    ballot_measure_jurisdiction,
+    ballot_measure_name,
+    ballot_measure_num,
+    candidate_district,
+    candidate_jurisdiction_code,
+    candidate_jurisdiction_description,
+    candidate_title,
+    candidate_firstname,
+    candidate_lastname,
+    candidate_name_suffix,
+    office_code,
+    office_description,
+    support_oppose_code
 )
 SELECT 
     filing_version.filing_id,
@@ -48,11 +63,26 @@ SELECT
     items.payment_code,
     items.payment_description,
     items.amount,
+    items.cumulative_ytd_amount,
     items.expense_date,
     items.check_number,
     items.transaction_id,
     items.parent_transaction_id,
-    items.memo_reference_number
+    items.memo_reference_number,
+    items.office_sought_held,
+    items.ballot_measure_jurisdiction,
+    items.ballot_measure_name,
+    items.ballot_measure_num,
+    items.candidate_district,
+    items.candidate_jurisdiction_code,
+    items.candidate_jurisdiction_description,
+    items.candidate_title,
+    items.candidate_firstname,
+    items.candidate_lastname,
+    items.candidate_name_suffix,
+    items.office_code,
+    items.office_description,
+    items.support_oppose_code
 FROM calaccess_processed_form460 filing
 JOIN calaccess_processed_form460version filing_version
 ON filing.filing_id = filing_version.filing_id
