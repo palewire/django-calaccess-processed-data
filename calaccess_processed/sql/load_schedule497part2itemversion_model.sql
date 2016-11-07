@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_latecontributionmadeversion (
+INSERT INTO calaccess_processed_schedule497part2itemversion (
     filing_id,
     amend_id,
     filing_version_id,

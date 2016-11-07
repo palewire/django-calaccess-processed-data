@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_monetarycontribution (
+INSERT INTO calaccess_processed_scheduleiitem (
     filing_id,
     line_item,
     date_received,
@@ -30,6 +30,7 @@ INSERT INTO calaccess_processed_monetarycontribution (
     intermediary_occupation,
     intermediary_is_self_employed,
     amount,
+    receipt_description,
     cumulative_ytd_amount,
     cumulative_election_amount
 )
@@ -65,9 +66,10 @@ SELECT
     items.intermediary_occupation,
     items.intermediary_is_self_employed,
     items.amount,
+    items.receipt_description,
     items.cumulative_ytd_amount,
     items.cumulative_election_amount
-FROM calaccess_processed_monetarycontributionversion items
+FROM calaccess_processed_scheduleiitemversion items
 JOIN calaccess_processed_form460 filing_version
 ON items.filing_id = filing_version.filing_id
 AND items.amend_id = filing_version.amendment_count;

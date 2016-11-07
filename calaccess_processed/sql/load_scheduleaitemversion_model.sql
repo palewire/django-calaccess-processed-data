@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_monetarycontributionversion (
+INSERT INTO calaccess_processed_scheduleaitemversion (
     filing_id,
     amend_id,
     filing_version_id,

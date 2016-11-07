@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_latecontributionmade (
+INSERT INTO calaccess_processed_schedule497part2item (
     filing_id,
     line_item,
     date_received,
@@ -63,7 +63,7 @@ SELECT
     contrib_version.ballot_measure_jurisdiction,
     contrib_version.support_opposition_code,
     contrib_version.election_date
-FROM calaccess_processed_latecontributionmadeversion contrib_version
+FROM calaccess_processed_schedule497part2itemversion contrib_version
 JOIN calaccess_processed_schedule497 filing
 ON contrib_version.filing_id = filing.filing_id
 AND contrib_version.amend_id = filing.amendment_count;

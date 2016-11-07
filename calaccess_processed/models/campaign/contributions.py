@@ -9,7 +9,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.managers import ProcessedDataManager
 
 
-class ContributionBase(models.Model):
+class CampaignContributionBase(models.Model):
     """
     Abstract base model for contributions received or made by campaign filers.
 
@@ -232,7 +232,7 @@ class ContributionBase(models.Model):
         abstract = True
 
 
-class MonetaryContributionBase(ContributionBase):
+class ScheduleAItemBase(CampaignContributionBase):
     """
     Abstract base model for monetary contributions received by campaign filers.
 
@@ -252,7 +252,7 @@ class MonetaryContributionBase(ContributionBase):
 
 
 @python_2_unicode_compatible
-class MonetaryContribution(MonetaryContributionBase):
+class ScheduleAItem(ScheduleAItemBase):
     """
     Monetary contributions received by campaign filers.
 
@@ -284,7 +284,7 @@ class MonetaryContribution(MonetaryContributionBase):
 
 
 @python_2_unicode_compatible
-class MonetaryContributionVersion(MonetaryContributionBase):
+class ScheduleAItemVersion(ScheduleAItemBase):
     """
     Every version of the monetary contributions received by campaign filers.
 
@@ -293,18 +293,6 @@ class MonetaryContributionVersion(MonetaryContributionBase):
 
     Derived from RCPT_CD records where FORM_TYPE is 'A'.
     """
-    filing_id = models.IntegerField(
-        verbose_name='filing id',
-        null=False,
-        help_text='Unique identification number for the Form 460 filing ('
-                  'from RCPT_CD.FILING_ID)',
-    )
-    amend_id = models.IntegerField(
-        verbose_name='amendment id',
-        null=False,
-        help_text='Identifies the version of the Form 460 filing, with 0 '
-                  'representing the initial filing (from RCPT_CD.AMEND_ID)',
-    )
     filing_version = models.ForeignKey(
         'Form460Version',
         related_name='itemized_monetary_contributions',
@@ -318,21 +306,23 @@ class MonetaryContributionVersion(MonetaryContributionBase):
 
     class Meta:
         unique_together = ((
-            'filing_id',
-            'amend_id',
+            'filing_version',
             'line_item',
         ),)
         index_together = ((
-            'filing_id',
-            'amend_id',
+            'filing_version',
             'line_item',
         ),)
 
     def __str__(self):
-        return '%s-%s-%s' % (self.filing_id, self.amend_id, self.line_item)
+        return '%s-%s-%s' % (
+            self.filing_version.filing_id,
+            self.filing_version.amend_id,
+            self.line_item
+        )
 
 
-class NonMonetaryContributionBase(ContributionBase):
+class ScheduleCItemBase(CampaignContributionBase):
     """
     Abstract base model for nonmonetary contributions received by campaign filers.
 
@@ -355,12 +345,10 @@ class NonMonetaryContributionBase(ContributionBase):
     
     class Meta:
         abstract = True
-        verbose_name = 'Nonmonetary contribution'
-        verbose_name_plural = 'Nonmonetary contributions'
 
 
 @python_2_unicode_compatible
-class NonMonetaryContribution(NonMonetaryContributionBase):
+class ScheduleCItem(ScheduleCItemBase):
     """
     Nonmonetary contributions received by campaign filers.
 
@@ -386,15 +374,13 @@ class NonMonetaryContribution(NonMonetaryContributionBase):
             'filing',
             'line_item',
         ),)
-        verbose_name = 'Nonmonetary contribution version'
-        verbose_name_plural = 'Nonmonetary contributions versions'
 
     def __str__(self):
         return '%s-%s' % (self.filing, self.line_item)
 
 
 @python_2_unicode_compatible
-class NonMonetaryContributionVersion(NonMonetaryContributionBase):
+class ScheduleCItemVersion(ScheduleCItemBase):
     """
     Every version of the nonmonetary contributions received by campaign filers.
 
@@ -428,21 +414,23 @@ class NonMonetaryContributionVersion(NonMonetaryContributionBase):
 
     class Meta:
         unique_together = ((
-            'filing_id',
-            'amend_id',
+            'filing_version',
             'line_item',
         ),)
         index_together = ((
-            'filing_id',
-            'amend_id',
+            'filing_version',
             'line_item',
         ),)
 
     def __str__(self):
-        return '%s-%s-%s' % (self.filing_id, self.amend_id, self.line_item)
+        return '%s-%s-%s' % (
+            self.filing_version.filing_id,
+            self.filing_version.amend_id,
+            self.line_item
+        )
 
 
-class MiscCashIncreaseBase(ContributionBase):
+class ScheduleIItemBase(CampaignContributionBase):
     """
     Abstract base model for miscellaneous cash increases for campaign filers.
 
@@ -471,7 +459,7 @@ class MiscCashIncreaseBase(ContributionBase):
 
 
 @python_2_unicode_compatible
-class MiscCashIncrease(MiscCashIncreaseBase):
+class ScheduleIItem(ScheduleIItemBase):
     """
     Miscellaneous cash increases to the coffers of campaign filers.
 
@@ -508,7 +496,7 @@ class MiscCashIncrease(MiscCashIncreaseBase):
 
 
 @python_2_unicode_compatible
-class MiscCashIncreaseVersion(MiscCashIncreaseBase):
+class ScheduleIItemVersion(ScheduleIItemBase):
     """
     Every version of the miscellaneous cash increases for campaign filers.
 
@@ -547,21 +535,23 @@ class MiscCashIncreaseVersion(MiscCashIncreaseBase):
 
     class Meta:
         unique_together = ((
-            'filing_id',
-            'amend_id',
+            'filing_version',
             'line_item',
         ),)
         index_together = ((
-            'filing_id',
-            'amend_id',
+            'filing_version',
             'line_item',
         ),)
 
     def __str__(self):
-        return '%s-%s-%s' % (self.filing_id, self.amend_id, self.line_item)
+        return '%s-%s-%s' % (
+            self.filing_version.filing_id,
+            self.filing_version.amend_id,
+            self.line_item
+        )
 
 
-class LateContributionBase(models.Model):
+class Schedule497ItemBase(models.Model):
     """
     Abstract base model for late contributions received or made by campaign filers.
 
@@ -613,7 +603,7 @@ class LateContributionBase(models.Model):
         abstract = True
 
 
-class LateContributionReceivedBase(LateContributionBase):
+class Schedule497Part1ItemBase(Schedule497ItemBase):
     """
     Abstract base model for late contributions received by campaign filers.
 
@@ -712,7 +702,7 @@ class LateContributionReceivedBase(LateContributionBase):
 
 
 @python_2_unicode_compatible
-class LateContributionReceived(LateContributionReceivedBase):
+class Schedule497Part1Item(Schedule497Part1ItemBase):
     """
     Late contributions received by campaign filers.
 
@@ -746,7 +736,7 @@ class LateContributionReceived(LateContributionReceivedBase):
 
 
 @python_2_unicode_compatible
-class LateContributionReceivedVersion(LateContributionReceivedBase):
+class Schedule497Part1ItemVersion(Schedule497Part1ItemBase):
     """
     Every version of the late contributions received by campaign filers.
 
@@ -794,7 +784,7 @@ class LateContributionReceivedVersion(LateContributionReceivedBase):
         return '%s-%s-%s' % (self.filing_id, self.amend_id, self.line_item)
 
 
-class LateContributionMadeBase(LateContributionBase):
+class Schedule497Part2ItemBase(Schedule497ItemBase):
     """
     Abstract base model for late contributions made by campaign filers.
 
@@ -982,7 +972,7 @@ class LateContributionMadeBase(LateContributionBase):
 
 
 @python_2_unicode_compatible
-class LateContributionMade(LateContributionMadeBase):
+class Schedule497Part2Item(Schedule497Part2ItemBase):
     """
     Late contributions made by campaign filers.
 
@@ -1016,7 +1006,7 @@ class LateContributionMade(LateContributionMadeBase):
 
 
 @python_2_unicode_compatible
-class LateContributionMadeVersion(LateContributionMadeBase):
+class Schedule497Part2ItemVersion(Schedule497Part2ItemBase):
     """
     Every version of the late contributions made by campaign filers.
 

@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_latecontributionreceived (
+INSERT INTO calaccess_processed_schedule497part1item (
     filing_id,
     line_item,
     date_received,
@@ -39,7 +39,7 @@ SELECT
     contrib_version.contributor_employer,
     contrib_version.contributor_occupation,
     contrib_version.contributor_is_self_employed
-FROM calaccess_processed_latecontributionreceivedversion contrib_version
+FROM calaccess_processed_schedule497part1itemversion contrib_version
 JOIN calaccess_processed_schedule497 filing
 ON contrib_version.filing_id = filing.filing_id
 AND contrib_version.amend_id = filing.amendment_count;

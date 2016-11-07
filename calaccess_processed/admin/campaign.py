@@ -118,10 +118,10 @@ class Schedule497VersionAdmin(BaseAdmin):
     )
 
 
-@admin.register(models.MonetaryContribution)
-class MonetaryContributionAdmin(BaseAdmin):
+@admin.register(models.ScheduleAItem)
+class ScheduleAItemAdmin(BaseAdmin):
     """
-    Custom admin for the MonetaryContribution model.
+    Custom admin for the ScheduleAItem model.
     """
     list_display = (
         'filing',
@@ -135,10 +135,10 @@ class MonetaryContributionAdmin(BaseAdmin):
     )
 
 
-@admin.register(models.MonetaryContributionVersion)
-class MonetaryContributionVersionAdmin(BaseAdmin):
+@admin.register(models.ScheduleAItemVersion)
+class ScheduleAItemVersionAdmin(BaseAdmin):
     """
-    Custom admin for the MonetaryContributionVersion model.
+    Custom admin for the ScheduleAItemVersion model.
     """
     list_display = (
         'filing_id',
@@ -153,10 +153,10 @@ class MonetaryContributionVersionAdmin(BaseAdmin):
     )
 
 
-@admin.register(models.NonMonetaryContribution)
-class NonMonetaryContributionAdmin(BaseAdmin):
+@admin.register(models.ScheduleCItem)
+class ScheduleCItemAdmin(BaseAdmin):
     """
-    Custom admin for the NonMonetaryContribution model.
+    Custom admin for the ScheduleCItem model.
     """
     list_display = (
         'filing',
@@ -170,10 +170,10 @@ class NonMonetaryContributionAdmin(BaseAdmin):
     )
 
 
-@admin.register(models.NonMonetaryContributionVersion)
-class NonMonetaryContributionVersionAdmin(BaseAdmin):
+@admin.register(models.ScheduleCItemVersion)
+class ScheduleCItemVersionAdmin(BaseAdmin):
     """
-    Custom admin for the NonMonetaryContributionVersion model.
+    Custom admin for the ScheduleCItemVersion model.
     """
     list_display = (
         'filing_id',
@@ -188,10 +188,10 @@ class NonMonetaryContributionVersionAdmin(BaseAdmin):
     )
 
 
-@admin.register(models.MiscCashIncrease)
-class MiscCashIncreaseAdmin(BaseAdmin):
+@admin.register(models.ScheduleIItem)
+class ScheduleIItemAdmin(BaseAdmin):
     """
-    Custom admin for the MiscCashIncrease model.
+    Custom admin for the ScheduleIItem model.
     """
     list_display = (
         'filing',
@@ -206,10 +206,10 @@ class MiscCashIncreaseAdmin(BaseAdmin):
     )
 
 
-@admin.register(models.MiscCashIncreaseVersion)
-class MiscCashIncreaseVersionAdmin(BaseAdmin):
+@admin.register(models.ScheduleIItemVersion)
+class ScheduleIItemVersionAdmin(BaseAdmin):
     """
-    Custom admin for the MiscCashIncreaseVersion model.
+    Custom admin for the ScheduleIItemVersion model.
     """
     list_display = (
         'filing_id',
@@ -225,10 +225,10 @@ class MiscCashIncreaseVersionAdmin(BaseAdmin):
     )
 
 
-@admin.register(models.LateContributionReceived)
-class LateContributionReceivedAdmin(BaseAdmin):
+@admin.register(models.Schedule497Part1Item)
+class Schedule497Part1ItemAdmin(BaseAdmin):
     """
-    Custom admin for the LateContributionReceived model.
+    Custom admin for the Schedule497Part1Item model.
     """
     list_display = (
         'filing',
@@ -242,10 +242,10 @@ class LateContributionReceivedAdmin(BaseAdmin):
     )
 
 
-@admin.register(models.LateContributionReceivedVersion)
-class LateContributionReceivedVersionAdmin(BaseAdmin):
+@admin.register(models.Schedule497Part1ItemVersion)
+class Schedule497Part1ItemVersionAdmin(BaseAdmin):
     """
-    Custom admin for the LateContributionReceivedVersion model.
+    Custom admin for the Schedule497Part1ItemVersion model.
     """
     list_display = (
         'filing_id',
@@ -260,10 +260,10 @@ class LateContributionReceivedVersionAdmin(BaseAdmin):
     )
 
 
-@admin.register(models.LateContributionMade)
-class LateContributionMadeAdmin(BaseAdmin):
+@admin.register(models.Schedule497Part2Item)
+class Schedule497Part2ItemAdmin(BaseAdmin):
     """
-    Custom admin for the LateContributionMade model.
+    Custom admin for the Schedule497Part2Item model.
     """
     list_display = (
         'filing',
@@ -277,10 +277,10 @@ class LateContributionMadeAdmin(BaseAdmin):
     )
 
 
-@admin.register(models.LateContributionMadeVersion)
-class LateContributionMadeVersionAdmin(BaseAdmin):
+@admin.register(models.Schedule497Part2ItemVersion)
+class Schedule497Part2ItemVersionAdmin(BaseAdmin):
     """
-    Custom admin for the LateContributionMadeVersion model.
+    Custom admin for the Schedule497Part2ItemVersion model.
     """
     list_display = (
         'filing_id',

@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_nonmonetarycontribution (
+INSERT INTO calaccess_processed_scheduleaitem (
     filing_id,
     line_item,
     date_received,
@@ -69,7 +69,7 @@ SELECT
     items.contribution_description,
     items.cumulative_ytd_amount,
     items.cumulative_election_amount
-FROM calaccess_processed_nonmonetarycontributionversion items
+FROM calaccess_processed_scheduleaitemversion items
 JOIN calaccess_processed_form460 filing_version
 ON items.filing_id = filing_version.filing_id
 AND items.amend_id = filing_version.amendment_count;

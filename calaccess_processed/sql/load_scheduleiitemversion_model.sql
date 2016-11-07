@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_misccashincreaseversion (
+INSERT INTO calaccess_processed_scheduleiitemversion (
     filing_id,
     amend_id,
     filing_version_id,
