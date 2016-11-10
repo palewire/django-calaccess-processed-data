@@ -105,4 +105,4 @@ FROM "RCPT_CD" rcpt
 JOIN calaccess_processed_form460version filing_version
 ON rcpt."FILING_ID" = filing_version.filing_id
 AND rcpt."AMEND_ID" = filing_version.amend_id
-WHERE rcpt."FORM_TYPE" = 'A';
+WHERE rcpt."FORM_TYPE" IN ('A', 'A-1');

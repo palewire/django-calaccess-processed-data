@@ -258,9 +258,12 @@ class ScheduleAItem(ScheduleAItemBase):
 
     These transactions are itemized on Schedule A of the most recent amendment
     to each Form 460 filing. For monetary contributions itemized on any version
-    of any Form 460 filing, see monetarycontributionversion.
+    of any Form 460 filing, see ScheduleAItemVersion.
 
-    Derived from RCPT_CD records where FORM_TYPE is 'A'.
+    Also includes contributions transferred to special election commitees,
+    formerly itemized on Schedule A-1. 
+
+    Derived from RCPT_CD records where FORM_TYPE is 'A' or 'A-1'.
     """
     filing = models.ForeignKey(
         'Form460',
@@ -289,9 +292,9 @@ class ScheduleAItemVersion(ScheduleAItemBase):
     Every version of the monetary contributions received by campaign filers.
 
     For monetary contributions itemized on Schedule A of the most recent
-    version of each Form 460 filing, see monetarycontribution.
+    version of each Form 460 filing, see ScheduleAItem.
 
-    Derived from RCPT_CD records where FORM_TYPE is 'A'.
+    Derived from RCPT_CD records where FORM_TYPE is 'A' or 'A-1'.
     """
     filing_version = models.ForeignKey(
         'Form460Version',
