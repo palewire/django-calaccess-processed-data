@@ -313,9 +313,9 @@ class CampaignExpenditureItemBase(models.Model):
         verbose_name='committee id',
         max_length=9,
         blank=True,
-        help_text="payee's filer identification number, if it is a "
+        help_text="Payee's filer identification number, if it is a "
                   "committee (from EXPN_CD.CMTE_ID)",
-        )
+    )
     payee_title = models.CharField(
         verbose_name='payee title',
         max_length=10,
