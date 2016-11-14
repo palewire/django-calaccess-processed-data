@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_scheduleditemversion (
+INSERT INTO calaccess_processed_form460scheduleeitemversion (
     filing_version_id,
     line_item,
     payee_code,
@@ -21,7 +21,6 @@ INSERT INTO calaccess_processed_scheduleditemversion (
     payment_description,
     amount,
     cumulative_ytd_amount,
-    cumulative_election_amount,
     expense_date,
     check_number,
     transaction_id,
@@ -125,7 +124,6 @@ SELECT
     expn."EXPN_DSCR" AS payment_description,
     expn."AMOUNT" AS amount,
     expn."CUM_YTD" AS cumulative_ytd_amount,
-    expn."CUM_OTH" AS cumulative_election_amount,
     expn."EXPN_DATE" AS expense_date,
     expn."EXPN_CHKNO" AS check_number,
     expn."TRAN_ID" AS transaction_id,
@@ -202,8 +200,8 @@ SELECT
         ELSE '?'
     END AS support_oppose_code
 FROM "EXPN_CD" expn
-JOIN calaccess_processed_form460version filing_version
+JOIN calaccess_processed_form460filingversion filing_version
 ON expn."FILING_ID" = filing_version.filing_id
 AND expn."AMEND_ID" = filing_version.amend_id
-WHERE expn."FORM_TYPE" = 'D'
+WHERE expn."FORM_TYPE" = 'E'
 AND expn."MEMO_CODE" = '';

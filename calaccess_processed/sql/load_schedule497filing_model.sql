@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_schedule497 (
+INSERT INTO calaccess_processed_schedule497filing (
     filing_id,
     amendment_count,
     filer_id,
@@ -18,9 +18,9 @@ SELECT
 FROM (
     -- get most recent amendment for each filing
     SELECT filing_id, MAX(amend_id) AS amendment_count
-    FROM calaccess_processed_schedule497version
+    FROM calaccess_processed_schedule497filingversion
     GROUP BY 1
 ) AS latest
-JOIN calaccess_processed_schedule497version s497
+JOIN calaccess_processed_schedule497filingversion s497
 ON latest.filing_id = s497.filing_id
 AND latest.amendment_count = s497.amend_id;

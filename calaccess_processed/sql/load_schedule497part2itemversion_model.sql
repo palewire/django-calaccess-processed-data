@@ -1,6 +1,4 @@
 INSERT INTO calaccess_processed_schedule497part2itemversion (
-    filing_id,
-    amend_id,
     filing_version_id,
     line_item,
     date_received,
@@ -34,8 +32,6 @@ INSERT INTO calaccess_processed_schedule497part2itemversion (
     election_date
 )
 SELECT 
-    s497_line."FILING_ID" AS filing_id,
-    s497_line."AMEND_ID" AS amend_id,
     filing_version.id AS filing_version_id,
     s497_line."LINE_ITEM" AS line_item,
     COALESCE(s497_line."CTRIB_DATE", s497_line."DATE_THRU") AS date_received,
@@ -78,7 +74,7 @@ SELECT
     UPPER(s497_line."SUP_OPP_CD") AS support_opposition_code,
     s497_line."ELEC_DATE" AS election_date
 FROM "S497_CD" s497_line
-JOIN calaccess_processed_schedule497version filing_version
+JOIN calaccess_processed_schedule497filingversion filing_version
 ON s497_line."FILING_ID" = filing_version.filing_id
 AND s497_line."AMEND_ID" = filing_version.amend_id
 WHERE s497_line."FORM_TYPE" = 'F497P2';

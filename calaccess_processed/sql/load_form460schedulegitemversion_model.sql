@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_schedulegitemversion (
+INSERT INTO calaccess_processed_form460schedulegitemversion (
     filing_version_id,
     line_item,
     agent_title,
@@ -212,7 +212,7 @@ SELECT
         ELSE '?'
     END AS support_oppose_code
 FROM "EXPN_CD" expn
-JOIN calaccess_processed_form460version filing_version
+JOIN calaccess_processed_form460filingversion filing_version
 ON expn."FILING_ID" = filing_version.filing_id
 AND expn."AMEND_ID" = filing_version.amend_id
 WHERE expn."FORM_TYPE" = 'G'

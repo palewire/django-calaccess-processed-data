@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_scheduleesubitemversion (
+INSERT INTO calaccess_processed_form460scheduleditemversion (
     filing_version_id,
     line_item,
     payee_code,
@@ -21,10 +21,10 @@ INSERT INTO calaccess_processed_scheduleesubitemversion (
     payment_description,
     amount,
     cumulative_ytd_amount,
+    cumulative_election_amount,
     expense_date,
     check_number,
     transaction_id,
-    parent_transaction_id,
     memo_reference_number,
     office_sought_held,
     ballot_measure_jurisdiction,
@@ -125,10 +125,10 @@ SELECT
     expn."EXPN_DSCR" AS payment_description,
     expn."AMOUNT" AS amount,
     expn."CUM_YTD" AS cumulative_ytd_amount,
+    expn."CUM_OTH" AS cumulative_election_amount,
     expn."EXPN_DATE" AS expense_date,
     expn."EXPN_CHKNO" AS check_number,
     expn."TRAN_ID" AS transaction_id,
-    expn."BAKREF_TID" AS parent_transaction_id,
     expn."MEMO_REFNO" AS memo_reference_number,
     UPPER(expn."SUP_OPP_CD") AS office_sought_held,
     UPPER(expn."BAL_JURIS") AS ballot_measure_jurisdiction,
@@ -202,8 +202,8 @@ SELECT
         ELSE '?'
     END AS support_oppose_code
 FROM "EXPN_CD" expn
-JOIN calaccess_processed_form460version filing_version
+JOIN calaccess_processed_form460filingversion filing_version
 ON expn."FILING_ID" = filing_version.filing_id
 AND expn."AMEND_ID" = filing_version.amend_id
-WHERE expn."FORM_TYPE" = 'E'
-AND expn."MEMO_CODE" <> '';
+WHERE expn."FORM_TYPE" = 'D'
+AND expn."MEMO_CODE" = '';

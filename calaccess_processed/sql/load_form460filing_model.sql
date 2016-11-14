@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_form460 (
+INSERT INTO calaccess_processed_form460filing (
     filing_id,
     amendment_count,
     filer_id,
@@ -60,9 +60,9 @@ SELECT
 FROM (
     -- get most recent amendment for each filing
     SELECT filing_id, MAX(amend_id) AS amendment_count
-    FROM calaccess_processed_form460version
+    FROM calaccess_processed_form460filingversion
     GROUP BY 1
 ) AS latest
-JOIN calaccess_processed_form460version f460
+JOIN calaccess_processed_form460filingversion f460
 ON latest.filing_id = f460.filing_id
 AND latest.amendment_count = f460.amend_id;

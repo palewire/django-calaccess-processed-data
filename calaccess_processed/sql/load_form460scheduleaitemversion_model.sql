@@ -1,6 +1,4 @@
-INSERT INTO calaccess_processed_schedulecitemversion (
-    filing_id,
-    amend_id,
+INSERT INTO calaccess_processed_form460scheduleaitemversion (
     filing_version_id,
     line_item,
     date_received,
@@ -31,14 +29,11 @@ INSERT INTO calaccess_processed_schedulecitemversion (
     intermediary_employer,
     intermediary_occupation,
     intermediary_is_self_employed,
-    fair_market_value,
-    contribution_description,
+    amount,
     cumulative_ytd_amount,
     cumulative_election_amount
 )
 SELECT 
-    rcpt."FILING_ID" AS filing_id,
-    rcpt."AMEND_ID" AS amend_id,
     filing_version.id AS filing_version_id,
     rcpt."LINE_ITEM" AS line_item,
     rcpt."RCPT_DATE" AS date_received,
@@ -78,7 +73,13 @@ SELECT
         WHEN 'X' THEN true
         ELSE false 
     END AS contributor_is_self_employed,
-    TRIM(rcpt."INTR_CMTEID") AS intermediary_committee_id,
+    CASE UPPER(rcpt."INTR_CMTEID")
+        WHEN 'NONE' THEN ''
+        WHEN 'NA' THEN ''
+        WHEN 'N/A' THEN ''
+        WHEN '-' THEN ''
+        ELSE UPPER(rcpt."INTR_CMTEID")
+    END AS intermediary_committee_id,
     UPPER(rcpt."INTR_NAMT") AS intermediary_title,
     UPPER(rcpt."INTR_NAML") AS intermediary_lastname,
     UPPER(rcpt."INTR_NAMF") AS intermediary_firstname,
@@ -93,12 +94,11 @@ SELECT
         WHEN 'X' THEN true
         ELSE false 
     END AS intermediary_is_self_employed,
-    rcpt."AMOUNT" AS fair_market_value,
-    rcpt."CTRIB_DSCR" AS contribution_description,
+    rcpt."AMOUNT" AS amount,
     rcpt."CUM_YTD" AS cumulative_ytd_amount,
     rcpt."CUM_OTH" AS cumulative_election_amount
 FROM "RCPT_CD" rcpt
-JOIN calaccess_processed_form460version filing_version
+JOIN calaccess_processed_form460filingversion filing_version
 ON rcpt."FILING_ID" = filing_version.filing_id
 AND rcpt."AMEND_ID" = filing_version.amend_id
-WHERE rcpt."FORM_TYPE" = 'C';
+WHERE rcpt."FORM_TYPE" IN ('A', 'A-1');

@@ -32,38 +32,40 @@ INSERT INTO calaccess_processed_schedule497part2item (
     election_date
 )
 SELECT 
-    contrib_version.filing_id,
-    contrib_version.line_item,
-    contrib_version.date_received,
-    contrib_version.date_received_thru,
-    contrib_version.amount_received,
-    contrib_version.transaction_id,
-    contrib_version.memo_reference_number,
-    contrib_version.recipient_code,
-    contrib_version.recipient_committee_id,
-    contrib_version.recipient_title,
-    contrib_version.recipient_lastname,
-    contrib_version.recipient_firstname,
-    contrib_version.recipient_name_suffix,
-    contrib_version.recipient_city,
-    contrib_version.recipient_state,
-    contrib_version.recipient_zip,
-    contrib_version.candidate_id,
-    contrib_version.candidate_title,
-    contrib_version.candidate_lastname,
-    contrib_version.candidate_firstname,
-    contrib_version.candidate_namesuffix,
-    contrib_version.candidate_office_code,
-    contrib_version.candidate_office_description,
-    contrib_version.candidate_jurisdiction_code,
-    contrib_version.candidate_jurisdiction_description,
-    contrib_version.candidate_district,
-    contrib_version.ballot_measure_name,
-    contrib_version.ballot_measure_number,
-    contrib_version.ballot_measure_jurisdiction,
-    contrib_version.support_opposition_code,
-    contrib_version.election_date
-FROM calaccess_processed_schedule497part2itemversion contrib_version
-JOIN calaccess_processed_schedule497 filing
-ON contrib_version.filing_id = filing.filing_id
-AND contrib_version.amend_id = filing.amendment_count;
+    filing.filing_id,
+    item_version.line_item,
+    item_version.date_received,
+    item_version.date_received_thru,
+    item_version.amount_received,
+    item_version.transaction_id,
+    item_version.memo_reference_number,
+    item_version.recipient_code,
+    item_version.recipient_committee_id,
+    item_version.recipient_title,
+    item_version.recipient_lastname,
+    item_version.recipient_firstname,
+    item_version.recipient_name_suffix,
+    item_version.recipient_city,
+    item_version.recipient_state,
+    item_version.recipient_zip,
+    item_version.candidate_id,
+    item_version.candidate_title,
+    item_version.candidate_lastname,
+    item_version.candidate_firstname,
+    item_version.candidate_namesuffix,
+    item_version.candidate_office_code,
+    item_version.candidate_office_description,
+    item_version.candidate_jurisdiction_code,
+    item_version.candidate_jurisdiction_description,
+    item_version.candidate_district,
+    item_version.ballot_measure_name,
+    item_version.ballot_measure_number,
+    item_version.ballot_measure_jurisdiction,
+    item_version.support_opposition_code,
+    item_version.election_date
+FROM calaccess_processed_schedule497filing filing
+JOIN calaccess_processed_schedule497filingversion filing_version
+ON filing.filing_id = filing_version.filing_id
+AND filing.amendment_count = filing_version.amend_id
+JOIN calaccess_processed_schedule497part2itemversion item_version
+ON filing_version.id = item_version.filing_version_id;

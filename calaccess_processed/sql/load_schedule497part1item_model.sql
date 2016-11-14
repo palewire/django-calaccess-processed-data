@@ -20,26 +20,28 @@ INSERT INTO calaccess_processed_schedule497part1item (
     contributor_is_self_employed
 )
 SELECT 
-    contrib_version.filing_id,
-    contrib_version.line_item,
-    contrib_version.date_received,
-    contrib_version.date_received_thru,
-    contrib_version.amount_received,
-    contrib_version.transaction_id,
-    contrib_version.memo_reference_number,
-    contrib_version.contributor_code,
-    contrib_version.contributor_committee_id,
-    contrib_version.contributor_title,
-    contrib_version.contributor_lastname,
-    contrib_version.contributor_firstname,
-    contrib_version.contributor_name_suffix,
-    contrib_version.contributor_city,
-    contrib_version.contributor_state,
-    contrib_version.contributor_zip,
-    contrib_version.contributor_employer,
-    contrib_version.contributor_occupation,
-    contrib_version.contributor_is_self_employed
-FROM calaccess_processed_schedule497part1itemversion contrib_version
-JOIN calaccess_processed_schedule497 filing
-ON contrib_version.filing_id = filing.filing_id
-AND contrib_version.amend_id = filing.amendment_count;
+    filing.filing_id,
+    item_version.line_item,
+    item_version.date_received,
+    item_version.date_received_thru,
+    item_version.amount_received,
+    item_version.transaction_id,
+    item_version.memo_reference_number,
+    item_version.contributor_code,
+    item_version.contributor_committee_id,
+    item_version.contributor_title,
+    item_version.contributor_lastname,
+    item_version.contributor_firstname,
+    item_version.contributor_name_suffix,
+    item_version.contributor_city,
+    item_version.contributor_state,
+    item_version.contributor_zip,
+    item_version.contributor_employer,
+    item_version.contributor_occupation,
+    item_version.contributor_is_self_employed
+FROM calaccess_processed_schedule497filing filing
+JOIN calaccess_processed_schedule497filingversion filing_version
+ON filing.filing_id = filing_version.filing_id
+AND filing.amendment_count = filing_version.amend_id
+JOIN calaccess_processed_schedule497part1itemversion item_version
+ON filing_version.id = item_version.filing_version_id;

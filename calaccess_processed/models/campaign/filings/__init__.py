@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Models for storing campaign-related transactions derived from raw CAL-ACCESS data.
+Abstract base models for campaign finance-related filings and transactions.
 """
 from __future__ import unicode_literals
 from django.db import models
@@ -9,7 +9,275 @@ from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.managers import ProcessedDataManager
 
 
-class CampaignExpenditureBase(models.Model):
+class CampaignFinanceFilingBase(models.Model):
+    """
+    Base and abstract model for campaign finance-related filings.
+    """
+    date_filed = models.DateField(
+        verbose_name='date filed',
+        db_index=True,
+        null=False,
+        help_text="Date this report was filed, according to the filer "
+                  "(from CVR_CAMPAIGN_DISCLOSURE.RPT_DATE)",
+    )
+    filer_id = models.IntegerField(
+        verbose_name='filer id',
+        db_index=True,
+        null=False,
+        help_text="Numeric filer identification number (from FILER_XREF.FILER_ID)",
+    )
+    filer_lastname = models.CharField(
+        verbose_name='filer last name',
+        max_length=200,
+        null=False,
+        blank=False,
+        help_text="Last name of filer (from CVR_CAMPAIGN_DISCLOSURE.FILER_NAML)",
+    )
+    filer_firstname = models.CharField(
+        verbose_name="filer first name",
+        max_length=45,
+        null=False,
+        blank=True,
+        help_text="First name of the filer (from "
+                  "CVR_CAMPAIGN_DISCLOSURE.FILER_NAMF)",
+    )
+    election_date = models.DateField(
+        verbose_name='election date',
+        db_index=True,
+        null=True,
+        help_text="Date of the election in which the filer is participating "
+                  "(from CVR_CAMPAIGN_DISCLOSURE.ELECT_DATE)",
+    )
+
+    class Meta:
+        app_label = 'calaccess_processed'
+        abstract = True
+
+
+class CampaignContributionBase(models.Model):
+    """
+    Abstract base model for contributions received or made by campaign filers.
+
+    These transactions are itemized on Schedules A, C and I of Form 460
+    filings and stored in the RCPT_CD table.
+    """
+    line_item = models.IntegerField(
+        verbose_name='line item',
+        null=False,
+        help_text='Line number of the filing form where the contribution is '
+                  'itemized (from RCPT_CD.LINE_ITEM)',
+    )
+    date_received = models.DateField(
+        verbose_name='date received',
+        null=True,
+        help_text='Date the contribution was received (from RCPT_CD.'
+                  'RCPT_DATE)'
+    )
+    date_received_thru = models.DateField(
+        verbose_name='date received thru',
+        null=True,
+        help_text='End date for late contributions received over a range of '
+                  'days (from RCPT_CD.DATE_THRU)',
+    )
+    TRANSACTION_TYPE_CHOICES = (
+        ('F', 'Forgiven Loan'),
+        ('I', 'Intermediary'),
+        ('R', 'Returned (Negative Amount?)'),
+        ('T', 'Third Party Repayment'),
+        ('X', 'Transfer'),
+    )
+    transaction_type = models.CharField(
+        verbose_name='transaction type',
+        max_length=1,
+        choices=TRANSACTION_TYPE_CHOICES,
+        help_text='Type of transaction (from RCPT_CD.TRAN_TYPE)',
+    )
+    transaction_id = models.CharField(
+        verbose_name='transaction id',
+        max_length=20,
+        help_text='Identifies a unique transaction across versions of the a '
+                  'given Form 460 filing (from RCPT_CD.TRAN_ID)'
+    )
+    memo_reference_number = models.CharField(
+        verbose_name='memo reference number',
+        max_length=20,
+        blank=True,
+        help_text='Reference number for the memo attached to the contribution '
+                  '(from RCPT_CD.MEMO_REFNO)',
+    )
+    CONTRIBUTOR_CODE_CHOICES = (
+        ('COM', 'Committee'),
+        ('IND', 'Individual'),
+        ('OFF', 'Officer'),
+        ('OTH', 'Other'),
+        ('PTY', 'Political Party'),
+        ('RCP', 'Recipient committee'),
+        ('SCC', 'Small Contributor Committee'),
+    )
+    contributor_code = models.CharField(
+        verbose_name='contributor code',
+        max_length=3,
+        blank=True,
+        choices=CONTRIBUTOR_CODE_CHOICES,
+        help_text='Code describing the contributor (from RCPT_CD.ENTITY_CD)',
+    )
+    contributor_committee_id = models.CharField(
+        verbose_name='committee id',
+        max_length=9,
+        blank=True,
+        help_text="Contributor's filer identification number, if it is a "
+                  "committee (from RCPT_CD.CMTE_ID)",
+        )
+    contributor_title = models.CharField(
+        verbose_name='contributor title',
+        max_length=10,
+        blank=True,
+        help_text='Name title of the contributor (from RCPT_CD.CTRIB_NAMT)',
+    )
+    contributor_lastname = models.CharField(
+        verbose_name='contributor lastname',
+        max_length=200,
+        blank=True,
+        help_text='Last name of the contributor or business name (from '
+                  'RCPT_CD.CTRIB_NAML)',
+    )
+    contributor_firstname = models.CharField(
+        verbose_name='contributor firstname',
+        max_length=45,
+        help_text='First name of the contributor (from RCPT_CD.CTRIB_NAMF)',
+    )
+    contributor_name_suffix = models.CharField(
+        verbose_name='contributor name suffix',
+        max_length=10,
+        blank=True,
+        help_text='Name suffix of the contributor (from RCPT_CD.CTRIB_NAMS)',
+    )
+    contributor_city = models.CharField(
+        verbose_name='contributor city',
+        max_length=30,
+        blank=True,
+        help_text='City of the contributor (from RCPT_CD.CTRIB_CITY)',
+    )
+    contributor_state = models.CharField(
+        verbose_name='contributor state',
+        max_length=2,
+        blank=True,
+        help_text='State of the contributor (from RCPT_CD.CTRIB_ST)',
+    )
+    contributor_zip = models.CharField(
+        verbose_name='contributor zip',
+        max_length=10,
+        blank=True,
+        help_text='Zip code (usually zip5, sometimes zip9) of the '
+                  'contributor (from RCPT_CD.CTRIB_ZIP4)',
+    )
+    contributor_employer = models.CharField(
+        verbose_name='contributor employer',
+        max_length=200,
+        blank=True,
+        help_text='Employer of the contributor (from RCPT_CD.CTRIB_EMP)',
+    )
+    contributor_occupation = models.CharField(
+        verbose_name='contributor occupation',
+        max_length=60,
+        blank=True,
+        help_text='Occupation of the contributor (from RCPT_CD.CTRIB_OCC)',
+    )
+    contributor_is_self_employed = models.BooleanField(
+        verbose_name='contributor is self employed',
+        default=False,
+        help_text='Indicates whether or not the contributor is self-employed'
+                  '(from RCPT_CD.CTRIB_SELF)',
+    )
+    intermediary_committee_id = models.CharField(
+        verbose_name='intermediary committee id',
+        blank=True,
+        max_length=9,
+        help_text="Intermediary's filer identification number, if it is a "
+                  "committee (from RCPT_CD.INTR_CMTEID)",
+    ) 
+    intermediary_title = models.CharField(
+        verbose_name='intermediary title',
+        max_length=10,
+        blank=True,
+        help_text='Name title of the intermediary (from RCPT_CD.INTR_NAMT)',
+    )
+    intermediary_lastname = models.CharField(
+        verbose_name='intermediary lastname',
+        max_length=200,
+        blank=True,
+        help_text='Last name of the intermediary or business name (from '
+                  'RCPT_CD.INTR_NAML)',
+    )
+    intermediary_firstname = models.CharField(
+        verbose_name='intermediary firstname',
+        max_length=45,
+        help_text='First name of the intermediary (from RCPT_CD.INTR_NAMF)',
+    )
+    intermediary_name_suffix = models.CharField(
+        verbose_name='intermediary name suffix',
+        max_length=10,
+        blank=True,
+        help_text='Name suffix of the intermediary (from RCPT_CD.INTR_NAMS)',
+    )
+    intermediary_city = models.CharField(
+        verbose_name='intermediary city',
+        max_length=30,
+        blank=True,
+        help_text='City of the intermediary (from RCPT_CD.INTR_CITY)',
+    )
+    intermediary_state = models.CharField(
+        verbose_name='intermediary state',
+        max_length=2,
+        blank=True,
+        help_text='State of the intermediary (from RCPT_CD.INTR_ST)',
+    )
+    intermediary_zip = models.CharField(
+        verbose_name='intermediary zip',
+        max_length=10,
+        blank=True,
+        help_text='Zip code (usually zip5, sometimes zip9) of the '
+                  'intermediary (from RCPT_CD.INTR_ZIP4)',
+    )
+    intermediary_employer = models.CharField(
+        verbose_name='intermediary employer',
+        max_length=200,
+        blank=True,
+        help_text='Employer of the intermediary (from RCPT_CD.INTR_EMP)',
+    )
+    intermediary_occupation = models.CharField(
+        verbose_name='intermediary occupation',
+        max_length=60,
+        blank=True,
+        help_text='Occupation of the intermediary (from RCPT_CD.INTR_OCC)',
+    )
+    intermediary_is_self_employed = models.BooleanField(
+        verbose_name='intermediary is self employed',
+        default=False,
+        help_text='(from S497_CD.INTR_SELF)',
+    )
+    cumulative_ytd_amount = models.DecimalField(
+        decimal_places=2,
+        max_digits=14,
+        null=True,
+        help_text="Cumulative year-to-date amount given by the contributor "
+                  "as of the given Form 460 filing (from RCPT_CD.CUM_YTD)",
+    )
+    cumulative_election_amount = models.DecimalField(
+        decimal_places=2,
+        max_digits=14,
+        null=True,
+        help_text="For filers subject to contribution limits, cumulative "
+                  "amount given by the contributor during the election "
+                  "cycle as of the given Form 460 filing (from RCPT_CD."
+                  "CUM_OTH)"
+    )
+
+    class Meta:
+        abstract = True
+
+
+class CampaignExpenditureItemBase(models.Model):
     """
     Abstract base model for payments made by or on behalf of campaign filers.
 
@@ -397,7 +665,7 @@ class CampaignExpenditureBase(models.Model):
         abstract = True
 
 
-class CampaignExpenditureSubItemBase(CampaignExpenditureBase):
+class CampaignExpenditureSubItemBase(CampaignExpenditureItemBase):
     """
     Abstract base model for sub-items of campaign expenditures.
 
@@ -414,395 +682,3 @@ class CampaignExpenditureSubItemBase(CampaignExpenditureBase):
 
     class Meta:
         abstract = True
-
-
-class ScheduleDItemBase(CampaignExpenditureBase):
-    """
-    Abstract base model for items reported on Schedule D of Form 460.
-
-    On Schedule D, campaign filers are required to summarize contributions
-    and independent expenditures in support or opposition to other candidates
-    and ballot measures
-    """
-    cumulative_election_amount = models.DecimalField(
-        decimal_places=2,
-        max_digits=14,
-        null=True,
-        help_text="If the candidate is subject to contribution limits, the "
-                  "cumulative amount given by the filer during the election "
-                  "cycle as of the Form 460's filing date (from EXPN_CD."
-                  "CUM_OTH)"
-    )
-
-    class Meta:
-        abstract = True
-
-
-@python_2_unicode_compatible
-class ScheduleDItem(ScheduleDItemBase):
-    """
-    Contribution and expenditures in support or opposition to other candidates
-    and ballot measures.
-
-    These transactions are itemized on Schedule D of the most recent version
-    to each Form 460 filing. For payments itemized on any version of any Form
-    460 filing, see scheduleditemversion.
-
-    Derived from EXPN_CD records where FORM_TYPE is 'D'.
-    """
-    filing = models.ForeignKey(
-        'Form460',
-        related_name='schedule_d_items',
-        null=True,
-        on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the Form 460 on which the '
-                  'payment was reported (from RCPT_CD.FILING_ID)',
-    )
-
-    objects = ProcessedDataManager()
-
-    class Meta:
-        unique_together = ((
-            'filing',
-            'line_item',
-        ),)
-
-    def __str__(self):
-        return '%s-%s' % (self.filing, self.line_item)
-
-
-@python_2_unicode_compatible
-class ScheduleDItemVersion(ScheduleDItemBase):
-    """
-    Every version of the payments made on behalf of campaign filers.
-
-    For payments itemized on Schedule D of the most recent version of each Form
-    460 filing, see scheduleditem.
-
-    Derived from EXPN_CD records where FORM_TYPE is 'D'.
-    """
-    filing_version = models.ForeignKey(
-        'Form460Version',
-        related_name='schedule_d_items',
-        null=True,
-        on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the version of the Form 460 that '
-                  'includes the payment made'
-    )
-
-    objects = ProcessedDataManager()
-
-    class Meta:
-        unique_together = ((
-            'filing_version',
-            'line_item',
-        ),)
-        index_together = ((
-            'filing_version',
-            'line_item',
-        ),)
-
-    def __str__(self):
-        return '%s-%s-%s' % (
-            self.filing_version.filing_id,
-            self.filing_version.amend_id,
-            self.line_item
-        )
-
-
-@python_2_unicode_compatible
-class ScheduleEItem(CampaignExpenditureBase):
-    """
-    Payments made by campaign filers, itemized on Schedule E of Form 460.
-
-    These transactions are itemized on the most recent version of each Form 460
-    filing. For payments itemized on any version of any Form 460 filing, see
-    scheduleeitemversion.
-
-    Does not include:
-    * Interest paid on loans received
-    * Loans made to others
-    * Transfers of campaign funds into savings accounts
-    * Payments made by agents or contractors on behalf of the filer
-    * Certificates of deposit
-    * Money market accounts
-    * Purchases of other assets that can readily be converted to cash
-
-    Derived from EXPN_CD records where FORM_TYPE is 'E'.
-    """
-    filing = models.ForeignKey(
-        'Form460',
-        related_name='schedule_e_items',
-        null=True,
-        on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the Form 460 on which the '
-                  'payment was reported (from RCPT_CD.FILING_ID)',
-    )
-
-    objects = ProcessedDataManager()
-
-    class Meta:
-        unique_together = ((
-            'filing',
-            'line_item',
-        ),)
-
-    def __str__(self):
-        return '%s-%s' % (self.filing, self.line_item)
-
-
-@python_2_unicode_compatible
-class ScheduleEItemVersion(CampaignExpenditureBase):
-    """
-    Every version of the payments made, itemized on Form 460 Schedule E.
-
-    For payments itemized on the most recent version of each Form 460 filing,
-    see scheduleeitem.
-
-    Does not include:
-    * Interest paid on loans received
-    * Loans made to others
-    * Transfers of campaign funds into savings accounts
-    * Payments made by agents or contractors on behalf of the filer
-    * Certificates of deposit
-    * Money market accounts
-    * Purchases of other assets that can readily be converted to cash
-
-    Derived from EXPN_CD records where FORM_TYPE is 'E'.
-    """
-    filing_version = models.ForeignKey(
-        'Form460Version',
-        related_name='schedule_e_items',
-        null=True,
-        on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the version of the Form 460 that '
-                  'includes the payment made'
-    )
-
-    objects = ProcessedDataManager()
-
-    class Meta:
-        unique_together = ((
-            'filing_version',
-            'line_item',
-        ),)
-        index_together = ((
-            'filing_version',
-            'line_item',
-        ),)
-
-    def __str__(self):
-        return '%s-%s-%s' % (
-            self.filing_version.filing_id,
-            self.filing_version.amend_id,
-            self.line_item
-        )
-
-
-@python_2_unicode_compatible
-class ScheduleESubItem(CampaignExpenditureSubItemBase):
-    """
-    Sub-items of payments made by campaign filers.
-
-    These transactions are itemized on Schedule E of the most recent version
-    of each Form 460 filing. For payments sub-itemitemized on any version of
-    any Form 460 filing, see scheduleesubitemversion.
-
-    A sub-item is a transaction where the amount is lumped into another 
-    "parent" payment reported elsewhere on the filing.
-
-    Includes:
-    * Payments supporting or opposing other candidates, ballot measures 
-    or committees, which are summarized on Schedule D
-    * Payments made to vendors over $100 included in credit card payments
-    * Payments made by agents or independent contractors on behalf of the 
-    campaign filer which were reported on Schedule E instead of G
-    * Payments made on the accrued expenses reported on Schedule F
-
-    Derived from EXPN_CD records where FORM_TYPE is 'E' and MEMO_CODE is not
-    blank.
-    """
-    filing = models.ForeignKey(
-        'Form460',
-        related_name='schedule_e_subitems',
-        null=True,
-        on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the Form 460 on which the '
-                  'payment was reported (from RCPT_CD.FILING_ID)',
-    )
-
-    objects = ProcessedDataManager()
-
-    class Meta:
-        unique_together = ((
-            'filing',
-            'line_item',
-        ),)
-
-    def __str__(self):
-        return '%s-%s' % (self.filing, self.line_item)
-
-
-@python_2_unicode_compatible
-class ScheduleESubItemVersion(CampaignExpenditureSubItemBase):
-    """
-    Every version of the sub-items of payments by campaign filers.
-
-    For payments sub-itemized on Schedule E of the most recent version of each
-    Form 460 filing, see scheduleesubitem.
-
-    A sub-item is a transaction where the amount is lumped into another
-    "parent" payment reported elsewhere on the filing.
-
-    Includes:
-    * Payments supporting or opposing other candidates, ballot measures 
-    or committees, which are summarized on Schedule D
-    * Payments made to vendors over $100 included in credit card payments
-    * Payments made by agents or independent contractors on behalf of the 
-    campaign filer which were reported on Schedule E instead of G
-    * Payments made on the accrued expenses reported on Schedule F
-
-    Derived from EXPN_CD records where FORM_TYPE is 'E' and MEMO_CODE is not
-    blank.
-    """
-    filing_version = models.ForeignKey(
-        'Form460Version',
-        related_name='schedule_e_subitems',
-        null=True,
-        on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the version of the Form 460 that '
-                  'includes the payment made'
-    )
-
-    objects = ProcessedDataManager()
-
-    class Meta:
-        unique_together = ((
-            'filing_version',
-            'line_item',
-        ),)
-        index_together = ((
-            'filing_version',
-            'line_item',
-        ),)
-
-    def __str__(self):
-        return '%s-%s-%s' % (
-            self.filing_version.filing_id,
-            self.filing_version.amend_id,
-            self.line_item
-        )
-
-
-class ScheduleGItemBase(CampaignExpenditureSubItemBase):
-    """
-    Abstract base model for items reported on Schedule G of Form 460.
-    """
-    agent_title = models.CharField(
-        verbose_name='agent title',
-        max_length=10,
-        blank=True,
-        help_text='Name title of the agent (from EXPN_CD.AGENT_NAMT)',
-    )
-    agent_lastname = models.CharField(
-        verbose_name='agent lastname',
-        max_length=200,
-        blank=True,
-        help_text='Last name of the agent or business name (from '
-                  'EXPN_CD.AGENT_NAML)',
-    )
-    agent_firstname = models.CharField(
-        verbose_name='agent firstname',
-        max_length=45,
-        help_text='First name of the agent (from EXPN_CD.AGENT_NAMF)',
-    )
-    agent_name_suffix = models.CharField(
-        verbose_name='agent name suffix',
-        max_length=10,
-        blank=True,
-        help_text='Name suffix of the agent (from EXPN_CD.AGENT_NAMS)',
-    )
-    PARENT_SCHEDULE_CHOICES = (
-        ('E', 'Schedule E: Payments Made'),
-        ('F', 'Schedule F: Accrued Expenses (Unpaid Bills)')
-    )
-    parent_schedule = models.CharField(
-        max_length=1,
-        blank=True,
-        help_text="Indicates which schedule (E or F) includes the parent item "
-                  "(from EXPN_CD.G_FROM_E_F)",
-    )
-
-    class Meta:
-        abstract = True
-
-
-@python_2_unicode_compatible
-class ScheduleGItem(ScheduleGItemBase):
-    """
-    Payments made by on behalf of campaign filers.
-
-    These transactions are itemized on Schedule G of the most recent version
-    to each Form 460 filing. For payments itemized on any version of any Form
-    460 filing, see schedulegitemversion.
-
-    Derived from EXPN_CD records where FORM_TYPE is 'G'.
-    """
-    filing = models.ForeignKey(
-        'Form460',
-        related_name='schedule_g_items',
-        null=True,
-        on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the Form 460 on which the '
-                  'payment was reported (from RCPT_CD.FILING_ID)',
-    )
-
-    objects = ProcessedDataManager()
-
-    class Meta:
-        unique_together = ((
-            'filing',
-            'line_item',
-        ),)
-
-    def __str__(self):
-        return '%s-%s' % (self.filing, self.line_item)
-
-
-@python_2_unicode_compatible
-class ScheduleGItemVersion(ScheduleGItemBase):
-    """
-    Every version of the payments made on behalf of campaign filers.
-
-    For payments itemized on Schedule G of the most recent version of each Form
-    460 filing, see schedulegitem.
-
-    Derived from EXPN_CD records where FORM_TYPE is 'G'.
-    """
-    filing_version = models.ForeignKey(
-        'Form460Version',
-        related_name='schedule_g_items',
-        null=True,
-        on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the version of the Form 460 that '
-                  'includes the payment made'
-    )
-
-    objects = ProcessedDataManager()
-
-    class Meta:
-        unique_together = ((
-            'filing_version',
-            'line_item',
-        ),)
-        index_together = ((
-            'filing_version',
-            'line_item',
-        ),)
-
-    def __str__(self):
-        return '%s-%s-%s' % (
-            self.filing_version.filing_id,
-            self.filing_version.amend_id,
-            self.line_item
-        )
