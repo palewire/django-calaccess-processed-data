@@ -16,9 +16,15 @@ from calaccess_processed.models.campaign.filings import (
 @python_2_unicode_compatible
 class Schedule497Filing(CampaignFinanceFilingBase):
     """
-    The most recent version of each Schedule 497 (Late Contribution Report) 
-    filing by recipient committees.
+    The most recent version of each Schedule 497 filing by campaign filers.
 
+    Form 497 is the Late Contribution Report filed by state and local committees
+    making or receiving contributions totaling $1,000 or more in the 90 days
+    before an election, committees reporting contributions of $5,000 or more in
+    connection with a state ballot measure and state candidates as well as state
+    ballot measure committees that receive $5,000 or more at any time other than
+    a 90-day election cycle.
+    
     Includes information from the cover sheet of the most recent amendment to 
     each filing. All versions of Schedule 497 filings can be found in 
     schedule497version.
@@ -55,8 +61,9 @@ class Schedule497FilingVersion(CampaignFinanceFilingBase):
     Every version of each Schedule 497 (Late Contribution Report) filing by
     recipient committees.
 
-    Includes information found on the cover sheet of each amendment. For the 
-    most recent version of each filing, see schedule497filing.
+    Includes information found on the cover sheet of each version of each
+    Schedule 497 filing. For the most recent version of each filing, see
+    schedule497filing.
     """
     filing = models.ForeignKey(
         'Schedule497Filing',
@@ -92,10 +99,10 @@ class Schedule497FilingVersion(CampaignFinanceFilingBase):
 
 class Schedule497ItemBase(models.Model):
     """
-    Abstract base model for late contributions received or made by campaign filers.
+    Abstract base model for items reported on Schedule 497 filings.
 
-    These transactions are itemized on Schedule 497 filings and stored in the
-    S497_CD table.
+    On Schedule 497, campaign filers are required to report late contributions
+    received or made in the 90 days leading up to an election.
     """
     line_item = models.IntegerField(
         verbose_name='line item',
@@ -144,10 +151,10 @@ class Schedule497ItemBase(models.Model):
 
 class Schedule497Part1ItemBase(Schedule497ItemBase):
     """
-    Abstract base model for late contributions received by campaign filers.
+    Abstract base model for items reported on Part 1 of Schedule 497 filings.
 
-    These transactions are itemized on Part 1 of Schedule 497 filings and
-    stored in the S497_CD table with a FORM_TYPE value of 'F497P1'.
+    On Part 1 of Schedule 497, campaign filers are required to report
+    contributions received in the 90 days leading up to an election.
     """
     CONTRIBUTOR_CODE_CHOICES = (
         ('BNM', 'Ballot measure name/title'),
@@ -245,10 +252,10 @@ class Schedule497Part1Item(Schedule497Part1ItemBase):
     """
     Late contributions received by campaign filers.
 
-    These transactions are itemized on Part 1 of the most recent amendment
+    These transactions are itemized on Part 1 of the most recent version
     to each Schedule 497 filing. For receipts of late contributions itemized
     on any version of any Schedule 497 filing, see 
-    latecontributionreceivedversion.
+    Schedule497Part1ItemVersion.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P1'.
     """
@@ -280,7 +287,7 @@ class Schedule497Part1ItemVersion(Schedule497Part1ItemBase):
     Every version of the late contributions received by campaign filers.
 
     For late contributions itemized on Part 1 of the most recent version of 
-    each Schedule 497 filing, see latecontributionreceived.
+    each Schedule 497 filing, see Schedule497Part1Item.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P1'.
     """
@@ -315,10 +322,10 @@ class Schedule497Part1ItemVersion(Schedule497Part1ItemBase):
 
 class Schedule497Part2ItemBase(Schedule497ItemBase):
     """
-    Abstract base model for late contributions made by campaign filers.
+    Abstract base model for items reported on Part 2 of Schedule 497 filings.
 
-    These transactions are itemized on Part 2 of Schedule 497 filings and
-    stored in the S497_CD table with a FORM_TYPE value of 'F497P2'.
+    On Part 2 of Schedule 497, campaign filers are required to report
+    contributions made in the 90 days leading up to an election.
     """
     RECIPIENT_CODE_CHOICES = (
         ('BNM', 'Ballot measure name/title'),
@@ -505,9 +512,9 @@ class Schedule497Part2Item(Schedule497Part2ItemBase):
     """
     Late contributions made by campaign filers.
 
-    These transactions are itemized on Part 2 of the most recent amendment
+    These transactions are itemized on Part 2 of the most recent version
     to each Schedule 497 filing. For gifts of late contributions itemized on 
-    any version of any Schedule 497 filing, see latecontributionmadeversion.
+    any version of any Schedule 497 filing, see Schedule497Part2ItemVersion.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P2'.
     """
@@ -540,7 +547,7 @@ class Schedule497Part2ItemVersion(Schedule497Part2ItemBase):
     Every version of the late contributions made by campaign filers.
 
     For late contributions itemized on Part 2 of the most recent version of 
-    Schedule 497 filing, see latecontributionmade.
+    Schedule 497 filing, see Schedule497Part2Item.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P2'.
     """
@@ -572,4 +579,3 @@ class Schedule497Part2ItemVersion(Schedule497Part2ItemBase):
             self.filing_version.amend_id,
             self.line_item
         )
-

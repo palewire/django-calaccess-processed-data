@@ -143,12 +143,25 @@ class Form460FilingBase(CampaignFinanceFilingBase):
 @python_2_unicode_compatible
 class Form460Filing(Form460FilingBase):
     """
-    The most recent version of each Form 460 (Campaign Disclosure Statement) 
-    filing by recipient committees.
+    The most recent version of each Form 460 filing by recipient committees.
 
+    Form 460 is the Campaign Disclosure Statement filed by all recipient
+    committees, including:
+    * Candidates, officeholders and their controlled committees
+    * Primarily formed ballot measure committees
+    * Primarily formed candidate/of ceholder committees
+    * General purpose committees
+
+    Recipient committes can use Form 460 to file:
+    * Pre-election statements
+    * Semi-annual statements
+    * Quarterly statements
+    * Termination statements
+    * Special odd-year report
+    
     Includes information from the cover sheet and summary page of the most 
-    recent amendment to each filing. All versions of Form 460 filings can be
-    found in form460version.
+    recent version of each Form 460 filing. All versions of the filings can be
+    found in Form460FilingVersion.
     """
     filing_id = models.IntegerField(
         verbose_name='filing id',
@@ -184,7 +197,8 @@ class Form460FilingVersion(Form460FilingBase):
     recipient committees.
 
     Includes information found on the cover sheet and summary page of each
-    amendment. For the most recent version of each filing, see form460.
+    version of each Form 460 filing. For the most recent version of each filing,
+    see Form460Filing.
     """
     filing = models.ForeignKey(
         'Form460Filing',
@@ -221,10 +235,10 @@ class Form460FilingVersion(Form460FilingBase):
 
 class Form460ScheduleAItemBase(CampaignContributionBase):
     """
-    Abstract base model for monetary contributions received by campaign filers.
+    Abstract base model for items reported on Schedule A of Form 460 filings.
 
-    These transactions are itemized on Schedule A of Form 460 filings and 
-    stored in the RCPT_CD table with a FORM_TYPE value of 'A'.
+    On Schedule A, campaign filers are required to itemize monetary
+    contributions received during the period covered by the filing.
     """
     amount = models.DecimalField(
         verbose_name='amount',
@@ -243,7 +257,7 @@ class Form460ScheduleAItem(Form460ScheduleAItemBase):
     """
     Monetary contributions received by campaign filers.
 
-    These transactions are itemized on Schedule A of the most recent amendment
+    These transactions are itemized on Schedule A of the most recent version
     to each Form 460 filing. For monetary contributions itemized on any version
     of any Form 460 filing, see Form460ScheduleAItemVersion.
 
@@ -314,10 +328,10 @@ class Form460ScheduleAItemVersion(Form460ScheduleAItemBase):
 
 class Form460ScheduleCItemBase(CampaignContributionBase):
     """
-    Abstract base model for nonmonetary contributions received by campaign filers.
+    Abstract base model for items reported on Schedule C of Form 460 filings.
 
-    These transactions are itemized on Schedule C of Form 460 filings and 
-    stored in the RCPT_CD table with a FORM_TYPE value of 'C'.
+    On Schedule C, campaign filers are required to itemize nonmonetary
+    contributions received during the period covered by the filing.
     """
     fair_market_value = models.DecimalField(
         verbose_name='fair market value',
@@ -342,9 +356,9 @@ class Form460ScheduleCItem(Form460ScheduleCItemBase):
     """
     Nonmonetary contributions received by campaign filers.
 
-    These transactions are itemized on Schedule C of the most recent amendment
+    These transactions are itemized on Schedule C of the most recent version
     to each Form 460 filing. For nonmonetary contributions itemized on any 
-    version of any Form 460 filing, see nonmonetarycontributionversion.
+    version of any Form 460 filing, see Form460ScheduleCItemVersion.
 
     Derived from RCPT_CD records where FORM_TYPE is 'C'.
     """
@@ -375,7 +389,7 @@ class Form460ScheduleCItemVersion(Form460ScheduleCItemBase):
     Every version of the nonmonetary contributions received by campaign filers.
 
     For nonmonetary contributions itemized on Schedule C of the most recent
-    version of each Form 460 filing, see nonmonetarycontribution.
+    version of each Form 460 filing, see Form460ScheduleCItem.
 
     Derived from RCPT_CD records where FORM_TYPE is 'C'.
     """
@@ -410,11 +424,11 @@ class Form460ScheduleCItemVersion(Form460ScheduleCItemBase):
 
 class Form460ScheduleDItemBase(CampaignExpenditureItemBase):
     """
-    Abstract base model for items reported on Schedule D of Form 460.
+    Abstract base model for items reported on Schedule D of Form 460 filings.
 
     On Schedule D, campaign filers are required to summarize contributions
     and independent expenditures in support or opposition to other candidates
-    and ballot measures
+    and ballot measures.
     """
     cumulative_election_amount = models.DecimalField(
         decimal_places=2,
@@ -433,12 +447,11 @@ class Form460ScheduleDItemBase(CampaignExpenditureItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleDItem(Form460ScheduleDItemBase):
     """
-    Contribution and expenditures in support or opposition to other candidates
-    and ballot measures.
+    Contributions and expenditures supporting/opposing other candidates and ballot measures.
 
     These transactions are itemized on Schedule D of the most recent version
     to each Form 460 filing. For payments itemized on any version of any Form
-    460 filing, see Form460scheduleditemversion.
+    460 filing, see Form460ScheduleDItemVersion.
 
     Derived from EXPN_CD records where FORM_TYPE is 'D'.
     """
@@ -448,7 +461,7 @@ class Form460ScheduleDItem(Form460ScheduleDItemBase):
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the Form 460 on which the '
-                  'payment was reported (from RCPT_CD.FILING_ID)',
+                  'payment was reported (from EXPN_CD.FILING_ID)',
     )
 
     objects = ProcessedDataManager()
@@ -469,7 +482,7 @@ class Form460ScheduleDItemVersion(Form460ScheduleDItemBase):
     Every version of the payments made on behalf of campaign filers.
 
     For payments itemized on Schedule D of the most recent version of each Form
-    460 filing, see Form460scheduleditem.
+    460 filing, see Form460ScheduleDItem.
 
     Derived from EXPN_CD records where FORM_TYPE is 'D'.
     """
@@ -505,11 +518,11 @@ class Form460ScheduleDItemVersion(Form460ScheduleDItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleEItem(CampaignExpenditureItemBase):
     """
-    Payments made by campaign filers, itemized on Schedule E of Form 460.
+    Payments made by campaign filers, itemized on Form 460 Schedule E.
 
-    These transactions are itemized on the most recent version of each Form 460
-    filing. For payments itemized on any version of any Form 460 filing, see
-    Form460scheduleeitemversion.
+    These transactions are itemized on Schedule E of the most recent version 
+    of each Form 460 filing. For payments itemized on any version of any filing,
+    see Form460ScheduleEItemVersion.
 
     Does not include:
     * Interest paid on loans received
@@ -528,7 +541,7 @@ class Form460ScheduleEItem(CampaignExpenditureItemBase):
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the Form 460 on which the '
-                  'payment was reported (from RCPT_CD.FILING_ID)',
+                  'payment was reported (from EXPN_CD.FILING_ID)',
     )
 
     objects = ProcessedDataManager()
@@ -597,8 +610,8 @@ class Form460ScheduleESubItem(CampaignExpenditureSubItemBase):
     Sub-items of payments made by campaign filers.
 
     These transactions are itemized on Schedule E of the most recent version
-    of each Form 460 filing. For payments sub-itemitemized on any version of
-    any Form 460 filing, see Form460scheduleesubitemversion.
+    of each Form 460 filing. For payments sub-itemized on any version of
+    any Form 460 filing, see Form460ScheduleESubItemVersion.
 
     A sub-item is a transaction where the amount is lumped into another 
     "parent" payment reported elsewhere on the filing.
@@ -620,7 +633,7 @@ class Form460ScheduleESubItem(CampaignExpenditureSubItemBase):
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the Form 460 on which the '
-                  'payment was reported (from RCPT_CD.FILING_ID)',
+                  'payment was reported (from EXPN_CD.FILING_ID)',
     )
 
     objects = ProcessedDataManager()
@@ -917,7 +930,7 @@ class Form460ScheduleFItem(Form460ScheduleFItemBase):
 
     These transactions are itemized on Schedule F of the most recent version
     to each Form 460 filing. For accrued expenses itemized on any version of
-    of any Form 460 filing, see form460schedulefitemversion.
+    of any Form 460 filing, see Form460ScheduleFItemVersion.
 
     Derived from DEBT_CD records.
     """
@@ -948,7 +961,7 @@ class Form460ScheduleFItemVersion(Form460ScheduleFItemBase):
     Every version of the accrued expenses of campaign filers.
 
     For accrued expenses itemized on Schedule F of the most recent version of
-    each Form 460 filing, see form460schedulegitem.
+    each Form 460 filing, see Form460ScheduleGItem.
 
     Derived from DEBT_CD records.
     """
@@ -983,7 +996,11 @@ class Form460ScheduleFItemVersion(Form460ScheduleFItemBase):
 
 class Form460ScheduleGItemBase(CampaignExpenditureSubItemBase):
     """
-    Abstract base model for items reported on Schedule G of Form 460.
+    Abstract base model for items reported on Schedule G of Form 460 filings.
+
+    On Schedule G, campaign filers are required to itemize payments made on 
+    their behalf by agents or contractors during the period covered by the
+    filing.
     """
     agent_title = models.CharField(
         verbose_name='agent title',
@@ -1062,7 +1079,7 @@ class Form460ScheduleGItemVersion(Form460ScheduleGItemBase):
     Every version of the payments made on behalf of campaign filers.
 
     For payments itemized on Schedule G of the most recent version of each Form
-    460 filing, see Form460schedulegitem.
+    460 filing, see Form460ScheduleGitem.
 
     Derived from EXPN_CD records where FORM_TYPE is 'G'.
     """
@@ -1097,13 +1114,12 @@ class Form460ScheduleGItemVersion(Form460ScheduleGItemBase):
 
 class Form460ScheduleIItemBase(CampaignContributionBase):
     """
-    Abstract base model for miscellaneous cash increases for campaign filers.
+    Abstract base model for items reported on Schedule I of Form 460 filings.
 
-    Includes any transaction that increases the cash position of the filer, but
-    is not a monetary contribution, loan, or loan repayment.
-
-    These transactions are itemized on Schedule I of Form 460 filings and 
-    stored in the RCPT_CD table with a FORM_TYPE value of 'I'.
+    On Schedule I, campaign filers are required to report miscellaneous cash
+    increases during the period covered by the filing. These include any 
+    transaction that increases the cash position of the filer, but is not a 
+    monetary contribution, loan, or loan repayment.
     """
     amount = models.DecimalField(
         verbose_name='amount',
@@ -1131,9 +1147,9 @@ class Form460ScheduleIItem(Form460ScheduleIItemBase):
     Includes any transaction that increases the cash position of the filer, but
     is not a monetary contribution, loan, or loan repayment.
 
-    These transactions are itemized on Schedule C of the most recent amendment
+    These transactions are itemized on Schedule I of the most recent amendment
     to each Form 460 filing. For miscellaneous cash increases itemized on any
-    version of any Form 460 filing, see misccashincreaseversion.
+    version of any Form 460 filing, see Form460ScheduleIItemVersion.
 
     Derived from RCPT_CD records where FORM_TYPE is 'I'.
     """
@@ -1169,7 +1185,7 @@ class Form460ScheduleIItemVersion(Form460ScheduleIItemBase):
     is not a monetary contribution, loan, or loan repayment.
 
     For miscellaneous cash increases itemized on Schedule I of the most recent
-    version of each Form 460 filing, see misccashincreaseversion.
+    version of each Form 460 filing, see Form460ScheduleIItem.
 
     Derived from RCPT_CD records where FORM_TYPE is 'I'.
     """
