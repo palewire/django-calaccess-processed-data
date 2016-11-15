@@ -235,6 +235,48 @@ class Form460ScheduleESubItemVersionAdmin(BaseAdmin):
     )
 
 
+@admin.register(models.Form460ScheduleFItem)
+class Form460ScheduleFItemAdmin(BaseAdmin):
+    """
+    Custom admin for the Form460ScheduleFItem model.
+    """
+    list_display = (
+        'filing',
+        'line_item',
+        'payee_code',
+        'payee_lastname',
+        'payee_firstname',
+        'begin_balance',
+        'amount_paid',
+        'amount_incurred',
+        'end_balance',
+        'transaction_id',
+        'parent_transaction_id',
+        'memo_reference_number',
+    )
+
+
+@admin.register(models.Form460ScheduleFItemVersion)
+class Form460ScheduleFItemVersionAdmin(BaseAdmin):
+    """
+    Custom admin for the Form460ScheduleFItemVersion model.
+    """
+    list_display = (
+        'filing_version',
+        'line_item',
+        'payee_code',
+        'payee_lastname',
+        'payee_firstname',
+        'begin_balance',
+        'amount_paid',
+        'amount_incurred',
+        'end_balance',
+        'transaction_id',
+        'parent_transaction_id',
+        'memo_reference_number',
+    )
+
+
 @admin.register(models.Form460ScheduleGItem)
 class Form460ScheduleGItemAdmin(BaseAdmin):
     """
