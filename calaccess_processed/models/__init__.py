@@ -36,11 +36,12 @@ from calaccess_processed.models.campaign.filings.schedule497 import (
     Schedule497Part2ItemVersion,
 )
 from calaccess_processed.models.scraped import (
-    CandidateScrapedElection,
-    PropositionScrapedElection,
-    ScrapedCandidate,
-    ScrapedCommittee,
     ScrapedProposition,
+    PropositionScrapedElection,
+    PropositionScrapedCommittee,
+    ScrapedCandidate,
+    CandidateScrapedElection,
+    CandidateScrapedCommittee,
 )
 from calaccess_processed.models.common import (
     FilerIDValue,
@@ -56,7 +57,6 @@ __all__ = (
     'ProcessedDataFile',
     'Candidate',
     'CandidateCommittee',
-<<<<<<< 5b29d4ab13134108b40b54de85afd96af400e3c8
     'Form460Filing',
     'Form460FilingVersion',
     'Form460ScheduleAItem',
@@ -81,19 +81,12 @@ __all__ = (
     'Schedule497Part1ItemVersion',
     'Schedule497Part2Item',
     'Schedule497Part2ItemVersion',
-=======
-    'F460Filing',
-    'F460FilingVersion',
-<<<<<<< 5c6a68e4889de68c56075856bc0fb534d9e6b297
->>>>>>> reworking candidates scraper
-    'ScrapedElection',
-=======
-    'CandidateScrapedElection',
-    'PropositionScrapedElection',
->>>>>>> reworked scraped models to separate elections from propositions scraper and from candidates scraper. for #13
-    'ScrapedCandidate',
-    'ScrapedCommittee',
     'ScrapedProposition',
+    'PropositionScrapedElection',
+    'PropositionScrapedCommittee',
+    'ScrapedCandidate',
+    'CandidateScrapedElection',
+    'CandidateScrapedCommittee',
     'FilerIDValue',
     'FilingIDValue',
 )

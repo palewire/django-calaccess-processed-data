@@ -3,8 +3,9 @@ import urlparse
 from time import sleep
 from calaccess_processed.management.commands import ScrapeCommand
 from calaccess_processed.models.scraped import (
+    ScrapedCandidate,
     CandidateScrapedElection,
-    ScrapedCandidate
+    CandidateScrapedCommittee,
 )
 
 
@@ -37,7 +38,7 @@ class Command(ScrapeCommand):
         for i, link in enumerate(links):
             # Get each page and its data
             url = urlparse.urljoin(self.base_url, link["href"])
-            data = self.scrape_page(url)
+            data = self.scrape_election_page(url)
             # Add the name of the election
             data['name'] = link.find_next_sibling('span').text.strip()
             # The index value is used to preserve sorting of elections,
@@ -53,7 +54,7 @@ class Command(ScrapeCommand):
 
         return results
 
-    def scrape_page(self, url):
+    def scrape_election_page(self, url):
         """
         Pull the elections and candidates from a CAL-ACCESS page.
         """
@@ -90,9 +91,11 @@ class Command(ScrapeCommand):
                 # Pull the candidates out
                 candidates = []
                 for c in office.findAll('a', {'class': 'sublink2'}):
+                    committees = self.scrape_candidate_page(c['href'])
                     candidates.append({
                         'name': c.text,
-                        'scraped_id': re.match(r'.+id=(\d+)', c['href']).group(1)
+                        'scraped_id': re.match(r'.+id=(\d+)', c['href']).group(1),
+                        'committees': committees
                     })
 
                 for c in office.findAll('span', {'class': 'txt7'}):
@@ -108,6 +111,24 @@ class Command(ScrapeCommand):
             'scraped_id': int(re.match(r'.+electNav=(\d+)', url).group(1)),
             'races': races,
         }
+
+
+    def scrape_candidate_page(self, url):
+        soup = self.get_html(url)
+
+        # Pull the candidate committees
+        committees = []
+
+        for table in soup.findAll('table'):
+            c = table.find('a', {'class': 'sublink6'})
+            if c:
+                committees.append({
+                    'name': c.text,
+                    'scraped_id': re.match(r'.+id=(\d+)', c['href']).group(1)
+                })
+
+        return committees
+
 
     def save(self, results):
         """
@@ -147,3 +168,12 @@ class Command(ScrapeCommand):
 
                     if c and self.verbosity > 2:
                         self.log('Created %s' % candidate_obj)
+
+                    # Create the candidate committees
+                    for committee_data in candidate_data['committees']:
+                        committee_obj, c = CandidateScrapedCommittee.objects.get_or_create(
+                            **committee_data
+                        )
+
+                        if c and self.verbosity > 2:
+                            self.log('Created %s' % committee_obj)
