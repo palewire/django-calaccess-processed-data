@@ -326,6 +326,373 @@ class Form460ScheduleAItemVersion(Form460ScheduleAItemBase):
         )
 
 
+class Form460ScheduleB1ItemBase(models.Model):
+    """
+    Abstract base model for items reported on Schedule B, Part 1, of Form 460.
+
+    On Schedule B, campaign filers are required to report loans received or 
+    outstanding during the period covered by the filing.
+    """
+    line_item = models.IntegerField(
+        verbose_name='line item',
+        help_text="Line number of the filing form where the loan is "
+                  "itemized (from LOAN_CD.LINE_ITEM)",
+    )
+    LENDER_CODE_CHOICES = (
+        ('COM', "Committee"),
+        ('IND', "Individual"),
+        ('OTH', "Other"),
+        ('PTY', "Political Party"),
+        ('RCP', "Recipient committee"),
+        ('SCC', "Small Contributor Committee"),
+        ('???', "Unknown value"),
+    )
+    lender_code = models.CharField(
+        verbose_name='lender code',
+        max_length=3,
+        blank=True,
+        choices=LENDER_CODE_CHOICES,
+        help_text='Code describing the lender (from LOAN_CD.ENTITY_CD)',
+    )
+    lender_committee_id = models.CharField(
+        verbose_name='lender committee id',
+        max_length=9,
+        blank=True,
+        help_text="lender's filer identification number, if it is a "
+                  "committee (from LOAN_CD.CMTE_ID)",
+    )
+    lender_title = models.CharField(
+        verbose_name='lender title',
+        max_length=10,
+        blank=True,
+        help_text="Name title of the lender (from LOAN_CD.LNDR_NAMT)",
+    )
+    lender_lastname = models.CharField(
+        verbose_name='lender lastname',
+        max_length=200,
+        blank=True,
+        help_text="Last name of the lender or business name (from LOAN_CD."
+                  "LNDR_NAML)",
+    )
+    lender_firstname = models.CharField(
+        verbose_name='lender firstname',
+        max_length=45,
+        blank=True,
+        help_text="First name of the lender (from LOAN_CD.LNDR_NAMF)",
+    )
+    lender_name_suffix = models.CharField(
+        verbose_name='lender name suffix',
+        max_length=10,
+        blank=True,
+        help_text="Name suffix of the lender (from LOAN_CD.LNDR_NAMS)",
+    )
+    lender_city = models.CharField(
+        verbose_name='lender city',
+        max_length=30,
+        blank=True,
+        help_text='City of the lender (from LOAN_CD.LOAN_CITY)',
+    )
+    lender_state = models.CharField(
+        verbose_name='lender state',
+        max_length=2,
+        blank=True,
+        help_text='State of the lender (from LOAN_CD.LOAN_ST)',
+    )
+    lender_zip = models.CharField(
+        verbose_name='lender zip',
+        max_length=10,
+        blank=True,
+        help_text='Zip code (usually zip5, sometimes zip9) of the '
+                  'lender (from LOAN_CD.LOAN_ZIP4)',
+    )
+    lender_employer = models.CharField(
+        verbose_name='lender employer',
+        max_length=200,
+        blank=True,
+        help_text='Employer of the lender (from LOAN_CD.LOAN_EMP)',
+    )
+    lender_occupation = models.CharField(
+        verbose_name='lender occupation',
+        max_length=60,
+        blank=True,
+        help_text='Occupation of the lender (from LOAN_CD.LOAN_OCC)',
+    )
+    lender_is_self_employed = models.BooleanField(
+        verbose_name='lender is self employed',
+        default=False,
+        help_text='Indicates whether or not the lender is self-employed'
+                  '(from LOAN_CD.LOAN_SELF)',
+    )
+    treasurer_title = models.CharField(
+        verbose_name='treasurer title',
+        max_length=10,
+        blank=True,
+        help_text="Name title of the lender committee's treasurer (from "
+                  "LOAN_CD.TRES_NAMT)",
+    )
+    treasurer_lastname = models.CharField(
+        verbose_name='treasurer lastname',
+        max_length=200,
+        blank=True,
+        help_text="Last name of the lender committee's treasurer (from "
+                  "LOAN_CD.TRES_NAML)",
+    )
+    treasurer_firstname = models.CharField(
+        verbose_name='treasurer firstname',
+        max_length=45,
+        help_text="First name of the lender committee's treasurer (from "
+                  "LOAN_CD.TRES_NAMF)",
+    )
+    treasurer_name_suffix = models.CharField(
+        verbose_name='treasurer name suffix',
+        max_length=10,
+        blank=True,
+        help_text="Name suffix of the lender committee's treasurer (from "
+                  "LOAN_CD.TRES_NAMS)",
+    )
+    treasurer_city = models.CharField(
+        verbose_name='treasurer city',
+        max_length=30,
+        blank=True,
+        help_text="City of the lender committee's treasurer (from LOAN_CD."
+                  "TRES_CITY)",
+    )
+    treasurer_state = models.CharField(
+        verbose_name='treasurer state',
+        max_length=2,
+        blank=True,
+        help_text="State of the lender committee's treasurer (from LOAN_CD."
+                  "TRES_ST)",
+    )
+    treasurer_zip = models.CharField(
+        verbose_name='treasurer zip',
+        max_length=10,
+        blank=True,
+        help_text="Zip code (usually zip5, sometimes zip9) of the lender "
+                  "committee's treasurer (from LOAN_CD.TRES_ZIP4)",
+    )
+    intermediary_title = models.CharField(
+        verbose_name='intermediary title',
+        max_length=10,
+        blank=True,
+        help_text='Name title of the intermediary (from LOAN_CD.INTR_NAMT)',
+    )
+    intermediary_lastname = models.CharField(
+        verbose_name='intermediary lastname',
+        max_length=200,
+        blank=True,
+        help_text='Last name of the intermediary or business name (from '
+                  'LOAN_CD.INTR_NAML)',
+    )
+    intermediary_firstname = models.CharField(
+        verbose_name='intermediary firstname',
+        max_length=45,
+        help_text='First name of the intermediary (from LOAN_CD.INTR_NAMF)',
+    )
+    intermediary_name_suffix = models.CharField(
+        verbose_name='intermediary name suffix',
+        max_length=10,
+        blank=True,
+        help_text='Name suffix of the intermediary (from LOAN_CD.INTR_NAMS)',
+    )
+    intermediary_city = models.CharField(
+        verbose_name='intermediary city',
+        max_length=30,
+        blank=True,
+        help_text='City of the intermediary (from LOAN_CD.INTR_CITY)',
+    )
+    intermediary_state = models.CharField(
+        verbose_name='intermediary state',
+        max_length=2,
+        blank=True,
+        help_text='State of the intermediary (from LOAN_CD.INTR_ST)',
+    )
+    intermediary_zip = models.CharField(
+        verbose_name='intermediary zip',
+        max_length=10,
+        blank=True,
+        help_text='Zip code (usually zip5, sometimes zip9) of the '
+                  'intermediary (from LOAN_CD.INTR_ZIP4)',
+    )
+    is_guarantor = models.BooleanField(
+        verbose_name='is guarantor',
+        default=False,
+        help_text="Indicates if the lender is guarantor for the line or line "
+                  "of credit. Until 2001, loans listed on Schedule B Part 1 of"
+                  " Form 460 were coded as orginator from a \"Lender\" or "
+                  "\"Guarantor\". However, this field is blank for records "
+                  "dated after 2001 (from LOAN_CD.LOAN_TYPE)."
+    )
+    begin_period_balance = models.DecimalField(
+        verbose_name='beginning period balance',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Outstanding balance of the loan at the beginning of the"
+                  "period covered by the filing (from LOAN_CD.LOAN_AMT4)"
+    )
+    amount_received = models.DecimalField(
+        verbose_name='amount received',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Amount received during the period covered by the filing "
+                  "(from LOAN_CD.LOAN_AMT1)"
+    )
+    amount_paid = models.DecimalField(
+        verbose_name='amount paid',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Amount paid back during the period covered by the filing "
+                  "(from LOAN_CD.LOAN_AMT5)"
+    )
+    amount_forgiven = models.DecimalField(
+        verbose_name='amount forgiven',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Amount forgiven by the lender during the period covered by "
+                  "the filing (from LOAN_CD.LOAN_AMT6)"
+    )
+    end_period_balance = models.DecimalField(
+        verbose_name='end period balance',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Outstanding balance of the loan at the end of the period "
+                  "covered by the filing (from LOAN_CD.LOAN_AMT2)"
+    )
+    date_due = models.DateField(
+        verbose_name='date due',
+        null=True,
+        help_text="Date that the loan is due (from LOAN_CD.LOAN_DATE2)"
+    )
+    interest_paid = models.DecimalField(
+        verbose_name='interest paid',
+        decimal_places=2,
+        max_digits=14,
+        help_text="(from LOAN_CD.LOAN_AMT7)"
+    )
+    interest_rate = models.CharField(
+        verbose_name='interest rate',
+        max_length=30,
+        blank=True,
+        help_text='Interest rate of the loan. This is sometimes expressed as a '
+                  'decimal (e.g., 0.10) and other times as a percent (e.g., '
+                  '10.0% (from LOAN_CD.LOAN_RATE)'
+    )
+    original_amount = models.DecimalField(
+        verbose_name='original amount',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Original amount loaned by the lender to the campaign filer "
+                  "(from LOAN_CD.LOAN_AMT8)"
+    )
+    date_incurred = models.DateField(
+        verbose_name='',
+        null=True,
+        help_text="Date the loan was made or received (from LOAN_CD.LOAN_DATE1)"
+    )
+    cumulative_ytd_contributions = models.DecimalField(
+        verbose_name='cumulative year-to-date contributions',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Cumulative amount of contributions (loans, monetary and "
+                  "nonmonetary contributions) received from the lender during "
+                  "the calendar year covered by this statement (from LOAN_CD."
+                  "LOAN_AMT3)"
+    )
+    transaction_id = models.CharField(
+        verbose_name='transaction id',
+        max_length=20,
+        help_text='Identifies a unique transaction across versions of the a '
+                  'given Form 460 filing (from LOAN_CD.TRAN_ID)',
+    )
+    memo_reference_number = models.CharField(
+        verbose_name='memo reference number',
+        max_length=20,
+        blank=True,
+        help_text="A value assigned by the filer which refers to the item's" 
+                  "footnote in the TEXT_MEMO_CD table (from LOAN_CD."
+                  "MEMO_REFNO)",
+    )
+    memo_code = models.BooleanField(
+        verbose_name='memo_code',
+        default=False,
+        help_text="Memo amount flag (from LOAN_CD.MEMO_CODE)"
+    )
+
+    class Meta:
+        abstract = True
+
+
+@python_2_unicode_compatible
+class Form460ScheduleB1Item(Form460ScheduleB1ItemBase):
+    """
+    Outstanding loans received by campaign filers.
+
+    These transactions are itemized on Schedule B, Part 1, of the most recent
+    version to each Form 460 filing. For nonmonetary contributions itemized on
+    any version of any Form 460 filing, see Form460ScheduleB1ItemVersion.
+
+    Derived from LOAN_CD records where FORM_TYPE is 'B1'.
+    """
+    filing = models.ForeignKey(
+        'Form460Filing',
+        related_name='schedule_b1_items',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the Form 460 on which the loan '
+                  'was reported (from LOAN_CD.FILING_ID)',
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        unique_together = ((
+            'filing',
+            'line_item',
+        ),)
+
+    def __str__(self):
+        return '%s-%s' % (self.filing, self.line_item)
+
+
+@python_2_unicode_compatible
+class Form460ScheduleB1ItemVersion(Form460ScheduleB1ItemBase):
+    """
+    Every version of the outstanding loans received by campaign filers.
+
+    For outstanding loans itemized on Schedule B, Part 1, of the most recent
+    version of each Form 460 filing, see Form460ScheduleB1Item.
+
+    Derived from LOAN_CD records where FORM_TYPE is 'B1'.
+    """
+    filing_version = models.ForeignKey(
+        'Form460FilingVersion',
+        related_name='schedule_b1_items',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the version of the Form 460 that '
+                  'includes the outstanding loan'
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        unique_together = ((
+            'filing_version',
+            'line_item',
+        ),)
+        index_together = ((
+            'filing_version',
+            'line_item',
+        ),)
+
+    def __str__(self):
+        return '%s-%s-%s' % (
+            self.filing_version.filing_id,
+            self.filing_version.amend_id,
+            self.line_item
+        )
+
+
 class Form460ScheduleCItemBase(CampaignContributionBase):
     """
     Abstract base model for items reported on Schedule C of Form 460 filings.
