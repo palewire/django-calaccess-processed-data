@@ -122,7 +122,7 @@ class CampaignContributionBase(models.Model):
         help_text='Code describing the contributor (from RCPT_CD.ENTITY_CD)',
     )
     contributor_committee_id = models.CharField(
-        verbose_name='committee id',
+        verbose_name='contributor committee id',
         max_length=9,
         blank=True,
         help_text="Contributor's filer identification number, if it is a "
@@ -310,7 +310,7 @@ class CampaignExpenditureItemBase(models.Model):
         help_text='Code describing the payee (from EXPN_CD.ENTITY_CD)',
     )
     payee_committee_id = models.CharField(
-        verbose_name='committee id',
+        verbose_name='payee committee id',
         max_length=9,
         blank=True,
         help_text="Payee's filer identification number, if it is a "
@@ -524,14 +524,14 @@ class CampaignExpenditureItemBase(models.Model):
         max_length=10,
         blank=True,
         help_text="If the payment went toward supporting/opposing a candidate,"
-                  "name title of the candidate (from EXPN_CD.CAND_NAMT)",
+                  " name title of the candidate (from EXPN_CD.CAND_NAMT)",
     )
     candidate_lastname = models.CharField(
         verbose_name='candidate lastname',
         max_length=200,
         blank=True,
         help_text="If the payment went toward supporting/opposing a candidate,"
-                  "last name of the candidate or business name (from EXPN_CD."
+                  " last name of the candidate or business name (from EXPN_CD."
                   "CAND_NAML)",
     )
     candidate_firstname = models.CharField(
@@ -539,14 +539,14 @@ class CampaignExpenditureItemBase(models.Model):
         max_length=45,
         blank=True,
         help_text="If the payment went toward supporting/opposing a candidate,"
-                  "first name of the candidate (from EXPN_CD.CAND_NAMF)",
+                  " first name of the candidate (from EXPN_CD.CAND_NAMF)",
     )
     candidate_name_suffix = models.CharField(
         verbose_name='candidate name suffix',
         max_length=10,
         blank=True,
         help_text="If the payment went toward supporting/opposing a candidate,"
-                  "Name suffix of the candidate (from EXPN_CD.CAND_NAMS)",
+                  " name suffix of the candidate (from EXPN_CD.CAND_NAMS)",
     )
     JURISDICTION_CODE_CHOICES = (
         ('ASM', 'Assembly District'),
@@ -682,3 +682,4 @@ class CampaignExpenditureSubItemBase(CampaignExpenditureItemBase):
 
     class Meta:
         abstract = True
+
