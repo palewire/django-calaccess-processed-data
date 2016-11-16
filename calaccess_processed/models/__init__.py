@@ -6,6 +6,10 @@ Import all of the models from submodules and thread them together.
 from calaccess_processed.models.campaign.entities import (
     Candidate,
     CandidateCommittee,
+    Election
+)
+from calaccess_processed.models.campaign.propositions import (
+    Proposition
 )
 from calaccess_processed.models.campaign.filings.form460 import (
     Form460Filing,
@@ -38,10 +42,10 @@ from calaccess_processed.models.campaign.filings.schedule497 import (
 from calaccess_processed.models.scraped import (
     ScrapedProposition,
     PropositionScrapedElection,
-    PropositionScrapedCommittee,
+    ScrapedPropositionCommittee,
     ScrapedCandidate,
     CandidateScrapedElection,
-    CandidateScrapedCommittee,
+    ScrapedCandidateCommittee,
 )
 from calaccess_processed.models.common import (
     FilerIDValue,
@@ -83,10 +87,12 @@ __all__ = (
     'Schedule497Part2ItemVersion',
     'ScrapedProposition',
     'PropositionScrapedElection',
-    'PropositionScrapedCommittee',
+    'ScrapedPropositionCommittee',
     'ScrapedCandidate',
     'CandidateScrapedElection',
-    'CandidateScrapedCommittee',
+    'ScrapedCandidateCommittee',
     'FilerIDValue',
     'FilingIDValue',
+    'Election',
+    'Proposition',
 )

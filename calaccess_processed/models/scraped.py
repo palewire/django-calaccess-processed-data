@@ -118,7 +118,7 @@ class BaseScrapedCommittee(BaseScrapedModel):
 
 
 @python_2_unicode_compatible
-class PropositionScrapedCommittee(BaseScrapedCommittee):
+class ScrapedPropositionCommittee(BaseScrapedCommittee):
     """
     A committee supporting or opposing a proposition scraped from the
     California Secretary of State's site.
@@ -134,7 +134,7 @@ class PropositionScrapedCommittee(BaseScrapedCommittee):
 
 
 @python_2_unicode_compatible
-class CandidateScrapedCommittee(BaseScrapedCommittee):
+class ScrapedCandidateCommittee(BaseScrapedCommittee):
     """
     A candidate committee scraped from the
     California Secretary of State's site.

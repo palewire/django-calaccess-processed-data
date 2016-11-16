@@ -101,7 +101,8 @@ class Command(ScrapeCommand):
                 for c in office.findAll('span', {'class': 'txt7'}):
                     candidates.append({
                         'name': c.text,
-                        'scraped_id':  ''
+                        'scraped_id':  '',
+                        'committees': None
                     })
 
                 # Add it to the data dictionary
@@ -156,24 +157,24 @@ class Command(ScrapeCommand):
                 # Loop through each of the candidates
                 for candidate_data in candidates:
 
-                    # Add the office information to the candidate data dict
-                    candidate_data['office_name'] = office_name
-                    # Add the election object to the candidate data dict
-                    candidate_data['election'] = election_obj
-
                     # Create the candidate object
                     candidate_obj, c = ScrapedCandidate.objects.get_or_create(
-                        **candidate_data
+                        name=candidate_data['name'],
+                        scraped_id=candidate_data['scraped_id'],
+                        office_name=office_name,
+                        election=election_obj
                     )
 
                     if c and self.verbosity > 2:
                         self.log('Created %s' % candidate_obj)
 
-                    # Create the candidate committees
-                    for committee_data in candidate_data['committees']:
-                        committee_obj, c = CandidateScrapedCommittee.objects.get_or_create(
-                            **committee_data
-                        )
+                    # Create the candidate committees (if they were scraped)
+                    if candidate_data['committees']:
+                        for committee_data in candidate_data['committees']:
+                            committee_data['candidate'] = candidate_obj
+                            committee_obj, c = CandidateScrapedCommittee.objects.get_or_create(
+                                **committee_data
+                            )
 
-                        if c and self.verbosity > 2:
-                            self.log('Created %s' % committee_obj)
+                            if c and self.verbosity > 2:
+                                self.log('Created %s' % committee_obj)

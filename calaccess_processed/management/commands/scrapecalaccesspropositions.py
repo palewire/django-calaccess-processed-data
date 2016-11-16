@@ -8,7 +8,7 @@ from calaccess_processed.management.commands import ScrapeCommand
 from calaccess_processed.models.scraped import (
     PropositionScrapedElection,
     ScrapedProposition,
-    ScrapedCommittee
+    ScrapedPropositionCommittee,
 )
 
 
@@ -19,7 +19,7 @@ class Command(ScrapeCommand):
     help = "Scrape links between filers and propositions from the official CAL-ACCESS site."
 
     def flush(self):
-        ScrapedCommittee.objects.all().delete()
+        ScrapedPropositionCommittee.objects.all().delete()
         ScrapedProposition.objects.all().delete()
         PropositionScrapedElection.objects.all().delete()
 
@@ -173,7 +173,7 @@ class Command(ScrapeCommand):
                     for committee in prop_data['committees']:
 
                         # Get or create it
-                        committee_obj, c = ScrapedCommittee.objects.get_or_create(
+                        committee_obj, c = ScrapedPropositionCommittee.objects.get_or_create(
                             name=committee['name'],
                             scraped_id=committee['id'],
                             position=committee['position'],
