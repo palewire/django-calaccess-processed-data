@@ -64,8 +64,13 @@ class ScrapedPropositionAdmin(BaseAdmin):
     )
 
 
+<<<<<<< HEAD
 @admin.register(models.ScrapedPropositionCommittee)
 class ScrapedPropositionCommitteeAdmin(BaseAdmin):
+=======
+@admin.register(models.ScrapedCommittee)
+class ScrapedCommitteeAdmin(BaseAdmin):
+>>>>>>> 18e88a8780beae17b8a7adb1795e5b9eb2d94c1f
     list_display = (
         "scraped_id",
         "name",

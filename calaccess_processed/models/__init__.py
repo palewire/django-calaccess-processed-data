@@ -47,6 +47,13 @@ from calaccess_processed.models.scraped import (
     CandidateScrapedElection,
     ScrapedCandidateCommittee,
 )
+from calaccess_processed.models.scraped import (
+    CandidateScrapedElection,
+    PropositionScrapedElection,
+    ScrapedCandidate,
+    ScrapedCommittee,
+    ScrapedProposition,
+)
 from calaccess_processed.models.common import (
     FilerIDValue,
     FilingIDValue,
@@ -57,10 +64,9 @@ from calaccess_processed.models.tracking import (
 )
 
 __all__ = (
-    'ProcessedDataVersion',
-    'ProcessedDataFile',
     'Candidate',
     'CandidateCommittee',
+<<<<<<< HEAD
     'Form460Filing',
     'Form460FilingVersion',
     'Form460ScheduleAItem',
@@ -95,4 +101,17 @@ __all__ = (
     'FilingIDValue',
     'Election',
     'Proposition',
+=======
+    'F460Filing',
+    'F460FilingVersion',
+    'CandidateScrapedElection',
+    'PropositionScrapedElection',
+    'ScrapedCandidate',
+    'ScrapedCommittee',
+    'ScrapedProposition',
+    'FilerIDValue',
+    'FilingIDValue',
+    'ProcessedDataVersion',
+    'ProcessedDataFile',
+>>>>>>> 18e88a8780beae17b8a7adb1795e5b9eb2d94c1f
 )

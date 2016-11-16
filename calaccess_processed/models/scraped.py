@@ -106,6 +106,7 @@ class ScrapedProposition(BaseScrapedModel):
         return 'Proposition: {}'.format(self.name)
 
 
+<<<<<<< HEAD
 class BaseScrapedCommittee(BaseScrapedModel):
     name = models.CharField(max_length=500)
     scraped_id = models.CharField(
@@ -119,11 +120,23 @@ class BaseScrapedCommittee(BaseScrapedModel):
 
 @python_2_unicode_compatible
 class ScrapedPropositionCommittee(BaseScrapedCommittee):
+=======
+@python_2_unicode_compatible
+class ScrapedCommittee(BaseScrapedModel):
+>>>>>>> 18e88a8780beae17b8a7adb1795e5b9eb2d94c1f
     """
     A committee supporting or opposing a proposition scraped from the
     California Secretary of State's site.
     """
     proposition = models.ForeignKey('ScrapedProposition')
+<<<<<<< HEAD
+=======
+    name = models.CharField(max_length=500)
+    scraped_id = models.CharField(
+        verbose_name="committee identification number",
+        max_length=7
+    )
+>>>>>>> 18e88a8780beae17b8a7adb1795e5b9eb2d94c1f
     position = models.CharField(
         max_length=100,
         help_text="Whether the committee supports or opposes the proposition",
@@ -131,6 +144,7 @@ class ScrapedPropositionCommittee(BaseScrapedCommittee):
 
     def __str__(self):
         return self.name
+<<<<<<< HEAD
 
 
 @python_2_unicode_compatible
@@ -146,3 +160,5 @@ class ScrapedCandidateCommittee(BaseScrapedCommittee):
 
     def __str__(self):
         return self.name
+=======
+>>>>>>> 18e88a8780beae17b8a7adb1795e5b9eb2d94c1f
