@@ -268,7 +268,7 @@ class Form460ScheduleAItem(Form460ScheduleAItemBase):
     """
     filing = models.ForeignKey(
         'Form460Filing',
-        related_name='itemized_monetary_contributions',
+        related_name='schedule_a_items',
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the Form 460 on which the monetary'
@@ -299,7 +299,7 @@ class Form460ScheduleAItemVersion(Form460ScheduleAItemBase):
     """
     filing_version = models.ForeignKey(
         'Form460FilingVersion',
-        related_name='itemized_monetary_contributions',
+        related_name='schedule_a_items',
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the version of the Form 460 that '
@@ -731,7 +731,7 @@ class Form460ScheduleCItem(Form460ScheduleCItemBase):
     """
     filing = models.ForeignKey(
         'Form460Filing',
-        related_name='itemized_nonmonetary_contributions',
+        related_name='schedule_c_items',
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the Form 460 on which the monetary'
@@ -762,7 +762,7 @@ class Form460ScheduleCItemVersion(Form460ScheduleCItemBase):
     """
     filing_version = models.ForeignKey(
         'Form460FilingVersion',
-        related_name='itemized_nonmonetary_contributions',
+        related_name='schedule_c_items',
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the version of the Form 460 that '
@@ -1522,7 +1522,7 @@ class Form460ScheduleIItem(Form460ScheduleIItemBase):
     """
     filing = models.ForeignKey(
         'Form460Filing',
-        related_name='misc_cash_increases',
+        related_name='schedule_i_items',
         null=True,
         on_delete=models.SET_NULL,
         db_constraint=False,
@@ -1558,7 +1558,7 @@ class Form460ScheduleIItemVersion(Form460ScheduleIItemBase):
     """
     filing_version = models.ForeignKey(
         'Form460FilingVersion',
-        related_name='misc_cash_increases',
+        related_name='schedule_i_items',
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the version of the Form 460 that '
