@@ -612,11 +612,6 @@ class Form460ScheduleB1ItemBase(models.Model):
                   "footnote in the TEXT_MEMO_CD table (from LOAN_CD."
                   "MEMO_REFNO)",
     )
-    memo_code = models.BooleanField(
-        verbose_name='memo_code',
-        default=False,
-        help_text="Memo amount flag (from LOAN_CD.MEMO_CODE)"
-    )
 
     class Meta:
         abstract = True
