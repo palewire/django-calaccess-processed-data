@@ -17,6 +17,6 @@ sh:
 	python example/manage.py shell
 
 test:
-	flake8 calaccess_raw
+	flake8 calaccess_processed
 	coverage run example/manage.py test calaccess_processed
 	coverage report -m
