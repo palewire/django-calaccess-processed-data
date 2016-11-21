@@ -1,6 +1,6 @@
 # The app
 django-calaccess-raw-data
-Django
+Django>=1.8
 hurry.filesize
 pytz
 
@@ -16,3 +16,4 @@ python-coveralls
 
 # Packaging
 wheel
+twine

@@ -1,24 +1,46 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Helper utilities for the model's in this application.
+"""
 from django.db import models
+from collections import OrderedDict
 from django.template.defaultfilters import title
-from collections import OrderedDict as SortedDict
 
 
 class BaseModel(models.Model):
-
+    """
+    A base class for all models.
+    """
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
     def meta(self):
+        """
+        Return's the model's _meta options.
+        """
         return self._meta
 
     def klass(self):
+        """
+        Return the model's class constructor.
+        """
         return self.__class__
 
     def doc(self):
+        """
+        Returns the model's docstring.
+        """
         return self.__doc__
 
     def to_dict(self):
-        d = SortedDict({})
+        """
+        Returns the model object as a vanilla Python dictionary.
+        """
+        d = OrderedDict({})
         for f in self._meta.fields:
             d[f.verbose_name] = getattr(self, f.name)
         return d
@@ -29,6 +51,9 @@ class AllCapsNameMixin(BaseModel):
     Abstract model with name cleaners we can reuse across models.
     """
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
     def __unicode__(self):
@@ -36,6 +61,9 @@ class AllCapsNameMixin(BaseModel):
 
     @property
     def short_name(self, character_limit=60):
+        """
+        A trimmed version of the clean name.
+        """
         if len(self.clean_name) > character_limit:
             return self.clean_name[:character_limit] + "..."
         return self.clean_name
@@ -43,8 +71,7 @@ class AllCapsNameMixin(BaseModel):
     @property
     def clean_name(self):
         """
-        A cleaned up version of the ALL CAPS names that are provided by
-        the source data.
+        A cleaned up version of ALL CAPS names provided by the source data.
         """
         n = self.name
         n = n.strip()
