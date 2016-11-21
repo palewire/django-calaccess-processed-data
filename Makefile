@@ -1,22 +1,8 @@
 
-.PHONY: bootstrap docs reload rs runserver shell test
-
-bootstrap:
-	mysqladmin -h localhost -u root -pmysql drop campaign_finance
-	mysqladmin -h localhost -u root -pmysql create campaign_finance
-	python example/manage.py syncdb
-	python example/manage.py build_campaign_finance
-	python example/manage.py collectstatic --noinput
-	python example/manage.py runserver
+.PHONY: docs rs runserver shell sh test
 
 docs:
 	cd docs && make livehtml
-
-reload:
-	clear
-	python example/manage.py dropcalaccesscampaignbrowser
-	python example/manage.py migrate --noinput
-	python example/manage.py loadcalaccesscampaignfilers
 
 rs:
 	python example/manage.py runserver
@@ -28,20 +14,9 @@ shell:
 	python example/manage.py shell
 
 sh:
-	python example/manage.py shell_plus
+	python example/manage.py shell
 
 test:
 	flake8 calaccess_raw
-	coverage run example/manage.py test calaccess_raw
+	coverage run example/manage.py test calaccess_processed
 	coverage report -m
-
-downloaddb:
-	echo "Downloading database archive"
-	curl -O https://dl.dropboxusercontent.com/u/3640647/nicar15/ccdc.sql.gz
-	echo "Creating local database named 'calaccess'"
-	mysqladmin -h localhost -u root -p create calaccess
-	echo "Installing database archive to local database"
-	gunzip < ccdc.sql.gz | mysql calaccess -u root -p
-	echo "Deleting database archive"
-	rm ccdc.sql.gz
-	echo "Success!"
