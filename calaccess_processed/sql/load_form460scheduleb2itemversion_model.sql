@@ -87,4 +87,6 @@ FROM "LOAN_CD" loan
 JOIN calaccess_processed_form460filingversion filing_version
 ON loan."FILING_ID" = filing_version.filing_id
 AND loan."AMEND_ID" = filing_version.amend_id
-WHERE loan."FORM_TYPE" = 'B2';
+WHERE loan."FORM_TYPE" = 'B2'
+AND loan."LOAN_TYPE" = ''
+AND loan."LOAN_DATE1" >= '2000-12-22';
