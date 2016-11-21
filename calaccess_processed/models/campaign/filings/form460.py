@@ -524,7 +524,7 @@ class Form460ScheduleB2ItemBase(CampaignLoanItemBase):
         help_text="Cumulative amount guaranteed during the calendar year "
                   "covered by the statement (from LOAN_CD.LOAN_AMT3)"
     )
-    date = models.DateField(
+    loan_date = models.DateField(
         verbose_name='date',
         null=True,
         help_text="Date of the loan or date the line of credit was established"
