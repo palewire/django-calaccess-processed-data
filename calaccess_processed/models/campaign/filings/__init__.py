@@ -889,4 +889,3 @@ class CampaignLoanItemBase(models.Model):
 
     class Meta:
         abstract = True
-
