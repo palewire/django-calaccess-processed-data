@@ -19,6 +19,8 @@ from calaccess_processed.admin.campaign.filings.form460 import (
     Form460ScheduleAItemVersionAdmin,
     Form460ScheduleB1ItemAdmin,
     Form460ScheduleB1ItemVersionAdmin,
+    Form460ScheduleB2ItemAdmin,
+    Form460ScheduleB2ItemVersionAdmin,
     Form460ScheduleCItemAdmin,
     Form460ScheduleCItemVersionAdmin,
     Form460ScheduleDItemAdmin,
@@ -62,6 +64,8 @@ __all__ = (
     'Form460ScheduleAItemVersionAdmin',
     'Form460ScheduleB1ItemAdmin',
     'Form460ScheduleB1ItemVersionAdmin',
+    'Form460ScheduleB2ItemAdmin',
+    'Form460ScheduleB2ItemVersionAdmin',
     'Form460ScheduleCItemAdmin',
     'Form460ScheduleCItemVersionAdmin',
     'Form460ScheduleAItemAdmin'
