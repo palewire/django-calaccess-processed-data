@@ -4,8 +4,8 @@
 Helper utilities for the model's in this application.
 """
 from django.db import models
+from collections import OrderedDict
 from django.template.defaultfilters import title
-from collections import OrderedDict as SortedDict
 
 
 class BaseModel(models.Model):
@@ -40,7 +40,7 @@ class BaseModel(models.Model):
         """
         Returns the model object as a vanilla Python dictionary.
         """
-        d = SortedDict({})
+        d = OrderedDict({})
         for f in self._meta.fields:
             d[f.verbose_name] = getattr(self, f.name)
         return d
