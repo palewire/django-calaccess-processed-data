@@ -22,6 +22,8 @@ def get_models_to_process():
         campaign.filings.form460.Form460ScheduleAItem,
         campaign.filings.form460.Form460ScheduleB1ItemVersion,
         campaign.filings.form460.Form460ScheduleB1Item,
+        campaign.filings.form460.Form460ScheduleB2ItemVersion,
+        campaign.filings.form460.Form460ScheduleB2Item,
         campaign.filings.form460.Form460ScheduleCItemVersion,
         campaign.filings.form460.Form460ScheduleCItem,
         campaign.filings.form460.Form460ScheduleDItemVersion,
