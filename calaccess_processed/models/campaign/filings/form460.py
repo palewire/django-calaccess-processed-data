@@ -259,11 +259,11 @@ class Form460ScheduleAItem(Form460ScheduleAItemBase):
     Monetary contributions received by campaign filers.
 
     These transactions are itemized on Schedule A of the most recent version
-    to each Form 460 filing. For monetary contributions itemized on any version
+    of each Form 460 filing. For monetary contributions itemized on any version
     of any Form 460 filing, see Form460ScheduleAItemVersion.
 
     Also includes contributions transferred to special election commitees,
-    formerly itemized on Schedule A-1. 
+    which were itemized on Schedule A-1 until around 2001. 
 
     Derived from RCPT_CD records where FORM_TYPE is 'A' or 'A-1'.
     """
@@ -291,7 +291,7 @@ class Form460ScheduleAItem(Form460ScheduleAItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleAItemVersion(Form460ScheduleAItemBase):
     """
-    Every version of the monetary contributions received by campaign filers.
+    Every version of each monetary contribution received by a campaign filer.
 
     For monetary contributions itemized on Schedule A of the most recent
     version of each Form 460 filing, see Form460ScheduleAItem.
@@ -337,9 +337,9 @@ class Form460ScheduleB1ItemBase(CampaignLoanItemBase):
     is_guarantor = models.BooleanField(
         verbose_name='is guarantor',
         default=False,
-        help_text="Indicates if the lender is guarantor for the line or line "
-                  "of credit. Until 2001, loans listed on Schedule B Part 1 of"
-                  " Form 460 were coded as orginator from a \"Lender\" or "
+        help_text="Indicates if the lender is guarantor for a line or line of "
+                  "credit. Until 2001, loans listed on Schedule B, Part 1, of "
+                  "Form 460 were coded as originating from a \"Lender\" or "
                   "\"Guarantor\". However, this field is blank for records "
                   "dated after 2001 (from LOAN_CD.LOAN_TYPE)."
     )
@@ -429,7 +429,7 @@ class Form460ScheduleB1Item(Form460ScheduleB1ItemBase):
     Loans received and loan payments by campaign filers.
 
     These transactions are itemized on Schedule B, Part 1, of the most recent
-    version to each Form 460 filing. For loans itemized on any version of any
+    version of each Form 460 filing. For loans itemized on any version of any
     Form 460 filing, see Form460ScheduleB1ItemVersion.
 
     Derived from LOAN_CD records where FORM_TYPE is 'B1'.
@@ -458,7 +458,7 @@ class Form460ScheduleB1Item(Form460ScheduleB1ItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleB1ItemVersion(Form460ScheduleB1ItemBase):
     """
-    Every version of each loan received or loan payment made by campaign filers.
+    Every version of each loan received or loan payment made by a campaign filer.
 
     For outstanding loans itemized on Schedule B, Part 1, of the most recent
     version of each Form 460 filing, see Form460ScheduleB1Item.
@@ -637,7 +637,7 @@ class Form460ScheduleCItem(Form460ScheduleCItemBase):
     Nonmonetary contributions received by campaign filers.
 
     These transactions are itemized on Schedule C of the most recent version
-    to each Form 460 filing. For nonmonetary contributions itemized on any 
+    of each Form 460 filing. For nonmonetary contributions itemized on any 
     version of any Form 460 filing, see Form460ScheduleCItemVersion.
 
     Derived from RCPT_CD records where FORM_TYPE is 'C'.
@@ -666,7 +666,7 @@ class Form460ScheduleCItem(Form460ScheduleCItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleCItemVersion(Form460ScheduleCItemBase):
     """
-    Every version of the nonmonetary contributions received by campaign filers.
+    Every version of each nonmonetary contribution received by a campaign filer.
 
     For nonmonetary contributions itemized on Schedule C of the most recent
     version of each Form 460 filing, see Form460ScheduleCItem.
@@ -727,10 +727,10 @@ class Form460ScheduleDItemBase(CampaignExpenditureItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleDItem(Form460ScheduleDItemBase):
     """
-    Contributions and expenditures supporting/opposing other candidates and ballot measures.
+    Payments in support or opposition of other candidates and ballot measures.
 
     These transactions are itemized on Schedule D of the most recent version
-    to each Form 460 filing. For payments itemized on any version of any Form
+    of each Form 460 filing. For payments itemized on any version of any Form
     460 filing, see Form460ScheduleDItemVersion.
 
     Derived from EXPN_CD records where FORM_TYPE is 'D'.
@@ -759,7 +759,7 @@ class Form460ScheduleDItem(Form460ScheduleDItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleDItemVersion(Form460ScheduleDItemBase):
     """
-    Every version of the payments made on behalf of campaign filers.
+    Every version of each payment supporting/opposing another candidate/ballot measure.
 
     For payments itemized on Schedule D of the most recent version of each Form
     460 filing, see Form460ScheduleDItem.
@@ -798,11 +798,11 @@ class Form460ScheduleDItemVersion(Form460ScheduleDItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleEItem(CampaignExpenditureItemBase):
     """
-    Payments made by campaign filers, itemized on Form 460 Schedule E.
+    Payments made by campaign filers.
 
     These transactions are itemized on Schedule E of the most recent version 
-    of each Form 460 filing. For payments itemized on any version of any filing,
-    see Form460ScheduleEItemVersion.
+    of each Form 460 filing. For payments itemized on any version of any
+    filing, see Form460ScheduleEItemVersion.
 
     Does not include:
     * Interest paid on loans received
@@ -839,10 +839,10 @@ class Form460ScheduleEItem(CampaignExpenditureItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleEItemVersion(CampaignExpenditureItemBase):
     """
-    Every version of the payments made, itemized on Form 460 Schedule E.
+    Every version of each payment made by a campaign filer.
 
-    For payments itemized on the most recent version of each Form 460 filing,
-    see Form460scheduleeitem.
+    For payments itemized on Schedule E of the most recent version of each Form
+    460 filing, see Form460ScheduleEItem.
 
     Does not include:
     * Interest paid on loans received
@@ -890,8 +890,8 @@ class Form460ScheduleESubItem(CampaignExpenditureSubItemBase):
     Sub-items of payments made by campaign filers.
 
     These transactions are itemized on Schedule E of the most recent version
-    of each Form 460 filing. For payments sub-itemized on any version of
-    any Form 460 filing, see Form460ScheduleESubItemVersion.
+    of each Form 460 filing. For sub-item payments on any version of any Form
+    460 filing, see Form460ScheduleESubItemVersion.
 
     A sub-item is a transaction where the amount is lumped into another 
     "parent" payment reported elsewhere on the filing.
@@ -931,10 +931,10 @@ class Form460ScheduleESubItem(CampaignExpenditureSubItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleESubItemVersion(CampaignExpenditureSubItemBase):
     """
-    Every version of the sub-items of payments by campaign filers.
+    Every version of each sub-item of a payment by a campaign filer.
 
     For payments sub-itemized on Schedule E of the most recent version of each
-    Form 460 filing, see Form460scheduleesubitem.
+    Form 460 filing, see Form460ScheduleESubItem.
 
     A sub-item is a transaction where the amount is lumped into another
     "parent" payment reported elsewhere on the filing.
@@ -981,7 +981,7 @@ class Form460ScheduleESubItemVersion(CampaignExpenditureSubItemBase):
 
 class Form460ScheduleFItemBase(models.Model):
     """
-    Abstract base model for items reported on Schedule F of Form 460.
+    Abstract base model for items reported on Schedule F of Form 460 filings.
 
     On Schedule F, campaign filers report unpaid bills for goods or services
     accrued during the period covered by the filing.
@@ -1209,7 +1209,7 @@ class Form460ScheduleFItem(Form460ScheduleFItemBase):
     Accrued expenses of campaign filers.
 
     These transactions are itemized on Schedule F of the most recent version
-    to each Form 460 filing. For accrued expenses itemized on any version of
+    of each Form 460 filing. For accrued expenses itemized on any version of
     of any Form 460 filing, see Form460ScheduleFItemVersion.
 
     Derived from DEBT_CD records.
@@ -1238,7 +1238,7 @@ class Form460ScheduleFItem(Form460ScheduleFItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleFItemVersion(Form460ScheduleFItemBase):
     """
-    Every version of the accrued expenses of campaign filers.
+    Every version of each accrued expense of a campaign filer.
 
     For accrued expenses itemized on Schedule F of the most recent version of
     each Form 460 filing, see Form460ScheduleGItem.
@@ -1327,7 +1327,7 @@ class Form460ScheduleGItem(Form460ScheduleGItemBase):
     Payments made by on behalf of campaign filers.
 
     These transactions are itemized on Schedule G of the most recent version
-    to each Form 460 filing. For payments itemized on any version of any Form
+    of each Form 460 filing. For payments itemized on any version of any Form
     460 filing, see Form460schedulegitemversion.
 
     Derived from EXPN_CD records where FORM_TYPE is 'G'.
@@ -1356,7 +1356,7 @@ class Form460ScheduleGItem(Form460ScheduleGItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleGItemVersion(Form460ScheduleGItemBase):
     """
-    Every version of the payments made on behalf of campaign filers.
+    Every version of each payment made on behalf of a campaign filer.
 
     For payments itemized on Schedule G of the most recent version of each Form
     460 filing, see Form460ScheduleGitem.
@@ -1427,8 +1427,8 @@ class Form460ScheduleIItem(Form460ScheduleIItemBase):
     Includes any transaction that increases the cash position of the filer, but
     is not a monetary contribution, loan, or loan repayment.
 
-    These transactions are itemized on Schedule I of the most recent amendment
-    to each Form 460 filing. For miscellaneous cash increases itemized on any
+    These transactions are itemized on Schedule I of the most recent version
+    of each Form 460 filing. For miscellaneous cash increases itemized on any
     version of any Form 460 filing, see Form460ScheduleIItemVersion.
 
     Derived from RCPT_CD records where FORM_TYPE is 'I'.
@@ -1459,7 +1459,7 @@ class Form460ScheduleIItem(Form460ScheduleIItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleIItemVersion(Form460ScheduleIItemBase):
     """
-    Every version of the miscellaneous cash increases for campaign filers.
+    Every version of each miscellaneous cash increase for a campaign filer.
 
     Includes any transaction that increases the cash position of the filer, but
     is not a monetary contribution, loan, or loan repayment.

@@ -58,8 +58,7 @@ class Schedule497Filing(CampaignFinanceFilingBase):
 @python_2_unicode_compatible
 class Schedule497FilingVersion(CampaignFinanceFilingBase):
     """
-    Every version of each Schedule 497 (Late Contribution Report) filing by
-    recipient committees.
+    Every version of each Schedule 497 filing by a campaign filer.
 
     Includes information found on the cover sheet of each version of each
     Schedule 497 filing. For the most recent version of each filing, see
@@ -253,7 +252,7 @@ class Schedule497Part1Item(Schedule497Part1ItemBase):
     Late contributions received by campaign filers.
 
     These transactions are itemized on Part 1 of the most recent version
-    to each Schedule 497 filing. For receipts of late contributions itemized
+    of each Schedule 497 filing. For receipts of late contributions itemized
     on any version of any Schedule 497 filing, see 
     Schedule497Part1ItemVersion.
 
@@ -284,7 +283,7 @@ class Schedule497Part1Item(Schedule497Part1ItemBase):
 @python_2_unicode_compatible
 class Schedule497Part1ItemVersion(Schedule497Part1ItemBase):
     """
-    Every version of the late contributions received by campaign filers.
+    Every version of each late contribution received by a campaign filer.
 
     For late contributions itemized on Part 1 of the most recent version of 
     each Schedule 497 filing, see Schedule497Part1Item.
@@ -513,7 +512,7 @@ class Schedule497Part2Item(Schedule497Part2ItemBase):
     Late contributions made by campaign filers.
 
     These transactions are itemized on Part 2 of the most recent version
-    to each Schedule 497 filing. For gifts of late contributions itemized on 
+    of each Schedule 497 filing. For gifts of late contributions itemized on 
     any version of any Schedule 497 filing, see Schedule497Part2ItemVersion.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P2'.
@@ -544,10 +543,10 @@ class Schedule497Part2Item(Schedule497Part2ItemBase):
 @python_2_unicode_compatible
 class Schedule497Part2ItemVersion(Schedule497Part2ItemBase):
     """
-    Every version of the late contributions made by campaign filers.
+    Every version of each late contribution made by a campaign filer.
 
-    For late contributions itemized on Part 2 of the most recent version of 
-    Schedule 497 filing, see Schedule497Part2Item.
+    For late contributions itemized on Part 2 of the most recent version of
+    each Schedule 497 filing, see Schedule497Part2Item.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P2'.
     """
