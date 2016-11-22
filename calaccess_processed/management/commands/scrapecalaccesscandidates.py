@@ -3,14 +3,9 @@ import urlparse
 from time import sleep
 from calaccess_processed.management.commands import ScrapeCommand
 from calaccess_processed.models.scraped import (
-<<<<<<< HEAD
     ScrapedCandidate,
     CandidateScrapedElection,
-    CandidateScrapedCommittee,
-=======
-    CandidateScrapedElection,
-    ScrapedCandidate
->>>>>>> 18e88a8780beae17b8a7adb1795e5b9eb2d94c1f
+    ScrapedCandidateCommittee,
 )
 
 
@@ -43,11 +38,7 @@ class Command(ScrapeCommand):
         for i, link in enumerate(links):
             # Get each page and its data
             url = urlparse.urljoin(self.base_url, link["href"])
-<<<<<<< HEAD
             data = self.scrape_election_page(url)
-=======
-            data = self.scrape_page(url)
->>>>>>> 18e88a8780beae17b8a7adb1795e5b9eb2d94c1f
             # Add the name of the election
             data['name'] = link.find_next_sibling('span').text.strip()
             # The index value is used to preserve sorting of elections,
@@ -63,11 +54,7 @@ class Command(ScrapeCommand):
 
         return results
 
-<<<<<<< HEAD
     def scrape_election_page(self, url):
-=======
-    def scrape_page(self, url):
->>>>>>> 18e88a8780beae17b8a7adb1795e5b9eb2d94c1f
         """
         Pull the elections and candidates from a CAL-ACCESS page.
         """
@@ -104,28 +91,18 @@ class Command(ScrapeCommand):
                 # Pull the candidates out
                 candidates = []
                 for c in office.findAll('a', {'class': 'sublink2'}):
-<<<<<<< HEAD
                     committees = self.scrape_candidate_page(c['href'])
                     candidates.append({
                         'name': c.text,
                         'scraped_id': re.match(r'.+id=(\d+)', c['href']).group(1),
                         'committees': committees
-=======
-                    candidates.append({
-                        'name': c.text,
-                        'scraped_id': re.match(r'.+id=(\d+)', c['href']).group(1)
->>>>>>> 18e88a8780beae17b8a7adb1795e5b9eb2d94c1f
                     })
 
                 for c in office.findAll('span', {'class': 'txt7'}):
                     candidates.append({
                         'name': c.text,
-<<<<<<< HEAD
                         'scraped_id':  '',
                         'committees': None
-=======
-                        'scraped_id':  ''
->>>>>>> 18e88a8780beae17b8a7adb1795e5b9eb2d94c1f
                     })
 
                 # Add it to the data dictionary
@@ -135,8 +112,6 @@ class Command(ScrapeCommand):
             'scraped_id': int(re.match(r'.+electNav=(\d+)', url).group(1)),
             'races': races,
         }
-
-<<<<<<< HEAD
 
     def scrape_candidate_page(self, url):
         soup = self.get_html(url)
@@ -155,8 +130,6 @@ class Command(ScrapeCommand):
         return committees
 
 
-=======
->>>>>>> 18e88a8780beae17b8a7adb1795e5b9eb2d94c1f
     def save(self, results):
         """
         Add the data to the database.
@@ -183,38 +156,24 @@ class Command(ScrapeCommand):
                 # Loop through each of the candidates
                 for candidate_data in candidates:
 
-<<<<<<< HEAD
                     # Create the candidate object
                     candidate_obj, c = ScrapedCandidate.objects.get_or_create(
                         name=candidate_data['name'],
                         scraped_id=candidate_data['scraped_id'],
                         office_name=office_name,
                         election=election_obj
-=======
-                    # Add the office information to the candidate data dict
-                    candidate_data['office_name'] = office_name
-                    # Add the election object to the candidate data dict
-                    candidate_data['election'] = election_obj
-
-                    # Create the candidate object
-                    candidate_obj, c = ScrapedCandidate.objects.get_or_create(
-                        **candidate_data
->>>>>>> 18e88a8780beae17b8a7adb1795e5b9eb2d94c1f
                     )
 
                     if c and self.verbosity > 2:
                         self.log('Created %s' % candidate_obj)
-<<<<<<< HEAD
 
                     # Create the candidate committees (if they were scraped)
                     if candidate_data['committees']:
                         for committee_data in candidate_data['committees']:
                             committee_data['candidate'] = candidate_obj
-                            committee_obj, c = CandidateScrapedCommittee.objects.get_or_create(
+                            committee_obj, c = ScrapedCandidateCommittee.objects.get_or_create(
                                 **committee_data
                             )
 
                             if c and self.verbosity > 2:
                                 self.log('Created %s' % committee_obj)
-=======
->>>>>>> 18e88a8780beae17b8a7adb1795e5b9eb2d94c1f
