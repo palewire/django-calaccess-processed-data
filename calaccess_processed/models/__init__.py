@@ -75,6 +75,8 @@ __all__ = (
     'Form460ScheduleGItemVersion',
     'Form460ScheduleIItem',
     'Form460ScheduleIItemVersion',
+    'FilerIDValue',
+    'FilingIDValue',
     'Schedule497Filing',
     'Schedule497FilingVersion',
     'Schedule497Part1Item',

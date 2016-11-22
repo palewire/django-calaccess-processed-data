@@ -4,9 +4,6 @@
 Load data into processed CAL-ACCESS models, archive processed files and ZIP.
 """
 import os
-import csv
-from django.conf import settings
-from django.core.files import File
 from django.core.management.base import CommandError
 from django.db import connection
 from django.utils.timezone import now
@@ -21,11 +18,10 @@ from calaccess_raw.models.tracking import RawDataVersion
 
 
 class Command(CalAccessCommand):
-    """ 
-    Load data into processed CAL-ACCESS models, archive processed files and ZIP
     """
-    help = 'Load data into processed CAL-ACCESS models, archive processed \
-files and ZIP.'
+    Load data into processed CAL-ACCESS models, archive processed files and ZIP.
+    """
+    help = 'Load data into processed CAL-ACCESS models, archive processed files and ZIP.'
 
     def handle(self, *args, **options):
         """
@@ -51,7 +47,7 @@ files and ZIP.'
 
         # get or create the ProcessedDataVersion instance
         self.processed_version, created = ProcessedDataVersion.objects.get_or_create(
-            raw_version = self.raw_version,
+            raw_version=self.raw_version,
         )
         # log if starting or resuming
         if created:

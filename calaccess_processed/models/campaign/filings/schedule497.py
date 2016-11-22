@@ -1,16 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Models for storing data from Late Contribution Reports (Schedule 497).
+Models for storing data from Schedule 497, the Late Contribution Reports.
+
+More about the filing: http://calaccess.californiacivicdata.org/documentation/calaccess-forms/f497/
 """
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.managers import ProcessedDataManager
-from calaccess_processed.models.campaign.filings import (
-    CampaignFinanceFilingBase,
-    CampaignContributionBase,
-)
+from calaccess_processed.models.campaign.filings import CampaignFinanceFilingBase
 
 
 @python_2_unicode_compatible
@@ -24,9 +23,9 @@ class Schedule497Filing(CampaignFinanceFilingBase):
     connection with a state ballot measure and state candidates as well as state
     ballot measure committees that receive $5,000 or more at any time other than
     a 90-day election cycle.
-    
-    Includes information from the cover sheet of the most recent amendment to 
-    each filing. All versions of Schedule 497 filings can be found in 
+
+    Includes information from the cover sheet of the most recent amendment to
+    each filing. All versions of Schedule 497 filings can be found in
     schedule497version.
     """
     filing_id = models.IntegerField(
@@ -46,6 +45,9 @@ class Schedule497Filing(CampaignFinanceFilingBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         index_together = ((
             'filing_id',
             'amendment_count',
@@ -83,6 +85,9 @@ class Schedule497FilingVersion(CampaignFinanceFilingBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'amend_id',
@@ -145,6 +150,9 @@ class Schedule497ItemBase(models.Model):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -180,7 +188,7 @@ class Schedule497Part1ItemBase(Schedule497ItemBase):
         blank=True,
         help_text="Contributor's filer identification number, if it is a "
                   "committee (from RCPT_CD.CMTE_ID)",
-        )
+    )
     contributor_title = models.CharField(
         verbose_name='contributor title',
         max_length=10,
@@ -243,6 +251,9 @@ class Schedule497Part1ItemBase(Schedule497ItemBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -253,8 +264,7 @@ class Schedule497Part1Item(Schedule497Part1ItemBase):
 
     These transactions are itemized on Part 1 of the most recent version
     of each Schedule 497 filing. For receipts of late contributions itemized
-    on any version of any Schedule 497 filing, see 
-    Schedule497Part1ItemVersion.
+    on any version of any Schedule 497 filing, see Schedule497Part1ItemVersion.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P1'.
     """
@@ -270,6 +280,9 @@ class Schedule497Part1Item(Schedule497Part1ItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -285,7 +298,7 @@ class Schedule497Part1ItemVersion(Schedule497Part1ItemBase):
     """
     Every version of each late contribution received by a campaign filer.
 
-    For late contributions itemized on Part 1 of the most recent version of 
+    For late contributions itemized on Part 1 of the most recent version of
     each Schedule 497 filing, see Schedule497Part1Item.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P1'.
@@ -302,6 +315,9 @@ class Schedule497Part1ItemVersion(Schedule497Part1ItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -348,9 +364,9 @@ class Schedule497Part2ItemBase(Schedule497ItemBase):
         verbose_name='recipient committee id',
         max_length=9,
         blank=True,
-        help_text='Filer identification number identifying the recipient if it'
-                  'is a committee (from S497_CD.CMTE_ID)',
-        )
+        help_text='Filer identification number identifying the recipient if it '
+                  'is a committee (from S497_CD.CMTE_ID)'
+    )
     recipient_title = models.CharField(
         verbose_name='recipient title',
         max_length=10,
@@ -397,37 +413,37 @@ class Schedule497Part2ItemBase(Schedule497ItemBase):
         verbose_name='candidate id',
         max_length=9,
         blank=True,
-        help_text = 'Identifies the candidate to whom the contribution is '
-                    'connected (from S497_CD.CAND_ID). This can be translated '
-                    'to the filer_id by joining to FILER_XREF_CD.',
+        help_text='Identifies the candidate to whom the contribution is '
+                  'connected (from S497_CD.CAND_ID). This can be translated '
+                  'to the filer_id by joining to FILER_XREF_CD.',
     )
     candidate_title = models.CharField(
         verbose_name='candidate title',
         max_length=10,
         blank=True,
-        help_text = 'Name title of the candidate to whom the contribution is '
-                    'connected (from S497_CD.CAND_NAMT)',
+        help_text='Name title of the candidate to whom the contribution is '
+                  'connected (from S497_CD.CAND_NAMT)',
     )
     candidate_lastname = models.CharField(
         verbose_name='candidate last name',
         max_length=200,
         blank=True,
-        help_text = 'Last name of the candidate to whom the contribution is '
-                    'connected (S497_CD.CAND_NAML)',
+        help_text='Last name of the candidate to whom the contribution is '
+                  'connected (S497_CD.CAND_NAML)',
     )
     candidate_firstname = models.CharField(
         verbose_name='candidate first name',
         max_length=45,
         blank=True,
-        help_text = 'First name of the candidate to whom the contribution is '
-                    'connected (S497_CD.CAND_NAMF)',
+        help_text='First name of the candidate to whom the contribution is '
+                  'connected (S497_CD.CAND_NAMF)',
     )
     candidate_namesuffix = models.CharField(
         verbose_name='candidate name suffix',
         max_length=10,
         blank=True,
-        help_text = 'Name suffix of the candidate to whom the contribution is '
-                    'connected (S497_CD.CAND_NAMS)',
+        help_text='Name suffix of the candidate to whom the contribution is '
+                  'connected (S497_CD.CAND_NAMS)',
     )
     candidate_office_code = models.CharField(
         verbose_name='candidate office code',
@@ -503,6 +519,9 @@ class Schedule497Part2ItemBase(Schedule497ItemBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -530,6 +549,9 @@ class Schedule497Part2Item(Schedule497Part2ItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -558,10 +580,12 @@ class Schedule497Part2ItemVersion(Schedule497Part2ItemBase):
         help_text='Foreign key referring to the version of the Schedule 497 '
                   'that includes the given contribution'
     )
-
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -570,7 +594,6 @@ class Schedule497Part2ItemVersion(Schedule497Part2ItemBase):
             'filing_version',
             'line_item',
         ),)
-
 
     def __str__(self):
         return '%s-%s-%s' % (

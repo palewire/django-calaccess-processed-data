@@ -8,6 +8,7 @@ from django.contrib import admin
 from calaccess_processed import models
 from calaccess_raw.admin.base import BaseAdmin
 
+
 @admin.register(models.FilerIDValue)
 class FilerIDValueAdmin(BaseAdmin):
     """
@@ -16,18 +17,6 @@ class FilerIDValueAdmin(BaseAdmin):
     list_display = (
         "table_name",
         "column_name",
-        "value",
-        "occur_count",
-    )
-
-
-@admin.register(models.FilingIDValue)
-class FilerIDValueAdmin(BaseAdmin):
-    """
-    Custom admin for the FilingIDValue model.
-    """
-    list_display = (
-        "table_name",
         "value",
         "occur_count",
     )
