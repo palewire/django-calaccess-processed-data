@@ -5,8 +5,6 @@ Abstract base models for campaign finance-related filings and transactions.
 """
 from __future__ import unicode_literals
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.managers import ProcessedDataManager
 
 
 class CampaignFinanceFilingBase(models.Model):
@@ -127,7 +125,7 @@ class CampaignContributionBase(models.Model):
         blank=True,
         help_text="Contributor's filer identification number, if it is a "
                   "committee (from RCPT_CD.CMTE_ID)",
-        )
+    )
     contributor_title = models.CharField(
         verbose_name='contributor title',
         max_length=10,
@@ -195,7 +193,7 @@ class CampaignContributionBase(models.Model):
         max_length=9,
         help_text="Intermediary's filer identification number, if it is a "
                   "committee (from RCPT_CD.INTR_CMTEID)",
-    ) 
+    )
     intermediary_title = models.CharField(
         verbose_name='intermediary title',
         max_length=10,
@@ -494,7 +492,7 @@ class CampaignExpenditureItemBase(models.Model):
         choices=SUPPORT_OPPOSE_CHOICES,
         help_text='If applicable, code indicating whether the payment went '
                   'toward supporting or opposing a candidate/ballot measure '
-                  '(from EXPN_CD.SUP_OPP_CD)',  
+                  '(from EXPN_CD.SUP_OPP_CD)',
     )
     ballot_measure_jurisdiction = models.CharField(
         verbose_name='ballot measure jurisdiction',
@@ -505,7 +503,7 @@ class CampaignExpenditureItemBase(models.Model):
                   "(from EXPN_CD.BAL_JURIS)",
     )
     ballot_measure_name = models.CharField(
-        verbose_name='ballot measure name', 
+        verbose_name='ballot measure name',
         max_length=200,
         blank=True,
         help_text="If the payment went toward supporting/opposing a ballot "
@@ -656,7 +654,7 @@ class CampaignExpenditureItemBase(models.Model):
         verbose_name='memo reference number',
         max_length=20,
         blank=True,
-        help_text="A value assigned by the filer which refers to the item's" 
+        help_text="A value assigned by the filer which refers to the item's"
                   "footnote in the TEXT_MEMO_CD table (from "
                   "EXPN_CD.MEMO_REFNO)",
     )
@@ -882,11 +880,10 @@ class CampaignLoanItemBase(models.Model):
         verbose_name='memo reference number',
         max_length=20,
         blank=True,
-        help_text="A value assigned by the filer which refers to the item's" 
+        help_text="A value assigned by the filer which refers to the item's"
                   "footnote in the TEXT_MEMO_CD table (from LOAN_CD."
                   "MEMO_REFNO)",
     )
 
     class Meta:
         abstract = True
-

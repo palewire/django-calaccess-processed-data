@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Custom administration panels for campaign models.
+Admins for Schedule 497, the late contribution report.
 """
 from __future__ import unicode_literals
 from django.contrib import admin

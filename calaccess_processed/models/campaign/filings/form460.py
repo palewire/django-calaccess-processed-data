@@ -159,8 +159,8 @@ class Form460Filing(Form460FilingBase):
     * Quarterly statements
     * Termination statements
     * Special odd-year report
-    
-    Includes information from the cover sheet and summary page of the most 
+
+    Includes information from the cover sheet and summary page of the most
     recent version of each Form 460 filing. All versions of the filings can be
     found in Form460FilingVersion.
     """
@@ -263,7 +263,7 @@ class Form460ScheduleAItem(Form460ScheduleAItemBase):
     of any Form 460 filing, see Form460ScheduleAItemVersion.
 
     Also includes contributions transferred to special election commitees,
-    formerly itemized on Schedule A-1. 
+    formerly itemized on Schedule A-1.
 
     Derived from RCPT_CD records where FORM_TYPE is 'A' or 'A-1'.
     """
@@ -331,7 +331,7 @@ class Form460ScheduleB1ItemBase(CampaignLoanItemBase):
     """
     Abstract base model for items reported on Schedule B, Part 1, of Form 460.
 
-    On Schedule B, Part 1, campaign filers are required to report loans 
+    On Schedule B, Part 1, campaign filers are required to report loans
     received or outstanding during the period covered by the filing.
     """
     is_guarantor = models.BooleanField(
@@ -626,7 +626,7 @@ class Form460ScheduleCItemBase(CampaignContributionBase):
         help_text="Description of the contributed goods or services (from "
                   "RCPT_CD.CTRIB_DSCR)"
     )
-    
+
     class Meta:
         abstract = True
 
@@ -637,7 +637,7 @@ class Form460ScheduleCItem(Form460ScheduleCItemBase):
     Nonmonetary contributions received by campaign filers.
 
     These transactions are itemized on Schedule C of the most recent version
-    to each Form 460 filing. For nonmonetary contributions itemized on any 
+    to each Form 460 filing. For nonmonetary contributions itemized on any
     version of any Form 460 filing, see Form460ScheduleCItemVersion.
 
     Derived from RCPT_CD records where FORM_TYPE is 'C'.
@@ -800,7 +800,7 @@ class Form460ScheduleEItem(CampaignExpenditureItemBase):
     """
     Payments made by campaign filers, itemized on Form 460 Schedule E.
 
-    These transactions are itemized on Schedule E of the most recent version 
+    These transactions are itemized on Schedule E of the most recent version
     of each Form 460 filing. For payments itemized on any version of any filing,
     see Form460ScheduleEItemVersion.
 
@@ -893,14 +893,14 @@ class Form460ScheduleESubItem(CampaignExpenditureSubItemBase):
     of each Form 460 filing. For payments sub-itemized on any version of
     any Form 460 filing, see Form460ScheduleESubItemVersion.
 
-    A sub-item is a transaction where the amount is lumped into another 
+    A sub-item is a transaction where the amount is lumped into another
     "parent" payment reported elsewhere on the filing.
 
     Includes:
-    * Payments supporting or opposing other candidates, ballot measures 
+    * Payments supporting or opposing other candidates, ballot measures
     or committees, which are summarized on Schedule D
     * Payments made to vendors over $100 included in credit card payments
-    * Payments made by agents or independent contractors on behalf of the 
+    * Payments made by agents or independent contractors on behalf of the
     campaign filer which were reported on Schedule E instead of G
     * Payments made on the accrued expenses reported on Schedule F
 
@@ -940,10 +940,10 @@ class Form460ScheduleESubItemVersion(CampaignExpenditureSubItemBase):
     "parent" payment reported elsewhere on the filing.
 
     Includes:
-    * Payments supporting or opposing other candidates, ballot measures 
+    * Payments supporting or opposing other candidates, ballot measures
     or committees, which are summarized on Schedule D
     * Payments made to vendors over $100 included in credit card payments
-    * Payments made by agents or independent contractors on behalf of the 
+    * Payments made by agents or independent contractors on behalf of the
     campaign filer which were reported on Schedule E instead of G
     * Payments made on the accrued expenses reported on Schedule F
 
@@ -1157,7 +1157,7 @@ class Form460ScheduleFItemBase(models.Model):
         decimal_places=2,
         max_digits=14,
         help_text='Amount paid this period (from DEBT_CD.AMT_PAID)'
-    ) 
+    )
     amount_incurred = models.DecimalField(
         verbose_name="amount incurred",
         decimal_places=2,
@@ -1188,7 +1188,7 @@ class Form460ScheduleFItemBase(models.Model):
         verbose_name='memo reference number',
         max_length=20,
         blank=True,
-        help_text="A value assigned by the filer which refers to the item's" 
+        help_text="A value assigned by the filer which refers to the item's"
                   "footnote in the TEXT_MEMO_CD table (from DEBT_CD."
                   "MEMO_REFNO)",
     )
@@ -1198,7 +1198,6 @@ class Form460ScheduleFItemBase(models.Model):
         help_text="Memo amount flag (from DEBT_CD.MEMO_CODE)"
     )
 
-    
     class Meta:
         abstract = True
 
@@ -1278,7 +1277,7 @@ class Form460ScheduleGItemBase(CampaignExpenditureSubItemBase):
     """
     Abstract base model for items reported on Schedule G of Form 460 filings.
 
-    On Schedule G, campaign filers are required to itemize payments made on 
+    On Schedule G, campaign filers are required to itemize payments made on
     their behalf by agents or contractors during the period covered by the
     filing.
     """
@@ -1397,8 +1396,8 @@ class Form460ScheduleIItemBase(CampaignContributionBase):
     Abstract base model for items reported on Schedule I of Form 460 filings.
 
     On Schedule I, campaign filers are required to report miscellaneous cash
-    increases during the period covered by the filing. These include any 
-    transaction that increases the cash position of the filer, but is not a 
+    increases during the period covered by the filing. These include any
+    transaction that increases the cash position of the filer, but is not a
     monetary contribution, loan, or loan repayment.
     """
     amount = models.DecimalField(

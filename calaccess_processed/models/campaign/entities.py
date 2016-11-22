@@ -13,7 +13,7 @@ from calaccess_processed.managers import ProcessedDataManager
 class Candidate(models.Model):
     """
     Name, office/district/agency sought and contact info of each candidate.
-    
+
     Derived from filers of Form 501 (Candidate Intention Statement).
     """
     filer_id = models.IntegerField(
@@ -274,4 +274,3 @@ class CandidateCommittee(models.Model):
 
     def __str__(self):
         return str(self.committee_filer_id)
-

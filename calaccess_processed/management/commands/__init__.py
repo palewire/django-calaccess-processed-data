@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import logging
+from datetime import datetime
 from django.utils.termcolors import colorize
 from django.core.management.base import BaseCommand
 logger = logging.getLogger(__name__)
+
 
 class CalAccessCommand(BaseCommand):
     """
@@ -70,4 +72,3 @@ class CalAccessCommand(BaseCommand):
         duration = datetime.now() - self.start_datetime
         self.stdout.write('Duration: {}'.format(str(duration)))
         logger.debug('Duration: {}'.format(str(duration)))
-

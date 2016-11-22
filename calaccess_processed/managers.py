@@ -5,7 +5,8 @@ Custom managers for working with CAL-ACCESS processed data models.
 """
 from __future__ import unicode_literals
 import os
-from django.db import models, connection, migrations
+from django.db import models, connection
+
 
 class ProcessedDataManager(models.Manager):
     """
@@ -114,7 +115,7 @@ class ProcessedDataManager(models.Manager):
         if os.path.exists(self.raw_data_load_query_path):
             return True
         else:
-            return False    
+            return False
 
     @property
     def db_table(self):
