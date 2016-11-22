@@ -62,23 +62,3 @@ class ScrapedPropositionAdmin(BaseAdmin):
         "name",
         "scraped_id"
     )
-
-
-<<<<<<< HEAD
-@admin.register(models.ScrapedPropositionCommittee)
-class ScrapedPropositionCommitteeAdmin(BaseAdmin):
-=======
-@admin.register(models.ScrapedCommittee)
-class ScrapedCommitteeAdmin(BaseAdmin):
->>>>>>> 18e88a8780beae17b8a7adb1795e5b9eb2d94c1f
-    list_display = (
-        "scraped_id",
-        "name",
-        "proposition",
-        "position",
-    )
-    list_per_page = 500
-    search_fields = (
-        "scraped_id",
-        "name",
-    )

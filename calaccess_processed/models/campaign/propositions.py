@@ -12,7 +12,9 @@ from calaccess_processed.managers import ProcessedDataManager
 @python_2_unicode_compatible
 class Proposition(models.Model):
     """
+    A single proposition on the California ballot.
 
+    Scraped from the CAL-ACCESS site.
     """
     id = models.IntegerField(
         primary_key=True,
@@ -42,15 +44,19 @@ class Proposition(models.Model):
     def __str__(self):
         return self.name
 
-
+@python_2_unicode_compatible
 class PropositionCommittee(models.Model):
     """
+    A committee that supports or opposes at least one proposition.
 
+    Scraped from the CAL-ACCESS site.
     """
-    committee_filer_id = models.IntegerField(
+    id = models.IntegerField(
+        primary_key=True,
         verbose_name="committee ID",
         null=False,
-        help_text="Committee id"
+        help_text="Committee unique id cast as an integer.",
+        unique=True
     )
     name = models.CharField(
         verbose_name="name",
@@ -59,21 +65,15 @@ class PropositionCommittee(models.Model):
         blank=True,
         help_text="Name of the proposition",
     )
-    proposition = models.ForeignKey(
+    supports = models.ManyToManyField(
         'Proposition',
-        related_name='proposition',
-        null=True,
-        db_constraint=False,
-        help_text='Foreign key referring to the proposition that this committee supports or opposes'
+        related_name='supporting_committees',
+        help_text="Propositions supported by this committee",
     )
-    POSITION_CHOICES = (
-        ('S', 'Support'),
-        ('O', 'Oppose')
-    )
-    position = models.CharField(
-        max_length=1,
-        choices=POSITION_CHOICES,
-        help_text="Whether the committee supports or opposes the proposition",
+    opposes = models.ManyToManyField(
+        'Proposition',
+        related_name='opposing_committees',
+        help_text="Propositions opposed by this committee",
     )
 
     objects = ProcessedDataManager()
