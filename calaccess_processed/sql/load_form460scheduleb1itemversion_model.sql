@@ -27,7 +27,6 @@ INSERT INTO calaccess_processed_form460scheduleb1itemversion (
     intermediary_city,
     intermediary_state,
     intermediary_zip,
-    is_guarantor,
     begin_period_balance,
     amount_received,
     amount_paid,
@@ -85,10 +84,6 @@ SELECT
     UPPER(loan."INTR_CITY") AS intermediary_city,
     UPPER(loan."INTR_ST") AS intermediary_state,
     UPPER(loan."INTR_ZIP4") AS intermediary_zip,
-    CASE loan."LOAN_TYPE"
-        WHEN 'B1G' THEN true
-        ELSE false
-    END AS is_guarantor,
     loan."LOAN_AMT4" AS begin_period_balance,
     loan."LOAN_AMT1" AS amount_received,
     loan."LOAN_AMT5" AS amount_paid,
@@ -106,4 +101,5 @@ FROM "LOAN_CD" loan
 JOIN calaccess_processed_form460filingversion filing_version
 ON loan."FILING_ID" = filing_version.filing_id
 AND loan."AMEND_ID" = filing_version.amend_id
-WHERE loan."FORM_TYPE" = 'B1';
+WHERE loan."FORM_TYPE" = 'B1'
+AND loan."LOAN_TYPE" <> 'B1G';

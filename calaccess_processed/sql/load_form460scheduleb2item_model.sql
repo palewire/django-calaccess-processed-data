@@ -32,7 +32,8 @@ INSERT INTO calaccess_processed_form460scheduleb2item (
     cumulative_ytd_amount,
     loan_date,
     transaction_id,
-    memo_reference_number
+    memo_reference_number, 
+    reported_on_b1
 )
 SELECT 
     filing.filing_id,
@@ -68,7 +69,8 @@ SELECT
     item_version.cumulative_ytd_amount,
     item_version.loan_date,
     item_version.transaction_id,
-    item_version.memo_reference_number
+    item_version.memo_reference_number,
+    item_version.reported_on_b1
 FROM calaccess_processed_form460filing filing
 JOIN calaccess_processed_form460filingversion filing_version
 ON filing.filing_id = filing_version.filing_id

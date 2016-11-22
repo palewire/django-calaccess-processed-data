@@ -334,15 +334,6 @@ class Form460ScheduleB1ItemBase(CampaignLoanItemBase):
     On Schedule B, Part 1, campaign filers are required to report loans 
     received or outstanding during the period covered by the filing.
     """
-    is_guarantor = models.BooleanField(
-        verbose_name='is guarantor',
-        default=False,
-        help_text="Indicates if the lender is guarantor for a line or line of "
-                  "credit. Until 2001, loans listed on Schedule B, Part 1, of "
-                  "Form 460 were coded as originating from a \"Lender\" or "
-                  "\"Guarantor\". However, this field is blank for records "
-                  "dated after 2001 (from LOAN_CD.LOAN_TYPE)."
-    )
     begin_period_balance = models.DecimalField(
         verbose_name='beginning period balance',
         decimal_places=2,
@@ -529,6 +520,14 @@ class Form460ScheduleB2ItemBase(CampaignLoanItemBase):
         null=True,
         help_text="Date of the loan or date the line of credit was established"
                   "(from LOAN_CD.LOAN_DATE1)"
+    )
+    reported_on_b1 = models.BooleanField(
+        verbose_name='reported on B1',
+        default=False,
+        help_text='Indicates if the item was actually reported on Part 1 of '
+                  'Schedule B. Until 2001, campaign filers were required to '
+                  'report guarantors of loans or lines of credit on Part 1 of '
+                  'Schedule B.'
     )
 
     class Meta:
