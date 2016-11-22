@@ -23,5 +23,8 @@ class ProcessedDataTest(TestCase):
         # call_command("processcalaccessdata", **kwargs)
 
     def test_models(self):
+        """
+        Tests the models.
+        """
         pass
         # self.assertTrue(models.Form460Filing.objects.count() > 0)

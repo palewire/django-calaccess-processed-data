@@ -19,10 +19,9 @@ from calaccess_raw.models.tracking import RawDataVersion
 
 class Command(CalAccessCommand):
     """
-    Load data into processed CAL-ACCESS models, archive processed files and ZIP
+    Load data into processed CAL-ACCESS models, archive processed files and ZIP.
     """
-    help = 'Load data into processed CAL-ACCESS models, archive processed \
-files and ZIP.'
+    help = 'Load data into processed CAL-ACCESS models, archive processed files and ZIP.'
 
     def handle(self, *args, **options):
         """

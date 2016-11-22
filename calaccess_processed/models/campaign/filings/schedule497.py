@@ -45,6 +45,9 @@ class Schedule497Filing(CampaignFinanceFilingBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         index_together = ((
             'filing_id',
             'amendment_count',
@@ -57,8 +60,7 @@ class Schedule497Filing(CampaignFinanceFilingBase):
 @python_2_unicode_compatible
 class Schedule497FilingVersion(CampaignFinanceFilingBase):
     """
-    Every version of each Schedule 497 (Late Contribution Report) filing by
-    recipient committees.
+    Every version of each Schedule 497 (Late Contribution Report) filing by recipient committees.
 
     Includes information found on the cover sheet of each version of each
     Schedule 497 filing. For the most recent version of each filing, see
@@ -83,6 +85,9 @@ class Schedule497FilingVersion(CampaignFinanceFilingBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'amend_id',
@@ -145,6 +150,9 @@ class Schedule497ItemBase(models.Model):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -243,6 +251,9 @@ class Schedule497Part1ItemBase(Schedule497ItemBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -270,6 +281,9 @@ class Schedule497Part1Item(Schedule497Part1ItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -302,6 +316,9 @@ class Schedule497Part1ItemVersion(Schedule497Part1ItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -503,6 +520,9 @@ class Schedule497Part2ItemBase(Schedule497ItemBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -530,6 +550,9 @@ class Schedule497Part2Item(Schedule497Part2ItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -561,6 +584,9 @@ class Schedule497Part2ItemVersion(Schedule497Part2ItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',

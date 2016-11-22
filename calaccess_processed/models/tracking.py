@@ -130,8 +130,7 @@ class ProcessedDataFile(models.Model):
 
     def pretty_file_size(self):
         """
-        Returns a prettified version (e.g., "725M") of the processed file's
-        size.
+        Returns a prettified version (e.g., "725M") of the processed file's size.
         """
         return sizeformat(self.file_size)
     pretty_file_size.short_description = 'processed file size'

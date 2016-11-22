@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+Base management command that provides common functionality for the other commands in this app.
+"""
 import logging
 from datetime import datetime
 from django.utils.termcolors import colorize
@@ -51,6 +54,9 @@ class CalAccessCommand(BaseCommand):
         self.stdout.write(string)
 
     def warn(self, string):
+        """
+        Writes out a string to stdout formatted yellow to communicate a warning.
+        """
         logger.warn(string)
         if not self.no_color:
             string = colorize(string, fg="yellow")

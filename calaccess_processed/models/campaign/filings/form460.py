@@ -138,6 +138,9 @@ class Form460FilingBase(CampaignFinanceFilingBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -182,6 +185,9 @@ class Form460Filing(Form460FilingBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         index_together = ((
             'filing_id',
             'amendment_count',
@@ -194,8 +200,7 @@ class Form460Filing(Form460FilingBase):
 @python_2_unicode_compatible
 class Form460FilingVersion(Form460FilingBase):
     """
-    Every version of each Form 460 (Campaign Disclosure Statement) filing by
-    recipient committees.
+    Every version of each Form 460 (Campaign Disclosure Statement) filing by recipient committees.
 
     Includes information found on the cover sheet and summary page of each
     version of each Form 460 filing. For the most recent version of each filing,
@@ -221,6 +226,9 @@ class Form460FilingVersion(Form460FilingBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'amend_id',
@@ -250,6 +258,9 @@ class Form460ScheduleAItemBase(CampaignContributionBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -279,6 +290,9 @@ class Form460ScheduleAItem(Form460ScheduleAItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -310,6 +324,9 @@ class Form460ScheduleAItemVersion(Form460ScheduleAItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -420,6 +437,9 @@ class Form460ScheduleB1ItemBase(CampaignLoanItemBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -446,6 +466,9 @@ class Form460ScheduleB1Item(Form460ScheduleB1ItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -477,6 +500,9 @@ class Form460ScheduleB1ItemVersion(Form460ScheduleB1ItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -532,6 +558,9 @@ class Form460ScheduleB2ItemBase(CampaignLoanItemBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -558,6 +587,9 @@ class Form460ScheduleB2Item(Form460ScheduleB2ItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -589,6 +621,9 @@ class Form460ScheduleB2ItemVersion(Form460ScheduleB2ItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -628,6 +663,9 @@ class Form460ScheduleCItemBase(CampaignContributionBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -654,6 +692,9 @@ class Form460ScheduleCItem(Form460ScheduleCItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -685,6 +726,9 @@ class Form460ScheduleCItemVersion(Form460ScheduleCItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -721,6 +765,9 @@ class Form460ScheduleDItemBase(CampaignExpenditureItemBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -747,6 +794,9 @@ class Form460ScheduleDItem(Form460ScheduleDItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -778,6 +828,9 @@ class Form460ScheduleDItemVersion(Form460ScheduleDItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -827,6 +880,9 @@ class Form460ScheduleEItem(CampaignExpenditureItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -867,6 +923,9 @@ class Form460ScheduleEItemVersion(CampaignExpenditureItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -919,6 +978,9 @@ class Form460ScheduleESubItem(CampaignExpenditureSubItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -962,6 +1024,9 @@ class Form460ScheduleESubItemVersion(CampaignExpenditureSubItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -1199,6 +1264,9 @@ class Form460ScheduleFItemBase(models.Model):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -1225,6 +1293,9 @@ class Form460ScheduleFItem(Form460ScheduleFItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -1256,6 +1327,9 @@ class Form460ScheduleFItemVersion(Form460ScheduleFItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -1317,6 +1391,9 @@ class Form460ScheduleGItemBase(CampaignExpenditureSubItemBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -1343,6 +1420,9 @@ class Form460ScheduleGItem(Form460ScheduleGItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -1374,6 +1454,9 @@ class Form460ScheduleGItemVersion(Form460ScheduleGItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -1415,6 +1498,9 @@ class Form460ScheduleIItemBase(CampaignContributionBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -1446,6 +1532,9 @@ class Form460ScheduleIItem(Form460ScheduleIItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -1480,6 +1569,9 @@ class Form460ScheduleIItemVersion(Form460ScheduleIItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',

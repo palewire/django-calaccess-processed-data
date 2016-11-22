@@ -127,7 +127,7 @@ class ProcessedDataManager(models.Manager):
     @property
     def raw_data_load_query(self):
         """
-        Return string of raw sql for loading the model
+        Return string of raw sql for loading the model.
         """
         sql = ''
         if self.has_raw_data_load_query:

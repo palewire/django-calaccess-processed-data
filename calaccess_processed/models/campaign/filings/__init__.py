@@ -48,6 +48,9 @@ class CampaignFinanceFilingBase(models.Model):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         app_label = 'calaccess_processed'
         abstract = True
 
@@ -272,6 +275,9 @@ class CampaignContributionBase(models.Model):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -660,6 +666,9 @@ class CampaignExpenditureItemBase(models.Model):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -679,6 +688,9 @@ class CampaignExpenditureSubItemBase(CampaignExpenditureItemBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -886,4 +898,7 @@ class CampaignLoanItemBase(models.Model):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
