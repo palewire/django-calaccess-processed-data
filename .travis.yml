@@ -19,7 +19,7 @@ install:
  - pip install -q Django==$DJANGO_VERSION
 
 before_script:
-  - mysql -e 'create database calaccess_processed;'
+  - psql -c 'create database calaccess_processed;' -U postgres
 
 script:
  - flake8 calaccess_processed
