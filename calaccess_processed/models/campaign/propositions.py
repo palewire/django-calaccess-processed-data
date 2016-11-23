@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Models for storing propositions derived from raw CAL-ACCESS data.
+Models for storing propositions derived from scraped CAL-ACCESS data.
 """
 from __future__ import unicode_literals
 from django.db import models
