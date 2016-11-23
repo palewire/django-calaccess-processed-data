@@ -167,6 +167,48 @@ class Form460ScheduleB2ItemVersionAdmin(BaseAdmin):
     )
 
 
+@admin.register(models.Form460ScheduleB2ItemOld)
+class Form460ScheduleB2ItemOldAdmin(BaseAdmin):
+    """
+    Custom admin for the Form460ScheduleB2ItemOld model.
+    """
+    list_display = (
+        'filing',
+        'line_item',
+        'lender_code',
+        'lender_lastname',
+        'date_paid_or_forgiven',
+        'date_of_original_loan',
+        'interest_rate',
+        'repayment_type',
+        'amount_paid_or_forgiven',
+        'outstanding_principle',
+        'interest_paid',
+        'transaction_id',
+    )
+
+
+@admin.register(models.Form460ScheduleB2ItemVersionOld)
+class Form460ScheduleB2ItemVersionOldAdmin(BaseAdmin):
+    """
+    Custom admin for the Form460ScheduleB2ItemVersionOld model.
+    """
+    list_display = (
+        'filing_version',
+        'line_item',
+        'lender_code',
+        'lender_lastname',
+        'date_paid_or_forgiven',
+        'date_of_original_loan',
+        'interest_rate',
+        'repayment_type',
+        'amount_paid_or_forgiven',
+        'outstanding_principle',
+        'interest_paid',
+        'transaction_id',
+    )
+
+
 @admin.register(models.Form460ScheduleCItem)
 class Form460ScheduleCItemAdmin(BaseAdmin):
     """
