@@ -21,8 +21,9 @@ class ProcessedDataTest(TestCase):
         call_command("updatecalaccessrawdata", verbosity=3, test_data=True, noinput=True)
         call_command("processcalaccessdata", verbosity=3, noinput=True)
 
-    # def test_models(self):
-    #     """
-    #     Tests the models.
-    #     """
-    #     self.assertTrue(models.Form460Filing.objects.count() > 0)
+    def test_models(self):
+        """
+        Tests the models.
+        """
+        pass
+        # self.assertTrue(models.Form460Filing.objects.count() > 0)
