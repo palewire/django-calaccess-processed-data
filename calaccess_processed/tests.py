@@ -4,7 +4,7 @@
 Unittests for this application.
 """
 from django.test import TestCase
-from calaccess_processed import models
+# from calaccess_processed import models
 from django.core.management import call_command
 
 
