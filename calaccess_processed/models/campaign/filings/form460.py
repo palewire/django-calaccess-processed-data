@@ -653,12 +653,12 @@ class Form460ScheduleB2ItemBaseOld(CampaignLoanItemBase):
         verbose_name='date paid or forgiven',
         null=True,
         help_text="Date when the loan repayment or forgiveness occurred (from "
-                  "LOAN_CD.LOAN_DATE1)"
+                  "LOAN_CD.LOAN_DATE2)"
     )
     date_of_original_loan = models.DateField(
         verbose_name='date of original loan',
         null=True,
-        help_text="Date the loan was orginally made (from LOAN_CD.LOAN_DATE2)"
+        help_text="Date the loan was orginally made (from LOAN_CD.LOAN_DATE1)"
     )
     interest_rate = models.CharField(
         verbose_name='interest rate',
