@@ -274,7 +274,7 @@ class Form460ScheduleAItem(Form460ScheduleAItemBase):
     of any Form 460 filing, see Form460ScheduleAItemVersion.
 
     Also includes contributions transferred to special election commitees,
-    which were itemized on Schedule A-1 until around 2001. 
+    which were itemized on Schedule A-1 until around 2001.
 
     Derived from RCPT_CD records where FORM_TYPE is 'A' or 'A-1'.
     """
@@ -644,7 +644,7 @@ class Form460ScheduleB2ItemVersion(Form460ScheduleB2ItemBase):
 class Form460ScheduleB2ItemBaseOld(CampaignLoanItemBase):
     """
     Abstract base model for Schedule B, Part 2, items from the pre-2001 Form 460.
-    
+
     Until Form 460 was modified in 2001, campaign filers are required to report
     repayments made on loans received, loans forgiven, and loans repaid by a
     third party on Part 2 of Schedule B.
@@ -808,7 +808,7 @@ class Form460ScheduleCItem(Form460ScheduleCItemBase):
     Nonmonetary contributions received by campaign filers.
 
     These transactions are itemized on Schedule C of the most recent version
-    of each Form 460 filing. For nonmonetary contributions itemized on any 
+    of each Form 460 filing. For nonmonetary contributions itemized on any
     version of any Form 460 filing, see Form460ScheduleCItemVersion.
 
     Derived from RCPT_CD records where FORM_TYPE is 'C'.
@@ -985,7 +985,8 @@ class Form460ScheduleDItemVersion(Form460ScheduleDItemBase):
 class Form460ScheduleEItem(CampaignExpenditureItemBase):
     """
     Payments made by campaign filers.
-    These transactions are itemized on Schedule E of the most recent version 
+
+    These transactions are itemized on Schedule E of the most recent version
     of each Form 460 filing. For payments itemized on any version of any
     filing, see Form460ScheduleEItemVersion.
 

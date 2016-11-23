@@ -1,0 +1,1001 @@
+FILING_ID	AMEND_ID	LINE_ITEM	REC_TYPE	FORM_TYPE	TRAN_ID	ENTITY_CD	PAYEE_NAML	PAYEE_NAMF	PAYEE_NAMT	PAYEE_NAMS	PAYEE_CITY	PAYEE_ST	PAYEE_ZIP4	BEG_BAL	AMT_INCUR	AMT_PAID	END_BAL	EXPN_CODE	EXPN_DSCR	CMTE_ID	TRES_NAML	TRES_NAMF	TRES_NAMT	TRES_NAMS	TRES_CITY	TRES_ST	TRES_ZIP4	MEMO_CODE	MEMO_REFNO	BAKREF_TID	XREF_SCHNM	XREF_MATCH
+592452	0	20	DEBT	F	PAY173	OTH	Public Opinion Strategies				Alexandria	VA	22314	7000	0	0	7000															
+641831	0	2	DEBT	F	PAY722	OTH	Nygren & Company Inc.				Folsom	CA	95630	0	0	915.88	0	LIT														
+578297	0	4	DEBT	F	PAY585	OTH	The Monaco Group				Anaheim	CA	92805	1069.80	0	1069.80	0	LIT														
+591635	1	7	DEBT	F	1050	OTH	Political Data Inc.				Burbank	CA	91507	0	2164.99	0	2164.99	CMP														
+592465	1	35	DEBT	F	PAY783	OTH	MCNALLY TEMPLE ASSOCIATES INC.				SACRAMENTO	CA	95814	0	31130.75	0	31130.75		SEE SCHEDULE G													
+592471	0	2	DEBT	F	PAY1543	OTH	BBT Strategies/Beverly Thomas				Studio City	CA	91604-	0	402	0	402	OFC														
+578420	0	1	DEBT	F	PAY2023	OTH	AT&T				PHOENIX	AZ	85062-8225	564.42	0	564.42	0	OFC														
+578361	1	5	DEBT	F	SV43	IND	Warren	Luella			Sacramento	CA	95821		890.39			OFC										X		1020		
+592355	0	29	DEBT	F	1220	OTH	PH Photographic Services				Fresno	CA	93726	358.08	0	358.08	0		photography													
+590805	0	3	DEBT	F	PAY511	OTH	David L. Gould Company				Los Angeles	CA	90071-	216.04	0	0	216.04															
+592403	2	1	DEBT	F	PAY1567	OTH	Joe Jones and Associates				Los Angles	CA	90069-	674.50	0	674.50	0	IND														
+645213	0	5	DEBT	F	PAY105	IND	Eichman	J. Richard			Sacramento	CA	95814	419.93	0	419.93	0	PRO														
+644259	1	37	DEBT	F	PAY9529	OTH	CELSOC				Sacramento	CA	95814	0	251.39	0	251.39	TRS	Meyer 6/10 & 6/14 Sacto Mtg6/9-6/10 Orange Co													
+592465	2	39	DEBT	F	PAY1008	OTH	LAGUENS HAMBURGER STONE				WASHINGTON	DC	20008	0	18070.93	0	18070.93		SEE SCHEDULE G													
+645057	0	40	DEBT	F	SV120	OTH	Hertz Rent-A-Car				Sacramento	CA	95814		112.33			TRS										X		1179		
+591419	2	6	DEBT	F	1045	OTH	Emu Printing				Santa Clara	CA	95050	2293.28	0	2293.28	0		Printing													
+669273	0	18	DEBT	F	PAY781	OTH	Wayne C. Johnson & Assoc. Inc.				Sacramento	CA	95814	0	3737.69	0	3737.69	LIT														
+644116	0	1	DEBT	F	1011	OTH	Roberts & Associates				Sacramento	CA	95814	2295.48	0	2295.48	0	FND	OFC													
+592427	2	23	DEBT	F	PAY450	OTH	JOE SHUMATE & ASSOCIATES				SACRAMENTO	CA	95814	25000	0	25000	0	CNS														
+645071	0	24	DEBT	F	PAY509	OTH	REGAL BILTMORE HOTEL				LOS ANGELES	CA	90071	2388.30	0	2388.30	0	CMP														
+667929	0	9	DEBT	F	PAY225	IND	Gonzalez-Coke	Paul			Sacramento	CA	95822	472.30	0	472.30	0	TRS														
+669394	1	61	DEBT	F	PAY18092	OTH	Woodward & McDowell				Burlingame	CA	94010	0	17	0	17	TRS	J Barnett - 9/26 Oakland													
+669394	1	74	DEBT	F	PAY18599	OTH	Woodward & McDowell				Burlingame	CA	94010	0	217.83	0	217.83	TRS	T Green-9/21&9/22 Palm Springs Conference													
+644222	1	22	DEBT	F	SV42	OTH	AT & T				Phoenix	AZ	85062-8225		1392.60			CNS										X		1044		
+645057	1	10	DEBT	F	1053	COM	CA Democratic Party				Los Angeles	CA	90036	500	0	500	0	MTG		741666												
+669514	0	5	DEBT	F	PAY913	OTH	Neo Design				Sacramento	CA	95820	0	3184.98	0	3184.98	LIT														
+676863	0	6	DEBT	F	F1934	OTH	RMHC/HACER Scholarship Fund				Sacramento	CA	95817	100	0	100	0	CVC														
+645057	1	67	DEBT	F	SV167	OTH	Radisson Hotel Sacramento				Sacramento	CA	95815		316.15			MTG										X		1074		
+717534	0	13	DEBT	F	PAY333	OTH	Harvey Harlowe Hukari				San Francisco	CA	94115	2500	0	0	2500	CNS														
+669719	2	48	DEBT	F	PAY7530	OTH	THE DAVIS GROUP				LONG BEACH	CA	90803	0	332.06	0	332.06		PHONE SVC. TRAVEL													
+669628	1	48	DEBT	F	SV383	OTH	Four Seasons Hotel				Washington	DC	20007		104.37			TRS	Daniel Weitzman Washington DC 07/24/00-07/31/00 Total Cost: $1884.52									X		1372		
+669628	1	59	DEBT	F	SV394	OTH	Paesano's Pizza				Sacramento	CA	95814		154.57			MTG										X		1373		
+669618	2	40	DEBT	F	1005	OTH	Grassroots Solutions				St. Paul	MN	55104	27036.40	2948.14	27036.40	2948.14	CNS														
+669545	1	7	DEBT	F	F99	IND	Mitchell	Alicia			Long Beach	CA	90806	120.05	0	120.05	0	VOT														
+644262	3	18	DEBT	F	PAY13105	IND	BRENNAN	DAN			Sacramento	CA	95814	347.20	0	347.20	0		MILEAGE													
+713670	0	1	DEBT	F	011120010E972_1	COM	The Westin St. Francis Hotel				San Francisco	CA	94102	0	1326.74	0	1326.74		Explain:CTBSee Sch. F; Gray Davis Recept	962636												
+669587	1	109	DEBT	F	PAY48549	OTH	GreenStripe Media Inc.				Newport Beach	CA	92663-	0	1069	0	1069	RAD														
+719907	0	9	DEBT	F	PAY1098	OTH	Johnson Clark Associates				Sacramento	CA	95814	1995.89	0	1995.89	0	POS														
+717852	0	20	DEBT	F	PAY31184	OTH	Lord-Butcher Company				La Jolla	CA	92037-	5000	-5000	0	0	CNS														
+719073	0	65	DEBT	F	F11	OTH	Verizon Wireless				City of Industry	CA	91716-9005	0	166.98	0	166.98	OFC														
+720226	0	39	DEBT	F	PAY20424	OTH	Woodward & McDowell				Burlingame	CA	94010	7458.93	0	7458.93	0	TEL														
+719371	0	21	DEBT	F	IK43	COM	Orange County Central Labor Council				Orange	CA	92868						Lists ($900.00)	747167								X		1046		
+719550	0	31	DEBT	F	F1016	IND	Williams	Jonathan			San Jose	CA	95124	110.82	0	110.82	0	VOT	 to support Darrell Steinberg Herb Wesson													
+717939	0	5	DEBT	F	PAY798	OTH	GODDARD CLAUSSEN PORTER NOVELLI				SACRAMENTO	CA	95814	246.69	0	246.69	0		MISCELLLANEOUS EXPENSES UNDER $100													
+669394	3	106	DEBT	F	PAY20473	OTH	Wendy Kump Lauchland				Elk Grove	CA	95758	0	1171.31	0	1171.31	TRS	W Lauchland-9/27-9/30 San Diego Convention													
+669628	2	3	DEBT	F	1168	OTH	Ace Parking Management Inc.				San Diego	CA	92101-3211	900	0	900	0	FND														
+773416	0	5	DEBT	F	SV35	OTH	Eagle Press				Sacramento	CA	95814		6436.76			IND	Printing of Mailer									X		1021		
+772721	0	2	DEBT	F	PAY104	OTH	Brenda St. Hilaire Fundraising				Huntington Beach	CA	92648	141.94	0	0	141.94	OFC														
+669587	2	5	DEBT	F	PAY31226	OTH	National Direct Marketing				Arlington	VA	22209-	0	429.56	0	429.56	CNS														
+740508	0	9	DEBT	F	DEBTF0000000135	OTH	Saint Paul Baptist Church 				Los Angeles	CA	90037	0	2500	0	2500	OFC														
+717110	1	2	DEBT	F	1017	OTH	Pacific Bell				Sacramento	CA	95887-0001	0	601.58	0	601.58	OFC														
+763650	0	2	DEBT	F	PAY1408	COM	UTLA				Los Angeles	CA	90010	3963.13	0	3963.13	0		Internal Comm. required by the City of LA - Villaraigosa for Mayor (Paid by CTA)													
+772130	0	5	DEBT	F	PAY6432	OTH	VERIZON WIRELESS				CITY OF INDUSTRY	CA	91716	0	214.21	0	214.21		PHONE SVC.													
+719907	1	23	DEBT	F	PAY1419	OTH	The Donegal Group				Sacramento	CA	95818	7353.89	0	7353.89	0		Commission printing postage and event expenses													
+677092	1	1	DEBT	F	DEBTF0000000018	OTH	Renee Hatchwell Co. 				Winnetka	CA	91306	325	0	0	325	CNS	Fundraising Fee													
+719017	1	14	DEBT	F	SV94	OTH	TWA Airlines				Los Angeles	CA			482.04			TRC	S. Havice 12/13/00 Washington DC Total Cost:  $540.04									X		1297		
+771711	0	4	DEBT	F	F978	OTH	Southern California Gas Company				Monterey Park	CA	91756	0	0.95	0	0.95	OFC														
+769803	0	1	DEBT	F	F8	OTH	AIA California Council				Sacramento	CA	95814	2065.02	0	2065.02	0	G  	Reimbursable Expenses													
+772652	0	1	DEBT	F	F1125	IND	Sanchez	Carlos			Sacramento	CA	95831	31.41	0	31.41	0	   	Copies Supplies													
+773427	1	48	DEBT	F	F1036	OTH	The Stationery Place				Los Angeles	CA	90006	17393.40	0	17393.40	0	LIT	Printing services													
+785299	0	3	DEBT	F	PAY247	OTH	Mari Lee & Associates Inc.				Oakland	CA	94611	0	2342.48	0	2342.48	PRO	Treasurer													
+805409	0	3	DEBT	F	F47	OTH	Russo Marsh & Rogers Inc.				Sacramento	CA	95812	0	5000	0	5000	PRO														
+788259	0	2	DEBT	F	PAY178	OTH	INTERNAL REVENUE SERVICE				FRESNO	CA	93888	22.06	0	22.06	0	OFC	TAXES&PENALTY													
+785689	2	12	DEBT	F	PAY1091	OTH	ELEAKIS PHOTOGRAPHY				SACRAMENTO	CA	95822	0	747.13	0	747.13		PHOTOGRAPHY													
+785575	0	2	DEBT	F	F70	OTH	Beard				Santa Ana	CA	92705	14958.96	0	0	14958.96	LIT														
+785669	0	28	DEBT	F	PAY1241	OTH	Russo Marsh & Associates Inc.				Sacramento	CA	95812	1929.74	0	0	1929.74	OFC														
+784974	0	2	DEBT	F	PAY100	OTH	Eichman	J. Richard			Sacramento	CA	95814	0	50	0	50	PRO														
+804777	0	10	DEBT	F	1016	IND	Patterson	Ann			Sacramento	CA	95814	4643.99	3199.06	4643.99	3199.06	OFC	SAL													
+785669	1	42	DEBT	F	PAY1667	OTH	Federal Express				Memphis	TN	38101-1140	0	120.66	0	120.66	POS														
+804548	0	5	DEBT	F	PAY2883	OTH	Ross Communications				Sacramento	CA		0	6000	0	6000	CNS														
+785689	1	14	DEBT	F	PAY1093	OTH	JOHNSON CLARK ASSOC.				SACRAMENTO	CA	95814	0	8674.35	0	8674.35		PRINTING SUPPLIES MAILING LIST													
+805015	0	7	DEBT	F	PAY8638	IND	Eichman	J. Richard			Sacramento	CA	95814	0	707.51	0	707.51	PRO														
+773315	2	57	DEBT	F	F20	OTH	Sequoia Messenger Service				Sherman Oaks	CA	91403	113.20	127.85	113.20	127.85		Messenger Service													
+810112	0	4	DEBT	F	F61	OTH	Padilla & Associates				Beverly Hills	CA	90211	737.72	0	0	737.72	PRO														
+786156	1	1	DEBT	F	1001	OTH	Olson, Hagel, Waters & Fishburn, LLP				Sacramento	CA	95814	281.60	153.83	281.60	153.83	PRO														
+809961	1	3	DEBT	F	PAY40	OTH	RUSSO MARSH & ASSOC.				SACRAMENTO	CA	95814	5000	0	5000	0		CONSULTING													
+772351	2	7	DEBT	F	F2096	IND	Singh	Randy			Yuba City	CA	95993	57	37	0	94	FND														
+822734	0	4	DEBT	F	1006	OTH	Planning & Conservation League				Sacramento	CA	95814	37535.49	0	37535.49	0	LIT	MTG, OFC, POS, PRT, SAL, WEB,													
+823204	1	11	DEBT	F	F57	OTH	Ross Communications				Sacramento	CA	95814	0	137950.85	0	137950.85		Design, Printing, Postage													
+810040	1	1	DEBT	F	F1	IND	Boling	C. April			San Diego	CA	92119	750	0	750	0	PRO														
+856874	0	4	DEBT	F	DEBTF0000000714	OTH	Griselda's Catering 				Sacramento	CA	95814	0	1124.19	0	1124.19	FND														
+821982	2	1	DEBT	F	PAY369	OTH	CAPUTO PRINTING & GRAPHICS				SANTA CLARA	CA	95054	172.12	0	172.12	0		PRINTING													
+854476	0	4	DEBT	F	1014	IND	Pyle	Norma Ann			Orangevale	CA	95662	0	312.48	0	312.48	TRS														
+854858	0	6	DEBT	F	F451	IND	Widell	Dave			Sacramento	CA	95814	0	115.20	0	115.20	MTG														
+857274	0	13	DEBT	F	F659	OTH	Democratic Voter Guide				Long Beach	CA	90808	0	500	0	500	LIT														
+857478	0	7	DEBT	F	PAY781	IND	EVANS	CAROL			TRUCKEE	CA	96161	2500	0	2500	0	CNS														
+822738	2	3	DEBT	F	SV452	OTH	Office Max				Los Angeles	CA	90034		132.82			OFC										X		1279		
+870677	0	2	DEBT	F	PAY157	OTH	Eichman	J. Richard			Sacramento	CA	95814	50	-50	0	0	PRO														
+856340	1	16	DEBT	F	PAY9618	OTH	JOHNSONCLARK ASSOC.				SACRAMENTO	CA	95814	0	102632.64	0	102632.64		CONSULTING, TV ADVERTISING													
+871120	0	2	DEBT	F	CI379	OTH	IUOE Local 12				Pasadena	CA	91109	37523.24	0	0	37523.24	IND	For Campaign Literature & Mailings													
+872046	0	1	DEBT	F	1012	OTH	CA Federation of Teachers				Burbank	CA	91505	16703.82	0	16703.82	0	SAL														
+871612	1	285	DEBT	F	F6789	IND	Pantoja	Zulma			Delano	CA	93216	21.55	280.84	21.55	280.84	VOT														
+871747	0	9	DEBT	F	SV323	OTH	United Airlines				Chicago				328.50			TRS										X		1048		
+871612	0	171	DEBT	F	F8716	IND	Barrett	Mallory			Long Beach	CA	90802	0	123.68	0	123.68	VOT														
+849834	1	41	DEBT	F	D5780	OTH	Farinella Temple & Associates				Jefferson City	MO	65109	1	0	0	1	PRO														
+805698	1	1	DEBT	F	F2356	OTH	AT&T Wireless				Phoenix	AZ	85062-8110	225.85	88.39	225.85	88.39	OFC														
+877757	0	55	DEBT	F	F7725	IND	Santillan	Daniel			Calexico	CA	92232	500	0	500	0	VOT														
+877757	0	210	DEBT	F	F8111	IND	Lor	Xong			Stockton	CA	95215	164.75	0	164.75	0	VOT														
+855324	1	28	DEBT	F	F5410	IND	Galvez	Claudia			La Quinta	CA	92253	0	86.61	0	86.61	VOT	Weekly gas & food allowance													
+879026	1	7	DEBT	F	DEBTF0000000971	OTH	Sprint 				City Of Industry	CA	91716-9255	194.54	0	194.54	0	OFC														
+889610	0	1	DEBT	F	PAY179	OTH	Tosdal, Levine, Smith and Steiner				San Diego	CA	92101	1431.47	0	0	1431.47	PRO														
+871249	2	1	DEBT	F	F100	OTH	AT&T				Phoenix	AZ	85062-8225	13.81	48.44	13.81	48.44	OFC	Long distance calls													
+901789	0	2	DEBT	F	PAY65	OTH	Eichman	J. Richard			Sacramento	CA	95814	0	146.37	0	146.37	PRO														
+878807	0	6	DEBT	F	IK314	COM	Darrell Steinberg Leadership Committee				Sacramento	CA	95814						Printing ($875.20)	972163								X		1157		
+902308	0	6	DEBT	F	PAY75	OTH	NIELSEN, MERKSAMER, ET AL				MILL VALLEY	CA	94941	-196	0	0	-196		ADJUSTMENT OF ACCRUED EXPENSE										PAY75			
+871839	3	16	DEBT	F	1301	IND	Hensley	Cy			San Luis Obispo	CA	93405	0	122.76	0	122.76	TRS														
+878199	2	4	DEBT	F	1129	OTH	Paradise Ridge Winery Corp.				Santa Rosa	CA	95403	0	494.72	0	494.72	FND														
+805658	3	9	DEBT	F	1166	IND	D'Agostino	Tom			Sacramento	CA	95829	0	158.73	0	158.73	TRS														
+878008	0	7	DEBT	F	PAY1456	OTH	Valet Parking Service				Santa Monica	CA	90405	0	664	0	664	OFC														
+878008	0	11	DEBT	F	PAY1461	OTH	Target Enterprises Ltd.				Encino	CA	91436	0	6783.33	0	6783.33	TEL	See Schedule G													
+878385	0	4	DEBT	F	PAY12903	IND	SAUNDERS	LARA			NEWPORT COAST	CA	92657	1252.28	0	1252.28	0		CATERING													
+911785	0	35	DEBT	F	PAY2125	IND	Croce	Renee			Irvine	CA	92612	0	1490.36	0	1490.36	TRS	See Schedule G													
+911269	0	3	DEBT	F	F608	OTH	Visa				Tampa	CA	33630-3131	76.18	0	76.18	0	MTG														
+911274	0	6	DEBT	F	F129	OTH	The Stonecreek Group				Sacramento	CA	95825	0	8379.22	0	8379.22	CNS	Consulting Fees													
+855705	2	200	DEBT	F	PAY15385	IND	Kabateck	John R.	Mr.		Sacramento	CA	95821	0	58.06	0	58.06	OFC														
+911318	0	26	DEBT	F	PAY1850	OTH	Gilliard, Blanning & Associates, Inc.				Sacramento	CA	95814	0	10000	0	10000	CNS														
+855324	2	52	DEBT	F	F5471	IND	Garcia	Javier			El Centro	CA	92243	0	57.60	0	57.60	VOT	Wages													
+786245	1	1	DEBT	F	PAY104	OTH	LK Associates				Sacramento	CA	95821	873.59	0	873.59	0	OFC														
+871860	2	4	DEBT	F	F1606	RCP	Howard Jarvis Taxpayers Association				La Jolla	CA	92037	0	5000	0	5000	LIT														
+878630	4	6	DEBT	F	1318	OTH	Gunthers Restaurant & Catering				San Jose	CA	95125	0	541.25	0	541.25	FND														
+872004	1	4	DEBT	F	DEBTF0000001001	OTH	Ford	David			Torrance	CA	90510	255.12	0	255.12	0	OFC														
+785669	3	1	DEBT	F	PAY1247	OTH	Russo Marsh & Associates, Inc.				Sacramento	CA	95812	452.87	0	452.87	0	TRS	J. Flint 6/17-6/21 Sacramento to San Diego													
+940029	0	1	DEBT	F	PAY37	OTH	Eichman	J. Richard			Sacramento	CA	95814	0	115.70	0	115.70	PRO														
+855705	3	122	DEBT	F	PAY15051	IND	Seitchik	Brian P.			Sacramento	Ca	95814	0	323.23	0	323.23	TRS	Airfare & Accommodations													
+871773	1	198	DEBT	F	PAY64376	OTH	Alice Borden Company				Sherman Oaks	CA	91423	340	0	340	0	POS														
+878711	4	11	DEBT	F	1002	OTH	Fiona Hutton dba Red Gate Communications				Studio City	CA	91604	25505.80	12500	0	38005.80	CNS														
+945646	0	7	DEBT	F	1013	OTH	Richie Ross dba Ross Communications				Sacramento	CA	95814	10090	0	0	10090	CNS	IND, Translation for Mailer													
+946092	0	2	DEBT	F	PAY1456	OTH	Johnsonclark Associates				Sacramento	CA	95814	23638.76	0	23638.76	0		CONSULTING, TV PRODUCTION													
+931522	0	15	DEBT	F	IK344	COM	Acuna for Assembly 2002				Coachella	CA	92236						Video Production ($151.94)	1240150								X		1466		
+948190	0	1	DEBT	F	PAY174	IND	Carcione, Jr.	Joseph and Roberta			Menlo Park	Ca	94025	0	200	0	200	OFC														
+913350	1	11	DEBT	F	F795	OTH	THIS IS A CREDIT CARD MAIN RECORD					  		0	0	0	0	G	G													
+913350	1	13	DEBT	F	F2536	OTH	Video Monitoring Services of America				New York	NY	10036	217	0	217	0	G	G													
+948393	0	10	DEBT	F	DEBTF0000000041	IND	Irlando	Arlene			Los Angeles	CA	90027	782	0	0	782	OFC														
+957287	0	20	DEBT	F	PAY689	IND	Wilson	Martin			Carmichael	CA	95608	0	25000	0	25000	CNS														
+947725	1	4	DEBT	F	1013	OTH	The Golden 1 Credit Union				Sacramento	CA	95851-0318	302.96	0	0	302.96	OFC														
+959836	2	176	DEBT	F	PAY7370	OTH	Internet Specialites West				Agoura Hills	CA	91301	0	4366.40	0	4366.40	WEB														
+959836	0	239	DEBT	F	PAY7462	OTH	National Satellite				Los Angeles	CA	90048	0	2500	0	2500	TEL														
+946093	3	9	DEBT	F	PAY493	OTH	Wendy Warfield and Associates				Sacramento	CA	95814	0	3308.59	0	3308.59		CONSULTING, CATERING													
+957287	2	64	DEBT	F	PAY783	OTH	Brook Furniture Rental, Inc.				Marina Del Rey	CA	90292	0	2071.20	0	2071.20	OFC														
+959836	1	89	DEBT	F	PAY863	IND	Danzinger	Jeff			Fair Oaks	CA	95628	3000	0	3000	0	CNS														
+959836	1	109	DEBT	F	PAY6911	OTH	Internet Specialites West				Agoura Hills	CA	91301	971.68	0	971.68	0	WEB														
+957287	2	78	DEBT	F	PAY1580	OTH	Main Street Advisors				Santa Monica	CA	90405	0	4000	0	4000	CNS														
+959836	2	75	DEBT	F	PAY848	IND	Walsh	Sean			Oakland	CA	94611	12500	0	12500	0	CNS														
+963263	1	11	DEBT	F	1148	OTH	Ross Communications, Inc.				Sacramento	CA	95814	3975	0	3975	0	POS														
+959836	4	255	DEBT	F	PAY7485	OTH	Verizon				Inglewood	CA	90313	0	5254	0	5254	OFC														
+810086	2	46	DEBT	F	D13461	IND	Kotsos	Dimitri			North Hollywood	CA	91606-3011	410.32	0	410.32	0	OFC														
+963759	1	3	DEBT	F	1011	OTH	Philip Dumbrille dba Philip Dumbrille Graphics				Westlake Village	CA	91361	41629.15	0	41629.15	0	LIT														
+871773	2	224	DEBT	F	PAY63967	IND	Ng	Darrel T			Berkeley	CA	94704	0	207.06	0	207.06	OFC														
+872319	1	8	DEBT	F	D20040	OTH	American Express				Los Angeles	CA	90069	0	961.92	0	961.92		Credit card payment													
+969655	0	9	DEBT	F	PAY67	OTH	NIELSEN, MERKSAMER, PARRINELLO, MUELLER & NAYLOR, LLP				MILL VALLEY	CA	94941	0	803.02	0	803.02	PRO	STEVEN S. LUCAS, COMMITTEE TREASURER IS ALSO A PARTNER OF PAYEE													
+877988	2	187	DEBT	F	PAY63736	IND	Kouyoumdjian	Eddie			Arcadia	CA	91006	0	457.58	0	457.58	TRS	Accommodations, Ground transportation & Local													
+849834	2	60	DEBT	F	D16505	IND	Marcus	Alexandria A.			Sacramento	CA	95819	0	179.36	0	179.36	OFC														
+877988	2	20	DEBT	F	PAY63980	OTH	Beteta Consulting LLC				Newport Coast	CA	92657	0	541	0	541	OFC														
+980018	0	1	DEBT	F	1005	OTH	Olson, Hagel & Fishburn LLP				Sacramento	CA	95814	2389.31	2404.64	2389.31	2404.64	PRO														
+980383	1	3	DEBT	F	D412	OTH	Smith Kaufman LLP				Los Angeles	CA	90017	4672.47	2177	0	6849.47	PRO														
+984551	0	5	DEBT	F	PAY2510	IND	Gonsalves	David			Sacramento	CA	95817	427.50	0	427.50	0	POS														
+984632	0	2	DEBT	F	SV77	OTH	Aioli Bodega Espanola				Sacramento	CA	95814		631.91			MTG										X		1360		
+980363	1	21	DEBT	F	PAY1193	OTH	E&J Photo Lab				Dublin	CA	94568	0	1120.39	0	1120.39	LIT														
+979595	0	2	DEBT	F	F32	OTH	Sign It				San Diego, CA	CA	92121	36.20	0	36.20	0	OFC														
+979838	0	4	DEBT	F	F41	OTH	McKinley + Pillows Fundraising				Sacramento	CA	95814	1500	0	1500	0	FND														
+990909	0	10	DEBT	F	SV41	OTH	Sheraton Maui Hotel				Lahaina, Maui	HI	96761		406.18			MTG										X		1067		
+959836	5	147	DEBT	F	PAY7340	IND	Buck-Walsh	Tracey			Sacramento	CA	95831	0	11334.10	0	11334.10	CNS														
+984575	1	21	DEBT	F	PAY1239	OTH	Staton Hughes, Inc.				San Francisco	CA	94105	50.50	0	50.50	0	OFC														
+986030	0	1	DEBT	F	F4895	OTH	CAFE MED				BAKERSFIELD	CA	93309	0	3928.33	0	3928.33	FND														
+996279	1	2	DEBT	F	PAY10417	OTH	STRATEGY CENTER				SACRAMENTO	CA	95814	500	0	500	0		RENT													
+979500	1	13	DEBT	F	PAY1907	OTH	California State Employees Association (CSEA)				Sacramento	CA	95814	18369.53	0	0	18369.53	MBR	See Schedule G													
+997268	1	4	DEBT	F	DEBTF0000002051	OTH	Political Data Inc 				Burbank	CA	91507	135	0	0	135	CMP														
+996840	0	4	DEBT	F	28308	OTH	American Express				Los Angeles	CA	90096-0001	1765.04	2922.04	1765.04	2922.04	OTH	CC													
+959836	6	208	DEBT	F	PAY7406	IND	Wilson	Martin			Carmichael	CA	95608	0	31.24	0	31.24	OFC														
+1014235	0	2	DEBT	F	DEBTF0000000814	OTH	LAANE Los Angeles Alliance For A New Economy				Los Angeles	CA	90013	250	0	0	250	CVC														
+984901	1	9	DEBT	F	PAY1078	OTH	JohnsonClark Assoc.				Sacramento	CA	95814	0	150	0	150	WEB														
+980349	2	11	DEBT	F	PAY251	OTH	Political Data Inc.				Burbank	Ca	91507	368.77	0	0	368.77	LIT														
+1014213	0	3	DEBT	F	DEBTF0000000957	OTH	GSI Voter Contact Inc 				Hermosa Beach	CA	90254	5953.84	0	0	5953.84	POL														
+942860	2	9	DEBT	F	PAY1855	OTH	CALIFORNIA CHAMBER OF COMMERCE				SACRAMENTO	CA	95814	0	22.05	0	22.05		REIMBURSED EXPENSES													
+996800	1	17	DEBT	F	PAY1549	OTH	Shappell Industries				Laguna Niguel	CA	92677	1200	0	0	1200	OFC														
+1022733	0	1	DEBT	F	PAY325	OTH	HEDRICK & SAWIN	ACCOUNTANTS			LONG BEACH	CA	90807	412.50	0	412.50	0	OFC	ANNUAL AUDIT										PAY325			
+1031210	0	10	DEBT	F	PAY1489	OTH	The Justin Company				Sacramento	CA	95818	0	7108.53	0	7108.53	CNS														
+1031211	0	5	DEBT	F	PAY2520	OTH	Gallery Collection				Ridgefield Park	NJ	07660	1830.07	0	0	1830.07	LIT														
+984575	2	17	DEBT	F	PAY1444	IND	McGuire	Mike			Healdsburg	CA	95448	0	73.69	0	73.69	MTG														
+1022855	0	1	DEBT	F	F528	OTH	BANK ONE				Palatine	IL	60094-4014	0	10245.95	7468.63	2777.32															
+1029218	0	1	DEBT	F	070920040E2350_1	OTH	Monaco Group, Inc.				Anaheim	CA	92805	0	21235.15	0	21235.15		Explain:LIT													
+1032341	0	8	DEBT	F	PAY261	OTH	WESTERN PACIFIC RESEARCH, INC.				BAKERSFIELD	CA	93309	3000	0	3000	0	CNS														
+1031210	0	1	DEBT	F	PAY1433	IND	Angeles	Joel			Thousand Oaks	CA	91358	0	2000	0	2000	CNS														
+996826	1	10	DEBT	F	PAY480	OTH	The Monaco Group				Placentia	CA	92870	5223.82	0	5223.82	0	LIT														
+1031537	1	3	DEBT	F	PAY192	OTH	California State Employees Association (CSEA)				Sacramento	CA	95814	242.58	0	242.58	0	MBR	Paid Accrued													
+772360	2	3	DEBT	F	PAY6489	OTH	Ross Communications, Inc.				Sacramento	CA	95814	1819.90	0	1819.90	0	CMP														
+872263	4	11	DEBT	F	F475	OTH	Espana's Restaurant & Catering				Los Banos	CA	93635	1200	0	600	600	FND														
+980426	2	39	DEBT	F	D3821	IND	Kneebone	Brittany			San Francisco	CA	94131	0	23	0	23	MTG														
+1032606	0	8	DEBT	F	PAY435	IND	Donabedian	Chris			Laguna Beach	CA	92651	0	220.50	0	220.50	LIT														
+1042962	0	1	DEBT	F	PAY621	OTH	Law Offices of Lowell Finley				Berkeley	CA	94707	5125	0	5125	0	PRO														
+1032557	0	14	DEBT	F	PAY67	OTH	COPS Voter Guide				Folsom	CA	95830	7500	0	7500	0	PRT		599014												
+1023575	2	9	DEBT	F	PAY2120	IND	SOUTH	GARRY			SANTA MONICA	CA	90403-3305	0	327.95	0	327.95		REIMBURSED EXPENSES													
+996721	1	18	DEBT	F	PAY1900	OTH	California State Employees Association (CSEA)				Sacramento	CA	95814	247.95	0	247.95	0	MBR	Accrued Paid													
+1032697	0	26	DEBT	F	DEBTF0000002125	IND	Enriquez	Bernardo			Santa Ana	CA	92704	456.10	0	456.10	0	MTG														
+963649	1	27	DEBT	F	PAY284	OTH	The Veterans of Kern County, Inc.				Bakersfield	Ca	93301	143.50	0	143.50	0	MTG														
+1032697	2	28	DEBT	F	DEBTF0000002268	OTH	Robinson	Steven			Irvine	CA	92602	0	880	0	880	FIL	Campaign Fees													
+1032308	1	27	DEBT	F	PAY1404	OTH	Los Angeles Economic Development Corportion				Los Angeles	CA	90071	0	27500	0	27500	CNS														
+1044889	0	6	DEBT	F	PAY225	OTH	Winner & Mandabach Campaigns				Santa Monica	CA	90401	25000	0	25000	0	CNS														
+1045343	1	5	DEBT	F	PAY375	OTH	American Express				Los Angeles	CA	90096	226.77	0	226.77	0		See Schedule 'G' Individual Credit Card Payees													
+1031205	1	27	DEBT	F	PAY1862	IND	Prince	Sergio			Laguna Hills	CA	92653	0	25000	0	25000	PRO														
+1045120	0	1	DEBT	F	PAY42	OTH	Bell, McAndrews & Hiltachk, LLP				Sacramento	CA	95814	320.50	0	320.50	0	PRO														
+1045191	1	7	DEBT	F	PAY1277	OTH	Gilliard Blanning Wysocki & Associates, Inc.				Sacramento	CA	95814	517.50	0	0	517.50	TEL														
+1045317	1	15	DEBT	F	PAY981	OTH	Urban Art Lithography, Inc.				Sacramento	CA	95816-	3821.89	0	3821.89	0	LIT														
+1050025	1	2	DEBT	F	PAY1556	OTH	Wells Fargo Bank				Phoenix	AZ	95038	2596.63	0	2596.63	0		Travel													
+1014370	1	16	DEBT	F	PAY439	IND	Daly	Amy			Palo Alto	CA	94306	0	409.30	0	409.30	TRS														
+1050215	1	12	DEBT	F	PAY1050	OTH	Samaritan Way Ministries				Richmond	CA	94802	0	100	0	100	CVC														
+1045310	2	15	DEBT	F	PAY654	OTH	MERIDIAN PACIFIC, INC.				SACRAMENTO	CA	95833	0	1097.45	0	1097.45		SEE SCHEDULE G													
+1050661	0	6	DEBT	F	F542	OTH	United Mileage Plus				Palatine	IL	60094	69.45	0	69.45	0															
+1044925	1	7	DEBT	F	SV31	IND	Tasakos	Angela			Sacramento	CA	95814		1161.79			SAL										X		1405		
+1033211	1	8	DEBT	F	PAY92	OTH	Ascendent Solutions, LLC				Rocklin	Ca	95765	0	3000	0	3000	CNS														
+856757	3	24	DEBT	F	D4007	IND	Presta	Lisa			San Francisco	CA	94116	0	168.26	0	168.26	OFC														
+1078957	0	27	DEBT	F	PAY2337	OTH	VOTER/CONSUMER RESEARCH, INC.				WASHINGTON	DC	20002	7000	0	7000	0		SEE SCHEDULE G													
+1078319	0	3	DEBT	F	SV36	IND	Tasakos	Angela			Sacramento	CA	95814		2902.22			SAL										X		1081		
+1079388	0	9	DEBT	F	PAY744	OTH	TABcommunications				Sacramento	CA	95821	8000	0	8000	0	CNS														
+1082593	0	1	DEBT	F	PAY24	OTH	Consumer Federation of California				Millbrae	CA	94030	0	100	0	100	PRT														
+1081410	0	36	DEBT	F	PAY290	IND	Kouyoumdijiam	Eddie			Arcadia	CA	91006	0	715.85	0	715.85	TRS														
+1080934	0	6	DEBT	F	F1482	IND	McGlashan	Elizabeth	Ms.		Cathedral City	CA	92284	0	300	0	300	CNS														
+1080532	0	1	DEBT	F	F8	OTH	Trimble & Company, An Accountancy Corporation				Riverside	CA	92507	930	158	0	1088	PRO														
+1080171	0	46	DEBT	F	PAY3004	OTH	Winner & Mandabach Campaigns, LLC				Encino	CA	91436	48592.05	0	48592.05	0		CMP, TEL, OFC													
+1114006	0	41	DEBT	F	PAY2628	OTH	NIELSEN, MERKSAMER, PARRINELLO, MUELLER & NAYLOR, LLP				SACRAMENTO	CA	95814-	0	2789.23	0	2789.23	PRO														
+1080489	2	28	DEBT	F	PAY2044	IND	Niemela	Erin			Davis	CA	95616	568.91	0	568.91	0	TRS	Lodging													
+1105277	1	2	DEBT	F	PAY2136	OTH	Capital One Bank				City Indust	CA	91716-0024	3564.91	0	3564.91	0		See Sch G for Credit Card Payees													
+1092139	0	1	DEBT	F	1005	OTH	Julian Andel dba Beezwax				Oakland	CA	94610	1171.50	0	1171.50	0	PHO														
+1094384	0	1	DEBT	F	PAY42	OTH	Eichman	J. Richard			Sacramento	CA	95814	121.16	-121.16	0	0	PRO														
+1050511	2	1	DEBT	F	F20	IND	Goff	Andrea			Hobbs	NM	88240	1500	0	1500	0	CNS														
+1081823	2	4	DEBT	F	PAY487	OTH	Chase Gold Visa				Phoenix	AZ	85072-2064	1157.94	0	1157.94	0															
+1081754	1	4	DEBT	F	D2	OTH	Urban Art Lithography				Sacramento	CA	95816	2718.16	0	2718.16	0	LIT														
+1116711	0	1	DEBT	F	070620050E2329_1	OTH	The Bovee Company				Sacramento	CA	95814	0	1825.65	0	1825.65		Explain:FND													
+985273	3	4	DEBT	F	PAY176	OTH	Carrie McKinley, dba McKinley & Pillows Fundraising and Events				Sacramento	Ca	95814	15.86	0	0	15.86	POS														
+1118936	0	3	DEBT	F	1182	OTH	Corporate Colour Printing, Inc.				Baldwin Park	CA	91706	1425.85	0	1425.85	0	FND														
+1045433	1	3	DEBT	F	F284	OTH	CKB Enterprises				Kentfield	CA	94904	1638.14	0	0	1638.14	CNS														
+1118932	0	4	DEBT	F	PAY270	OTH	Wendy Warfield & Associates				Sacramento	CA	95814	0	587.01	0	587.01	FND														
+1081504	1	4	DEBT	F	PAY1744	OTH	LEAGUE OF CALIFORNIA CITIES				SACRAMENTO	CA	95814	106938.49	0	106938.49	0		SEE SCHEDULE G													
+1118957	0	7	DEBT	F	PAY267	OTH	Pharmaceutical Research Manufacturers Association				Sacramento	CA	95814	0	85209.42	0	85209.42	OFC														
+1130897	0	1	DEBT	F	PAY1	OTH	Eichman, CPA	J. Richard			Sacramento	CA	95814	66.80	0	0	66.80	PRO														
+1073744	1	2	DEBT	F	PAY165	OTH	Warren & Associates, LLC				San Francisco	CA	94114-	0	15.20	0	15.20	POS														
+1132089	3	51	DEBT	F	IK2057	COM	Yes on 80, lights on California, a coalition of consumer groups and labor unions				Sacramento	CA	95814						Office Expenses ($2.66)	1279272								X		1416		
+1146818	0	1	DEBT	F	F398	OTH	American Express				Los Angeles	CA	90096-0001	207.28	135	342.28	0															
+1126479	2	119	DEBT	F	PAY4397	OTH	Hartmann Studios, Inc.				Richmond	CA	94804	8242.12	0	8242.12	0	MTG														
+1126479	3	140	DEBT	F	PAY4459	OTH	Hartmann Studios, Inc.				Richmond	CA	94804	11938.34	0	11938.34	0	MTG														
+1141337	0	1	DEBT	F	PAY273	IND	J. Richard Eichman, C.P.A.				Sacramento	CA	95814	284.25	-284.25	0	0	PRO														
+1138102	0	1	DEBT	F	F1196	OTH	Cardmember Service Bank One				Palatine	IL	60094-4014	2494.85	0	2494.85	0															
+1126479	2	42	DEBT	F	PAY3922	OTH	Randle Communications				Sacramento	CA	95814	2040.67	0	2040.67	0		TRS, LIT, OFC - Misc. expenses no subvendors over $500.00													
+1126479	2	262	DEBT	F	PAY6117	IND	Durckel	Cameron			Encinitas	CA	92024	0	485.65	0	485.65	TRS														
+1147950	0	2	DEBT	F	1041	OTH	Firefighters Print & Design, Inc.				Sacramento	CA	95833	230.20	0	230.20	0	CTB														
+1149082	0	13	DEBT	F	PAY1381	OTH	LA Premier				Beverly HIlls	CA	90211	1200	0	1200	0	FND														
+1147499	0	4	DEBT	F	F3578	OTH	Asian Americans for Community Involvement				San Jose	CA	95128	1500	0	1500	0		CTB													
+1148387	0	6	DEBT	F	PAY196	OTH	CL7 Communications				Fullerton	CA	92832	0	275.85	0	275.85	FND														
+1131728	2	237	DEBT	F	PAY25599	OTH	RBI Systems				Monrovia	CA	91016	0	394.62	0	394.62	FND														
+1130880	1	11	DEBT	F	PAY1567	OTH	REED & DAVIDSON, LLP				LOS ANGELES	CA	90071	0	5009.46	0	5009.46	PRO	DANA REED, TREASURER, AND JAMES SIVESIND, ASST. TREASURER, ARE PARTNERS OF REED & DAVIDSON, LLP													
+1131728	2	34	DEBT	F	PAY6033	OTH	San Luis Video Systems				Morrow Bay	CA	93443-0594	176.96	0	176.96	0	MTG														
+1149270	0	3	DEBT	F	PAY1386	OTH	CITY NEWS SERVICE, INC.				LOS ANGELES	CA	90064	108	0	0	108	TEL														
+1148713	0	5	DEBT	F	F7	OTH	Occidental Communications Group				Newport Beach	CA	92660-0000	10000	20000	0	30000	CNS														
+1147052	0	12	DEBT	F	PAY259	IND	Perata	Don			Oakland	CA	94611	0	357.14	0	357.14		Meals & Beverages, Parking, Office Supplies													
+1149117	1	4	DEBT	F	DEBTF0000004235	OTH	Fairbank Maslin Maullin & Associates 				Santa Monica	CA	90404	0	15000	0	15000	POL														
+1126390	1	15	DEBT	F	PAY449	OTH	Moreno & Associates				Alhambra	CA	91803	0	10000	0	10000	CNS														
+1147571	1	10	DEBT	F	PAY815	OTH	Eichman, CPA	J. Richard			Sacramento	CA	95814	0	1850.30	0	1850.30	PRO														
+1157371	0	5	DEBT	F	DEBTF0000004116	OTH	South Coast Interfaith Council 				Long Beach	CA	90813	50	0	50	0	PRT														
+1157412	0	1	DEBT	F	1064	OTH	Alonzo Printing, Inc.				Hayward	CA	94545	3184.98	0	0	3184.98	IND	Postage													
+1147571	1	24	DEBT	F	PAY596	OTH	Voter/Consumer Research, Inc.				Washington	DC	20002	115157.15	0	115157.15	0	POL	In-Kind Contribution to Californians for Affordable Prescriptions ($57,578.57) Californians Against the Wrong Prescription ($57,578.57) See Sch G													
+1153704	0	4	DEBT	F	F1618	OTH	Monaco Group				Placentia	CA	92870	0	5090	0	5090	CTB	MBR - Printing/Postage - to support Kevin Faulconer													
+1118458	4	9	DEBT	F	SV88	OTH	Crabtree & Evelyn Ltd.				Sacramento	CA	95815		7370.10			FND	accrued expense 6/30									X		1209		
+1148615	1	29	DEBT	F	PAY249	OTH	Remcho, Johansen & Purcell				San Leandro	CA	94577	330	0	330	0	PRO														
+1144211	1	6	DEBT	F	PAY442	OTH	James R. Santos Bookkeeping Services				Sacramento	CA	95864	0	4	0	4	LIT														
+1124306	3	11	DEBT	F	1213	IND	Lehman	Christopher			Arcata	CA	95521	337.73	0	337.73	0	FND														
+1156824	0	1	DEBT	F	1078	OTH	David Binder Research				San Francisco	CA	94102	2835	0	2835	0	POL														
+1130583	2	33	DEBT	F	PAY798	IND	Marcus	Rebecca			Sacramento	CA	95819-	0	15	0	15	MTG														
+1148810	1	8	DEBT	F	PAY383	OTH	Tri-Valley Community Television				Pleasanton	CA	94566	390	0	390	0	TEL														
+1157167	1	11	DEBT	F	PAY238	IND	Polka	Sandra L.			Sacramento	CA	95814	161.50	0	161.50	0	POS														
+1141630	1	38	DEBT	F	DEBTF0000003888	OTH	Benson	Joshua			Palo Alto	CA	94301	0	922.94	0	922.94	OFC	Parking Mileage													
+1157426	1	11	DEBT	F	PAY254	OTH	American Express				FT Lauderdale	FL	33336	0	739.06	0	739.06		See schedule G for individual credit card payee's													
+1157327	1	27	DEBT	F	PAY1481	OTH	JohnsonClark Associates				Sacramento	CA	95833	0	1100.13	0	1100.13	CMP														
+1174031	0	2	DEBT	F	PAY2278	OTH	JET PRINTERS				GARDEN GROVE	CA	92840	2413.31	0	2413.31	0															
+1157167	1	9	DEBT	F	PAY450	OTH	Pacific Print Resources				Emeryville	CA	94608	0	1259.70	0	1259.70	POS														
+1173988	1	3	DEBT	F	PAY9016	IND	J. Richard Eichman, C.P.A.				Sacramento	CA	95814	0	733.63	0	733.63	PRO														
+1149286	1	19	DEBT	F	PAY222	OTH	Chase Gold Visa				Palatine	IL	60094-4017	0	3233.29	0	3233.29		See schedule G for individual credit card payee's													
+1157462	1	12	DEBT	F	PAY664	OTH	Chad Griffin Consulting, Inc.				Beverly Hills	CA	90210	814.66	0	814.66	0		TRS, POS, OFC													
+1149222	1	19	DEBT	F	PAY1334	OTH	Bertolina & Bernato, Inc.				Sacramento	CA	95814	142.11	0	142.11	0	OFC														
+1182612	0	2	DEBT	F	PAY2582	OTH	Eichman	J. Richard			Sacramento	CA	95814	0	610.43	0	610.43	PRO														
+1174646	0	9	DEBT	F	PAY898	OTH	South Bay Labor Council				San Jose	CA	95125-	0	92.46	0	92.46	CTB	Estimated salaries to support Measure A													
+1148851	1	3	DEBT	F	PAY31	OTH	The Primacy Group				San Diego	CA	92103	50	0	50	0	OFC														
+1148948	1	48	DEBT	F	PAY1121	OTH	Warren and Associates, LLC				San Francisco	CA	94114-	0	958.20	0	958.20	PRO														
+1174439	0	20	DEBT	F	D199	OTH	Varoga & Rice				Oakland	CA	94612	6700	0	6700	0	CNS														
+1174303	1	6	DEBT	F	F3834	OTH	Mary England Public Relations				Lemon Grove	CA	91946	0	4751.25	0	4751.25	CNS														
+1173834	1	5	DEBT	F	PAY1506	OTH	Warren & Associates LLC				San Francisco	CA	94114-	0	119.25	0	119.25	PRO														
+1148179	1	27	DEBT	F	PAY926	OTH	Zimmerman & Markman, Inc.				Santa Monica	CA	90401	0	1883.91	0	1883.91	PRT														
+1188523	0	5	DEBT	F	PAY246	IND	Handley	Virginia			San Francisco	CA	94147	1350.31	0	1350.31	0	TRS	Hotels, Mileage, Meals, Fuel No subvendor exceeds $100.00													
+1157149	1	2	DEBT	F	D14	OTH	Kaufman Downing LLP				Los Angeles	CA	90017	884	0	884	0	PRO														
+1184341	0	1	DEBT	F	PAY2402	IND	Eichman	J. Richard			Sacramento	CA	95814	744.68	-744.68	0	0	PRO														
+1174338	1	12	DEBT	F	PAY37267	IND	Nelthope	Susan			Riverside	CA	92506	502.03	0	0	502.03	MTG														
+1190857	0	10	DEBT	F	PAY862	OTH	JohnsonClark Associates				Sacramento	CA	95833	10117	0	10117	0	POL														
+1174328	1	106	DEBT	F	PAY17398	OTH	Hellon Photography				Roseville	CA	95747	0	332.32	0	332.32	FND														
+1174710	1	7	DEBT	F	PAY1206	IND	Gonzales, Jr.	Oscar			Los Angeles	CA	90063-2231	0	1633.51	0	1633.51		Reimbursement campaign expenses													
+1157456	2	44	DEBT	F	PAY2488	OTH	Warfield & Associates				Sacramento	CA	95814	0	22500	0	22500	CNS														
+1190857	0	23	DEBT	F	PAY1029	OTH	NonPartisan Candidate Evaluation Council				Irvine	CA	92604	0	5000	0	5000	LIT	Slate Card	588002												
+1174885	1	9	DEBT	F	DEBTF0000004156	OTH	Nickerson	Mona			Carson	CA	90746	149.30	0	149.30	0	OFC														
+1149156	1	22	DEBT	F	PAY3746	IND	Copp	Vona			Elk Grove	CA	95624	0	358.55	0	358.55	PRO														
+1191962	0	3	DEBT	F	F27	OTH	Degnan Printers, Inc.				Redwood City	CA	94063	779.40	0	779.40	0	OFC														
+1192631	0	5	DEBT	F	DEBTF000000000002521	OTH	Lyons, Nichelle				San Francisco	CA	94129	-8688.24	0	0	-8688.24	CNS														
+1204754	0	36	DEBT	F	PAY2639	IND	Hegyi	Paul			Sacramento	CA	95826	0	8000	0	8000	CNS														
+1192284	1	42	DEBT	F	2399	OTH	Intercall				Atlanta	GA	30384	0	4459.76	0	4459.76	OFC														
+1201033	0	9	DEBT	F	PAY5345	OTH	ML Associates LLC				West Hollywood	CA	90069	837.25	0	837.25	0	PRO														
+1204548	0	1	DEBT	F	PAY1367	OTH	DLA Piper Rudnick Gray Cary US, LLP				Sacramento	CA	95814	790	0	790	0	PRO														
+1204507	0	36	DEBT	F	PAY2451	OTH	The Monaco Group				Placentia	CA	92870	0	11581.05	0	11581.05	LIT														
+1203970	0	40	DEBT	F	T366216	IND	Bennett	Maxine			Stockton	CA	95204	1648.69	0	1648.69	0															
+1204146	0	14	DEBT	F	PAY228	OTH	Chase				Pheonix	AZ	85072	651.87	0	282.47	369.40	OFC														
+1204702	0	7	DEBT	F	PAY174	OTH	SANDI POLKA				SACRAMENTO	CA	95814	10000	0	10000	0	CNS														
+1204965	0	7	DEBT	F	PAY518	OTH	River City Business Services				Sacramento	CA	95841	0	714.18	0	714.18	PRO														
+1192204	1	13	DEBT	F	PAY709	OTH	Quorum Technologies, Inc.				Sacramento	CA	95825	0	190.78	0	190.78	PHO														
+1204897	0	4	DEBT	F	PAY177	OTH	CONSUMER DIRECTED HEALTH CARE, INC.				SAN DIEGO	CA	92110	0	350	0	350	CNS														
+1204507	1	41	DEBT	F	PAY2459	OTH	The Monaco Group				Placentia	CA	92870	0	9984.24	0	9984.24	LIT														
+1204823	0	44	DEBT	F	PAY1189	IND	Kim	Roy O.			Beverly Hills	CA	90212	0	1001.19	0	1001.19		LIT, POS, TRS													
+1211781	0	14	DEBT	F	PAY2299	OTH	Alhambra & Sierra Springs				Dallas	TX	75266	0	46.83	0	46.83	OFC														
+1212158	0	3	DEBT	F	PAY694	OTH	Western Pacific Research, Inc.				Bakersfield	CA	93309	31274.78	0	0	31274.78	PRO														
+1204902	0	14	DEBT	F	PAY1680	OTH	River City Business Services				Sacramento	CA	95841	89.29	0	89.29	0	POS														
+1212249	0	1	DEBT	F	PAY891	OTH	Cardmember Services				Palatine	IL	60094	3112.34	0	3112.34	0	OFC														
+1205014	0	40	DEBT	F	PAY5288	OTH	The Sutton Law Firm				San Francisco	CA	94108	0	772.25	0	772.25	PRO														
+1212073	0	3	DEBT	F	PAY990	OTH	Merced County Spring Fair				Los Banos	CA	93635	1112	0	1112	0	FND														
+1211422	0	6	DEBT	F	PAY1441	IND	J. Richard Eichman, C.P.A.				Sacramento	CA	95814	0	145.14	0	145.14	PRO														
+1204817	0	8	DEBT	F	D1870	IND	Thompson	Alfred			Cerritos	CA	90703	150	0	150	0	TRS														
+1204963	0	19	DEBT	F	F2934	OTH	U.S. Bank   (JO)				St. Louis	MO	63179-0408	0	729.75	579.75	150															
+1204964	0	10	DEBT	F	PAY1948	OTH	Pacific Print Resources, Inc.				Emeryville	CA	94608	5215.52	0	3849.41	1366.11	LIT														
+1212746	0	1	DEBT	F	1084	OTH	Bertolina & Barnato, Inc.				Sacramento	CA	95814	0	6000	0	6000	FND														
+1212466	0	10	DEBT	F	T406556	OTH	MBNA America				Wilmington	DE	19850-5026	0	312.74	0	312.74		Credit Card Payment													
+1212895	0	49	DEBT	F	PAY936	OTH	WOODWARD & MCDOWELL				BURLINGAME	CA	94010	0	91809.89	0	91809.89		SEE SCHEDULE G													
+1192299	1	2	DEBT	F	PAY1330	OTH	Acosta/Salazar				Sacramento	CA	95814	623.90	0	623.90	0	OFC														
+1188034	2	8	DEBT	F	D2778	OTH	Herminia Santillan				Sacramento	CA	95816	0	100	0	100	OFC														
+1212842	0	1	DEBT	F	PAY179	OTH	CERRELL ASSOCIATES, INC.				LOS ANGELES	CA	90004	684.01	0	0	684.01	CNS														
+1149254	2	37	DEBT	F	1473	OTH	P & R Interior Services				Elk Grove	CA	95759	662	906	0	1568	OFC														
+1191784	1	39	DEBT	F	PAY17405	OTH	Burbank Water and Power				Burbank	CA	91503	660.91	0	660.91	0	OFC														
+1237082	0	7	DEBT	F	PAY1970	OTH	DMH &  Associates				Irvine	CA	92614	18229.05	0	0	18229.05	LIT														
+1128634	1	9	DEBT	F	PAY197	OTH	ML Associates, LLC				Los Angeles	CA	90069	0	20.34	0	20.34	OFC														
+1204920	2	5	DEBT	F	D203	OTH	Bonnie Martin				Lodi	CA	95240	0	149.97	0	149.97	TRS														
+1236601	0	4	DEBT	F	PAY274	OTH	Remcho, Johansen & Purcell				San Leandro	CA	94577	270	0	270	0	PRO														
+1174241	2	20	DEBT	F	T368270	OTH	Integrated Web Strategy				Phoenix	AZ	85018	0	2000	0	2000	CNS														
+1212981	1	33	DEBT	F	DEBTF000000000003595	OTH	Wells Fargo Card Services				Phoenix	AZ	85038	70655.95	0	70655.95	0	OFC														
+1174883	3	15	DEBT	F	DEBTF000000000004621	OTH	SG Consulting				Newport Beach	CA	92660	0	1425	0	1425	CNS														
+1204336	2	47	DEBT	F	T368295	IND	Elderman	Michael J.			Riverside	CA	92501	199.34	0	199.34	0	FND														
+1212323	2	3	DEBT	F	PAY871	OTH	Capital Campaigns, Inc.				Sacramento	CA	95814	473.81	0	0	473.81		Travel & office expenses													
+1222235	1	33	DEBT	F	PAY3098	OTH	CRA Voter Guide				Sacramento	CA	95827	0	5000	0	5000	LIT	Slate Card	1271601												
+1204455	2	4	DEBT	F	072520060E2878_4	OTH	Butte Communtity Bank				Chico	CA	95928	1644.89	0	1644.89	0		Explain:,See Schedule G													
+1238430	0	208	DEBT	F	PAY48061	IND	Croce	Renee			Manhattan Beach	CA	90266	0	26250	0	26250	CNS														
+1262041	0	3	DEBT	F	IK667	COM	Parra for Senate 2010				Sacramento	CA	95814						Printing ($1,881.70)	1293213								X		1041		
+1204916	3	19	DEBT	F	PAY962	IND	Lockyer	Bill			Sacramento	CA	95814	0	1380	0	1380	MTG														
+1213056	2	35	DEBT	F	PAY2281	OTH	Cingular Wireless				Carol Stream	IL	60197	55.17	0	55.17	0	OFC														
+1237973	0	2	DEBT	F	16		Grayu	James H.			Igo	CA	96047	351.63	0	0	351.63	OFC	Color Printer													
+1237503	0	5	DEBT	F	PAY1004	OTH	California Association of Hospitals and Health Systems				Sacramento	CA	95814	6839.56	0	6839.56	0	CTB	Paid Accrued													
+1238592	0	5	DEBT	F	D400	OTH	Kaufman Downing LLP				Los Angeles	CA	90017	6255	4000	6255	4000	PRO														
+1239055	0	8	DEBT	F	PAY1106	IND	De Ocampo	Alexander			Los Angeles	CA	90027	1250	0	1250	0	CNS														
+1213061	2	10	DEBT	F	PAY999	OTH	Wells Fargo Bank Card Services				Los Angeles	CA	90054	0	549.20	0	549.20		See schedule G for individual credit card payee's													
+1204369	3	14	DEBT	F	PAY87	COM	National Guard Assoc. of CA PAC Voter Guide				Westminster	CA	92683	0	6250	0	6250	LIT		1285736												
+1239049	0	9	DEBT	F	PAY890	IND	O'Neill	Robert J.			San Diego	CA	92109	0	100	0	100	OFC														
+1213017	1	8	DEBT	F	PAY4105	OTH	Backwards Bush				New York	NY	10025	0	146.45	0	146.45	VOT														
+1237526	1	10	DEBT	F	PAY2229	OTH	Knight's Catering				San Francisco	CA	94124	2536.79	0	2536.79	0	FND														
+1234313	1	8	DEBT	F	PAY1100	OTH	Warren & Associates, LLC				San Francisco	CA	94114-0000	0	207.25	0	207.25	PRO														
+1263693	0	12	DEBT	F	PAY254451	IND	Loquvam	Anna			Tucson	AZ	85716	0	36.75	0	36.75	IND	Food for Jon Lauritzen's phone bank													
+1212895	2	17	DEBT	F	PAY521	OTH	SAN DIEGO COUNTY REPUBLICAN LEADERSHIP VOTER GUIDE				LAGUNA NIGUEL	CA	92677	4940	0	4940	0		SLATE MAILER	1287037												
+1238216	1	37	DEBT	F	PAY3999	OTH	DLA Piper US LLP				Sacramento	CA	95814	10676.50	-3676.50	7000	0	PRO														
+1238216	2	79	DEBT	F	PAY3817	OTH	JohnsonClark Associates				Sacramento	CA	95833	0	400	0	400	TEL														
+1282197	0	1	DEBT	F	PAY640	OTH	GILLIARD, BLANNING, WYSOCKI & ASSOC.				SACRAMENTO	CA	95814	4811.44	0	4811.44	0		PHONEBANKS, PRINTING													
+1238430	1	134	DEBT	F	PAY44950	IND	Morris	Holly			Tarzana	CA	91356	1655.79	0	1655.79	0	CMP														
+1192204	2	2	DEBT	F	PAY471	OTH	Political Data, Inc.				Burbank	CA	91507	1299	0	1299	0	LIT														
+1157456	4	47	DEBT	F	PAY2473	IND	Davis	Stacy			Irvine	CA	92612	0	3750	0	3750	CNS														
+1281461	0	2	DEBT	F	PAY1018	OTH	Pirayou Law Offices				San Jose	CA	95120-	0	50	0	50	PRO														
+1211647	1	2	DEBT	F	PAY424	IND	J. Richard Eichman, C.P.A.				Sacramento	CA	95814	0	527.48	0	527.48	PRO														
+1284420	0	1	DEBT	F	PAY4	OTH	Cardmember Services				Palatine	IL	60094	10716.50	0	10716.50	0	OFC														
+1192317	2	11	DEBT	F	PAY374	OTH	Blue State Digital, LLC				Washington	DC	20005	0	6625	0	6625	WEB														
+1147930	1	9	DEBT	F	PAY3769	OTH	Daralyn Reed Company				Yreka	CA	96097	1072.47	0	1072.47	0	OFC														
+1149194	2	34	DEBT	F	D546	IND	McKrell	Alyssa B			Sacramento	CA	95816	11.22	0	11.22	0	POS														
+1174852	3	16	DEBT	F	DEBTF000000000004002	OTH	Verizon Wireless				Mission Hills	CA	91346	0	285.94	0	285.94	OFC														
+1236887	1	3	DEBT	F	PAY1664	OTH	AT&T				Sacramento	CA	95887	1056.47	0	1056.47	0	OFC														
+1246619	1	14	DEBT	F	F2733	OTH	Stan's Westchester Flowers				Los Angeles	CA	90045	0	132.60	0	132.60	OFC														
+1246619	1	16	DEBT	F	F2575	OTH	Verizon				Inglewood	CA	90313	0	284.86	0	284.86	OFC														
+1285009	0	2	DEBT	F	PAY1077	IND	Acquistapace	Jeff			Stockton	CA	95219	12000	0	12000	0	CNS														
+1285298	0	155	DEBT	F	PAY51697	IND	Croce	Renee			Manhattan Beach	CA	90266	0	1238.26	0	1238.26	FND														
+1236642	2	10	DEBT	F	DEBTF000000000005356	OTH	Our Voice Latino Voter Guide				Los Angeles	CA	90039	5000	0	5000	0	LIT		599015												
+1285469	0	2	DEBT	F	PAY737	OTH	Ross Communications, Inc.				Sacramento	CA	95814	5000	0	2000	3000	CNS														
+1236642	1	10	DEBT	F	DEBTF000000000005356	OTH	Our Voice Latino Voter Guide				Los Angeles	CA	90039	5000	0	5000	0	LIT		599015												
+1305876	0	3	DEBT	F	D292	OTH	NGP Software, Inc.				Washington	DC	20005	0	250	0	250	OFC														
+1204919	3	53	DEBT	F	2340	OTH	KMR Aviation, Inc.				Pasadena	CA	91103	11091	0	11091	0	TRS	Travel													
+1302412	0	4	DEBT	F	PAY4251	OTH	Betty Presley & Associates, Inc.				Rancho Sta Margarita	CA	92688	0	150	0	150	OFC														
+1295560	0	9	DEBT	F	PAY376	OTH	BANK OF STOCKTON				STOCKTON	CA	95207	0	768.52	0	768.52	TRC	MEALS													
+1204919	3	112	DEBT	F	2336	OTH	Taylor Made Limousine				Carson	CA	90746	355	0	355	0		Travel													
+1283929	1	7	DEBT	F	PAY119	OTH	Capital One Bank				City of Industry	CA	91716-0024	0	3373.86	0	3373.86		See Sch G for Credit Card Payees													
+1306119	0	14	DEBT	F	PAY208	OTH	Woodward & McDowell				Burlingame	CA	94010	0	175000	0	175000	CNS														
+1302388	0	3	DEBT	F	PAY61	OTH	Woodward & McDowell				Burlingame	CA	94010	75000	0	75000	0	CNS														
+1312302	0	8	DEBT	F	DEBTF000000000006517	OTH	Flight Community Services				Los Angeles	CA	90016	0	629	0	629	MTG														
+1285298	1	161	DEBT	F	PAY51699	IND	Croce	Renee			Manhattan Beach	CA	90266	0	41780	0	41780	CNS														
+1312303	0	14	DEBT	F	PAY771	OTH	Goldenwest Jewelers				Tustin	CA	92780	0	1200	0	1200	FND	Baseball Tickets													
+1297823	1	9	DEBT	F	PAY879	IND	Steinau	Ronnie L.			Encinitas	CA	92024	0	94.18	0	94.18	OFC														
+1285120	1	3	DEBT	F	PAY32	IND	Green	Matthew			Roseville	CA	95678	207.18	0	207.18	0	OFC														
+1310809	0	1	DEBT	F	7		Brydon	Colleen O'Beirne			Malibu	CA	90265	0	150	0	150	POS														
+1306024	1	7	DEBT	F	PAY391	OTH	McNally Temple Associates, Inc.				Sacramento	CA	95814	2279.26	0	2279.26	0		Travel Expenses													
+1304689	1	25	DEBT	F	PAY1065	IND	Eagan	Annie			Oakland	CA	94607	0	383.29	0	383.29		Phones, Mileage, Parking, Postage & Off. Supplies													
+1312421	0	7	DEBT	F	PAY1126	OTH	Western Pacific Research, Inc.				Bakersfield	CA	93309	0	856.19	0	856.19	CNS														
+1283306	1	5	DEBT	F	PAY3657	OTH	MCNALLY TEMPLE ASSOCIATES, INC.				SACRAMENTO	CA	95814-	0	9347.06	0	9347.06	CNS														
+1281642	1	24	DEBT	F	PAY704	OTH	US Bancorp				St. Louis	MO	63179-	689.57	0	689.57	0	FND														
+1309717	0	1	DEBT	F	PAY96	OTH	Bell, McAndrews & Hiltachk, LLP				Sacramento	CA	95814	124.19	-124.19	0	0	PRO														
+1310273	1	2	DEBT	F	F67	OTH	Bovee Company				Sacramento	CA	95814	1521.49	1270.90	1521.49	1270.90	FND														
+1319435	0	1	DEBT	F	7		Reich, Adell & Cvitan A Professional Law Corporation				Los Angeles	CA	90010	117	0	117	0	PRO														
+1285298	1	125	DEBT	F	PAY48079	OTH	Federal Express				Pasadena	CA	91109-7321	209.89	0	209.89	0	OFC														
+1312195	2	10	DEBT	F	PAY1079	OTH	NIELSEN, MERKSAMER, PARRINELLO, MUELLER & NAYLOR, LLP				SACRAMENTO	CA	95814	12500	0	12500	0	PRO	STEVEN S. LUCAS, COMMITTEE TREASURER, IS A PARTNER OF PAYEE													
+1311972	0	3	DEBT	F	F3190	OTH	Trimble & Company, an Accountancy Corporation				Riverside	CA	92507	0	4925	0	4925	PRO														
+1312042	0	7	DEBT	F	PAY2338	OTH	Wells Fargo Card Services				Los Angeles	CA	90054	0	17.30	0	17.30	MTG														
+1319998	0	2	DEBT	F	PAY2336	IND	Copp	Vona			Elk Grove	CA	95624	165.66	0	165.66	0	PRO														
+1311591	1	8	DEBT	F	PAY216	OTH	Kelli Maruccia, dba KM Strategies				San Diego	CA	92102	0	1057.50	0	1057.50	FND														
+1329816	0	1	DEBT	F	PAY104	OTH	THE MONACO GROUP				TUSTIN	CA	92780	0	9177.76	0	9177.76		PRINTING													
+1311444	1	31	DEBT	F	PAY3208	OTH	Pacific Print Resources, Inc.				Emeryville	CA	94608	455.94	0	0	455.94	POS														
+1320029	0	14	DEBT	F	PAY5357	OTH	BELL, MCANDREWS & HILTACHK				SANTA MONICA	CA	90401	0	23402.50	0	23402.50	PRO														
+1320029	0	21	DEBT	F	PAY5350	OTH	BUTCHER & BUTCHER				SACRAMENTO	CA	95814	0	20000	0	20000	CNS														
+1312292	1	2	DEBT	F	PAY7	OTH	River City Business Services				Sacramento	CA	95841	0	150	0	150	PRO														
+1335108	0	15	DEBT	F	PAY738	OTH	JohnsonClark Associates				Sacramento	CA	95833	0	3045.24	0	3045.24	CMP														
+1335106	1	6	DEBT	F	PAY564	OTH	JohnsonClark Associates				Sacramento	CA	95833	491.81	0	491.81	0	OFC														
+1335768	0	6	DEBT	F	PAY8935	OTH	CA Federation of Teachers				Burbank	CA	91505-	972.50	0	0	972.50	CTB														
+1334964	0	11	DEBT	F	PAY974	OTH	DLA Piper  US, LLP				Sacramento	CA	95814	550	0	550	0	PRO														
+1335540	0	7	DEBT	F	PAY402	OTH	Olson, Hagel & Fishburn LLP				Sacramento	CA	95814	0	21062.54	0	21062.54		PRO/LEG													
+1346363	0	2	DEBT	F	T515751	OTH	Smally's World				Claremore	OK	74019	1000	0	0	1000	WEB	July 2007 Services													
+1348850	0	5	DEBT	F	5		Western Pacific Research, Inc				Bakersfield	CA	93309	919.60	0	0	919.60	CNS														
+1350428	0	5	DEBT	F	PAY1116	OTH	Diane Stone & Associates				Oakdale	CA	95361	0	8301.35	0	8301.35	FND														
+1285004	1	5	DEBT	F	F2374	OTH	Navy Federal Credit Union				Merrifield	VA	22119-3500	1678.98	0	1678.98	0		Subvendors Rptd on Prior Rpt													
+1349909	0	5	DEBT	F	PAY44	IND	Kruger	Janay Pelletier			San Diego	CA	92122	2000	0	0	2000	CNS														
+1334887	3	13	DEBT	F	PAY1180	OTH	Capitol Confections				Sacramento	CA	95821	0	210	0	210		Fundraising supplies													
+1351700	0	22	DEBT	F	PAY2837	OTH	AP - Cityview LLC				Long Beach	CA	92840	1336	0	0	1336	OFC														
+1335356	1	19	DEBT	F	PAY1352	OTH	Montage Press				Irwindale	CA	91706	0	7853.54	0	7853.54	LIT														
+1335356	1	26	DEBT	F	PAY1346	OTH	Nygren & Company				El Dorado Hills	CA	95762	0	1353.13	0	1353.13	LIT														
+1352008	0	32	DEBT	F	PAY2264	OTH	Admail West, Inc.				Sacramento	CA	95814-0311	0	2372.80	0	2372.80	IND	Mailer/Support/Bob Blumenfield/State Assembly/Dist. 40													
+1320332	1	10	DEBT	F	PAY118	OTH	Chase Card Services				Palatine	IL	60094-4014	0	37.15	0	37.15	OFC														
+1329643	1	6	DEBT	F	D27	OTH	Fadem & Associates				Lafayette	CA	94549	39350	10500	0	49850	PRO														
+1320493	2	20	DEBT	F	PAY936	IND	Broussard	Larry			Sacramento	CA	95831	0	50	0	50	CTB														
+1351997	0	10	DEBT	F	PAY88	OTH	FORWARD OBSERVER, INC.				SACRAMENTO	CA	95814	0	5000	0	5000	CNS														
+1352021	0	32	DEBT	F	PAY3139	OTH	Whitehurst Campaigns, Inc.				San Francisco	CA	94105	0	5000	0	5000	CNS														
+1350817	0	3	DEBT	F	PAY3	OTH	James R. Santos Bookkeeping Services				Sacramento	CA	95864	204.55	0	0	204.55	OFC														
+1351725	0	14	DEBT	F	PAY1236	OTH	McKinley & Pillows				Sacramento	CA	95814	2433.75	0	2433.75	0	CNS														
+1335569	1	18	DEBT	F	PAY4057	OTH	Rebecca Suter dba The JustUs Group				Los Angeles	CA	90025	0	2500	0	2500	FND														
+1351744	0	6	DEBT	F	PAY21002	OTH	CA League of Conservation Voters				Oakland	CA	94612	16080.41	0	0	16080.41	SAL	Staff expenses													
+1351043	0	4	DEBT	F	PAY1125	OTH	Terris Barnes Walters				San Francisco	CA	94104	10477	0	0	10477	IND	Literature in opposition to Nancy Nadel for Oakland City Council, District 3.													
+1335782	1	8	DEBT	F	F1855	IND	Fu	Pearl			South Pasadena	CA	91030	0	945.64	0	945.64	CNS														
+1320441	2	12	DEBT	F	PAY3151	OTH	Verizon Wireless				Chicago	IL	60677-1003	182.54	0	182.54	0	OFC														
+1306016	1	13	DEBT	F	PAY60	IND	Buchanan	Neilson			Palo Alto	CA	94301	7750	0	7750	0	CNS														
+1335650	2	19	DEBT	F	PAY2126	OTH	CA State Council of Service Employees - Nonpartisan Voter Ed. & Reg. Acct. (NVERA)				Sacramento	CA	95814	0	1000	0	1000	MTG														
+1350848	1	9	DEBT	F	PAY1843	OTH	Civic Center Plaza Garage				San Francisco	CA	94102	800	0	800	0	TRC														
+1333691	1	2	DEBT	F	PAY2764	OTH	Eichman	J. Richard			Sacramento	CA	95814	384.24	-384.24	0	0	PRO														
+1352117	1	13	DEBT	F	PAY667	IND	Cheslog	Craig			Lafayette	CA	94549	500	0	0	500	WEB														
+1320417	3	3	DEBT	F	PAY1239	OTH	Accurate Printing Inc.				San Francisco	CA	94107	1591.98	0	1591.98	0	LIT														
+1351757	1	13	DEBT	F	D286	OTH	Goddard Claussen Strategic Advocacy, Inc.				Roseville	CA	95661	0	70300	0	70300	CNS														
+1362870	0	13	DEBT	F	983	IND	Leider	Matthew			Chico	CA	95926-7794	2436.62	0	2436.62	0	TRS	Mileage													
+1362954	0	4	DEBT	F	PAY1150	OTH	Idego Group, Inc. /ID Media				Sacramento	CA	95814	300	0	300	0	WEB														
+1362380	0	8	DEBT	F	PAY550	IND	Sandino	Julie			Sacramento	CA	95814	0	18.90	0	18.90	POS														
+1367941	0	1	DEBT	F	PAY1194	IND	J. Richard Eichman				Sacramento	CA	95814	0	278	0	278	PRO														
+1362691	1	5	DEBT	F	D1293	IND	Jens	Favel			Los Angeles	CA	90020	0	74.30	0	74.30	CTB	TRS/John Flynn													
+1363405	1	2	DEBT	F	PAY141	OTH	Gowans Printing Company				Modesto	CA	95354	746.26	0	746.26	0	LIT														
+1370111	0	7	DEBT	F	PAY104	OTH	Service Employees International Union Local 1021				Oakland	CA	94609	288	0	0	288	CTB	Phones										PAY104			
+1363113	1	18	DEBT	F	PAY2463	OTH	Keena Thomas Communications, LLC				Mission Viejo	CA	92692	0	1375	0	1375	CNS														
+1350763	1	11	DEBT	F	D551	OTH	Our Weekly				Los Angeles	CA	90047	4322.20	0	4322.20	0	CTB	PRT/ Alliance for a Stronger Cmty.													
+1369190	0	1	DEBT	F	PAY900	OTH	PROSPER CREATIVE				SACRAMENTO	CA	95811	30000	0	30000	0	WEB														
+1369288	0	4	DEBT	F	PAY4788	OTH	Internal Revenue Service				Ogden	UT	84201	543	0	0	543	OFC														
+1363479	0	24	DEBT	F	PAY23557	OTH	CA League of Conservation Voters				Oakland	CA	94612	2799.24	0	0	2799.24	OFC	See Schedule G													
+1363449	0	7	DEBT	F	PAY67	OTH	Progressive Strategy Partners LLC				Los Angeles	CA	90041	0	337.06	0	337.06		Travel Expenses													
+1363492	1	16	DEBT	F	PAY4386	OTH	ML Associates, LLC				West Hollywood	CA	90069	398.32	0	398.32	0	OFC														
+1363492	1	41	DEBT	F	PAY25062	OTH	Secretary of State				Sacramento	CA	94244-2300	0	30	0	30	OFC														
+1370123	0	5	DEBT	F	IK570	COM	Fran Florez for Assembly				Shafter	CA	93263						phonebank services          $234.00  100608AE	1292679								X		1875		
+1370633	0	16	DEBT	F	PAY22252	OTH	CA League of Conservation Voters				Oakland	CA	94612	37133.97	0	0	37133.97	SAL	Shared staff expenses - Sponsor													
+1370173	0	5	DEBT	F	30	IND	Nguyen	Christopher			Sacramento	CA	95814-4322	106.80	0	106.80	0		Reimburse TRS under threshold													
+1363057	2	40	DEBT	F	PAY2074	IND	Young	Ethel			Martinez	CA	94553	0	96	0	96	PHO														
+1370681	0	108	DEBT	F	PAY1067	OTH	AC PUBLIC AFFAIRS, INC.				Sacramento	CA	95814	0	100000	0	100000		SEE SCHEDULE G													
+1370681	5	122	DEBT	F	PAY992	OTH	IDEGO GROUP, INC. dba ID MEDIA				Sacramento	CA	95814	0	1812.50	0	1812.50	WEB														
+1346329	1	5	DEBT	F	DEBTF000000000006240	OTH	Nazarian, Adrin				North Hollywood	CA	91602	2630.63	0	2630.63	0	OFC														
+1362371	2	14	DEBT	F	PAY924	IND	Peralta	Denise			West Covina	CA	91791	115.32	0	115.32	0	TRS														
+1390324	0	8	DEBT	F	PAY309	OTH	JOE SHUMATE & ASSOCIATES, INC.				Sausalito	CA	94965	2626.53	0	0	2626.53	CNS	SEE SCHEDULE G													
+1363355	1	1	DEBT	F	PAY45	OTH	FORDE AND MOLLRICH				NEWPORT BEACH	CA	92660	30000	0	0	30000	CNS														
+1232246	3	13	DEBT	F	DEBTF000000000005586	OTH	Texas Mexican Restaurant & Catering				Sacramento	CA	95814	0	371.11	0	371.11	MTG														
+1391643	0	1	DEBT	F	PAY1331	OTH	Sloat, Higgins, Jensen & Assoc.				Sacramento	CA	95814	2611.59	0	2611.59	0	FND														
+1370681	3	55	DEBT	F	PAY945	OTH	MERIDIAN PACIFIC				Sacramento	CA	95825	400.04	0	0	400.04	TRS														
+1362918	2	28	DEBT	F	PAY1010	OTH	Warren & Associates, LLC				San Francisco	CA	94114-0000	0	2183.68	0	2183.68	PRO														
+1391342	0	3	DEBT	F	PAY1591	OTH	James R. Santos Bookkeeping Service				Sacramento	CA	95864	164.30	0	164.30	0	POS														
+1370368	1	32	DEBT	F	PAY2037	IND	Salter	Belinda			San Leandro	CA	94578	289.92	0	289.92	0	PHO														
+1335000	1	5	DEBT	F	1085	IND	Grosch	Richard			San Diego	CA	92107-2817	118.03	0	118.03	0		POS = $66.71; OFC = 51.31													
+1393366	0	5	DEBT	F	PAY1890	OTH	CA State Council of Laborers				Sacramento	CA	95814-	90	0	0	90	CTB	In-Kind to Democratic State Central Committee, ID #741666													
+1370353	1	51	DEBT	F	PAY2376	IND	Emerson	Connie Sanders			Sacramento	CA	95819	0	5000	0	5000	CNS														
+1396960	0	9	DEBT	F	PAY5183	OTH	Wells Fargo Bank (3881)				Los Angeles	CA	90054	14.85	0	14.85	0	IND	Food for volunteers supporting Dave Cortese for Supervisor													
+1395765	0	2	DEBT	F	PAY41070	IND	Croce	Renee			Manhattan Beach	CA	90266	15000	0	15000	0	CNS														
+1393659	0	54	DEBT	F	PAY2774	IND	Thomas	Michael			Sacramento	CA	95831-4441	602.06	0	0	602.06	TRS	reimbursement of expenses													
+1370036	1	6	DEBT	F	1310024	OTH	Spectacular Productions				Fresno	CA	93711	1250.98	0	0	1250.98		Agent Bill													
+1398381	0	22	DEBT	F	PAY3367	OTH	Tony & Alba's Pizza & Pasta				San Jose	CA	95128	31.19	0	31.19	0	CTB	Food for precinct walking to support Measure A , Santa Clara County (Member Communication).													
+1398514	0	37	DEBT	F	PAY4504	IND	Melendrez	Ernest J		Jr	Los Angeles	CA	90017	614.13	0	614.13	0	IND	Campaign worker													
+1398332	0	2	DEBT	F	PAY4251	OTH	Betty Presley & Associates, Inc.				Rancho Sta Margarita	CA	92688	150	0	0	150	OFC														
+1398776	0	1	DEBT	F	PAY785	OTH	River City Business Services				Sacramento	CA	95841	105.42	0	105.42	0	PRO														
+1398904	0	3	DEBT	F	100620080E66614_3	OTH	Chapeau Graphics				Sacramento	CA	95834	2392.05	0	2392.05	0		Explain:Printing													
+1398902	0	12	DEBT	F	PAY63450	IND	Knapp	Dawna			San Francisco	CA	94122	295.01	0	295.01	0	OFC														
+1398444	0	11	DEBT	F	PAY313	OTH	MERCURY PUBLIC AFFAIRS				Sacramento	CA	95814	25000	0	25000	0	CNS														
+1398653	0	4	DEBT	F	PAY153	OTH	Belaire Signs				Richmond	CA	94804	1552.50	0	1552.50	0	IND	Lawn signs													
+1370630	1	70	DEBT	F	PAY4503	IND	Mejia	Julissa E			Los Angeles	CA	90004	0	614.13	0	614.13	IND	Campaign worker													
+1407014	0	86	DEBT	F	PAY4829	OTH	South Bay Labor Council				San Jose	CA	95125-	0	1830.93	0	1830.93	CTB	Staff salaries to support No Recall of Madison Nguyen Committee.													
+1406695	0	3	DEBT	F	41		King	Joy			Los Angeles	CA	90019	0	60	0	60	FND														
+1370649	1	18	DEBT	F	PAY357	IND	Zarate	Esther			Sacramento	CA	95823	0	196.17	0	196.17	CTB	Supplies for campaign workers													
+1352021	1	14	DEBT	F	PAY2536	OTH	Whitehurst Campaigns, Inc.				San Francisco	CA	94105	1126.20	0	1126.20	0	CNS														
+1362731	2	23	DEBT	F	D453	OTH	League of Women Voters of California				Sacramento	CA	95814-2946	6098.59	0	0	6098.59	LIT														
+1370681	8	47	DEBT	F	PAY843	OTH	ROBERT DURELL PHOTOGRAPHY				Davis	CA	9516	505	0	0	505		PHOTOGRAPHY SERVICES													
+1320121	1	8	DEBT	F	PAY8937	OTH	California Federation of Teachers				Burbank	CA	91505-	194.50	0	0	194.50	CTB														
+1438010	0	2	DEBT	F	PAY906	OTH	AimPoint, Inc.				Sacramento	CA	95814	2390.60	0	2390.60	0	CNS														
+1394115	1	5	DEBT	F	F239	OTH	Washington Mutual				Seattle	WA	98101	60.89	1176.81	597.90	639.80															
+1363492	2	10	DEBT	F	PAY4360	OTH	Dewey Square Group, LLC				Charlotte	NC	28260-0340	565.01	0	565.01	0	OFC	See Schedule G													
+1423327	1	80	DEBT	F	PAY342	OTH	RUBY HILL GOLF CLUB				PLEASANTON	CA	94566	0	16540.67	0	16540.67		SEE SCHEDULE G													
+1363492	2	92	DEBT	F	PAY25110	IND	Girard	Jeffrey T.			Sacramento	CA	95828	0	15	0	15	TRS														
+1363492	2	41	DEBT	F	PAY25065	OTH	Secretary of State				Sacramento	CA	94244-2300	0	150	0	150	OFC														
+1423324	0	8	DEBT	F	PAY10057	OTH	San Francisco Democratic Central Committee (Federal)				San Francisco	CA	94104	1464.43	0	1464.43	0	OFC		C00392928												
+1423327	3	95	DEBT	F	PAY172	OTH	SK IMPACT, LLC				LOS ANGELES	CA	90028	0	12500	0	12500	CNS														
+1423252	0	3	DEBT	F	PAY2140	OTH	US Bank				Sacramento	CA	95814	1030	0	1030	0	TRC														
+1398543	1	13	DEBT	F	PAY1717	IND	Cheslog	Craig			Lafayette	CA	94549	120.19	0	120.19	0	TRS	Mileage													
+1398543	1	17	DEBT	F	PAY1764	IND	Cheslog	Craig			Lafayette	CA	94549	0	301.96	0	301.96	OFC														
+1423327	0	141	DEBT	F	PAY530	OTH	GODDARD CLAUSSEN STRATEGIC ADVOCACY				ROSEVILLE	CA	95661	0	17593.73	0	17593.73		SEE SCHEDULE G													
+1423327	4	72	DEBT	F	PAY202	IND	CROCE	RENEE			EL SEGUNDO	CA	90245	1696.55	0	0	1696.55		SEE SCHEDULE G													
+1423327	1	4	DEBT	F	PAY21	OTH	MERCURY PUBLIC AFFAIRS LLP				SACRAMENTO	CA	95814	35000	0	35000	0	CNS														
+1433110	0	5	DEBT	F	7065	OTH	Crowne Plaza Hotel - San Francisco Intl. Airport				Burlingame	CA	94010-1909	0	7849.01	0	7849.01	MTG														
+1438227	0	8	DEBT	F	1448978	OTH	Discover Card				Dover	DE	19901	0	157.82	0	157.82		Credit Card Bill													
+1438227	0	10	DEBT	F	1449190	IND	Hilton	Ted			San Diego	CA	92169	0	250.21	0	250.21		Agent Bill													
+1407029	1	8	DEBT	F	DEBTF000000000007790	OTH	Inglewood Today				Inglewood	CA	90301	1200	0	1200	0	LIT														
+1435879	0	2	DEBT	F	DEBTF000000000008220	OTH	Just Work Inc				Inglewood	CA	90301	10827.50	-10827.50	0	0	OFC														
+1438033	0	1	DEBT	F	PAY621	OTH	Pillsbury Winthrop Shaw Pittman LLP				San Francisco	CA	94105	0	2098.75	0	2098.75	PRO														
+1433139	0	2	DEBT	F	DEBTF000000000006005	OTH	Fifty Plus One				Phoenix	AZ	85013	43870.06	0	0	43870.06	LIT														
+1369690	2	40	DEBT	F	D1048	COM	SEIU Union 721 CTW, CLC  Issues & Initiatives				Los Angeles	CA	90020	78.06	0	0	78.06	CTB	PHO/Betro	891044												
+1436223	0	10	DEBT	F	PAY375	OTH	Scott & Cronin LLP				Encinitas	CA	92024	0	808.75	0	808.75	PRO														
+1433849	0	4	DEBT	F	143	OTH	MOUNT PALOMAR WINERY				Temecula	CA	92591-4930	0	1135	0	1135	FND														
+1368590	2	48	DEBT	F	PAY3445	OTH	NYGREN & CO				EL DORADO HILLS	CA	95762	0	660.07	0	660.07		REIMBURSED EXPENSES, SEE SCHEDULE G.													
+1438335	0	6	DEBT	F	PAY59	OTH	Fadem & Associates				Lafayette	CA	94549	7020	0	7020	0	PRO														
+1444689	0	3	DEBT	F	1408080	OTH	Dumont Printing				Fresno	CA	93706	2242.64	0	2242.64	0	CMP	Constituent Christmas Cards													
+1433470	1	6	DEBT	F	PAY26328	OTH	National Association of Insurance and Financial Advisors/ California				Sacramento	CA	95815	6582.62	0	6582.62	0	OFC														
+1438262	0	29	DEBT	F	PAY3005	OTH	Ross Communications				Sacramento	CA	95814	6636.80	0	0	6636.80	LIT	See Schedule G													
+1444661	1	10	DEBT	F	DEBTF000000000008319	OTH	Rix/Bradford Consulting				Los Angeles	CA	90004	0	5000	0	5000	CNS														
+1438738	0	3	DEBT	F	PAY109	OTH	Capitol Campaigns, Inc.				Sacramento	CA	95834	0	523.19	0	523.19	LIT														
+1438597	2	16	DEBT	F	PAY162	OTH	Vision One Mastercard				Dallas	TX	75247	0	546.02	0	546.02	CTB	Fundraiser food and supplies purchased in-kind for Correa for State Senate 2010 FPPC#1293209													
+1449185	0	3	DEBT	F	PAY313	OTH	Service Employees International Union Local 1021				Oakland	CA	94609	0	241.20	0	241.20	CTB	Phonebanks										PAY313			
+1435878	1	14	DEBT	F	DEBTF000000000008562	OTH	Star ECO Station				Culver City	CA	90232	0	1000	0	1000	CVC														
+1462498	0	5	DEBT	F	PAY139109	OTH	Advanced Image Direct				Fullerton	CA	92831	22928.08	0	22926.08	2		LIT, POS													
+1452894	0	19	DEBT	F	PAY148	IND	Bruens	Katherine			San Francisco	CA	94114	0	150	0	150	CMP	Photography													
+1453897	2	1	DEBT	F	9065	OTH	American Express				Weston	FL	33331-3626	830.40	0	830.40	0	TRS	TRAVEL -- STAFF													
+1455210	0	2	DEBT	F	DEBTF000000000000829	OTH	Durkee & Associates				Burbank	CA	91502	9424.20	0	0	9424.20	PRO														
+1465376	0	11	DEBT	F	DEBTF000000000005042	OTH	Targeted Communications				Los Angeles	CA	90042	9662.59	0	0	9662.59	IND														
+1398642	1	5	DEBT	F	PAY1008	OTH	Complete Campaigns				San Diego	CA	92123	0	17.22	0	17.22	FND														
+1464980	0	14	DEBT	F	PAY177	OTH	DSR Enterprises				West Sacramento	CA	95605	7533.53	0	7533.53	0	CNS	Fees & expenses													
+1465494	0	5	DEBT	F	D2819	OTH	Dan Weitzman, LLC				Sacramento	CA	95814	0	457.20	0	457.20	TRS														
+1438738	1	1	DEBT	F	PAY107	OTH	Deane & Company				Sacramento	CA	95842	0	1010.85	0	1010.85	PRO														
+1464920	0	86	DEBT	F	PAY3702	OTH	American Express				Weston	FL	33331-3626	234.66	0	234.66	0		TRC/TRS/OFC													
+1465159	0	45	DEBT	F	PAY4311	OTH	Lindsay Conwell & Associates, LLC				San Diego	CA	92101	0	108.99	0	108.99	OFC														
+1474619	0	12	DEBT	F	PAY29	OTH	CA FAMILY VOICE NEWSLETTER, A PROJECT OF POLICY ISSUES INSTITUTE				GARDEN GROVE	CA	92841	0	12500	0	12500	LIT		1310975												
+1474525	0	11	DEBT	F	PAY6528	OTH	NIELSEN, MERKSAMER, PARRINELLO, MUELLER & NAYLOR, LLP				SACRAMENTO	CA	95814	0	673.66	0	673.66	PRO														
+1474540	0	6	DEBT	F	PAY73	OTH	K Howard Consulting, LLC				Sacramento	CA	95814	990	0	990	0	FND														
+1438557	2	36	DEBT	F	PAY2322	OTH	Sutton Law Firm, PC				San Francisco	CA	94108	4322.40	0	4322.40	0	PRO														
+1471308	0	9	DEBT	F	PAY21	IND	Lehrer	Theodore			Rancho Cucamonga	CA	91701	750	0	750	0	CNS														
+1449098	2	8	DEBT	F	D3349	IND	Klein	Mark			Los Angeles	CA	90027	383.35	0	383.35	0	TRS														
+1464978	1	32	DEBT	F	D2554	OTH	Bob D'Ausilio				La Mirada	CA	90638	38.46	0	38.46	0	CTB	CNS/David Argudo - FPPC ID #1301118													
+1474714	2	28	DEBT	F	PAY448	COM	LOS ANGELES COUNTY REPUBLICAN LEADERSHIP VOTER GUIDE				Laguna Niguel	CA	92677	0	10500	0	10500		SLATE MAILER PAYMENT	1305336												
+1157565	3	13	DEBT	F	DEBTF000000000004141	OTH	VISA				San Mateo	CA	94402	528.11	284.48	528.11	284.48	OFC														
+1474819	0	5	DEBT	F	D319	OTH	Bankcard Center				Salt Lake City	UT	84130-0833	0	573.02	0	573.02	TRC														
+1474094	2	8	DEBT	F	PAY345	IND	Cooley	Steve			Toluca Lake	CA	91602	0	747.74	0	747.74	TRS	Reimbursemnt													
+1474815	1	28	DEBT	F	PAY5186	OTH	Smile Business Products, Inc.				Sacramento	CA	95841	0	529.13	0	529.13	OFC														
+1491667	0	2	DEBT	F	PAY5578	OTH	California Faculty Association				Los Angeles	CA	90045	1446	0	1446	0	CTB	10/21-10/31/08 Staff Services and Travel Expenses										PAY5578			
+1491546	0	7	DEBT	F	PAY513	IND	Flores	Vanessa			San Jose	CA	95148	284.61	0	284.61	0		POS/FND/OFC													
+1491369	0	34	DEBT	F	PAY535	IND	Caporusso	Michael			Sacramento	CA	95818	0	106.01	0	106.01	WEB														
+1491290	0	4	DEBT	F	PAY2202	OTH	Firefighters Print & Design, Inc.				Sacramento	CA	95833	0	310.59	0	310.59	CTB	Printing										PAY2202			
+1474900	1	34	DEBT	F	PAY1688	OTH	Pirayou Law Office				San Jose	CA	95120	0	360	0	360	PRO														
+1496797	1	17	DEBT	F	PAY1078	OTH	Terris, Barnes & Walters, Inc.				San Francisco	CA	94104	0	1327.15	0	1327.15	PRO														
+1320317	2	12	DEBT	F	PAY1010	OTH	US Bank				Sacramento	CA	95814	0	1239.23	0	1239.23	TRC														
+1474295	1	3	DEBT	F	PAY459	OTH	James R. Santos Bookkeeping Services				Sacramento	CA	95864	33.19	0	33.19	0	POS														
+1474524	2	19	DEBT	F	PAY366	IND	Will	Plasha Fielding			Monterey	CA	93940	1500	0	1500	0	CNS														
+1491909	0	4	DEBT	F	D100	OTH	Kaufman Legal Group				Los Angeles	CA	90017	0	1921.50	0	1921.50	PRO														
+1492051	0	1	DEBT	F	PAY2395	OTH	Olson, Hagel & Fishburn, LLP				Sacramento	CA	95814-	916.70	0	916.70	0	PRO														
+1491606	1	105	DEBT	F	PAY7171	OTH	Lindsay Conwell & Associates, LLC				San Diego	CA	92101	0	8500	0	8500	CNS														
+1491606	1	117	DEBT	F	PAY7028	OTH	Party Parking Valet Service				Oak View	CA	93022	0	420	0	420	FND														
+1504531	0	43	DEBT	F	PAY322	OTH	Service Employees International Union Local 521				San Jose	CA	95131	0	30	0	30	CTB	Fliers 6/8										PAY322			
+1507601	0	1	DEBT	F	1476961	OTH	California Vineyard Services				Fresno	CA	93722	284.42	0	284.42	0	CMP														
+1502582	0	2	DEBT	F	PAY7	OTH	Lakeside Communications Group				Rancho Mirage	CA	92270	25704.62	0	25704.62	0	IND	Paid Accrued													
+1504154	0	5	DEBT	F	1469862	OTH	CitiBusiness Card				Columbus	OH	43228	771.03	0	771.03	0		Credit Card Bill													
+1504514	0	1	DEBT	F	PAY10712	IND	Scott & Cronin, LLP				Encinitas	CA	92024-	375	0	375	0	PRO														
+1491273	1	4	DEBT	F	F1379	IND	Loose	Stephanie			Salinas	CA	93901-3306	0	81.67	0	81.67	PRO														
+1508290	0	22	DEBT	F	PAY237	OTH	GODDARD CLAUSSEN WEST, INC.				ROSEVILLE	CA	95661	0	10094.34	0	10094.34		SEE SCHEDULE G													
+1508460	0	7	DEBT	F	PAY1736	OTH	Trilogy Interactive LLC				Palo Alto	CA	94306	3500	0	0	3500	CNS														
+1492034	1	3	DEBT	F	544	OTH	Meridian Pacific Inc.				Sacramento	CA	95825-6709	0	711.40	0	711.40	CMP														
+1508012	0	13	DEBT	F	D3373	OTH	Voter Guide Slate Cards				Long Beach	CA	90808	0	7500	0	7500		Slate Mail													
+1508276	0	31	DEBT	F	PAY1422	IND	Byrd	Michael			San Francisco	CA	94115	1452.32	0	1452.32	0	FND	Food & Beverages													
+1508171	0	6	DEBT	F	PAY481	OTH	Imprenta Communications Group, Inc.				San Marino	CA	91108	0	6125.43	0	6125.43	POS														
+1508337	0	87	DEBT	F	PAY13048	IND	Buki	Maya			Los Angeles	CA	90034	0	309.46	0	309.46	TRS											PAY13048			
+1510546	0	3	DEBT	F	DEBTF000000000009180	OTH	Political Data Inc				Burbank	CA	91502	450	0	0	450	MBR														
+1491456	2	12	DEBT	F	PAY836	IND	Schlendorf	Susanna			Danville	CA	94526	0	32.75	0	32.75	OFC														
+1508666	0	1	DEBT	F	PAY190	OTH	Political Data, Inc.				Burbank	CA	91502	9405.58	0	0	9405.58	CMP	Voter Data													
+1522376	0	3	DEBT	F	1487148	OTH	DirectFile				Fresno	CA	93721	0	2509.44	0	2509.44	PRO														
+1508574	0	7	DEBT	F	PAY838	OTH	Automatic Printing Co.				Torrance	CA	90501	276.57	0	0	276.57	LIT														
+1508541	0	20	DEBT	F	PAY1254	OTH	Kaufman Legal Group				Los Angeles	CA	90017	0	2542.50	0	2542.50	PRO														
+1474878	2	12	DEBT	F	DEBTF000000000008784	OTH	MSHC Partners Inc				Washington	DC	20005	6000	3000	6000	3000	CNS														
+1465730	2	58	DEBT	F	PAY1873	IND	Tang	Sylvia			Sacramento	CA	95822	0	440	0	440	POS														
+1508542	0	9	DEBT	F	PAY549	OTH	Kasselman LLC				San Francisco	CA	94118	750	0	750	0		MTG/TRS													
+1508180	1	15	DEBT	F	PAY2283	OTH	VR Research				Oakland	CA	94612	0	12500	0	12500	CTB	In-kind to Nadia Lockyer for Supervisor 2010, see schedule D.													
+1521079	0	3	DEBT	F	1443418	OTH	Western Pacific Research Inc.				Bakersfield	CA	93309	259.46	0	259.46	0	CMP														
+1492045	3	6	DEBT	F	PAY8282	OTH	DG FastChannel, Inc.				Los Angeles	CA	90068	234	0	234	0	POS														
+1508597	2	11	DEBT	F	PAY2153	OTH	All Direct Mail Services, Inc.				Sylmar	CA	91342-2729	22211.92	0	22211.92	0	POS														
+1522524	0	1	DEBT	F	PAY15238	OTH	Pacific Standard Press				Sacramento	CA	95818	82.67	0	82.67	0	IND	Mailer/Support/Prop. 13 - Property Tax: New Construction Inclusion: Seismic Retrofitting/Statewide													
+1502916	1	9	DEBT	F	63		Jones	Nichomi			Palmdale	CA	93551	241.51	0	241.51	0	FND											63			
+1510563	1	7	DEBT	F	PAY741	OTH	Terris, Barnes & Walters, Inc.				San Francisco	CA	94104	7804	0	7804	0	OFC														
+1508337	1	78	DEBT	F	PAY12999	OTH	Andrews International Inc.				Chicago	IL	60677	0	960	0	960	PRO														
+1522998	0	1	DEBT	F	PAY3700	OTH	US Bank				Sacramento	CA	95814	40.95	0	40.95	0	WEB														
+1522880	0	85	DEBT	F	PAY11905	IND	Garzon	Mauricio			Berkeley	CA	94703	0	868.82	0	868.82	POS	See Schedule G for subvendor payments of $500 or more.													
+1523086	0	9	DEBT	F	PAY1193	OTH	Bertolina & Barnato, Inc.				Sacramento	CA	95814	1250	0	1250	0	CNS														
+1522880	0	88	DEBT	F	PAY11908	IND	Garzon	Mauricio			Berkeley	CA	94703	0	78	0	78	TRS	Reimbursed expenses under $500 Schedule G threshold.										PAY11908			
+1522903	0	2	DEBT	F	PAY1053	OTH	River City Business Services				Sacramento	CA	95841	355.86	0	355.86	0	PRO														
+1522907	0	6	DEBT	F	PAY889	OTH	River City Business Services				Sacramento	CA	95841	0	1759.23	0	1759.23	PRO														
+1523139	0	2	DEBT	F	PAY2481	OTH	Cornerstone Printing, Inc.				San Francisco	CA	94104	20575.93	0	20575.93	0	LIT														
+1522495	1	31	DEBT	F	PAY381	OTH	Woodward & McDowell				Burlingame	CA	94010	0	6230.43	0	6230.43	CTB	OFC, TRS, Banners													
+1502916	2	3	DEBT	F	57		SB Strategies, LLC				Woodland Hills	CA	91364	1000	1150	1000	1150	CNS											57			
+1522544	1	23	DEBT	F	PAY13094	OTH	On The Ground Strategies				Queen Creek	AZ	85142	716.23	0	716.23	0	TRS											PAY13094			
+1522968	1	39	DEBT	F	PAY2324	OTH	Cardmember Service				St. Louis	MO	63179	0	161.70	0	161.70	TRC	10/5/10, Airfare, SMF to BUR, Campaign Meetings, 1, Candidate													
+1531930	0	7	DEBT	F	PAY203	OTH	California School Employees Association				Sacramento	CA	95814	33924.78	0	0	33924.78	IND	Staff Time for Voter Contact Activities/Jerry Brown/Governor/Statewide/Support													
+1531068	0	2	DEBT	F	PAY4	OTH	Warren & Associates LLC				Novato	CA	94949	459.63	0	0	459.63	PRO														
+1508570	3	31	DEBT	F	PAY1760	OTH	Kaufman Legal Group				Los Angeles	CA	90017	0	1187.50	0	1187.50	PRO														
+1531318	0	6	DEBT	F	D2165	OTH	Pablo Espinoza				Elk Grove	CA	95757	156.60	0	0	156.60	OFC														
+1508404	1	39	DEBT	F	PAY1085	OTH	NIELSEN, MERKSAMER, PARRINELLO, MUELLER & NAYLOR, LLP				Sacramento	CA	95814	0	22973.17	0	22973.17	PRO	VIGO G. NIELSEN, JR., COMMITTEE TREASURER, IS A PARTNER OF PAYEE													
+1531842	1	34	DEBT	F	PAY977	OTH	Conservation Strategy Group, LLC				Sacramento	CA	95814	0	20	0	20	POS														
+1522799	3	13	DEBT	F	PAY105	OTH	GODDARD CLAUSEN WEST, INC.				ROSEVILLE	CA	95661	330.32	0	330.32	0		REIMBURSED EXPENSES													
+1532151	0	11	DEBT	F	PAY1379	OTH	Belaire Displays				Richmond	CA	94804	962.50	0	962.50	0	OFC														
+1522831	2	65	DEBT	F	PAY756	OTH	CERRELL & ASSOCIATES				LOS ANGELES	CA	90004	0	857.85	0	857.85		REIMBURSED EXPENSES UNDER $500													
+1531903	2	54	DEBT	F	PAY447	OTH	SAVE PROPOSITION 13 SEGREGATED FUND ACCOUNT				IRVINE	CA	92604	38507.86	0	19253.93	19253.93		SLATE MAILER	598040												
+1491431	4	33	DEBT	F	PAY1830	IND	Croce	Renee			El Segundo	CA	90245	0	23.11	0	23.11	FND														
+1523000	1	55	DEBT	F	PAY1035	OTH	Bicker, Castillo & Fairbanks				Sacramento	CA	95814	0	300	0	300	CTB	Convention Registration Fees													
+1531903	1	56	DEBT	F	PAY449	OTH	SMALL BUSINESS ACTION COMMITTEE NEWSLETTER				LAGUNA NIGUEL	CA	92677	38505.80	0	19252.90	19252.90		SLATE MAILER	1322823												
+1532137	0	14	DEBT	F	PAY23561	OTH	CA League of Conservation Voters				Oakland	CA	94612	2934.15	0	0	2934.15	OFC	See Schedule G													
+1523062	1	21	DEBT	F	PAY1716	OTH	James R.Santos Bookkeeping Service				Sacramento	CA	95864	78.46	0	78.46	0	POS														
+1531912	1	6	DEBT	F	PAY48	OTH	ACTIVATE DIRECT				SACRAMENTO	CA	95814	1615	0	0	1615	WEB														
+1522949	1	26	DEBT	F	PAY761	OTH	Fiona Hutton & Associates, Inc.				Studio City	CA	91604	0	361.67	0	361.67	POS														
+1522412	1	9	DEBT	F	PAY2161	OTH	California State Council of Service Employees				Sacramento	CA	95814-	0	3461.25	0	3461.25	IND	Robocall/Oppose/Sam Blakeslee/State Senate/District 15													
+1530852	1	2	DEBT	F	PAY1114	OTH	Jonathan Club				Los Angeles	CA	90071	113.17	0	0	113.17	MTG	06/05/10 Meeting for 2 including candidate Re: Piracy													
+1522799	4	99	DEBT	F	PAY486	OTH	GODDARD CLAUSEN WEST, INC.				ROSEVILLE	CA	95661	0	116868.80	0	116868.80		SEE SCHEDULE G													
+1531903	5	18	DEBT	F	PAY378	OTH	GODDARD CLAUSEN WEST, INC.				ROSEVILLE	CA	95661	142.88	0	0	142.88		REIMBURSED EXPENSES													
+1531903	5	25	DEBT	F	PAY217	OTH	WILSON MILLER COMMUNICATIONS, INC.				SACRAMENTO	CA	95814	10000	0	10000	0	CNS														
+1492152	2	37	DEBT	F	PAY1706	COM	Democrats for a Better CA				Torrance	CA	90501	0	16000	0	16000	LIT		1220415												
+1531903	6	25	DEBT	F	PAY217	OTH	WILSON MILLER COMMUNICATIONS, INC.				SACRAMENTO	CA	95814	10000	0	10000	0	CNS														
+1565627	0	10	DEBT	F	4327	OTH	KM Strategies LLC				San Diego	CA	92102-1952	4706.25	1335	4706.25	1335	CNS														
+1531618	1	8	DEBT	F	D268	OTH	Carolyn Zanders				Fontana	CA	92336	0	42	0	42	IND	Mileage/Jerry Brown													
+1531903	6	57	DEBT	F	PAY448	OTH	SAVE PROPOSITION 13 SEGREGATED FUND ACCOUNT				IRVINE	CA	92604	38507.86	0	19253.93	19253.93		SLATE MAILER	598040												
+1522359	1	30	DEBT	F	D1060	COM	SEIU Union 721 CTW, CLC  Issues & Initiatives				Los Angeles	CA	90020	5000	0	0	5000	PRO		891044												
+1532151	1	28	DEBT	F	PAY1589	IND	Ricasa	Antonio			San Diego	CA	92154	0	144.93	0	144.93	FND														
+1522944	2	1	DEBT	F	PAY1465	OTH	Wired for Change, Inc.				Washington	DC	20009	0	255	0	255	OFC														
+1572158	0	11	DEBT	F	PAY102	OTH	Olson Hagel & Fishburn LLP				Sacramento	CA	95814-	0	115.10	0	115.10	PRO														
+1531512	1	49	DEBT	F	PAY19849	OTH	Wendy Warfield & Associates				Sacramento	CA	95814	0	222.77	0	222.77		POS, TRS										PAY19849			
+1572050	0	17	DEBT	F	PAY2397	OTH	The Strategy Group, Inc.				Evanston	IL	60201	0	21034.20	0	21034.20	IND	Newspaper Ad/Oppose/Andy Pugno/State Assembly/District 5													
+1508541	3	26	DEBT	F	PAY1320	OTH	Political Data, Inc.				Burbank	CA	91507	0	1097.71	0	1097.71	LIT														
+1571410	0	5	DEBT	F	PAY701	OTH	DLA Piper US LLP				Sacramento	CA	95814	0	636	0	636	PRO														
+1522956	2	40	DEBT	F	PAY2238	IND	Ekerling	Suzanne			Los Angeles	CA	90024	35	0	35	0	MTG														
+1572120	0	10	DEBT	F	PAY58	OTH	McKinley-Pillows Fundraising, Inc.				Sacramento	CA	95814	300	0	0	300	FND											PAY58			
+1531621	1	2	DEBT	F	152	OTH	Gateway Media				Sacramento	CA	95833-4131	6500	0	0	6500	CNS														
+1571985	0	26	DEBT	F	PAY1734	OTH	Conservation Strategy Group, LLC				Sacramento	CA	95814	129.93	0	129.93	0	MTG														
+1572146	0	4	DEBT	F	40		Gaya	Adam			Chicago	IL	60605	0	1329.67	1024.27	305.40	TRS														
+1572780	0	3	DEBT	F	PAY3170	OTH	Kaufman Legal Group				Los Angeles	CA	90017	11073.49	0	0	11073.49	PRO														
+1531827	2	8	DEBT	F	100420100E76355_8	OTH	McLaughlin And Associates				Alexandria	VA	22314	46000	0	46000	0	CNS														
+1531693	1	22	DEBT	F	PAY11928	OTH	The Next Generation				Oakland	CA	94612	25000	0	25000	0	CNS														
+1572776	0	5	DEBT	F	PAY861	OTH	Big New Ideas				Providence	RI	02903	0	1000	0	1000	CNS														
+1523139	2	2	DEBT	F	PAY2481	OTH	Cornerstone Printing, Inc.				San Francisco	CA	94104	20575.93	0	20575.93	0	LIT														
+1531720	1	16	DEBT	F	PAY1525	IND	Pentz	Anita Lynn			Castro Valley	CA	94546	0	55	0	55	TRS														
+1437908	3	3	DEBT	F	D4196	OTH	Kaufman Legal Group				Los Angeles	CA	90017	0	4038	0	4038	PRO														
+1531720	1	52	DEBT	F	PAY1524	IND	Borden	Sarah A.			Fremont	CA	94538	0	30	0	30	TRS														
+1584771	0	1	DEBT	F	PAY2929	OTH	PG&E				Sacramento	CA	95899	2193.08	0	2193.08	0	OFC														
+1465730	3	37	DEBT	F	PAY989	OTH	AT&T				Sacramento	CA	95887-0001	0	373.79	0	373.79	OFC														
+1591815	0	10	DEBT	F	PAY2139	IND	Copp	Vona			Elk Grove	CA	95624	204.52	0	0	204.52	PRO														
+1572272	1	2	DEBT	F	PAY3020	OTH	JPM&M, Inc.				Sacramento	CA	95814	20000	0	0	20000	CNS														
+1522854	4	13	DEBT	F	PAY545	OTH	WINNER & MANDABACH CAMPAIGNS				LOS ANGELES	CA	90067	56.36	0	56.36	0		REIMBURSED EXPENSES													
+1588579	0	11	DEBT	F	1495163	IND	Hilton	Ted			San Diego	CA	92109	2000	0	0	2000	PRO	Oct.1-15													
+1569592	1	9	DEBT	F	PAY2156	OTH	Trilogy Interactive LLC				Palo Alto	CA	94306	2000	0	2000	0	CNS														
+1530389	1	18	DEBT	F	1488699	OTH	Print Logistics				Sacramento	CA	95811	275	0	275	0	CMP														
+1508587	2	31	DEBT	F	PAY1959	OTH	James R. Santos Bookkeeping Services				Sacramento	CA	95864	0	10.70	0	10.70	LIT														
+1491968	2	13	DEBT	F	D273	OTH	Political Data Inc.				Burbank	CA	91502	2128.95	0	2128.95	0		Voter Data													
+1522149	1	11	DEBT	F	PAY21197	OTH	Hospital Association of Southern California				Los Angeles	CA	90071	2700	0	0	2700	FND														
+1604778	0	9	DEBT	F	PAY1270	OTH	Fiona Hutton & Associates, Inc.				Studio City	CA	91604	81.26	-81.26	0	0	POS											PAY1270			
+1603704	0	1	DEBT	F	PAY1518	OTH	Betty Presley & Associates, Inc.				Rancho Sta Margarita	CA	92688	985	0	985	0	PRO														
+1608066	0	22	DEBT	F	PAY525	OTH	Olson Hagel & Fishburn LLP				Sacramento	CA	95814	0	5208.72	0	5208.72	PRO														
+1606241	0	24	DEBT	F	PAY22123	OTH	AT&T				Sacramento	CA	95814	719.34	0	719.34	0	OFC														
+1572278	2	21	DEBT	F	1492509	OTH	Steve Presson & Associates				Gold River	CA	95670	0	10000	0	10000	CNS														
+1572881	1	19	DEBT	F	PAY4056	OTH	Bal-Maiden Films				Culver City	CA	90232	7650	0	7650	0	TEL														
+1532145	2	43	DEBT	F	PAY3308	IND	Cartwright	Andrew			Los Angeles	CA	90066	43.95	0	43.95	0	POS														
+1572829	1	31	DEBT	F	PAY1519	IND	Haberman	Mark E.			Walnut Creek	CA	94598	70	0	70	0	TRS														
+1609101	0	8	DEBT	F	PAY1668	IND	Copp	Vona			Elk Grove	CA	95624	75.60	0	0	75.60	PRO														
+1609308	0	11	DEBT	F	PAY570	OTH	SUTTON LAW FIRM				SAN FRANCISCO	CA	94108	2840.25	-2840.25	0	0	PRO	JAMES R. SUTTON, COMMITTEE TREASURER, IS OWNER OF PAYEE; JESSE MAINARDI, COMMITTEE ASSISTANT TREASURER, IS EMPLOYEE OF PAYEE.										PAY570			
+1532145	2	12	DEBT	F	PAY3546	OTH	Bertolina & Barnato, Inc.				Sacramento	CA	95814	280	0	280	0	FND														
+1615860	0	2	DEBT	F	F5806	OTH	Buchert Development LLC				Long Beach	CA	90807	1987	0	1987	0	CNS														
+1622243	0	13	DEBT	F	PAY2144	IND	Copp	Vona			Elk Grove	CA	95624	548.73	0	0	548.73	PRO														
+1609552	0	22	DEBT	F	PAY304	OTH	NEW ASIA				SAN FRANCISCO	CA	94133	5920	0	5920	0	FND														
+1522956	3	52	DEBT	F	PAY1974	IND	Croce	Renee			El Segundo	CA	90245	931.12	0	931.12	0	MTG														
+1627201	0	1	DEBT	F	PAY283	OTH	J. Richard Eichman, CPA				Sacramento	CA	95814	50	-50	0	0	PRO	Accrued expense paid by a third party.													
+1523100	4	24	DEBT	F	PAY1997	OTH	Comcast				Modesto	CA	95354	0	232.80	0	232.80	OFC														
+1629228	0	4	DEBT	F	PAY4848	OTH	NIELSEN MERKSAMER PARRINELLO GROSS & LEONI LLP				SACRAMENTO	CA	95814-	0	1689.58	0	1689.58	PRO														
+1631599	0	3	DEBT	F	2192	OTH	Scott & Cronin LLP				Encinitas	CA	92024-8705	918.75	923	918.75	923	PRO														
+1628883	0	3	DEBT	F	PAY456	OTH	American Express				Los Angeles	CA	90096	332.16	0	332.16	0	MTG														
+1629163	0	1	DEBT	F	PAY2183	OTH	MAIL RITE				Sacramento	CA	95834	239.21	0	239.21	0	LIT														
+1634700	0	1	DEBT	F	PAY162	OTH	Betty Presley & Associates, Inc.				Rancho Sta Margarita	CA	92688	200	0	0	200	PRO														
+1633557	0	1	DEBT	F	CI187	OTH	Miller, Kaplan, Arase & Co., LLP				North Hollywood	CA	91602	0	490	0	490	PRO	Accounting Services - July 2011													
+1531109	4	117	DEBT	F	PAY5864	OTH	Wilson Research Strategies, LLC				Oklahoma City	OK	73103	0	1000	0	1000	POL														
+1636479	0	2	DEBT	F	PAY412	OTH	Citi Cards				San Antonio	TX	78245	60.48	0	60.48	0	MTG														
+1647365	0	4	DEBT	F	PAY370	OTH	Warren and Associates LLC				Novato	CA	94949	1906.29	0	1906.29	0		PRO/POS/OFC													
+1646724	0	1	DEBT	F	PAY599	OTH	Warren and Associates LLC				Novato	CA	94949	1711.49	0	1711.49	0		PRO/POS/OFC													
+1637488	0	27	DEBT	F	PAY405	IND	Rivas-Gomez	Lucero			San Lorenzo	CA	94580	17.49	0	17.49	0	OFC														
+1637722	0	11	DEBT	F	PAY4190	OTH	STEARNS CONSULTING				SAN FRANCISCO	CA	94102	12500	0	12500	0	CNS														
+1637475	1	6	DEBT	F	PAY170	OTH	Cardmember Services				St. Louis	MO	63179	581.18	0	581.18	0		See Schedule G for individual credit card payees													
+1637784	0	16	DEBT	F	PAY164	IND	Frazier	Janet			Oakley	CA	94561	0	105	0	105	MTG	12/10/2011,Latina Dinner Awards,1,Candidate													
+1572627	1	3	DEBT	F	D1171	OTH	Charlotte Dobbs & Co.				Santa Monica	CA	90403	0	11.75	0	11.75	POS														
+1647453	0	9	DEBT	F	D5475	OTH	The Strategy Group, Inc.				Evanston	IL	60201	1116.60	0	1116.60	0	TRS														
+1647458	0	6	DEBT	F	PAY139	OTH	Safegard Business Systems				Whittier	CA	90603	108.75	0	108.75	0	OFC														
+1566537	1	3	DEBT	F	82		Ritchie	Julia			San Jose	CA	92126	135	0	135	0	TRS											82			
+1663407	0	1	DEBT	F	F-24-V	OTH	C. April Boling  CPA				San Diego	CA	92119	0	50	0	50	PRO														
+1662713	0	10	DEBT	F	PAY191	OTH	Brandon Ruiz Consultants				Sacramento	CA	95833	480	0	480	0	PRO														
+1652645	0	3	DEBT	F	CI22	OTH	John B. Mockler & Assoc.				Sacramento	CA	95814	12500	0	12500	0	PRO														
+1606356	1	7	DEBT	F	PAY3849	OTH	CA League of Conservation Voters				Oakland	CA	94612	558.46	0	558.46	0	OFC	Office and overhead expenses													
+1647618	0	5	DEBT	F	PAY938	IND	Filicetti	Rose			Mountain View	CA	94040	200	0	200	0	MTG	No Single Transaction Exceeded The Reporting Threshold													
+1637058	1	9	DEBT	F	PAY211	OTH	Wendy Warfield & Associates				Sacramento	CA	95814	0	1088	0	1088	PRO														
+1647648	0	5	DEBT	F	F-323-V	OTH	Visteva				Garden Grove	CA	92841	1675	0	1675	0		See Schedule E for codes or descriptions.													
+1647660	0	2	DEBT	F	PAY252	OTH	Cardmember Service				Saint Louis	MO	63179	427.73	0	427.73	0		See schedule 'G' for individual credit card payees.													
+1647669	0	9	DEBT	F	PAY207	OTH	Nygren & Company, Inc.				El Dorado Hills	CA	95762	0	1000	0	1000	CNS														
+1657650	0	12	DEBT	F	PAY103	OTH	SCN Strategies, Inc.				San Francisco	CA	94104	0	7500	0	7500	CNS														
+1662972	0	3	DEBT	F	F-2950-W	OTH	CALIFORNIA BANK & TRUST				Los Angeles	CA	90071	3399.38	12865.34	16264.72	0		Various credit card purchases. See Schedule G for Credit Card Payees meeting threshold.													
+1661679	0	1	DEBT	F	PAY151	OTH	Eichman, CPA	J. Richard			Sacramento	CA	95814	0	129.95	0	129.95	PRO														
+1647571	1	2	DEBT	F	D1507	OTH	Kaufman Legal Group				Los Angeles	CA	90017	399.57	283.22	399.57	283.22	OFC														
+1663637	0	3	DEBT	F	PAY4082	OTH	SEIU United Healthcare Workers West				Oakland	CA	94612-	0	2870.14	0	2870.14	CTB	In-Kind to Californians for Accountability - Support Roth for Senate 2012 (ID#1347430)													
+1647777	1	3	DEBT	F	PAY770	OTH	Cornerstone Printing, Inc.				San Francisco	CA	94111	315	0	315	0	LIT	Mailing													
+1663788	0	1	DEBT	F	PAY12338	OTH	Olson Hagel & Fishburn LLP				Sacramento	CA	95814-	753.94	0	753.94	0	PRO														
+1663646	0	13	DEBT	F	PAY4455	OTH	Emissary Relations LLC				San Diego	CA	92103	781.71	0	781.71	0	FND														
+1647666	1	4	DEBT	F	PAY334	OTH	Maravich Associates, LLC				Los Angeles	CA	90067	774.80	0	774.80	0	TRS	See schedule 'G' for individual payees													
+1664149	0	4	DEBT	F	D282	OTH	Landslide Communications				Laguna Niguel	CA	92677	0	2500	0	2500		Slate Mailer													
+1664197	0	2	DEBT	F	F-2723-V	OTH	Eng & Nishimura				Los Angeles	CA	90017	571.42	0	571.42	0		See Schedule E for codes or descriptions.													
+1664204	0	3	DEBT	F	D181	OTH	Four Water Media				West Sacramento	CA	95605	1000	0	0	1000	MBR														
+1655502	2	8	DEBT	F	PAY148	OTH	Jedburghs, LLC				Newport Beach	CA	92663	0	471.61	0	471.61	TRS														
+1677266	0	3	DEBT	F	PAY1859	OTH	California State Council of Service Employees				Sacramento	CA	95814	661.64	0	0	661.64	CTB	Staff Time										PAY1859			
+1677430	0	1	DEBT	F	PAY1028	IND	Copp	Vona			Elk Grove	CA	95624	100.50	0	100.50	0	PRO														
+1663048	1	2	DEBT	F	245	OTH	Sunset Press				San Diego	CA	92120-3428	313.29	0	313.29	0	LIT														
+1677462	0	14	DEBT	F	D1053	COM	SEIU Union 721 CTW, CLC  Issues & Initiatives				Los Angeles	CA	90020	78.99	0	0	78.99	CTB	PHO/Betro For Council Ward 1 ID#1254312	891044												
+1676304	0	2	DEBT	F	515	OTH	Filipino Press				National City	CA	91950-2400	600	0	600	0	PRT														
+1678534	0	1	DEBT	F	PAY78	OTH	Bell, McAndrews & Hiltachk, LLP				Sacramento	CA	95814	0	386.96	0	386.96	PRO														
+1667284	1	18	DEBT	F	PAY4465	OTH	InfluentialData LLC				Santa Monica	CA	90405	2450	0	0	2450	PHO														
+1664140	1	34	DEBT	F	D632417	OTH	Tribune Direct				Irwindale	CA	91706	0	1128.44	0	1128.44	LIT														
+1680339	0	2	DEBT	F	PAY1927	OTH	Ross Communications				Sacramento	CA	95811	60000	0	0	60000	CNS														
+1680355	0	6	DEBT	F	D2049	IND	Torres	Louis			Pomona	CA	91768	188.60	0	188.60	0	MTG														
+1680418	0	4	DEBT	F	PAY774	OTH	Commerce Printing				Sacramento	CA	95811	0	3075.38	0	3075.38	LIT														
+1680729	0	14	DEBT	F	PAY655	IND	Mata	Luis			Coachella	CA	92236	1000	0	1000	0	CNS														
+1680022	0	3	DEBT	F	PAY77	IND	Kozak	Graham			Grosse Pointe Woods	MI	48236	0	594.09	0	594.09	TRS														
+1680067	0	1	DEBT	F	PAY214	OTH	MB Public Affairs, Inc.				Sacramento	CA	95814	5444.95	0	5444.95	0	CNS														
+1679829	0	19	DEBT	F	23		Western Pacific Research, Inc				Bakersfield	CA	93309	10051.01	0	0	10051.01	PET														
+1664275	1	5	DEBT	F	D616674	OTH	Julie Sandino				Sacramento	CA	95814	0	20.07	0	20.07	POS														
+1695021	0	4	DEBT	F	PAY1003	OTH	California Faculty Association				Los Angeles	CA	90045	0	5735.18	0	5735.18	CTB	In-Kind Contributions to No on 32 (ID#1340076)													
+1695024	0	2	DEBT	F	PAY98	OTH	Conservation Strategy Group, LLC				Sacramento	CA	95814	4000	0	4000	0	CNS	Joseph Caves, measure proponent, has an ownership interest in the payee													
+1670027	1	2	DEBT	F	PAY383	IND	Lee	Larry			Oakland	CA	94619	0	1000	0	1000	WEB														
+1680733	1	3	DEBT	F	D46	OTH	Consumer Watchdog				Santa Monica	CA	90405	21782.55	0	21782.55	0		Reimbursement For Reimbursable Expenses													
+1692569	0	1	DEBT	F	PAY627	OTH	J. Richard Eichman, CPA				Sacramento	CA	95814	143.95	0	143.95	0	PRO	Paid Accrued expense													
+1695057	0	6	DEBT	F	D10109	OTH	LA County Federation of Labor, AFL-CIO				Los Angeles	CA	90006	0	350.85	0	350.85	IND	SAL/Political Contribs by Payroll Deduction. Contributions to Candidates, Oppose													
+1647434	2	32	DEBT	F	PAY1141	OTH	Card Service Center				Dallas	TX	75356	0	2.25	0	2.25	TRC														
+1695386	0	19	DEBT	F	D1033	OTH	Naomi Padron				Sacramento	CA	95814	302.42	0	302.42	0	MTG														
+1695437	0	3	DEBT	F	728	IND	Kearns	Anne			Fort Myers	FL	33912-7331	0	600	0	600	LIT														
+1702267	0	9	DEBT	F	PAY830	OTH	United Domestic Workers of America				San Diego	CA	92103	0	718.06	0	718.06	MBR	Cost of wages and expenses for phone banking for Ken Cooley for Assembly 2012 (ID #1343706) P.O. Box 1357 Rancho Cordova CA 95741													
+1703057	0	1	DEBT	F	F-48-W	OTH	Banana Republic Visa Card				Orlando	FL	32896	0	875	0	875		Various credit card purchases. See Schedule G for Credit Card Payees meeting threshold.													
+1694853	1	4	DEBT	F	PAY55311	OTH	California Retired Teachers Association				Sacramento	CA	95825	0	1125	0	1125	WEB	See Schedule G													
+1703431	0	1	DEBT	F	PAY87	OTH	Goddard Claussen West				Roseville	CA	95661	6949.35	0	6949.35	0	RAD														
+1695256	1	24	DEBT	F	PAY1118	OTH	Bonilla	Lark Designs by Andrea			Redding	CA	96003	0	1585	0	1585	LIT														
+1704071	0	29	DEBT	F	PAY21656	IND	Connary	Adam			La Mesa	CA	91942	0	364	0	364	IND	Phone Banking													
+1704082	1	1	DEBT	F	PAY121	OTH	NIELSEN MERKSAMER PARRINELLO GROSS & LEONI LLP				SACRAMENTO	CA	95814	1295.03	0	1295.03	0	PRO														
+1704467	1	207	DEBT	F	PAY3361	IND	Smith	Zephnii N.			Elk Grove	CA	95758	0	441.55	0	441.55	IND	Canvassers/Support/Cathleen Galgiani/State Senate/District 5													
+1695017	2	2	DEBT	F	PAY620	COM	The Minority Committee				Sacramento	CA	95814	0	12500	0	12500	PRT		1303386												
+1695165	1	18	DEBT	F	PAY2565	OTH	Paylink				Sacramento	CA	95841-	0	376.95	0	376.95	IND	Payroll Taxes/Support/Jose Medina/State Assembly/District 61													
+1704557	0	7	DEBT	F	PAY695	OTH	Three Point Media, LLC				Washington	DC	20007	35000	-35000	0	0	CNS														
+1663936	3	30	DEBT	F	PAY1038	OTH	GODDARD CLAUSSEN WEST, INC.				ROSEVILLE	CA	95661	0	4762.76	0	4762.76		SEE SCHEDULE G													
+1647558	2	7	DEBT	F	PAY572	OTH	Flying Colors USA LLC				Orinda	CA	94563	1420.25	0	1420.25	0	PRT														
+1704557	1	11	DEBT	F	PAY889	OTH	Acosta Consulting				Sacramento	CA	95814	0	22270	0	22270	CMP														
+1695203	2	65	DEBT	F	PAY186	OTH	Orange County Congregation Community Organization				Anaheim	CA	92805	0	14253.24	0	14253.24	SAL														
+1725197	0	1	DEBT	F	21		Incendia Creative				Monterey	CA	93942	4000	0	0	4000	TEL	Video Production													
+1704071	1	167	DEBT	F	PAY22100	IND	Lopez	Reina			Santee	CA	92071	0	40	0	40	IND	Phone Banking													
+1704071	1	175	DEBT	F	PAY22039	IND	Elsaad	Rhonda			El Cajon	CA	92020	0	20	0	20	IND	Phone Banking													
+1715702	0	95	DEBT	F	PAY27431	OTH	50+1 Strategies LLC				San Francisco	CA	94107	0	37.11	0	37.11	IND	Member Communication Mailer													
+1704076	2	18	DEBT	F	PAY438	OTH	Centaur North Strategic Communications				Whittier	CA	90603	0	3900	0	3900	LIT														
+1715702	0	257	DEBT	F	PAY27949	OTH	SF Van, LLC				San Francisco	CA	94102	0	22.80	0	22.80	IND	Member Communication Mailer													
+1662669	2	24	DEBT	F	PAY850	IND	Haley	Colleen			San Jose	CA	95130	0	13.59	0	13.59	TRS														
+1694400	1	2	DEBT	F	F-25-V	OTH	Revolvis Consulting  Inc.				San Diego	CA	92119	2000	0	2000	0	CNS														
+1739844	0	7	DEBT	F	PAY1311	IND	Temporal	Joyce			San Diego	CA	92154	34.41	-34.41	0	0	OFC														
+1739869	0	15	DEBT	F	PAY1292	OTH	James R. Santos Bookkeeping Services				Sacramento	CA	95864	1826.67	0	1826.67	0	PRO														
+1704175	1	1	DEBT	F	PAY695	OTH	Premiere Strategies				Auburn	CA	95603	907.64	0	0	907.64	LIT														
+1739302	0	6	DEBT	F	5362	OTH	Will Copy & Print				San Diego	CA	92101-1254	0	129.89	0	129.89	LIT														
+1703529	1	4	DEBT	F	D224	OTH	NGP VAN, Inc.				Washington	DC	20005	125	0	0	125	OFC														
+1695245	1	29	DEBT	F	PAY160	IND	Frazier	Janet			Oakley	CA	94561	105	0	0	105	CTB														
+1740839	0	1	DEBT	F	PAY4019	OTH	TONY'S CATERING				SACRAMENTO	CA	95814	127.44	0	127.44	0	OFC														
+1740490	0	20	DEBT	F	PAY2053	OTH	Wells Fargo Card Services				Los Angeles	CA	90001	40	-40	0	0	CMP														
+1740918	0	4	DEBT	F	PAY1231	OTH	Outword Magazine				Sacramento	CA	95831	0	150	0	150	PRT														
+1704525	1	2	DEBT	F	D105	OTH	Kaufman Legal Group				Los Angeles	CA	90017	13004.15	2284	13004.15	2284	PRO														
+1740518	0	2	DEBT	F	D10104	COM	L.A. County Democratic Party				Los Angeles	CA	90010	1100	0	0	1100	IND	PRT/Political Contribs by Payroll Deduction. Contributions to Candidates, Oppose	744554												
+1715702	1	27	DEBT	F	PAY26826	OTH	Pacific Print Resources				Emeryville	CA	94608	546.67	0	546.67	0	IND	Member Communication Mailer													
+1755330	0	4	DEBT	F	PAY52	IND	Orpilla	Jacqueline			Oakland	CA	94609	12.95	0	12.95	0	POS														
+1646554	3	13	DEBT	F	PAY701	OTH	Bertolina & Barnato, Inc.				Sacramento	CA	95814	0	770.73	0	770.73	FND														
+1740901	1	21	DEBT	F	PAY2134	OTH	Chase Card Services				Elgin	IL	60124	0	119.14	0	119.14	FND	See Schedule G for Description													
+1741193	0	3	DEBT	F	PAY548	OTH	The Capitol Alliance				Sacramento	CA	95814	0	1694.80	0	1694.80	FND	Reimbursement for supplies & delivery services													
+1741206	0	11	DEBT	F	PAY820	OTH	Eric Hacopian dba EDH Assoc.				Sherman Oaks	CA	91423	5187.75	0	0	5187.75	LIT														
+1741257	0	1	DEBT	F	PAY455	OTH	FieldWorks				Washington	DC	20008	804.68	0	0	804.68	CNS														
+1704467	2	91	DEBT	F	PAY2659	IND	Martinez	Blanca E.			Stockton	CA	95203	317.84	0	317.84	0	IND	Canvassers/Support/Cathleen Galgiani/State Senate/District 5													
+1740166	1	3	DEBT	F	D645	OTH	Kaufman Legal Group, APC				Los Angeles	CA	90017	1187.50	0	1187.50	0	PRO														
+1636573	1	13	DEBT	F	20130.E83140_13	OTH	City of Sacramento				Sacramento	CA	95814	0	7905	0	7905		Explain:,Deposit for Convention													
+1740820	1	6	DEBT	F	PAY1476	OTH	Planned Parenthood Action Fund of Santa Barbara, Ventura & San Luis Obispo Counties, Inc.				Santa Barbara	CA	93101-	300.51	0	0	300.51	IND	Newspaper Ad/Support/Das Williams/AD37													
+1740820	1	53	DEBT	F	PAY1539	OTH	Planned Parenthood Action Fund of Santa Barbara, Ventura & San Luis Obispo Counties, Inc.				Santa Barbara	CA	93101-	0	3401.36	0	3401.36	SAL														
+1772183	0	9	DEBT	F	PAY154	OTH	BLUE STATE DIGITAL				LOS ANGELES	CA	90010	3450	-3450	0	0	WEB											PAY154			
+1769234	0	37	DEBT	F	PAY6998	OTH	Pacific Printing				San Jose	CA	95112	102.09	0	0	102.09	IND	Mailer printing, production and postage (Member Communication)													
+1767947	0	2	DEBT	F	6169	OTH	Russo Miller & Associates				Austin	TX	78701-3665	7871.93	0	0	7871.93	MTG	Reimb. CRP Convention Event Expenses													
+1767968	0	3	DEBT	F	VN5JA9H5Q46	OTH	L.A. County Federation of Labor, AFL-CIO				Los Angeles	CA	90006-2202	18266.22	0	0	18266.22	IND	PHO/Jimmy Gomez, Support, , 													
+1766770	0	1	DEBT	F	PAY9	IND	Leon	Paul			Ontario	CA	91762	905.26	0	0	905.26	FIL														
+1647581	1	11	DEBT	F	PAY396	COM	Inland Empire RLVG				Laguna Niguel	CA	92677	0	2273.20	0	2273.20	LIT		1293670												
+1770865	1	14	DEBT	F	061320130E89743_14	OTH	Bell, McAndrews & Hiltachk				Sacramento	CA	95814	0	20755.76	0	20755.76		Explain:PRO,Legal Fees													
+1766868	1	4	DEBT	F	PAY6966	OTH	Cotchett, Pitre & McCarthy, LLP				Burlingame	CA	94010-1413	1161.20	0	0	1161.20	TRS	TRAVEL -- STAFF													
+1774898	0	25	DEBT	F	PAY6986	OTH	Pacific Printing				San Jose	CA	95112	680.58	0	0	680.58	IND	Mailer printing, production and postage (Member Communication)													
+1776734	0	5	DEBT	F	PAY9009	OTH	NIELSEN MERKSAMER PARRINELLO GROSS & LEONI LLP				SACRAMENTO	CA	95814	0	1652.25	0	1652.25	PRO														
+1778881	0	8	DEBT	F	PAY106670	OTH	California School Employees Association				San Jose	CA	95131	103.33	0	103.33	0	TRS														
+1778895	0	4	DEBT	F	PAY2095	OTH	California State Council of Service Employees				Sacramento	CA	95814	5337.23	0	0	5337.23	CTB	Staff Time and Expenses										PAY2095			
+1770758	1	15	DEBT	F	PAY796	IND	Williams	Joseph			Bakersfield	CA	93305	0	86	0	86	OFC														
+1606382	2	41	DEBT	F	PAY25755	OTH	ML Associates				Santa Monica	CA	90401	0	929.50	0	929.50	PRO														
+1783887	0	8	DEBT	F	PAY87	IND	Dababneh	Matt			Encino	CA	91436	0	1064.21	0	1064.21	TRC														
+1780213	0	6	DEBT	F	PAY1158	IND	Fong	Paul J.			Sunnyvale	CA	94086-0000	1000	0	0	1000	OFC														
+1739886	1	7	DEBT	F	PAY17	IND	Ward	Christopher			San Diego	CA	92103	0	161.44	0	161.44	MTG	12/3/12, Food for Legislative Meeting, 9, Candidate & Chris Ward-Authority to Approve Expenditures													
+1781865	0	6	DEBT	F	PAY163104	OTH	Direct Partners, Inc.				Marina Del Rey	CA	90292	5177.22	0	5177.22	0	WEB														
+1783501	0	6	DEBT	F	PAY741	OTH	The Capitol Alliance				Sacramento	CA	95814	0	1378.25	0	1378.25		Reimbursement for meetings, supplies and postage.													
+1783373	0	32	DEBT	F	PAY532	IND	Olmstead	Rob			Sacramento	CA	95821	0	268.09	0	268.09	MTG														
+1783399	0	7	DEBT	F	PAY234	OTH	Nossaman, LLP				Los Angeles	CA	90017	0	1552.25	0	1552.25	PRO														
+1782538	0	2	DEBT	F	1818	OTH	American Express				Weston	FL	33331-3626	6223.93	0	6223.93	0	OFC														
+1783525	0	1	DEBT	F	F-403-V	IND	Vasquez	Juan			West Sacramento	CA	95605	480.53	0	0	480.53	IND	Campaign Booth													
+1790258	1	13	DEBT	F	PAY89	IND	Dababneh	Matt			Encino	CA	91436	157.55	0	157.55	0	TRC	7/25/13, Mileage from Encino to San Diego for candidate to attend campaign meetings.													
+1790746	0	3	DEBT	F	PAY6970	OTH	Pacific Printing				San Jose	CA	95112	763.27	0	0	763.27	IND	Mailer printing, production and postage (Member Communication)													
+1790746	0	5	DEBT	F	PAY7105	OTH	Pacific Printing				San Jose	CA	95112	508.59	0	0	508.59	IND	Mailer printing, production and postage (Member Communication)													
+1784126	0	6	DEBT	F	F-4467-V	IND	Wan	Cindy	Ms.		Los Angeles	CA	90005	628.01	0	628.01	0		See Schedule E for codes or descriptions.													
+1787820	0	177	DEBT	F	PAY8700	IND	Raj	Dennis			San Jose	CA	95125	6.70	0	6.70	0	CTB	Food for Volunteers/Chavez/Member Communications													
+1792252	1	10	DEBT	F	PAY528	OTH	SANDINO CONSULTING				SACRAMENTO	CA	95814	0	10.87	0	10.87	OFC														
+1695110	2	23	DEBT	F	PAY25422	OTH	CA League of Conservation Voters				Oakland	CA	94612	7065.27	0	0	7065.27	OFC	Overhead expenses													
+1813497	0	15	DEBT	F	PAY2151	IND	Copp	Vona			Elk Grove	CA	95624	206.49	0	0	206.49	PRO														
+1808063	0	108	DEBT	F	PAY8990	OTH	The Henry Levy Group				Oakland	CA	94618	979.30	0	0	979.30	PRO														
+1797112	2	5	DEBT	F	PAY117	OTH	John Wilson dba Print & Mail Concepts				El Monte	CA	91731	0	410.11	0	410.11	IND	Mailer and Postage													
+1801363	0	17	DEBT	F	PAY33378	OTH	Quill Corporation				Lincolnshire	IL	60069-3602	0	98.61	0	98.61	FND														
+1802811	0	17	DEBT	F	D1322	OTH	Targeted Communications, Inc.				Long Beach	CA	90802	0	11.58	0	11.58	IND	MBR:Robocalls/Joe Rivera													
+1802903	0	4	DEBT	F	PAY287	OTH	Kaufman Legal Group				Los Angeles	CA	90017	0	1095.50	0	1095.50	PRO														
+1807863	0	4	DEBT	F	PAY181	IND	O'Connor	Heather			Tujunga	CA	91042	325	0	325	0	CNS														
+1816474	0	3	DEBT	F	PAY59423	OTH	California Retired Teachers Association				Sacramento	CA	95825	2844.94	0	2844.94	0	OFC														
+1818616	0	20	DEBT	F	PAY1795	OTH	Political Data, Inc.				Norwalk	CA	90652	5234.04	0	5234.04	0	IND	Data/ Support/ Leticia Perez/ SD 16													
+1819078	0	6	DEBT	F	D516757	OTH	Ross G. Bates Consulting				Seattle	WA	98118	5000	0	5000	0	IND	8/22/13 consulting for Andra Hoffman													
+1817106	0	5	DEBT	F	PAY699	OTH	Premiere Strategies				Auburn	CA	95603	460	0	0	460	LIT														
+1817397	0	1	DEBT	F	PAY651	OTH	American Express				New York	NY	10285	838.94	0	838.94	0	CTB	In-Kind Contribution to Connie Conway, Scott Wilk, Eric Linder, Frank Bigelow										PAY651			
+1818616	0	46	DEBT	F	PAY1088	IND	Cervantes	Daniel F.			Dinuba	CA	93618	36.94	0	36.94	0	IND	Field Program/ Support/ Leticia Perez/ SD 16													
+1822551	1	18	DEBT	F	PAY179	OTH	Revolvis Consulting, Inc.				San Diego	CA	92119	0	82.50	0	82.50	PRO	Design Print ad													
+1831890	0	5	DEBT	F	1525	OTH	KM Strategies				San Diego	CA	92116-1211	23.04	0	23.04	0	WEB														
+1832211	0	1	DEBT	F	F-129-V	OTH	California Statewide Law Enforcement Assoc.				Sacramento	CA	95814	5796.58	0	0	5796.58	IND	Costs for towing trailer with banner													
+1819505	0	6	DEBT	F	VN5SK9H8273	OTH	Kaufman Legal Group				Los Angeles	CA	90017-5864	0	14.31	0	14.31		OFC													
+1819561	0	3	DEBT	F	PAY435	OTH	David Pruitt Consulting, LLC				Sacramento	CA	95814	0	2200	0	2200	CNS														
+1822551	0	3	DEBT	F	PAY50	OTH	Minuteman Press				Rancho Cucamonga	CA	91730	827.34	0	827.34	0	OFC														
+1831716	0	4	DEBT	F	F-1177-V	OTH	VRS- Catering Connection				San Carlos	CA	94070	659.87	0	659.87	0		See Schedule E for codes or descriptions.													
+1832306	0	2	DEBT	F	1574421	OTH	Orman Communications				Fresno	CA	93711	2000	0	2000	0	CNS														
+1852466	0	1	DEBT	F	PAY935	OTH	Agricultural Council of California				Sacramento	CA	95814	9634.97	0	9634.97	0	FND	Paid Accrued Expense													
+1852477	0	1	DEBT	F	PAY8052	OTH	Eichman, CPA	J. Richard			Sacramento	CA	95814	0	139.95	0	139.95	PRO														
+1841274	0	15	DEBT	F	D1529	IND	Atwood	Gary			Los Angeles	CA	90066	17.50	0	17.50	0	CTB	MBR:LIT/James Johnson													
+1849980	0	3	DEBT	F	PAY70	OTH	The Scozzari Company				Clovis	CA	93612	0	60.71	0	60.71	MTG														
+1832395	0	6	DEBT	F	8299	OTH	McGarty Communications				Roseville	CA	95661-3080	695.66	0	695.66	0	TRS	Date:   10/3 to 10/5 Destination: Anaheim for CRP Convention    Goods or Services purchased:   Airfare, Hotel and Meals. 													
+1832570	0	6	DEBT	F	PAY539	OTH	Deane & Company				Sacramento	CA	95815	0	2076.24	0	2076.24	PRO														
+1832524	0	13	DEBT	F	PAY366	IND	Wonnacott	Skyler			Sacramento	CA	95820	0	110.55	0	110.55	OFC														
+1832607	0	62	DEBT	F	PAY3656	IND	Forti	Kyle			Colorado Springs	CO	80925	0	1543.80	0	1543.80	WEB														
+1832629	1	3	DEBT	F	VNEZ49H7331	OTH	First National Bank				Omaha	NE	68103-2818	311.80	0	311.80	0		Credit card purchases													
+1784085	1	8	DEBT	F	PAY221	OTH	The Strategy Group, Inc.				Evanston	IL	60201	0	88	0	88	TRS														
+1832566	0	12	DEBT	F	PAY727	IND	Maria	Cherie			Santa Rosa	CA	95404	1500	0	1500	0	FND														
+1818673	1	5	DEBT	F	PAY247	OTH	Consumer Attorneys of California				Sacramento	CA	95814	0	16556.40	0	16556.40	SAL														
+1812594	1	4	DEBT	F	PAY18959	OTH	California Federation of Teachers				Burbank	CA	91505-	2379.20	0	2379.20	0	CTB	Staff Time; In-Kind to Yes on Prop 30 (ID#1343257)													
+1853881	0	12	DEBT	F	PAY193	OTH	Service Employees International Union Local 1000				Sacramento	CA	95811	3224.67	0	3224.67	0	CTB	Staff Time										PAY193			
+1853239	0	2	DEBT	F	PAY107709	OTH	California Attorneys, Administrative Law Judges, and Hearing Officers in State Employment (CASE)				Sacramento	CA	95814	203.96	0	203.96	0		Catering													
+1818857	1	15	DEBT	F	PAY692	OTH	Mckinley-Pillows Fundraising, Inc.				Sacramento	CA	95814	0	836.25	0	836.25	FND														
+1818908	2	16	DEBT	F	PAY4487	OTH	ML Associates				Los Angeles	CA	90025	0	127	0	127	PRO														
+1853743	0	14	DEBT	F	PAY1350	OTH	Storefront Political Media				San Francisco	CA	94108	649.03	0	649.03	0	WEB	See 3/17/2014 Schedule G for subvendor payments aggregating to $500 or more.													
+1831768	1	18	DEBT	F	PAY27437	OTH	CA League of Conservation Voters				Oakland	CA	94612	37470.41	0	0	37470.41	OFC	Overhead expenses													
+1854010	0	2	DEBT	F	PAY583	OTH	Cardmember Services				Saint Louis	MO	63179	1167.55	0	1167.55	0		See Schedule G For Individual Credit Card Payees													
+1854045	0	11	DEBT	F	PAY77	OTH	Deane & Company				Sacramento	CA	95815	615.04	0	0	615.04	PRO														
+1854319	1	3	DEBT	F	PAY405	OTH	Political Data, Inc.				Norwalk	CA	90650	0	154.13	0	154.13	LIT														
+1853206	1	3	DEBT	F	PAY796	OTH	Mckinley-Pillows Fundraising, Inc.				Sacramento	CA	95814	825	0	825	0	FND														
+1851851	1	7	DEBT	F	PAY576	OTH	James R. Santos Bookkeeping Services				Sacramento	CA	95864	0	1135	0	1135	PRO														
+1832607	2	6	DEBT	F	PAY2595	COM	Placer County Republican Assembly PAC				Roseville	CA	95678	1500	0	1500	0	CTB	CRA Convention	891903												
+1854089	2	3	DEBT	F	PAY833	OTH	Card Service Center				Dallas	TX	75356	798.67	0	798.67	0		Credit Card Payment													
+1864536	0	1	DEBT	F	PAY273	OTH	MAILRITE PRINT & MAIL, INC.				SACRAMENTO	CA	95834	36662.96	0	0	36662.96	IND	MASS MAIL													
+1853954	1	2	DEBT	F	PAY22	OTH	Dixon/Davis Media Group				Washington	DC	20007	0	3157	0	3157	IND	Radio Production/Oppose/Marshall Tuck/Superintendent of Public Instruction/Statewide													
+1832423	2	28	DEBT	F	PAY1370	IND	Ma	Dr. William			San Francisco	CA	94116	60.48	0	60.48	0	OFC														
+1852411	1	11	DEBT	F	PAY3000	OTH	CA Bank & Trust Bankcard Center				Los Angeles	CA	90071	0	659.71	0	659.71		See Sch G for Credit Card Payees													
+1864714	0	3	DEBT	F	F-391-V	OTH	Paragon Graphics				Glendale	CA	91207	1400	0	0	1400	LIT	INV#294													
+1861608	0	1	DEBT	F	PAY100	OTH	Eichman, CPA	J. Richard			Sacramento	CA	95814	357.18	0	357.18	0	PRO	Paid accrued													
+1854270	1	58	DEBT	F	VN5SK9H9FT0	OTH	SGR Consulting, LLC				San Francisco	CA	94104-1852	0	9.82	0	9.82		TRS													
+1854270	1	60	DEBT	F	VN5SK9H9FX3	IND	Steinberger	Joe			San Francisco	CA	94104-1852	0	51.99	0	51.99		POS													
+1853640	1	26	DEBT	F	PAY2459	OTH	American Express				New York	NY	10080	0	1309.49	0	1309.49		TRC/TRS/OFC													
+1870422	0	6	DEBT	F	PAY895	IND	Emerson	Connie Sanders			Sacramento	CA	95819	1000	0	1000	0	FND														
+1854271	1	4	DEBT	F	453	OTH	Wendy Warfield & Associates				Sacramento	CA	95814-2821	1263.60	1517.47	1263.60	1517.47	CNS														
+1868647	0	2	DEBT	F	PAY605	OTH	Diane Stone & Associates				Oakdale	CA	95361	200	0	200	0	PRO														
+1870440	0	5	DEBT	F	VNF7Z9H9397	OTH	Ross Communications				Sacramento	CA	95811-4024	58900	0	4000	54900	CNS														
+1818642	1	12	DEBT	F	D512813	OTH	NGP VAN, Inc.				Washington	DC	20005	330	0	330	0	OFC														
+1871403	0	14	DEBT	F	PAY1092	OTH	Card Service Center				Dallas	TX	75356	119.45	0	119.45	0	OFC														
+1853267	1	9	DEBT	F	PAY24478	OTH	CA League of Conservation Voters				Oakland	CA	94612	10322.99	0	0	10322.99	OFC	Overhead Expenses													
+1873017	0	9	DEBT	F	PAY207	OTH	Kaufman Legal Group				Los Angeles	CA	90017	0	48.80	0	48.80	OFC														
+1854256	1	23	DEBT	F	D396932	OTH	The Strategy Group, Inc.				Evanston	IL	60201	0	8682	0	8682	LIT														
+1872252	0	4	DEBT	F	PAY62007	OTH	California State University Employees Union				Sacramento	CA	95814	0	6000	0	6000		Consulting & Advocacy Services													
+1872526	0	22	DEBT	F	PAY1645	OTH	Redwood Pacific Public Affairs				Roseville	CA	95661	0	10000	0	10000	CNS														
+1872880	0	12	DEBT	F	PAY631	IND	Turtle	Ann			Sacramento	CA	95827	14.10	0	14.10	0	OFC														
+1831824	1	3	DEBT	F	PAY292	OTH	Crummitt & Associates				Long Beach	CA	90802	0	2150	0	2150	PRO														
+1873096	1	9	DEBT	F	PAY1327	OTH	The Strategy Group, Inc.				Evanston	IL	60201	41097.72	0	41097.72	0	POS														
+1873096	1	16	DEBT	F	PAY1667	OTH	The Strategy Group, Inc.				Evanston	IL	60201	3611.86	0	0	3611.86	LIT														
+1893080	0	8	DEBT	F	1596620	OTH	Dumont Printing				Fresno	CA	93706	0	383.12	0	383.12	OFC														
+1853222	2	13	DEBT	F	PAY36213	OTH	Olson, Hagel & Fishburn, LLP				Sacramento	CA	95814-4602	0	770	0	770	PRO														
+1889427	0	2	DEBT	F	PAY13951	OTH	California Federation of Teachers				Burbank	CA	91505-	19844.83	0	0	19844.83	CTB	Staff time and expenses (1/31/14-2/11/14)										PAY13951			
+1872957	1	26	DEBT	F	PAY746	IND	ROOKER	ALEXANDRA			WEST SACRAMENTO	CA	95691	0	5000	0	5000	CNS														
+1893232	0	4	DEBT	F	PAY9092	OTH	Planned Parenthood Advocacy Project Los Angeles County				Los Angeles	CA	90007	2040	0	2040	0	IND	Voter Guide/Support/Various Candidates													
+1893556	0	58	DEBT	F	PAY7055	OTH	Pacific Printing				San Jose	CA	95112	563.02	0	0	563.02	IND	Mailer printing, production and postage (Member Communication)													
+1893422	0	1	DEBT	F	PAY2656	OTH	River City Business Services				Sacramento	CA	95841	1749.41	0	1749.41	0	PRO														
+1893472	0	10	DEBT	F	PAY370	OTH	NATIONAL ASSOCIATION OF REALTORS				CHICAGO	IL	60611	0	15500	0	15500	POL														
+1893402	1	2	DEBT	F	PAY14	OTH	Anderson Consulting				Sacramento	CA	95819	0	1290	0	1290	FND														
+1904579	0	119	DEBT	F	PAY30276	OTH	Pacific Print Resources				Emeryville	CA	94608	0	101.25	0	101.25	IND	Member Communication Mailer Yes on C													
+1904555	0	12	DEBT	F	PAY1296	OTH	Mailrite Print & Mail, Inc.				Sacramento	CA	95834	2588	0	2588	0	LIT														
+1903885	0	4	DEBT	F	1588247	OTH	DirectFile				Fresno	CA	93721	261.05	0	261.05	0	PRO														
+1903598	0	11	DEBT	F	PAY919	OTH	American Express				New York	NY	10285	0	372.37	0	372.37	CTB	In-Kind Contribution to Cheryl Brown													
+1904415	0	2	DEBT	F	PAY67	OTH	Nossaman LLP				Los Angeles	CA	90017	782	0	0	782	PRO														
+1893706	1	12	DEBT	F	PAY847	IND	Fong	Joy			Sacramento	CA	95831	0	239.50	0	239.50	OFC														
+1904251	0	9	DEBT	F	PAY873	IND	Donohue	Scott			Thousand Oaks	CA	91360	583.52	0	583.52	0		Reimbursement for office supplies, copies and food													
+1892739	1	56	DEBT	F	PAY65	OTH	Olson, Hagel & Fishburn, LLP				Sacramento	CA	95814	0	2117	0	2117	PRO														
+1904602	1	5	DEBT	F	PAY1169	OTH	EMC Research				Oakland	CA	94612	13500	0	13500	0	POL														
+1904736	0	1	DEBT	F	PAY53	OTH	Imprenta Communications Group				Pasadena	CA	91105	0	25322.77	0	25322.77	IND	Paid Canvassers/Bonnie Garcia/Senate District 28/Support													
+1904590	0	17	DEBT	F	PAY1139	IND	Cervantes	Sabrina			La Quinta	CA	92253	0	330	0	330		Mileage													
+1893400	1	3	DEBT	F	PAY1081	OTH	Aristotle International, Inc. - Complete Campaigns				Washington	DC	20003	250	0	250	0	OFC														
+1904770	0	22	DEBT	F	PAY3702	IND	Gurnett	Jordan			San Ramon	CA	94583	0	2750	0	2750	PRO														
+1904905	0	5	DEBT	F	D1931	IND	Seiden	Adam			North Hills	CA	91343	375	0	0	375	CTB	MBR:Email Blast/Robert Garcia													
+1926908	0	1	DEBT	F	PAY1693	OTH	J. Richard Eichman				Sacramento	CA	95814	170.95	0	170.95	0	PRO	Paid Accrued													
+1893545	2	1	DEBT	F	PAY1665	OTH	The Strategy Group, Inc.				Evanston	IL	60201	5000	0	5000	0	CNS														
+1904617	1	2	DEBT	F	PAY841	OTH	Citi Cards				Des Moines	IA	50363	7213.73	0	7213.73	0		Credit Card Payment													
+1872487	1	27	DEBT	F	VN5SK9H9X55	IND	Ramirez	Valerie			Monterey Park	CA	91754-1686	0	415.75	0	415.75		OFC													
+1904264	1	2	DEBT	F	PAY540	OTH	AMAC LLC				Redondo Beach	CA	90277	16144.29	0	16144.29	0	LIT														
+1916682	0	30	DEBT	F	D2273	IND	Atwood	Gary			Los Angeles	CA	90066	41.67	0	0	41.67	CTB	MBR:LIT/Richard Tahviodar-Jesswein													
+1901368	1	20	DEBT	F	PAY2101	IND	Sandino	Julie			Sacramento	CA	95814	0	48	0	48	LIT														
+1916682	0	39	DEBT	F	D2228	OTH	Press Print, Inc.				Highland	CA	92346	134.78	0	0	134.78	CTB	MBR:LIT/Kevin de Leon													
+1916692	0	2	DEBT	F	428164	OTH	Blue Shield Of California				Woodland	CA	95776	1205	0	1205	0		Employee Medical Benefits													
+1903716	2	8	DEBT	F	PAY1006	OTH	James R. Santos Bookkeeping Services				Sacramento	CA	95864	6.81	0	0	6.81	LIT														
+1934585	0	1	DEBT	F	PAY749	OTH	Sed Quaere, LP				Los Angeles	CA	90025	318	0	0	318	PRO														
+1934844	0	1	DEBT	F	1579939	OTH	Bertz-Rosa strategy & creative				Fresno	CA	93721	3800	0	0	3800	CNS														
+1904163	1	20	DEBT	F	PAY2798	OTH	California Bank & Trust - Bankcard Center				Los Angeles	CA	90071	15260.78	0	0	15260.78		CTB, FND, MTG, OFC, POS, TRC, TRS										PAY2798			
+1929314	0	9	DEBT	F	PAY1547	OTH	James R. Santos Bookkeeping Services				Sacramento	CA	95864	100	0	0	100	PRO														
+1904454	2	1	DEBT	F	F-15-V	OTH	AIA California Council				Sacramento	CA	95814	1028.74	2107.42	3136.16	0		See Schedule E for codes or descriptions.													
+1904631	2	18	DEBT	F	PAY2283	OTH	Sacramento City Unified School District				Sacramento	CA	95818	138.44	0	0	138.44	OFC														
+1904770	1	7	DEBT	F	PAY3353	OTH	World Journal SF, LLC				Millbrae	CA	94030	918	0	918	0	PRT														
+1932646	0	13	DEBT	F	PAY159	OTH	Warren & Associates LLC				Novato	CA	94949	326.26	0	0	326.26	PRO														
+1893706	2	6	DEBT	F	PAY766	OTH	Cardmember Services				Saint Louis	MO	63101	0	54.06	0	54.06	FND														
+1903940	1	5	DEBT	F	PAY219	OTH	Region Builders, Inc.				Sacramento	CA	95811	126	0	0	126	FND														
+1936878	0	35	DEBT	F	PAY1916	OTH	Berkeley Albany Emeryville United Democratic Campaign				Berkeley	CA	94704	500	0	500	0	OFC														
+1904464	1	1	DEBT	F	PAY546	OTH	Lake Research Partners, Inc.				Washington	DC	20036	1533.75	0	0	1533.75	IND	Polling; 9/1-9/30/Support/S. Quirk-Silva/Assembly, District 65													
+1937605	0	27	DEBT	F	PAY1489	OTH	Kaufman Legal Group				Los Angeles	CA	90017	753.92	0	0	753.92	OFC														
+1904579	1	83	DEBT	F	PAY30233	OTH	Pacific Print Resources				Emeryville	CA	94608	0	33.06	0	33.06	IND	Member Communication Mailer Yes on I													
+1904579	1	87	DEBT	F	PAY30243	OTH	Pacific Print Resources				Emeryville	CA	94608	0	72.74	0	72.74	IND	Member Communication Mailer													
+1893619	3	57	DEBT	F	PAY2119	OTH	PR NEWSWIRE ASSOCIATION LLC				NEW YORK	NY	10087	0	2637.50	0	2637.50	LIT														
+1903012	2	45	DEBT	F	PAY799	OTH	California Charter Schools Association Advocates				Sacramento	CA	95814	199	0	0	199	IND	Emails; Support; Darci Green; Santa Clara County BOE													
+1916549	1	59	DEBT	F	PAY30507	OTH	Pacific Print Resources				Emeryville	CA	94608	290.81	0	290.81	0	IND	Member Communication Mailer													
+1937663	0	16	DEBT	F	PAY217	OTH	Kaufman Legal Group				Los Angeles	CA	90017	19.81	0	0	19.81	OFC														
+1904662	2	17	DEBT	F	PAY1160	OTH	SEIU United Health Care Workers West				Oakland	CA	94612	548	0	0	548	IND	Office Expenses/Prophet Walker/Assembly District 64/Support													
+1957152	1	11	DEBT	F	PAY573	OTH	Deane & Company				Sacramento	CA	95815	0	76.35	0	76.35	PRO														
+1951248	0	61	DEBT	F	VPC9C9H6TX1	OTH	Targeted Communications, Inc.				Long Beach	CA	90802-6056	0	179.97	0	179.97	IND	MBR:PHO, Jacque Robinson, Support													
+1963970	0	6	DEBT	F	2351	IND	O'Connor	Lucas			San Diego	CA	92102-6806	1100	0	1100	0	CNS														
+1904284	6	1	DEBT	F	6		Chase Bank				New York	NY	10005	1316.86	825.95	689.03	1453.78		credit card										6			
+1951254	2	7	DEBT	F	PAY272	OTH	Card Service Center				Dallas	TX	75356	0	4908.32	0	4908.32		Credit Card Payment													
+1957161	0	17	DEBT	F	VPC9C9H6NV6	IND	Igelsrud	Deana			Los Angeles	CA	90005-3790	105	0	105	0	IND	MBR:LIT, Bobbie Jean Anderson, Support													
+1965621	0	8	DEBT	F	PAY2012	OTH	Bank of America Credit Card Services				Wilmington	DE	19886	0	7443.40	0	7443.40		Travel, contributions & meeting expenses													
+1965919	0	1	DEBT	F	F-146-W	OTH	Bankcard Center				West Valley City	UT	84119	170	0	0	170		Various credit card purchases. See Schedule G for Credit Card Payees meeting threshold.													
+1853692	3	66	DEBT	F	PAY3440	OTH	Majority Strategies, Inc.				Ponte Vedra Beach	FL	32082	0	133368.88	0	133368.88	LIT														
+1936826	1	1	DEBT	F	PAY2058	OTH	California Association of Hospitals and Health Systems				Sacramento	CA	95814	200756.79	0	0	200756.79	IND	WEB-In support of Proposition 1, Statewide													
+1978158	0	5	DEBT	F	PAY9801	OTH	Pacific Printing				San Jose	CA	95112	0	1980.24	0	1980.24	IND	Printing and postage to support Orozco for SJ Council - membership communication.													
+1978277	0	2	DEBT	F	PAY117	OTH	Mastercard - Wells Fargo				Los Angeles	CA	90030-	0	1227.47	0	1227.47		See Schedule G for payees reaching disclosure threshold													
+1975311	0	18	DEBT	F	PAY1591	OTH	James R. Santos Bookkeeping Services				Sacramento	CA	95864	2.73	0	2.73	0	POS														
+1976923	0	9	DEBT	F	PAY9996	OTH	NIELSEN MERKSAMER PARRINELLO GROSS & LEONI LLP				SACRAMENTO	CA	95814	1362.36	0	1362.36	0	PRO											PAY9996			
+1936215	1	42	DEBT	F	PAY57	OTH	LA Voice				Los Angeles	CA	90005	775.98	0	775.98	0	MTG														
+1962756	1	6	DEBT	F	PAY15309	OTH	California Federation of Teachers				Burbank	CA	91505-	2500	0	0	2500	SAL														
+1937500	2	1	DEBT	F	D564059	OTH	California Political Law, Inc.				Long Beach	CA	90807	0	2970.14	0	2970.14	PRO														
+1981309	0	13	DEBT	F	PAY93	OTH	Alliance of Californians for Community Empowerment				Oakland	CA	94601	273	0	273	0	CTB	OFC													
+1893756	1	14	DEBT	F	PAY711	OTH	Kaufman Legal Group, APC				Los Angeles	CA	90017	0	1714.50	0	1714.50	PRO														
+1982191	0	1	DEBT	F	F-30-V	OTH	Trimble & Company  An Accountancy Corporation				Riverside	CA	92507	1027	0	1027	0	PRO														
+1982749	0	3	DEBT	F	PAY148	OTH	Anderson Consulting				Sacramento	CA	95819	0	4275	0	4275	FND														
+1982997	0	23	DEBT	F	PAY424	IND	Hedayat	Yashar			Beverly Hills	CA	90210	0	47.60	0	47.60	TRS														
+1982417	0	4	DEBT	F	PAY246	OTH	River City Business Services				Sacramento	CA	95841	0	1158.98	0	1158.98	PRO														
+1983052	0	2	DEBT	F	PAY219	OTH	The House of Printing, Inc.				Pasadena	CA	91107	0	445.38	0	445.38	IND	Mailer supporting Herlinda Chico for City Council													
+1982911	0	1	DEBT	F	PAY4298	OTH	NIELSEN MERKSAMER PARRINELLO GROSS & LEONI LLP				SACRAMENTO	CA	95814	879.46	0	879.46	0	PRO	STEVEN S. LUCAS, COMMITTEE TREASURER, IS A PARTNER OF PAYEE													
+2008855	0	1	DEBT	F	PAY1139	OTH	Clark Strategy Group				Auburn	CA	92081	444	0	0	444	TRS	Tim Clark Travel SMF-SNA-SMF													
+2008855	0	14	DEBT	F	PAY1295	OTH	Zari Consulting				Anaheim	CA	92806	5000	0	5000	0	CNS	Fundraising Consulting													
+1997763	0	2	DEBT	F	PAY58376	OTH	California Farm Bureau Federation				Sacramento	CA	95833-3293	0	8937.15	0	8937.15	OFC														
+2007708	0	9	DEBT	F	VNS479H7AZ1	OTH	Kaufman Legal Group				Los Angeles	CA	90017-5864	0	2.78	0	2.78		OFC													
+2007894	0	1	DEBT	F	PAY4676	OTH	Western Plant Health Association				Sacramento	CA	95834	0	9517.74	0	9517.74	FND	See Schedule G													
+1978581	1	29	DEBT	F	PAY946	OTH	0Structure				Denver	CO	80209	0	12	0	12	IND	Minutes for Phone Banking; 2/10 - 3/3 (estimate)/Support/F. Vegas/Board Member, LA CCD #1													
+1978581	1	35	DEBT	F	PAY7260	OTH	Service Employees International Union Local 99				Los Angeles	CA	90005	0	120	0	120	IND	Phones for Phone Banking; 4/7 - 5/19 /Support/T. Galatzan/School Board Member, LA USD #3													
+2011817	0	1	DEBT	F	1622360	OTH	Lou Gentile's Flower Basket Inc				Fresno	CA	93726	0	100.11	0	100.11	OFC														
+2011944	0	1	DEBT	F	PAY17	OTH	Crummitt & Associates				Long Beach	CA	90802	1500	0	1500	0	PRO														
+2012305	0	18	DEBT	F	VQXPW9H8562	OTH	Kaufman Legal Group				Los Angeles	CA	90017-5864	18.99	0	0	18.99		OFC													
+1981991	1	2	DEBT	F	D434142	OTH	Chase Card Services				Palatine	IL	60094	0	4954.77	0	4954.77		Credit Card Payment													
+2012619	1	4	DEBT	F	PAY65	OTH	United States Treasury				Washington	DC	20220	24	0	24	0	SAL														
+2033046	0	1	DEBT	F	PAY4677	OTH	Eichman	J. Richard			Sacramento	CA	95814	258.68	0	258.68	0	PRO														
+2005405	1	4	DEBT	F	PAY257	OTH	Scott & Cronin, LLP				Encinitas	CA	92024	0	689.50	0	689.50	PRO														
+2017550	0	27	DEBT	F	PAY425	IND	Arambula	Amelia			Fresno	CA	93704	0	140.69	0	140.69	FND														
+2032612	0	2	DEBT	F	PAY1872	OTH	Occupational Therapy Association of California (OTAC)				Folsom	CA	95630	990.98	0	990.98	0	FND	Paid Accrued													
+2017552	0	3	DEBT	F	VPC9B9H5QV3	OTH	Kaufman Legal Group				Los Angeles	CA	90017-5864	47.02	0	0	47.02	OFC														
+2034327	0	9	DEBT	F	VPCKP9H9GX6	IND	Juarez	Julia			Los Angeles	CA	90065-4226	0	106.97	0	106.97		MTG													
+2017550	1	5	DEBT	F	PAY371	OTH	Crystal Consulting Group				Folsom	CA	95630	0	9000	0	9000	CNS														
+2033897	0	3	DEBT	F	PAY61314	OTH	Garton Tractor Inc				Stockton	CA	95206	5400	-11.75	5388.25	0	FND														
+2034921	0	11	DEBT	F	PAY379	OTH	Sempra Energy Utilities				Sacramento	CA	95814	125.20	0	125.20	0	FND														
+2023246	2	4	DEBT	F	PAY350	OTH	Comcast				Seattle	WA	98124	365.13	0	365.13	0	OFC														
+2035037	2	2	DEBT	F	VQXHT9H85H2	OTH	Bankcard Center				Salt Lake City	UT	84130-0833	132.18	0	132.18	0		Credit Card Payment													
+2035156	0	4	DEBT	F	PAY67	IND	Fajardo	Joel			Pacoima	CA	91331	0	3100	0	3100	FIL														
