@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+<<<<<<< HEAD
 import os
 import urllib
 import urllib2
@@ -61,6 +62,9 @@ class CalAccessCommand(BaseCommand):
         self.stdout.write(string)
 
     def warn(self, string):
+        """
+        Writes out a string to stdout formatted yellow to communicate a warning.
+        """
         logger.warn(string)
         if not self.no_color:
             string = colorize(string, fg="yellow")

@@ -12,6 +12,7 @@ from calaccess_processed.models.campaign.filings import (
     CampaignContributionBase,
     CampaignExpenditureItemBase,
     CampaignExpenditureSubItemBase,
+    CampaignLoanItemBase,
 )
 
 
@@ -137,18 +138,34 @@ class Form460FilingBase(CampaignFinanceFilingBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
 @python_2_unicode_compatible
 class Form460Filing(Form460FilingBase):
     """
-    The most recent version of each Form 460 (Campaign Disclosure Statement) 
-    filing by recipient committees.
+    The most recent version of each Form 460 filing by recipient committees.
 
-    Includes information from the cover sheet and summary page of the most 
-    recent amendment to each filing. All versions of Form 460 filings can be
-    found in form460version.
+    Form 460 is the Campaign Disclosure Statement filed by all recipient
+    committees, including:
+    * Candidates, officeholders and their controlled committees
+    * Primarily formed ballot measure committees
+    * Primarily formed candidate/of ceholder committees
+    * General purpose committees
+
+    Recipient committes can use Form 460 to file:
+    * Pre-election statements
+    * Semi-annual statements
+    * Quarterly statements
+    * Termination statements
+    * Special odd-year report
+
+    Includes information from the cover sheet and summary page of the most
+    recent version of each Form 460 filing. All versions of the filings can be
+    found in Form460FilingVersion.
     """
     filing_id = models.IntegerField(
         verbose_name='filing id',
@@ -168,6 +185,9 @@ class Form460Filing(Form460FilingBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         index_together = ((
             'filing_id',
             'amendment_count',
@@ -180,11 +200,11 @@ class Form460Filing(Form460FilingBase):
 @python_2_unicode_compatible
 class Form460FilingVersion(Form460FilingBase):
     """
-    Every version of each Form 460 (Campaign Disclosure Statement) filing by
-    recipient committees.
+    Every version of each Form 460 (Campaign Disclosure Statement) filing by recipient committees.
 
     Includes information found on the cover sheet and summary page of each
-    amendment. For the most recent version of each filing, see form460.
+    version of each Form 460 filing. For the most recent version of each filing,
+    see Form460Filing.
     """
     filing = models.ForeignKey(
         'Form460Filing',
@@ -206,6 +226,9 @@ class Form460FilingVersion(Form460FilingBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'amend_id',
@@ -221,10 +244,10 @@ class Form460FilingVersion(Form460FilingBase):
 
 class Form460ScheduleAItemBase(CampaignContributionBase):
     """
-    Abstract base model for monetary contributions received by campaign filers.
+    Abstract base model for items reported on Schedule A of Form 460 filings.
 
-    These transactions are itemized on Schedule A of Form 460 filings and 
-    stored in the RCPT_CD table with a FORM_TYPE value of 'A'.
+    On Schedule A, campaign filers are required to itemize monetary
+    contributions received during the period covered by the filing.
     """
     amount = models.DecimalField(
         verbose_name='amount',
@@ -235,6 +258,9 @@ class Form460ScheduleAItemBase(CampaignContributionBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -243,18 +269,18 @@ class Form460ScheduleAItem(Form460ScheduleAItemBase):
     """
     Monetary contributions received by campaign filers.
 
-    These transactions are itemized on Schedule A of the most recent amendment
-    to each Form 460 filing. For monetary contributions itemized on any version
+    These transactions are itemized on Schedule A of the most recent version
+    of each Form 460 filing. For monetary contributions itemized on any version
     of any Form 460 filing, see Form460ScheduleAItemVersion.
 
     Also includes contributions transferred to special election commitees,
-    formerly itemized on Schedule A-1. 
+    which were itemized on Schedule A-1 until around 2001. 
 
     Derived from RCPT_CD records where FORM_TYPE is 'A' or 'A-1'.
     """
     filing = models.ForeignKey(
         'Form460Filing',
-        related_name='itemized_monetary_contributions',
+        related_name='schedule_a_items',
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the Form 460 on which the monetary'
@@ -264,6 +290,9 @@ class Form460ScheduleAItem(Form460ScheduleAItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -276,7 +305,7 @@ class Form460ScheduleAItem(Form460ScheduleAItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleAItemVersion(Form460ScheduleAItemBase):
     """
-    Every version of the monetary contributions received by campaign filers.
+    Every version of each monetary contribution received by a campaign filer.
 
     For monetary contributions itemized on Schedule A of the most recent
     version of each Form 460 filing, see Form460ScheduleAItem.
@@ -285,7 +314,7 @@ class Form460ScheduleAItemVersion(Form460ScheduleAItemBase):
     """
     filing_version = models.ForeignKey(
         'Form460FilingVersion',
-        related_name='itemized_monetary_contributions',
+        related_name='schedule_a_items',
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the version of the Form 460 that '
@@ -295,6 +324,439 @@ class Form460ScheduleAItemVersion(Form460ScheduleAItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
+        unique_together = ((
+            'filing_version',
+            'line_item',
+        ),)
+        index_together = ((
+            'filing_version',
+            'line_item',
+        ),)
+
+    def __str__(self):
+        return '%s-%s-%s' % (
+            self.filing_version.filing_id,
+            self.filing_version.amend_id,
+            self.line_item
+        )
+
+
+class Form460ScheduleB1ItemBase(CampaignLoanItemBase):
+    """
+    Abstract base model for items reported on Schedule B, Part 1, of Form 460.
+
+    On Schedule B, Part 1, campaign filers are required to report loans
+    received or outstanding during the period covered by the filing.
+    """
+    begin_period_balance = models.DecimalField(
+        verbose_name='beginning period balance',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Outstanding balance of the loan at the beginning of the"
+                  "period covered by the filing (from LOAN_CD.LOAN_AMT4)"
+    )
+    amount_received = models.DecimalField(
+        verbose_name='amount received',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Amount received during the period covered by the filing "
+                  "(from LOAN_CD.LOAN_AMT1)"
+    )
+    amount_paid = models.DecimalField(
+        verbose_name='amount paid',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Amount paid back during the period covered by the filing "
+                  "(from LOAN_CD.LOAN_AMT5)"
+    )
+    amount_forgiven = models.DecimalField(
+        verbose_name='amount forgiven',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Amount forgiven by the lender during the period covered by "
+                  "the filing (from LOAN_CD.LOAN_AMT6)"
+    )
+    end_period_balance = models.DecimalField(
+        verbose_name='end period balance',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Outstanding balance of the loan at the end of the period "
+                  "covered by the filing (from LOAN_CD.LOAN_AMT2)"
+    )
+    date_due = models.DateField(
+        verbose_name='date due',
+        null=True,
+        help_text="Date that the loan is due (from LOAN_CD.LOAN_DATE2)"
+    )
+    interest_paid = models.DecimalField(
+        verbose_name='interest paid',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Amount of interest paid on the loan during the period "
+                  "covered by the campaign filing (from LOAN_CD.LOAN_AMT7)"
+    )
+    interest_rate = models.CharField(
+        verbose_name='interest rate',
+        max_length=30,
+        blank=True,
+        help_text='Interest rate of the loan. This is sometimes expressed as a '
+                  'decimal (e.g., 0.10) and other times as a percent (e.g., '
+                  '10.0% (from LOAN_CD.LOAN_RATE)'
+    )
+    original_amount = models.DecimalField(
+        verbose_name='original amount',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Original amount loaned by the lender to the campaign filer "
+                  "(from LOAN_CD.LOAN_AMT8)"
+    )
+    date_incurred = models.DateField(
+        verbose_name='',
+        null=True,
+        help_text="Date the loan was made or received (from LOAN_CD.LOAN_DATE1)"
+    )
+    cumulative_ytd_contributions = models.DecimalField(
+        verbose_name='cumulative year-to-date contributions',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Cumulative amount of contributions (loans, monetary and "
+                  "nonmonetary contributions) received from the lender during "
+                  "the calendar year covered by this statement (from LOAN_CD."
+                  "LOAN_AMT3)"
+    )
+
+    class Meta:
+        """
+        Model options.
+        """
+        abstract = True
+
+
+@python_2_unicode_compatible
+class Form460ScheduleB1Item(Form460ScheduleB1ItemBase):
+    """
+    Loans received and loan payments by campaign filers.
+
+    These transactions are itemized on Schedule B, Part 1, of the most recent
+    version of each Form 460 filing. For loans itemized on any version of any
+    Form 460 filing, see Form460ScheduleB1ItemVersion.
+
+    Derived from LOAN_CD records where FORM_TYPE is 'B1'.
+    """
+    filing = models.ForeignKey(
+        'Form460Filing',
+        related_name='schedule_b1_items',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the Form 460 on which the loan '
+                  'was reported (from LOAN_CD.FILING_ID)',
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        """
+        Model options.
+        """
+        unique_together = ((
+            'filing',
+            'line_item',
+        ),)
+
+    def __str__(self):
+        return '%s-%s' % (self.filing, self.line_item)
+
+
+@python_2_unicode_compatible
+class Form460ScheduleB1ItemVersion(Form460ScheduleB1ItemBase):
+    """
+    Every version of each loan received or loan payment made by a campaign filer.
+
+    For outstanding loans itemized on Schedule B, Part 1, of the most recent
+    version of each Form 460 filing, see Form460ScheduleB1Item.
+
+    Derived from LOAN_CD records where FORM_TYPE is 'B1'.
+    """
+    filing_version = models.ForeignKey(
+        'Form460FilingVersion',
+        related_name='schedule_b1_items',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the version of the Form 460 that '
+                  'includes the outstanding loan'
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        """
+        Model options.
+        """
+        unique_together = ((
+            'filing_version',
+            'line_item',
+        ),)
+        index_together = ((
+            'filing_version',
+            'line_item',
+        ),)
+
+    def __str__(self):
+        return '%s-%s-%s' % (
+            self.filing_version.filing_id,
+            self.filing_version.amend_id,
+            self.line_item
+        )
+
+
+class Form460ScheduleB2ItemBase(CampaignLoanItemBase):
+    """
+    Abstract base model for items reported on Schedule B, Part 2, of Form 460.
+
+    On Schedule B, Part 2, campaign filers are required to report loan
+    guarantors, A "guarantor" is a third party that co-signs, endorses, or
+    provides security for a loan, or establishes or provides security for a
+    line of credit. A guarantor is also making a contribution.
+    """
+    amount_guaranteed_this_period = models.DecimalField(
+        verbose_name='amount guaranteed this period',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Amount guaranteed for the period covered by the filing "
+                  "(from LOAN_CD.LOAN_AMT1)"
+    )
+    balance_outstanding_to_date = models.DecimalField(
+        verbose_name='balance outstanding to date',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Outstanding balance for which the guarantor is liable at "
+                  "the close of the reporting period (from LOAN_CD.LOAN_AMT2)"
+    )
+    cumulative_ytd_amount = models.DecimalField(
+        verbose_name='cumulative year-to-date amount',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Cumulative amount guaranteed during the calendar year "
+                  "covered by the statement (from LOAN_CD.LOAN_AMT3)"
+    )
+    loan_date = models.DateField(
+        verbose_name='date',
+        null=True,
+        help_text="Date of the loan or date the line of credit was established"
+                  "(from LOAN_CD.LOAN_DATE1)"
+    )
+    reported_on_b1 = models.BooleanField(
+        verbose_name='reported on B1',
+        default=False,
+        help_text='Indicates if the item was actually reported on Part 1 of '
+                  'Schedule B. Until 2001, campaign filers were required to '
+                  'report guarantors of loans or lines of credit on Part 1 of '
+                  'Schedule B.'
+    )
+
+    class Meta:
+        """
+        Model options.
+        """
+        abstract = True
+
+
+@python_2_unicode_compatible
+class Form460ScheduleB2Item(Form460ScheduleB2ItemBase):
+    """
+    Guarantees of loans and lines of credit received by campaign filers.
+
+    These transactions are itemized on Schedule B, Part 2, of the most recent
+    version to each Form 460 filing. For guarantees itemized on
+    any version of any Form 460 filing, see Form460ScheduleB2ItemVersion.
+
+    Derived from LOAN_CD records where FORM_TYPE is 'B2'.
+    """
+    filing = models.ForeignKey(
+        'Form460Filing',
+        related_name='schedule_b2_items',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the Form 460 on which the loan '
+                  'was reported (from LOAN_CD.FILING_ID)',
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        """
+        Model options.
+        """
+        unique_together = ((
+            'filing',
+            'line_item',
+        ),)
+
+    def __str__(self):
+        return '%s-%s' % (self.filing, self.line_item)
+
+
+@python_2_unicode_compatible
+class Form460ScheduleB2ItemVersion(Form460ScheduleB2ItemBase):
+    """
+    Every version of each guarantee of a loan/line of credit to a campaign filer.
+
+    For guaratees itemized on Schedule B, Part 1, of the most recent
+    version of each Form 460 filing, see Form460ScheduleB2Item.
+
+    Derived from LOAN_CD records where FORM_TYPE is 'B2'.
+    """
+    filing_version = models.ForeignKey(
+        'Form460FilingVersion',
+        related_name='schedule_b2_items',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the version of the Form 460 that '
+                  'includes the outstanding loan'
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        """
+        Model options.
+        """
+        unique_together = ((
+            'filing_version',
+            'line_item',
+        ),)
+        index_together = ((
+            'filing_version',
+            'line_item',
+        ),)
+
+    def __str__(self):
+        return '%s-%s-%s' % (
+            self.filing_version.filing_id,
+            self.filing_version.amend_id,
+            self.line_item
+        )
+
+
+class Form460ScheduleB2ItemBaseOld(CampaignLoanItemBase):
+    """
+    Abstract base model for Schedule B, Part 2, items from the pre-2001 Form 460.
+    
+    Until Form 460 was modified in 2001, campaign filers are required to report
+    repayments made on loans received, loans forgiven, and loans repaid by a
+    third party on Part 2 of Schedule B.
+    """
+    date_paid_or_forgiven = models.DateField(
+        verbose_name='date paid or forgiven',
+        null=True,
+        help_text="Date when the loan repayment or forgiveness occurred (from "
+                  "LOAN_CD.LOAN_DATE1)"
+    )
+    date_of_original_loan = models.DateField(
+        verbose_name='date of original loan',
+        null=True,
+        help_text="Date the loan was orginally made (from LOAN_CD.LOAN_DATE2)"
+    )
+    interest_rate = models.CharField(
+        verbose_name='interest rate',
+        max_length=30,
+        blank=True,
+        help_text='Interest rate of the loan. This is sometimes expressed as a '
+                  'decimal (e.g., 0.10) and other times as a percent (e.g., '
+                  '10.0% (from LOAN_CD.LOAN_RATE)'
+    )
+    REPAYMENT_TYPE_CHOICES = (
+        ('B2F', 'Forgiven'),
+        ('B2R', 'Repay'),
+        ('B2T', 'Third party payment'),
+    )
+    repayment_type = models.CharField(
+        verbose_name='repayment type',
+        max_length=3,
+        choices=REPAYMENT_TYPE_CHOICES,
+        help_text='Indicates whether the item is a loan repayment by the '
+                  'campaign, a repayment by a third-party or a loan forgiveness'
+                  ' by the lender (from RCPT_CD.LOAN_TYPE)',
+    )
+    amount_paid_or_forgiven = models.DecimalField(
+        verbose_name='amount paid or forgiven',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Amount paid back or forgiven during the period covered by "
+                  "the filing (from LOAN_CD.LOAN_AMT1)"
+    )
+    outstanding_principle = models.DecimalField(
+        verbose_name='outstanding principle',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Outstanding principle of the loan at the end of the period "
+                  "covered by the filing (from LOAN_CD.LOAN_AMT2)"
+    )
+    interest_paid = models.DecimalField(
+        verbose_name='interest paid',
+        decimal_places=2,
+        max_digits=14,
+        help_text="Amount of interest paid on the loan during the period "
+                  "covered by the campaign filing (from LOAN_CD.LOAN_AMT3)"
+    )
+
+    class Meta:
+        """
+        Model options.
+        """
+        abstract = True
+
+
+@python_2_unicode_compatible
+class Form460ScheduleB2ItemOld(Form460ScheduleB2ItemBaseOld):
+    """
+    """
+    filing = models.ForeignKey(
+        'Form460Filing',
+        related_name='schedule_b2_items_old',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the Form 460 on which the loan '
+                  'transaction was reported (from LOAN_CD.FILING_ID)',
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        """
+        Model options.
+        """
+        unique_together = ((
+            'filing',
+            'line_item',
+        ),)
+
+    def __str__(self):
+        return '%s-%s' % (self.filing, self.line_item)
+
+
+@python_2_unicode_compatible
+class Form460ScheduleB2ItemVersionOld(Form460ScheduleB2ItemBaseOld):
+    """
+    """
+    filing_version = models.ForeignKey(
+        'Form460FilingVersion',
+        related_name='schedule_b2_items_old',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the version of the Form 460 that '
+                  'includes the loan transaction'
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -314,10 +776,10 @@ class Form460ScheduleAItemVersion(Form460ScheduleAItemBase):
 
 class Form460ScheduleCItemBase(CampaignContributionBase):
     """
-    Abstract base model for nonmonetary contributions received by campaign filers.
+    Abstract base model for items reported on Schedule C of Form 460 filings.
 
-    These transactions are itemized on Schedule C of Form 460 filings and 
-    stored in the RCPT_CD table with a FORM_TYPE value of 'C'.
+    On Schedule C, campaign filers are required to itemize nonmonetary
+    contributions received during the period covered by the filing.
     """
     fair_market_value = models.DecimalField(
         verbose_name='fair market value',
@@ -332,8 +794,11 @@ class Form460ScheduleCItemBase(CampaignContributionBase):
         help_text="Description of the contributed goods or services (from "
                   "RCPT_CD.CTRIB_DSCR)"
     )
-    
+
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -342,15 +807,15 @@ class Form460ScheduleCItem(Form460ScheduleCItemBase):
     """
     Nonmonetary contributions received by campaign filers.
 
-    These transactions are itemized on Schedule C of the most recent amendment
-    to each Form 460 filing. For nonmonetary contributions itemized on any 
-    version of any Form 460 filing, see nonmonetarycontributionversion.
+    These transactions are itemized on Schedule C of the most recent version
+    of each Form 460 filing. For nonmonetary contributions itemized on any 
+    version of any Form 460 filing, see Form460ScheduleCItemVersion.
 
     Derived from RCPT_CD records where FORM_TYPE is 'C'.
     """
     filing = models.ForeignKey(
         'Form460Filing',
-        related_name='itemized_nonmonetary_contributions',
+        related_name='schedule_c_items',
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the Form 460 on which the monetary'
@@ -360,6 +825,9 @@ class Form460ScheduleCItem(Form460ScheduleCItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -372,16 +840,16 @@ class Form460ScheduleCItem(Form460ScheduleCItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleCItemVersion(Form460ScheduleCItemBase):
     """
-    Every version of the nonmonetary contributions received by campaign filers.
+    Every version of each nonmonetary contribution received by a campaign filer.
 
     For nonmonetary contributions itemized on Schedule C of the most recent
-    version of each Form 460 filing, see nonmonetarycontribution.
+    version of each Form 460 filing, see Form460ScheduleCItem.
 
     Derived from RCPT_CD records where FORM_TYPE is 'C'.
     """
     filing_version = models.ForeignKey(
         'Form460FilingVersion',
-        related_name='itemized_nonmonetary_contributions',
+        related_name='schedule_c_items',
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the version of the Form 460 that '
@@ -391,6 +859,9 @@ class Form460ScheduleCItemVersion(Form460ScheduleCItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -410,11 +881,11 @@ class Form460ScheduleCItemVersion(Form460ScheduleCItemBase):
 
 class Form460ScheduleDItemBase(CampaignExpenditureItemBase):
     """
-    Abstract base model for items reported on Schedule D of Form 460.
+    Abstract base model for items reported on Schedule D of Form 460 filings.
 
     On Schedule D, campaign filers are required to summarize contributions
     and independent expenditures in support or opposition to other candidates
-    and ballot measures
+    and ballot measures.
     """
     cumulative_election_amount = models.DecimalField(
         decimal_places=2,
@@ -427,18 +898,20 @@ class Form460ScheduleDItemBase(CampaignExpenditureItemBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
 @python_2_unicode_compatible
 class Form460ScheduleDItem(Form460ScheduleDItemBase):
     """
-    Contribution and expenditures in support or opposition to other candidates
-    and ballot measures.
+    Payments in support or opposition of other candidates and ballot measures.
 
     These transactions are itemized on Schedule D of the most recent version
-    to each Form 460 filing. For payments itemized on any version of any Form
-    460 filing, see Form460scheduleditemversion.
+    of each Form 460 filing. For payments itemized on any version of any Form
+    460 filing, see Form460ScheduleDItemVersion.
 
     Derived from EXPN_CD records where FORM_TYPE is 'D'.
     """
@@ -448,12 +921,15 @@ class Form460ScheduleDItem(Form460ScheduleDItemBase):
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the Form 460 on which the '
-                  'payment was reported (from RCPT_CD.FILING_ID)',
+                  'payment was reported (from EXPN_CD.FILING_ID)',
     )
 
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -466,10 +942,10 @@ class Form460ScheduleDItem(Form460ScheduleDItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleDItemVersion(Form460ScheduleDItemBase):
     """
-    Every version of the payments made on behalf of campaign filers.
+    Every version of each payment supporting/opposing another candidate/ballot measure.
 
     For payments itemized on Schedule D of the most recent version of each Form
-    460 filing, see Form460scheduleditem.
+    460 filing, see Form460ScheduleDItem.
 
     Derived from EXPN_CD records where FORM_TYPE is 'D'.
     """
@@ -485,6 +961,9 @@ class Form460ScheduleDItemVersion(Form460ScheduleDItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -505,11 +984,10 @@ class Form460ScheduleDItemVersion(Form460ScheduleDItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleEItem(CampaignExpenditureItemBase):
     """
-    Payments made by campaign filers, itemized on Schedule E of Form 460.
-
-    These transactions are itemized on the most recent version of each Form 460
-    filing. For payments itemized on any version of any Form 460 filing, see
-    Form460scheduleeitemversion.
+    Payments made by campaign filers.
+    These transactions are itemized on Schedule E of the most recent version 
+    of each Form 460 filing. For payments itemized on any version of any
+    filing, see Form460ScheduleEItemVersion.
 
     Does not include:
     * Interest paid on loans received
@@ -528,12 +1006,15 @@ class Form460ScheduleEItem(CampaignExpenditureItemBase):
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the Form 460 on which the '
-                  'payment was reported (from RCPT_CD.FILING_ID)',
+                  'payment was reported (from EXPN_CD.FILING_ID)',
     )
 
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -546,10 +1027,10 @@ class Form460ScheduleEItem(CampaignExpenditureItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleEItemVersion(CampaignExpenditureItemBase):
     """
-    Every version of the payments made, itemized on Form 460 Schedule E.
+    Every version of each payment made by a campaign filer.
 
-    For payments itemized on the most recent version of each Form 460 filing,
-    see Form460scheduleeitem.
+    For payments itemized on Schedule E of the most recent version of each Form
+    460 filing, see Form460ScheduleEItem.
 
     Does not include:
     * Interest paid on loans received
@@ -574,6 +1055,9 @@ class Form460ScheduleEItemVersion(CampaignExpenditureItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -597,17 +1081,17 @@ class Form460ScheduleESubItem(CampaignExpenditureSubItemBase):
     Sub-items of payments made by campaign filers.
 
     These transactions are itemized on Schedule E of the most recent version
-    of each Form 460 filing. For payments sub-itemitemized on any version of
-    any Form 460 filing, see Form460scheduleesubitemversion.
+    of each Form 460 filing. For sub-item payments on any version of any Form
+    460 filing, see Form460ScheduleESubItemVersion.
 
-    A sub-item is a transaction where the amount is lumped into another 
+    A sub-item is a transaction where the amount is lumped into another
     "parent" payment reported elsewhere on the filing.
 
     Includes:
-    * Payments supporting or opposing other candidates, ballot measures 
+    * Payments supporting or opposing other candidates, ballot measures
     or committees, which are summarized on Schedule D
     * Payments made to vendors over $100 included in credit card payments
-    * Payments made by agents or independent contractors on behalf of the 
+    * Payments made by agents or independent contractors on behalf of the
     campaign filer which were reported on Schedule E instead of G
     * Payments made on the accrued expenses reported on Schedule F
 
@@ -620,12 +1104,15 @@ class Form460ScheduleESubItem(CampaignExpenditureSubItemBase):
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the Form 460 on which the '
-                  'payment was reported (from RCPT_CD.FILING_ID)',
+                  'payment was reported (from EXPN_CD.FILING_ID)',
     )
 
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -638,19 +1125,19 @@ class Form460ScheduleESubItem(CampaignExpenditureSubItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleESubItemVersion(CampaignExpenditureSubItemBase):
     """
-    Every version of the sub-items of payments by campaign filers.
+    Every version of each sub-item of a payment by a campaign filer.
 
     For payments sub-itemized on Schedule E of the most recent version of each
-    Form 460 filing, see Form460scheduleesubitem.
+    Form 460 filing, see Form460ScheduleESubItem.
 
     A sub-item is a transaction where the amount is lumped into another
     "parent" payment reported elsewhere on the filing.
 
     Includes:
-    * Payments supporting or opposing other candidates, ballot measures 
+    * Payments supporting or opposing other candidates, ballot measures
     or committees, which are summarized on Schedule D
     * Payments made to vendors over $100 included in credit card payments
-    * Payments made by agents or independent contractors on behalf of the 
+    * Payments made by agents or independent contractors on behalf of the
     campaign filer which were reported on Schedule E instead of G
     * Payments made on the accrued expenses reported on Schedule F
 
@@ -669,6 +1156,9 @@ class Form460ScheduleESubItemVersion(CampaignExpenditureSubItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -688,7 +1178,7 @@ class Form460ScheduleESubItemVersion(CampaignExpenditureSubItemBase):
 
 class Form460ScheduleFItemBase(models.Model):
     """
-    Abstract base model for items reported on Schedule F of Form 460.
+    Abstract base model for items reported on Schedule F of Form 460 filings.
 
     On Schedule F, campaign filers report unpaid bills for goods or services
     accrued during the period covered by the filing.
@@ -864,7 +1354,7 @@ class Form460ScheduleFItemBase(models.Model):
         decimal_places=2,
         max_digits=14,
         help_text='Amount paid this period (from DEBT_CD.AMT_PAID)'
-    ) 
+    )
     amount_incurred = models.DecimalField(
         verbose_name="amount incurred",
         decimal_places=2,
@@ -895,7 +1385,7 @@ class Form460ScheduleFItemBase(models.Model):
         verbose_name='memo reference number',
         max_length=20,
         blank=True,
-        help_text="A value assigned by the filer which refers to the item's" 
+        help_text="A value assigned by the filer which refers to the item's"
                   "footnote in the TEXT_MEMO_CD table (from DEBT_CD."
                   "MEMO_REFNO)",
     )
@@ -905,8 +1395,10 @@ class Form460ScheduleFItemBase(models.Model):
         help_text="Memo amount flag (from DEBT_CD.MEMO_CODE)"
     )
 
-    
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -916,8 +1408,8 @@ class Form460ScheduleFItem(Form460ScheduleFItemBase):
     Accrued expenses of campaign filers.
 
     These transactions are itemized on Schedule F of the most recent version
-    to each Form 460 filing. For accrued expenses itemized on any version of
-    of any Form 460 filing, see form460schedulefitemversion.
+    of each Form 460 filing. For accrued expenses itemized on any version of
+    of any Form 460 filing, see Form460ScheduleFItemVersion.
 
     Derived from DEBT_CD records.
     """
@@ -933,6 +1425,9 @@ class Form460ScheduleFItem(Form460ScheduleFItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -945,10 +1440,10 @@ class Form460ScheduleFItem(Form460ScheduleFItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleFItemVersion(Form460ScheduleFItemBase):
     """
-    Every version of the accrued expenses of campaign filers.
+    Every version of each accrued expense of a campaign filer.
 
     For accrued expenses itemized on Schedule F of the most recent version of
-    each Form 460 filing, see form460schedulegitem.
+    each Form 460 filing, see Form460ScheduleGItem.
 
     Derived from DEBT_CD records.
     """
@@ -964,6 +1459,9 @@ class Form460ScheduleFItemVersion(Form460ScheduleFItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -983,7 +1481,11 @@ class Form460ScheduleFItemVersion(Form460ScheduleFItemBase):
 
 class Form460ScheduleGItemBase(CampaignExpenditureSubItemBase):
     """
-    Abstract base model for items reported on Schedule G of Form 460.
+    Abstract base model for items reported on Schedule G of Form 460 filings.
+
+    On Schedule G, campaign filers are required to itemize payments made on
+    their behalf by agents or contractors during the period covered by the
+    filing.
     """
     agent_title = models.CharField(
         verbose_name='agent title',
@@ -1021,6 +1523,9 @@ class Form460ScheduleGItemBase(CampaignExpenditureSubItemBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -1030,7 +1535,7 @@ class Form460ScheduleGItem(Form460ScheduleGItemBase):
     Payments made by on behalf of campaign filers.
 
     These transactions are itemized on Schedule G of the most recent version
-    to each Form 460 filing. For payments itemized on any version of any Form
+    of each Form 460 filing. For payments itemized on any version of any Form
     460 filing, see Form460schedulegitemversion.
 
     Derived from EXPN_CD records where FORM_TYPE is 'G'.
@@ -1047,6 +1552,9 @@ class Form460ScheduleGItem(Form460ScheduleGItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -1059,10 +1567,10 @@ class Form460ScheduleGItem(Form460ScheduleGItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleGItemVersion(Form460ScheduleGItemBase):
     """
-    Every version of the payments made on behalf of campaign filers.
+    Every version of each payment made on behalf of a campaign filer.
 
     For payments itemized on Schedule G of the most recent version of each Form
-    460 filing, see Form460schedulegitem.
+    460 filing, see Form460ScheduleGitem.
 
     Derived from EXPN_CD records where FORM_TYPE is 'G'.
     """
@@ -1078,6 +1586,9 @@ class Form460ScheduleGItemVersion(Form460ScheduleGItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',
@@ -1097,13 +1608,12 @@ class Form460ScheduleGItemVersion(Form460ScheduleGItemBase):
 
 class Form460ScheduleIItemBase(CampaignContributionBase):
     """
-    Abstract base model for miscellaneous cash increases for campaign filers.
+    Abstract base model for items reported on Schedule I of Form 460 filings.
 
-    Includes any transaction that increases the cash position of the filer, but
-    is not a monetary contribution, loan, or loan repayment.
-
-    These transactions are itemized on Schedule I of Form 460 filings and 
-    stored in the RCPT_CD table with a FORM_TYPE value of 'I'.
+    On Schedule I, campaign filers are required to report miscellaneous cash
+    increases during the period covered by the filing. These include any
+    transaction that increases the cash position of the filer, but is not a
+    monetary contribution, loan, or loan repayment.
     """
     amount = models.DecimalField(
         verbose_name='amount',
@@ -1120,6 +1630,9 @@ class Form460ScheduleIItemBase(CampaignContributionBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -1131,15 +1644,15 @@ class Form460ScheduleIItem(Form460ScheduleIItemBase):
     Includes any transaction that increases the cash position of the filer, but
     is not a monetary contribution, loan, or loan repayment.
 
-    These transactions are itemized on Schedule C of the most recent amendment
-    to each Form 460 filing. For miscellaneous cash increases itemized on any
-    version of any Form 460 filing, see misccashincreaseversion.
+    These transactions are itemized on Schedule I of the most recent version
+    of each Form 460 filing. For miscellaneous cash increases itemized on any
+    version of any Form 460 filing, see Form460ScheduleIItemVersion.
 
     Derived from RCPT_CD records where FORM_TYPE is 'I'.
     """
     filing = models.ForeignKey(
         'Form460Filing',
-        related_name='misc_cash_increases',
+        related_name='schedule_i_items',
         null=True,
         on_delete=models.SET_NULL,
         db_constraint=False,
@@ -1151,6 +1664,9 @@ class Form460ScheduleIItem(Form460ScheduleIItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing',
             'line_item',
@@ -1163,19 +1679,19 @@ class Form460ScheduleIItem(Form460ScheduleIItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleIItemVersion(Form460ScheduleIItemBase):
     """
-    Every version of the miscellaneous cash increases for campaign filers.
+    Every version of each miscellaneous cash increase for a campaign filer.
 
     Includes any transaction that increases the cash position of the filer, but
     is not a monetary contribution, loan, or loan repayment.
 
     For miscellaneous cash increases itemized on Schedule I of the most recent
-    version of each Form 460 filing, see misccashincreaseversion.
+    version of each Form 460 filing, see Form460ScheduleIItem.
 
     Derived from RCPT_CD records where FORM_TYPE is 'I'.
     """
     filing_version = models.ForeignKey(
         'Form460FilingVersion',
-        related_name='misc_cash_increases',
+        related_name='schedule_i_items',
         null=True,
         on_delete=models.SET_NULL,
         help_text='Foreign key referring to the version of the Form 460 that '
@@ -1185,6 +1701,9 @@ class Form460ScheduleIItemVersion(Form460ScheduleIItemBase):
     objects = ProcessedDataManager()
 
     class Meta:
+        """
+        Model options.
+        """
         unique_together = ((
             'filing_version',
             'line_item',

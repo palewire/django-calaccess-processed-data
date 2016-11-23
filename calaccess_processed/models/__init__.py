@@ -6,6 +6,8 @@ Import all of the models from submodules and thread them together.
 from calaccess_processed.models.campaign.entities import (
     Candidate,
     CandidateCommittee,
+)
+from calaccess_processed.models.campaign.elections import (
     Election
 )
 from calaccess_processed.models.campaign.propositions import (
@@ -17,6 +19,12 @@ from calaccess_processed.models.campaign.filings.form460 import (
     Form460FilingVersion,
     Form460ScheduleAItem,
     Form460ScheduleAItemVersion,
+    Form460ScheduleB1Item,
+    Form460ScheduleB1ItemVersion,
+    Form460ScheduleB2Item,
+    Form460ScheduleB2ItemVersion,
+    Form460ScheduleB2ItemOld,
+    Form460ScheduleB2ItemVersionOld,
     Form460ScheduleCItem,
     Form460ScheduleCItemVersion,
     Form460ScheduleDItem,
@@ -64,6 +72,12 @@ __all__ = (
     'Form460FilingVersion',
     'Form460ScheduleAItem',
     'Form460ScheduleAItemVersion',
+    'Form460ScheduleB1Item',
+    'Form460ScheduleB1ItemVersion',
+    'Form460ScheduleB2Item',
+    'Form460ScheduleB2ItemVersion',
+    'Form460ScheduleB2ItemOld',
+    'Form460ScheduleB2ItemVersionOld',
     'Form460ScheduleCItem',
     'Form460ScheduleCItemVersion',
     'Form460ScheduleDItem',
@@ -78,6 +92,8 @@ __all__ = (
     'Form460ScheduleGItemVersion',
     'Form460ScheduleIItem',
     'Form460ScheduleIItemVersion',
+    'FilerIDValue',
+    'FilingIDValue',
     'Schedule497Filing',
     'Schedule497FilingVersion',
     'Schedule497Part1Item',
@@ -90,8 +106,6 @@ __all__ = (
     'ScrapedCandidate',
     'CandidateScrapedElection',
     'ScrapedCandidateCommittee',
-    'FilerIDValue',
-    'FilingIDValue',
     'Election',
     'Proposition',
     'PropositionCommittee'

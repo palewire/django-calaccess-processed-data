@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
+"""
+General utilities for the application.
+"""
 default_app_config = 'calaccess_processed.apps.CalAccessProcessedConfig'
 
 
@@ -8,7 +10,7 @@ def get_models_to_process():
     """
     Returns a list of models to derive from raw CAL-ACCESS data.
 
-    Models are listed in the order in which they should be derived, as some 
+    Models are listed in the order in which they should be derived, as some
     of data tables derived earlier in the order are re-used in the load queries
     of models later in the order.
     """
@@ -20,6 +22,10 @@ def get_models_to_process():
         campaign.filings.form460.Form460Filing,
         campaign.filings.form460.Form460ScheduleAItemVersion,
         campaign.filings.form460.Form460ScheduleAItem,
+        campaign.filings.form460.Form460ScheduleB1ItemVersion,
+        campaign.filings.form460.Form460ScheduleB1Item,
+        campaign.filings.form460.Form460ScheduleB2ItemVersion,
+        campaign.filings.form460.Form460ScheduleB2Item,
         campaign.filings.form460.Form460ScheduleCItemVersion,
         campaign.filings.form460.Form460ScheduleCItem,
         campaign.filings.form460.Form460ScheduleDItemVersion,
@@ -42,9 +48,10 @@ def get_models_to_process():
         campaign.filings.schedule497.Schedule497Part2Item,
     ]
 
+
 def archive_directory_path(instance, filename):
     """
-    Returns a path to an archived processed data file or zip
+    Returns a path to an archived processed data file or ZIP.
     """
     from calaccess_processed.models.tracking import (
         ProcessedDataVersion,
