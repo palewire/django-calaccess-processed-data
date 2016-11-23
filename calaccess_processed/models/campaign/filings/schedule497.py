@@ -531,7 +531,7 @@ class Schedule497Part2Item(Schedule497Part2ItemBase):
     Late contributions made by campaign filers.
 
     These transactions are itemized on Part 2 of the most recent version
-    of each Schedule 497 filing. For gifts of late contributions itemized on 
+    of each Schedule 497 filing. For gifts of late contributions itemized on
     any version of any Schedule 497 filing, see Schedule497Part2ItemVersion.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P2'.

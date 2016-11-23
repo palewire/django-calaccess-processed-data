@@ -1,0 +1,1001 @@
+FILING_ID	AMEND_ID	LINE_ITEM	REC_TYPE	FORM_TYPE	TRAN_ID	LOAN_TYPE	ENTITY_CD	LNDR_NAML	LNDR_NAMF	LNDR_NAMT	LNDR_NAMS	LOAN_CITY	LOAN_ST	LOAN_ZIP4	LOAN_DATE1	LOAN_DATE2	LOAN_AMT1	LOAN_AMT2	LOAN_AMT3	LOAN_AMT4	LOAN_RATE	LOAN_EMP	LOAN_OCC	LOAN_SELF	CMTE_ID	TRES_NAML	TRES_NAMF	TRES_NAMT	TRES_NAMS	TRES_CITY	TRES_ST	TRES_ZIP4	INTR_NAML	INTR_NAMF	INTR_NAMT	INTR_NAMS	INTR_CITY	INTR_ST	INTR_ZIP4	MEMO_CODE	MEMO_REFNO	BAKREF_TID	XREF_SCHNM	XREF_MATCH	LOAN_AMT5	LOAN_AMT6	LOAN_AMT7	LOAN_AMT8
+716736	0	6	LOAN	B3	PAY4		IND	Zettel	Charlene			Poway	CA	92064	11/3/1997 12:00:00 AM		4000	0	0			Self - Charlene Zettel	Property Manager																									
+719351	0	5	LOAN	B3	B3-14		IND	Connell	Kathleen M.			Los Angeles	CA	90025	9/30/1994 12:00:00 AM		250000	250000	0																													
+591610	0	1	LOAN	B2	PAY927	B2R	OTH	Friends of Mark Leyes				Garden Grove	CA	92840	3/17/1998 12:00:00 AM	1/27/2000 12:00:00 AM	5000	5000	0		0.00																											
+718017	0	8	LOAN	B3	B3-2		RCP	Tax Fighters for Baldwin				El Cajon	CA	92002	4/23/1999 12:00:00 AM		5000	0	0																													
+719641	0	1	LOAN	B3	B3-7		IND	Liu	Carol J.			La Canada Flintridge	CA	91011	12/24/1999 12:00:00 AM		25000	25000	0																													
+646619	0	3	LOAN	B1	PAY463	B1L	OTH	Law Offices of R. Rex Parris				Lancaster	CA	93534	6/14/2000 12:00:00 AM		25000		25000		0.00																											
+649518	0	1	LOAN	B2	PAY319	B2R	OTH	Heller	Norman			San Rafael	Ca	94901	6/17/1999 12:00:00 AM	7/18/2000 12:00:00 AM	2086.26	47913.74	0		0.00		retired																									
+642261	0	1	LOAN	B2	PAY224	B2R	IND	Ross Hopkins				Canoga Park	CA	91304-	2/19/2000 12:00:00 AM	4/26/2000 12:00:00 AM	1500	1750	0		0.00	Self-Employed	Public Affairs Consultant																									
+719533	0	7	LOAN	B3	PAY2410		COM	Gun Owners of CA Candidates Support Account				Fair Oaks	CA	95628	11/3/2000 12:00:00 AM		5000	0	0																													
+645079	1	4	LOAN	B2	PAY26389	B2R	IND	ESTES	MILTON N.			MILL VALLEY	CA	94941-	2/8/2000 12:00:00 AM	2/28/2000 12:00:00 AM	75000	0	0		0.00	CITY & COUNTY OF SAN FRANCISCO	PHYSICIAN																									
+644411	0	2	LOAN	B2	B24	B2R	IND	Conner	Guy			Santa Rosa	CA	95401	3/1/2000 12:00:00 AM	3/1/2000 12:00:00 AM	100	0	0			Self Employed	Computer Consultant																									
+644411	0	3	LOAN	B2	B25	B2R	IND	Wiggins	Patricia Ann			Santa Rosa	CA	95401	12/31/1997 12:00:00 AM	4/6/2000 12:00:00 AM	1000	1000	0																													
+717534	0	1	LOAN	B2	PAY348	B2R	OTH	Los Alamitos Race Course				Los Alamitos	CA	90720-2721	2/28/2000 12:00:00 AM	10/17/2000 12:00:00 AM	1000	24000	0		0.00																											
+644843	0	9	LOAN	B1	PAY175	B1L	IND	SCOTT COOK OSTBY FAMILY TRUST				WOODSIDE	CA	94062	6/30/2000 12:00:00 AM		100000		100000		0.00	INTUIT	BUSINESS EXECUTIVE																									
+592131	0	5	LOAN	B1	020120000C295	B1L	IND	Caldwell	Dennis W.			Sacramento	CA	95831	1/28/2000 12:00:00 AM	1/28/2000 12:00:00 AM	5000		5000		0.00		Businessman - Self Employed																									
+718214	0	4	LOAN	B3	012120010C5080			Lewis for St. Senate							11/4/1996 12:00:00 AM		10000	0	0																													
+716745	0	2	LOAN	B3	B3-2		IND	Richman	Keith			Sun Valley	CA	91352	12/31/1999 12:00:00 AM		200000	180000	0																													
+676219	0	2	LOAN	B1	B1-18	B1L	OTH	Priest Law Offices				San Jose	CA	95113-1219	10/18/2000 12:00:00 AM	12/31/2001 12:00:00 AM	2000		64717.23		0.0000																											
+669263	1	3	LOAN	B1	PAY4656	B1L	OTH	GALPIN MOTORS INC.				NORTH HILLS	CA	91343	9/29/2000 12:00:00 AM	3/31/2001 12:00:00 AM	5000		5100		0.00																											
+654610	0	6	LOAN	H2	H2-2	H2F	RCP	Walt Alan for Assembly				Covina	CA	91724	6/23/1999 12:00:00 AM	3/15/2000 12:00:00 AM	5000	0																														
+643928	0	1	LOAN	B2	PAY485	B2R	OTH	Matthews	Barbara			Tracy	CA	95376	3/3/1999 12:00:00 AM	3/31/2000 12:00:00 AM	2000	0	0		0.00	Albertsons	Government Affairs Manager																									
+718354	0	24	LOAN	H3	RCV3161		COM	NORM WALKER FOR ASSEMBLY				SIMI VALLEY	CA	93063	3/2/2000 12:00:00 AM		12000	0	0						990670																							
+716851	0	25	LOAN	B3	PAY830		COM	FRIENDS OF JOHN CAMPBELL				IRVINE	CA	92612	9/30/2000 12:00:00 AM		5000	0	0						990037																							
+669394	2	3	LOAN	B1	PAY14902	B1L	OTH	Parsons Brinckerhoff Construction Services Inc.				New York	NY	10119	9/15/2000 12:00:00 AM	6/1/2001 12:00:00 AM	50000		130000		0.00																											
+718738	0	5	LOAN	B1	PAY10	B1L	COM	Friends of Abel Maldonado				Santa Maria	CA	93454	12/31/2000 12:00:00 AM		5000		136663.64		0.00				980583	Benedetti	Trent			Santa Maria	CA	93456																
+718738	0	6	LOAN	B3	PAY2		COM	Friends of Abel Maldonado				Santa Maria	CA	93454	12/19/2000 12:00:00 AM		500	500	0						980583	Benedetti	Trent			Santa Maria	CA	93456																
+578471	0	1	LOAN	B2	PAY62	B2R	IND	JOHNSTON	JAMES			LOOMIS	CA	95650	12/31/1999 12:00:00 AM	1/3/2000 12:00:00 AM	100000	0	0		0.00	JOHNSTON TRADING POST	OWNER																									
+717609	0	2	LOAN	B3	B312		IND	Dutra	John A.			Fremont	CA	94539	9/25/1999 12:00:00 AM		25000	0	0			State of California	Assemblyman																									
+717652	0	4	LOAN	B3	B3-12		IND	Nash-Hoff	Michele			San Diego	CA	92119	8/31/2000 12:00:00 AM		2500	2500	0																													
+717691	0	5	LOAN	H1	RCV1472		COM	Jeff Denham for Assembly				Salinas	CA	93902	10/30/2000 12:00:00 AM		5000				0.00				990653																RCV1472							
+714919	0	14	LOAN	B3	L229		IND	Munn	John R.			Davis	CA	95616	9/11/2000 12:00:00 AM		6000	6000	0																													
+718428	0	5	LOAN	B3	B34		IND	Conner	Guy			Santa Rosa	CA	95401	12/12/2000 12:00:00 AM		900	900	0			Omware Corporation	Computer Programmer																									
+644955	0	17	LOAN	H1	RCV3080		COM	Friends of Ed Estes Jr.				Vista	CA	92084	3/4/2000 12:00:00 AM	9/1/2000 12:00:00 AM	10000				0.00				942582																							
+718741	0	13	LOAN	B1	PAY1451	B1L	COM	Charlene Zettel for Assembly				San Diego	CA	92119	11/1/2000 12:00:00 AM		5000		8267.26		0.00				971523																							
+718741	0	34	LOAN	B3	PAY1583		IND	Jackson	Suzanne E.			Monte Sereno	CA	95030	11/8/2000 12:00:00 AM		-129500	-129500	0			Suzanne Jackson Designs	Designer																									
+676963	0	4	LOAN	H1	RCV705		COM	AGHAZARIAN FOR ASSEMBLY				STOCKTON	CA	95219	10/5/2000 12:00:00 AM	12/31/2000 12:00:00 AM	10000				0.00				990517																							
+677282	0	1	LOAN	B2	PAY802	B2R	IND	QURESHEY	SAFI			SANTA ANA	CA	92705	6/4/1998 12:00:00 AM	10/13/2000 12:00:00 AM	10000	0	0		0.00	SELF	INVESTOR																									
+717149	0	3	LOAN	B3	PAY353		COM	Rod Pacheco for Assembly 2000				Riverside	CA	92507	2/5/2000 12:00:00 AM		10000	0	0						980061																							
+644949	1	1	LOAN	B2	PAY785	B2R	OTH	Silicon Valley Manufacturing				San Jose	CA	95110	2/22/2000 12:00:00 AM	3/20/2000 12:00:00 AM	30600	3900	0		0.00																											
+719277	0	6	LOAN	B3	B3-25		RCP	California Independent Business PAC				Azusa	CA	91702	9/29/1998 12:00:00 AM		5000	5000	0																													
+715970	0	1	LOAN	B3	L81		COM	Poochigian '98				Fresno	CA	93747	10/5/1998 12:00:00 AM		25000	25000	0																													
+645145	0	4	LOAN	H1	CD1100123		COM	Marcella Calderon for School Board				Montebello	CA	90640	4/11/2000 12:00:00 AM		500				0.0				990814																							
+637943	0	5	LOAN	B2	PAY755	B2F	IND	Estes	Edwin	Mr.		Vista	CA	92084	3/7/2000 12:00:00 AM	6/1/2000 12:00:00 AM	5000	0	0		0.00	Edwin Estes & Assoc.	Real Estate Devel.																		PAY755							
+641725	0	2	LOAN	B3	PAY14		IND	Allan J. Goodman				Culver City	CA	90230-	5/6/1994 12:00:00 AM		5000	5000	0			Culver Municipal Court	Judge																									
+641734	0	1	LOAN	B2	PAY349	B2R	COM	Rod Wright For Assembly				Los Angeles	CA	90071-2300	1/4/2000 12:00:00 AM	5/16/2000 12:00:00 AM	20000	15000	0		0.00				900863																							
+719294	0	1	LOAN	B2	PAY989	B2F	COM	Friends of Jim Brulte				Rancho Cucamonga	CA	91730	3/6/2000 12:00:00 AM	12/5/2000 12:00:00 AM	12000	0	0		0.00				962673																PAY989							
+677476	0	1	LOAN	B1	B1-32	B1L	OTH	Creative Promotions Unlimited				Glendale	CA	91202	9/28/2000 12:00:00 AM	10/31/2001 12:00:00 AM	20000		22500		0.0000																											
+677484	0	1	LOAN	B2	PAY786	B2R	OTH	California Federation of Teachers				Burbank	CA	91506	6/7/2000 12:00:00 AM	10/10/2000 12:00:00 AM	63352.95	207542.17	4414.92		0.00		Sponsor			Nye	Michael																					
+669576	1	3	LOAN	B1	PAY616	B1L	IND	DOERR	ANN HOWLAND			WOODSIDE	CA	94062	9/19/2000 12:00:00 AM		1000000		3000000		0.00	N/A	HOME MAKER																									
+644149	0	10	LOAN	B2	071220000E165		OTH	Marimac Development Co. Inc.				Apple Valley	CA	92307	1/28/2000 12:00:00 AM	5/18/2000 12:00:00 AM	2500	0	0		0.000																											
+592131	1	9	LOAN	B2	071320000E181		IND	Cox	James L.			Victorville	CA	92392	12/30/1899 12:00:00 AM	1/28/2000 12:00:00 AM	100000	-103211.64	0		0.000																											
+644151	0	14	LOAN	B1	PAY1578	B1L	IND	Mr. Jeffrey P. Bennett				Corona	CA	92881	5/8/2000 12:00:00 AM	5/8/2001 12:00:00 AM	300		539475		0.00		President/CEO																									
+711441	0	9	LOAN	B3	PAY5		IND	THOMASINA REED				Inglewood	CA	90301-	3/26/1993 12:00:00 AM		1600	1600	0			Self-Employed	Attorney																									
+785838	0	11	LOAN	B3	LOANB30000000188		OTH	Claude Parrish (Source Of Funds) Kennedy Cabot & Co (TD Waterhouse)				Downey	CA	90240	5/12/1998 12:00:00 AM		10000	10000	2073.96		0																											
+804021	0	11	LOAN	H	RCV71		COM	95/5 Sane School Spending Initiative Committee				Los Angeles	CA	91504-1215	10/21/1996 12:00:00 AM		0	5000		5000					970639																				0	0	0	5000
+805061	0	6	LOAN	B1	B1-72		RCP	Friends of Jim Battin				Palm Desert	CA	92261	3/2/2000 12:00:00 AM	3/2/2001 12:00:00 AM	0	0	0	0	0.000				982715																				0	0	0	5000
+719722	0	22	LOAN	B3	LOANB30000000196		OTH	Claude Parrish (Source Of Funds) Kennedy Cabot & Co (TD Waterhouse)				Downey	CA	90240	4/8/1998 12:00:00 AM		2000	0	187.92		0																											
+721331	0	14	LOAN	B3	B3-15		IND	Hollingsworth	Dennis	Mr.		Temecula	CA	92591	6/4/1999 12:00:00 AM		250	250	0																													
+745736	0	2	LOAN	H3	H3-11	H2R	RCP	Families For Better Education				Sacramento	CA	95814	3/29/2001 12:00:00 AM		3350	3350	0																													
+772325	0	3	LOAN	B1	CI279	B1L	COM	Bill Leonard for Assembly				Rancho Cucamonga	CA	91729	5/23/2001 12:00:00 AM	3/6/2002 12:00:00 AM	4000		11500		0%				951108																							
+773461	0	1	LOAN	H1	H1-32	B1L	OTH	59th ADRCC Treasurer Anne Moll				Covina	CA	91723	5/17/2001 12:00:00 AM	12/31/2001 12:00:00 AM	2500		0		0.0000																											
+719486	2	9	LOAN	B3	PAY180		IND	BREYER	JAMES W.			PALO ALTO	CA	94301	6/30/2000 12:00:00 AM		100000	0	0			ACCEL PARTNERS	MANAGING PARTNER																									
+785570	0	2	LOAN	B3	B3-2		IND	Richman	Keith			Sacramento	CA	95814	12/31/1999 12:00:00 AM		200000	155000	0																													
+786131	0	24	LOAN	H3	H3-142	H2R	RCP	California Voter Registration Project 2000				Riverside	CA	92507	8/29/2000 12:00:00 AM		6000	6000	0																													
+785224	0	4	LOAN	H3	H3-29	H2R	RCP	Friends of Scott J. Svonkin				Los Angeles	CA	90071	9/30/2000 12:00:00 AM		15000	15000	0																													
+805478	0	4	LOAN	B1	PAY2244		OTH	Patricia Bates				Laguna Niguel	CA	92677	6/29/1999 12:00:00 AM	6/29/2004 12:00:00 AM	0	3000	0	3000	0%																								0	0		3000
+719805	0	31	LOAN	B3	L143		IND	Denham	Jeff			Salinas	CA	93906	10/1/1999 12:00:00 AM		3348.99	0	0																													
+725238	0	6	LOAN	B1	PAY285	B1L	OTH	ACSA - Region 15				Los Angeles	CA	90041	8/9/2000 12:00:00 AM	12/31/2001 12:00:00 AM	10000		10000		0.00																											
+719277	1	3	LOAN	B2	B2-760	B2R	RCP	Charlene Zettel For Assembly				San Diego	CA	92119	10/20/2000 12:00:00 AM	11/13/2000 12:00:00 AM	10000	0	0																													
+720226	1	30	LOAN	B3	PAY19589		OTH	CH2M HILL				Oakland	CA	94607	11/3/2000 12:00:00 AM		15000	15000	0																													
+805718	0	1	LOAN	B1	B1-6		IND	Chatman	Ronald	Mr.		Long Beach	CA	90807	9/20/2001 12:00:00 AM	9/20/2002 12:00:00 AM	0	2000	3000	2000	0.000	Rolar Development	President & CEO																						0	0	0	2000
+785600	0	2	LOAN	B3	B3-67		IND	Bogh	Lynn	Mr.		San Bernardino	CA	92404	2/28/2000 12:00:00 AM		20000	20000	0																													
+805621	0	8	LOAN	B1	B1-6		IND	Hollingsworth	Dan			Murrieta	CA	92562	3/10/2000 12:00:00 AM	10/5/2001 12:00:00 AM	0	1200	0	1200	0.000	Jo-Dan Farms	Agriculture																						0	0	0	1200
+804530	0	3	LOAN	B1	CI314		COM	Bill Leonard for Assembly				R. Cucamonga	CA	91729	5/23/2001 12:00:00 AM	3/6/2002 12:00:00 AM	0	4000	11500	4000	0				951108																							
+805103	0	2	LOAN	B1	PAY9		IND	Nakanishi	Alan	Dr.		Lodi	CA	95242	4/29/1998 12:00:00 AM		0	20000	0	20000	0%	Delta Eye Medical Group	Physician																						0	0		20000
+677556	3	2	LOAN	B1	PAY1236	B1L	IND	MCKEOWN	NICHOLAS W.			STANFORD	CA	94305	10/17/2000 12:00:00 AM	12/30/2000 12:00:00 AM	50000		50000		0.00	PMCSIERRA	CONSULTANT																									
+806229	0	3	LOAN	B1	PAY1741		COM	Friends of Howard Kaloogian				Encinitas	CA	92023	9/18/2000 12:00:00 AM		0	0	7500	7500	0%																								0	7500	0	7500
+772696	0	1	LOAN	B2	PAY1854	B2R	IND	MCKEOWN	NICHOLAS W.			STANFORD	CA	94305	10/17/2000 12:00:00 AM	1/10/2001 12:00:00 AM	35810.24	0	0		0.00	PMCSIERRA	CONSULTANT																									
+778693	0	1	LOAN	B1	CR61PET	B1L	IND	Nevins	Mary Lois			Pasadena	CA	91105	3/8/2000 12:00:00 AM		5000		5000	0			Government Employee																									
+806805	0	2	LOAN	B1	PAY907		OTH	The Doctors' Management Company				Napa	CA	94558	12/7/2000 12:00:00 AM		0	50000	0	50000		Professional Liability Insurance Management Co. *Due on Demand																							0	0		50000
+806809	0	3	LOAN	H	RCV793		COM	CORTEZ FOR ASSEMBLY				POMONA	CA	91767	1/13/2000 12:00:00 AM		0	6000		6000	0%	N/A	ID. #990585		990585																				0	0	0	6000
+785710	0	7	LOAN	H3	H3-25	H2R	RCP	Rod Pacheco For State Senate				Riverside	CA	92507	6/29/2001 12:00:00 AM		3000	3000	0																													
+773077	1	5	LOAN	B3	LOANB30000000175		IND	Parrish	Claude			Downey	CA	90240	6/5/1997 12:00:00 AM		8650	8650	0		0																											
+773077	1	22	LOAN	B3	LOANB30000000192		OTH	Claude Parrish (Source Of Funds) Kennedy Cabot & Co (TD Waterhouse)				Downey	CA	90240	5/20/1998 12:00:00 AM		5000	5000	1205.55		0																											
+718046	3	6	LOAN	B1	B1-35	B1L	RCP	Pat Bates for Assembly				Laguna Niguel	CA	92677	11/1/2000 12:00:00 AM	11/2/2001 12:00:00 AM	10000		21000		0.0000				C																							
+808070	0	1	LOAN	H	RCV142		COM	Ed Vincent For State Senate				Los Angeles	CA	90071	3/14/2000 12:00:00 AM	3/14/2001 12:00:00 AM	0	10000		10000	0%				990238																				0	0	0	10000
+805116	0	1	LOAN	B1	B1-11		RCP	Service Employees International Union PEA Local US Division				Washington	DC	20005	10/23/1993 12:00:00 AM		0	35000	0	35000	0.000				782200																				0	0	0	35000
+805215	0	2	LOAN	B1	PAY2		IND	BYRNE	JOHN			CHICO	CA	95927	12/6/2001 12:00:00 AM		10000	10000	56000	0			CANDIDATE																						0	0		10000
+766519	0	6	LOAN	B2	B2-274	B2R	OTH	GreenPoint Mortgage				Santa Rosa	CA	95401-4658	3/28/1998 12:00:00 AM	5/19/2001 12:00:00 AM	353.91	12052.94	120.17																													
+812360	0	10	LOAN	B1	B1-10		IND	Hollingsworth	Dennis	Mr.		Temecula	CA	92591	3/9/2000 12:00:00 AM	10/5/2001 12:00:00 AM	0	50	0	50	0.000		Assemblyman																						0	0	0	50
+852757	0	2	LOAN	B1	B1-3		RCP	Rico Oller for Senate				Chico	CA	95928	12/21/2001 12:00:00 AM	12/17/2003 12:00:00 AM	0	3000	0	3000	0.000				982908																				0	0	0	3000
+828572	0	2	LOAN	B1	L626		IND	Dispenza	Mike			PALMDALE	CA	93550	2/16/2002 12:00:00 AM	1/1/2025 12:00:00 AM	0	10025.79	17361.92	10025.79	0	N/A	Business Owner	Y																							0	10025.79
+805557	1	1	LOAN	B1	B15		COM	Committee to Elect Marco Antonio Firebaugh				Burbank	CA	91504	12/30/2000 12:00:00 AM	12/30/2001 12:00:00 AM	0	7000	0	7000	0.00000				980102																				0	0	0	7000
+853068	0	7	LOAN	B1	LOANB10000000201		OTH	Claude Parrish (Source Of Funds) Kennedy Cabot & Co (TD Waterhouse)				Downey	CA	90240	5/20/1998 12:00:00 AM		0	0	0	5000	0.0775																								5000		0	5000
+822285	0	3	LOAN	B1	PAY2240		OTH	Mary Margaret Bates				Laguna Hills	CA	92653	5/15/1998 12:00:00 AM	5/15/2004 12:00:00 AM	0	20000	0	20000	0%																								0	0		20000
+822767	0	3	LOAN	H	RCV561		COM	Marcella Calderon for School Board				Montebello	CA	90640	9/8/1999 12:00:00 AM		0	500		500	0%	N/A	N/A		990814																				0	0	0	500
+809520	0	1	LOAN	B1	L566		OTH	JBA, LLC				Salinas	CA	93912	1/19/2002 12:00:00 AM	12/31/2002 12:00:00 AM	7000	7000	7000	0	0																										0	7000
+810150	0	2	LOAN	B1	B1-17		IND	Lieber	Phyllis	Ms.		Huntington Woods	MI	48070	6/29/2001 12:00:00 AM	12/31/2002 12:00:00 AM	0	3000	0	3000	0.000	N/A	Homemaker																						0	0	0	3000
+822996	0	3	LOAN	B1	B1-22		IND	Lieber	Sally	Ms.		Mountain View	CA	94041	9/23/2001 12:00:00 AM	12/31/2002 12:00:00 AM	0	9000	0	9000	0.000	City of Mountain View	Councilmember																						0	0	0	9000
+823010	0	2	LOAN	B1	B110		OTH	Grupe Operating Company				Stockton	CA	95267-9507	12/28/2001 12:00:00 AM	3/26/2002 12:00:00 AM	0	100000	0	100000	0.00000																								0	0	0	100000
+805690	1	2	LOAN	H	LOANH0000000124		OTH	CA Friends Latino PAC 				Sacramento	CA	95814	11/2/2000 12:00:00 AM		0	5068	0	5068	0				981166																						0	5668
+821701	0	2	LOAN	H	H4		RCP	Hollingsworth for Senate 2002				La Mesa	CA	91941	1/18/2002 12:00:00 AM	4/18/2002 12:00:00 AM	0	3000	3000	3000	0.0000				1239239																				0	0	0	3000
+822430	0	1	LOAN	B1	PAY380		COM	California Republican League Comm. of 100				San Diego	CA	92119	10/20/1999 12:00:00 AM		0	2000	0	2000					746293																				0	0		2000
+847473	0	15	LOAN	B1	B1-22		OTH	Near-Cal Corp.				Lake Elsinore	CA	92530	11/28/2000 12:00:00 AM	11/28/2001 12:00:00 AM	0	2500	0	2500	0.000																								0	0	0	2500
+810133	1	7	LOAN	H	RCV567		COM	Marcella Calderon for School Board				Montebello	CA	90640	3/24/2000 12:00:00 AM		0	300	0	300	0.00                  %	N/A	N/A		990814																				0	0	0	300
+813404	0	3	LOAN	B1	B1-23		IND	MISSAKIAN	PATRICIA			GLENDALE	CA	91208	12/10/1995 12:00:00 AM	7/22/1999 12:00:00 AM	0	10000	0	10000	0.000	N/A	RETIRED																						0	0	0	10000
+814417	0	4	LOAN	B1	PAY1220		IND	Mr. Jeffrey P. Bennett				Corona	CA	92881	2/17/2000 12:00:00 AM	2/17/2001 12:00:00 AM	0	100000	2773	100000	0%	Cool Tube, Inc.	President/CEO																						0	0		100000
+822567	1	7	LOAN	B1	PAY5		IND	Simon, Jr.	William E.			Los Angeles	CA	90024	3/30/2001 12:00:00 AM	11/3/2002 12:00:00 AM	0	10000	1724255.73	10000	0.00                  %	W.E. Simon & Sons	CEO																						0	0	0	10000
+821899	0	2	LOAN	H	H7		COM	Montjoy for Assembly				Monrovia	CA	91017	9/26/2000 12:00:00 AM	11/14/2000 12:00:00 AM	0	5000	0	5000	0.0000				992052																				0	0	0	5000
+849655	0	3	LOAN	B1	PAY9		OTH	United Teachers Los Angeles				Los Angeles	CA	90010	2/20/1997 12:00:00 AM		0	50000	108634.56	50000																									0	0	0	50000
+822134	1	2	LOAN	B1	PAY532		IND	ANTHONY	JOSEPH			VENTURA	CA	93001	6/21/2001 12:00:00 AM		0	9500	9500	9500	0%	ANTHONY REALTY	OWNER																						0	0		9500
+850857	0	7	LOAN	H	RCV901		COM	Antelope Valley Republican Committee				Palmdale	CA	93550	11/8/2000 12:00:00 AM		0	6200	0	6200					1229877																				0	0	0	6200
+850857	0	10	LOAN	H	RCV1636		COM	A.V.Republican Assembly Committee				Lancaster	CA	93534	12/13/2001 12:00:00 AM		0	7550	0	7550					1222024																				0	0	0	7550
+814417	0	20	LOAN	B1	PAY1582		IND	Mr. Jeffrey P. Bennett				Corona	CA	92881	5/15/2000 12:00:00 AM	5/15/2001 12:00:00 AM	0	1300	2773	1300	0%	Cool Tube, Inc.	President/CEO																						0	0		1300
+822604	0	1	LOAN	B1	B1-1		IND	Jesson	Nick			Huntington Beach	CA	92648	7/19/2001 12:00:00 AM	7/19/2002 12:00:00 AM	0	5000	700	5000	0.000	NTD Electronics Inc.	CEO																						0	0	0	5000
+809755	0	1	LOAN	B1	B1-5		IND	Kelly	Dan	Dr.		San Francisco	CA	94116	11/6/2001 12:00:00 AM	11/6/2002 12:00:00 AM	0	2965	22500	2965	0.000																								0	0	0	2965
+809960	1	3	LOAN	B1	PAY1163		COM	MCCLINTOCK FOR SENATE				NEWBURY PARK	CA	91320	9/28/2001 12:00:00 AM		0	51000	0	51000	0%																								0	0		51000
+870315	0	1	LOAN	B1	051520013C254		IND	Leach	Lynne			Walnut Creek	CA	94598	2/19/2001 12:00:00 AM	12/31/2001 12:00:00 AM	0	0	0	0	0.00	State Assembly	Legislator																		1B				0	0	0	5000
+855498	1	1	LOAN	B1	PAY43		COM	TIM LESLIE FOR ASSEMBLY				TAHOE CITY	CA	96145	9/27/2001 12:00:00 AM	6/30/2001 12:00:00 AM	0	3000	0	3000	0.00                  %				990263																				0	0	0	3000
+855498	1	6	LOAN	B1	PAY1248		IND	AANESTAD	SAM			Sacramento	CA	95814	5/9/2002 12:00:00 AM		25000	25000	25000	0		ST. OF CALIF.	ASSEMBLYMAN																						0	0	0	25000
+877988	0	6	LOAN	B1	PAY1000		IND	Simon, Jr.	William E.	Mr.		Los Angeles	CA	90024	6/29/2001 12:00:00 AM	11/3/2002 12:00:00 AM	0	10000	6824310.73	10000	0.00                  %	W.E. Simon & Sons	CEO																						0	0	0	10000
+871837	0	19	LOAN	B1	PAY264		IND	Thompson, PhD.	Kevin W.			Sunnyvale	CA	94087-1850	7/25/2002 12:00:00 AM		12500	12500	14008	0	0.00                  %	Chair - Coalition To Preserve Families	Retired																						0	0	0	12500
+871863	0	8	LOAN	B1	B1-20		RCP	Rod Pacheco for State Senate				Riverside	CA	92507	1/25/2001 12:00:00 AM	6/30/2001 12:00:00 AM	0	0	0	1000	0.000				1232019																				0	1000	0	1000
+855858	0	6	LOAN	B1	PAY94567		OTH	Howard Jarvis Taxpayers Association				Irvine	CA	92718-	7/1/2001 12:00:00 AM		0	0	510000	3098.93																									3098.93	0	0	3098.93
+855249	0	1	LOAN	H	H8		COM	Aanestad for Senate				Grass Valley	CA	95945	2/26/2002 12:00:00 AM	4/26/2002 12:00:00 AM	3000	3000	3000	0	0.0000				1238095																				0	0	0	3000
+855266	0	2	LOAN	B1	PAY18		IND	DOERR	ANN HOWLAND			WOODSIDE	CA	94062	4/20/2000 12:00:00 AM	6/18/2000 12:00:00 AM	0	1000000	0	1000000	0.00                  %	N/A	HOME MAKER																						0	0	0	1000000
+862868	0	2	LOAN	B1	PAY158		OTH	LMC Management Group, LLC				Fountain Valley	CA	92708	3/5/2000 12:00:00 AM		0	10000	0	10000																									0	0	0	10000
+856417	0	22	LOAN	H	RCV1768		COM	Plescia for Assembly				San Diego	CA	92122	2/28/2002 12:00:00 AM		500	500	3000	0		N/A	N/A		1240116																				0	0	0	500
+856917	0	2	LOAN	B1	C1722		IND	Keith Richman				Sacramento	CA	95814	3/1/2000 12:00:00 AM	12/31/2000 12:00:00 AM		20000			0	Lakeside Healthcare Inc.	Physician																									20000
+871522	0	4	LOAN	B1	B13		COM	Friends of Polanco				Sacramento	CA	95814	9/10/1998 12:00:00 AM	9/10/2000 12:00:00 AM	0	15000	0	15000	0.00000				943804																				0	0	0	15000
+871864	0	3	LOAN	B1	B1-124		IND	Pacheco	Robert (Bob)	Mr.		Walnut	CA	91789	4/6/1999 12:00:00 AM	4/6/2000 12:00:00 AM	0	5764.74	0	5764.74	0.000		Assemblyman, 60th District																						0	0	0	5764.74
+865276	0	1	LOAN	B1	PAY4		IND	Rosenstein	Ira			Newport Beach	CA	92660	4/19/1992 12:00:00 AM		0	40000	0	40000			Retired																						0	0	0	50000
+871533	0	1	LOAN	H	H13		COM	Yes on 45, Citizens Right to Vote				Sacramento	CA	95814	1/22/2002 12:00:00 AM	7/22/2002 12:00:00 AM	0	2000000	2265000	2000000	0.00000				1239930																				0	0	0	2000000
+872343	0	6	LOAN	H	RCV1996		COM	Californians In Action				Los Angeles	CA	90071-	2/29/2000 12:00:00 AM	2/28/2001 12:00:00 AM	0	8000	0	8000	0.00                  %				982792																				0	0	0	8000
+853702	0	1	LOAN	B1	B1-3		IND	O'Connell	Daniel			Pasadena	CA	91101-2712	6/28/2002 12:00:00 AM	6/28/2003 12:00:00 AM	35000	35000	35000	0	0.000	County of Los Angeles	Deputy District Attorney																						0	0	0	35000
+853725	0	3	LOAN	B1	B1-4		IND	Marks	Esther	Ms.		San Francisco	CA	94117	3/2/2002 12:00:00 AM		16000	12042.65	16000	0	0.000	Esther Marks	consultant																						3957.35	0	0	16000
+857451	0	6	LOAN	B1	LOANB10000000067		IND	Portillo	Cesar			Los Angeles	CA	90026	6/29/2000 12:00:00 AM		0	1000	2693.92	1000	0	AIDS Healthcare Foundation	Govt Relations	N																							0	1000
+857451	0	10	LOAN	B1	LOANB10000000305		IND	Portillo	Cesar			Los Angeles	CA	90026	10/2/2001 12:00:00 AM		0	475	2693.92	475	0																										0	475
+857451	0	23	LOAN	B1	LOANB10000000377		IND	Portillo	Cesar			Los Angeles	CA	90026	3/23/2002 12:00:00 AM		530	530	2693.92	0	0	AIDS Healthcare Foundation	Govt Relations	N																							0	530
+857451	0	26	LOAN	B1	LOANB10000000034		IND	Chisum	Steve			Los Angeles	CA	90039	2/19/2000 12:00:00 AM		0	2000	0	2000	0	AIDS Healthcare Foundation	Administrator	N																							0	2000
+877407	0	8	LOAN	B1	B1-28		RCP	Tim Leslie for Assembly				Sacramento	CA	95814	3/7/2001 12:00:00 AM	12/31/2001 12:00:00 AM	0	2500	0	2500	0.000				990263																				0	0	0	3000
+871750	0	2	LOAN	B1	B1-17		IND	Lieber	Phyllis	Ms.		Huntington Woods	MI	48070	6/29/2001 12:00:00 AM	12/31/2002 12:00:00 AM	0	3000	0	3000	0.000	N/A	Homemaker																						0	0	0	3000
+871750	0	5	LOAN	B1	B1-18		IND	Phillips	David	Mr.		Mountain View	CA	94041	12/31/2000 12:00:00 AM	12/31/2004 12:00:00 AM	0	25000	0	41000	0.000	Force 10 Networks	Director of Product Mgmt																						16000	0	0	50000
+855410	0	1	LOAN	B1	CI230		IND	MacCarley	Mark			Glendale	CA	91203	1/19/2000 12:00:00 AM	6/30/2002 12:00:00 AM	0	0	0	50100	0	MacCarley and Rosen	Attorney	X																					0	50100	0	50100
+867201	0	24	LOAN	B1	B1-24		OTH	No Time Delay Electronics				Huntington Beach	CA	92648	2/4/2002 12:00:00 AM	2/19/2003 12:00:00 AM	0	1000	110135.04	1000	0.000																								0	0	0	1000
+877655	0	3	LOAN	B1	PAY1079		COM	MADDOX FOR ASSEMBLY				GARDEN GROVE	CA	92840	2/28/2002 12:00:00 AM		0	2500	3000	2500					992082																				0	0	0	2500
+871834	0	1	LOAN	H	RCV2754		COM	Dennis Mountjoy for Assembly				Monrovia	CA	91316	9/22/2000 12:00:00 AM		0	5000	0	5000	0.00                  %				992052																				0	0	0	5000
+855705	0	13	LOAN	B1	PAY426		IND	Simon, Jr.	William E.			Los Angeles	CA	90024	2/28/2001 12:00:00 AM	11/3/2002 12:00:00 AM	0	120000	2724255.73	120000	0.00                  %	W.E. Simon & Sons	CEO																						0	0	0	120000
+871864	1	3	LOAN	B1	B1-124		IND	Pacheco	Robert (Bob)	Mr.		Walnut	CA	91789	4/6/1999 12:00:00 AM	4/6/2000 12:00:00 AM	0	5764.74	0	5764.74	0.000		Assemblyman, 60th District																						0	0	0	5764.74
+871864	1	4	LOAN	B1	B1-37		IND	Pacheco	Robert (Bob)	Mr.		Walnut	CA	91789	2/19/1999 12:00:00 AM	2/19/2000 12:00:00 AM	0	10000	0	10000	0.000		Assemblyman, 60th District																						0	0	0	10000
+822367	3	3	LOAN	B1	PAY114		COM	FRIENDS OF RUSS BOGH				RIVERSIDE	CA	92507	12/31/2001 12:00:00 AM		0	2500	0	2500					1236337																				0	0	0	2500
+862860	0	1	LOAN	B1	PAY156		OTH	LMC Management Group, LLC				Fountain Valley	CA	92708	2/25/2000 12:00:00 AM		0	10000	20000	10000																									0	0	0	10000
+912351	1	1	LOAN	B1	PAY44566		IND	Simon, Jr.	William E.	Mr.		Los Angeles	CA	90024	2/8/2002 12:00:00 AM	11/6/2002 12:00:00 AM	0	792521.95	8087510.63	792521.95	0.00                  %	W.E. Simon & Sons	CEO																						0	0	0	792521.95
+909225	0	2	LOAN	B1	B12		OTH	The Nature Conservancy				San Francisco	CA	94105	6/30/1998 12:00:00 AM	6/30/1999 12:00:00 AM	0	75000	2607569.75	75000	0.00000																								0	0	0	75000
+904691	0	3	LOAN	B1	PAY657		COM	MCCLINTOCK FOR SENATE				Northridge	CA	91325	7/14/2000 12:00:00 AM		0	30000	0	30000	0.00                  %		ID. #983387																						0	0	0	30000
+909978	0	1	LOAN	B1	B1-89		OTH	California Republican League, Inc.				San Diego	CA	92119	10/15/2002 12:00:00 AM	10/15/2003 12:00:00 AM	0	0	1000	1000	0.000																								1000	0	0	1000
+878147	0	3	LOAN	B1	PAY14		IND	WERDEGAR	KATHRYN			ROSS	CA	94957	4/9/2002 12:00:00 AM		0	8500	121250	8500	0.00                  %	CALIFORNIA SUPREME COURT	ASSOCIATE JUSTICE																						0	0	0	8500
+902521	0	7	LOAN	B1	LOANB10000000069		IND	Krekorian	Paul			Los Angeles	CA	90026	6/15/2000 12:00:00 AM		0	20000	11148.82	20000	0	Self Employed	Attorney	Y																							0	20000
+902523	0	7	LOAN	B1	LOANB10000000069		IND	Krekorian	Paul			Los Angeles	CA	90026	6/15/2000 12:00:00 AM		0	20000	0	20000	0	Self Employed	Attorney	Y																							0	20000
+878254	2	5	LOAN	B1	B15		IND	Wallace	Jay S.			Mill Valley	CA	94941	9/30/2002 12:00:00 AM		0	5000	7500	5000	0.00000	Platinum Advisors	Attorney																						0	0	0	5000
+898583	0	6	LOAN	B1	PAY68		IND	Thompson, PhD.	Kevin W.			Sunnyvale	CA	94087-1850	5/24/2001 12:00:00 AM		0	0	537740	30000	0.00                  %	Chair - Coalition To Preserve Families	Retired																						0	30000	0	30000
+898583	0	9	LOAN	B1	PAY82		IND	Thompson, PhD.	Kevin W.			Sunnyvale	CA	94087-1850	6/7/2001 12:00:00 AM		0	0	537740	19800	0.00                  %	Chair - Coalition To Preserve Families	Retired																						0	19800	0	19800
+902540	0	16	LOAN	B1	LOANB10000000191		OTH	Claude Parrish (Source Of Funds) Kennedy Cabot & Co (TD Waterhouse)				Downey	CA	90240	5/19/1998 12:00:00 AM		0	0	0	0	0																										6090.10	30000
+877408	1	4	LOAN	B1	B1-65		OTH	Bogh Construction				Beaumont	CA	92223	2/26/2000 12:00:00 AM	2/26/2001 12:00:00 AM	0	50000	0	50000	0.000																								0	0	0	50000
+907582	0	1	LOAN	B1	B1-89		IND	Bogh	Russell V.	Mr.		Cherry Valley	CA	92223	1/21/2002 12:00:00 AM	1/21/2003 12:00:00 AM	0	0	0	6000	0.000																								6000	0	0	8500
+878709	0	4	LOAN	H	H86		COM	Friedman for Assembly				West Hills	CA	91307	9/23/2002 12:00:00 AM	2/28/2003 12:00:00 AM	0	1000	1000	1000	0.00				1240655																				0	0	0	1000
+856598	1	1	LOAN	B1	LOANB10000000234		OTH	Del Mar Ventures LLC 				Del Mar	CA	92014-5901	6/28/2001 12:00:00 AM		0	65000	0	100000	0																								35000		0	100000
+878222	0	2	LOAN	B1	PAY582		OTH	Nakanishi	Alan S.	Dr.		Lodi	CA	95240	2/29/2000 12:00:00 AM		0	43000	0	43000	0.00                  %	Delta Eye Med. Group	Physician																						0	0	0	43000
+913497	0	4	LOAN	B1	PAY366		COM	Taxfighters for Baldwin							11/1/1998 12:00:00 AM		0	4500	0	4500																									0	0	0	4500
+905598	0	1	LOAN	B1	PAY2		IND	Harman	Thomas G.			Huntington Beach	CA	92649	11/19/2002 12:00:00 AM		500	500	500	0																									0	0	0	500
+913501	1	1	LOAN	H	RCV28		COM	Hoffman for Supervisor				Thousand Oaks	CA	91362	2/15/2002 12:00:00 AM		0	10000	10000	10000	0.00                  %				1239366																				0	0	0	10000
+823015	4	1	LOAN	B1	B11		OTH	The Nature Conservancy				San Francisco	CA	94105	6/30/1997 12:00:00 AM	6/30/1998 12:00:00 AM	0	150000	560459.91	150000	0.00000																								0	0	0	300000
+911778	0	1	LOAN	H	LOANH0000000125		COM	Committee To Reform The Initiative Process				Sacramento	CA	95814	12/8/2000 12:00:00 AM		0	100000	0	100000	0				1231681																						0	100000
+911255	1	1	LOAN	B1	B1-2		OTH	Divco West Properties, LLC				San Jose	CA	95113	9/29/2000 12:00:00 AM	12/31/2004 12:00:00 AM	0	125000	0	125000	0.090																								0	0	0	125000
+912966	0	9	LOAN	B1	B113		IND	Zimmerman	Stanley M.			Los Angeles	CA	90064	6/19/2002 12:00:00 AM	1/15/2003 12:00:00 AM	0	50000	60781	50000	0.05000	Home Budget Loans	Mortgage Lender																		B113				0	0	0	50000
+911153	1	8	LOAN	B1	LOANB10000000303		IND	Portillo	Cesar			Los Angeles	CA	90026	8/24/2001 12:00:00 AM		0	530	2693.92	530	0																										0	530
+855498	2	4	LOAN	B1	PAY1146		COM	BOB PACHECO FOR ASSEMBLY 2000				RIVERSIDE	CA	92507	3/2/2002 12:00:00 AM	5/31/2002 12:00:00 AM	1500	1500	3000	0					971861																				0	0	0	1500
+895233	0	2	LOAN	H	RCV1778		OTH	Ed Vincent for Senate				Los Angeles	CA	90071-	8/27/1999 12:00:00 AM	8/26/2000 12:00:00 AM	0	0	0	10000	0.00                  %				990238																RCV1778				0	10000	0	10000
+899723	1	1	LOAN	B1	PAY112		IND	Levine	Lloyd			Sacramento	CA	95825	9/28/2001 12:00:00 AM	12/1/2002 12:00:00 AM	0	2000	22000	2000	0.00                  %	California State Assembly	Legislative Director																						0	0	0	12000
+908599	0	11	LOAN	H	RCV1680		COM	George Plescia For Assembly				San Diego	CA	92122	2/27/2002 12:00:00 AM		0	3000	0	3000					1240116																				0	0	0	3000
+877761	1	1	LOAN	B1	B1-25		RCP	California Independent Business, PAC				Azusa	CA	91702	9/29/1998 12:00:00 AM	9/29/1998 12:00:00 AM	0	5000	0	5000	0.000				950309																				0	0	0	5000
+877761	1	5	LOAN	B1	B1-16		IND	Pacheco	Robert (Bob)	Mr.		Walnut	CA	91789	9/30/1998 12:00:00 AM	9/30/1999 12:00:00 AM	0	60000	0	60000	0.000		Assemblyman, 60th District																						0	0	0	60000
+878344	1	1	LOAN	B1	PAY379		OTH	LOANS PRE 7/1/00							6/30/2000 12:00:00 AM		0	125000	0	125000																									0	0	0	125000
+912491	0	12	LOAN	H	H25		COM	Rod Pacheco For State Senate				Riverside	CA	92507	6/29/2001 12:00:00 AM	6/29/2002 12:00:00 AM	0	0	0	3000	0.0000				1232019																				3000	0	0	3000
+856757	2	2	LOAN	H	H11		COM	Angelides for Treasurer '94				Sacramento	CA	95814	11/18/1999 12:00:00 AM		0	85000	0	85000	0.08000				923453																H11				0	0	0	85000
+855858	1	1	LOAN	B1	PAY18		OTH	Howard Jarvis Taxpayers Association				Irvine	CA	92718-	11/9/1999 12:00:00 AM	11/9/2001 12:00:00 AM	0	0	510000	225000	0.00                  %																								0	225000	0	225000
+877761	1	17	LOAN	B1	B1-11		IND	Pacheco	Robert (Bob)	Mr.		Walnut	CA	91789	6/30/1998 12:00:00 AM	6/30/1999 12:00:00 AM	0	10000	0	10000	0.000		Assemblyman, 60th District																						0	0	0	10000
+871864	2	5	LOAN	B1	B1-16		IND	Pacheco	Robert (Bob)	Mr.		Walnut	CA	91789	9/30/1998 12:00:00 AM	9/30/1999 12:00:00 AM	0	60000	0	60000	0.000		Assemblyman, 60th District																						0	0	0	60000
+822567	3	1	LOAN	B1	PAY424		IND	Simon, Jr.	William E.	Mr.		Los Angeles	CA	90024	2/22/2001 12:00:00 AM	11/3/2002 12:00:00 AM	0	10000	1729880.73	10000	0.00                  %	W.E. Simon & Sons	CEO																						0	0	0	10000
+855858	1	5	LOAN	B1	PAY236		OTH	Howard Jarvis Taxpayers Association				Irvine	CA	92718-	2/11/2000 12:00:00 AM		0	0	510000	15000	0.00                  %																								0	15000	0	75000
+913235	0	1	LOAN	B1	B1-1		IND	Lowenthal	Alan			Long Beach	CA	90803	5/12/1998 12:00:00 AM	5/19/1999 12:00:00 AM	0	0	0	5000	0.000	Cal State University, Long Beach	Professor																						5000	0	0	5000
+896267	0	3	LOAN	H	D2013			Southwest Voter Registration & Education Project				San Antonio	TX	78205-	9/17/2001 12:00:00 AM	9/17/2002 12:00:00 AM		25000	0	25000	0																											25000
+902333	0	5	LOAN	B1	PAY1519		COM	SHARON RUNNER FOR ASSEMBLY				LANCASTER	CA	93534	10/24/2002 12:00:00 AM	11/6/2002 12:00:00 AM	2000	2000	2000	0	0.00                  %				1238181																				0	0	0	2000
+902521	0	6	LOAN	B1	LOANB10000000004		IND	Krekorian	Paul			Los Angeles	CA	90026	9/30/1999 12:00:00 AM		0	40000	11148.82	40000	0	Self Employed	Attorney	Y																							0	50000
+948378	0	2	LOAN	B1	B1-2		IND	Hollingsworth	Dan			Murrieta	CA	92562	3/1/2000 12:00:00 AM	10/5/2001 12:00:00 AM	0	5000	0	5000	0.000	Jo-Dan Farms	Agriculture																						0	0	0	10000
+942162	0	2	LOAN	B1	PAY296		COM	California Republican Majority Committee				Bakersfield	CA	93309	6/24/2003 12:00:00 AM		3200	3200	3200	0					1244274																				0	0	0	3200
+944588	0	2	LOAN	H	L2237			Friends of Abel Maldonado				Santa Maria	CA	93458-4953	12/31/2000 12:00:00 AM	12/31/2003 12:00:00 AM				5000	0				1231854																					5000		5000
+944612	0	3	LOAN	B1	PAY136		IND	Sanders	Glenda			Newport Beach	CA	92662	1/17/2002 12:00:00 AM	1/17/2004 12:00:00 AM	0	50000	500	50000	0.00                  %	Law Office of Glenda Sanders	Attorney																						0	0	0	50000
+946088	0	4	LOAN	B1	PAY1146		COM	BOB PACHECO FOR ASSEMBLY 2000				RIVERSIDE	CA	92507	3/2/2002 12:00:00 AM	5/31/2002 12:00:00 AM	0	1500	0	1500					971861																				0	0	0	1500
+946477	0	1	LOAN	B1	LOANB10000000475		COM	El Segundo Police Officers Association Political Action Committee				El Segundo	CA	90245	6/30/2003 12:00:00 AM		4000	4000	4000	0	0																										0	4000
+947422	0	15	LOAN	B1	L219		IND	Munn	John R.			Davis	CA	95616	4/4/2000 12:00:00 AM	12/31/2004 12:00:00 AM	0	2000	300	2000	0	Cal Dept Forestry/Fire Protection	Soil/Water Scientist	N																							0	2000
+804809	4	6	LOAN	B1	PAY433		IND	Simon, Jr.	William E.	Mr.		Los Angeles	CA	90024	3/20/2001 12:00:00 AM	11/3/2002 12:00:00 AM	0	12000	2275744.27	12000	0.00                  %	W.E. Simon & Sons	CEO																						0	0	0	12000
+962527	0	1	LOAN	B1	PAY379		OTH	LOANS PRE 7/1/00							6/30/2000 12:00:00 AM		0	125000	0	125000																									0	0	0	125000
+962858	0	3	LOAN	H	H15		COM	CA Friends Latino PAC Controlled by Marco Firebaugh				Burbank	CA	91502	9/10/1998 12:00:00 AM	9/10/2000 12:00:00 AM	0	15000	0	15000	0.00000				981166																				0	0	0	15000
+942650	0	5	LOAN	B1	B1-17		IND	Wyland	Mark			Del Mar	CA	92014	6/30/2003 12:00:00 AM	12/31/2004 12:00:00 AM	3200	3200	3200	0	0.000	State of California	Assemblyman																						0	0	0	3200
+948392	1	4	LOAN	B1	PAY2081		COM	Pat Bates for Assembly 2002				Laguna Niguel	CA	92677	10/24/2002 12:00:00 AM		0	2000	0	2000	0.00%				1233359																				0	0	0	2000
+944620	0	1	LOAN	B1	PAY39		IND	Fell	Sheila			Costa Mesa	CA	92626	9/30/1999 12:00:00 AM	9/30/1902 12:00:00 AM	0	5000	100	5000	0.00                  %	County of Orange	Commissioner																						0	0	0	5000
+966510	0	2	LOAN	H	H4		OTH	Residential Builders Association of San Francisco				San Francisco	CA	94117	2/23/2001 12:00:00 AM	2/23/2003 12:00:00 AM	0	5000	0	5000	10.0000																								0	0	0	5000
+946666	0	2	LOAN	B1	B1-9		OTH	CALIFORNIA POULTRY INDUSTRY FEDERATION				MODESTO	CA	95350	10/28/2002 12:00:00 AM	10/28/2003 12:00:00 AM	0	5000	0	5000	0.000																								0	0	0	5000
+946694	0	3	LOAN	B1	B1-8		IND	Dickinson	Roger			Sacramento	CA	95815	12/16/2002 12:00:00 AM	12/16/2003 12:00:00 AM	0	5000	5000	5000	0.000	Sacramento County	Member, Board of Supervisors																						0	0	0	5000
+947242	0	6	LOAN	B1	B1-17		IND	Naulls	Milena & Bill			Los Angeles	CA	90019	5/11/1992 12:00:00 AM	1/28/1997 12:00:00 AM	0	2500	0	2500	0.000																								0	0	0	2500
+959559	0	1	LOAN	B1	B1-4		OTH	Ira Ruskin (Washington Mutual Bank)				Redwood City	CA	94061	6/30/2003 12:00:00 AM	12/31/2004 12:00:00 AM	0	50000	50000	50000	0.040																								0	0	388.08	50000
+959562	0	2	LOAN	H	RCV1480		OTH	TOM MCCLINTOCK'S COMMITTEE TO END THE CAR TAX				Sacramento	CA	95814	7/20/1999 12:00:00 AM	6/30/2000 12:00:00 AM	0	13000	0	13000																									0	0	0	13000
+977037	0	1	LOAN	B1	B1-29		OTH	SG&A Campaigns				Los Angeles	CA	90028	5/17/2000 12:00:00 AM	6/15/2001 12:00:00 AM	0	7830.45	0	11000	0.000																								3169.55	0	0	11000
+946778	0	15	LOAN	B1	PAY392		IND	Unz	Ron K.			Palo Alto	CA	94301	4/11/2000 12:00:00 AM		0	10000	100	10000		Wall Street Analytics	Software Developer																						0	0	0	10000
+944087	0	1	LOAN	B1	PAY538		IND	Wyland	Mark			Encinitas	CA	92024	3/3/2000 12:00:00 AM		0	10000	0	10000	0.00                  %	State of California	State Assemblymember																						0	0	0	10000
+947323	0	1	LOAN	H	072420030E167			George Runner For Senate				Lancaster	CA	93534	6/26/2003 12:00:00 AM		3200	3200	3200	0	0.00				1244274																				0	0	0	3200
+894513	2	3	LOAN	H	H13		COM	Yes on 45, Citizens Right to Vote				Sacramento	CA	95814	1/22/2002 12:00:00 AM	7/22/2002 12:00:00 AM	0	2000000	2265000	2000000	0.00000				1239930																				0	0	0	2000000
+948360	0	1	LOAN	B1	LOANB10000000507		IND	Tinajero	Jennifer			Santa Ana	CA	92707	2/25/2003 12:00:00 AM		1500	1100	1500	0	0	SAUSD	Teacher	N																					400		0	1500
+979132	0	1	LOAN	B1	PAY379		OTH	LOANS PRE 7/1/00							6/30/2000 12:00:00 AM		0	125000	0	125000																									0	0	0	125000
+947944	1	2	LOAN	B1	C4736		IND	Phil Angelides				Sacramento	CA	95814	11/5/2002 12:00:00 AM			1000000		1000000	0	State of California	Treasurer																									1000000
+963136	0	4	LOAN	H	RCV1378		COM	Alan Nakanishi for Assembly				Sacramento	CA	95814	10/22/2002 12:00:00 AM	9/30/2003 12:00:00 AM	0	2000	0	2000	0.00                  %				1239474																				0	0	0	2000
+947365	0	4	LOAN	B1	PAY1602		COM	Pat Bates for Assembly 2002				Laguna Niguel	CA	92677	10/26/2002 12:00:00 AM	9/30/2003 12:00:00 AM	0	2000	0	2000	0.00                  %				1233359																				0	0	0	2000
+947703	0	1	LOAN	B1	PAY2		IND	Cristich	Cristi			Rancho Sta Margarita	CA	92688	2/10/2003 12:00:00 AM		10000	10000	120677.99	0	0.00%	Cristek Interconnects Inc.	CEO																						0	0	0	10000
+947763	0	1	LOAN	B1	CI1		IND	Greene	Lyn			Alta Loma	CA	91701	6/30/2003 12:00:00 AM	12/1/2003 12:00:00 AM	30000	30000	32509.92	0	0	Riverside Community College	Administration																						0	0	0	30000
+947869	0	3	LOAN	H	LOANH0000000444		COM	Sigala For School Board 				Burbank	CA	91502	2/21/2003 12:00:00 AM		15000	15000	15000	0	0				1245359																						0	15000
+984901	1	20	LOAN	B1	PAY146		IND	DeVore	Chuck			Irvine	CA	92620	6/19/2003 12:00:00 AM		0	4000	115303.60	4000	0.00%	SM&A	Executive																						0	0	0	4000
+984901	1	23	LOAN	B1	PAY185		IND	DeVore	Chuck			Irvine	CA	92620	6/25/2003 12:00:00 AM		0	4000	115303.60	4000	0.00%	SM&A	Executive																						0	0	0	4000
+979931	0	12	LOAN	H	H166		COM	California Voter Registration Project 2000				Riverside	CA	92507	2/21/2001 12:00:00 AM	2/21/2002 12:00:00 AM	0	3000	17500	3000	0.0000				1223957																				0	0	0	3000
+980033	0	3	LOAN	B1	PAY173		OTH	KPCB IX ASSOCIATES, L.L.C.				MENLO PARKS	CA	94025	6/30/2000 12:00:00 AM	12/31/2000 12:00:00 AM	0	706584.12	0	706584.12																									0	0	0	1000000
+989718	1	3	LOAN	B1	LOANB10000000312		IND	Fuentes	Yolanda			Pacoima	CA	91331	2/16/2002 12:00:00 AM		0	3000	30000	3000	0	City Councilman Tony Cardenas	District Director	N																							0	3000
+984001	0	2	LOAN	B1	PAY190		IND	AGHAZARIAN	GREGORY G			STOCKTON	CA	95204	12/19/2001 12:00:00 AM	12/19/2002 12:00:00 AM	0	25000	0	25000	6.00                  %	GREG AGHAZARIAN	CANDIDATE/ATTORNEY																						0	0	0	25000
+989719	0	2	LOAN	B1	LOANB10000000491		COM	Friends Of Polanco 				Sacramento	CA	95814	5/29/1998 12:00:00 AM	5/29/2000 12:00:00 AM	0	100000	0	100000	0				943804																						0	100000
+990946	0	1	LOAN	B1	C91221		COM	Governor Gray Davis Committee				Los Angeles	CA	90035	7/31/2003 12:00:00 AM	10/31/2003 12:00:00 AM		500000	500000	500000	0				962636	Swiller	J. Ari			Los Angeles	CA	90063																500000
+980237	0	1	LOAN	B1	B1-24		IND	Lieber	Sally	Ms.		Santa Clara	CA	95050	1/20/2003 12:00:00 AM	12/31/2003 12:00:00 AM	0	1000	1000	1000	0.000	State of California	Assemblymember																						0	0	0	1000
+990944	1	3	LOAN	B2	PDT70		IND	Schwarzenegger (loan pursuant to 2 Cal. Code Regs. section 18530.8(c))	Arnold			Santa Monica	CA	90405	9/25/2003 12:00:00 AM		2500000	2500000	8850000			Oak Productions, Inc.	Actor/Businessman										City National Bank															
+993831	0	3	LOAN	B1	PAY3606		OTH	Golden State Strategies				Camarillo	CA	93010	5/22/2003 12:00:00 AM	6/30/2006 12:00:00 AM	0	2000	5000	2000	0.00                  %																								0	0	0	2000
+996352	0	4	LOAN	B1	B1-8		IND	Hernandez	Graciela C.			Healdsburg	CA	95448	12/30/2003 12:00:00 AM	12/29/2003 12:00:00 AM	0	2500	0	2500	0.000	None	Retired																						0	0	0	2500
+996805	0	4	LOAN	B1	PAY432		IND	Magness	Claudia			Simi Valley	CA	93065	12/30/2003 12:00:00 AM		0	3000	0	3000		Self Employed	Sales																						0	0	0	3000
+997262	0	2	LOAN	B1	LOANB10000000240		OTH	Barona Band Of Mission Indians 				Lakeside	CA	92040	6/30/2001 12:00:00 AM		0	300000	0	300000	0.025																										0	300000
+1007457	0	1	LOAN	B1	B1-1		IND	Ivie	Rickey			Los Angeles	CA	90071	9/30/2003 12:00:00 AM	12/6/2004 12:00:00 AM	0	25000	35748	25000	0.000	Ivie, McNeil & Wyatt	Attorney																						0	0	0	25000
+1007667	0	17	LOAN	B1	L992		IND	Munn	John R.			Davis	CA	95616	10/16/2003 12:00:00 AM	12/31/2004 12:00:00 AM	0	100		100	0	Cal Dept Forestry/Fire Protection	Soil/Water Scientist	N																							0	100
+997370	0	1	LOAN	H	H36		COM	African American Voter R E P Project				Los Angeles	CA	90043	1/16/2004 12:00:00 AM	1/15/2005 12:00:00 AM	0	10500	10500	10500	0.0000				1226812																				0	0	0	10500
+1014375	0	1	LOAN	B1	B12		IND	Blitz	Charles			Santa Barbara	CA	93105	2/20/2004 12:00:00 AM	6/1/2004 12:00:00 AM	90000	25000	90000	0	0.00000	Retired	Retired																						65000	0	0	90000
+986258	0	1	LOAN	B1	L1009		IND	Zimmerman	Michael			Arroyo Grande	CA	93420	6/30/2003 12:00:00 AM	11/2/2004 12:00:00 AM	0	70000	70000	70000	0.0475	David & Zimmerman	Attorney	Y																							0	70000
+990779	1	6	LOAN	B1	PAY14986		OTH	NOLTE Associates, Inc.				Sacramento	CA	95833	9/20/2000 12:00:00 AM	12/31/2001 12:00:00 AM	0	0	29147.50	50000	0.00                  %																								25000	25000	0	50000
+984583	0	5	LOAN	B1	L4		IND	Huff	Bob			Diamond Bar	CA	91765-1320	6/2/2003 12:00:00 AM	8/30/2004 12:00:00 AM	0	10	0	10	0	Ray S. French Co.	Commodity Wholesaler																								0	10
+1007729	0	15	LOAN	B1	L990		IND	Munn	John R.			Davis	CA	95616	8/2/2003 12:00:00 AM	12/31/2004 12:00:00 AM	0	100	450	100	0	Cal Dept Forestry/Fire Protection	Soil/Water Scientist	N																							0	100
+980392	0	1	LOAN	B1	0110200430C346		IND	Nesbet	Barbara			Monte Sereno	CA	95030	11/24/2003 12:00:00 AM	3/2/2004 12:00:00 AM	50000	50000	50000	0	0.04	Self Employed	Attorney	X																					0	0	0	50000
+990663	0	1	LOAN	B1	PAY50		OTH	Greene Properties, Inc.				Vista	CA	92083	5/23/2003 12:00:00 AM		0	245000	1760000	245000	0.00%																								0	0	0	245000
+983663	1	1	LOAN	B1	L1009		IND	Zimmerman	Michael			Arroyo Grande	CA	93420	6/30/2003 12:00:00 AM	11/2/2004 12:00:00 AM	0	38071.99	35000	38689.17	0.0475	David & Zimmerman	Attorney	Y																					617.18		0	70000
+1021692	0	1	LOAN	B1	PAY33		OTH	California Chamber of Commerce				Sacramento	CA	95814	5/16/2000 12:00:00 AM		0	15000	0	15000																									0	0	0	25000
+985199	1	3	LOAN	B1	PAY1080		COM	Mark Wyland for Assembly 2004				Encinitas	CA	92024	6/27/2003 12:00:00 AM		0	1000	0	1000	0.00%				1251364																				0	0	0	1000
+980055	0	67	LOAN	B1	PAY1030		IND	Brutocao	Margaret			San Juan Capistrano	CA	92675	12/31/2003 12:00:00 AM	6/30/2004 12:00:00 AM	3200	3200	6400	0	0.00%	n/a	Homemaker																						0	0	0	3200
+979931	0	6	LOAN	H	H184		COM	Aanestad for Senate				Grass Valley	CA	95945	2/28/2002 12:00:00 AM	5/28/2002 12:00:00 AM	0	1500	0	1500	0.0000				1238095																				0	0	0	1500
+980056	0	5	LOAN	B1	PAY750		IND	Smith	Herbert B.			San Diego	CA	92122	12/31/2003 12:00:00 AM	12/31/2005 12:00:00 AM	200	200	3400	0	0.00%	Herbert B. Smith	Stockbroker																						0	0	0	200
+984765	0	4	LOAN	B1	PAY432		IND	Magness	Claudia			Simi Valley	CA	93065	12/30/2003 12:00:00 AM		0	3000	0	3000		Self Employed	Sales																						0	0	0	3000
+990744	0	1	LOAN	B1	B1-5		IND	BERRYHILL	MARY ELLEN			CERES	CA	95307	6/12/2003 12:00:00 AM	6/12/2005 12:00:00 AM	0	3200	3200	3200	0.000		RETIRED																						0	0	0	3200
+1050605	0	3	LOAN	B1	B1-8		RCP	Mark Wyland for Assembly 2004				Encinitas	CA	92024	6/26/2003 12:00:00 AM	6/26/2005 12:00:00 AM	0	3200	3200	3200	0.000				1251364																				0	0	0	3200
+1051294	0	4	LOAN	B1	040720030C886		COM	Tim Leslie For Assembly				Sacramento	CA	95814	12/30/2002 12:00:00 AM	12/30/2004 12:00:00 AM	0	0	0	0	0.00				990263																				0	0	0	3000
+1045247	1	2	LOAN	B1	0521200444C1779		OTH	Denham For Senate				Salinas	CA	93901	2/6/2004 12:00:00 AM	6/30/2004 12:00:00 AM	0	3200	3200	3200	0.00																								0	0	0	3200
+1029280	0	4	LOAN	B1	040720030C886		COM	Tim Leslie For Assembly				Sacramento	CA	95814	12/30/2002 12:00:00 AM	12/30/2004 12:00:00 AM	0	0	0	0	0.00				990263																				0	0	0	3000
+1025201	0	4	LOAN	B1	LOANB10000000372		IND	Krekorian	Paul			Burbank	CA	91504-2931	4/15/2002 12:00:00 AM		0	2000	0	2000	0	Paul M. Krekorian	Attorney	Y																							0	2000
+1025159	0	1	LOAN	B1	PAY2603		OTH	California Medical Association				Sacramento	CA	95814	2/18/2004 12:00:00 AM		100000	100000	100900	0	2.00                  %																								0	0	0	100000
+983663	2	3	LOAN	B1	L1054		IND	Zimmerman	Michael			Arroyo Grande	CA	93420	1/23/2004 12:00:00 AM	11/2/2004 12:00:00 AM	10000	10000	35000	0	0.0800	David & Zimmerman	Attorney	Y																							0	10000
+1032532	0	4	LOAN	B1	PAY1631		OTH	Nakanishi	Alan S.	Dr.		Lodi	CA	95240	1/30/2001 12:00:00 AM		0	0	0	15000	0.00                  %	Delta Eye Med. Group	Physician																						15000	0	0	15000
+1031205	0	33	LOAN	B1	PAY951		IND	Burnett	Michael W.		Esq.	Newport Beach	CA	92660	12/23/2003 12:00:00 AM	12/31/2004 12:00:00 AM	0	3200	0	3200	0.00%	Burnett & Matthews	Attorney																						0	0	0	3200
+1032569	0	1	LOAN	B1	B12		IND	Blitz	Charles			Santa Barbara	CA	93105	2/20/2004 12:00:00 AM	6/1/2004 12:00:00 AM	0	0	90000	25000	0.00000	Retired	Retired																						25000	0	0	90000
+1045151	1	2	LOAN	B1	PAY680		IND	DeVore	Charles S.			Irvine	CA	92620	9/27/2004 12:00:00 AM	6/20/2005 12:00:00 AM	3100	3100	3100	0	0.00%	SM & A	Executive																						0	0	0	3100
+1045191	1	2	LOAN	B1	PAY424		IND	Walters	Mimi			Laguna Niguel	CA	92677	6/30/2003 12:00:00 AM		0	95000	0	95000	0.00%	City of Laguna Niguel	Councilmember																		PAY424				0	0	0	95000
+1050847	0	9	LOAN	B1	LOANB10000000533		IND	Umberg	Thomas			Irvine	CA	92612	1/1/2004 12:00:00 AM		0	10000	10000	10000	0	Morrison & Foerster	Attorney	Y																							0	10000
+1048421	0	12	LOAN	B1	L977		IND	Munn	John R.			Davis	CA	95616	11/10/2003 12:00:00 AM	12/30/2004 12:00:00 AM	0	300	450	300	0	Cal Dept Forestry/Fire Protection	Soil/Water Scientist	N																							0	300
+1028931	3	5	LOAN	B1	PAY388		IND	Gordon	Michael B.			Palo Alto	CA	94301	4/6/2004 12:00:00 AM		100000	100000	100000	0		Meritech Capital	Venture Capital																		PAY388				0	0	0	100000
+1044332	0	3	LOAN	H	RCV538		COM	MacAloney for State Assembly				Villa Park	CA	92861	2/3/2004 12:00:00 AM		0	3200	3200	3200	0.00                  %				1256371																				0	0	0	3200
+1025399	0	1	LOAN	H	RCV1320		COM	Russ Bogh for Assembly				Beaumont	CA	92223	2/10/2000 12:00:00 AM		0	2000	0	2000	5.00                  %				983414																				0	0	0	5000
+1031331	0	1	LOAN	B1	PAY215		IND	Felson	Jack R			Los Angeles	CA	90049	10/11/2002 12:00:00 AM	6/30/2003 12:00:00 AM	0	0	5000	5000	0.00                  %	Self - Felson	Business Specialist																						0	5000	0	5000
+1028023	0	14	LOAN	H	RCV548		COM	Kuykendall Assembly Committee				Long Beach	CA	90803	2/27/2004 12:00:00 AM		3200	0	3200	0	0.00%	N/A	N/A		1256838																				3200	0	0	3200
+1030435	0	1	LOAN	B1	B1-2		IND	Robinson	Mike			Thousand Oaks	CA	91367	4/24/2003 12:00:00 AM	6/30/2004 12:00:00 AM	0	100000	110000	100000	0.000	Self-Employed	Investor																						0	0	0	100000
+1031770	0	1	LOAN	B1	PAY400		OTH	City National Bank				Beverly Hills	CA	90210	9/25/2003 12:00:00 AM	2/28/2004 12:00:00 AM	0	0	500000	500000	0.00%																				PAY400				0	500000	0	500000
+1044643	0	1	LOAN	B1	L1		OTH	Lumber Association Of California & Nevada				Sacramento	CA	95827	3/30/2000 12:00:00 AM	7/31/2008 12:00:00 AM	0	10370.11	10370.11	11012.12	4																								642.01		107.99	40000
+1032675	0	10	LOAN	B1	L11		IND	Huff	Bob			Diamond Bar	CA	91765-1320	2/26/2004 12:00:00 AM	9/30/2004 12:00:00 AM	20000	20000	23011	0	0	Ray S. French Co.	Commodity Wholesaler																								0	20000
+1045023	0	3	LOAN	B1	B1-8		RCP	Mark Wyland for Assembly 2004				Encinitas	CA	92024	6/26/2003 12:00:00 AM	6/26/2005 12:00:00 AM	0	3200	3200	3200	0.000				1251364																				0	0	0	3200
+1050565	0	1	LOAN	H	D486			SEIU Local 660, AFL-CIO				Los Angeles	CA	90020	3/15/2002 12:00:00 AM	12/31/2007 12:00:00 AM		56666.84	46614.59	56666.84	0																											100000
+1044804	0	1	LOAN	B1	B11		COM	Planned Parenthood Affiliates of California Action Fund				Sacramento	CA	95814	9/27/2004 12:00:00 AM	12/31/2004 12:00:00 AM	5000	5000	5000	0	0.00000				960382																				0	0	0	5000
+1045430	0	7	LOAN	B1	LOANB10000000419		IND	Umberg	Thomas			Irvine	CA	92612	12/31/2002 12:00:00 AM		0	35000	10000	35000	0	Morrison & Foerster	Attorney	Y																							0	35000
+823220	2	3	LOAN	B1	LOANB10000000239		IND	Kalmbach	Robert			Piedmont	CA	94611	6/30/2001 12:00:00 AM	12/31/2002 12:00:00 AM	0	100000	0	100000	0.025	Robert J Kalmbach	Investor	Y																							0	100000
+1044542	0	11	LOAN	H	RCV1900		COM	Keith Olberg Secretary of State Committee				Sacramento	CA	95818	6/25/2002 12:00:00 AM		0	2000	0	2000		N/A	N/A		991911																				0	0	0	2000
+1045328	0	3	LOAN	B1	PAY2150		IND	Doerr	Ann			Woodside	CA	94062	9/28/2004 12:00:00 AM		500000	500000	987324.50	0			Homemaker																		PAY2150				0	0	0	500000
+1031925	0	1	LOAN	B1	B1-8		OTH	CALIFORNIA POULTRY INDUSTRY FEDERATION				MODESTO	CA	95350	11/19/2001 12:00:00 AM		0	9000	0	10000	0.000																								1000	0	0	10000
+1045226	0	5	LOAN	B1	LOANB10000000493		COM	Friends Of Polanco 				Sacramento	CA	95814	3/1/2000 12:00:00 AM	3/1/2001 12:00:00 AM	0	50000	0	50000	0				943804																						0	50000
+1024032	0	4	LOAN	H	RCV49449		COM	RICK KEENE FOR ASSEMBLY				CHICO	CA	95927	2/22/2002 12:00:00 AM		0	3000	0	3000					1238075																				0	0	0	3000
+1044157	2	2	LOAN	B1	L983		IND	Munn	John R.			Davis	CA	95616	10/10/2003 12:00:00 AM	10/10/2005 12:00:00 AM	0	100	8000	100	0	Cal Dept Forestry/Fire Protection	Soil/Water Scientist	N																							0	100
+1044157	2	6	LOAN	B1	L1163		IND	Munn	John R.			Davis	CA	95616	9/28/2004 12:00:00 AM	9/28/2006 12:00:00 AM	4500	4500	8000	0	0	Cal Dept Forestry/Fire Protection	Soil/Water Scientist	N																							0	4500
+1032640	1	2	LOAN	B1	LOANB10000000570		OTH	Los Alamitos Race Course 				Los Alamitos	CA	90720	4/14/2004 12:00:00 AM		400000	400000	1130000	0	0																										0	400000
+851753	1	1	LOAN	B1	CI422		OTH	Local Union 18, IBEW				Los Angeles	CA	90004	3/20/1997 12:00:00 AM	5/5/1928 12:00:00 AM	0	36833.12		37176.33	5%																								343.21		925.85	50000
+1028931	0	5	LOAN	B1	PAY388		IND	Gordon	Michael B.			Palo Alto	CA	94301	4/6/2004 12:00:00 AM		100000	100000	100000	0		Meritech Capital	Venture Capital																		PAY388				0	0	0	100000
+1063687	0	2	LOAN	H	RCV452		COM	Citizens for a Safer Palmdale							2/3/2000 12:00:00 AM		0	0	0	5000					991714																				0	5000	0	5000
+875797	1	1	LOAN	B1	CI424		OTH	Local Union 18, IBEW				Los Angeles	CA	90004	3/20/1997 12:00:00 AM	5/5/1928 12:00:00 AM	0	36599.51		36658.28	5%																								58.77		152.74	50000
+1031210	0	5	LOAN	B1	PAY1499		COM	Doug LaMalfa for State Assembly 2004				Chico	CA	95873	3/2/2004 12:00:00 AM		300	0	1000	0																									300	0	0	300
+1033090	0	5	LOAN	B1	B1-14		IND	Connell	Kathleen M.			Los Angeles	CA	90025	9/30/1994 12:00:00 AM	7/26/2000 12:00:00 AM	0	250000	0	250000	0.000	State of California	Controller																						0	0	0	250000
+1044145	0	34	LOAN	B1	L869		IND	Munn	John R.			Davis	CA	95616	12/30/2002 12:00:00 AM	12/31/2004 12:00:00 AM	0	13600	450	13600	0	Cal Dept Forestry/Fire Protection	Soil/Water Scientist	N																							0	13600
+1079390	0	1	LOAN	H	RCV28		COM	Hoffman for Supervisor				Thousand Oaks	CA	91362	2/15/2002 12:00:00 AM	6/30/2003 12:00:00 AM	0	10000	0	10000	0.00                  %				1239366																				0	0	0	10000
+1032346	1	2	LOAN	B1	C262		IND	Barbara Nesbet				Monte Sereno	CA	95030-2232	11/24/2003 12:00:00 AM			50000		50000	0	Self Employed	Attorney		1254186																							50000
+1118111	0	3	LOAN	B1	B1-57		RCP	BILL EMMERSON FOR ASSEMBLY 2006				RANCHO SANTA MARGARITA	CA	92668	6/30/2005 12:00:00 AM	11/30/2006 12:00:00 AM	3000	3000	3000	0	0.000				1275552																				0	0	0	3000
+1044595	1	1	LOAN	H	H9		COM	Merced County Democratic Central Committee				Merced	CA	95344	5/24/2004 12:00:00 AM	5/24/2005 12:00:00 AM	0	5000	26600	5000	0.0000				1254127																				0	0	0	5000
+1118129	0	3	LOAN	B1	B1-20		IND	BERRYHILL	THOMAS C.			MODESTO	CA	95354	5/19/2005 12:00:00 AM	12/31/2006 12:00:00 AM	6600	6600	96600	0	0.000	TOM BERRYHILL RANCH	FARMER																						0	0	0	6600
+1116513	0	7	LOAN	B1	LOANB10000000289		IND	Fuentes	Yolanda			Pacoima	CA	91331	12/31/2001 12:00:00 AM		0	32916.72	0	35000	0	City Councilman Tony Cardenas	District Director	N																					2083.28		0	35000
+1074015	0	7	LOAN	B1	PAY332		IND	Wyland	Mark			Encinitas	CA	92024	6/22/1999 12:00:00 AM		0	200000	0	200000	0.00                  %	State of California	State Assemblymember																						0	0	0	200000
+1080698	0	11	LOAN	B1	B1-12		IND	Burger	Trena			Sacramento	CA	95814	1/24/2000 12:00:00 AM	1/24/2002 12:00:00 AM	0	50000	556.10	50000	0.000	Burger & Plavin	Attorney																						0	0	0	50000
+1079140	0	1	LOAN	B1	PAY6		OTH	MORONGO BAND OF MISSION INDIANS				BANNING	CA	92220-	11/13/1999 12:00:00 AM	12/2/2000 12:00:00 AM	0	1000000	0	1000000	0.00                  %																								0	0	0	1000000
+1080171	1	4	LOAN	B1	PAY2152		IND	Doerr	John			Woodside	CA	94062	9/28/2004 12:00:00 AM		0	500000	1987324.50	500000		Kleiner Perkins Caufield & Byers	Partner																		PAY2152				0	0	0	500000
+1080698	0	4	LOAN	B1	B1-3		IND	Plavan	Frank			Sacramento	CA	95835	9/29/2000 12:00:00 AM	9/29/2002 12:00:00 AM	0	25000	0	25000	0.000		Retired																						0	0	0	25000
+1080944	0	3	LOAN	H	LOANH0000000089		COM	Cesar Portillo For Assembly 				Burbank	CA	91502	3/7/2000 12:00:00 AM		0	5000	0	5000	0				990330																						0	5000
+1045073	2	4	LOAN	B1	PAY1462		COM	Mark Wyland for Assembly 2004				Encinitas	CA	92024	3/1/2004 12:00:00 AM		0	2200	2200	2200	0.00%				1251364																				0	0	0	2200
+1116720	0	2	LOAN	H	H35		COM	Strickland for Controller				Rancho Santa Margarita	CA	92688	6/29/2005 12:00:00 AM	7/10/2005 12:00:00 AM	2300	2300	5600	0	0.0000				1277272																				0	0	0	2300
+1080141	0	3	LOAN	B1	040720030C231		COM	Re-elect Assemblyman Jay LaSuer				La Mesa	CA	91943	3/12/2002 12:00:00 AM	3/12/2004 12:00:00 AM	0	1500	0	1500	0.00				1235259																				0	0	0	1500
+1118956	0	2	LOAN	B1	PAY57		OTH	Greene Properties, Inc.				Vista	CA	92083	5/30/2003 12:00:00 AM		0	200000	0	200000	0.00%																								0	0	0	200000
+1111858	0	1	LOAN	B1	PAY127		IND	Sturdevant	James			San Francisco	CA	94111-3103	10/8/2004 12:00:00 AM	6/30/2005 12:00:00 AM	0	162000	0	162000	0.00%	Sturdevant Law Firm	ATTORNEY																						0	0	0	250000
+1031886	2	3	LOAN	B1	PAY426		IND	Simon, Jr.	William E.	Mr.		Los Angeles	CA	90024	2/28/2001 12:00:00 AM	11/3/2002 12:00:00 AM	0	104781.26	0	104781.26	0.00                  %	W.E. Simon & Sons	CEO																						0	0	0	120000
+1081826	1	1	LOAN	B1	PAY249		OTH	Ira Ruskin (Washington Mutual Bank)				Redwood City	CA	94061-	6/30/2003 12:00:00 AM	12/31/2004 12:00:00 AM	0	48405.77	20000	48405.77	3.99%																				PAY249				0	0	0	50000
+1118540	0	9	LOAN	B1	PAY105		IND	DeVore	Chuck			Irvine	CA	92620	6/4/2003 12:00:00 AM		0	4000	0	4000	0.00%	SM&A	Executive																						0	0	0	4000
+1117141	0	1	LOAN	H	H12		COM	John Kosinski 2004				San Francisco	CA	94103	2/17/2004 12:00:00 AM	2/17/2005 12:00:00 AM	0	0	0	8500	0.00000				1262487																				3810.40	4689.60	0	8500
+1118972	0	1	LOAN	H	RCV527		COM	Taxpayers for Dave Cogdill				Modesto	CA	95354	6/28/2005 12:00:00 AM		3300	3300	6600	0	0.00%				1273125																				0	0	0	3300
+1080972	0	12	LOAN	B1	PAY111		IND	DeVore	Chuck			Irvine	CA	92620	6/9/2003 12:00:00 AM		0	4000	144044.27	4000	0.00%	SM&A	Executive																						0	0	0	4000
+1118111	0	29	LOAN	B1	B1-38		RCP	NAKANISHI FOR ASSEMBLY 2006				ELK GROVE	CA	95624	6/22/2005 12:00:00 AM	11/30/2006 12:00:00 AM	3300	3300	6600	0	0.000				1272371																				0	0	0	3300
+1118134	0	1	LOAN	B1	B1-8		OTH	CALIFORNIA POULTRY INDUSTRY FEDERATION				MODESTO	CA	95350	11/19/2001 12:00:00 AM		0	3000	0	6000	0.000																								3000	0	0	10000
+1118543	0	3	LOAN	B1	LOANB10000000625		IND	Horton	Jerome			Los Angeles	CA	90009	12/29/2004 12:00:00 AM		0	20000	30000	20000	0	CA State Assembly	Assembly Member	N																							0	20000
+1117204	0	1	LOAN	B1	B1-4		OTH	SEIU Local 99				Los Angeles	CA	90005	2/7/2001 12:00:00 AM	4/7/2011 12:00:00 AM	0	52000	11173.25	52000	0.000																								0	0	0	100000
+1118111	0	19	LOAN	B1	B1-32		RCP	HOLLINGSWORTH FOR SENATE				TEMECULA	CA	92591	6/21/2005 12:00:00 AM	11/30/2006 12:00:00 AM	3300	3300	6600	0	0.000				1251235																				0	0	0	3300
+1072824	0	1	LOAN	H	RCV8		OTH	GUN OWNERS OF CALIFORNIA, INC.				FAIR OAKS	CA	95628	3/15/1982 12:00:00 AM		0	11542.54	0	11542.54	0.00                  %	N/A	N/A																						0	0	0	21542.54
+1073267	0	3	LOAN	B1	B1-5		RCP	Re-Elect Ridley-Thomas 2004				Los Angeles	CA	90043	2/17/2004 12:00:00 AM		0	2000	12500	2000	0.000				1254102																				0	0	0	2000
+1080171	0	4	LOAN	B1	PAY2152		IND	Doerr	John			Woodside	CA	94062	9/28/2004 12:00:00 AM		0	500000	1987324.50	500000		Kleiner Perkins Caufield & Byers	Partner																		PAY2152				0	0	0	500000
+1107092	0	4	LOAN	B1	900144			holman	james			coronado	CA	92118	2/22/2005 12:00:00 AM	2/22/2006 12:00:00 AM	200000	500000	300000	0	0	self	newspaper editor	Y	1256979	clark	frederick			Oakland	CA	94611													0	0	0	200000
+1149270	0	1	LOAN	B1	PAY1324		IND	LACK AND AFFILIATED ENTITIES	DAVID			MONTECITO	CA	93150	6/15/2005 12:00:00 AM	12/31/2005 12:00:00 AM	0	13000	13100	13000	0.00%	DAVID LACK CONSTRUCTION, INC.	PRESIDENT																		PAY1324				0	0	0	13000
+1152456	0	8	LOAN	B1	PAY20		IND	Simon, Jr.	William E.	Mr.		Los Angeles	CA	90025	4/5/2001 12:00:00 AM	11/3/2002 12:00:00 AM	0	0	9239765.45	60000	0.00                  %	W.E. Simon & Sons	CEO																						0	60000	0	60000
+1152456	0	18	LOAN	B1	PAY65778		IND	Simon, Jr.	William E.	Mr.		Los Angeles	CA	90025	7/17/2003 12:00:00 AM		0	0	9239765.45	25000	0.00                  %	W.E. Simon & Sons	CEO																						0	25000	0	25000
+1152951	0	2	LOAN	B1	B1-2		IND	Rishoff	Louise			Agoura Hills	CA	91301	6/28/2005 12:00:00 AM	6/28/2006 12:00:00 AM	0	15000	25000	15000	0.000																								0	0	0	15000
+1192302	0	8	LOAN	B1	PAY491		IND	Sklar	Eric			Rutherford	CA	94573	3/8/2005 12:00:00 AM		0	350	100	350	0.00%	Eric Sklar	Consultant																						0	0	0	350
+1119191	1	7	LOAN	B1	PAY1268		IND	MUNDELL	WILLIAM A.			LOS ANGELES	CA	90024	5/6/2005 12:00:00 AM	12/31/2005 12:00:00 AM	20000	20000	325750	0	0.00%	VIDYAH, INC.	C.E.O.																						0	0	0	20000
+1073571	1	3	LOAN	H	RCV538		COM	MacAloney for State Assembly				Villa Park	CA	92861	2/3/2004 12:00:00 AM		0	3200	3200	3200	0.00                  %				1256371																				0	0	0	3200
+1144681	0	1	LOAN	B1	PAY857		IND	Wilson	Thomas W.			Laguna Hills	CA	92653	12/31/2003 12:00:00 AM	4/15/2004 12:00:00 AM	0	58500	-40000	98500	0.00%	County of Orange	Supervisor																		PAY857				40000	0	0	98500
+1125965	0	1	LOAN	B1	aha2004sa1003		IND	Omerberg	Mitchell			San Francisco	CA	94110	4/8/2002 12:00:00 AM		0	3000		3750	0	Systan, Inc.	Consultant																						750			5000
+1146937	0	3	LOAN	B1	B1-3		IND	Hernandez	Edward P.	Dr.		La Puente	CA	91744	12/28/2004 12:00:00 AM	12/31/2006 12:00:00 AM	0	14000	85000	14000	0.000	Self	Optometrist																						0	0	0	14000
+1153883	0	5	LOAN	B1	C5276994		COM	Poochigian for Attorney General				Fresno	CA	93747	10/20/2004 12:00:00 AM	12/31/2005 12:00:00 AM	0	0	0	0	0.00				1265332																				0	0	0	100000
+1149272	0	3	LOAN	B1	B1-6		IND	Hernandez	Gabriel			Healdsburg	CA	95448	12/30/2003 12:00:00 AM	12/29/2004 12:00:00 AM	0	0	0	900	0.000	None	Retired																						900	0	0	2000
+1149272	0	7	LOAN	B1	B1-10		IND	Sanchez	Grace T.			Weed	CA	96094	12/30/2003 12:00:00 AM	12/29/2004 12:00:00 AM	0	0	0	100	0.000	Self-Employed, Same	Tutor																						100	0	0	500
+1146642	0	10	LOAN	H	RCV56817		COM	STIRLING FOR SENATE				SAN DIEGO	CA	92119	10/1/2004 12:00:00 AM	6/30/2005 12:00:00 AM	0	3000	0	3000					1260315																				0	0	0	3000
+1157038	0	1	LOAN	B1	B1-3		IND	MACHADO	GERARD			TRACY	CA	95376	12/30/2005 12:00:00 AM	1/26/2007 12:00:00 AM	0	0	0	4000	0.000																								4000	0	0	4000
+1147720	0	9	LOAN	B1	B1-15		IND	Plavan	Frank			Sacramento	CA	95835	4/5/2001 12:00:00 AM	4/5/2002 12:00:00 AM	0	42000	0	42000	0.000		Retired																						0	0	0	42000
+1126170	0	10	LOAN	B1	PAY1310		IND	MUNDELL	WILLIAM A.			LOS ANGELES	CA	90024	6/10/2005 12:00:00 AM	12/31/2005 12:00:00 AM	0	50000	337750	50000	0.00%	VIDYAH, INC.	C.E.O.																						0	0	0	50000
+1118654	1	3	LOAN	B1	PAY478		OTH	Washington Mutual Bank (Ira Ruskin)				Phoenix	AZ	85062-8065	2/27/2004 12:00:00 AM	12/31/2004 12:00:00 AM	0	0	0	12000	3.99%																								12000	0	923.42	20000
+1147598	0	1	LOAN	B1	PAY1198		IND	Brownley	Julia			Santa Monica	CA	90405	12/16/2005 12:00:00 AM		20204.66	20204.66	22704.66	0		Santa Monica School Board	Trustee																						0	0	0	20204.66
+1156624	0	3	LOAN	B1	L1471		IND	Newcomer	Owen			Whittier	CA	90601	2/28/2006 12:00:00 AM	12/31/2006 12:00:00 AM	4000	4000	70000	0	0	N/A	Retired	N																							0	4000
+1157538	0	1	LOAN	B1	B1-2		IND	Willoughby	Anthony	Mr.		Culver City	CA	90230	8/12/2005 12:00:00 AM	1/25/2007 12:00:00 AM	0	5000	20000	5000	0.000	Willoughby & Associates	Attorney																						0	0	0	5000
+1157539	0	1	LOAN	B1	B1-1		IND	Anderson	Joel			Alpine	CA	91901	3/17/2006 12:00:00 AM	12/31/2006 12:00:00 AM	20000	20000	20000	0	0.000	JCA Com Inc/Padre Dam Water Dist	Businessman/Board President																						0	0	0	20000
+1141630	1	1	LOAN	B1	LOANB10000000652		IND	Westly	Steve			Menlo Park	CA	94027	8/1/2005 12:00:00 AM		100000	50000	20000000	0	0	State Of CA	Controller	N																					50000		0	100000
+1173847	0	1	LOAN	B1	PAY70		COM	COMMITTEE TO ELECT JIM BRULTE				RANCHO CUCAMONGA	CA	91729	12/2/2005 12:00:00 AM		0	11200	0	11200	0.00%				1231483																				0	0	0	11200
+1148139	0	1	LOAN	B1	B1-1		IND	Wiggins	Patricia Ann			Santa Rosa	CA	95404	2/18/2004 12:00:00 AM	2/18/2004 12:00:00 AM	0	665	0	665	0.000																								0	0	0	665
+1149702	0	1	LOAN	B1	B1-12		IND	Alvarez	Elena			Fullerton	CA	92831	12/31/2005 12:00:00 AM	12/31/2007 12:00:00 AM	3300	3300	6600	0	0.000	Placencia Unified	Psychologist																						0	0	0	3300
+1148250	0	1	LOAN	B1	PAY247		IND	Steel	Michelle E. Park			Palos Verdes	CA	90274	4/7/2005 12:00:00 AM		0	100000	100000	100000	0.00%	Shawn Steel & Associates	Controller																						0	0	0	100000
+1148262	0	4	LOAN	B1	PAY15		IND	Hentschel	Noel Irwin			Los Angeles	CA	90045	5/26/1998 12:00:00 AM		0	500000	0	500000	0.00                  %																								0	0	0	500000
+1130835	0	1	LOAN	B1	PAY7		OTH	United Teachers Los Angeles				Los Angeles	CA	90010	5/23/1996 12:00:00 AM		0	78000	309824.23	79500																									1500	0	0	100000
+1142537	0	3	LOAN	H	RCV424		COM	fletcher for Assembly				San Diego	CA	92122	11/7/2005 12:00:00 AM	1/31/2007 12:00:00 AM	3300	3300	3300	0	0.00%				1281231																				0	0	0	3300
+907868	2	6	LOAN	B1	LOANB10000000319		IND	Arroyo	Veronica			Arleta	CA	91331	2/27/2002 12:00:00 AM		0	3000	3000	3000	0	Volt Temp Agency	Clerical	N																							0	3000
+1023673	1	1	LOAN	B1	LOANB10000000544		IND	Fuentes	Yolanda			Pacoima	CA	91331	7/29/2003 12:00:00 AM		0	6000	0	6000	0	City Councilman Tony Cardenas	District Director	N																							0	6000
+1145685	0	10	LOAN	B1	PAY503		IND	Sklar	Eric			St. Helena	Ca	94574	5/6/2005 12:00:00 AM		0	200	4769.70	200		Eric Sklar	Consultant																						0	0	0	200
+1188104	0	4	LOAN	B1	B1-7		IND	Phillips	Eric			Norco	CA	91760	3/7/2000 12:00:00 AM	10/5/2001 12:00:00 AM	0	7500	0	7500	0.000	Phillips Pontiac Mazda	Owner																						0	0	0	10000
+1188350	0	3	LOAN	H	RCV546		COM	Taxpayers for Haynes				Temecula	CA	92591	4/26/2006 12:00:00 AM		0	1000	1000	1000		N/A	N/A		1275448																				0	0	0	1000
+1149297	1	4	LOAN	B1	C4		IND	Armenta	Mary			Pico Rivera	CA	90660	12/29/2005 12:00:00 AM	12/31/2006 12:00:00 AM	3300	3300	6600		0	N/A	Retired																									3300
+1174921	0	1	LOAN	B1	LOANB10000000239		IND	Kalmbach	Robert			Piedmont	CA	94611	6/30/2001 12:00:00 AM	12/31/2002 12:00:00 AM	0	17808	0	17808	0.025	Robert J Kalmbach	Investor	Y																							0	100000
+1174410	0	7	LOAN	B1	PAY103		IND	DeVore	Chuck			Irvine	CA	92620	6/3/2003 12:00:00 AM		0	4000	-4100	4000	0.00%	SM&A	Executive																						0	0	0	4000
+1190256	0	1	LOAN	B1	L1		IND	Jenkin	William			Ramona	CA	92065-2055	9/7/2005 12:00:00 AM	11/7/2006 12:00:00 AM	0	15000	55000	15000	0	Farmers Insurance Group	Insurance Agent																								0	15000
+1190335	0	4	LOAN	B1	L15		OTH	USAA Credit Card Services				San Antonio	TX	78288-0001	6/8/2006 12:00:00 AM	6/30/2007 12:00:00 AM	4000	4000	4000	0	0																										0	4000
+1192302	0	11	LOAN	B1	PAY512		IND	Sklar	Eric			Rutherford	CA	94573	6/1/2005 12:00:00 AM	12/1/2005 12:00:00 AM	0	1242	100	1242	0.00%	Eric Sklar	Consultant																						0	0	0	1242
+1183414	0	6	LOAN	H	RCV625		COM	Gilmore for Assembly				Fresno	CA	93708-0362	4/4/2006 12:00:00 AM	12/30/2006 12:00:00 AM	0	3300	6600	3300	0.00%				1283866																				0	0	0	3300
+1192649	0	9	LOAN	B2	LOANB20000000005		IND	Umberg	Thomas			Irvine	CA	92612	6/30/2001 12:00:00 AM		0	1000000	0			Morrison & Foerster	Attorney	Y									Eidem, Ralph															
+1174758	0	3	LOAN	B1	PAY45		IND	Buelna	Gabriel			Los Angeles	CA	90065	2/28/2005 12:00:00 AM	2/28/2006 12:00:00 AM	0	2000	85300	2000		University of California Northridge	Professor																						0	0	0	2000
+1174821	0	7	LOAN	B1	B1-16		IND	Snyder	Brad	Mr.		Fullerton	CA	92831	12/31/2005 12:00:00 AM	12/31/2007 12:00:00 AM	0	3300	0	3300	0.000	Saint Joseph Catholic School	Teacher																						0	0	0	3300
+1191640	0	1	LOAN	B1	PAY231		IND	Simonoff	Martin			Brea	CA	92821	12/29/2005 12:00:00 AM	12/29/2006 12:00:00 AM	0	3500	-46246.90	50000			Retired Police Captain																						46500	0	0	50000
+1191804	0	13	LOAN	B1	PAY125		IND	DeVore	Chuck			Irvine	CA	92620	6/13/2003 12:00:00 AM		0	4000	-4100	4000	0.00%	SM&A	Executive																						0	0	0	4000
+1190657	0	2	LOAN	B1	PAY12		IND	Nickel	George W		III	Dos Palos	CA	93620	2/10/2006 12:00:00 AM	12/31/2006 12:00:00 AM	0	75000	50000	75000	0.00%	Nickel Family, LLC	Rancher																						0	0	0	75000
+1174041	0	2	LOAN	B1	L1473		IND	Newcomer	Owen			Whittier	CA	90601	3/7/2006 12:00:00 AM	12/31/2006 12:00:00 AM	0	3000	120000	3000	0	N/A	Retired	N																							0	3000
+1174881	0	5	LOAN	B1	LOANB10000000748		IND	Groveman	Susan			Calabasas	CA	91302	12/10/2003 12:00:00 AM		0	1500	0	1500	0	N/A	Homemaker	N																							0	1500
+1181301	0	6	LOAN	B1	PAY18		IND	Leyes	Mark			Garden Grove	CA	92844	12/22/2005 12:00:00 AM	12/31/2006 12:00:00 AM	2500	2500	3150	0	0.00%	City of Garden Grove	Councilman																						0	0	0	2500
+1191717	0	1	LOAN	B1	L2251		IND	Maldonado	Abel			Santa Maria	CA	93458-4953	4/18/2006 12:00:00 AM	12/31/2006 12:00:00 AM	0	50000	100000	50000	0	State of CA	State Senator, Dist. 15																								0	50000
+1189672	0	5	LOAN	B1	PAY618		COM	Re-Elect Jay La Suer 2004				La Mesa	CA	91943	9/30/2003 12:00:00 AM	12/31/2003 12:00:00 AM	0	3000	0	3000	0.00%				1251753																				0	0	0	3000
+1157333	2	2	LOAN	B1	PAY440		IND	Chavez	Christine			Los Angeles	CA	90063-2010	12/28/2005 12:00:00 AM		0	2500	0	2500		UFW of America	Political Director																						0	0	0	2500
+1192515	0	4	LOAN	B1	11		RCP	Bill Postmus for Assessor				Rancho Santa Margarita	CA	92688	6/9/2006 12:00:00 AM		3500	3500	33500	0	0%				1282345																				0	0	0	3500
+1174903	3	3	LOAN	B1	LOANB10000000779		COM	Friends Of Paul Koretz (42nd A.D.) 				Sacramento	CA	95814	2/6/2006 12:00:00 AM		0	10000	10000	10000	0				1275276																						0	4400
+1157320	2	15	LOAN	B1	PAY595		COM	Paul Leon for Mayor				Ontario	CA	91762	3/17/2006 12:00:00 AM	3/17/2007 12:00:00 AM	3300	3300	3300	0	0.00%				1275013																				0	0	0	3300
+1212188	0	13	LOAN	B1	PAY963		COM	George Runner for Senate 2008				Lancaster	CA	93534	6/2/2006 12:00:00 AM		0	3300	3300	3300	0.00%				1272115																				0	0	0	3300
+1228529	0	1	LOAN	B1	PAY452		OTH	California Building Industry Association				Sacramento	CA	95814	10/20/2006 12:00:00 AM	12/31/2006 12:00:00 AM	0	-3164.38	501926.41	550000	5.00%																								550000	0	3164.38	550000
+1234110	0	5	LOAN	B1	C1717		IND	Dutra	John A.			Fremont	CA	94539	9/20/2003 12:00:00 AM	12/31/2006 12:00:00 AM		25.96		25.96	0	Dutra Enterprises, Inc.	CEO																									25.96
+1237156	0	2	LOAN	B1	PAY68		IND	Leyes	Mark			Garden Grove	CA	92844	12/20/2002 12:00:00 AM	12/31/2004 12:00:00 AM	0	50000	-8250	50000	0.00%	Assemblyman Bob Pacheco	Assemblymember's Representative																						0	0	0	50000
+1237173	0	1	LOAN	B1	B11		OTH	The Bonner Group, Inc.				Washington	DC	20005	10/29/2003 12:00:00 AM	12/1/2004 12:00:00 AM	0	16000	0	16000	0.00000																								0	0	0	21000
+1230315	0	1	LOAN	B1	PAY2		IND	Portantino	Anthony J.			La Canada Flintridge	CA	91011	12/14/2006 12:00:00 AM		5000	5000	5000	0		State of California	Assemblyman																						0	0	0	5000
+1236807	0	10	LOAN	B1	PAY119		IND	DeVore	Chuck			Irvine	CA	92620	6/11/2003 12:00:00 AM		0	4000	-14100	4000	0.00%	SM&A	Executive																						0	0	0	4000
+1236807	0	11	LOAN	B1	PAY125		IND	DeVore	Chuck			Irvine	CA	92620	6/13/2003 12:00:00 AM		0	4000	-14100	4000	0.00%	SM&A	Executive																						0	0	0	4000
+1239091	0	19	LOAN	B1	PAY436		IND	Unz	Ron K.			Palo Alto	CA	94301	6/11/2001 12:00:00 AM		0	200	0	200	0.00                  %	Wall Street Analytics	Software Developer																						0	0	0	200
+1218649	0	2	LOAN	B1	PAY328		IND	DUVALL	MICHAEL			YORBA LINDA	CA	92886	12/27/2005 12:00:00 AM	12/31/2006 12:00:00 AM	0	75000	6373.89	75000			CANDIDATE																						0	0	0	75000
+1204483	2	5	LOAN	B1	PAY1370		COM	Nakanishi for Assembly 2006				Elk Grove	CA	95624	9/29/2006 12:00:00 AM		3300	3300	6600	0	0.00%				1272371																				0	0	0	3300
+1204483	1	1	LOAN	B1	PAY898		COM	Nakanishi for Assembly 2006				Elk Grove	CA	95624	6/5/2006 12:00:00 AM		0	3300	6600	3300	0.00%				1272371																PAY898				0	0	0	3300
+1222728	0	2	LOAN	B1	L2		IND	Hu	Grace			Cerritos	CA	90703-8845	10/30/2006 12:00:00 AM	12/31/2006 12:00:00 AM	10000	0	597446.24	0	0	Re/Max of Cerritos	Owner																							10000	0	10000
+1212403	0	1	LOAN	B1	B1-9		OTH	CALIFORNIA POULTRY INDUSTRY FEDERATION				MODESTO	CA	95356	10/28/2002 12:00:00 AM	10/28/2003 12:00:00 AM	0	1000	0	1000	0.000																								0	0	0	5000
+1213210	0	5	LOAN	B1	PAY618		COM	Re-Elect Jay La Suer 2004				La Mesa	CA	91943	9/30/2003 12:00:00 AM	12/31/2003 12:00:00 AM	0	3000	0	3000	0.00%				1251753																				0	0	0	3000
+1204671	0	1	LOAN	B1	B1-19		RCP	Doug La Malfa for State Assembly 2004				Chico	CA	95973	5/26/2006 12:00:00 AM	12/31/2006 12:00:00 AM	0	3300	3300	3300	0.000				1251737																				0	0	0	3300
+1211696	0	1	LOAN	H	CI205		COM	Houston for Assembly 2006				San Ramon	CA	94583	10/11/2006 12:00:00 AM	12/31/2006 12:00:00 AM	3300	6600	6600	3300	0.0%				1272180																				0	0	0	3300
+1231355	0	6	LOAN	H	RCV625		COM	Gilmore for Assembly				Fresno	CA	93708-0362	4/4/2006 12:00:00 AM	12/30/2006 12:00:00 AM	0	3300	6600	3300	0.00%				1283866																				0	0	0	3300
+1167817	1	1	LOAN	B1	PAY97		IND	Doerr	John L.			Woodside	CA	94062	3/30/2006 12:00:00 AM		950000	950000	950000	0		Kleiner, Perkins, Caufield & Byers	Partner																		PAY97				0	0	0	950000
+1235535	0	1	LOAN	B1	B1-15		RCP	Benoit for Assembly 2006				Riverside	CA	92507	5/1/2006 12:00:00 AM	12/31/2006 12:00:00 AM	0	3300	3300	3300	0.000				1273003																				0	0	0	3300
+1222882	0	1	LOAN	B1	PAY1443		IND	Murray	Cynthia			Novato	CA	94945-0000	5/11/2006 12:00:00 AM	5/11/2007 12:00:00 AM	0	10000	20000	10000	0.00%	County of Marin	Supervisor																						0	0	0	10000
+1235065	0	1	LOAN	B1	RCPTB100000000000865		IND	De La Libertad	Armando			Santa Ana	CA	92705	9/8/2006 12:00:00 AM		2725.89	1225.89	2775.89	0	0	Wells Fargo	Vice President																						1500	0	0	2725.89
+1211162	1	12	LOAN	H	RCV546		COM	Taxpayers for Haynes				Temecula	CA	92591	4/26/2006 12:00:00 AM		0	1000	1000	1000		N/A	N/A		1275448																				0	0	0	1000
+1238515	0	4	LOAN	B1	C57		IND	Armenta	David W.			Pico Rivera	CA	90660	11/13/2000 12:00:00 AM	12/31/2006 12:00:00 AM		488.69		488.69	0	City of Pico Rivera	City Council Member																									2500
+1237137	0	28	LOAN	H	RCV350		COM	California Taxpayers Alliance				Sacramento	CA	95814	4/4/2006 12:00:00 AM		0	3300	3300	3300	0.00%				990346																				0	0	0	3300
+1247321	1	1	LOAN	B1	RCPTB100000000000751		IND	Groveman	Susan			Calabasas	CA	91302	2/19/2004 12:00:00 AM		0	3000	15800	3000	0	N/A	Homemaker																						0	0	0	3000
+1298775	0	1	LOAN	B1	1		IND	Daysog	Tony			Alameda	CA	94501	5/25/2006 12:00:00 AM	12/31/2026 12:00:00 AM	6266.27	24470.27	24470.27	18204	4.00%	Applied Development Economics	urban planner																						0	0	0	4500
+1272063	0	3	LOAN	B1	12		IND	Smith	Mel			Dunnigan	Ca	95937	7/28/2006 12:00:00 AM		0	0	35951.98	1500	0%	Grant Park Development	Contractor																						243.88	1256.12	0	1500
+1348404	0	4	LOAN	B1	RCPTB100000000001094		IND	Simons	Steven			Tarzana	CA	91356	4/28/2008 12:00:00 AM		0	17500	93325.50	17500	0	Steven A. Simons - Attorney At Law	Attorney																						0	0	0	17500
+1298257	0	2	LOAN	B1	PAY543		COM	Bill Postmus for Supervisor				Victorville	CA	92392	3/14/2006 12:00:00 AM	3/14/2007 12:00:00 AM	0	10000	0	10000	0.00%				991381																				0	0	0	10000
+1282388	0	1	LOAN	B1	B1-2		IND	Tran	Kim Ngoc			San Diego	CA	92111	6/23/2006 12:00:00 AM	12/31/2006 12:00:00 AM	0	0	0	9700	0.000	Law Office of Robert Sutton	Paralegal-Office Manager																						0	9700	0	10000
+1284716	0	1	LOAN	B1	B11		COM	Voter Education and Registration Fund State Account				Sacramento	CA	95841	1/25/2006 12:00:00 AM	4/1/2006 12:00:00 AM	0	0	4820	20000	0.00000				1255848																				20000	0	0	150000
+1305308	0	6	LOAN	H	RCV1373		COM	Campaign for Child Safety-Jessica's Law-2006				Sacramento	CA	95814	12/18/2006 12:00:00 AM	12/30/2007 12:00:00 AM	0	2375	0	2375	0.00%				1277423					Sacramento	CA	95814													0	0	0	2375
+1261132	0	3	LOAN	B1	B1-17		IND	Holman	James			Coronado	CA	92118	10/6/2006 12:00:00 AM	12/31/2007 12:00:00 AM	0	215000	5820	215000	0.000	San Diego Reader	Newspaper publisher																						0	0	0	290000
+1284941	0	1	LOAN	B1	PAY1454		COM	Mark Wyland for Senate				Encinitas	CA	92024	10/13/2006 12:00:00 AM		0	0	1000	1000	0.00%				1253967																				0	1000	0	1000
+1192227	1	2	LOAN	B1	C24		OTH	First Financial Credit Union				West Covina	CA	91790	4/11/2006 12:00:00 AM	12/11/2007 12:00:00 AM	0	114271.94	318000	121135.97	0.08%																				C24				6864.03	0	0	128000
+1204823	2	1	LOAN	B1	PAY97		IND	Doerr	John L.			Woodside	CA	94062	3/30/2006 12:00:00 AM		0	950000	950000	950000		Kleiner, Perkins, Caufield & Byers	Partner																		PAY97				0	0	0	950000
+1211516	1	2	LOAN	B1	PAY466		IND	Dr. Edward P. Hernandez				La Puente	CA	91744-	7/13/2004 12:00:00 AM	12/31/2006 12:00:00 AM	0	5000	0	5000	0.00%	Self	Optometrist																		PAY466				0	0	0	5000
+1285329	0	7	LOAN	B1	082820060C5477634		IND	Brulte	James			Rancho Cucamonga	CA	91730	8/25/2006 12:00:00 AM	8/24/2008 12:00:00 AM	0	-6000	0	-6000	0.00	STATE OF CA	SENATOR																						0	0	0	99000
+1302390	1	5	LOAN	B1	082820060C5477634		IND	Brulte	James			Rancho Cucamonga	CA	91730	8/25/2006 12:00:00 AM	8/24/2008 12:00:00 AM	0	0	0	0	0.00	STATE OF CA	SENATOR																						0	0	0	99000
+1311183	0	1	LOAN	B1	B1-6		RCP	Bill Postmus For Supervisor				Rancho Santa Margarita	CA	92688	11/7/2005 12:00:00 AM	12/31/2006 12:00:00 AM	0	20000	0	20000	0.000				991381																				0	0	0	20000
+1282739	0	1	LOAN	B1	L1		IND	Gonzales	Rick			El Centro	CA	92243-9127	3/1/2007 12:00:00 AM	12/31/2008 12:00:00 AM	200	200	200	0	0	Wells Fargo	Investment Banking																								0	200
+1234866	1	9	LOAN	B1	PAY1285		IND	Smith	Kenda L.			San Diego	CA	92101-0000	5/19/2006 12:00:00 AM	3/1/2007 12:00:00 AM	0	0	0	3300	0.00%	N/A	Retired																						3300	0	0	3300
+1285233	1	3	LOAN	B1	PAY160		IND	Hagman	Curt C.			Chino Hills	CA	91709	6/29/2007 12:00:00 AM		85000	85000	100000	0		Apex Bail Bonds, Inc.	President																						0	0	0	85000
+1308642	0	1	LOAN	B1	5		IND	Branstine	Dan			Murrieta	Ca	92563	6/27/2005 12:00:00 AM		0	5000	100000	5000	0%	Dorsey & Whitney LLP	Attorney																						0	0	0	5000
+1308642	1	2	LOAN	B1	6		IND	Branstine	Dan			Murrieta	Ca	92563	6/30/2005 12:00:00 AM		0	95000	100000	95000	0%	Dorsey & Whtiney LLP	Attorney																		6				0	0	0	95000
+1235785	1	1	LOAN	H	L1		IND	Gesicki	Brandon			Salinas	CA	93902-1444	8/26/2005 12:00:00 AM	9/1/2006 12:00:00 AM	0	15000		15000	0.03	Mainstream GOP	owner																								0	15000
+1291301	0	1	LOAN	B1	1		RCP	Bill Postmus for Assessor				RSM	CA	92688	6/1/2006 12:00:00 AM		0	23500	23500	23500	0%				1282345																				0	0	0	23500
+1310245	0	1	LOAN	B1	B1-1		RCP	Kevin Jeffries for Assembly 2008				Riverside	CA	92516	6/30/2007 12:00:00 AM	6/30/2008 12:00:00 AM	0	1000	1000	1000	0.000				1293574																				0	0	0	1000
+1310186	0	3	LOAN	H	RCV55376		OTH	GUN OWNERS OF CALIFORNIA, INC.				FAIR OAKS	CA	95628	9/10/2002 12:00:00 AM		0	5000	0	5000		N/A	N/A																						0	0	0	5000
+1310270	0	2	LOAN	B1	B1-2		OTH	David L. Gould Company				Los Angeles	CA	90071	12/31/2007 12:00:00 AM	1/29/2009 12:00:00 AM	600	600	900	0	0.000																								0	0	0	600
+1310121	0	3	LOAN	B1	PAY1568		IND	Andreas	Mary Ann			Banning	CA	92220	10/13/2004 12:00:00 AM		0	25000	0	25000		State Assembly	Candidate																						0	0	0	25000
+1267933	0	1	LOAN	B1	PAY379		OTH	The Doctors' Management Company				Napa	CA	94558	6/30/2000 12:00:00 AM		0	125000	0	125000		Professional Liability Insurance Management Co. *Due on Demand																							0	0	0	125000
+1306814	0	1	LOAN	H	2			Californians for Justice Education Fund				Oakland	CA	94612	3/1/2006 12:00:00 AM	3/1/2008 12:00:00 AM	0	550.12	-24449.88	25000	0%																								24449.88	0	0	25000
+1284476	0	3	LOAN	H	RCV164		COM	Friends of Paul Hegyi				Sacramento	CA	95826	6/29/2007 12:00:00 AM		3600	3600	7200	0	0.00%				1295747																				0	0	0	3600
+1335013	1	2	LOAN	B1	PAY34		COM	Bob Dutton for State Senate 2008				Rancho Sta Margarita	CA	92688	6/18/2007 12:00:00 AM		0	3600	0	3600					1272833																				0	0	0	3600
+1320342	2	5	LOAN	B1	B1-7		RCP	Tom Berryhill for Assembly 2008				Modesto	CA	95354	3/17/2008 12:00:00 AM	6/4/2008 12:00:00 AM	3600	3600	3600	0	0.000				1293232																				0	0	0	3600
+1146290	1	1	LOAN	H	L1		IND	Gesicki	Brandon			Salinas	CA	93902-1444	8/26/2005 12:00:00 AM	9/1/2006 12:00:00 AM	15000	15000		0	0.03	Mainstream GOP	owner																								0	15000
+1335671	0	1	LOAN	B1	PAY538		IND	Buchanan	Joan T			Alamo	CA	94507	7/3/2007 12:00:00 AM	1/3/2008 12:00:00 AM	0	10000	2269.90	10000	0.00%	Candidate	Candidate																						0	0	0	10000
+1320498	1	1	LOAN	B1	RCPTB100000000001055		IND	Perez	Manuel			Coachella	CA	92236	12/30/2007 12:00:00 AM		0	5000	4656.61	5000	0	Borrego Community Health Foundation	Director Of Community Health																						0	0	0	5000
+1335007	1	6	LOAN	H	RCV965		COM	Aghazarian for Senate 2008				Sacramento	CA	95812	6/26/2007 12:00:00 AM		0	3600	0	3600	0.00%				1297115																				0	0	0	3600
+1348187	0	2	LOAN	H	RCV378		COM	Russ Bogh Leadership Committee				Riverside	CA	92507	5/21/2008 12:00:00 AM		3600	3600	3600	0					1273784																				0	0	0	3600
+1335089	0	2	LOAN	H	RCV179		COM	Strickland for Senate 2008				Thousand Oaks	CA	91358	6/26/2007 12:00:00 AM		0	2000	0	2000	0.00%				1294413																				0	0	0	2000
+1334896	0	1	LOAN	H	RCV3781		COM	FRIENDS OF JEFF DENHAM AGAINST THE RECALL				MODESTO	CA	95354	5/10/2008 12:00:00 AM	12/31/2008 12:00:00 AM	300000	300000	300000	0					1300419																				0	0	0	300000
+1312303	0	2	LOAN	B1	PAY216		IND	Blais	Neil			Rancho Sta Margarita	CA	92688	6/28/2007 12:00:00 AM		0	0	100500	64597.42	0.00%	ABS Consulting	Executive																						64597.42	0	0	64597.42
+1312537	0	13	LOAN	B1	PAY313		IND	Unz	Ron K.			Palo Alto	CA	94301	2/11/2000 12:00:00 AM		0	10000	0	10000		Wall Street Analytics	Software Developer																						0	0	0	10000
+1312540	0	1	LOAN	B1	PAY64		IND	Angeles	Jose Luis			Sacramento	CA	95814	8/17/2007 12:00:00 AM		4500	4500	4500	0		State of California	Legislative Aide																						0	0	0	4500
+1309279	1	2	LOAN	B1	B1-2		RCP	Mark Wyland for Senate 2010				Encinitas	CA	92024	12/22/2007 12:00:00 AM	12/31/2008 12:00:00 AM	1000	1000	1000	0	0.000				1294033																				0	0	0	1000
+1319906	4	4	LOAN	B1	PAY1064		IND	Benoit	John			Riverside	CA	92507	12/31/2007 12:00:00 AM	12/31/2008 12:00:00 AM	0	40000	0	40000		State of Calif.	Assemblyman																						0	0	0	40000
+1308346	1	6	LOAN	B1	RCPTB100000000000933		IND	Brandt	James			Long Beach	CA	90804	1/29/2007 12:00:00 AM		0	2000	5039	2000	0	THOR Inc.	Software Developer																						0	0	0	2000
+1320182	0	2	LOAN	B1	B1-12		IND	BERRYHILL	WILLIAM R.			CERES	CA	95307	12/28/2007 12:00:00 AM	1/7/2009 12:00:00 AM	0	0	100000	100000	0.000	BB VINEYARDS	FARMER																						100000	0	0	100000
+1320150	1	1	LOAN	B1	L2		IND	Alioto Veronese	Joe			San Francisco	CA	94111-2104	6/28/2007 12:00:00 AM	6/4/2008 12:00:00 AM	0	13000	0	32000	0	Law Offices of Angela Alioto	Attorney																						19000		0	32000
+1320001	1	2	LOAN	B1	PAY430		COM	The Doug LaMalfa Committee - Senate 2010				Sacramento	CA	95833	12/31/2007 12:00:00 AM		0	3600	0	3600	0.00%				1293102																				0	0	0	3600
+1346330	0	8	LOAN	B1	RCPTB100000000000003		IND	Krekorian	Paul			Burbank	CA	91504-2931	8/25/1999 12:00:00 AM		0	5000	0	5000	0	Paul M. Krekorian	Attorney																						0	0	0	5000
+1348755	0	13	LOAN	B1	B1-16		RCP	The Doug La Malfa Committee - Senate 2010				Sacramento	CA	95833	6/3/2008 12:00:00 AM	12/31/2008 12:00:00 AM	3600	3600	3600	0	0.000				1293102																				0	0	0	3600
+1320467	1	3	LOAN	B1	PAY424		COM	Re-Elect Audra Strickland 2008				Costa Mesa	CA	92626	6/25/2007 12:00:00 AM		0	3300	0	3300					1293748																				0	0	0	3300
+1312548	0	13	LOAN	B1	PAY150		IND	Dick/La Salle Group	Larry			Orange	CA	92867	6/28/2007 12:00:00 AM		0	0	109589	100000	0.00%	Municipal Water District of Orange County	Boardmember																						100000	0	0	100000
+1312195	1	2	LOAN	B1	PAY670		OTH	LEAGUE OF CALIFORNIA CITIES - NON PUBLIC FUNDS				SACRAMENTO	CA	95814	10/27/2006 12:00:00 AM	12/31/2006 12:00:00 AM	0	100000	2415946.51	100000	0.00%																								0	0	0	100000
+1319799	1	19	LOAN	B1	PAY700		IND	LAMALFA	JILL			RICHVALE	CA	95974	3/17/2008 12:00:00 AM	6/30/2008 12:00:00 AM	3600	3600	7200	0		N/A	NOT EMPLOYED																						0	0	0	3600
+1334619	0	1	LOAN	B1	PAY2		IND	Holt	Gabriella			Palos Verdes Peninsu	Ca	90275	12/26/2007 12:00:00 AM	12/24/2008 12:00:00 AM	0	100000	4660	100000			Candidate for Assembly																						0	0	0	100000
+1320029	1	1	LOAN	B1	PAY2		COM	No New Taxes, A Project of the Howard Jarvis Taxpayers Association				Los Angeles	CA	90005	3/5/2007 12:00:00 AM		0	200000	2050.41	200000					922117																				0	0	0	200000
+1335011	0	1	LOAN	B1	9		IND	DENNEY	RALPH			SAN DIEGO	CA	92104	2/21/2008 12:00:00 AM	12/15/2008 12:00:00 AM	0	1140.59	1140.59	1140.59	0%	BRADLEY ALLEN AUTO BODY AND PAINT	FCO/BUSINESS MANAGER																						0	0	0	1140.59
+1334537	0	3	LOAN	B1	PAY522		COM	Bill Emmerson for Assembly 2006				Rancho Cucamonga	CA	91730	3/10/2006 12:00:00 AM	3/10/2007 12:00:00 AM	0	0	6600	3300	0.00%				1275552																				0	3300	0	3300
+1311546	0	2	LOAN	B1	PAY199		IND	Nickel	George W.		III	Merced	CA	95344	4/6/2006 12:00:00 AM	12/31/2007 12:00:00 AM	0	11800	1011.07	11800	0.00%	Nickel Family, LLC	Rancher																						0	0	0	12750
+1347000	0	3	LOAN	H	H16		COM	Friends of Gabriella Holt				Sherman Oaks	CA	91423	5/26/2008 12:00:00 AM	12/31/2008 12:00:00 AM	3600	3600	3600	0	0.0000				1301963																				0	0	0	3600
+1312556	0	17	LOAN	B1	PAY86		IND	Weiner	Ted			Simi Valley	CA	93065	12/31/2005 12:00:00 AM		0	3300	0	3300		Total Rehab Care	CEO																						0	0	0	3300
+1349446	0	1	LOAN	B1	RCPTB100000000000035		IND	Weinstein	Michael			Los Angeles	CA	90068	2/1/2000 12:00:00 AM		0	50	0	50	0	AIDS Healthcare Found.	President																						0	0	0	1000
+1320185	1	7	LOAN	H	RCV1211		COM	Friends of Mimi Walters				Mission Viejo	CA	92692	2/19/2008 12:00:00 AM		3600	3600	3600	0	0.00%				1292693																				0	0	0	3600
+1320485	0	1	LOAN	B1	PAY565		COM	Anthony Adams for Assembly				Rancho Santa Margarita	CA	92688	6/27/2007 12:00:00 AM		0	2000	0	2000					1273871																				0	0	0	2000
+1320471	0	32	LOAN	B1	PAY607		OTH	Pitkin Productions				Irvine	CA	92618-2665	12/31/2007 12:00:00 AM		0	0	3600	3500																									3500	0	0	3500
+1311660	0	4	LOAN	B1	L9		IND	Healey	Laurette			Van Nuys	CA	91411-3240	9/17/2007 12:00:00 AM	9/17/2008 12:00:00 AM	700	700	92025.67	0	0	Self Employed - Candidate	Candidate																								0	700
+1320471	1	30	LOAN	B1	PAY751		IND	Peeler	Paul			Corpus Christi	TX	78410	3/17/2008 12:00:00 AM		3600	3600	7200	0		Self	CPA																						0	0	0	3600
+1335013	0	3	LOAN	B1	PAY567		COM	Bob Dutton for State Senate 2008				Rancho Sta Margarita	CA	92688	6/18/2007 12:00:00 AM		0	3600	0	3600					1272833																				0	0	0	3600
+1310289	1	4	LOAN	H	RCV961		COM	Strickland for Senate 2008				Thousand Oaks	CA	91358	6/26/2007 12:00:00 AM		0	3600	7200	3600	0.00%				1294413																				0	0	0	3600
+1363114	0	3	LOAN	H	RCV958		COM	Strickland for Senate 2008				Thousand Oaks	CA	91362	6/11/2007 12:00:00 AM		0	3600	0	3600	0.00%				1294413																				0	0	0	3600
+1351688	0	5	LOAN	B1	PAY1986		OTH	21 (Stephen Bing)				Encino	CA	91436	10/30/2006 12:00:00 AM		0	6000000	-130000	6000000																					PAY1986				0	0	0	6000000
+1312467	2	39	LOAN	B1	RCPTB100000000001279		IND	Perez	Manuel			Coachella	CA	92236	12/12/2007 12:00:00 AM		65	65	39327.22	0	0	Borrego Community Health Foundation	Director Of Community Health																						0	0	0	65
+1312467	2	44	LOAN	B1	RCPTB100000000001262		IND	Perez	Manuel			Coachella	CA	92236	11/29/2007 12:00:00 AM		100	100	39327.22	0	0	Borrego Community Health Foundation	Director Of Community Health																						0	0	0	100
+1351219	1	16	LOAN	B1	RCPTB100000000001238		IND	Perez	Manuel			Coachella	CA	92236	9/28/2007 12:00:00 AM		0	46	4313.22	46	0	Borrego Community Health Foundation	Director Of Community Health																						0	0	0	46
+1351634	0	1	LOAN	B1	PAY44		IND	Huber	Alyson			Lodi	CA	95240	10/29/2007 12:00:00 AM	4/30/2008 12:00:00 AM	0	0	-9114.50	10000	0.00%	Candidate	Candidate																		PAY44				10000	0	0	10000
+1362847	0	5	LOAN	B1	PAY493		IND	Harkey	Diane			Monarch Beach	CA	92629	2/10/2008 12:00:00 AM		0	300	600	300		City of Dana Point	Councilwoman																						0	0	0	300
+1362861	0	12	LOAN	B1	PAY1281		COM	BILL EMMERSON FOR ASSEMBLY 2008				RANCHO SANTA MARGARITA	CA	92688	7/8/2008 12:00:00 AM	12/31/2008 12:00:00 AM	3600	3600	3600	0	0.00%				1292697																				0	0	0	3600
+1335683	3	69	LOAN	B1	RCPTB100000000001261		IND	Perez	Manuel			Coachella	CA	92236	11/5/2007 12:00:00 AM		0	46	4313.22	46	0	Borrego Community Health Foundation	Director Of Community Health																						0	0	0	46
+1335683	3	74	LOAN	B1	RCPTB100000000001256		IND	Perez	Manuel			Coachella	CA	92236	10/27/2007 12:00:00 AM		0	150	4313.22	150	0	Borrego Community Health Foundation	Director Of Community Health																						0	0	0	150
+1350638	1	5	LOAN	B1	PAY1698		COM	Friends for Hilliker				La Mesa	CA	91941-	4/27/2007 12:00:00 AM	12/31/2008 12:00:00 AM	0	0	-1500	1500	0.00%		Lakeside Water		982734																				1500	0	0	1500
+1362551	0	1	LOAN	B1	PAY189		COM	SC & SB Counties Building & Constr. Trades Council PAC				San Jose	CA	95125-	10/15/2004 12:00:00 AM	12/31/2010 12:00:00 AM	0	7000	0	7000	0.00%				743618																				0	0	0	25000
+1335732	1	1	LOAN	H	RCV2659		COM	Planned Parenthood Golden Gate Action Fund PAC				Sacramento	CA	95814	4/18/2008 12:00:00 AM	10/1/2008 12:00:00 AM	2000	2000	2000	0	0.00%				1282961																				0	0	0	2000
+1320498	3	84	LOAN	B1	RCPTB100000000001152		IND	Perez	Manuel			Coachella	CA	92236	5/20/2007 12:00:00 AM		0	4.40	9313.22	4.40	0	Borrego Community Health Foundation	Director Of Community Health																						0	0	0	4.40
+1363186	0	1	LOAN	B1	PAY477		COM	Aghazarian 2006				Stockton	CA	95219	5/20/2006 12:00:00 AM		0	3300	0	3300					1273553																				0	0	0	3300
+1350041	0	2	LOAN	B1	PAY593		COM	Citizens for Brulte				Rancho Cucamonga	CA	91729	3/17/2006 12:00:00 AM	3/17/2007 12:00:00 AM	0	3300	0	3300	0.00%				1283599																				0	0	0	3300
+1334887	4	5	LOAN	B1	PAY837		COM	Friends of Sharon Runner				Lancaster	CA	93534	4/10/2008 12:00:00 AM		3600	3600	3600	0					1294002																				0	0	0	3600
+1350965	0	3	LOAN	B1	PAY17		IND	Hentschel	Noel Irwin			Los Angeles	CA	90045	5/18/1998 12:00:00 AM		0	408000	0	408000	0.00                  %																								0	0	0	408000
+1363198	0	9	LOAN	B1	PAY26		IND	LaMalfa	Douglas			Rivervale	CA	95974	6/30/2007 12:00:00 AM		0	3600	0	3600		State of California	State Legislator																						0	0	0	3600
+1350176	0	3	LOAN	H	RCV181		COM	Friends of Mimi Walters				Laguna Niguel	CA	92677	6/27/2007 12:00:00 AM		0	2000	0	2000	0.00%				1292693																				0	0	0	2000
+1312467	2	97	LOAN	B1	RCPTB100000000001163		IND	Perez	Manuel			Coachella	CA	92236	7/25/2007 12:00:00 AM		91.40	91.40	39327.22	0	0	Borrego Community Health Foundation	Director Of Community Health																						0	0	0	91.40
+1351514	0	7	LOAN	B1	B1-8		IND	Biggers	Kevin J.			Rancho Palos Verdes	CA	90275	6/3/2008 12:00:00 AM	6/3/2009 12:00:00 AM	14900	14900	86096.21	0	0.000																								0	0	0	14900
+1335683	3	115	LOAN	B1	RCPTB100000000001195		IND	Perez	Manuel			Coachella	CA	92236	2/5/2008 12:00:00 AM		0	50	4313.22	50	0	Borrego Community Health Foundation	Director Of Community Health																						0	0	0	50
+1362949	0	3	LOAN	B1	PAY148		IND	DeVore	Chuck			Irvine	CA	92620	6/20/2003 12:00:00 AM		0	4000	-2750	4000	0.00%	SM&A	Executive																						0	0	0	4000
+1351219	1	116	LOAN	B1	RCPTB100000000001194		IND	Perez	Manuel			Coachella	CA	92236	2/2/2008 12:00:00 AM		0	37.12	4313.22	37.12	0	Borrego Community Health Foundation	Director Of Community Health																						0	0	0	37.12
+1361704	0	5	LOAN	H	RCV921		COM	Campaign for Child Safety - Jessica's LAw-2006				Sacramento	CA	95814	12/22/2006 12:00:00 AM		0	2600	0	2600	0.00%				1277423																				0	0	0	2600
+1362749	0	2	LOAN	B1	RCPTB100000000001109		IND	Masry	Ferial			Newbury Park	CA	91320	7/4/2008 12:00:00 AM		5000	5000	17000	0	0	Ferial Masry	Teacher																						0	0	0	5000
+1310282	1	2	LOAN	H	RCV181		COM	Friends of Mimi Walters				Laguna Niguel	CA	92677	6/27/2007 12:00:00 AM		0	2000	2000	2000	0.00%				1292693																				0	0	0	2000
+1320498	3	142	LOAN	B1	RCPTB100000000001172		IND	Perez	Manuel			Coachella	CA	92236	7/12/2007 12:00:00 AM		0	130	9313.22	130	0	Borrego Community Health Foundation	Director Of Community Health																						0	0	0	130
+1351681	0	32	LOAN	B1	PAY219		IND	Unz	Ron K.			Palo Alto	CA	94301-	9/22/2000 12:00:00 AM		0	3000	0	3000	0.00                  %	Wall Street Analytics	Computer software																						0	0	0	3000
+1351219	1	97	LOAN	B1	RCPTB100000000001133		IND	Perez	Manuel			Coachella	CA	92236	3/30/2007 12:00:00 AM		0	44.13	4313.22	44.13	0	Borrego Community Health Foundation	Director Of Community Health																						0	0	0	44.13
+1362625	0	1	LOAN	H	RCV55		COM	Strickland for Senate				Los Angeles	CA	90025	6/14/2007 12:00:00 AM		0	3600	0	3600		N/A	N/A		1294413																				0	0	0	3600
+1363016	0	121	LOAN	B1	C517		IND	Manuel Perez				Coachella	CA	92236	12/6/2007 12:00:00 AM			79.75	4656.61			Director of Community Health	Borrego Community Health Foundation																									79.75
+1312467	2	54	LOAN	B1	RCPTB100000000001266		IND	Perez	Manuel			Coachella	CA	92236	12/1/2007 12:00:00 AM		20	20	39327.22	0	0	Borrego Community Health Foundation	Director Of Community Health																						0	0	0	20
+1353229	0	3	LOAN	B1	L22		IND	Healey	Laurette			Van Nuys	CA	91411-3240	3/25/2008 12:00:00 AM	3/25/2009 12:00:00 AM	0	5600	63000	5600	0	Self Employed - Candidate	Candidate																								0	5600
+1320498	3	49	LOAN	B1	RCPTB100000000001281		IND	Perez	Manuel			Coachella	CA	92236	12/20/2007 12:00:00 AM		0	45	9313.22	45	0	Borrego Community Health Foundation	Director Of Community Health																						0	0	0	45
+1397846	0	3	LOAN	H	H115		COM	TAXPAYERS FOR BOB HUFF				DIAMOND BAR	CA	91765	9/19/2007 12:00:00 AM	1/20/2009 12:00:00 AM	0	3600	0	3600	0.0000				1275281																				0	0	0	3600
+1367880	1	6	LOAN	H	RCV1118		COM	Tony Strickland for Senate				Thousand Oaks	CA	91358	6/16/2007 12:00:00 AM	12/31/2008 12:00:00 AM	0	3600	0	3600	0.00%				1294413																				0	0	0	3600
+1398729	0	88	LOAN	B1	C572		IND	Manuel Perez				Coachella	CA	92236	3/15/2008 12:00:00 AM			86.66	4656.61	86.66		Director of Community Health	Borrego Community Health Foundation																									86.66
+1370169	0	44	LOAN	B1	C436		IND	Manuel Perez				Coachella	CA	92236	5/7/2007 12:00:00 AM			16.22	4656.61			Director of Community Health	Borrego Community Health Foundation																									16.22
+1369938	1	1	LOAN	B1	L552346		COM	Bill Emmerson For Assembly 2008				Rancho Santa Margarita	CA	92688	3/6/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	3600	7200	3600	0			N	1292697																				0	0	0	3600
+1369985	0	1	LOAN	H	H44		COM	FRIENDS OF ABRAM WILSON				SAN RAMON	CA	94583	6/26/2008 12:00:00 AM	11/4/2008 12:00:00 AM	0	3600	7200	3600	0.0000				1298169																				0	0	0	3600
+1369985	0	7	LOAN	H	H43		COM	JOHN MCCANN FOR ASSEMBLY				CHULA VISTA	CA	91921	6/25/2008 12:00:00 AM	11/4/2008 12:00:00 AM	0	3600	7200	3600	0.0000				1295490																				0	0	0	3600
+1362687	2	6	LOAN	B1	RCPTB100000000001070		IND	Simons	Steven			Tarzana	CA	91356	2/28/2008 12:00:00 AM		0	25000	159238.19	25000	0	Steven A. Simons - Attorney At Law	Attorney																						0	0	0	25000
+1396785	0	3	LOAN	B1	L3		IND	Jones	Judith E			San Clemente	CA	92673-3062	7/31/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	0	38137.45	5000	0	Candidate, California State Assembly	Candidate																						1862.55	3137.45	0	5000
+1396820	0	2	LOAN	B1	CI445		OTH	SMWIA Local Union No. 105				Los Angeles	CA	90017	1/29/2002 12:00:00 AM		0	0	33200	3200																									3200	0	0	33200
+1396885	0	4	LOAN	B1	PAY1656		IND	Andreas	Mary Ann			Banning	CA	92220	10/22/2004 12:00:00 AM		0	75000	251.20	75000		State Assembly	Candidate																						0	0	0	75000
+1396885	0	7	LOAN	B1	PAY1964		IND	Andreas	Mary Ann			Banning	CA	92220	3/11/2005 12:00:00 AM		0	5000	251.20	5000		State Assembly	Candidate																						0	0	0	5000
+1370376	1	7	LOAN	B1	PAY740		COM	Nakanishi for Assembly 2006				Elk Grove	CA	95624	5/8/2008 12:00:00 AM	6/30/2008 12:00:00 AM	0	1000	3600	1000	0.00%				1272371																PAY740				0	0	0	1000
+1394378	0	8	LOAN	B1	RCPTB100000000001071		IND	Simons	Steven			Tarzana	CA	91356	3/4/2008 12:00:00 AM		0	13600	190781.69	13600	0	Steven A. Simons - Attorney At Law	Attorney																						0	0	0	13600
+1350652	1	3	LOAN	B1	PAY372		IND	Barsamian	Eloise			Patterson	CA	95363	11/27/2007 12:00:00 AM		0	3600	0	3600	0.00%	n/a	Retired																						0	0	0	3600
+1370169	0	61	LOAN	B1	C457		IND	Manuel Perez				Coachella	CA	92236	7/28/2007 12:00:00 AM			15.59	4656.61			Director of Community Health	Borrego Community Health Foundation																									15.59
+1370169	0	80	LOAN	B1	C552		IND	Manuel Perez				Coachella	CA	92236	2/28/2008 12:00:00 AM			19.91	4656.61			Director of Community Health	Borrego Community Health Foundation																									19.91
+1363246	1	2	LOAN	B1	L2029		IND	Skinner	Nancy			Berkeley	CA	94702	2/28/2008 12:00:00 AM	1/1/2009 12:00:00 AM	0	0	33600	10000	0	none	Candidate	Y																					10000		0	10000
+1398787	0	1	LOAN	B1	B1-1		IND	Alvarez	Claudia			Santa Ana	CA	92703	2/13/2003 12:00:00 AM	7/26/2004 12:00:00 AM	0	0	0	1000	0.000	County of Orange/City of Santa Anaw	Deputy D.A./ Councilmember																						1000	0	0	1000
+1378782	0	1	LOAN	B1	PAY1677		OTH	Capitol Resource Family Impact				Sacramento	CA	95814	6/27/2008 12:00:00 AM		0	10000	37677.06	10000	0.00%																								0	0	0	10000
+1363120	1	5	LOAN	H	RCV1102		COM	Friends of Gary Jeandron				Indio	CA	92201	6/30/2008 12:00:00 AM		0	3600	7200	3600	0.00%				1293965																				0	0	0	3600
+1369265	0	9	LOAN	B1	PAY1201		COM	Gaines for Assembly 2008				Willows	CA	95988	5/21/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	3600	3600	3600					1293157																				0	0	0	3600
+1369673	0	10	LOAN	B1	B1-2		RCP	Mark Wyland for Senate 2010				Encinitas	CA	92024	12/22/2007 12:00:00 AM	12/31/2008 12:00:00 AM	0	1000	0	1000	0.000				1294033																				0	0	0	1000
+1395312	0	1	LOAN	B1	L2262		COM	Bob Dutton for State Senate 2008				Rancho Santa Margarita	CA	92688-2125	6/25/2007 12:00:00 AM	12/31/2008 12:00:00 AM	0	3600	0	3600	0				1272833																						0	3600
+1370408	0	5	LOAN	B1	RCPTB100000000001160		IND	Loo	Thomas			Malibu	CA	90265	8/6/2008 12:00:00 AM		0	10000	74922.59	10000	0	Greenberg Traurig LLP	Attorney																						0	0	0	10000
+1395656	0	5	LOAN	H	L175		COM	Fletcher for Assembly				San Diego	CA	92122-2522	5/30/2007 12:00:00 AM	12/31/2008 12:00:00 AM	0	1000		1000	0				1281231																						0	1000
+1369332	1	2	LOAN	B1	PAY293		COM	Tax Fighters For Anderson 08				La  Mesa	CA	91941	5/29/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	3600	3600	3600	0.00%				1294772																				0	0	0	3600
+1347307	1	8	LOAN	B1	PAY865		OTH	DURHAM VALLEY APPLES				DURHAM	CA	95938	3/17/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	0	1000	3600	0.00%																								3600	0	0	3600
+1398922	0	3	LOAN	B1	B1-14		RCP	Mark Ridley-Thomas for State Senate				Los Angeles	CA	90043	10/27/2006 12:00:00 AM	10/27/2007 12:00:00 AM	0	5000	0	5000	0.000				1277296																				0	0	0	5000
+1368724	0	4	LOAN	B1	B1-4		IND	Fitzgerald	Jim			Nipomo	CA	93444	8/8/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	20000	65020	20000	0.000	UPS	Transportation Manager/Candidate																						0	0	0	20000
+1363121	1	9	LOAN	B1	B1-26		RCP	Jean Fuller for Assembly 2008				Bakersfield	CA	93301	9/26/2008 12:00:00 AM	12/31/2008 12:00:00 AM	3600	3600	7200	0	0.000				1293617																				0	0	0	3600
+1363018	1	13	LOAN	B1	PAY1301		COM	Tax Fighters for Anderson 08				La Mesa	CA	91941	9/30/2008 12:00:00 AM	12/31/2008 12:00:00 AM	3600	3600	7200	0	0.00%				1294772																PAY1301				0	0	0	3600
+1370481	0	1	LOAN	B1	PAY2		OTH	LOG CABIN REPUBLICANS, INC.				WASHINGTON	DC	20006	7/31/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	10000	10000	10000	0.00%																								0	0	0	10000
+1395744	0	5	LOAN	B1	L40		COM	Gaines for Assembly 2008				Roseville	CA	95661-7902	3/14/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	3600	3600	3600	0				1293157																						0	3600
+1396610	0	1	LOAN	B1	PAY565		COM	Anthony Adams for Assembly				Rancho Santa Margarita	CA	92688	6/27/2007 12:00:00 AM		0	2000	3600	2000					1273871																				0	0	0	2000
+1397185	0	1	LOAN	H	RCV2		COM	Rexroad for Supervisor				Woodland	CA	95695	3/16/2006 12:00:00 AM	12/31/2006 12:00:00 AM	0	17500	0	17500	0.00%				1275517																				0	0	0	25000
+1370169	0	136	LOAN	B1	C534		IND	Manuel Perez				Coachella	CA	92236	2/2/2008 12:00:00 AM			45.60	4656.61			Director of Community Health	Borrego Community Health Foundation																									45.60
+1370169	0	148	LOAN	B1	C522		IND	Manuel Perez				Coachella	CA	92236	12/10/2007 12:00:00 AM			188.56	4656.61			Director of Community Health	Borrego Community Health Foundation																									188.56
+1397602	0	1	LOAN	H	RCV2659		COM	Planned Parenthood Golden Gate Action Fund PAC				Sacramento	CA	95814	4/18/2008 12:00:00 AM	10/1/2008 12:00:00 AM	0	2000	2000	2000	0.00%				1282961																				0	0	0	2000
+1397466	0	1	LOAN	H	D1647			SEIU Local 721, AFL-CIO				Los Angeles	CA	90020	9/23/2005 12:00:00 AM	12/31/2007 12:00:00 AM		70000.12	2469.07	70000.12	0																											100000
+1398454	0	15	LOAN	H	H16		COM	Strickland for Senate				Thousand Oaks	CA	91362	6/30/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	1000	3600	1000	0.0000				1294413																				0	0	0	1000
+1369686	0	18	LOAN	H	RCV2125		COM	Greg Aghazarian for Senate				Stockton	CA	95269	6/26/2008 12:00:00 AM		0	3600	3600	3600	0.00%				1297115																				0	0	0	3600
+1363286	1	8	LOAN	B1	PAY972		COM	Bob Dutton for Senate - 2008				Rancho Cucamonga	CA	91730	2/20/2008 12:00:00 AM		0	0	0	3600	0.00%				1272833																				3600	0	0	3600
+1398729	1	93	LOAN	B1	C503		IND	Manuel Perez				Coachella	CA	92236	10/28/2007 12:00:00 AM			61.33	4656.61	61.33		State of CA	Assemblymember																									61.33
+1396259	1	15	LOAN	B1	B1-4		RCP	Taxpayers for Shirley Horton				San Diego	CA	92119	2/27/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	1000	3600	1000	0.000				1294539																				0	0	0	1000
+1437142	0	1	LOAN	B1	RCPTB100000000001294		IND	Loo	Mona			Los Angeles	CA	90077	9/10/2008 12:00:00 AM		0	0	0	3000	0	N/A	Retired																						0	3000	0	3000
+1490614	0	1	LOAN	B1	B1-2		IND	GUTIEREZ	LYDIA ANN			SAN PEDRO	CA	90731	6/26/2009 12:00:00 AM	6/26/2010 12:00:00 AM	0	2250	18540	2250	0.000	Teacher	Long Beach Unified School District																						0	0	0	2250
+1435429	0	3	LOAN	H	RCV498		COM	FRIENDS OF MIMI WALTERS				RANCHO SANTA MARGARI	CA	92688	2/27/2008 12:00:00 AM	7/1/2008 12:00:00 AM	0	3600	0	3600					1292693																				0	0	0	3600
+1442581	0	2	LOAN	B1	RCPTB100000000000372		IND	Krekorian	Paul			Burbank	CA	91504-2931	4/15/2002 12:00:00 AM		0	2000	0	2000	0	Paul M. Krekorian	Attorney																						0	0	0	2000
+1363016	1	67	LOAN	B1	C461		IND	Manuel Perez				Coachella	CA	92236	8/8/2007 12:00:00 AM			97.06	4656.61	97.06		State of CA	Assemblymember																									97.06
+1368905	1	2	LOAN	H	RCV731		COM	Independent Expenditure Committee tor Jobs and Prosperity				Sacramento	CA	95814	12/21/2004 12:00:00 AM		0	5250	0	5250	0.00                  %				1259275																				0	0	0	5250
+1433006	0	1	LOAN	B1	PAY2029		COM	Sharon Runner for Assembly 06				Lancaster	CA	93536-	6/18/2007 12:00:00 AM	12/31/2008 12:00:00 AM	0	3600	0	3600	0.00%				1272114																				0	0	0	3600
+1438037	0	1	LOAN	B1	PAY2		IND	Kurth	Donald			Alta Loma	CA	91737	12/28/2008 12:00:00 AM		0	5000	15000	55000	0.00%	City of Rancho Cucamonga	Mayor																						50000	0	0	55000
+1351219	2	84	LOAN	B1	C548		IND	Manuel Perez				Coachella	CA	92236	2/20/2008 12:00:00 AM			6.51	4656.61	6.51		Director of Community Health	Borrego Community Health Foundation																									6.51
+1451553	0	1	LOAN	B1	RCPTB100000000000485		IND	Krekorian	Paul			Burbank	CA	91504-2931	5/30/2003 12:00:00 AM		0	2000	0	2000	0	Paul M. Krekorian	Attorney																						0	0	0	2000
+1348829	2	2	LOAN	B1	PAY4907		COM	BOB DUTTON FOR STATE SENATE 2008				RANCHO CUCAMONGA	CA	91730	6/25/2007 12:00:00 AM		0	3600	0	3600	0.00%				1272833																				0	0	0	3600
+1398942	0	45	LOAN	B1	PAY336		IND	Unz	Ron K.			Palo Alto	CA	94301-	11/1/2006 12:00:00 AM		0	5000	0	5000		Wall Street Analytics	Computer software																						0	0	0	5000
+1398398	1	2	LOAN	B1	RCPTB100000000001354		IND	Chim	Betty			Torrance	CA	90505	12/30/2008 12:00:00 AM		6000	6000	12000	0	0	Harriton Investments	Attorney																						0	0	0	6000
+1437162	0	62	LOAN	B1	C556		IND	Manuel Perez				Coachella	CA	92236	3/3/2008 12:00:00 AM			14		14		Assemblymember	State of CA																									14
+1433595	0	2	LOAN	B1	RCPTB100000000000241		IND	Eidem	Ralph			Santa Ana	CA	92711	6/28/2001 12:00:00 AM	5/30/2002 12:00:00 AM	0	40000	0	40000	0.03	Ralph Eidem	Entrepreneur & Investor																						0	0	0	1000000
+1438433	0	10	LOAN	B1	PAY34		IND	Unz	Ron K.			Palo Alto	CA	94301-	9/22/1997 12:00:00 AM	7/27/2000 12:00:00 AM	0	20000	0	20000	0.00                  %	Wall Street Analytics	Computer software																						0	0	0	20000
+1351219	2	106	LOAN	B1	C536		IND	Manuel Perez				Coachella	CA	92236	2/5/2008 12:00:00 AM			4.95	4656.61	4.95		Director of Community Health	Borrego Community Health Foundation																									4.95
+1351219	2	109	LOAN	B1	C561		IND	Manuel Perez				Coachella	CA	92236	3/7/2008 12:00:00 AM			74.91	4656.61	74.91		Director of Community Health	Borrego Community Health Foundation																									74.91
+1406696	0	4	LOAN	B1	100320060C5492150		IND	Dodge	Larry			Foothill Ranch	CA	92610	9/1/2007 12:00:00 AM	2/9/2007 12:00:00 AM	0	0	0	0	0.00	American Sterling Co.	CEO																						0	0	0	1500000
+1453797	0	1	LOAN	B1	PAY3		IND	Norby	Chris			Fullerton	CA	92831	9/18/2009 12:00:00 AM		0	40000	40000	40000		County of Orange	Supervisor																						0	0	0	40000
+1438348	0	7	LOAN	B1	B1-16		IND	Snyder	Brad	Mr.		Fullerton	CA	92831	12/31/2005 12:00:00 AM	12/31/2007 12:00:00 AM	0	0	0	3300	0.000	Saint Joseph Catholic School	Teacher																						3300	0	0	3300
+1444902	0	5	LOAN	B1	RCPTB100000000000542		IND	Krekorian	Paul			Burbank	CA	91504-2931	12/2/2003 12:00:00 AM		0	5000	0	5000	0	Paul M. Krekorian	Attorney																						0	0	0	5000
+1398831	1	4	LOAN	B1	B1-5		IND	Biggers	Kevin J.			Rancho Palos Verdes	CA	90275	5/1/2008 12:00:00 AM	5/2/2009 12:00:00 AM	0	1000	86096.21	1000	0.000																								0	0	0	1000
+1363016	1	138	LOAN	B1	C531		IND	Manuel Perez				Coachella	CA	92236	1/13/2008 12:00:00 AM			0	4656.61	2500		State of CA	Assemblymember																						2500			2500
+1406476	0	3	LOAN	B1	RCPTB100000000001386		IND	Cole	Karen			Los Angeles	CA	90008	2/9/2009 12:00:00 AM		3900	3900	3900	0	0	Karen Cole	Doctor																						0	0	0	3900
+1436017	0	2	LOAN	B1	B1-12		RCP	Mark Ridley-Thomas for State Senate				Los Angeles	CA	90043	9/14/2006 12:00:00 AM	9/14/2007 12:00:00 AM	0	15000	0	15000	0.000				1277296																				0	0	0	15000
+1423203	2	1	LOAN	H	RCV133165		COM	A Coalition of the Howard Jarvis Taxpyrs Assoc, the CA Assoc of Realtors Issues. PAC, CA Farm Bureau Federation, Yes Prop 98				Los Angeles	CA	90005	3/5/2007 12:00:00 AM		0	0	0	154786.09					1296303																				0	154786.09	0	200000
+1445013	0	2	LOAN	B1	RCPTB100000000001011		IND	Hernandez	Roger			West Covina	CA	91792	10/25/2007 12:00:00 AM		0	6900	-100000	6900	0	City Of West Covina	City Council Member		1250161																				0	0	0	6900
+1437162	0	90	LOAN	B1	C524		IND	Manuel Perez				Coachella	CA	92236	12/12/2007 12:00:00 AM			65		65		Assemblymember	State of CA																									65
+1398729	1	84	LOAN	B1	C568		IND	Manuel Perez				Coachella	CA	92236	3/14/2008 12:00:00 AM			72.34	4656.61	72.34		State of CA	Assemblymember																									72.34
+1351219	2	121	LOAN	B1	C511		IND	Manuel Perez				Coachella	CA	92236	12/1/2007 12:00:00 AM			20	4656.61	20		Director of Community Health	Borrego Community Health Foundation																									20
+1398729	1	51	LOAN	B1	C446		IND	Manuel Perez				Coachella	CA	92236	6/6/2007 12:00:00 AM			36.05	4656.61	36.05		State of CA	Assemblymember																									36.05
+1398736	1	12	LOAN	B1	L554079		COM	Gun Owners of California Campaign Committee				Fair Oaks	CA	95628	10/28/2008 12:00:00 AM	6/30/2009 12:00:00 AM	3600	0	0	0	0			N	746018																				3600	0	0	3600
+1312475	1	5	LOAN	H	EXPNH000000000000983		COM	Yvonne Horton For City Clerk				Inglewood	CA	90301	3/29/2007 12:00:00 AM		0	10000	10000	30000	0				1246098																				20000	0	0	30000
+1396586	1	4	LOAN	B1	PAY762		COM	Bill Emmerson for Assembly 2008				Rancho Santa Margarita	CA	92688	6/30/2008 12:00:00 AM		0	0	7200	3600					1292697																				0	3600	0	3600
+1438363	0	2	LOAN	H	RCV207		COM	Sally Lieber for Assembly				Sacramento	CA	95841	10/27/2008 12:00:00 AM	4/1/2009 12:00:00 AM	0	1000	0	1000	0.00%				1231660																				0	0	0	1000
+1438456	0	2	LOAN	H	RCV977		COM	Tony Strickland for Controller				Los Angeles	CA	90025	11/1/2006 12:00:00 AM		0	3300	0	3300	0.00%				1277272																RCV977				0	0	0	3300
+1438457	0	1	LOAN	B1	PAY280		IND	Kuniyoshi	Kevin			Atlanta	CA	30342	3/7/2009 12:00:00 AM	12/31/2010 12:00:00 AM	3000	3000	3000	0	0.00%	Kevin Kuniyoshi, DDS	Dentist																						0	0	0	3000
+1438713	0	7	LOAN	B1	RCPTB100000000001373		IND	Cole	Robert			Los Angeles	CA	90008	2/19/2009 12:00:00 AM		0	500	17660	500	0	Ground Zero Communications	Business Owner																						0	0	0	500
+1434067	0	2	LOAN	B1	RCPTB100000000001472		IND	Silverman	Robert			Palm Springs	CA	92264	1/28/2009 12:00:00 AM	9/30/2009 12:00:00 AM	4900	4900	4900	0	0	N/A	Retired																						0	0	0	4900
+1436782	0	1	LOAN	B1	5		IND	MORRIS	JAMES			STOCKTON	CA	95207	3/15/2008 12:00:00 AM	6/30/2009 12:00:00 AM	0	0	20000	20000	0%	JAMES MORRIS, ATTORNEY AT LAW	ATTORNEY																						3432.62	0	0	20000
+1474604	0	1	LOAN	H	H34		COM	Bill Berryhill for Assembly 2010				Ceres	CA	95307	12/28/2009 12:00:00 AM	12/31/2010 12:00:00 AM	0	2500	0	2500	0.0000				1314368																				0	0	0	2500
+1456420	0	2	LOAN	B1	PAY1128		COM	Emmerson for Assembly 2012				Rancho Cucamonga	CA	91730	8/13/2009 12:00:00 AM		0	500	500	500					1314232																				0	0	0	500
+1437162	1	1	LOAN	B1	C486		IND	Perez	Manuel			Coachella	CA	92236	9/30/2007 12:00:00 AM			63.52		63.52		State of CA	Assemblymember																									63.52
+1398729	2	83	LOAN	B1	C566		OTH	Manuel Perez				Coachella	CA	92236	3/11/2008 12:00:00 AM			17.72	4656.61	17.72		State of CA	Assemblymember																									17.72
+1464055	0	3	LOAN	B1	L40		COM	Gaines for Assembly 2008				Roseville	CA	95661-7902	3/14/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	2600	0	3600	0				1293157																				1000		0	3600
+1457679	0	3	LOAN	B1	PAY1209		IND	Worthington (The Candidate)	Kriss			Berkeley	CA	94705	12/8/2009 12:00:00 AM		2600	2600	3200	0	0.00%	City of Berkeley	City Councilmember																						0	0	0	2600
+1465759	0	14	LOAN	B1	RCPTB100000000000532		IND	Umberg	Thomas			Burbank	CA	91502	12/30/2003 12:00:00 AM		0	28000	2500	28000	0	Manatt Phelps & Phillips	Attorney																						0	0	0	28000
+1398729	2	89	LOAN	B1	C555		OTH	Manuel Perez				Coachella	CA	92236	3/2/2008 12:00:00 AM			70.29	4656.61	70.29		State of CA	Assemblymember																									70.29
+1471449	0	3	LOAN	B1	4		IND	Gentry	Doris			Napa	CA	94558	3/7/2008 12:00:00 AM	1/1/1900 12:00:00 AM	0	859	0	859	0%	NVRWF	Community Involvement, Ways and Means, Jewelry Cha																						0	0	0	859
+1149504	3	2	LOAN	B1	RCPTB100000000000734		COM	Friends Of Jose Fernandez	Jose			Burbank	CA	91502	12/27/2005 12:00:00 AM		2500	2500	2500	0	0				1280323																				0	0	0	2500
+1463586	0	2	LOAN	B1	PAY177		OTH	Oak Valley Management, Inc.				Upland	CA	91786	10/30/2008 12:00:00 AM		0	10000	0	10000																									0	0	0	10000
+1464951	0	2	LOAN	H	RCV956		COM	Abel Maldonado for Senate				San Luis Obispo	CA	93406	6/11/2007 12:00:00 AM		0	3600	0	3600	0.00%				1272517																				0	0	0	3600
+1437162	1	53	LOAN	B1	C503		IND	Perez	Manuel			Coachella	CA	92236	10/28/2007 12:00:00 AM			61.33		61.33		State of CA	Assemblymember																									61.33
+1437162	1	55	LOAN	B1	C547		IND	Perez	Manuel			Coachella	CA	92236	2/20/2008 12:00:00 AM			71.71		71.71		State of CA	Assemblymember																									71.71
+1437162	1	59	LOAN	B1	C552		IND	Perez	Manuel			Coachella	CA	92236	2/28/2008 12:00:00 AM			19.91		19.91		State of CA	Assemblymember																									19.91
+1474508	0	1	LOAN	B1	B1-16		RCP	Garrick for Assembly 2010				San Diego	CA	92119	6/18/2009 12:00:00 AM	12/31/2010 12:00:00 AM	0	0	0	3900	0.000				1314580																				3900	0	0	3900
+1465806	0	29	LOAN	B1	PAY179		IND	Unz	Ron K.			Palo Alto	CA	94301-	6/22/2000 12:00:00 AM		0	20000	0	20000		Wall Street Analytics	Computer software																						0	0	0	20000
+1465806	0	32	LOAN	B1	PAY219		IND	Unz	Ron K.			Palo Alto	CA	94301-	9/22/2000 12:00:00 AM		0	3000	0	3000	0.00                  %	Wall Street Analytics	Computer software																						0	0	0	3000
+1464454	0	3	LOAN	B1	PAY25		IND	NESTANDE	BRIAN			PALM DESERT	CA	92260	3/3/2009 12:00:00 AM		0	5000	33000	5000			CANDIDATE																						0	0	0	5000
+1474755	0	7	LOAN	B1	L16		IND	Rasmussen	Larry			Santa Clarita	CA	91350-2976	12/31/2009 12:00:00 AM	12/31/2010 12:00:00 AM	0	6500	0	6500	0.02	Spirit Holdings	Land Acquisition																								0	6500
+1474767	0	1	LOAN	B1	C1058709		IND	Wilson	Michael			Vallejo	CA	94590	12/30/2009 12:00:00 AM		0	10250	0	22500	0	ARC Inc./City of Vallejo	C.F.O./Councilmember																						12250	0	0	22500
+1474190	0	8	LOAN	H	RCV406		COM	Rick Keene for Senate 2010				Willows	CA	95988	6/22/2009 12:00:00 AM		0	3900	0	3900	0.00%				1292551																				0	0	0	3900
+1474789	0	2	LOAN	B1	PAY32		IND	Hagman	Curt			Chino Hills	CA	91709	5/1/2007 12:00:00 AM		0	72	0	72	0.00%	Apex Bail Bonds	President																						0	0	0	72
+1491180	0	2	LOAN	B1	RCPTB100000000001607		IND	Parrish	Claude			Burbank	CA	91502	4/8/2010 12:00:00 AM		31000	31000	192000	0	0	Claude Parrish	Property Tax Consultant																						0	0	0	31000
+1398729	2	10	LOAN	B1	C471		OTH	Manuel Perez				Coachella	CA	92236	9/11/2007 12:00:00 AM			31.40	4656.61	31.40		State of CA	Assemblymember																									31.40
+1474108	0	2	LOAN	B1	PAY517		COM	Citizens for Brulte				Rancho Cucamonga	CA	91729	6/27/2007 12:00:00 AM		0	3600	0	3600	0.00%				1283599																				0	0	0	3600
+1464654	0	10	LOAN	B1	B1-39		IND	BERRYHILL	WILLIAM R.			CERES	CA	95307	10/24/2008 12:00:00 AM	6/30/2009 12:00:00 AM	0	75000	0	75000	0.000	BB VINEYARDS	FARMER																						0	0	0	75000
+1463320	1	6	LOAN	B1	B1-6		IND	Morrell	Mike			Upland	CA	91786	12/28/2009 12:00:00 AM	12/31/2012 12:00:00 AM	10000	10000	73200	0	0.000	Provident Home Loans/Provident Realty	President																						0	0	0	10000
+1465669	0	3	LOAN	B1	PAY45		IND	Parker	Chris			Sacramento	CA	95842	5/22/2009 12:00:00 AM	5/22/2010 12:00:00 AM	200	200	7006	0	0.00%	State of California	Attorney																						0	0	0	200
+1463542	0	5	LOAN	B1	500224		IND	Byerly	Curtis			Garden Grove	CA	92844	12/31/2009 12:00:00 AM		3900	3900	3900	0	0	General Electric	Medical trainor	N																					0	0	0	3900
+1463593	0	1	LOAN	B1	PAY8		IND	Wilson	H. Abram			San Ramon	CA	94582	3/14/2007 12:00:00 AM		0	4000	0	4000	0.00%	City of San Ramon	Mayor																						0	0	0	75000
+1464742	0	2	LOAN	B1	L17		IND	Rasmussen	Peggy			Santa Clarita	CA	91350-2976	12/31/2009 12:00:00 AM	12/31/2010 12:00:00 AM	6500	6500	13000	0	0.02	Office Manager	Spirit Properties Ltd.																								0	6500
+1438511	1	5	LOAN	B1	PAY554		IND	Sieglock	Jack			Lodi	CA	95242	3/17/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	48400	-5000	53400	0.00%	AD 10	Candidate																		PAY554				5000	0	0	100000
+1474012	0	2	LOAN	B1	PAY106		IND	Kurth	Donald			Alta Loma	CA	91737	6/29/2009 12:00:00 AM		0	5000	0	5000	0.00%	City of Rancho Cucamonga	Mayor																						0	0	0	65000
+1474721	1	1	LOAN	B1	C5781933		IND	Karno	NickJ.			Venice	CA	90291	6/20/2009 12:00:00 AM	12/31/2009 12:00:00 AM	0	50000	0	50000	0	Attorney	City of Los Angeles																						0	0	0	50000
+1474878	2	8	LOAN	B1	RCPTB100000000001447		IND	Chim	Chun			Pasadena	CA	91107	6/29/2009 12:00:00 AM		0	1500	0	1500	0	N/A	Retired																						0	0	0	1500
+1501951	0	1	LOAN	B1	PAY358		OTH	Fred Singh Farms				Calipatria	CA	92233	1/29/2010 12:00:00 AM	1/29/2011 12:00:00 AM	0	420	490	420	0.00%																								0	0	0	420
+1505848	0	7	LOAN	H	RCV2125		COM	Greg Aghazarian for Senate				Sacramento	CA	95814	6/26/2008 12:00:00 AM		0	3600	0	3600	0.00%				1297115																				0	0	0	3600
+1505860	0	4	LOAN	H	RCV611		COM	Taxfighters for Anderson for Senate 2010				LaMesa	CA	91941	4/8/2010 12:00:00 AM		0	3900	3900	3900	0.00%				1325120																				0	0	0	3900
+1507599	0	1	LOAN	B1	B1-2		IND	Gipson	Mike A.	Mr.		Carson	CA		9/5/2007 12:00:00 AM	9/17/2008 12:00:00 AM	0	26000	0	26000	0.000	City of Carson	Councilmember																						0	0	0	26000
+1474596	1	9	LOAN	B1	L556567		COM	TAXPAYERS FOR DAVE COGDILL 2010				MODESTO	CA	95351	3/17/2010 12:00:00 AM	3/17/2011 12:00:00 AM	3900	3900	7800	0	0			N	1294641																				0	0	0	3900
+1473822	2	2	LOAN	B1	CI55		COM	Laborers Local 585				Ventura	CA	93003	2/21/2010 12:00:00 AM		93.42	93.42	93.42	0					1327873																							93.42
+1491629	0	4	LOAN	B1	PAY73		IND	Riley	Anthony			Oak Hills	CA	92344	3/17/2010 12:00:00 AM		0	7400	7800	7400		State Assembly	Candidate																						0	0	0	7400
+1491649	0	2	LOAN	B1	PAY70		IND	Allen	Michael			Santa Rosa	CA	95409	6/15/2009 12:00:00 AM		0	6800	6000	7000		Self Employed - Michael Allen Mediation	Attorney																						200	0	0	7000
+1503356	0	5	LOAN	B1	RCPTB100000000001610		IND	Parrish	Claude			Burbank	CA	91502	5/18/2010 12:00:00 AM		0	31000	192000	31000	0	Claude Parrish	Property Tax Consultant																						0	0	0	31000
+1492133	0	1	LOAN	B1	B1-1		IND	Nguyen	Phu			Los Angeles	CA	90071	12/23/2009 12:00:00 AM	12/23/2010 12:00:00 AM	0	100000	0	100000	0.000	Hoa Phat	Vice President																						0	0	0	100000
+1492012	1	4	LOAN	H	L6		COM	Campaign for Child Safety - Jessica's Law 2006				Willows	CA	95988-9788	7/17/2006 12:00:00 AM	12/30/2006 12:00:00 AM	0	640		640	0				1277423																						0	640
+1487677	1	1	LOAN	H	RCV416		COM	Friends of Gary Jeandron				Indio	CA	92201	5/8/2008 12:00:00 AM		0	3600	0	3600	0.00%				1293965																				0	0	0	3600
+1508075	0	2	LOAN	H	RCV418		COM	Friends of Gary Jeandron				Indio	CA	92201	5/8/2008 12:00:00 AM		0	3600	0	3600	0.00%				1293965																				0	0	0	3600
+1508516	0	16	LOAN	B1	RCPTB100000000001429		IND	Chim	Chun			Pasadena	CA	91107	6/5/2009 12:00:00 AM		0	4000	-6500	4000	0	N/A	Retired																						0	0	0	4000
+1503941	1	3	LOAN	B1	L556653		IND	Walton	John			Arroyo Grande	CA	93420	12/30/2009 12:00:00 AM	12/31/2010 12:00:00 AM	0	3900	3900	3900	0	John Walton	Insurance Agent	Y																					0	0	0	3900
+1474635	1	3	LOAN	B1	PAY526		COM	Friends of Mimi Walters for Senate 2012				Ranchosantamargarita	CA	92688	7/9/2009 12:00:00 AM	6/30/2010 12:00:00 AM	0	3600	0	3600	0.00%				1314311																				0	0	0	3600
+1474635	1	6	LOAN	B1	PAY821		IND	Nakanishi	Alan			Lodi	CA	95242	3/17/2010 12:00:00 AM	6/30/2010 12:00:00 AM	3000	3000	3000	0	0.00%	Delta Eye Medical Group	Physician																						0	0	0	3000
+1510545	0	1	LOAN	B1	RCPTB100000000001634		IND	Durkee	Kinde			Burbank	CA	91502	7/21/2010 12:00:00 AM		1000	0	0	0	0	Durkee & Associates	Owner																						1000	0	0	1000
+1503864	0	6	LOAN	B1	PAY291		COM	Tom Berryhill for Senate 2010				Modesto	CA	95355	6/3/2010 12:00:00 AM		3900	3900	3900	0					1323095																				0	0	0	3900
+1465716	1	34	LOAN	B1	RCPTB100000000001542		IND	Lieu	George			Strongsville	OH	44136	12/31/2009 12:00:00 AM		1000	1000	10000	0	0	Eastern Art	Owner																						0	0	0	1000
+1505765	0	1	LOAN	B1	PAY2		IND	Benoit	John			Bermuda Dunes	CA	92203	12/16/2008 12:00:00 AM	6/1/2009 12:00:00 AM	0	0	-10000	10000		St. of Calif.	Senator																						10000	0	0	10000
+1491369	0	2	LOAN	B1	PAY522		IND	Sieglock	Jack			Lodi	CA	95242	5/22/2010 12:00:00 AM	6/30/2010 12:00:00 AM	100000	100000	0	0	0.00%	AD 10	Candidate																						0	0	0	100000
+1507701	0	11	LOAN	B1	PAY969		IND	DeVore	Chuck			Irvine	CA	92620	5/10/2010 12:00:00 AM	12/31/2010 12:00:00 AM	800	800	1600	0	0.00%	State of California	Assembly Member																						0	0	0	800
+1491509	1	2	LOAN	B1	L556351		COM	Citizens for Brulte				Rancho Cucamonga	CA	91729	12/21/2009 12:00:00 AM	12/31/0010 12:00:00 AM	0	3900	7800	3900	0			N	1283599																LOAN2				0	0	0	3900
+1507770	0	2	LOAN	H	RCV233		COM	Irvine Citizens for Ethics in Government				Rancho Sta Margarita	Ca	92688	10/14/2008 12:00:00 AM		0	5000	0	5000					1305327																				0	0	0	5000
+1465716	1	17	LOAN	B1	RCPTB100000000001536		IND	Jim	Oscar W L			South Pasadena	CA	91030	12/29/2009 12:00:00 AM		4000	4000	13000	0	0	Jim's Bakery	Owner																						0	0	0	4000
+1491564	0	30	LOAN	B1	RCPTB100000000001353		IND	Lieu	John			Los Angeles	CA	90024	12/30/2008 12:00:00 AM		0	6000	0	6000	0	Stanford University	Doctor																						0	0	0	6000
+1491592	0	4	LOAN	H	RCV375		COM	Irvine Citizens for Ethics in Government				Rancho Santa Margari	CA	92688	10/22/2008 12:00:00 AM		0	12000	0	12000					1305327																				0	0	0	12000
+1492007	0	1	LOAN	B1	B1-2		IND	Morrell	Mike			Upland	CA	91786	2/11/2009 12:00:00 AM	12/31/2010 12:00:00 AM	0	1500	7000	1500	0.000	Provident Home Loans/Provident Realty	President																						0	0	0	1500
+1157565	4	6	LOAN	B1	RCPTB100000000000671		COM	Re-Elect Assemblyman Paul Koretz 2004	Paul			Los Angeles	CA	90071	6/30/2005 12:00:00 AM		0	0	-10000	10000	0				1250549																				10000	0	0	4400
+1491951	0	3	LOAN	B1	L18		IND	Pinkston	Susan			Danville	CA	94526-5123	6/28/2007 12:00:00 AM	12/31/2008 12:00:00 AM	0	3500	0	3500	0	East Bay Fellowship	Assistant Pastor																								0	3500
+1285292	4	3	LOAN	B1	RCPTB100000000000734		COM	Friends Of Jose Fernandez	Jose			Burbank	CA	91502	12/27/2005 12:00:00 AM		0	2500	0	2500	0				1280323																				0	0	0	2500
+1505803	0	2	LOAN	B1	PAY1426		IND	Harkey	Diane			Monarch Beach	CA	92629	12/5/2008 12:00:00 AM		0	20000	0	20000	0.00%	City of Dana Point	Councilwoman																						0	0	0	20000
+1507305	0	13	LOAN	B1	B1-13		IND	Burger	Trena			Sacramento	CA	95814	2/25/2000 12:00:00 AM	2/25/2002 12:00:00 AM	0	50000	0	50000	0.000	Burger & Plavin	Attorney																						0	0	0	50000
+1507927	0	1	LOAN	B1	PAY2288		IND	Leno	Mark			San Francisco	CA	94103	5/10/2008 12:00:00 AM	5/10/2009 12:00:00 AM	0	42500	-15000	42500	0.00%	State of California	Senator																						0	0	0	100000
+1491611	2	2	LOAN	H	H39		COM	Blakeslee for Senate 2010				Elk Grove	CA	95624	5/10/2010 12:00:00 AM	12/31/2012 12:00:00 AM	3900	3900	3900	0	0.0000				1327078																				0	0	0	3900
+1491893	0	1	LOAN	B1	10		IND	Costa	Edward			Sacramento	CA	95825	2/19/2007 12:00:00 AM	2/19/2011 12:00:00 AM	0	5000	12500	5000	0%	People's Advocate, Inc	C.E.O.																						0	0	0	5000
+1491931	0	2	LOAN	B1	L1014		COM	Ted Gaines for Assembly 2010				Roseville	CA	95661-7902	5/3/2010 12:00:00 AM	12/31/2010 12:00:00 AM	3900	3900	3900	0	0				1314273																L1014_m						0	3900
+1508580	0	4	LOAN	B1	PAY53		IND	Parker	Chris			Sacramento	CA	95842	5/29/2009 12:00:00 AM	5/29/2011 12:00:00 AM	0	0	-6875	100	0.00%	State of California	Attorney																						100	0	0	100
+1508631	0	13	LOAN	B1	L22		IND	Wheeler	Alexander Russell			Lancaster	CA	93536-5229	2/16/2010 12:00:00 AM	12/31/2010 12:00:00 AM	0	6500	6500	6500	0	R. Rex Parris Law Firm	Attorney																								0	6500
+1491215	0	1	LOAN	H	RCV4376		COM	Norby for Central Committee				Fullerton	CA	92831	4/8/2008 12:00:00 AM	6/30/2008 12:00:00 AM	0	3737.79	0	3737.79	0.00%				1306395																				0	0	0	10000
+1491223	0	1	LOAN	B1	PAY4		IND	Portantino	Anthony J.			La Canada Flintridge	CA	91011	12/31/2008 12:00:00 AM		0	5000	0	5000		State of California	Assemblyman																						0	0	0	5000
+1491414	0	1	LOAN	B1	L556568		COM	BILL BERRYHILL FOR ASSEMBLY 2010				CERES	CA	95352	3/17/2010 12:00:00 AM	3/17/2011 12:00:00 AM	0	3900	7800	3900	0			N	1314368																				0	0	0	3900
+1491564	0	48	LOAN	B1	RCPTB100000000001527		IND	Ouyang	Gina			Alhambra	CA	91803	12/14/2009 12:00:00 AM		0	2000	0	2000	0	Rusnak	Accountant																						0	0	0	2000
+1431875	3	2	LOAN	B1	RCPTB100000000000733		COM	Friends Of Eloy Morales, Jr.	Eloy			Inglewood	CA	90301	12/27/2005 12:00:00 AM		0	600	0	600	0				1251899																				0	0	0	600
+1569023	0	2	LOAN	H	D486			SEIU Local 721, AFL-CIO				Los Angeles	CA	90020	3/15/2002 12:00:00 AM	12/31/2007 12:00:00 AM		40000.24		40000.24	0																											100000
+1531310	2	3	LOAN	H	H34		COM	Bill Berryhill for Assembly 2010				Ceres	CA	95307	12/28/2009 12:00:00 AM	12/31/2010 12:00:00 AM	0	2500	0	2500	0.0000				1314368																				0	0	0	2500
+1531310	2	6	LOAN	H	H41		COM	Friends of Jack Sieglock for Assembly 2010				Lodi	CA	95242	6/9/2010 12:00:00 AM	12/31/2012 12:00:00 AM	0	3900	3900	3900	0.0000				1318484																				0	0	0	3900
+1522809	0	11	LOAN	B1	PAY1647		COM	Tax Fighters for Anderson 08				La Mesa	CA	91941	8/19/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	3600	0	3600					1294772																				0	0	0	3600
+1508516	1	4	LOAN	B1	RCPTB100000000001451		IND	Chim	David			South Pasadena	CA	91030	6/29/2009 12:00:00 AM		0	0	-6500	2000	0	UCLA	Doctor																						2000	0	0	2000
+1559903	0	3	LOAN	B1	B1-4		IND	GUTIEREZ	LYDIA ANN			SAN PEDRO	CA	90731	1/22/2010 12:00:00 AM	1/22/2011 12:00:00 AM	0	1000	18540	1000	0.000	Teacher	Long Beach Unified School District																						0	0	0	1000
+1571581	0	1	LOAN	B1	PAY3		IND	 Mike  Morrell				Upland	CA	91786-	3/2/2009 12:00:00 AM	12/31/2010 12:00:00 AM	0	1200	-5100	7000	0.00%	Provident Home Loans/Provident Realty	President																						5800	0	0	10000
+1457992	2	2	LOAN	H	RCV731		COM	Independent Expenditure Committee for Jobs and Prosperity				Sacramento	CA	95814	12/21/2004 12:00:00 AM		0	5250	0	5250	0.00                  %				1259275																				0	0	0	5250
+1531931	2	17	LOAN	B1	PAY306		OTH	TIME WARNER				NEW YORK	NY	10019	8/24/2010 12:00:00 AM	12/31/2010 12:00:00 AM	0	900000	1500000	900000	0.00%																								0	0	0	900000
+1531931	2	19	LOAN	B1	PAY310		OTH	AMGEN INC.				THOUSAND OAKS	CA	91320	8/26/2010 12:00:00 AM	12/31/2010 12:00:00 AM	0	250000	600000	250000	0.00%																								0	0	0	250000
+1531969	0	4	LOAN	H	RCV2691		COM	CAS for a Cure, sponsored by the American Cancer Society, American Lung Assn, American Heart Assn, & Cancer Research Doctors				Sacramento	CA	95814	3/15/2010 12:00:00 AM	11/2/2010 12:00:00 AM	0	20000	318500	20000	0.00%				1322759																				0	0	0	20000
+1491180	1	2	LOAN	B1	RCPTB100000000001607		IND	Parrish	Claude			Burbank	CA	91502	4/8/2010 12:00:00 AM		31000	31000	192000	0	0	Claude Parrish	Property Tax Consultant																						0	0	0	31000
+1523054	0	1	LOAN	B1	PAY190		IND	Dickinson	Robert V.			Menlo Park	CA	94525	6/30/2009 12:00:00 AM	6/30/2011 12:00:00 AM	0	0	-3000	3000	0.00%	CA Micro Devices	Chief Executive Officer																						3000	0	0	3000
+1531931	1	23	LOAN	B1	PAY452		OTH	THE WALT DISNEY COMPANY (DISNEY WORLDWIDE SERVICES, INC.)				BURBANK	CA	91521	10/6/2010 12:00:00 AM	12/31/2010 12:00:00 AM	300000	300000	1400000	0	0.00%																								0	0	0	300000
+1531931	1	24	LOAN	B1	PAY462		OTH	FOX GROUP, A DIVISION OF NEWS AMERICA INC.				LOS ANGELES	CA	90064	10/7/2010 12:00:00 AM	12/31/2010 12:00:00 AM	250000	250000	1325000	0	0.00%																								0	0	0	250000
+1570587	0	9	LOAN	B1	B1-15		IND	Plavan	Frank			Sacramento	CA	95835	4/5/2001 12:00:00 AM	4/5/2002 12:00:00 AM	0	42000	0	42000	0.000		Retired																						0	0	0	42000
+1510550	1	3	LOAN	H	RCV470		PTY	Greg Aghazarian for Senate				Stockton	CA	95207	6/2/2008 12:00:00 AM		0	3600	0	3600					1297115																				0	0	0	3600
+1567930	0	1	LOAN	B1	17		IND	MOORS	RAYMOND			CHINO	CA	91710	1/24/2011 12:00:00 AM	1/31/2010 12:00:00 AM	650	0	0	8500	0%	JOEYS BAR B Q, INC.	EXECUTIVE																						0	9150	0	9150
+1568048	0	1	LOAN	B1	PAY2		IND	Gutierrez	Lydia A.			San Pedro	CA	90731	12/23/2010 12:00:00 AM		0	1000	5200	1000	0.00%	Long Beach Unified School District	Teacher																						0	0	0	1000
+1530407	0	3	LOAN	B1	B1-3		IND	Willis	Warren			La Mirada	CA	90638	8/16/2010 12:00:00 AM		0	5000	116715.56	5000	0.000		Candidate																						0	0	0	5000
+1532007	0	1	LOAN	B1	PAY1598		IND	MALDONADO	ABEL			SANTA MARIA	CA	93458	9/30/2010 12:00:00 AM	12/30/2010 12:00:00 AM	0	100000	100000	100000	0.00%	STATE OF CALIFORNIA	LIEUTENANT GOVERNOR																		PAY1598				0	0	0	100000
+1531581	0	2	LOAN	H	D2424			Courage Campaign				Los Angeles	CA	90017	7/26/2010 12:00:00 AM		5500	5500																														5500
+1521545	1	3	LOAN	B1	L3		IND	Conlon	Greg			Atherton	CA	94027-3042	8/6/2010 12:00:00 AM		10000	10000	15779.50	0	0	Self	Business Consultant																		L3_m						0	10000
+1569867	0	3	LOAN	B1	CI75		OTH	Cobb Christmas Tree Farm, Inc.				Fresno	CA	93720	9/17/2009 12:00:00 AM		0	1000	1000	1000	0																								0	0	0	1000
+1522780	0	10	LOAN	B1	PAY37		OTH	JOHNSON & JOHNSON CORPORATE AND AFFILIATED ENTITIES				NEW BRUNSWICK	NJ	08933	4/1/2010 12:00:00 AM	12/31/2010 12:00:00 AM	0	20000	750000	20000	0.00%																				PAY37				0	0	0	20000
+1530282	0	3	LOAN	B1	PAY1275		COM	Taxpayers for Jim Nielsen-Assembly 2010				Yuba City	CA	95993	6/7/2010 12:00:00 AM		0	3900	3900	3900					1313419																				0	0	0	3900
+1531621	0	3	LOAN	B1	L2		COM	Taxpayers for Bob Huff - Senate 2012				Rancho Santa Margarita	CA	92688-2125	5/3/2010 12:00:00 AM		0	3900	7800	3900	0				1314495																L2_m						0	3900
+1568135	0	5	LOAN	H	RCV56993		COM	STRICKLAND FOR SENATE				Thousand Oaks	CA	91358	10/27/2008 12:00:00 AM	6/30/2009 12:00:00 AM	0	3600	0	3600	0.00                  %				1294413																				0	0	0	3600
+1522780	1	9	LOAN	B1	PAY35		OTH	JOHNSON & JOHNSON CORPORATE AND AFFILIATED ENTITIES				NEW BRUNSWICK	NJ	08933	4/1/2010 12:00:00 AM	12/31/2010 12:00:00 AM	0	20000	750000	20000	0.00%																				PAY35				0	0	0	20000
+1522780	1	16	LOAN	B1	PAY302		OTH	THE WALT DISNEY COMPANY (DISNEY WORLDWIDE SERVICES, INC.)				BURBANK	CA	91521	8/24/2010 12:00:00 AM	12/31/2010 12:00:00 AM	900000	900000	1100000	0	0.00%																								0	0	0	900000
+1530282	1	2	LOAN	B1	PAY746		IND	Williams	Barry			Alameda	CA	94501	12/5/2009 12:00:00 AM		0	3900	0	3900		See's Candies	Foreman																						0	0	0	3900
+1530282	1	4	LOAN	B1	PAY1613		COM	Garrick for Assembly 2010				San Diego	CA	92119	10/4/2010 12:00:00 AM		3900	3900	3900	0					1314580																				0	0	0	3900
+1508557	1	2	LOAN	B1	PAY238		IND	Yee	Garrett S.			Fremont	CA	94536	6/30/2009 12:00:00 AM	6/30/2010 12:00:00 AM	0	0	-11000	5000	0.00%	Ohlone Community College	Trustee																		PAY238				5000	0	0	5000
+1531611	0	9	LOAN	B1	L8		IND	Mobley	Jack M.		Jr.	Merced	CA	95340-8337	12/19/2008 12:00:00 AM	12/31/2009 12:00:00 AM	0	1000	0	1000	0	n/a	Candidate																								0	1000
+1531611	0	13	LOAN	B1	L21		IND	Mobley	Jack M.		Jr.	Merced	CA	95340-8337	12/8/2009 12:00:00 AM	12/31/2010 12:00:00 AM	0	1000	0	1000	0	n/a	Candidate																								0	1000
+1540518	0	7	LOAN	B1	PAY120		COM	HOPE 2010 Cure Cancer  (Perata Ballot Measure Committee)				Sacramento	CA	95814	4/7/2010 12:00:00 AM	11/2/2010 12:00:00 AM	0	50000	338500	50000	0.00%				1274538																PAY120				0	0	0	50000
+1531643	0	1	LOAN	B1	PAY939		IND	Allen	Michael			Santa Rosa	CA	95409	3/30/2009 12:00:00 AM		0	80	6000	80		Self Employed - Michael Allen Mediation	Attorney																						0	0	0	80
+1523095	1	2	LOAN	B1	PAY835		IND	Garcia	Leticia			Sacramento	CA	95816	6/2/2010 12:00:00 AM	7/1/2010 12:00:00 AM	0	0	0	3900	0.00%	CA State Senate	Staff																						3900	0	0	3900
+1578333	0	1	LOAN	B1	RCPTB100000000001711		IND	Marciano	Georges			Beverly Hills	CA	90210	11/16/2009 12:00:00 AM		0	127000	-1227.83	127000	0	Georges Marciano	Executive																						0	0	0	127000
+1572070	0	1	LOAN	B1	PAY2		IND	LaMalfa	Doug			Oroville	CA	95965	12/16/2010 12:00:00 AM	3/31/2011 12:00:00 AM	5000	5000	5000	0			Candidate																						0	0	0	5000
+1566828	1	7	LOAN	B1	B1-8		IND	Willis	Warren			La Mirada	CA	90638	9/17/2010 12:00:00 AM		0	30000	146714	30000	0.000																								0	0	0	30000
+1628572	0	10	LOAN	B1	B1-361		IND	GRIEGO	THOMAS J			LOS ANGELES	CA	90012	10/6/2010 12:00:00 AM	10/6/2011 12:00:00 AM	0	1000	0	1000	0.000	City of Los Angeles	Deputy City Attorney																						0	0	0	1000
+1592765	1	3	LOAN	B1	PAY8		IND	Gutierrez	Lydia A.			San Pedro	CA	90731	1/15/2011 12:00:00 AM		0	2500	23790	2500		Long Beach Unified School District	Teacher																						0	0	0	2500
+1599613	0	7	LOAN	B1	RCPTB100000000001115		IND	Loo	Cynthia			Los Angeles	CA	90039	7/8/2008 12:00:00 AM		0	15000	0	15000	0	Los Angeles Superior Court	Referee																						0	0	0	15000
+1572309	0	3	LOAN	B1	PAY841		IND	Wong	Janlee			Sacramento	CA	95833	9/30/2010 12:00:00 AM	9/30/2011 12:00:00 AM	0	0	1500	1500	0.00%	National Association of Social Workers	Social Worker																		PAY841				0	1500	0	1500
+1630231	0	1	LOAN	B1	PAY24		COM	Committee To Elect Brad Mitzelfelt				Rancho Santa Margari	CA	92688	2/24/2010 12:00:00 AM		0	2400	0	2400					1294783																				0	0	0	2400
+1603137	0	7	LOAN	B1	B1-7		IND	GRIEGO	THOMAS J			LOS ANGELES	CA	90012	9/10/2010 12:00:00 AM	9/10/2011 12:00:00 AM	0	1000	0	1000	0.000	Deputy City Attorney	City of Los Angeles																						0	0	0	1000
+1607703	0	1	LOAN	B1	B1-1		IND	NGUYEN	PHU			LOS ANGELES	CA	90010	12/23/2009 12:00:00 AM	12/23/2010 12:00:00 AM	0	100000	10000	100000	0.000	Vice President	Hoa Phat																						0	0	0	100000
+1531644	1	1	LOAN	B1	L556350		COM	Citizens for Brulte				Rancho Cucamonga	CA	91729	12/21/2009 12:00:00 AM	12/31/2010 12:00:00 AM	0	3900	7800	3900	0			N	1283599																LOAN1				0	0	0	3900
+1572620	0	9	LOAN	B1	PAY116		IND	Unz	Ron K.			Palo Alto	CA	94301	8/10/1999 12:00:00 AM		0	100000	0	100000		Wall Street Analytics	Software Developer																						0	0	0	100000
+1572620	0	10	LOAN	B1	PAY118		IND	Unz	Ron K.			Palo Alto	CA	94301	8/17/1999 12:00:00 AM		0	1000	0	1000		Wall Street Analytics	Software Developer																						0	0	0	25000
+1531931	4	11	LOAN	B1	PAY39		OTH	JOHNSON & JOHNSON CORPORATE AND AFFILIATED ENTITIES				NEW BRUNSWICK	NJ	08933	4/1/2010 12:00:00 AM	12/31/2010 12:00:00 AM	0	20000	775000	20000	0.00%																				PAY39				0	0	0	20000
+1491564	2	6	LOAN	B1	RCPTB100000000001448		IND	Chim	Chun			Pasadena	CA	91107	6/29/2009 12:00:00 AM		0	2500	0	2500	0	N/A	Retired																						0	0	0	2500
+1607963	0	3	LOAN	H	H-1469		COM	Aghazarian for Senate				Stockton	CA	95269	10/11/2008 12:00:00 AM	12/31/2009 12:00:00 AM	0	1000	0	1000	0.000				1297115																				0	0	0	1000
+1607972	0	2	LOAN	H	H-2449		COM	Tim Donnelly for Assembly 2010				Rancho Sta Margarita	CA	92688	8/6/2010 12:00:00 AM	8/6/2011 12:00:00 AM	0	3900	0	3900	0.000				1324845																				0	0	0	3900
+1605348	0	2	LOAN	B1	B1-6		IND	De Los Reyes	Anthony			Los Angeles	CA	90010	3/17/2010 12:00:00 AM	3/17/2011 12:00:00 AM	0	1000	0	1000	0.000	Attorney	Thon,Beck,Vnni,Callahan & Powell																						0	0	0	1000
+1573663	0	3	LOAN	B1	PAY42		IND	Valentine	Bob			Manhattan Beach	CA		1/18/2011 12:00:00 AM		16000	16000	28000	0		Self/Bob Valentine	Attorney																						0	0	0	16000
+1608335	0	4	LOAN	H	RCV375		COM	Irvine Citizens for Ethics in Government				Rancho Santa Margari	CA	92688	10/22/2008 12:00:00 AM		0	0	0	12000					1305327																				0	12000	0	12000
+1609395	0	12	LOAN	B1	PAY38		IND	Unz	Ron K.			Palo Alto	CA	94301-	10/10/1997 12:00:00 AM	7/27/2000 12:00:00 AM	0	40000	0	40000	0.00                  %	Wall Street Analytics	Computer software																						0	0	0	40000
+1608946	0	1	LOAN	B1	PAY204		IND	Lieber	Sally J.			Mountain View	CA	94041	10/10/2008 12:00:00 AM	4/10/2009 12:00:00 AM	0	15000	0	15000	0.00%	n/a	Candidate																						0	0	0	15000
+1571643	0	10	LOAN	B1	L17		IND	Rasmussen	Peggy			Santa Clarita	CA	91350-2976	12/31/2009 12:00:00 AM	12/31/2010 12:00:00 AM	0	0	0	6500	0.02	Office Manager	Spirit Properties Ltd.																		L17_m				6500		0	6500
+1601648	0	12	LOAN	B1	RCPTB100000000001557		IND	Umberg	Tom & Robin			Burbank	CA	91502	1/15/2010 12:00:00 AM		0	2500	0	2500	0	Manatt Phelps & Phillips	Attorney																						0	0	0	2500
+1571668	0	11	LOAN	B1	B1-11		OTH	TRI COUNTIES BANK				WILLOWS	CA	95988	1/31/2010 12:00:00 AM	12/31/2010 12:00:00 AM	0	198.65	492.78	198.65	0.000																								0	0	0	492.78
+1608491	0	4	LOAN	B1	PAY287		IND	Riley	Anthony			Oak Hills	CA	92344	8/6/2010 12:00:00 AM		0	1000	850.19	1000		State Assembly	Candidate																						0	0	0	1000
+1608491	0	9	LOAN	B1	PAY311		IND	Riley	Anthony			Oak Hills	CA	92344	4/25/2011 12:00:00 AM		56.44	56.44	850.19	0		State Assembly	Candidate																						0	0	0	56.44
+1608642	0	3	LOAN	B1	RCPTB100000000001453		IND	Chim	Alex			Arcadia	CA	91007	6/28/2009 12:00:00 AM		0	1500	0	1500	0	Alex K. Chim	IT Engineer																						0	0	0	1500
+1604548	0	5	LOAN	B1	B1-7		IND	GUTIEREZ	LYDIA ANN			SAN PEDRO	CA	90731	4/6/2010 12:00:00 AM	4/6/2011 12:00:00 AM	0	8840	0	8840	0.000	Teacher	Long Beach Unified School District																						0	0	0	8840
+1609008	0	1	LOAN	B1	B1-1		IND	Kelly	Chris			Atherton	CA	94027	6/8/2010 12:00:00 AM	6/8/2011 12:00:00 AM	0	100000	0	100000	0.000	Chris Kelly	Attorney																						0	0	0	100000
+1572388	0	22	LOAN	B1	PAY385		OTH	AMGEN INC.				THOUSAND OAKS	CA	91320	9/30/2010 12:00:00 AM	12/31/2010 12:00:00 AM	0	250000	600000	250000	0.00%																								0	0	0	250000
+1571615	0	9	LOAN	B1	PAY1647		COM	Tax Fighters for Anderson 08				La Mesa	CA	91941	8/19/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	3600	0	3600					1294772																				0	0	0	3600
+1622472	0	6	LOAN	H	RCV2722		COM	CAS for a Cure, sponsored by the American Cancer Society, American Lung Assn, American Heart Assn, & Cancer Research Doctors				Sacramento	CA	95814	3/30/2010 12:00:00 AM	11/2/2010 12:00:00 AM	0	20000	0	20000	0.00%				1322759																				0	0	0	20000
+1622472	0	9	LOAN	H	RCV2785		COM	CAS for a Cure, sponsored by the American Cancer Society, American Lung Assn, American Heart Assn, & Cancer Research Doctors				Sacramento	CA	95814	4/26/2010 12:00:00 AM	11/2/2010 12:00:00 AM	0	60000	0	60000	0.00%				1322759																				0	0	0	60000
+1608540	0	3	LOAN	B1	PAY459		COM	Taxpayers for Jim Nielsen - Assembly 2010				Yuba City	CA	95993	6/17/2010 12:00:00 AM		0	0	-3900	3900					1313419																				3900	0	0	3900
+1601648	0	22	LOAN	B1	RCPTB100000000001478		IND	Umberg	Tom & Robin			Burbank	CA	91502	3/16/2009 12:00:00 AM		0	2500	0	2500	0	Manatt Phelps & Phillips	Attorney																						0	0	0	2500
+1464993	1	6	LOAN	H	D2426			Courage Campaign Institute				Los Angeles	CA	90017	7/2/2010 12:00:00 AM		3000	0																											3000			3000
+1609277	1	1	LOAN	B1	PAY1824		IND	Torlakson	Tom			Antioch	CA	94531-4247	12/29/2009 12:00:00 AM	7/29/2010 12:00:00 AM	0	54000	0	54000	0.00%	Candidate	Candidate																		PAY1824				0	0	0	100000
+1587444	1	1	LOAN	B1	L6		COM	Re Elect Tony Strickland Senate 2012				Santa Ana	CA	92705-5646	7/20/2010 12:00:00 AM		0	64000	0	81000	0				1314562																L6_m				17000		0	81000
+1572112	0	3	LOAN	B1	L3		IND	Rasmussen	Larry			Santa Clarita	CA	91350-2976	3/19/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	174000	0	174000	2	Spirit Holdings, Inc.	President																								0	200000
+1573903	0	1	LOAN	B1	L3		COM	Taxpayers for Bob Huff - Senate 2012				Rancho Santa Margarita	CA	92688-2125	1/7/2011 12:00:00 AM		3900	3900	3900	0	0				1292695																L3_m						0	3900
+1608135	0	7	LOAN	B1	PAY1651		IND	Sieglock	Jack			Lodi	CA	95242	10/31/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	21600	-25500	21600	0.00%	AD 10	Candidate																						0	0	0	21600
+1572601	0	28	LOAN	B1	PAY168		IND	Unz	Ron K.			Palo Alto	CA	94301-	6/1/2000 12:00:00 AM		0	24000	5000	24000		Wall Street Analytics	Computer software																						0	0	0	24000
+1663634	0	1	LOAN	B1	PAY214		IND	Morrell	Michael			Upland	CA	91786	12/31/2011 12:00:00 AM		0	67000	-5000	67000		State of CA	Assemblyman																						0	0	0	67000
+1647546	1	2	LOAN	B1	PAY77		COM	HOPE 2010 Cure Cancer  (Perata Ballot Measure Committee)				Sacramento	CA	95814	3/3/2010 12:00:00 AM	11/2/2010 12:00:00 AM	0	20000	0	20000					1274538																PAY77				0	0	0	20000
+1663913	0	1	LOAN	B1	PAY18137		OTH	City National Bank				Beverly Hills	CA	90210	3/2/2012 12:00:00 AM	11/27/2015 12:00:00 AM	0	2000000	2200000	2000000	4.75%																								0	0	0	2030555
+1665428	2	1	LOAN	B1	44		IND	CHEEMA	SARABJIT			UNION CITY	CA	94587	5/17/2012 12:00:00 AM		25000	25000	25000	0	0%	STATE OF CALIFORNIA	ENGINEER																						0	0	0	25000
+1647016	0	1	LOAN	B1	PAY2		IND	Wiener	Stephen			Treasure Island	FL	33706	2/28/2012 12:00:00 AM		50000	50000	50000	0	0.00%	N/A	Retired																						0	0	0	50000
+1650041	5	1	LOAN	B1	100		IND	Brown	Cheryl			San Bernardino	CA	92404	12/31/2011 12:00:00 AM	12/31/2012 12:00:00 AM	0	50678.95	50678.95	50678.95	0%	Assembly Member Wilmer Amina Carter	Field Representative																		100				0	0	0	50678.95
+1660963	0	1	LOAN	B1	B1-1		IND	GUTIEREZ	LYDIA ANN			SAN PEDRO	CA	90731	6/26/2009 12:00:00 AM	6/26/2010 12:00:00 AM	0	2250	0	2250	0.000	Teacher	LBUSD																						0	0	0	2250
+1661613	0	2	LOAN	B1	L1		COM	Jeff Denham For State Senate				Salinas	CA	93906-5106	1/1/2004 12:00:00 AM	12/31/2004 12:00:00 AM	0	1000	0	1000	0				1251652																						0	1000
+1632619	0	5	LOAN	B1	PAY57		IND	Gutierrez	Lydia A.			San Pedro	CA	90731	2/28/2011 12:00:00 AM		0	900	33931.14	900		Long Beach Unified School District	Teacher																						0	0	0	900
+1662451	0	1	LOAN	B1	PAY1458		IND	Leno	Mark			San Francisco	CA	94103	10/16/2010 12:00:00 AM		0	14000	-10000	14000		State of California	State Senator																						0	0	0	24000
+1633327	0	2	LOAN	H	9			Tim Donnelly for Assembly				Fair Oaks	CA	95268	12/29/2010 12:00:00 AM	12/31/2011 12:00:00 AM	0	0	3900	3900	0%				1318509																				0	3900	0	3900
+1633447	0	1	LOAN	B1	B1-1		IND	De Los Reyes	Anthony			Los Angeles	CA	90010	7/22/2009 12:00:00 AM	7/22/2010 12:00:00 AM	0	550	0	550	0.000	Attorney	Thon,Beck,Vnni,Callahan & Powell																						0	0	0	550
+1630999	0	2	LOAN	B1	PAY936		COM	GARRICK FOR ASSEMBLY 2010				San Diego	CA	92119	1/29/2010 12:00:00 AM	12/31/2010 12:00:00 AM	0	0	-500	500					1314580																				500	0	0	500
+1634851	0	4	LOAN	B1	L556939		IND	BERRYHILL	WILLIAM R.			CERES	CA	95307	12/28/2011 12:00:00 AM	6/1/2011 12:00:00 AM	33000	33000	33000	0	0	BB VINEYARDS	FARMER	N																					0	0	0	33000
+1633517	0	1	LOAN	H	RCV5587		OTH	Strengthening Our Lives Through Ed., Com. Service and Civic Part.				Downey	CA	90240	9/29/2009 12:00:00 AM		0	2500	0	2500																									0	0	0	15000
+1633677	0	8	LOAN	B1	8		IND	Umberg	Thomas			Villa Park	CA	92861	3/3/2008 12:00:00 AM		0	7000	0	7000	0%	Manatt, Phelps & Phillips	Attorney																						0	0	0	7000
+1637300	0	5	LOAN	B1	PAY14		OTH	TIME WARNER				NEW YORK	NY	10019	3/11/2010 12:00:00 AM	12/31/2010 12:00:00 AM	0	100000	0	100000	0.00%																								0	0	0	100000
+1647051	0	2	LOAN	B1	2		IND	KREEP	GARY			RAMONA	CA	92065	3/9/2012 12:00:00 AM		6550	6550	8338	0	0%	LAW OFFICE OF GARY KREEP	ATTORNEY	X																					0	0	0	6550
+1637812	0	2	LOAN	B1	C15		COM	Los Angeles County Democratic Party State Candidate Committee				Los Angeles	CA	90017	12/27/2011 12:00:00 AM	12/31/2012 12:00:00 AM	10000	10000	10000		0				1237135																							10000
+1637821	0	9	LOAN	B1	L13		IND	Kolakowski	Victoria S			Oakland	CA	94607-3848	6/10/2011 12:00:00 AM	12/31/2012 12:00:00 AM	0	250	3950	250	0	State of California	Judge																								0	250
+1647316	0	1	LOAN	B1	B1-1		IND	Cox	James A.	Mr.		Palm Springs	CA	92262	2/27/2012 12:00:00 AM	12/31/2012 12:00:00 AM	50000	50000	50000	0	0.000	State of California	Superior Court Judge																						0	0	0	50000
+1664105	0	2	LOAN	B1	PAY57		IND	Torlakson	Tom			Antioch	CA	94531-4247	10/21/2011 12:00:00 AM		0	10000	2500	10000		Candidate	Candidate																						0	0	0	10000
+1636936	0	10	LOAN	B1	11		IND	Lowery	Lee			Corona Del Mar	CA	92625	8/21/2009 12:00:00 AM	12/31/2009 12:00:00 AM	0	2000	5500	2000	0%	MKA Capital Group	Real Estate Finance																						0	0	0	2000
+1647559	0	1	LOAN	B1	L6		COM	Re Elect Tony Strickland Senate 2012				Santa Ana	CA	92705-5646	7/20/2010 12:00:00 AM		0	64000	0	64000	0				1314562																L6_m						0	81000
+1647723	0	3	LOAN	B1	B1-8		IND	Gold	Craig			Los Angeles	CA	90048	3/7/2012 12:00:00 AM	3/7/2013 12:00:00 AM	4000	4000	16000	0	0.000																								0	0	0	4000
+1664261	0	2	LOAN	B1	L18		IND	Pinkston	Susan			Danville	CA	94526-5123	6/28/2007 12:00:00 AM	12/31/2008 12:00:00 AM	0	3500	0	3500	0	East Bay Fellowship	Assistant Pastor																								0	3500
+1637053	1	4	LOAN	B1	PAY89		COM	HOPE 2010 Cure Cancer  (Perata Ballot Measure Committee)				Sacramento	CA	95814	3/15/2010 12:00:00 AM	11/2/2010 12:00:00 AM	0	20000	0	20000					1274538																PAY89				0	0	0	20000
+1636954	1	1	LOAN	B1	22		IND	RASMUSSEN	JOHN			ATWATER	CA	95301	5/10/2011 12:00:00 AM	11/6/2012 12:00:00 AM	0	1500	11500	1500	0%	CITY OF ATWATER	ENGINEER																		22				0	0	0	1500
+1663536	0	1	LOAN	B1	PAY4		IND	Amador	Antonio C.			Lodi	CA	95242	1/10/2012 12:00:00 AM		0	850	4850	850		US Marshal	Retired																						0	0	0	850
+1680692	0	1	LOAN	B1	PAY204		IND	Lieber	Sally J.			Mountain View	CA	94041	10/10/2008 12:00:00 AM	4/10/2009 12:00:00 AM	0	15000	100000	15000	0.00%	n/a	Candidate																						0	0	0	15000
+1695249	1	1	LOAN	B1	PAY2		IND	Gardner	Joe			HACIENDA HEIGHTS	CA	91745	2/2/2012 12:00:00 AM	12/31/0201 12:00:00 AM	0	100	7500	100	0.00%	Retired	N/A																						0	0	0	200
+1688668	0	25	LOAN	B2	26		IND	Umberg	Thomas			Villa Park	Ca	92861	6/28/2001 12:00:00 AM		0	40000	376192			Manatt, Phelps & Phillips LLP	Attorney										Ralph Eidem															
+1695287	1	3	LOAN	B1	PAY304		IND	Guillen	Abel			Oakland	CA	94609	12/31/2011 12:00:00 AM	12/31/2013 12:00:00 AM	0	4750	0	4750	0.00%	Caldwell Flores Winters, Inc.	Sr. Vice President																						0	0	0	4750
+1689188	0	1	LOAN	B1	2		RCP	SENATOR BOB DUTTON FOR ASSEMBLY 2012				RANCO SANTA MARGARITA	CA	92688	5/7/2010 12:00:00 AM	6/30/2011 12:00:00 AM	0	3900	0	3900	0%				1314664																				0	0	0	3900
+1689333	0	1	LOAN	B1	B1-79		IND	Marquez	Luis			Downey	CA	90242	10/27/2008 12:00:00 AM	10/27/2009 12:00:00 AM	0	15000	0	15000	0.000																								0	0	0	15000
+1692485	0	2	LOAN	B1	PAY235		IND	Morrell	Michael			Upland	CA	91786	12/31/2011 12:00:00 AM		0	10000	-4931.55	10000		State of CA	Assemblyman																						0	0	0	15000
+1673242	0	1	LOAN	B1	B1-5		IND	JEFFRIES	KEVIN D			Lake Elsinore	CA	92530	3/15/2005 12:00:00 AM	11/7/2006 12:00:00 AM	0	32650	0	32650	0.000	MAXSON INVESTMENTS	INVESTOR																						0	0	0	100000
+1676164	0	6	LOAN	B1	B1-351		IND	GRIEGO	THOMAS J			Los Angeles	CA	90012	9/7/2010 12:00:00 AM	9/7/2011 12:00:00 AM	0	2500	0	2500	0.000	City of Los Angeles	Deputy City Attorney																						0	0	0	2500
+1675027	0	7	LOAN	B1	B1-69		IND	Willis	Warren			La Mirada	CA	90638	9/17/2010 12:00:00 AM		0	30000	0	30000	0.000																								0	0	0	30000
+1677112	0	2	LOAN	B1	PAY142		IND	Guillen	Abel			Oakalnd,	CA	94609	12/31/2010 12:00:00 AM		0	5	927.87	5	0.00%	Caldwell Flores Winters, Inc	Financial Advisor																						0	0	0	5
+1679415	0	1	LOAN	B1	8		IND	MAGEE	BOB			LAKE ELSINORE	CA	92530	3/31/2011 12:00:00 AM		0	0	0	100	0%	FOREST WOOD FIBER	EXECUTIVE																						100	0	0	100
+1679417	0	8	LOAN	H	L9		COM	Committee for Secure and Fair Elections: Vote SAFE				Willows	CA	95988-9788	5/18/2010 12:00:00 AM	12/31/2010 12:00:00 AM	0	12000		12000	0				1317149																L9_m						0	12000
+1675875	0	6	LOAN	B1	PAY16		IND	Jim	Oscar W. L.			South Pasadena	CA	91030	6/13/2009 12:00:00 AM		0	4000	0	4000	0.00%	Jim's Bakery	Owner																						0	0	0	4000
+1664220	1	1	LOAN	B1	PAY242		IND	Melendez	Nicolas			Lake Elsinore	CA	92532	12/31/2011 12:00:00 AM	6/30/2012 12:00:00 AM	0	0	3000	1000	0.00%	US Navy Reserve	Lieutenant Commander																						1000	0	0	1000
+1694334	0	1	LOAN	B1	23		IND	KIRBY	RICHARD M.			MERCED	CA	953488801	10/12/2011 12:00:00 AM		0	1000	0	1000	0%	KIRBY MANUFACTURING, INC.	MANAGER																						0	0	0	1000
+1695367	0	1	LOAN	B1	PAY18		IND	Vargas	Juan			San Diego	CA	92102	12/9/2009 12:00:00 AM	6/30/2009 12:00:00 AM	0	0	-6000	6000	0.00%	n/a	Candidate																		PAY18				6000	0	0	100000
+1676161	0	4	LOAN	B1	B1-191		IND	Waldron	Marie	Hon.		Escondido	CA	92025	12/31/2011 12:00:00 AM	12/31/2014 12:00:00 AM	0	22000	0	22000	0.000	City of Escondido	Councilmember																						0	0	0	22000
+1637304	1	2	LOAN	H	RCV698		COM	Bill Berryhill for Senate 2012				Stockton	CA	95269	12/29/2011 12:00:00 AM		3900	3900	3900	0	0.00%				1341369																				0	0	0	3900
+1663051	1	1	LOAN	B1	L1		IND	Amador	Robert O			San Diego	CA	92101-3827	10/6/2011 12:00:00 AM	12/31/2012 12:00:00 AM	0	1000	0	1000	0	County of San Diego	Deputy District Attorney																								0	1000
+1680340	0	1	LOAN	B1	C8336710		IND	Jackson	Hannah-Beth			Santa Barbara	CA	93108-1840	12/31/2011 12:00:00 AM	12/31/2012 12:00:00 AM	0	25000	0	25000	0	Antioch University	Educator/Nonprofit Director																						0	0	0	25000
+1680405	0	3	LOAN	B1	PAY124		IND	Allen	Travis			Huntington Beach	CA	92649	6/1/2012 12:00:00 AM		28000	28000	102500	0		Wealth Strategies Group	President																						0	0	0	28000
+1703053	0	4	LOAN	H	H-194		COM	Tateishi for Assembly 2012				Elk Grove	CA	95624	9/18/2012 12:00:00 AM	6/30/2013 12:00:00 AM	0	3900	3900	3900	0.000				1341173																				0	0	0	3900
+1678052	0	4	LOAN	B2	PDT25		IND	Ornellas	Leroy			Tracy	CA	95304	5/30/2012 12:00:00 AM		10000	10000	22500			Ornellas Dairy	Dairy Farmer/Owner										Bank of America Credit Card Services															
+1680535	0	5	LOAN	B1	PAY26		IND	LaMalfa	Douglas			Rivervale	CA	95974	6/30/2007 12:00:00 AM		0	3600	0	3600		State of California	State Legislator																						0	0	0	3600
+1679041	0	3	LOAN	B1	PAY543		COM	Friends of Dan Logue for Assembly 2012				Willows	CA	95988	6/30/2012 12:00:00 AM	12/31/2012 12:00:00 AM	2000	2000	2000	0	0.00%				1335498																				0	0	0	2000
+1647763	3	4	LOAN	B1	PAY274		IND	Dr. Jennifer H Ong				San Leandro	CA	94577-4536	12/30/2011 12:00:00 AM	1/30/2013 12:00:00 AM	0	14000	0	14000	0.00%	Jennifer Ong, OD	Optometrist																						0	0	0	14000
+1695081	1	5	LOAN	B1	PAY270		IND	Dr. Jennifer H Ong				San Leandro	CA	94577-4536	12/31/2011 12:00:00 AM	12/31/2013 12:00:00 AM	0	7000	-12689.18	7000	0.00%	Jennifer Ong, OD	Optometrist																						0	0	0	14000
+1637213	3	1	LOAN	B1	PAY434		IND	Bonta	Rob			Alameda	CA	94501	12/31/2011 12:00:00 AM		7500	7500	7500	0		City of Alameda	Vice Mayor																						0	0	0	7500
+1703936	0	2	LOAN	B1	PAY124		IND	Allen	Travis			Huntington Beach	CA	92649	6/1/2012 12:00:00 AM		0	28000	202116.54	28000		Wealth Strategies Group	President																						0	0	0	28000
+1679956	0	2	LOAN	B1	B1-10		IND	Gold	Craig			Los Angeles	CA	90048	2/3/2012 12:00:00 AM	2/3/2013 12:00:00 AM	0	1000	45602	1000	0.000																								0	0	0	1000
+1737142	0	2	LOAN	H	RCV1074		COM	Todd Zink for Senate 2012				Sacramento	CA	95833	6/27/2012 12:00:00 AM		0	3900	3900	3900	0.00%				1345594																				0	0	0	3900
+1737147	0	6	LOAN	H	RCV938		COM	 	Beth Gaines for Assembly 2012				Roseville	CA	95766	10/9/2012 12:00:00 AM		0	3900	3900	3900	0.00%				1335005																				0	0	0	3900
+1740905	0	1	LOAN	B1	PAY863		OTH	AMERICAN SNUFF COMPANY, LLC (BY ITS SERVICE COMPANY, RAI SERVICES COMPANY), AN AFFILIATE OF R.J. REYNOLDS TOBACCO COMPANY				WINSTON-SALEM	NC	27101	5/4/2012 12:00:00 AM		0	625000	14067995.25	625000																									0	0	0	625000
+1737663	0	1	LOAN	B1	B1-2		IND	Bosetti	Rick			Redding	CA	96003	11/3/2011 12:00:00 AM	12/31/2014 12:00:00 AM	0	3500	4000	3500	0.000	Simpson Unversity	Head Baseball Coach																						0	0	0	3500
+1779942	0	6	LOAN	B1	PAY88		IND	Warner	Russ			Alta Loma	CA	91701	3/20/2012 12:00:00 AM	3/20/2013 12:00:00 AM	0	0	62550	300		Warner International Periodical Services, Inc.	Chief Executive Officer																						0	300	0	300
+1779942	0	8	LOAN	B1	PAY246		IND	Warner	Russ			Alta Loma	CA	91701	5/29/2012 12:00:00 AM	5/29/2013 12:00:00 AM	0	0	62550	11650	0.00%	Warner International Periodical Services, Inc.	Chief Executive Officer																						0	11650	0	11650
+1737805	0	7	LOAN	B1	PAY26		IND	Coen	Lisa			Los Angeles	CA	90012-3210	1/30/2012 12:00:00 AM	1/30/2013 12:00:00 AM	0	10000	10000	10000		LA County	Deputy District Attorney																						0	0	0	10000
+1774361	0	2	LOAN	B1	PAY307		COM	Tax Fighters for Anderson				Lamesa	CA	91942	3/6/2013 12:00:00 AM	3/11/2014 12:00:00 AM	0	4100	4100	4100					1336563																				0	0	0	4100
+1728321	1	1	LOAN	H	RCV131022		COM	Sac-Sierra's Building Trades PAC				Sacramento	CA	95833	8/6/2012 12:00:00 AM	12/31/2012 12:00:00 AM	0	5000	5000	5000					881253																				0	0	0	5000
+1663886	2	2	LOAN	B1	PAY48		IND	Warner	Russ			Alta Loma	CA	91701	3/6/2012 12:00:00 AM	3/6/2013 12:00:00 AM	0	1400	10900	1400		Warner International Periodical Services, Inc.	Chief Executive Officer																						0	0	0	1400
+1673346	1	1	LOAN	B1	8		IND	Correa	Lou			Santa Ana	CA	92706	9/28/2011 12:00:00 AM	12/31/2013 12:00:00 AM	0	200	200	200	0%	State of California	State Senator																						0	0	0	200
+1704622	0	1	LOAN	B1	L3		IND	Oller	Thomas Rico			San Andreas	CA	95249-9503	3/17/2012 12:00:00 AM	12/31/2014 12:00:00 AM	0	100000	100120	100000	0	Sequoia Insulation	Owner																								0	100000
+1728923	0	2	LOAN	B1	B1-65		IND	Kraft	Gregory	Mr.		Riverside	CA	92503	5/9/2012 12:00:00 AM	12/31/2012 12:00:00 AM	0	500	1686.22	500	0.000																								0	0	0	500
+1729074	0	4	LOAN	B1	B1-1981		IND	JEFFRIES	KEVIN D			Lake Elsinore	CA	92530	7/27/2012 12:00:00 AM		0	10000	75450	10000	0.000	MAXSON INVESTMENTS	INVESTOR																						0	0	0	10000
+1735932	0	3	LOAN	B1	L15		IND	Pinkston	Ronald			Danville	CA	94526-5123	6/28/2007 12:00:00 AM	12/31/2008 12:00:00 AM	0	3600	0	3600	0	East Bay Fellowship	Pastor																								0	3600
+1695348	1	3	LOAN	B1	L3		IND	Walsh	Chad Richard			Los Gatos	CA	95032-5010	9/28/2012 12:00:00 AM	12/31/2014 12:00:00 AM	50000	50000	100000	0	0	Fountainhead Law Group PC	Attorney																		L3_m						0	50000
+1742733	0	9	LOAN	B1	PAY933		IND	Pugno	Andrew			Folsom	CA	95630	4/2/2012 12:00:00 AM	12/31/2012 12:00:00 AM	0	999	26970	999		Law Offices of Andrew P. Pugno	Small Business Owner																						0	0	0	999
+1742733	0	18	LOAN	B1	PAY967		IND	Pugno	Perry			Prairie Village	KS	66207	5/17/2012 12:00:00 AM	12/31/2012 12:00:00 AM	0	0	0	3900		AAFP	Vice President for Education																						3900	0	0	3900
+1746501	0	1	LOAN	B1	34		IND	Henke-Dobroth	Lela			Oxnard	CA	93036	3/25/2010 12:00:00 AM	6/30/2010 12:00:00 AM	10993.58	50993.58	50993.58	40000	0%	Law Office Henke-Doboth	Attorney	X																					0	0	0	40000
+1739500	0	8	LOAN	B1	PAY1647		COM	Tax Fighters for Anderson 08				La Mesa	CA	91941	8/19/2008 12:00:00 AM	12/31/2008 12:00:00 AM	0	3600	0	3600					1294772																				0	0	0	3600
+1751440	0	2	LOAN	B1	B1-1988		IND	DAVIS	MICHAEL			Los Angeles	CA	90010	12/8/2009 12:00:00 AM	12/8/2010 12:00:00 AM	0	1000	0	1000	0.000	State of California	Assemblymember																						0	0	0	1000
+1751557	0	10	LOAN	B1	PAY1034		COM	Garrick for Senate 2014				San Diego	CA	92119	10/12/2012 12:00:00 AM		0	3900	0	3900					1336456																				0	0	0	3900
+1776456	0	15	LOAN	B1	B1-143		IND	Gold	Craig			Los Angeles	CA	90048	7/6/2012 12:00:00 AM	7/6/2013 12:00:00 AM	0	0	0	1000	0.000																								0	1000	0	1000
+1776456	0	20	LOAN	B1	B1-148		IND	Gold	Craig			Los Angeles	CA	90048	11/5/2012 12:00:00 AM	11/5/2013 12:00:00 AM	0	0	0	1000	0.000																								0	1000	0	1000
+1724773	0	5	LOAN	B1	B1-9		IND	Burger	Trena			Sacramento	CA	95814	7/27/2000 12:00:00 AM	7/27/2000 12:00:00 AM	0	0	108	8000	0.000	Burger & Plavin	Attorney																						0	8000	0	8000
+1739856	0	2	LOAN	B1	B1-4032		IND	Osborn	Torie			Santa Monica	CA	90405	6/5/2012 12:00:00 AM	6/5/2013 12:00:00 AM	0	0	11310	7500	0.000																								7463.66	36.34	0	7500
+1740101	0	3	LOAN	B1	PAY316		IND	Allen	Michael			Santa Rosa	CA	95409	8/27/2009 12:00:00 AM		0	5000	0	5000	0.00%	State of California	CA State Assembly Member																						0	0	0	10000
+1703187	2	1	LOAN	H	RCV729		COM	Independent Expenditure Committee for Quality Education				Sacramento	CA	95814	12/21/2004 12:00:00 AM		0	5000	0	5000	0.00                  %				1270347																				0	0	0	5000
+1739500	1	5	LOAN	B1	PAY26		IND	LaMalfa	Douglas			Rivervale	CA	95974	6/30/2007 12:00:00 AM		0	3600	0	3600		State of California	State Legislator																						0	0	0	3600
+1740184	0	1	LOAN	B1	112920120C5893232		COM	Jean Fuller for Senate 2014				Elk Grove	CA	95624	11/1/2012 12:00:00 AM	11/1/2014 12:00:00 AM	0	10000	0	10000	0.00				1333812																				0	0	0	10000
+1664110	2	4	LOAN	B1	PAY4603		IND	Torlakson	Tom			Antioch	CA	94531-4247	1/24/2012 12:00:00 AM	1/31/2012 12:00:00 AM	6000	6000	-9000	0		Candidate	Candidate																		PAY4603				0	0	0	6000
+1750967	1	4	LOAN	B1	C21		COM	Los Angeles County Democratic Party State Candidate Committee				Los Angeles	CA	90017	3/28/2012 12:00:00 AM	12/31/2012 12:00:00 AM		10000		10000	0				1237135																							10000
+1734674	0	4	LOAN	B1	L557198		IND	KEATING	JANICE			MODESTO	CA	95354	1/6/2012 12:00:00 AM	12/31/2012 12:00:00 AM	0	1400	7500	1400	0			N																					0	0	0	1400
+1734990	0	2	LOAN	B1	PAY177		OTH	Oak Valley Management, Inc.				Upland	CA	91786	10/30/2008 12:00:00 AM		0	10000	0	10000																									0	0	0	10000
+1735076	0	2	LOAN	H	D486			SEIU Local 721, AFL-CIO				Los Angeles	CA	90017	3/15/2002 12:00:00 AM	12/31/2007 12:00:00 AM		40000.24		40000.24	0																											100000
+1740394	0	4	LOAN	H	D10			LACDP - Issues & Advocacy Committee				Los Angeles	CA	90017	12/23/2011 12:00:00 AM	12/31/2012 12:00:00 AM		10000		10000	0				744554																							10000
+1819505	1	2	LOAN	H	VN7R39Q48Q3		COM	Yes on FAIR				Los Angeles	CA	90024-3949	8/31/2010 12:00:00 AM	9/30/2010 12:00:00 AM	0	24000	0	24000	0																								0	0	0	24000
+1832095	0	3	LOAN	B1	PAY83		IND	Hollingsworth Armstrong	Donna			LOS ANGELES	CA	90012	12/31/2013 12:00:00 AM		0	29000	0	29000		LA County	Deputy DA																						0	0	0	29000
+1832169	0	1	LOAN	H	RCV729		COM	Independent Expenditure Committee for Quality Education				Sacramento	CA	95814	12/21/2004 12:00:00 AM		0	5000	0	5000	0.00                  %				1270347																				0	0	0	5000
+1809690	0	4	LOAN	B1	PAY91		OTH	Wells Fargo Bank				Pasadena	CA	91107	12/31/2013 12:00:00 AM	12/31/2014 12:00:00 AM	51600	51600	51600	0	4.25%																				PAY91				0	0	0	51600
+1810402	0	1	LOAN	B1	PAY2		IND	Carter	Amy N.			Los Angeles	CA	90012	11/10/2013 12:00:00 AM		2500	0	103500	0		LA County	Deputy DA																						0	2500	0	2500
+1811147	0	2	LOAN	H	RCV44890		OTH	GUN OWNERS OF CALIFORNIA, INC.				FOLSOM	CA	95630	8/29/2001 12:00:00 AM		0	0	0	5000	0.00                  %	N/A	N/A																						5000	0	0	5000
+1818061	0	1	LOAN	B1	C2430029		IND	Garcia	Cristina			Bell Gardens	CA	90201	1/27/2012 12:00:00 AM	6/7/2012 12:00:00 AM	0	1300	0	1300	0	LA Community College	Professor																						0	0	0	2300
+1814650	0	3	LOAN	B1	PAY23		IND	Thompson	Andrea			Los Angeles	CA	90010	12/31/2011 12:00:00 AM		0	30000	18500	30000		Los Angeles Superior Court	Superior Court Judge																						0	0	0	30000
+1830190	0	6	LOAN	B1	VN924CAQRZ7		IND	Gabriella	Wendy			Laguna Niguel	CA	92677-8606	3/1/2014 12:00:00 AM		266.97	266.97	1196.39	0	0	Gabriella for Assembly 2014	Candidate		1361394																VN924CAQRZ7				0	0	0	266.97
+1831431	0	1	LOAN	B1	PAY38		IND	Griego	Tom J.			Los Angeles	CA	90012	12/18/2009 12:00:00 AM		0	14001.50	0	14001.50		City of Los Angeles	Deputy City Attorney																						0	0	0	14001.50
+1781531	0	1	LOAN	B1	L54		OTH	Shannon Grove for Assembly 2012				Bakersfield	CA	93309-7441	5/5/2012 12:00:00 AM		0	2500	0	2500	0																				L54_m						0	2500
+1783582	0	1	LOAN	B1	PAY48		IND	Guillen	Abel			Oakalnd,	CA	94609	6/30/2010 12:00:00 AM	6/30/3014 12:00:00 AM	0	5000	0	5000		Caldwell Flores Winters, Inc	Financial Advisor																						0	0	0	5000
+1782318	0	8	LOAN	B1	9		IND	Umberg	Tom			Villa Park	CA	92861	10/16/2009 12:00:00 AM		0	2500	376192	2500	0%	Keller Rackauckas Umberg Zipser LLP	Lawyer																						0	0	0	2500
+1783930	0	2	LOAN	B1	L8		COM	Tom Berryhill for Senate 2014				Modesto	CA	95355-3122	6/30/2012 12:00:00 AM		0	0	0	3900	0				1336305																L8_m				3900		0	3900
+1790201	1	4	LOAN	B1	PAY1872		IND	Ting	Philip			San Francisco	CA	94122	6/25/2011 12:00:00 AM		0	9500	3025	9500	0.00%	City and County of San Francisco	Assessor-Recorder																						0	0	0	9500
+1785457	0	1	LOAN	B1	14		IND	Kolski	Chris			West Hills	CA	91304	6/19/2013 12:00:00 AM	8/19/2013 12:00:00 AM	1000	1000	1000	0	0%	California Engineering	Professional Engineer																						0	0	0	1000
+1817723	0	6	LOAN	B1	PAY138		IND	Johannessen	Mark			West Sacramento	CA	95691	10/1/2010 12:00:00 AM	10/1/2011 12:00:00 AM	0	2000	0	2000		n/a	Candidate																						0	0	0	2000
+1789809	0	5	LOAN	B1	PAY14		OTH	TIME WARNER				NEW YORK	NY	10019	3/11/2010 12:00:00 AM	12/31/2010 12:00:00 AM	0	86016.97	-13983.03	100000	0.00%																								13983.03	0	0	100000
+1789809	0	14	LOAN	B1	PAY293		OTH	CISCO SYSTEMS, INC.				SAN JOSE	CA	95134	8/19/2010 12:00:00 AM	12/31/2010 12:00:00 AM	0	1000000	-14915.23	1000000	0.00%																								0	0	0	1000000
+1789809	0	21	LOAN	B1	PAY369		OTH	TIME WARNER				NEW YORK	NY	10019	9/28/2010 12:00:00 AM	12/31/2010 12:00:00 AM	0	500000	-13983.03	500000	0.00%																								0	0	0	500000
+1781425	1	1	LOAN	B1	PAY19		IND	Parrish	Claude			Los Angeles	CA	90017	7/14/2009 12:00:00 AM		0	44000	0	44000	0.00%	Claude Parrish	Property Tax Consultant																						0	0	0	44000
+1818905	0	2	LOAN	B1	PAY184		IND	Guillen	Abel			Oakland	CA	94609	10/1/2011 12:00:00 AM	10/1/2014 12:00:00 AM	0	5000	0	5000	0.00%	Caldwell Flores Winters, Inc.	Sr. Vice President																		PAY184				0	0	0	5000
+1831898	0	3	LOAN	B1	PAY2193		IND	Bates	Patricia			Laguna Niguel	CA	92677	6/5/2006 12:00:00 AM		0	15000	0	15000		Self/Pat Bates	Businesswoman/Community Volunteer																						0	0	0	15000
+1816744	0	5	LOAN	B1	B1-84		IND	FRIEDENTHAL	ALAN			LOS ANGELES	CA	90036	5/19/2006 12:00:00 AM	5/19/2007 12:00:00 AM	0	3000	0	3000	0.000	Court Commissioner	Los Angeles Superior Court																						0	0	0	3000
+1816749	0	7	LOAN	B1	L2270		IND	Maldonado	Abel			Santa Maria	CA	93454-9638	2/4/2011 12:00:00 AM		0	23000	0	23000	0	Agro-Jal Farms	Agriculture																		L2270_m						0	23000
+1797111	0	1	LOAN	B1	C16		COM	John A. Perez for Assembly 2010				Los Angeles	CA	90017	12/27/2011 12:00:00 AM	12/31/2012 12:00:00 AM		40000		40000	0				1314080																							90000
+1801333	1	5	LOAN	B1	PAY15		OTH	CALIFORNIA DENTAL ASSOCIATION				SACRAMENTO	CA	95814	8/19/2013 12:00:00 AM	12/31/2014 12:00:00 AM	2000000	2000000	2000000	0	0.00%																								0	0	0	2000000
+1817185	0	4	LOAN	B1	B1-2		COM	Senator Bob Dutton for Supervisor 2014				Rancho Santa Margarita	CA	92688	9/7/2011 12:00:00 AM		0	25000	0	25000	0.000				1315434																				0	0	0	25000
+1817723	0	7	LOAN	B1	PAY168		IND	Johannessen	Mark			West Sacramento	CA	95691	10/11/2010 12:00:00 AM	10/11/2011 12:00:00 AM	0	5000	0	5000	0.00%	n/a	Candidate																						0	0	0	5000
+1819441	0	2	LOAN	H	L11		COM	Vidak for Senate				Fresno	CA	93721-2924	6/20/2013 12:00:00 AM	12/31/2014 12:00:00 AM	0	2000		2000	0				1356181																						0	2000
+1872957	0	23	LOAN	B1	PAY313		OTH	RIVERSIDE MEDICAL CLINIC				RIVERSIDE	CA	92506	12/30/2013 12:00:00 AM	12/31/2014 12:00:00 AM	0	7023	0	7023	0.00%																				PAY313				0	0	0	7023
+1853712	1	2	LOAN	B1	PAY342		IND	Cohn	Steve M.			Sacramento	CA	95816	3/17/2014 12:00:00 AM	12/31/2014 12:00:00 AM	0	10000	-5000	10000	0.00%	City of Sacramento	City Council Member																		PAY342				0	0	0	10000
+1871999	0	1	LOAN	H	RCV473		COM	Hall for Assembly 2012				Los Angeles	CA	90010	8/27/2013 12:00:00 AM		0	10000	0	10000					1333819																				0	0	0	10000
+1872020	0	1	LOAN	B1	B1-348		IND	Stone	Jeff	Mr.		Riverside	CA	92507	8/11/2013 12:00:00 AM	12/31/2014 12:00:00 AM	0	100	0	100	0.000	County of Riverside	County Supervisor																						0	0	0	100
+1873192	0	1	LOAN	B1	PAY1068		OTH	Courage Campaign				Los Angeles	CA	90017	12/13/2012 12:00:00 AM	12/13/2013 12:00:00 AM	0	4000	0	4000	0.00%																								0	0	0	11000
+1854090	1	3	LOAN	B1	PAY206		IND	Conti	Diana			Mill Valley	CA	94941	1/27/2014 12:00:00 AM	1/27/2015 12:00:00 AM	0	7000	47500	7000	0.00%	Parca	Chief Executive Officer																						0	0	0	7000
+1872360	0	1	LOAN	B1	PAY173		COM	Dahle for Assembly 2014				Willows	CA	95988	4/14/2014 12:00:00 AM		0	4100	8200	4100					1354659																				0	0	0	4100
+1861943	0	3	LOAN	B1	C10114843		IND	Ritchie	Diane			San Jose	CA	95125-1868	2/5/2014 12:00:00 AM		0	100	192574.07	100	0	State of California	Judge																						0	0	0	100
+1861943	0	12	LOAN	B1	C10114832		IND	Ritchie	Diane			San Jose	CA	95125-1868	3/15/2014 12:00:00 AM		0	3000	192574.07	3000	0	State of California	Judge																						0	0	0	3000
+1867997	0	2	LOAN	B1	L557616		IND	Page	Chuck			Saratoga	CA	95070	2/10/2014 12:00:00 AM	6/3/2014 12:00:00 AM	0	2000	11411.26	2000	0	Farmers	Insurance	N																					0	0	0	2000
+1832573	0	1	LOAN	B1	B1-249		IND	Gray	Gloria			Los Angeles	CA	90048	3/12/2014 12:00:00 AM	3/12/2015 12:00:00 AM	2000	2000	12000	0	0.000																								0	0	0	2000
+1832401	1	5	LOAN	H	L557202		COM	TODD ZINK FOR SENATE 2012				SACRAMENTO	CA	95833	6/27/2012 12:00:00 AM	6/27/2013 12:00:00 AM	0	3900	0	3900	0			N	1345594																				0	0	0	3900
+1852495	0	1	LOAN	H	RCV729		COM	Independent Expenditure Committee for Quality Education				Sacramento	CA	95814	12/21/2004 12:00:00 AM		0	5000	0	5000	0.00%				1270347																				0	0	0	5000
+1862746	0	1	LOAN	B1	PAY118		IND	Appelquist	Barbi S.			Santa Monica	CA	90402-3136	2/14/2014 12:00:00 AM	12/31/2014 12:00:00 AM	0	0	40324.11	5000	0.00%	Cohen & Gardner	Attorney																						828.80	4171.20	0	5000
+1864123	0	10	LOAN	B1	PAY248		IND	Thompson	Andrea			Los Angeles	CA	90010	6/29/2012 12:00:00 AM		0	25000	14000	25000		Los Angeles Superior Court	Superior Court Judge																						0	0	0	25000
+1853644	0	3	LOAN	B1	PAY138		IND	Patrascu	Emanuel			Laguna Beach	CA	92651	12/31/2013 12:00:00 AM		0	5000	7000	5000		State Assemblyman	Candidate																						0	0	0	5000
+1854848	0	4	LOAN	B1	C2947308		IND	Garcia	Cristina			Bell Gardens	CA	90201	5/3/2012 12:00:00 AM	12/31/2012 12:00:00 AM	0	30000	0	30000	0	LA Community College	Professor																						0	0	0	30000
+1853883	1	3	LOAN	B1	PAY430		COM	Connie Conway for Senate 2018				Fresno	CA	93721	5/9/2014 12:00:00 AM	12/31/2015 12:00:00 AM	10000	10000	25000	0	0.00%				1353983																PAY430				0	0	0	10000
+1871154	0	2	LOAN	H	L556902		PTY	REPUBLICAN PARTY OF STANISLAUS COUNTY				MODESTO	CA	95353	7/8/2011 12:00:00 AM	12/31/2012 12:00:00 AM	0	15000	0	15000	0			N	74618																				0	0	0	15000
+1854202	0	3	LOAN	B1	L3		IND	Speers	Florence B			Newport Beach	CA	92663-4651	11/26/2013 12:00:00 AM		0	6800	0	6800	0	Retired	N/A																		L3_m						0	6800
+1852927	1	1	LOAN	B1	PAY147		IND	Stacy Okun-Wiese				Los Angeles	CA	90010	12/24/2013 12:00:00 AM	12/24/2014 12:00:00 AM	0	100000	0	100000	0.00%	Los Angeles County	Deputy District Attorney																						0	0	0	100000
+1853029	0	1	LOAN	B1	L557398		COM	GAINES FOR SENATE 2016				WILLOWS	CA	95988	5/1/2013 12:00:00 AM	12/31/2014 12:00:00 AM	0	4100	4100	4100	0			N	1355749																				0	0	0	4100
+1854348	0	2	LOAN	B1	B1-5		IND	Philips	Susan C.			Los Angeles	CA	90039	3/19/2014 12:00:00 AM	3/19/2015 12:00:00 AM	5000	5000	11000	0	0.000	Susan C. Philips	Educator																						0	0	0	5000
+1832510	1	2	LOAN	H	D709190		OTH	Solorio for College Board, RSCCD Trustee 2012				Long Beach	CA	90807	1/10/2014 12:00:00 AM		1000	1000	1000	0	0																								0	0	0	1000
+1853844	1	1	LOAN	H	D667			LACDP - Issues & Advocacy Committee				Los Angeles	CA	90017	4/1/2014 12:00:00 AM	4/1/2015 12:00:00 AM		25000		25000	0				744554																							25000
+1831377	1	1	LOAN	H	D1647			SEIU Local 721, AFL-CIO				Los Angeles	CA	90017	9/23/2005 12:00:00 AM	12/31/2007 12:00:00 AM		70000.12		70000.12	0																											100000
+1831377	1	2	LOAN	H	D486			SEIU Local 721, AFL-CIO				Los Angeles	CA	90017	3/15/2002 12:00:00 AM	12/31/2007 12:00:00 AM		40000.24		40000.24	0																											100000
+1854025	1	1	LOAN	B1	PAY6		IND	Bagley	Shawn			Salinas	CA	93908	3/31/2014 12:00:00 AM	3/31/2015 12:00:00 AM	5000	5000	5000	0	0.00%	Complete Produce Inc.	Produce Broker																		PAY6				0	0	0	5000
+1872804	0	1	LOAN	B1	L10		COM	Gaines for Senate 2016				Willows	CA	95988-9788	4/22/2013 12:00:00 AM	12/31/2014 12:00:00 AM	0	4100	0	4100	0				1355749																						0	4100
+1869974	0	1	LOAN	B1	PAY2		IND	Vogel	Kenneth Scott			Stockton	CA	95215	10/3/2013 12:00:00 AM	6/30/2016 12:00:00 AM	0	500	0	500	0.00%	San Joaquin County	County Supervisor																						0	0	0	500
+1853909	1	2	LOAN	B1	PAY10		IND	Matsumoto	Ken			Indianapolis	IN	46250	8/12/2013 12:00:00 AM		0	30000	30000	30000		None	Retired																						0	0	0	30000
+1818011	1	1	LOAN	H	D674013		OTH	Mendoza for Cent. Basin Water Dist. 2012				Long Beach	CA	90807	11/16/2012 12:00:00 AM		0	66000	0	66000	0																								0	0	0	66000
+1832550	1	3	LOAN	B1	PAY101		IND	Ashworth	Vicki			El Dorado Hills	CA	95762	2/26/2014 12:00:00 AM	6/30/2014 12:00:00 AM	4000	4000	4000	0	0.00%	El Dorado County District Attorneys Office	Assistant Deputy District Attorney																						0	0	0	4000
+1863992	0	7	LOAN	B1	PAY50		IND	Griego	Tom J.			Los Angeles	CA	90012	9/10/2010 12:00:00 AM		0	1000	500	1000		City of Los Angeles	Deputy City Attorney																						0	0	0	1000
+1852309	1	1	LOAN	B1	L557605		IND	Stodder	Seth			Redondo Beach	CA	90278	3/31/2014 12:00:00 AM	11/4/2014 12:00:00 AM	22000	22000	74150	0	0	N/A	Attorney	Y																					0	0	0	22000
+1930111	0	3	LOAN	B1	PAY29		IND	Gullon	Christian			West Covina	CA	91790	2/25/2014 12:00:00 AM		0	24997.26	24997.26	50000		Los Angeles County Superior Court	Judge																						25002.74	0	0	50000
+1931113	0	2	LOAN	B1	L557544		IND	Gamoian	Lisa			Fresno	CA	93721	3/7/2014 12:00:00 AM	12/31/2014 12:00:00 AM	0	25000	33609.88	25000	0			N																					0	0	0	25000
+1893265	1	1	LOAN	B1	PAY337		OTH	Service Employees International Union Local 221				San Diego	CA	92111	5/28/2014 12:00:00 AM		0	30000	60000	30000																									0	0	0	30000
+1936497	0	1	LOAN	H	L192		COM	Vidak for Senate				Fresno	CA	93721-2924	4/4/2013 12:00:00 AM	12/31/2014 12:00:00 AM	0	4100		4100	0				1356181																						0	4100
+1904523	0	2	LOAN	B1	C10184071		OTH	Small Business Owners & Taxpayers for Jose Solorio for Senate 2014				Long Beach	CA	90807	1/10/2014 12:00:00 AM		0	1000	1500	1000	0				1334323	Solorio	Jose																		0	0	0	1000
+1904647	0	1	LOAN	H	RCV3662		COM	Californians for Voter Turnout, Education & Registration				Sacramento	CA	95841	7/1/2010 12:00:00 AM	12/31/2014 12:00:00 AM	0	200000	0	200000	0.00%				1314625																				0	0	0	200000
+1918832	0	7	LOAN	B1	PAY117		IND	Draper	Timothy C.			Menlo Park	CA	94025	9/22/2014 12:00:00 AM		0	0	5267908.28	90000		Draper Fisher Jurvetson	Venture Capitalist		498501																PAY117				22091.72	67908.28	0	90000
+1926532	0	1	LOAN	B1	PAY97		IND	Murray	Tom			Arroyo Grande	CA	93420	8/24/2014 12:00:00 AM	8/22/2015 12:00:00 AM	0	10000	10000	10000	0.00%	Self	Contractor																						0	0	0	10000
+1936685	0	4	LOAN	B1	C24872		IND	Joe Coto				Sacramento	CA	95814	12/19/2013 12:00:00 AM			25238.58		25238.58		State of California	Assemblyman																									25238.58
+1904580	1	2	LOAN	B1	PAY279		OTH	BAY VALLEY MEDICAL GROUP, INC.				HAYWARD	CA	94545	12/30/2013 12:00:00 AM	12/31/2014 12:00:00 AM	0	0	3675	3675	0.00%																				PAY279				0	3675	0	3675
+1860949	1	1	LOAN	B1	PAY30		IND	Gold	Ronald			Woodland Hills	CA	91364	3/1/2014 12:00:00 AM		0	500	15500	500	0.00%	Ronald Gold Law	Attorney																						0	0	0	500
+1893181	0	2	LOAN	B1	PAY374		IND	Chang	Ling-Ling			Diamond Bar	CA	91765	10/29/2013 12:00:00 AM		0	4000	500	4000																									0	0	0	4000
+1893509	0	1	LOAN	B1	C130		COM	Los Angeles County Democratic Party State Candidate Committee				Los Angeles	CA	90017	4/1/2014 12:00:00 AM	4/1/2015 12:00:00 AM		25000	50000	25000	0				1237135																							25000
+1872776	1	1	LOAN	B1	PAY36		IND	Phillips	Steven C.			San Francisco	CA	94107	3/4/2014 12:00:00 AM	3/4/2015 12:00:00 AM	0	-195.21	0	125000	1.00%	Steven C. Phillips	Attorney																		PAY36				125000	0	195.21	125000
+1893594	0	1	LOAN	B1	PAY51		IND	Wood	James D.			Healdsburg	CA	95448	12/16/2012 12:00:00 AM	12/16/2014 12:00:00 AM	0	0	-1000	500	0.00%	James D. Wood	Dentist																						500	0	0	500
+1892656	0	1	LOAN	B1	PAY5		IND	Bates	Patricia			Laguna Niguel	CA	92677	12/27/2012 12:00:00 AM		0	0	-100000	100000		County of Orange	Supervisor																						100000	0	0	100000
+1900713	0	3	LOAN	B1	VN924BT2324		IND	Gabriella	Wendy			Laguna Niguel	CA	92677-8606	12/22/2013 12:00:00 AM		0	335.02	1196.39	335.02	0	Gabriella for Assembly 2014	Candidate		1361394																VN924BT2324				0	0	0	335.02
+1893786	0	4	LOAN	H	L7		COM	Todd Zink for Senate 2012				Sacramento	CA	95833-4131	6/30/2012 12:00:00 AM	12/31/2014 12:00:00 AM	0	3900		3900	0				1345594																						0	3900
+1904731	1	1	LOAN	B1	PAY7		IND	Obernolte	Jay			Big Bear Lake	CA	92315	1/9/2014 12:00:00 AM		0	50000	392757.05	50000	0.00%	FarSight Studios, Inc.	Owner/Operator																						0	0	0	50000
+1904864	0	8	LOAN	H	L12		COM	Rob Mc Coy for Assembly 2014				Santa Ana	CA	92705-5646	9/29/2014 12:00:00 AM	12/31/2013 12:00:00 AM	0	4100		4100	0				1362963																						0	4100
+1905886	0	1	LOAN	B1	6		IND	REED	JIM			FALL RIVER MILLS	CA	96028	10/9/2014 12:00:00 AM		37000	94500	94500	57500	0%	NICHOLS, CATTERTON, DOWNING & REED	ATTORNEY																						0	0	0	37000
+1872559	2	2	LOAN	B1	B1-604		IND	Carlstrom	Erin B.			Santa Rosa	CA	95407	6/6/2014 12:00:00 AM	12/31/2018 12:00:00 AM	450	450	1450	0	0.000	City of Santa Rosa	Councilwoman																						0	0	0	450
+1936210	0	1	LOAN	H	RCV364		COM	Diane Harkey for Board of Equalization 2014				San Juan Capistrano	CA	92675	3/17/2014 12:00:00 AM	6/30/2014 12:00:00 AM	0	0	4100	4100	0.00%				1337528																				4100	0	0	4100
+1936276	0	2	LOAN	H	RCV905		COM	Gallagher for Assembly 2014				Rio Oso	CA	95674	12/31/2013 12:00:00 AM	6/30/2014 12:00:00 AM	0	1500	0	1500	0.00%				1357068																RCV905				0	0	0	1500
+1904043	0	4	LOAN	B1	PAY21		IND	Parrish	Claude			Los Angeles	CA	90017	4/1/2010 12:00:00 AM		0	50000	0	50000	0.00%	Claude Parrish	Property Tax Consultant																						0	0	0	50000
+1930083	0	33	LOAN	B1	PAY533		IND	Thompson	Andrea			Los Angeles	CA	90010	9/30/2014 12:00:00 AM	9/30/2015 12:00:00 AM	1000	1000	21000	0	0.00%	Los Angeles Superior Court	Superior Court Judge																						0	0	0	1000
+1904063	0	4	LOAN	B1	PAY11		IND	Steinorth	Marc			Rancho Cucamonga	CA	91737	12/19/2013 12:00:00 AM		0	10000	-40000	50000		Atlas Buying Group	President																						40000	0	0	50000
+2008170	0	6	LOAN	B1	B1-157		IND	Krekorian	Paul			Encino	CA	91436	4/15/2002 12:00:00 AM	4/15/2013 12:00:00 AM	0	2000	0	2000	0.000																								0	0	0	2000
+1983230	0	1	LOAN	B1	3		IND	WYMAN	PHILLIP			TEHACHAPI	CA	93581	5/15/2006 12:00:00 AM		0	45004.23	0	45004.23	0%	WYMAN & ASSOCIATES		X																					0	0	0	90000
+2017550	0	1	LOAN	B1	PAY16		IND	Arambula	Joaquin			Kingsburg	CA	93631	1/12/2016 12:00:00 AM	1/12/2017 12:00:00 AM	50000	50000	50000	0	0.00%	California Emergency Physicians of America	Physician																						0	0	0	50000
+1981265	0	1	LOAN	B1	PAY4		IND	Thompson	Andrea			Los Angeles	CA	90010	5/13/2011 12:00:00 AM		0	2000	6500	2000		Los Angeles Superior Court	Superior Court Judge																		PAY4				0	0	0	2000
+2010325	0	1	LOAN	B1	L557876		IND	Zoslocki	William			Modesto	CA	95355	1/27/2015 12:00:00 AM	6/7/2016 12:00:00 AM	0	100	10100	100	0	None		N																					0	0	0	100
+2010407	0	2	LOAN	B1	PAY135		IND	Hanley	Kevin J.			Roseville	CA	95661	12/9/2015 12:00:00 AM		40000	0	50000	0		Auburn Chamber of Commerce	CEO																						40000	0	0	40000
+1998038	0	7	LOAN	B1	B1-156		IND	Krekorian	Paul			Encino	CA	91436	5/30/2003 12:00:00 AM	5/30/2013 12:00:00 AM	0	2000	0	2000	0.000																								0	0	0	2000
+1937680	0	2	LOAN	B1	B1-131		IND	Kingsley	Carol			San Francisco	CA	94104	5/16/2014 12:00:00 AM	12/31/2014 12:00:00 AM	0	20000	125194	20000	0.000	Kingsley Mediation Services	Attorney																						0	0	0	20000
+1936780	0	2	LOAN	B1	PAY286		COM	Dahle for Assembly 2014				Willows	CA	95988	6/30/2014 12:00:00 AM		0	0	0	4100					1354659																				4100	0	0	4100
+1937480	0	2	LOAN	B1	B1-4		IND	Walker	Sherry			Santa Ana	CA	92707	5/19/2014 12:00:00 AM	12/31/2016 12:00:00 AM	0	5000	8452.91	5000	0.000	Adam Nick and Associates Inc.	Finance Manager																						0	0	0	5000
+1988554	0	5	LOAN	B1	PAY144		IND	Patrascu	Emanuel			Laguna Beach	CA	92651	12/31/2013 12:00:00 AM		0	200	0	200		State Assemblyman	Candidate																						0	0	0	200
+1893273	1	3	LOAN	H	D730425		OTH	Solorio for College Board, RSCCD Trustee 2012				Long Beach	CA	90807	9/11/2014 12:00:00 AM		500	500	1500	0	0																								0	0	0	500
+2011063	0	16	LOAN	B1	PAY376		IND	Thompson	Andrea			Long Beach	CA	90802	5/10/2013 12:00:00 AM		0	3500	12500	3500		Los Angeles Superior Court	Superior Court Judge																						0	0	0	3500
+2011250	0	2	LOAN	H	L14		COM	Steinorth For Assembly 2014				Rancho Cucamonga	CA	91701-6064	10/28/2014 12:00:00 AM	12/31/2015 12:00:00 AM	0	4100		4100	0				1362305																						0	4100
+1878166	1	1	LOAN	B1	59		IND	Sylva	Julianne			Los Gatos	CA	95032	3/1/2014 12:00:00 AM	12/1/2014 12:00:00 AM	0	0	0	44000	0%	Co. of Santa Clara	Attorney																						14252.23	29747.77	0	44000
+1979870	0	1	LOAN	B1	2		IND	Schaupp	Charles			Esparto	CA	95627	5/1/2014 12:00:00 AM	12/30/2015 12:00:00 AM	0	22000	0	22000	0%	US Marines	Retired Military	X																	2				0	0	0	22000
+1953149	0	1	LOAN	B1	PAY16		IND	Bigelow	Franklin 'Frank' E.			O'Neals	CA	93045	11/8/2011 12:00:00 AM	6/30/2012 12:00:00 AM	0	0	-49500	49500	0.00%	Bigelow Farms	Business Owner																						49500	0	0	50000
+1893823	5	1	LOAN	B1	12		IND	Musser-Lopez	Ruth			Needles	CA	92363	6/23/2014 12:00:00 AM	11/10/2014 12:00:00 AM	4566	3516	4566	1050	0%	Archaeological Heritage Association	Archaeologist/Businesswoman																						0	1050	0	1050
+1956853	0	1	LOAN	B1	L6		COM	Re Elect Tony Strickland Senate 2012				Santa Ana	CA	92705-5646	7/20/2010 12:00:00 AM		0	0	64000	64000	0				1314562																L6_m					64000	0	81000
+2012145	0	1	LOAN	H	H-1		COM	John Allard for Assembly				Roseville	CA	95678	12/27/2010 12:00:00 AM		0	1000	0	1000	0.000				1327652																				0	0	0	1000
+1960215	0	8	LOAN	B1	B1-158		IND	Krekorian	Paul			Los Angeles	CA	90048	10/28/2003 12:00:00 AM	10/28/2013 12:00:00 AM	0	1300	0	1300	0.000																								0	0	0	1300
+1957161	1	5	LOAN	B1	VPF749PA5G6		COM	Los Angeles County Democratic Party State Candidate Committee				Los Angeles	CA	90017-5864	2/25/2014 12:00:00 AM	2/25/2015 12:00:00 AM	0	25000	0	25000	0				1237135																				0	0	0	25000
+1980836	1	3	LOAN	B1	6		IND	Pranka	Carol			El Sobrante	CA	94803	5/14/2012 12:00:00 AM	1/30/2016 12:00:00 AM	0	15000	25000	15000	0%	USDA	Rural Dev. Loan Specilist																						0	0	0	15000
+1967675	1	1	LOAN	H	VPE7V9J9SN3		COM	LACDP - Issues & Advocacy Committee				Los Angeles	CA	90017-5864	12/23/2011 12:00:00 AM	12/31/2014 12:00:00 AM	0	10000	0	10000	0																								0	0	0	10000
+1982691	0	1	LOAN	B1	PAY125		IND	Price	Pamela			Oakland	CA	94605	3/24/2014 12:00:00 AM		0	20000	0	20000		Price & Associates	Attorney																		PAY125				0	0	0	20000
+2012516	0	2	LOAN	B1	PAY72		IND	Steinorth	Marc			Alta Loma	CA	91737	10/9/2010 12:00:00 AM		0	5000	-9000	5000		Mayor of Rancho Cucamonga	Candidate																						0	0	0	25000
+2012591	0	1	LOAN	H	RCV4		COM	Lift Up California Wages, sponsored by Service Employees International Union, United Healthcare Works West				Oakland	CA	94612	4/16/2014 12:00:00 AM		0	0	0	3000000					1362831																				0	3000000	0	3000000
+2012604	0	2	LOAN	B1	B1-8604		IND	Buchanan	Joan			Sacramento	CA	95814	3/20/2015 12:00:00 AM	12/31/2015 12:00:00 AM	0	0	142990.91	35000	0.000	N.A.	Retired																						0	35000	0	35000
+1982750	0	26	LOAN	B1	PAY683		IND	Swanson	Sandre			Alameda	CA	94502	8/5/2014 12:00:00 AM		0	250	-6200	250		Candidate	Candidate																						0	0	0	250
+1982828	0	1	LOAN	H	RCV916		COM	CAS Building a Healthy Future Dr. Pan Ballot Measure Committee				Sacramento	CA	95815	2/5/2014 12:00:00 AM	2/5/2016 12:00:00 AM	0	15000	0	15000	0.00%				1347510																				0	0	0	15000
+1973616	0	1	LOAN	B1	PAY117414		IND	LABRUM	RON			Libertyville	IL	60048	10/27/2008 12:00:00 AM	6/30/2009 12:00:00 AM	0	50000	0	50000		FENWAL BLOOD TECHNOLOGIES	BUSINESS EXEC																						0	0	0	50000
+2005797	0	1	LOAN	B1	PAY13		IND	Mendoza	Sandra Y.			Los Angeles	CA	90006	6/30/2013 12:00:00 AM		0	5300	0	5300		City of Los Angeles	Program Manager																						0	0	0	5300
+1977991	0	6	LOAN	B1	8		OTH	Klein Financial Corporation				Fresno	CA	93721	4/8/2011 12:00:00 AM		0	550	0	550	0%																								0	0	0	550
+2007445	0	1	LOAN	B1	5		IND	Flanagan	Tara			Oakland	CA	94612	2/10/2012 12:00:00 AM	12/31/2018 12:00:00 AM	0	46803	46803	46803	0%	State of California	Judge																						0	0	0	61803
+2032906	1	1	LOAN	B1	10		IND	COX	JOHN			RANCHO SANTA FE	CA	92067	2/23/2016 12:00:00 AM	12/31/2016 12:00:00 AM	100000	100000	100000	0	6%	COX, OAKES & ASSOCIATES, LTD.	ATTORNEY																		10				0	0	0	100000
+2034056	0	3	LOAN	H	RCV24		COM	Marc Levine Ballot Issue Committee, Elevate California				San Anselmo	CA	94960	1/28/2015 12:00:00 AM	12/31/2015 12:00:00 AM	0	5000	10000	5000	0.00%				1356004																				0	0	0	5000
+2032139	0	2	LOAN	B1	PAY76		IND	Heerwagen	James D.			Los Gatos	CA	95030-5804	1/12/2016 12:00:00 AM	6/30/2016 12:00:00 AM	125000	125000	195000	0	0.00%	Self-employed	Consultant																		PAY76				0	0	0	125000
+2034485	0	13	LOAN	B1	PAY1851		IND	Swanson	Sandre			Alameda	CA	94502	4/6/2016 12:00:00 AM	10/6/2016 12:00:00 AM	4200	4200	32500	0	0.00%	Candidate	Candidate																		PAY1851				0	0	0	4200
+2035153	0	1	LOAN	B1	PAY2		OTH	Law Offices Soheila Azizi & Associates, P.C.				Rancho Cucamonga	CA	91730	2/1/2016 12:00:00 AM		1000	1000	1000	0																									0	0	0	1000
+2033523	0	5	LOAN	B1	PAY110		COM	Galgiani for Senate 2016				Los Angeles	CA	90010	8/17/2015 12:00:00 AM		0	20000	0	20000					1353849																				0	0	0	20000
+2034599	0	1	LOAN	B1	PAY2		IND	Mesropi	Fred			Los Angeles	CA	90012	4/4/2016 12:00:00 AM		5000	5000	5000	0	0.00%	County of Los Angeles	Deputy District Attorney																		PAY2				0	0	0	5000
+2034906	0	3	LOAN	B1	PAY47		IND	Obernolte	Jay			Big Bear Lake	CA	92315	4/12/2014 12:00:00 AM		0	25000	0	25000	0.00%	FarSight Studios, Inc.	Owner/Operator																						0	0	0	25000
+2035199	0	7	LOAN	B1	B1-57908		IND	Pugno	Andrew	Mr.		Folsom	CA	95630	4/21/2016 12:00:00 AM		100000	100000	301121.20	0	0.00	Law Offices of Andrew P. Pugno	Small Business Owner																						0	0	0	100000
+2035217	0	2	LOAN	B1	B1-2231		COM	Anderson For Assembly 2018				La Mesa	CA	91942-6719	12/31/2015 12:00:00 AM	1/1/1900 12:00:00 AM	0	0	0	4200	0.00				1374227																				4200	0	0	4200

@@ -1,5 +1,6 @@
 # The app
-django-calaccess-raw-data>=1.4.5
+# django-calaccess-raw-data>=1.4.5
+git+ssh://git@github.com/california-civic-data-coalition/django-calaccess-raw-data.git@HEAD#django-calaccess-raw-data
 Django>=1.8
 hurry.filesize
 pytz
