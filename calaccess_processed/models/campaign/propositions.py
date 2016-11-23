@@ -66,18 +66,61 @@ class PropositionCommittee(models.Model):
         blank=True,
         help_text="Name of the proposition",
     )
-    supports = models.ManyToManyField(
+    propositions = models.ManyToManyField(
         'Proposition',
-        related_name='supporting_committees',
-        help_text="Propositions supported by this committee",
-    )
-    opposes = models.ManyToManyField(
-        'Proposition',
-        related_name='opposing_committees',
-        help_text="Propositions opposed by this committee",
+        through='PropositionSupportOppose',
+        help_text="Propositions supported or opposed by this committee",
+        related_name='committees'
     )
 
     objects = ProcessedDataManager()
 
+    @property
+    def supports(self):
+        """
+        Propositions supported by this committee"
+        """
+        return self.propositions.filter(
+            propositionsupportoppose__support_oppose='S'
+        )
+
+    @property
+    def opposes(self):
+        """
+        Propositions opposed by this committee"
+        """
+        return self.propositions.filter(
+            propositionsupportoppose__support_oppose='O'
+        )
+
     def __str__(self):
         return self.name
+
+
+class PropositionSupportOppose(models.Model):
+    """
+    Stores information about committees and the propositions
+    that they support or oppose.
+    """
+    committee = models.ForeignKey(
+        'PropositionCommittee',
+        on_delete=models.CASCADE,
+        help_text='Committee that supports or opposes the proposition'
+    )
+    proposition = models.ForeignKey(
+        'Proposition',
+        on_delete=models.CASCADE,
+        help_text='Proposition supported or opposed by the committee'
+    )
+    SUPPORT_OPPOSE_CHOICES = (
+        ('S', 'Support'),
+        ('O', 'Oppose')
+    )
+    support_oppose = models.CharField(
+        verbose_name="support or oppose",
+        max_length=1,
+        null=False,
+        blank=True,
+        choices=SUPPORT_OPPOSE_CHOICES,
+        help_text="Whether the committee supports or opposes the proposition",
+    )
