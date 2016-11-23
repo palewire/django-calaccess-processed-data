@@ -19,4 +19,4 @@ node_modules
 data
 CSV
 ****-**-**_**-**-**/
-.scraper_cache
+.scraper_cache/
