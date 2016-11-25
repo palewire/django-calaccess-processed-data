@@ -13,7 +13,6 @@ from calaccess_processed.managers import ProcessedDataManager
 class Proposition(models.Model):
     """
     A single proposition on the California ballot.
-
     Scraped from the CAL-ACCESS site.
     """
     id = models.IntegerField(
@@ -49,7 +48,6 @@ class Proposition(models.Model):
 class PropositionCommittee(models.Model):
     """
     A committee that supports or opposes at least one proposition.
-
     Scraped from the CAL-ACCESS site.
     """
     id = models.IntegerField(

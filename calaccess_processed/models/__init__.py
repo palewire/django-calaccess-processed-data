@@ -12,7 +12,7 @@ from calaccess_processed.models.campaign.elections import (
 )
 from calaccess_processed.models.campaign.propositions import (
     Proposition,
-    PropositionCommittee
+    PropositionCommittee,
 )
 from calaccess_processed.models.campaign.filings.form460 import (
     Form460Filing,

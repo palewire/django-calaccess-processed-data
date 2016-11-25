@@ -39,6 +39,23 @@ class ScrapedCandidateAdmin(BaseAdmin):
     )
 
 
+@admin.register(models.ScrapedCandidateCommittee)
+class ScrapedCandidateCommitteeAdmin(BaseAdmin):
+    list_display = (
+        "scraped_id",
+        "name",
+        "candidate",
+        "status",
+    )
+    list_per_page = 500
+    search_fields = (
+        "scraped_id",
+        "name",
+        "candidate",
+        "status",
+    )
+
+
 @admin.register(models.PropositionScrapedElection)
 class PropositionScrapedElectionAdmin(BaseAdmin):
     list_display = (
@@ -61,4 +78,21 @@ class ScrapedPropositionAdmin(BaseAdmin):
     search_fields = (
         "name",
         "scraped_id"
+    )
+
+
+@admin.register(models.ScrapedPropositionCommittee)
+class ScrapedPropositionCommitteeAdmin(BaseAdmin):
+    list_display = (
+        "scraped_id",
+        "name",
+        "position",
+        "proposition",
+    )
+    list_per_page = 500
+    search_fields = (
+        "scraped_id",
+        "name",
+        "position",
+        "proposition",
     )

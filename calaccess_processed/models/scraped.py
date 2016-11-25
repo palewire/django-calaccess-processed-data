@@ -60,13 +60,20 @@ class ScrapedCandidate(BaseScrapedModel):
     A candidate for office scraped from the California Secretary of State's
     site.
     """
-    name = models.CharField(max_length=200)
+    name = models.CharField(
+        verbose_name="candidate name",
+        max_length=200
+    )
     scraped_id = models.CharField(
         verbose_name="candidate identification number",
         max_length=7,
         blank=True,  # Some don't have IDs on the website
     )
-    office_name = models.CharField(max_length=100, blank=True)
+    office_name = models.CharField(
+        verbose_name="name of the office for which this candidate is running",
+        max_length=100,
+        blank=True
+    )
     election = models.ForeignKey('CandidateScrapedElection', null=True)
 
     def __str__(self):
@@ -92,7 +99,10 @@ class ScrapedProposition(BaseScrapedModel):
     # Most of the time, this is a number, however,
     # it can be a bona fide name, e.g.
     # '2003 Recall Question'
-    name = models.CharField(max_length=200)
+    name = models.CharField(
+        verbose_name="proposition name",
+        max_length=200
+    )
     scraped_id = models.CharField(
         verbose_name="proposition identification number",
         max_length=200
@@ -107,7 +117,16 @@ class ScrapedProposition(BaseScrapedModel):
 
 
 class BaseScrapedCommittee(BaseScrapedModel):
-    name = models.CharField(max_length=500)
+    """
+    An committee scraped from the California Secretary of State's site.
+    This is an abstract base model that creates two tables, one for committees
+    scraped as part of the candidates scraper, and one for committees scraped
+    as part of the propositions scraper.
+    """
+    name = models.CharField(
+        verbose_name="committee name",
+        max_length=500
+    )
     scraped_id = models.CharField(
         verbose_name="committee identification number",
         max_length=7
@@ -123,16 +142,11 @@ class ScrapedPropositionCommittee(BaseScrapedCommittee):
     A committee supporting or opposing a proposition scraped from the
     California Secretary of State's site.
     """
-    proposition = models.ForeignKey('ScrapedProposition')
-    name = models.CharField(max_length=500)
-    scraped_id = models.CharField(
-        verbose_name="committee identification number",
-        max_length=7
-    )
     position = models.CharField(
         max_length=100,
         help_text="Whether the committee supports or opposes the proposition",
     )
+    proposition = models.ForeignKey('ScrapedProposition')
 
     def __str__(self):
         return self.name
@@ -141,8 +155,8 @@ class ScrapedPropositionCommittee(BaseScrapedCommittee):
 @python_2_unicode_compatible
 class ScrapedCandidateCommittee(BaseScrapedCommittee):
     """
-    A candidate committee scraped from the
-    California Secretary of State's site.
+    A candidate committee scraped from the California Secretary of State's
+    site.
     """
     candidate = models.ForeignKey('ScrapedCandidate')
     status = models.CharField(
