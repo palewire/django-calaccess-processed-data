@@ -92,7 +92,7 @@ AND loan."AMEND_ID" = filing_version.amend_id
 WHERE loan."FORM_TYPE" = 'B2'
 AND loan."LOAN_TYPE" = ''
 AND loan."LOAN_DATE1" >= '2000-12-22'
--- Also include items guarantor items from the older version 
+-- Also include loan guarantor items from the older version
 -- of Schedule B, Part 1
 UNION
 SELECT
