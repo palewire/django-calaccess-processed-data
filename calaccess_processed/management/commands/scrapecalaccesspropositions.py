@@ -39,7 +39,6 @@ class Command(ScrapeCommand):
             data = self.scrape_year_page(link)
             # Add it to the list
             results.append(data)
-            sleep(0.5)
 
         # Pass it out
         return results
@@ -83,6 +82,9 @@ class Command(ScrapeCommand):
 
             # Add the data to our data dict
             data_dict[election_name] = prop_list
+
+        # Take a rest
+        sleep(0.5)
 
         # Pass the data back out
         return data_dict
@@ -136,6 +138,9 @@ class Command(ScrapeCommand):
                 len(data_dict['committees'])
             )
             self.log(msg)
+
+        # Take a rest
+        sleep(0.5)
 
         # Pass the data out
         return data_dict

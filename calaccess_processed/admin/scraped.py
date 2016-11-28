@@ -44,14 +44,14 @@ class ScrapedCandidateCommitteeAdmin(BaseAdmin):
     list_display = (
         "scraped_id",
         "name",
-        "candidate",
+        "candidate_id",
         "status",
     )
     list_per_page = 500
     search_fields = (
         "scraped_id",
         "name",
-        "candidate",
+        "candidate_id",
         "status",
     )
 
