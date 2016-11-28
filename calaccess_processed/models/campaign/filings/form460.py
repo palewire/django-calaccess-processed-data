@@ -12,7 +12,8 @@ from calaccess_processed.models.campaign.filings import (
     CampaignContributionBase,
     CampaignExpenditureItemBase,
     CampaignExpenditureSubItemBase,
-    CampaignLoanItemBase,
+    CampaignLoanReceivedItemBase,
+    CampaignLoanMadeItemBase
 )
 
 
@@ -344,7 +345,7 @@ class Form460ScheduleAItemVersion(Form460ScheduleAItemBase):
         )
 
 
-class Form460ScheduleB1ItemBase(CampaignLoanItemBase):
+class Form460ScheduleB1ItemBase(CampaignLoanReceivedItemBase):
     """
     Abstract base model for items reported on Schedule B, Part 1, of Form 460.
 
@@ -512,7 +513,7 @@ class Form460ScheduleB1ItemVersion(Form460ScheduleB1ItemBase):
         )
 
 
-class Form460ScheduleB2ItemBase(CampaignLoanItemBase):
+class Form460ScheduleB2ItemBase(CampaignLoanReceivedItemBase):
     """
     Abstract base model for items reported on Schedule B, Part 2, of Form 460.
 
@@ -641,7 +642,7 @@ class Form460ScheduleB2ItemVersion(Form460ScheduleB2ItemBase):
         )
 
 
-class Form460ScheduleB2ItemBaseOld(CampaignLoanItemBase):
+class Form460ScheduleB2ItemBaseOld(CampaignLoanReceivedItemBase):
     """
     Abstract base model for Schedule B, Part 2, items from the pre-2001 Form 460.
 
@@ -1623,7 +1624,7 @@ class Form460ScheduleGItemVersion(Form460ScheduleGItemBase):
         )
 
 
-class Form460ScheduleHItemBase(CampaignLoanItemBase):
+class Form460ScheduleHItemBase(CampaignLoanMadeItemBase):
     """
     Abstract base model for items reported on Schedule H of Form 460.
 

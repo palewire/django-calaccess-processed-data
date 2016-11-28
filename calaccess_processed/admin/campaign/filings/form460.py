@@ -459,8 +459,8 @@ class Form460ScheduleHItemAdmin(BaseAdmin):
     list_display = (
         'filing',
         'line_item',
-        'lender_code',
-        'lender_lastname',
+        'recipient_code',
+        'recipient_lastname',
         'begin_period_balance',
         'amount_loaned',
         'amount_paid',
@@ -484,8 +484,8 @@ class Form460ScheduleHItemVersionAdmin(BaseAdmin):
     list_display = (
         'filing_version',
         'line_item',
-        'lender_code',
-        'lender_lastname',
+        'recipient_code',
+        'recipient_lastname',
         'begin_period_balance',
         'amount_loaned',
         'amount_paid',
