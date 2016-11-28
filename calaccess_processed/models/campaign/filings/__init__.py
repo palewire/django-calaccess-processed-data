@@ -697,6 +697,7 @@ class CampaignExpenditureSubItemBase(CampaignExpenditureItemBase):
 class CampaignLoanItemBase(models.Model):
     """
     Abstract base model for loans received or made by campaign filers.
+
     These transactions are itemized on Schedules B (Parts 1 and 2) and H of
     Form 460 filings and stored in the LOAN_CD table.
     """
