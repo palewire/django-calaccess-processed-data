@@ -1,18 +1,18 @@
 INSERT INTO calaccess_processed_form460schedulehitemversion (
     filing_version_id,
     line_item,
-    lender_code,
-    lender_committee_id,
-    lender_title,
-    lender_lastname,
-    lender_firstname,
-    lender_name_suffix,
-    lender_city,
-    lender_state,
-    lender_zip,
-    lender_employer,
-    lender_occupation,
-    lender_is_self_employed,
+    recipient_code,
+    recipient_committee_id,
+    recipient_title,
+    recipient_lastname,
+    recipient_firstname,
+    recipient_name_suffix,
+    recipient_city,
+    recipient_state,
+    recipient_zip,
+    recipient_employer,
+    recipient_occupation,
+    recipient_is_self_employed,
     treasurer_title,
     treasurer_lastname,
     treasurer_firstname,
@@ -44,7 +44,7 @@ INSERT INTO calaccess_processed_form460schedulehitemversion (
 SELECT 
     filing_version.id AS filing_version_id,
     loan."LINE_ITEM" AS line_item,
-    UPPER(loan."ENTITY_CD") as lender_code,
+    UPPER(loan."ENTITY_CD") as recipient_code,
     TRIM(
         REPLACE(
             REGEXP_REPLACE(
@@ -55,21 +55,21 @@ SELECT
             '#',
             ''
         )
-    ) AS lender_committee_id,
-    UPPER(loan."LNDR_NAMT") AS lender_title,
-    UPPER(loan."LNDR_NAML") AS lender_lastname,
-    UPPER(loan."LNDR_NAMF") AS lender_firstname,
-    UPPER(loan."LNDR_NAMS") AS lender_name_suffix,
-    UPPER(loan."LOAN_CITY") AS lender_city,
-    UPPER(loan."LOAN_ST") AS lender_state,
-    UPPER(loan."LOAN_ZIP4") AS lender_zip,
-    UPPER(loan."LOAN_EMP") AS lender_employer,
-    UPPER(loan."LOAN_OCC") AS lender_occupation,
+    ) AS recipient_committee_id,
+    UPPER(loan."LNDR_NAMT") AS recipient_title,
+    UPPER(loan."LNDR_NAML") AS recipient_lastname,
+    UPPER(loan."LNDR_NAMF") AS recipient_firstname,
+    UPPER(loan."LNDR_NAMS") AS recipient_name_suffix,
+    UPPER(loan."LOAN_CITY") AS recipient_city,
+    UPPER(loan."LOAN_ST") AS recipient_state,
+    UPPER(loan."LOAN_ZIP4") AS recipient_zip,
+    UPPER(loan."LOAN_EMP") AS recipient_employer,
+    UPPER(loan."LOAN_OCC") AS recipient_occupation,
     CASE UPPER(loan."LOAN_SELF")
         WHEN 'Y' THEN true
         WHEN 'X' THEN true
         ELSE false 
-    END AS lender_is_self_employed,
+    END AS recipient_is_self_employed,
     UPPER(loan."TRES_NAMT") AS treasurer_title,
     UPPER(loan."TRES_NAML") AS treasurer_lastname,
     UPPER(loan."TRES_NAMF") AS treasurer_firstname,
