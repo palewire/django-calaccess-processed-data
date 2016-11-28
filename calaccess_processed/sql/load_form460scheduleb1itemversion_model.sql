@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_form460scheduleb1itemversion (
+INSERT INTO calaccess_processed_form460schedulehitemversion (
     filing_version_id,
     line_item,
     lender_code,
@@ -101,5 +101,4 @@ FROM "LOAN_CD" loan
 JOIN calaccess_processed_form460filingversion filing_version
 ON loan."FILING_ID" = filing_version.filing_id
 AND loan."AMEND_ID" = filing_version.amend_id
-WHERE loan."FORM_TYPE" = 'B1'
-AND loan."LOAN_TYPE" <> 'B1G';
+WHERE loan."FORM_TYPE" = 'H';

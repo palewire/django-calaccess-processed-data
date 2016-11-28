@@ -167,6 +167,48 @@ class Form460ScheduleB2ItemVersionAdmin(BaseAdmin):
     )
 
 
+@admin.register(models.Form460ScheduleB2ItemOld)
+class Form460ScheduleB2ItemOldAdmin(BaseAdmin):
+    """
+    Custom admin for the Form460ScheduleB2ItemOld model.
+    """
+    list_display = (
+        'filing',
+        'line_item',
+        'lender_code',
+        'lender_lastname',
+        'date_paid_or_forgiven',
+        'date_of_original_loan',
+        'interest_rate',
+        'repayment_type',
+        'amount_paid_or_forgiven',
+        'outstanding_principle',
+        'interest_paid',
+        'transaction_id',
+    )
+
+
+@admin.register(models.Form460ScheduleB2ItemVersionOld)
+class Form460ScheduleB2ItemVersionOldAdmin(BaseAdmin):
+    """
+    Custom admin for the Form460ScheduleB2ItemVersionOld model.
+    """
+    list_display = (
+        'filing_version',
+        'line_item',
+        'lender_code',
+        'lender_lastname',
+        'date_paid_or_forgiven',
+        'date_of_original_loan',
+        'interest_rate',
+        'repayment_type',
+        'amount_paid_or_forgiven',
+        'outstanding_principle',
+        'interest_paid',
+        'transaction_id',
+    )
+
+
 @admin.register(models.Form460ScheduleCItem)
 class Form460ScheduleCItemAdmin(BaseAdmin):
     """
@@ -406,6 +448,56 @@ class Form460ScheduleGItemVersionAdmin(BaseAdmin):
         'parent_transaction_id',
         'parent_schedule',
         'memo_reference_number',
+    )
+
+
+@admin.register(models.Form460ScheduleHItem)
+class Form460ScheduleHItemAdmin(BaseAdmin):
+    """
+    Custom admin for the Form460ScheduleHItem model.
+    """
+    list_display = (
+        'filing',
+        'line_item',
+        'recipient_code',
+        'recipient_lastname',
+        'begin_period_balance',
+        'amount_loaned',
+        'amount_paid',
+        'amount_forgiven',
+        'end_period_balance',
+        'date_due',
+        'interest_received',
+        'interest_rate',
+        'original_amount',
+        'date_incurred',
+        'cumulative_ytd_contributions',
+        'transaction_id',
+    )
+
+
+@admin.register(models.Form460ScheduleHItemVersion)
+class Form460ScheduleHItemVersionAdmin(BaseAdmin):
+    """
+    Custom admin for the Form460ScheduleHItemVersion model.
+    """
+    list_display = (
+        'filing_version',
+        'line_item',
+        'recipient_code',
+        'recipient_lastname',
+        'begin_period_balance',
+        'amount_loaned',
+        'amount_paid',
+        'amount_forgiven',
+        'end_period_balance',
+        'date_due',
+        'interest_received',
+        'interest_rate',
+        'original_amount',
+        'date_incurred',
+        'cumulative_ytd_contributions',
+        'transaction_id',
     )
 
 
