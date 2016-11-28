@@ -645,7 +645,7 @@ class Form460ScheduleB2ItemBaseOld(CampaignLoanItemBase):
     """
     Abstract base model for Schedule B, Part 2, items from the pre-2001 Form 460.
 
-    Until Form 460 was modified in 2001, campaign filers are required to report
+    Until Form 460 was modified in 2001, campaign filers were required to report
     repayments made on loans received, loans forgiven, and loans repaid by a
     third party on Part 2 of Schedule B.
     """
@@ -713,6 +713,15 @@ class Form460ScheduleB2ItemBaseOld(CampaignLoanItemBase):
 @python_2_unicode_compatible
 class Form460ScheduleB2ItemOld(Form460ScheduleB2ItemBaseOld):
     """
+    Repayments on loans/forgiven loans received by campaign filers circa 2001.
+
+    These transactions are itemized on Schedule B, Part 2, of the most recent
+    version to each Form 460 filing in the pre-2001 format. For loan repayments
+    and forgiven loans on any version of any Form 460 filing in the pre-2001
+    format, see Form460ScheduleB2ItemVersionOld.
+
+    Derived from LOAN_CD records where LOAN_TYPE is not blank or LOAN_DATE1 is
+    before December 22, 2000.
     """
     filing = models.ForeignKey(
         'Form460Filing',
@@ -741,6 +750,13 @@ class Form460ScheduleB2ItemOld(Form460ScheduleB2ItemBaseOld):
 @python_2_unicode_compatible
 class Form460ScheduleB2ItemVersionOld(Form460ScheduleB2ItemBaseOld):
     """
+    Every version of each repayment/forgiveness of a loan to a campaign filer circa 2001.
+
+    For loan repayments and forgiven loans on any version of any Form 460 filing
+    in the pre-2001 format, see Form460ScheduleB2ItemOld.
+
+    Derived from LOAN_CD records where LOAN_TYPE is not blank or LOAN_DATE1 is
+    before December 22, 2000.
     """
     filing_version = models.ForeignKey(
         'Form460FilingVersion',
