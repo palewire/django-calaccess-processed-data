@@ -26,12 +26,15 @@ class CalAccessCommand(BaseCommand):
         self.verbosity = options.get("verbosity")
         self.no_color = options.get("no_color")
 
+        # Start the clock
+        self.start_datetime = datetime.now()
+
     def header(self, string):
         """
         Writes out a string to stdout formatted to look like a header.
         """
         logger.debug(string)
-        if not self.no_color:
+        if not getattr(self, 'no_color', None):
             string = colorize(string, fg="cyan", opts=("bold",))
         self.stdout.write(string)
 
@@ -40,7 +43,7 @@ class CalAccessCommand(BaseCommand):
         Writes out a string to stdout formatted to look like a standard line.
         """
         logger.debug(string)
-        if not self.no_color:
+        if not getattr(self, 'no_color', None):
             string = colorize("%s" % string, fg="white")
         self.stdout.write(string)
 
@@ -49,7 +52,7 @@ class CalAccessCommand(BaseCommand):
         Writes out a string to stdout formatted green to communicate success.
         """
         logger.debug(string)
-        if not self.no_color:
+        if not getattr(self, 'no_color', None):
             string = colorize(string, fg="green")
         self.stdout.write(string)
 
@@ -58,7 +61,7 @@ class CalAccessCommand(BaseCommand):
         Writes out a string to stdout formatted yellow to communicate a warning.
         """
         logger.warn(string)
-        if not self.no_color:
+        if not getattr(self, 'no_color', None):
             string = colorize(string, fg="yellow")
         self.stdout.write(string)
 
@@ -67,7 +70,7 @@ class CalAccessCommand(BaseCommand):
         Writes out a string to stdout formatted red to communicate failure.
         """
         logger.error(string)
-        if not self.no_color:
+        if not getattr(self, 'no_color', None):
             string = colorize(string, fg="red")
         self.stdout.write(string)
 
