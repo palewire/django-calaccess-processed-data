@@ -746,7 +746,7 @@ class Form460ScheduleB2ItemVersion(Form460ScheduleB2ItemBase):
 
 class Form460ScheduleB2ItemBaseOld(CampaignLoanReceivedItemBase):
     """
-    Abstract base model for Schedule B, Part 2, items from the pre-2001 Form 460.
+    Abstract base model for Schedule B, Part 2, items from Form 460 circa 2001.
 
     Until Form 460 was modified in 2001, campaign filers were required to report
     repayments made on loans received, loans forgiven, and loans repaid by a
