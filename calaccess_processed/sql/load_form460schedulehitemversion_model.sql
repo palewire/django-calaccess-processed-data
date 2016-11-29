@@ -39,7 +39,8 @@ INSERT INTO calaccess_processed_form460schedulehitemversion (
     date_incurred,
     cumulative_ytd_contributions,
     transaction_id,
-    memo_reference_number
+    memo_reference_number,
+    reported_on_h1
 )
 SELECT 
     filing_version.id AS filing_version_id,
@@ -96,9 +97,13 @@ SELECT
     loan."LOAN_DATE1" AS date_incurred,
     loan."LOAN_AMT3" AS cumulative_ytd_contributions,
     loan."TRAN_ID" AS transaction_id,
-    loan."MEMO_REFNO" AS memo_reference_number
+    loan."MEMO_REFNO" AS memo_reference_number,
+    CASE loan."FORM_TYPE"
+        WHEN 'H1' THEN true
+        ELSE false
+    END AS reported_on_h1
 FROM "LOAN_CD" loan
 JOIN calaccess_processed_form460filingversion filing_version
 ON loan."FILING_ID" = filing_version.filing_id
 AND loan."AMEND_ID" = filing_version.amend_id
-WHERE loan."FORM_TYPE" = 'H';
+WHERE loan."FORM_TYPE" in ('H', 'H1');

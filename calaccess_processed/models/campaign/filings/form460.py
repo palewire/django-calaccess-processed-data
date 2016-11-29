@@ -1794,6 +1794,15 @@ class Form460ScheduleHItemBase(CampaignLoanMadeItemBase):
                   "recipient during the calendar year covered by this statement"
                   " (from LOAN_CD.LOAN_AMT3)"
     )
+    reported_on_h1 = models.BooleanField(
+        verbose_name='reported on H1',
+        default=False,
+        help_text='Indicates if the item was actually reported on Part 1 of '
+                  'Schedule H. Until 2001, campaign filers were required to '
+                  'report loans made to others on Part 1 of Schedule H, '
+                  'separate from repayments or forgiveness of those loans '
+                  '(Schedule H, Part 2)'
+    )
 
     class Meta:
         """
@@ -1811,7 +1820,7 @@ class Form460ScheduleHItem(Form460ScheduleHItemBase):
     each Form 460 filing. For loans itemized on any version of any Form 460
     filing, see Form460ScheduleHItemVersion.
 
-    Derived from LOAN_CD records where FORM_TYPE is 'H'.
+    Derived from LOAN_CD records where FORM_TYPE is 'H' or 'H1'.
     """
     filing = models.ForeignKey(
         'Form460Filing',
@@ -1845,7 +1854,7 @@ class Form460ScheduleHItemVersion(Form460ScheduleHItemBase):
     For outstanding loans itemized on Schedule H of the most recent version of
     each Form 460 filing, see Form460ScheduleHItem.
 
-    Derived from LOAN_CD records where FORM_TYPE is 'H'.
+    Derived from LOAN_CD records where FORM_TYPE is 'H' or 'H1'.
     """
     filing_version = models.ForeignKey(
         'Form460FilingVersion',

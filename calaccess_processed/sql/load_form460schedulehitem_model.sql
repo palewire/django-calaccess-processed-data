@@ -39,7 +39,8 @@ INSERT INTO calaccess_processed_form460schedulehitem (
     date_incurred,
     cumulative_ytd_contributions,
     transaction_id,
-    memo_reference_number
+    memo_reference_number,
+    reported_on_h1
 )
 SELECT 
     filing.filing_id,
@@ -82,7 +83,8 @@ SELECT
     item_version.date_incurred,
     item_version.cumulative_ytd_contributions,
     item_version.transaction_id,
-    item_version.memo_reference_number
+    item_version.memo_reference_number,
+    item_version.reported_on_h1
 FROM calaccess_processed_form460filing filing
 JOIN calaccess_processed_form460filingversion filing_version
 ON filing.filing_id = filing_version.filing_id
