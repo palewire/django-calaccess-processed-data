@@ -1,7 +1,4 @@
-/Campaign/Candidates/Detail.aspx?id=1234505
-
 import re
-import urlparse
 from time import sleep
 from calaccess_processed.management.commands import ScrapeCommand
 from calaccess_processed.models.scraped import (
@@ -12,9 +9,9 @@ from calaccess_processed.models.scraped import (
 
 class Command(ScrapeCommand):
     """
-    
+    Scrape each candidate's committees from the CAL-ACCESS site.
     """
-    help = ""
+    help = "Scrape each candidate's committees from the CAL-ACCESS site."
 
     def flush(self):
         ScrapedCandidateCommittee.objects.all().delete()
@@ -33,38 +30,50 @@ class Command(ScrapeCommand):
                 candidate_id)
             data = {}
             data['candidate_id'] = candidate_id
-            data['commitees'] = self.scrape_candidate_page(url)
+            data['committees'] = self.scrape_candidate_page(url)
             results.append(data)
             sleep(0.5)
 
         return results
 
     def scrape_candidate_page(self, url):
+        """
+        Pull the committees from a CAL-ACCESS candidate page.
+        """
         soup = self.get_html(url)
 
-        # Pull the candidate committees
         committees = []
 
-        for table in soup.findAll('table'):
+        for table in soup.findAll('table')[2].findAll('table'):
+            # Committees with a link
             c = table.find('a', {'class': 'sublink6'})
             if c:
                 committees.append({
                     'name': c.text,
-                    'scraped_id': re.match(r'.+id=(\d+)', c['href']).group(1)
+                    'scraped_id': re.match(r'.+id=(\d+)', c['href']).group(1),
+                    'status': table.findAll('tr')[1].findAll('td')[1].text
                 })
+            # Committees with an ID but no link
+            else:
+                regex = re.compile(r'(.*)\(ID# (\d*)\)')
+                c = table.find('span', string=regex)
+                if c:
+                    matches = re.match(regex, c.text)
+                    committees.append({
+                        'name': matches.group(1),
+                        'scraped_id': matches.group(2),
+                        'status': table.findAll('tr')[1].findAll('td')[1].text
+                    })
 
         return committees
 
     def save(self, results):
-        """
-        Add the data to the database.
-        """
         self.log('Processing %s committees.' % len(results))
 
-        # Loop through all the results
         for result in results:
             for committee_data in result['committees']:
-                committee_data['candidate'] = result['candidate_id']
+                # Add the candidate id to the committee data
+                committee_data['candidate_id'] = result['candidate_id']
                 committee_obj, c = ScrapedCandidateCommittee.objects.get_or_create(
                     **committee_data
                 )

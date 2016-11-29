@@ -11,9 +11,9 @@ from calaccess_processed.models.scraped import (
 
 class Command(ScrapeCommand):
     """
-    Scraper to get the list of candidates per election.
+    Scrape list of certified candidates for each election on the CAL-ACCESS site.
     """
-    help = "Scrape links between filers and elections from CAL-ACCESS site"
+    help = "Scrape certified candidates for each election on the CAL-ACCESS site."
 
     def flush(self):
         ScrapedCandidate.objects.all().delete()
@@ -91,18 +91,15 @@ class Command(ScrapeCommand):
                 # Pull the candidates out
                 candidates = []
                 for c in office.findAll('a', {'class': 'sublink2'}):
-                    committees = self.scrape_candidate_page(c['href'])
                     candidates.append({
                         'name': c.text,
-                        'scraped_id': re.match(r'.+id=(\d+)', c['href']).group(1),
-                        'committees': committees
+                        'scraped_id': re.match(r'.+id=(\d+)', c['href']).group(1)
                     })
 
                 for c in office.findAll('span', {'class': 'txt7'}):
                     candidates.append({
                         'name': c.text,
-                        'scraped_id':  '',
-                        'committees': None
+                        'scraped_id':  ''
                     })
 
                 # Add it to the data dictionary
@@ -113,27 +110,7 @@ class Command(ScrapeCommand):
             'races': races,
         }
 
-    def scrape_candidate_page(self, url):
-        soup = self.get_html(url)
-
-        # Pull the candidate committees
-        committees = []
-
-        for table in soup.findAll('table'):
-            c = table.find('a', {'class': 'sublink6'})
-            if c:
-                committees.append({
-                    'name': c.text,
-                    'scraped_id': re.match(r'.+id=(\d+)', c['href']).group(1)
-                })
-
-        return committees
-
-
     def save(self, results):
-        """
-        Add the data to the database.
-        """
         self.log('Processing %s elections.' % len(results))
 
         # Loop through all the results
@@ -166,14 +143,3 @@ class Command(ScrapeCommand):
 
                     if c and self.verbosity > 2:
                         self.log('Created %s' % candidate_obj)
-
-                    # Create the candidate committees (if they were scraped)
-                    if candidate_data['committees']:
-                        for committee_data in candidate_data['committees']:
-                            committee_data['candidate'] = candidate_obj
-                            committee_obj, c = ScrapedCandidateCommittee.objects.get_or_create(
-                                **committee_data
-                            )
-
-                            if c and self.verbosity > 2:
-                                self.log('Created %s' % committee_obj)
