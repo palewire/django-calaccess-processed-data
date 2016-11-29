@@ -697,6 +697,7 @@ class CampaignExpenditureSubItemBase(CampaignExpenditureItemBase):
 class CampaignLoanItemBase(models.Model):
     """
     Abstract base model for loans received or made by campaign filers.
+
     These transactions are itemized on Schedules B (Parts 1 and 2) and H of
     Form 460 filings and stored in the LOAN_CD table.
     """
@@ -747,6 +748,14 @@ class CampaignLoanItemBase(models.Model):
         blank=True,
         help_text='Zip code (usually zip5, sometimes zip9) of the '
                   'intermediary (from LOAN_CD.INTR_ZIP4)',
+    )
+    interest_rate = models.CharField(
+        verbose_name='interest rate',
+        max_length=30,
+        blank=True,
+        help_text='Interest rate of the loan. This is sometimes expressed as a '
+                  'decimal (e.g., 0.10) and other times as a percent (e.g., '
+                  '10.0% (from LOAN_CD.LOAN_RATE)'
     )
     transaction_id = models.CharField(
         verbose_name='transaction id',

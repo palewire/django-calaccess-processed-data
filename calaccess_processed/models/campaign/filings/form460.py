@@ -399,14 +399,6 @@ class Form460ScheduleB1ItemBase(CampaignLoanReceivedItemBase):
         help_text="Amount of interest paid on the loan during the period "
                   "covered by the campaign filing (from LOAN_CD.LOAN_AMT7)"
     )
-    interest_rate = models.CharField(
-        verbose_name='interest rate',
-        max_length=30,
-        blank=True,
-        help_text='Interest rate of the loan. This is sometimes expressed as a '
-                  'decimal (e.g., 0.10) and other times as a percent (e.g., '
-                  '10.0% (from LOAN_CD.LOAN_RATE)'
-    )
     original_amount = models.DecimalField(
         verbose_name='original amount',
         decimal_places=2,
@@ -513,7 +505,7 @@ class Form460ScheduleB1ItemVersion(Form460ScheduleB1ItemBase):
         )
 
 
-class Form460ScheduleB2ItemBase(CampaignLoanReceivedItemBase):
+class Form460ScheduleB2ItemBase(models.Model):
     """
     Abstract base model for items reported on Schedule B, Part 2, of Form 460.
 
@@ -522,6 +514,94 @@ class Form460ScheduleB2ItemBase(CampaignLoanReceivedItemBase):
     provides security for a loan, or establishes or provides security for a
     line of credit. A guarantor is also making a contribution.
     """
+    line_item = models.IntegerField(
+        verbose_name='line item',
+        help_text="Line number of the filing form where the loan is "
+                  "itemized (from LOAN_CD.LINE_ITEM)",
+    )
+    GUARANTOR_CODE_CHOICES = (
+        ('COM', "Committee"),
+        ('IND', "Individual"),
+        ('OTH', "Other"),
+        ('PTY', "Political Party"),
+        ('SCC', "Small Contributor Committee"),
+        ('???', "Unknown value"),
+    )
+    guarantor_code = models.CharField(
+        verbose_name='lender code',
+        max_length=3,
+        blank=True,
+        choices=GUARANTOR_CODE_CHOICES,
+        help_text='Code describing the guarantor (from LOAN_CD.ENTITY_CD)',
+    )
+    guarantor_title = models.CharField(
+        verbose_name='guarantor title',
+        max_length=10,
+        blank=True,
+        help_text="Name title of the guarantor (from LOAN_CD.LNDR_NAMT)",
+    )
+    guarantor_lastname = models.CharField(
+        verbose_name='guarantor lastname',
+        max_length=200,
+        blank=True,
+        help_text="Last name of the guarantor or business name (from LOAN_CD."
+                  "LNDR_NAML)",
+    )
+    guarantor_firstname = models.CharField(
+        verbose_name='guarantor firstname',
+        max_length=45,
+        blank=True,
+        help_text="First name of the guarantor (from LOAN_CD.LNDR_NAMF)",
+    )
+    guarantor_name_suffix = models.CharField(
+        verbose_name='guarantor name suffix',
+        max_length=10,
+        blank=True,
+        help_text="Name suffix of the guarantor (from LOAN_CD.LNDR_NAMS)",
+    )
+    guarantor_city = models.CharField(
+        verbose_name='guarantor city',
+        max_length=30,
+        blank=True,
+        help_text='City of the guarantor (from LOAN_CD.LOAN_CITY)',
+    )
+    guarantor_state = models.CharField(
+        verbose_name='guarantor state',
+        max_length=2,
+        blank=True,
+        help_text='State of the guarantor (from LOAN_CD.LOAN_ST)',
+    )
+    guarantor_zip = models.CharField(
+        verbose_name='guarantor zip',
+        max_length=10,
+        blank=True,
+        help_text='Zip code (usually zip5, sometimes zip9) of the '
+                  'guarantor (from LOAN_CD.LOAN_ZIP4)',
+    )
+    guarantor_employer = models.CharField(
+        verbose_name='guarantor employer',
+        max_length=200,
+        blank=True,
+        help_text='Employer of the guarantor (from LOAN_CD.LOAN_EMP)',
+    )
+    guarantor_occupation = models.CharField(
+        verbose_name='guarantor occupation',
+        max_length=60,
+        blank=True,
+        help_text='Occupation of the guarantor (from LOAN_CD.LOAN_OCC)',
+    )
+    guarantor_is_self_employed = models.BooleanField(
+        verbose_name='guarantor is self employed',
+        default=False,
+        help_text='Indicates whether or not the guarantor is self-employed'
+                  '(from LOAN_CD.LOAN_SELF)',
+    )
+    lender_name = models.CharField(
+        verbose_name='lender name',
+        max_length=200,
+        blank=True,
+        help_text="Name of the lender (from LOAN_CD.INTR_NAML)"
+    )
     amount_guaranteed_this_period = models.DecimalField(
         verbose_name='amount guaranteed this period',
         decimal_places=2,
@@ -544,10 +624,32 @@ class Form460ScheduleB2ItemBase(CampaignLoanReceivedItemBase):
                   "covered by the statement (from LOAN_CD.LOAN_AMT3)"
     )
     loan_date = models.DateField(
-        verbose_name='date',
+        verbose_name='loan date',
         null=True,
         help_text="Date of the loan or date the line of credit was established"
                   "(from LOAN_CD.LOAN_DATE1)"
+    )
+    interest_rate = models.CharField(
+        verbose_name='interest rate',
+        max_length=30,
+        blank=True,
+        help_text='Interest rate of the loan. This is sometimes expressed as a '
+                  'decimal (e.g., 0.10) and other times as a percent (e.g., '
+                  '10.0% (from LOAN_CD.LOAN_RATE)'
+    )
+    transaction_id = models.CharField(
+        verbose_name='transaction id',
+        max_length=20,
+        help_text='Identifies a unique transaction across versions of the a '
+                  'given Form 460 filing (from LOAN_CD.TRAN_ID)',
+    )
+    memo_reference_number = models.CharField(
+        verbose_name='memo reference number',
+        max_length=20,
+        blank=True,
+        help_text="A value assigned by the filer which refers to the item's"
+                  "footnote in the TEXT_MEMO_CD table (from LOAN_CD."
+                  "MEMO_REFNO)",
     )
     reported_on_b1 = models.BooleanField(
         verbose_name='reported on B1',
@@ -660,14 +762,6 @@ class Form460ScheduleB2ItemBaseOld(CampaignLoanReceivedItemBase):
         verbose_name='date of original loan',
         null=True,
         help_text="Date the loan was orginally made (from LOAN_CD.LOAN_DATE1)"
-    )
-    interest_rate = models.CharField(
-        verbose_name='interest rate',
-        max_length=30,
-        blank=True,
-        help_text='Interest rate of the loan. This is sometimes expressed as a '
-                  'decimal (e.g., 0.10) and other times as a percent (e.g., '
-                  '10.0% (from LOAN_CD.LOAN_RATE)'
     )
     REPAYMENT_TYPE_CHOICES = (
         ('B2F', 'Forgiven'),
@@ -1678,14 +1772,6 @@ class Form460ScheduleHItemBase(CampaignLoanMadeItemBase):
         max_digits=14,
         help_text="Amount of interest paid on the loan during the period "
                   "covered by the campaign filing (from LOAN_CD.LOAN_AMT7)"
-    )
-    interest_rate = models.CharField(
-        verbose_name='interest rate',
-        max_length=30,
-        blank=True,
-        help_text='Interest rate of the loan. This is sometimes expressed as a '
-                  'decimal (e.g., 0.10) and other times as a percent (e.g., '
-                  '10.0% (from LOAN_CD.LOAN_RATE)'
     )
     original_amount = models.DecimalField(
         verbose_name='original amount',
