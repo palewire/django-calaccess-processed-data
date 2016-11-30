@@ -4,16 +4,17 @@ from time import sleep
 from calaccess_processed.management.commands import ScrapeCommand
 from calaccess_processed.models.scraped import (
     ScrapedCandidate,
-    CandidateScrapedElection,
-    ScrapedCandidateCommittee,
+    CandidateScrapedElection
 )
 
 
 class Command(ScrapeCommand):
     """
-    Scrape list of certified candidates for each election on the CAL-ACCESS site.
+    Scrape list of certified candidates for each election on the CAL-ACCESS
+    site.
     """
-    help = "Scrape certified candidates for each election on the CAL-ACCESS site."
+    help = "Scrape certified candidates for each election on the CAL-ACCESS \
+    site."
 
     def flush(self):
         ScrapedCandidate.objects.all().delete()
@@ -22,7 +23,9 @@ class Command(ScrapeCommand):
     def scrape(self):
         self.header("Scraping election candidates")
 
-        soup = self.get_html('/Campaign/Candidates/list.aspx?view=certified&electNav=93')
+        soup = self.get_html(
+            '/Campaign/Candidates/list.aspx?view=certified&electNav=93'
+        )
 
         # Get all the links out
         links = soup.findAll('a', href=re.compile(r'^.*&electNav=\d+'))
@@ -93,7 +96,10 @@ class Command(ScrapeCommand):
                 for c in office.findAll('a', {'class': 'sublink2'}):
                     candidates.append({
                         'name': c.text,
-                        'scraped_id': re.match(r'.+id=(\d+)', c['href']).group(1)
+                        'scraped_id': re.match(
+                            r'.+id=(\d+)',
+                            c['href']
+                        ).group(1)
                     })
 
                 for c in office.findAll('span', {'class': 'txt7'}):

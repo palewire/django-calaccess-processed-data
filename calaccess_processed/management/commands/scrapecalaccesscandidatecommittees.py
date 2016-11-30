@@ -74,8 +74,9 @@ class Command(ScrapeCommand):
             for committee_data in result['committees']:
                 # Add the candidate id to the committee data
                 committee_data['candidate_id'] = result['candidate_id']
-                committee_obj, c = ScrapedCandidateCommittee.objects.get_or_create(
-                    **committee_data
-                )
+                committee_obj, c = ScrapedCandidateCommittee.objects \
+                    .get_or_create(
+                        **committee_data
+                    )
                 if c and self.verbosity > 2:
                     self.log('Created %s' % committee_obj)

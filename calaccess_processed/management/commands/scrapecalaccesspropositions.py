@@ -12,7 +12,8 @@ from calaccess_processed.models.scraped import (
 
 class Command(ScrapeCommand):
     """
-    Scrape links between filers and propositions from the official CAL-ACCESS site.
+    Scrape links between filers and propositions from the official CAL-ACCESS
+    site.
     """
     help = "Scrape links between filers and propositions from the official \
     CAL-ACCESS site."
@@ -77,7 +78,7 @@ class Command(ScrapeCommand):
             # Scrape them one by one
             prop_list = [
                 self.scrape_prop_page('/Campaign/Measures/%s' % link['href'])
-                    for link in prop_links
+                for link in prop_links
             ]
 
             # Add the data to our data dict
@@ -156,9 +157,10 @@ class Command(ScrapeCommand):
             for election_name, prop_list in d.items():
 
                 # Get or create election object
-                election_obj, c = PropositionScrapedElection.objects.get_or_create(
-                    name=election_name,
-                )
+                election_obj, c = PropositionScrapedElection.objects \
+                    .get_or_create(
+                        name=election_name,
+                    )
 
                 # Loop through propositions
                 for prop_data in prop_list:
@@ -178,12 +180,13 @@ class Command(ScrapeCommand):
                     for committee in prop_data['committees']:
 
                         # Get or create it
-                        committee_obj, c = ScrapedPropositionCommittee.objects.get_or_create(
-                            name=committee['name'],
-                            scraped_id=committee['id'],
-                            position=committee['position'],
-                            proposition=prop_obj
-                        )
+                        committee_obj, c = ScrapedPropositionCommittee \
+                            .objects.get_or_create(
+                                name=committee['name'],
+                                scraped_id=committee['id'],
+                                position=committee['position'],
+                                proposition=prop_obj
+                            )
 
                         # Log it
                         if c and self.verbosity > 2:
