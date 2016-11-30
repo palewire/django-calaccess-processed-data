@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import re
-import urlparse
 from time import sleep
-from datetime import datetime
 from calaccess_processed.management.commands import ScrapeCommand
 from calaccess_processed.models.scraped import (
     PropositionScrapedElection,
@@ -16,7 +14,8 @@ class Command(ScrapeCommand):
     """
     Scrape links between filers and propositions from the official CAL-ACCESS site.
     """
-    help = "Scrape links between filers and propositions from the official CAL-ACCESS site."
+    help = "Scrape links between filers and propositions from the official \
+    CAL-ACCESS site."
 
     def flush(self):
         ScrapedPropositionCommittee.objects.all().delete()
@@ -48,6 +47,7 @@ class Command(ScrapeCommand):
         Scrape data from a CAL-ACCESS page that publishes the list
         of propositions in a particular election year.
         """
+
         # Get the URL of the year page
         soup = self.get_html(url)
 
@@ -157,7 +157,7 @@ class Command(ScrapeCommand):
 
                 # Get or create election object
                 election_obj, c = PropositionScrapedElection.objects.get_or_create(
-                    name = election_name,
+                    name=election_name,
                 )
 
                 # Loop through propositions
