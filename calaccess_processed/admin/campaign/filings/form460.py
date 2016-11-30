@@ -139,8 +139,8 @@ class Form460ScheduleB2ItemAdmin(BaseAdmin):
     list_display = (
         'filing',
         'line_item',
-        'lender_code',
-        'lender_lastname',
+        'guarantor_code',
+        'guarantor_lastname',
         'amount_guaranteed_this_period',
         'balance_outstanding_to_date',
         'cumulative_ytd_amount',
@@ -157,8 +157,8 @@ class Form460ScheduleB2ItemVersionAdmin(BaseAdmin):
     list_display = (
         'filing_version',
         'line_item',
-        'lender_code',
-        'lender_lastname',
+        'guarantor_code',
+        'guarantor_lastname',
         'amount_guaranteed_this_period',
         'balance_outstanding_to_date',
         'cumulative_ytd_amount',
