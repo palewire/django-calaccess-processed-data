@@ -6,7 +6,6 @@ Models for storing information scraped from the CAL-ACCESS website.
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.managers import ProcessedDataManager
 
 
 class BaseScrapedModel(models.Model):

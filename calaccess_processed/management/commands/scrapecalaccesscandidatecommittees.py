@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Scrape each certified candidate's committees from the CAL-ACCESS site.
+"""
 import re
 from time import sleep
 from calaccess_processed.management.commands import ScrapeCommand

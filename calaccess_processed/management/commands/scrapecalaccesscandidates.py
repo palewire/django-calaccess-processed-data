@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+Scrape list of certified candidates from the CAL-ACCESS site.
+"""
 import re
 import urlparse
 from time import sleep
@@ -105,7 +110,7 @@ class Command(ScrapeCommand):
                 for c in office.findAll('span', {'class': 'txt7'}):
                     candidates.append({
                         'name': c.text,
-                        'scraped_id':  ''
+                        'scraped_id': ''
                     })
 
                 # Add it to the data dictionary

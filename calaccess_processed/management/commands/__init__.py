@@ -6,7 +6,6 @@ import urllib2
 import logging
 import urlparse
 import requests
-from time import sleep
 from bs4 import BeautifulSoup
 from datetime import datetime
 from django.conf import settings
@@ -65,7 +64,8 @@ class CalAccessCommand(BaseCommand):
 
     def warn(self, string):
         """
-        Writes out a string to stdout formatted yellow to communicate a warning.
+        Writes out a string to stdout formatted yellow to communicate a
+        warning.
         """
         logger.warn(string)
         if not getattr(self, 'no_color', None):
@@ -83,7 +83,8 @@ class CalAccessCommand(BaseCommand):
 
     def duration(self):
         """
-        Calculates how long the command has been running and writes it to stdout.
+        Calculates how long the command has been running and writes it to
+        stdout.
         """
         duration = datetime.now() - self.start_datetime
         self.stdout.write('Duration: {}'.format(str(duration)))
@@ -143,7 +144,8 @@ class ScrapeCommand(CalAccessCommand):
         Returns the response from a URL, retries if it fails.
         """
         headers = {
-            'User-Agent': 'California Civic Data Coalition (cacivicdata@gmail.com)',
+            'User-Agent': 'California Civic Data Coalition \
+            (cacivicdata@gmail.com)',
         }
         if self.verbosity > 2:
             self.log(" Making a {} request for {}".format(request_type, url))
@@ -161,7 +163,8 @@ class ScrapeCommand(CalAccessCommand):
 
     def get_html(self, url, retries=1, base_url=None):
         """
-        Makes a request for a URL and returns the HTML as a BeautifulSoup object.
+        Makes a request for a URL and returns the HTML as a BeautifulSoup
+        object.
         """
         # Put together the full URL
         full_url = urlparse.urljoin(base_url or self.base_url, url)

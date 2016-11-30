@@ -8,6 +8,7 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.managers import ProcessedDataManager
 
+
 @python_2_unicode_compatible
 class Candidate(models.Model):
     """
