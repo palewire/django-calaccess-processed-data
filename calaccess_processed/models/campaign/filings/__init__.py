@@ -1011,7 +1011,9 @@ class CampaignLoanMadeItemBase(CampaignLoanItemBase):
         verbose_name='recipient occupation',
         max_length=60,
         blank=True,
-        help_text='Occupation of the recipient (from LOAN_CD.LOAN_OCC)',
+        help_text="Occupation of the recipient (from LOAN_CD.LOAN_OCC). Note "
+                  "that, in some cases, the value seems to actually be the "
+                  "recipient's committee ID.",
     )
     recipient_is_self_employed = models.BooleanField(
         verbose_name='recipient is self employed',

@@ -407,7 +407,7 @@ class Form460ScheduleB1ItemBase(CampaignLoanReceivedItemBase):
                   "(from LOAN_CD.LOAN_AMT8)"
     )
     date_incurred = models.DateField(
-        verbose_name='',
+        verbose_name='date incurred',
         null=True,
         help_text="Date the loan was made or received (from LOAN_CD.LOAN_DATE1)"
     )
@@ -1781,7 +1781,7 @@ class Form460ScheduleHItemBase(CampaignLoanMadeItemBase):
                   "(from LOAN_CD.LOAN_AMT8)"
     )
     date_incurred = models.DateField(
-        verbose_name='',
+        verbose_name='date incurred',
         null=True,
         help_text="Date the loan was made or received (from LOAN_CD.LOAN_DATE1)"
     )
