@@ -752,7 +752,7 @@ class Form460ScheduleB2ItemBaseOld(CampaignLoanReceivedItemBase):
     repayments made on loans received, loans forgiven, and loans repaid by a
     third party on Part 2 of Schedule B.
     """
-    date_paid_or_forgiven = models.DateField(
+    date_repaid_or_forgiven = models.DateField(
         verbose_name='date paid or forgiven',
         null=True,
         help_text="Date when the loan repayment or forgiveness occurred (from "
@@ -776,8 +776,8 @@ class Form460ScheduleB2ItemBaseOld(CampaignLoanReceivedItemBase):
                   'campaign, a repayment by a third-party or a loan forgiveness'
                   ' by the lender (from RCPT_CD.LOAN_TYPE)',
     )
-    amount_paid_or_forgiven = models.DecimalField(
-        verbose_name='amount paid or forgiven',
+    amount_repaid_or_forgiven = models.DecimalField(
+        verbose_name='amount repaid or forgiven',
         decimal_places=2,
         max_digits=14,
         help_text="Amount paid back or forgiven during the period covered by "
