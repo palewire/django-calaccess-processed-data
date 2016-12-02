@@ -773,8 +773,8 @@ class Form460ScheduleB2ItemBaseOld(CampaignLoanReceivedItemBase):
         max_length=3,
         choices=REPAYMENT_TYPE_CHOICES,
         help_text='Indicates whether the item is a loan repayment by the '
-                  'campaign, a repayment by a third-party or a loan forgiveness'
-                  ' by the lender (from RCPT_CD.LOAN_TYPE)',
+                  'campaign filer, a repayment by a third-party or a loan '
+                  'forgiveness by the lender (from LOAN_CD.LOAN_TYPE)',
     )
     amount_repaid_or_forgiven = models.DecimalField(
         verbose_name='amount repaid or forgiven',
