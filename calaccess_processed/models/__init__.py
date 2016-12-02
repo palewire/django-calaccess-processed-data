@@ -32,6 +32,8 @@ from calaccess_processed.models.campaign.filings.form460 import (
     Form460ScheduleGItemVersion,
     Form460ScheduleHItem,
     Form460ScheduleHItemVersion,
+    Form460ScheduleH2ItemOld,
+    Form460ScheduleH2ItemVersionOld,
     Form460ScheduleIItem,
     Form460ScheduleIItemVersion,
 )
@@ -81,6 +83,8 @@ __all__ = (
     'Form460ScheduleGItemVersion',
     'Form460ScheduleHItem',
     'Form460ScheduleHItemVersion',
+    'Form460ScheduleH2ItemOld',
+    'Form460ScheduleH2ItemVersionOld',
     'Form460ScheduleIItem',
     'Form460ScheduleIItemVersion',
     'FilerIDValue',

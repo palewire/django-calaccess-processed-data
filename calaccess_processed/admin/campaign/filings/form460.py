@@ -501,6 +501,46 @@ class Form460ScheduleHItemVersionAdmin(BaseAdmin):
     )
 
 
+@admin.register(models.Form460ScheduleH2ItemOld)
+class Form460ScheduleH2ItemOldAdmin(BaseAdmin):
+    """
+    Custom admin for the Form460ScheduleH2ItemOld model.
+    """
+    list_display = (
+        'filing',
+        'line_item',
+        'recipient_code',
+        'recipient_lastname',
+        'date_repaid_or_forgiven',
+        'date_of_original_loan',
+        'interest_rate',
+        'repayment_type',
+        'amount_repaid_or_forgiven',
+        'outstanding_principle',
+        'transaction_id',
+    )
+
+
+@admin.register(models.Form460ScheduleH2ItemVersionOld)
+class Form460ScheduleH2ItemVersionOldAdmin(BaseAdmin):
+    """
+    Custom admin for the Form460ScheduleH2ItemVersionOld model.
+    """
+    list_display = (
+        'filing_version',
+        'line_item',
+        'recipient_code',
+        'recipient_lastname',
+        'date_repaid_or_forgiven',
+        'date_of_original_loan',
+        'interest_rate',
+        'repayment_type',
+        'amount_repaid_or_forgiven',
+        'outstanding_principle',
+        'transaction_id',
+    )
+
+
 @admin.register(models.Form460ScheduleIItem)
 class Form460ScheduleIItemAdmin(BaseAdmin):
     """
