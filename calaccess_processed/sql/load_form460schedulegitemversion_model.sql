@@ -31,7 +31,7 @@ INSERT INTO calaccess_processed_form460schedulegitemversion (
     parent_transaction_id,
     parent_schedule,
     memo_reference_number,
-    office_sought_held,
+    support_oppose_code,
     ballot_measure_jurisdiction,
     ballot_measure_name,
     ballot_measure_num,
@@ -44,7 +44,7 @@ INSERT INTO calaccess_processed_form460schedulegitemversion (
     candidate_name_suffix,
     office_code,
     office_description,
-    support_oppose_code
+    office_sought_held
 )
 SELECT 
     filing_version.id AS filing_version_id,
@@ -64,7 +64,8 @@ SELECT
             'OTH',
             'PTY',
             'RCP',
-            'SCC'
+            'SCC',
+            ''
         ) THEN UPPER(expn."ENTITY_CD")
         ELSE '???'
     END AS payee_code,
@@ -127,7 +128,8 @@ SELECT
             'TRS',
             'TSF',
             'VOT',
-            'WEB'
+            'WEB',
+            ''
         ) THEN UPPER(expn."EXPN_CODE")
         ELSE '???'
     END AS payment_code,
@@ -140,7 +142,14 @@ SELECT
     expn."BAKREF_TID" AS parent_transaction_id,
     expn."G_FROM_E_F" AS parent_schedule,
     expn."MEMO_REFNO" AS memo_reference_number,
-    UPPER(expn."SUP_OPP_CD") AS office_sought_held,
+    CASE 
+        WHEN UPPER(expn."SUP_OPP_CD") IN (
+            'S',
+            'O',
+            ''
+        ) THEN UPPER(expn."SUP_OPP_CD") 
+        ELSE '?'
+    END AS support_oppose_code,
     UPPER(expn."BAL_JURIS") AS ballot_measure_jurisdiction,
     UPPER(expn."BAL_NAME") AS ballot_measure_name,
     UPPER(expn."BAL_NUM") AS ballot_measure_num,
@@ -154,7 +163,8 @@ SELECT
             'LOC',
             'OTH',
             'SEN',
-            'STW'
+            'STW',
+            ''
         ) THEN UPPER(expn."JURIS_CD")
         ELSE '???'
     END AS candidate_jurisdiction_code,
@@ -165,37 +175,38 @@ SELECT
     UPPER(expn."CAND_NAMS") AS candidate_name_suffix,
     CASE 
         WHEN UPPER(expn."OFFICE_CD") IN (
-            'APP'
-            'ASM'
-            'ASR'
-            'ATT'
-            'BED'
-            'BOE'
-            'BSU'
-            'CAT'
-            'CCB'
-            'CCM'
-            'CON'
-            'COU'
-            'CSU'
-            'CTR'
-            'DAT'
-            'GOV'
-            'INS'
-            'LTG'
-            'MAY'
-            'OTH'
-            'PDR'
-            'PER'
-            'PLN'
-            'SCJ'
-            'SEN'
-            'SHC'
-            'SOS'
-            'SPM'
-            'SUP'
-            'TRE'
-            'TRS'
+            'APP',
+            'ASM',
+            'ASR',
+            'ATT',
+            'BED',
+            'BOE',
+            'BSU',
+            'CAT',
+            'CCB',
+            'CCM',
+            'CON',
+            'COU',
+            'CSU',
+            'CTR',
+            'DAT',
+            'GOV',
+            'INS',
+            'LTG',
+            'MAY',
+            'OTH',
+            'PDR',
+            'PER',
+            'PLN',
+            'SCJ',
+            'SEN',
+            'SHC',
+            'SOS',
+            'SPM',
+            'SUP',
+            'TRE',
+            'TRS',
+            ''
         ) THEN UPPER(expn."OFFICE_CD")
         WHEN UPPER(expn."OFFICE_CD") = 'LEG' THEN 'ASM'
         WHEN UPPER(expn."OFFICE_CD") = 'OF' THEN 'ASM'
@@ -205,12 +216,13 @@ SELECT
     END AS office_code,
     UPPER(expn."OFFIC_DSCR") AS office_description,
     CASE 
-        WHEN UPPER(expn."OFFIC_DSCR") IN (
+        WHEN UPPER(expn."OFF_S_H_CD") IN (
             'S',
-            'H'
-        ) THEN UPPER(expn."OFFIC_DSCR") 
+            'H',
+            ''
+        ) THEN UPPER(expn."OFF_S_H_CD") 
         ELSE '?'
-    END AS support_oppose_code
+    END AS office_sought_held
 FROM "EXPN_CD" expn
 JOIN calaccess_processed_form460filingversion filing_version
 ON expn."FILING_ID" = filing_version.filing_id

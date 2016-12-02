@@ -38,7 +38,8 @@ SELECT
             'OTH',
             'PTY',
             'RCP',
-            'SCC'
+            'SCC',
+            ''
         ) THEN UPPER(debt."ENTITY_CD")
         ELSE '???'
     END AS payee_code,
@@ -100,7 +101,8 @@ SELECT
             'TRS',
             'TSF',
             'VOT',
-            'WEB'
+            'WEB',
+            ''
         ) THEN UPPER(debt."EXPN_CODE")
         ELSE '???'
     END AS payment_code,
