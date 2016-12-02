@@ -1909,14 +1909,6 @@ class Form460ScheduleH2ItemBaseOld(CampaignLoanMadeItemBase):
         null=True,
         help_text="Date the loan was orginally made (from LOAN_CD.LOAN_DATE1)"
     )
-    interest_rate = models.CharField(
-        verbose_name='interest rate',
-        max_length=30,
-        blank=True,
-        help_text='Interest rate of the loan. This is sometimes expressed as a '
-                  'decimal (e.g., 0.10) and other times as a percent (e.g., '
-                  '10.0% (from LOAN_CD.LOAN_RATE)'
-    )
     REPAYMENT_TYPE_CHOICES = (
         ('H2F', 'Forgiven'),
         ('H2R', 'Repay'),
