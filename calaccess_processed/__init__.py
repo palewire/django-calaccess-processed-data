@@ -42,6 +42,8 @@ def get_models_to_process():
         campaign.filings.form460.Form460ScheduleGItem,
         campaign.filings.form460.Form460ScheduleHItemVersion,
         campaign.filings.form460.Form460ScheduleHItem,
+        campaign.filings.form460.Form460ScheduleH2ItemVersionOld,
+        campaign.filings.form460.Form460ScheduleH2ItemOld,
         campaign.filings.form460.Form460ScheduleIItemVersion,
         campaign.filings.form460.Form460ScheduleIItem,
         campaign.filings.schedule497.Schedule497FilingVersion,
