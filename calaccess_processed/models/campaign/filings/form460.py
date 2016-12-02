@@ -837,6 +837,7 @@ class Form460ScheduleB2ItemOld(Form460ScheduleB2ItemBaseOld):
             'filing',
             'line_item',
         ),)
+        verbose_name_plural = "Form460 schedule b2 items old"
 
     def __str__(self):
         return '%s-%s' % (self.filing, self.line_item)
@@ -876,6 +877,7 @@ class Form460ScheduleB2ItemVersionOld(Form460ScheduleB2ItemBaseOld):
             'filing_version',
             'line_item',
         ),)
+        verbose_name_plural = "Form460 schedule b2 item versions old"
 
     def __str__(self):
         return '%s-%s-%s' % (
@@ -1981,6 +1983,7 @@ class Form460ScheduleH2ItemOld(Form460ScheduleH2ItemBaseOld):
             'filing',
             'line_item',
         ),)
+        verbose_name_plural = "Form460 schedule h2 items old"
 
     def __str__(self):
         return '%s-%s' % (self.filing, self.line_item)
@@ -2019,6 +2022,7 @@ class Form460ScheduleH2ItemVersionOld(Form460ScheduleH2ItemBaseOld):
             'filing_version',
             'line_item',
         ),)
+        verbose_name_plural = "Form460 schedule h2 item versions old"
 
     def __str__(self):
         return '%s-%s-%s' % (
