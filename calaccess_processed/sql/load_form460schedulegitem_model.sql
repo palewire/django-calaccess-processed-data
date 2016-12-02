@@ -31,7 +31,7 @@ INSERT INTO calaccess_processed_form460schedulegitem (
     parent_transaction_id,
     parent_schedule,
     memo_reference_number,
-    office_sought_held,
+    support_oppose_code,
     ballot_measure_jurisdiction,
     ballot_measure_name,
     ballot_measure_num,
@@ -44,7 +44,7 @@ INSERT INTO calaccess_processed_form460schedulegitem (
     candidate_name_suffix,
     office_code,
     office_description,
-    support_oppose_code
+    office_sought_held
 )
 SELECT 
     filing.filing_id,
@@ -79,7 +79,7 @@ SELECT
     item_version.parent_transaction_id,
     item_version.parent_schedule,
     item_version.memo_reference_number,
-    item_version.office_sought_held,
+    item_version.support_oppose_code,
     item_version.ballot_measure_jurisdiction,
     item_version.ballot_measure_name,
     item_version.ballot_measure_num,
@@ -92,7 +92,7 @@ SELECT
     item_version.candidate_name_suffix,
     item_version.office_code,
     item_version.office_description,
-    item_version.support_oppose_code
+    item_version.office_sought_held
 FROM calaccess_processed_form460filing filing
 JOIN calaccess_processed_form460filingversion filing_version
 ON filing.filing_id = filing_version.filing_id
