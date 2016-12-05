@@ -22,7 +22,7 @@ class Command(ScrapeCommand):
         ScrapedCandidateCommittee.objects.all().delete()
 
     def scrape(self):
-        self.header("Scraping election candidates")
+        self.header("Scraping candidate committees")
 
         # Set of unique scraped candidate ids
         candidate_ids = set(ScrapedCandidate.objects.values_list(
