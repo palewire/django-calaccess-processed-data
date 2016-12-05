@@ -5,7 +5,6 @@ Base classes for custom management commands.
 """
 import os
 import urllib
-import urllib2
 import logging
 import urlparse
 import requests
@@ -205,7 +204,7 @@ class ScrapeCommand(CalAccessCommand):
         # Otherwise, retrieve the full page and cache it
         try:
             response = self.get_url(full_url)
-        except urllib2.HTTPError:
+        except requests.exceptions.HTTPError as e:
             # If web requests fails, fall back to cached file, if it exists
             if os.path.exists(cache_path):
                 if self.verbosity > 2:
@@ -213,7 +212,7 @@ class ScrapeCommand(CalAccessCommand):
                 html = open(cache_path, 'r').read()
                 return BeautifulSoup(html, "html.parser")
             else:
-                raise urllib2.HTTPError
+                raise e
 
         # Grab the HTML and cache it
         html = response.text
