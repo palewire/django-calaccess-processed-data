@@ -4,9 +4,9 @@
 Base classes for custom management commands.
 """
 import os
-import urllib
 import logging
-import urlparse
+from six.moves.urllib.parse import urljoin
+from six.moves.urllib.request import url2pathname
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -171,14 +171,14 @@ class ScrapeCommand(CalAccessCommand):
         Makes request for a URL and returns HTML as a BeautifulSoup object.
         """
         # Put together the full URL
-        full_url = urlparse.urljoin(base_url or self.base_url, url)
+        full_url = urljoin(base_url or self.base_url, url)
         if self.verbosity > 2:
             self.log(" Retrieving data for {}".format(url))
 
         # Pull a cached version of the file, if it exists
         cache_path = os.path.join(
             self.cache_dir,
-            urllib.url2pathname(url.strip("/"))
+            url2pathname(url.strip("/"))
         )
         if os.path.exists(cache_path) and not self.force_download:
             # Make a HEAD request for the file size of the live page

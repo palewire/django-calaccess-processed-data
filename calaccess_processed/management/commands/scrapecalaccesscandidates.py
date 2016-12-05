@@ -4,7 +4,7 @@
 Scrape list of certified candidates from the CAL-ACCESS site.
 """
 import re
-import urlparse
+from six.moves.urllib.parse import urljoin
 from time import sleep
 from calaccess_processed.management.commands import ScrapeCommand
 from calaccess_processed.models.scraped import (
@@ -50,7 +50,7 @@ class Command(ScrapeCommand):
         results = []
         for i, link in enumerate(links):
             # Get each page and its data
-            url = urlparse.urljoin(self.base_url, link["href"])
+            url = urljoin(self.base_url, link["href"])
             data = self.scrape_election_page(url)
             # Add the name of the election
             data['name'] = link.find_next_sibling('span').text.strip()
