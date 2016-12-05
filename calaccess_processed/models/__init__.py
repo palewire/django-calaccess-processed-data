@@ -116,5 +116,7 @@ __all__ = (
     'ScrapedCandidateCommittee',
     'Election',
     'Proposition',
-    'PropositionCommittee'
+    'PropositionCommittee',
+    'ProcessedDataVersion',
+    'ProcessedDataFile',
 )
