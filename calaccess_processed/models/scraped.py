@@ -9,16 +9,23 @@ from django.utils.encoding import python_2_unicode_compatible
 
 
 class BaseScrapedModel(models.Model):
+    """
+    Abstract base model from which all scraped models inherit.
+    """
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
 class BaseScrapedElection(BaseScrapedModel):
     """
     An election day scraped from the California Secretary of State's site.
+
     This is an abstract base model that creates two tables, one for elections
     scraped as part of the candidates scraper, and one for elections scraped
     as part of the propositions scraper.
@@ -28,14 +35,16 @@ class BaseScrapedElection(BaseScrapedModel):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
 @python_2_unicode_compatible
 class CandidateScrapedElection(BaseScrapedElection):
     """
-    An election day scraped as part of the `scrapecalaccesscandidates`
-    command.
+    An election day scraped as part of the `scrapecalaccesscandidates` command.
     """
     scraped_id = models.CharField(
         verbose_name="election identification number",
@@ -56,8 +65,7 @@ corresponds to a more recent election."
 @python_2_unicode_compatible
 class ScrapedCandidate(BaseScrapedModel):
     """
-    A candidate for office scraped from the California Secretary of State's
-    site.
+    A candidate for office scraped from the California Secretary of State's site.
     """
     name = models.CharField(
         verbose_name="candidate name",
@@ -82,8 +90,7 @@ class ScrapedCandidate(BaseScrapedModel):
 @python_2_unicode_compatible
 class PropositionScrapedElection(BaseScrapedElection):
     """
-    An election day scraped as part of the `scrapecalaccesspropositions`
-    command.
+    An election day scraped as part of the `scrapecalaccesspropositions` command.
     """
     def __str__(self):
         return self.name
@@ -92,8 +99,7 @@ class PropositionScrapedElection(BaseScrapedElection):
 @python_2_unicode_compatible
 class ScrapedProposition(BaseScrapedModel):
     """
-    A yes or no ballot measure for voters scraped from the
-    California Secretary of State's site.
+    A yes or no ballot measure for voters scraped from the California Secretary of State's site.
     """
     # Most of the time, this is a number, however,
     # it can be a bona fide name, e.g.
@@ -109,6 +115,9 @@ class ScrapedProposition(BaseScrapedModel):
     election = models.ForeignKey('PropositionScrapedElection', null=True)
 
     class Meta:
+        """
+        Model options.
+        """
         ordering = ("-election", "name")
 
     def __str__(self):
@@ -118,6 +127,7 @@ class ScrapedProposition(BaseScrapedModel):
 class BaseScrapedCommittee(BaseScrapedModel):
     """
     An committee scraped from the California Secretary of State's site.
+
     This is an abstract base model that creates two tables, one for committees
     scraped as part of the candidates scraper, and one for committees scraped
     as part of the propositions scraper.
@@ -132,14 +142,16 @@ class BaseScrapedCommittee(BaseScrapedModel):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
 @python_2_unicode_compatible
 class ScrapedPropositionCommittee(BaseScrapedCommittee):
     """
-    A committee supporting or opposing a proposition scraped from the
-    California Secretary of State's site.
+    A committee supporting or opposing a proposition scraped from the California Secretary of State's site.
     """
     position = models.CharField(
         max_length=100,
@@ -154,8 +166,7 @@ class ScrapedPropositionCommittee(BaseScrapedCommittee):
 @python_2_unicode_compatible
 class ScrapedCandidateCommittee(BaseScrapedCommittee):
     """
-    A candidate committee scraped from the California Secretary of State's
-    site.
+    A candidate committee scraped from the California Secretary of State's site.
     """
     candidate_id = models.CharField(
         max_length=100

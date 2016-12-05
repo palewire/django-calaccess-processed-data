@@ -13,6 +13,7 @@ from calaccess_processed.managers import ProcessedDataManager
 class Proposition(models.Model):
     """
     A single proposition on the California ballot.
+
     Scraped from the CAL-ACCESS site.
     """
     id = models.IntegerField(
@@ -48,6 +49,7 @@ class Proposition(models.Model):
 class PropositionCommittee(models.Model):
     """
     A committee that supports or opposes at least one proposition.
+
     Scraped from the CAL-ACCESS site.
     """
     id = models.IntegerField(
@@ -76,7 +78,7 @@ class PropositionCommittee(models.Model):
     @property
     def supports(self):
         """
-        Propositions supported by this committee"
+        Propositions supported by this committee.
         """
         return self.propositions.filter(
             propositionsupportoppose__support_oppose='S'
@@ -85,7 +87,7 @@ class PropositionCommittee(models.Model):
     @property
     def opposes(self):
         """
-        Propositions opposed by this committee"
+        Propositions opposed by this committee.
         """
         return self.propositions.filter(
             propositionsupportoppose__support_oppose='O'
@@ -97,8 +99,7 @@ class PropositionCommittee(models.Model):
 
 class PropositionSupportOppose(models.Model):
     """
-    Stores information about committees and the propositions
-    that they support or oppose.
+    Stores information about committees and the propositions they support or oppose.
     """
     committee = models.ForeignKey(
         'PropositionCommittee',

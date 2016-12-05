@@ -19,9 +19,15 @@ class Command(ScrapeCommand):
     help = "Scrape each candidate's committees from the CAL-ACCESS site."
 
     def flush(self):
+        """
+        Delete records form related database tables.
+        """
         ScrapedCandidateCommittee.objects.all().delete()
 
     def scrape(self):
+        """
+        Make requests and parse markup into structured data.
+        """
         self.header("Scraping candidate committees")
 
         # Set of unique scraped candidate ids
@@ -73,6 +79,9 @@ class Command(ScrapeCommand):
         return committees
 
     def save(self, results):
+        """
+        Save results of scrape to related database tables.
+        """
         self.log('Processing %s committees.' % len(results))
 
         for result in results:

@@ -15,18 +15,23 @@ from calaccess_processed.models.scraped import (
 
 class Command(ScrapeCommand):
     """
-    Scrape links between filers and propositions from the official CAL-ACCESS
-    site.
+    Scrape links between filers and propositions from official CAL-ACCESS site.
     """
     help = "Scrape links between filers and propositions from the official \
     CAL-ACCESS site."
 
     def flush(self):
+        """
+        Delete records form related database tables.
+        """
         ScrapedPropositionCommittee.objects.all().delete()
         ScrapedProposition.objects.all().delete()
         PropositionScrapedElection.objects.all().delete()
 
     def scrape(self):
+        """
+        Make requests and parse markup into structured data.
+        """
         self.header("Scraping propositions")
 
         # Build the link list from the 2013 page because otherwise the
@@ -48,10 +53,8 @@ class Command(ScrapeCommand):
 
     def scrape_year_page(self, url):
         """
-        Scrape data from a CAL-ACCESS page that publishes the list
-        of propositions in a particular election year.
+        Scrape data page with list of props in a particular election year.
         """
-
         # Get the URL of the year page
         soup = self.get_html(url)
 
@@ -95,7 +98,7 @@ class Command(ScrapeCommand):
 
     def scrape_prop_page(self, url):
         """
-        Scrape data from a proposition detail page
+        Scrape data from a proposition detail page.
         """
         # Pull the page
         soup = self.get_html(url)
@@ -151,7 +154,7 @@ class Command(ScrapeCommand):
 
     def save(self, results):
         """
-        Add the data to the database.
+        Save results of scrape to related database tables.
         """
         # For each year page
         for d in results:

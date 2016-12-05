@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""
+Base classes for custom management commands.
+"""
 import os
 import urllib
 import urllib2
@@ -17,8 +20,7 @@ logger = logging.getLogger(__name__)
 
 class CalAccessCommand(BaseCommand):
     """
-    Base management command that provides common functionality for the other
-    commands in this app.
+    Base class for all custom CalAccess-related management commands.
     """
     def handle(self, *args, **options):
         """
@@ -64,8 +66,7 @@ class CalAccessCommand(BaseCommand):
 
     def warn(self, string):
         """
-        Writes out a string to stdout formatted yellow to communicate a
-        warning.
+        Writes string to stdout formatted yellow to communicate a warning.
         """
         logger.warn(string)
         if not getattr(self, 'no_color', None):
@@ -74,7 +75,7 @@ class CalAccessCommand(BaseCommand):
 
     def failure(self, string):
         """
-        Writes out a string to stdout formatted red to communicate failure.
+        Writes string to stdout formatted red to communicate failure.
         """
         logger.error(string)
         if not getattr(self, 'no_color', None):
@@ -83,8 +84,7 @@ class CalAccessCommand(BaseCommand):
 
     def duration(self):
         """
-        Calculates how long the command has been running and writes it to
-        stdout.
+        Calculates how long command has been running and writes it to stdout.
         """
         duration = datetime.now() - self.start_datetime
         self.stdout.write('Duration: {}'.format(str(duration)))
@@ -102,6 +102,9 @@ class ScrapeCommand(CalAccessCommand):
     )
 
     def add_arguments(self, parser):
+        """
+        Adds custom arguments specific to this command.
+        """
         parser.add_argument(
             '--flush',
             action='store_true',
@@ -125,6 +128,9 @@ class ScrapeCommand(CalAccessCommand):
         )
 
     def handle(self, *args, **options):
+        """
+        Make it happen.
+        """
         super(ScrapeCommand, self).handle(*args, **options)
 
         self.force_flush = options.get("force_flush")
@@ -163,8 +169,7 @@ class ScrapeCommand(CalAccessCommand):
 
     def get_html(self, url, retries=1, base_url=None):
         """
-        Makes a request for a URL and returns the HTML as a BeautifulSoup
-        object.
+        Makes request for a URL and returns HTML as a BeautifulSoup object.
         """
         # Put together the full URL
         full_url = urlparse.urljoin(base_url or self.base_url, url)
@@ -224,20 +229,20 @@ class ScrapeCommand(CalAccessCommand):
 
     def flush(self):
         """
-        Empties out database tables filled by this command.
+        This method should empty out database tables filled by this command.
         """
         raise NotImplementedError
 
     def scrape(self):
         """
-        This method should perform the actual scraping
-        and return the structured data.
+        This method should perform the actual scraping.
+
+        Returns the structured data.
         """
         raise NotImplementedError
 
     def save(self, results):
         """
-        This method receives the structured data returned
-        by `build_results` and should process it.
+        This method should process structured data returned by `build_results`.
         """
         raise NotImplementedError

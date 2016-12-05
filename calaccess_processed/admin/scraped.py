@@ -11,6 +11,9 @@ from calaccess_raw.admin.base import BaseAdmin
 
 @admin.register(models.CandidateScrapedElection)
 class CandidateScrapedElectionAdmin(BaseAdmin):
+    """
+    Custom admin for CandidateScrapedElectionAdmin model.
+    """
     list_display = (
         "name",
     )
@@ -22,6 +25,9 @@ class CandidateScrapedElectionAdmin(BaseAdmin):
 
 @admin.register(models.ScrapedCandidate)
 class ScrapedCandidateAdmin(BaseAdmin):
+    """
+    Custom admin for ScrapedCandidateAdmin model.
+    """
     list_display = (
         "scraped_id",
         "name",
@@ -41,6 +47,9 @@ class ScrapedCandidateAdmin(BaseAdmin):
 
 @admin.register(models.ScrapedCandidateCommittee)
 class ScrapedCandidateCommitteeAdmin(BaseAdmin):
+    """
+    Custom admin for ScrapedCandidateCommitteeAdmin model.
+    """
     list_display = (
         "scraped_id",
         "name",
@@ -58,6 +67,9 @@ class ScrapedCandidateCommitteeAdmin(BaseAdmin):
 
 @admin.register(models.PropositionScrapedElection)
 class PropositionScrapedElectionAdmin(BaseAdmin):
+    """
+    Custom admin for PropositionScrapedElectionAdmin model.
+    """
     list_display = (
         "name",
     )
@@ -69,6 +81,9 @@ class PropositionScrapedElectionAdmin(BaseAdmin):
 
 @admin.register(models.ScrapedProposition)
 class ScrapedPropositionAdmin(BaseAdmin):
+    """
+    Custom admin for ScrapedPropositionAdmin model.
+    """
     list_display = (
         "scraped_id",
         "name",
@@ -83,6 +98,9 @@ class ScrapedPropositionAdmin(BaseAdmin):
 
 @admin.register(models.ScrapedPropositionCommittee)
 class ScrapedPropositionCommitteeAdmin(BaseAdmin):
+    """
+    Custom admin for ScrapedPropositionCommitteeAdmin model.
+    """
     list_display = (
         "scraped_id",
         "name",

@@ -15,17 +15,22 @@ from calaccess_processed.models.scraped import (
 
 class Command(ScrapeCommand):
     """
-    Scrape list of certified candidates for each election on the CAL-ACCESS
-    site.
+    Scrape list of certified candidates for each election on CAL-ACCESS site.
     """
     help = "Scrape certified candidates for each election on the CAL-ACCESS \
     site."
 
     def flush(self):
+        """
+        Delete records form related database tables.
+        """
         ScrapedCandidate.objects.all().delete()
         CandidateScrapedElection.objects.all().delete()
 
     def scrape(self):
+        """
+        Make requests and parse markup into structured data.
+        """
         self.header("Scraping election candidates")
 
         soup = self.get_html(
@@ -122,6 +127,9 @@ class Command(ScrapeCommand):
         }
 
     def save(self, results):
+        """
+        Save results of scrape to related database tables.
+        """
         self.log('Processing %s elections.' % len(results))
 
         # Loop through all the results
