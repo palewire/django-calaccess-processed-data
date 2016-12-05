@@ -7,6 +7,13 @@ from calaccess_processed.models.campaign.entities import (
     Candidate,
     CandidateCommittee,
 )
+from calaccess_processed.models.campaign.elections import (
+    Election
+)
+from calaccess_processed.models.campaign.propositions import (
+    Proposition,
+    PropositionCommittee,
+)
 from calaccess_processed.models.campaign.filings.form460 import (
     Form460Filing,
     Form460FilingVersion,
@@ -45,6 +52,14 @@ from calaccess_processed.models.campaign.filings.schedule497 import (
     Schedule497Part2Item,
     Schedule497Part2ItemVersion,
 )
+from calaccess_processed.models.scraped import (
+    ScrapedProposition,
+    PropositionScrapedElection,
+    ScrapedPropositionCommittee,
+    ScrapedCandidate,
+    CandidateScrapedElection,
+    ScrapedCandidateCommittee,
+)
 from calaccess_processed.models.common import (
     FilerIDValue,
     FilingIDValue,
@@ -55,8 +70,6 @@ from calaccess_processed.models.tracking import (
 )
 
 __all__ = (
-    'ProcessedDataVersion',
-    'ProcessedDataFile',
     'Candidate',
     'CandidateCommittee',
     'Form460Filing',
@@ -95,4 +108,15 @@ __all__ = (
     'Schedule497Part1ItemVersion',
     'Schedule497Part2Item',
     'Schedule497Part2ItemVersion',
+    'ScrapedProposition',
+    'PropositionScrapedElection',
+    'ScrapedPropositionCommittee',
+    'ScrapedCandidate',
+    'CandidateScrapedElection',
+    'ScrapedCandidateCommittee',
+    'Election',
+    'Proposition',
+    'PropositionCommittee',
+    'ProcessedDataVersion',
+    'ProcessedDataFile',
 )

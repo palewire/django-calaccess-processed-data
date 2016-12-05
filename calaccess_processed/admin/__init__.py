@@ -49,6 +49,10 @@ from calaccess_processed.admin.campaign.filings.schedule497 import (
 from calaccess_processed.admin.common import (
     FilerIDValueAdmin,
 )
+from .scraped import (
+    CandidateScrapedElectionAdmin,
+    ScrapedPropositionAdmin,
+)
 from calaccess_processed.admin.tracking import (
     ProcessedDataVersionAdmin,
     ProcessedDataFileAdmin,
@@ -95,4 +99,6 @@ __all__ = (
     'FilerIDValueAdmin',
     'ProcessedDataVersionAdmin',
     'ProcessedDataFileAdmin',
+    'CandidateScrapedElectionAdmin',
+    'ScrapedPropositionAdmin',
 )

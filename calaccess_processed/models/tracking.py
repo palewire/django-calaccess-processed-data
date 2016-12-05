@@ -122,7 +122,7 @@ class ProcessedDataFile(models.Model):
         """
         app_label = 'calaccess_processed'
         unique_together = (('version', 'file_name'),)
-        verbose_name = 'processd CAL-ACCESS data file'
+        verbose_name = 'processed CAL-ACCESS data file'
         ordering = ('-version_id', 'file_name',)
 
     def __str__(self):

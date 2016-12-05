@@ -3,6 +3,7 @@ django-calaccess-raw-data>=1.4.6
 Django>=1.8
 hurry.filesize
 pytz
+beautifulsoup4
 
 # Databases
 mysqlclient

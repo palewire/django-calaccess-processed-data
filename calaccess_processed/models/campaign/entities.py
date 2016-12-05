@@ -174,7 +174,10 @@ class Candidate(models.Model):
         app_label = 'calaccess_processed'
 
     def __str__(self):
-        return str(self.full_name)
+        return '{} {}'.format(
+            self.first_name,
+            self.last_name
+        )
 
 
 @python_2_unicode_compatible
