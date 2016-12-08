@@ -17,30 +17,48 @@ from calaccess_processed.models.campaign.propositions import (
 from calaccess_processed.models.campaign.filings.form460 import (
     Form460Filing,
     Form460FilingVersion,
+)
+from calaccess_processed.models.campaign.filings.form460.schedules.a import (
     Form460ScheduleAItem,
     Form460ScheduleAItemVersion,
+)
+from calaccess_processed.models.campaign.filings.form460.schedules.b import (
     Form460ScheduleB1Item,
     Form460ScheduleB1ItemVersion,
     Form460ScheduleB2Item,
     Form460ScheduleB2ItemVersion,
     Form460ScheduleB2ItemOld,
     Form460ScheduleB2ItemVersionOld,
+)
+from calaccess_processed.models.campaign.filings.form460.schedules.c import (
     Form460ScheduleCItem,
     Form460ScheduleCItemVersion,
+)
+from calaccess_processed.models.campaign.filings.form460.schedules.d import (
     Form460ScheduleDItem,
     Form460ScheduleDItemVersion,
+)
+from calaccess_processed.models.campaign.filings.form460.schedules.e import (
     Form460ScheduleEItem,
     Form460ScheduleEItemVersion,
     Form460ScheduleESubItem,
     Form460ScheduleESubItemVersion,
+)
+from calaccess_processed.models.campaign.filings.form460.schedules.f import (
     Form460ScheduleFItem,
     Form460ScheduleFItemVersion,
+)
+from calaccess_processed.models.campaign.filings.form460.schedules.g import (
     Form460ScheduleGItem,
     Form460ScheduleGItemVersion,
+)
+from calaccess_processed.models.campaign.filings.form460.schedules.h import (
     Form460ScheduleHItem,
     Form460ScheduleHItemVersion,
     Form460ScheduleH2ItemOld,
     Form460ScheduleH2ItemVersionOld,
+)
+from calaccess_processed.models.campaign.filings.form460.schedules.i import (
     Form460ScheduleIItem,
     Form460ScheduleIItemVersion,
 )
