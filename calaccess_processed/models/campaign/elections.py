@@ -12,34 +12,52 @@ from calaccess_processed.managers import ProcessedDataManager
 @python_2_unicode_compatible
 class Election(models.Model):
     """
-    A single election.
+    California state elections.
 
-    Derived from CandidateScrapedElection and CommitteeScrapedElection.
+    Derived from distinct year and type combinations in CandidateScrapedElection.
     """
-
+    year = models.IntegerField(
+        verbose_name="election year",
+        help_text="Election year",
+    )
     ELECTION_TYPE_CHOICES = (
         ('P', 'Primary'),
         ('G', 'General'),
-        ('S', 'Special'),
-        ('R', 'Recall')
+        ('R', 'Recall'),
+        ('SE', 'Special Election'),
+        ('SR', 'Special Runoff'),
     )
     election_type = models.CharField(
         verbose_name="election type",
-        max_length=1,
-        null=False,
-        blank=True,
+        max_length=2,
         choices=ELECTION_TYPE_CHOICES,
         help_text="Type of election",
     )
-    year = models.CharField(
-        verbose_name="election year",
-        max_length=4,
-        null=False,
-        blank=True,
-        help_text="Election year",
+    OFFICE_CHOICES = (
+        ('ASM', 'State Assembly'),
+        ('GOV', 'Governor'),
+        ('SEN', 'State Senate'),
+    )
+    office = models.CharField(
+        verbose_name='office',
+        null=True,
+        max_length=3,
+        choices=OFFICE_CHOICES,
+        help_text='If a special election, office sought',
+    )
+    district = models.IntegerField(
+        verbose_name='district',
+        null=True,
+        help_text='If a special election, district for the office sought (if '
+                  'applicable)',
+    )
+    election_date = models.DateField(
+        verbose_name="election date",
+        null=True,
+        help_text='Date of the election',
     )
 
     objects = ProcessedDataManager()
 
     def __str__(self):
-        return self.election_type
+        return '%s-%s' % (self.election_type, self.year)

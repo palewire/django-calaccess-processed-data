@@ -16,8 +16,6 @@ def get_models_to_process():
     """
     from calaccess_processed.models import campaign
     return [
-        campaign.entities.Candidate,
-        campaign.entities.CandidateCommittee,
         campaign.filings.form460.Form460FilingVersion,
         campaign.filings.form460.Form460Filing,
         campaign.filings.form460.schedules.a.Form460ScheduleAItemVersion,
@@ -53,8 +51,11 @@ def get_models_to_process():
         campaign.filings.schedule497.Schedule497Part2ItemVersion,
         campaign.filings.schedule497.Schedule497Part2Item,
         campaign.elections.Election,
+        campaign.elections.Candidate,
         campaign.propositions.Proposition,
         campaign.propositions.PropositionCommittee
+        campaign.entities.Candidate,
+        campaign.entities.CandidateCommittee,
     ]
 
 
