@@ -53,7 +53,7 @@ def get_models_to_process():
         campaign.elections.Election,
         campaign.elections.Candidate,
         campaign.propositions.Proposition,
-        campaign.propositions.PropositionCommittee
+        campaign.propositions.PropositionCommittee,
         campaign.entities.Candidate,
         campaign.entities.CandidateCommittee,
     ]
