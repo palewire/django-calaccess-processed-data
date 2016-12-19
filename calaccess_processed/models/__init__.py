@@ -8,7 +8,7 @@ from calaccess_processed.models.campaign.entities import (
     CandidateCommittee,
 )
 from calaccess_processed.models.campaign.elections import (
-    Election
+    Election,
 )
 from calaccess_processed.models.campaign.propositions import (
     Proposition,
