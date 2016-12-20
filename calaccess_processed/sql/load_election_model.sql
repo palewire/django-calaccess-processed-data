@@ -35,7 +35,7 @@ UPDATE calaccess_processed_election
    AND year = 2008;
 
 -- there was only one special election the years 2003 and 2005
-UPDATE calaccess_processed_election as elec
+UPDATE calaccess_processed_election AS elec
    SET election_date = prop.election_date
   FROM (
         SELECT substring(name from '\d{4}')::INT AS year,
@@ -47,6 +47,155 @@ UPDATE calaccess_processed_election as elec
        ) AS prop
  WHERE elec.year = prop.year
    AND elec.election_type = 'SE';
+
+-- these all come from here: http://www.sos.ca.gov/elections/prior-elections/special-elections/
+UPDATE calaccess_processed_election
+   SET election_date = '2016-4-5'
+ WHERE year = 2016
+   AND election_type = 'SE'
+   AND office = 'ASM'
+   AND district = 31;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2015-3-17'
+ WHERE year = 2015
+   AND election_type = 'SE'
+   AND office = 'SEN'
+   AND district = 37;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2015-3-17'
+ WHERE year = 2015
+   AND election_type = 'SE'
+   AND office = 'SEN'
+   AND district = 21;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2014-3-25'
+ WHERE year = 2014
+   AND election_type = 'SE'
+   AND office = 'SEN'
+   AND district = 23;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2014-12-9'
+ WHERE year = 2014
+   AND election_type = 'SE'
+   AND office = 'SEN'
+   AND district = 35;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2013-12-3'
+ WHERE year = 2014
+   AND election_type = 'SE'
+   AND office = 'ASM'
+   AND district = 54;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2013-9-17'
+ WHERE year = 2013
+   AND election_type = 'SE'
+   AND office = 'SEN'
+   AND district = 26;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2013-5-21'
+ WHERE year = 2013
+   AND election_type = 'SE'
+   AND office = 'ASM'
+   AND district = 80;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2013-3-12'
+ WHERE year = 2013
+   AND election_type = 'SE'
+   AND office = 'SEN'
+   AND district = 40;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2013-1-8'
+ WHERE year = 2013
+   AND election_type = 'SE'
+   AND office = 'SEN'
+   AND district = 4;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2012-11-6'
+ WHERE year = 2012
+   AND election_type = 'SE'
+   AND office = 'SEN'
+   AND district = 4;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2011-2-15'
+ WHERE year = 2011
+   AND election_type = 'SE'
+   AND office = 'SEN'
+   AND district = 17;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2011-2-15'
+ WHERE year = 2011
+   AND election_type = 'SE'
+   AND office = 'SEN'
+   AND district = 28;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2011-1-4'
+ WHERE year = 2011
+   AND election_type = 'SR'
+   AND office = 'SEN'
+   AND district = 1;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2010-1-12'
+ WHERE year = 2010
+   AND election_type = 'SR'
+   AND office = 'ASM'
+   AND district = 72;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2010-11-2'
+ WHERE year = 2010
+   AND election_type = 'SE'
+   AND office = 'SEN'
+   AND district = 1;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2009-9-1'
+ WHERE year = 2009
+   AND election_type = 'SE'
+   AND office = 'ASM'
+   AND district = 51;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2009-11-17'
+ WHERE year = 2009
+   AND election_type = 'SE'
+   AND office = 'ASM'
+   AND district = 72;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2008-2-5'
+ WHERE year = 2008
+   AND election_type = 'SR'
+   AND office = 'ASM'
+   AND district = 55;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2007-5-15'
+ WHERE year = 2007
+   AND election_type = 'SE'
+   AND office = 'ASM'
+   AND district = 39;
+
+UPDATE calaccess_processed_election
+   SET election_date = '2007-12-11'
+ WHERE year = 2007
+   AND election_type = 'SE'
+   AND office = 'ASM'
+   AND district = 55;
+
 
 -- then populate the election_date field for prop elections that match cand elections
 UPDATE calaccess_processed_election as elec
