@@ -8,9 +8,14 @@ SELECT
         scraped.name AS name,
         election.id AS election_id
   FROM calaccess_processed_scrapedproposition AS scraped
-  JOIN calaccess_processed_propositionscrapedelection AS scrapedelection
+  JOIN (
+        SELECT id,
+               substring(name from '\d{4}\s([A-Z])') AS election_type,
+               (regexp_matches(name, '^([A-Z]+\s\d{1,2},\s\d{4})\s.+$'))[1]::DATE as election_date
+        FROM calaccess_processed_propositionscrapedelection
+       ) AS scrapedelection
     ON scraped.election_id = scrapedelection.id
   JOIN calaccess_processed_election AS election
-    ON substring(scrapedelection.name from '\d{4}')::INT = election.year
-   AND substring(scrapedelection.name from '\d{4}\s([A-Z])') = election.election_type;
-   
+    ON left(election.election_type, 1) = scrapedelection.election_type
+   AND election.election_date = scrapedelection.election_date
+ORDER BY id;
