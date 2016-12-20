@@ -34,7 +34,7 @@ UPDATE calaccess_processed_election
  WHERE election_type = 'P'
    AND year = 2008;
 
--- there was only one special election the years 2003 and 2005
+-- there was only one special election in the years 2003 and 2005
 UPDATE calaccess_processed_election AS elec
    SET election_date = prop.election_date
   FROM (
@@ -195,7 +195,6 @@ UPDATE calaccess_processed_election
    AND election_type = 'SE'
    AND office = 'ASM'
    AND district = 55;
-
 
 -- then populate the election_date field for prop elections that match cand elections
 UPDATE calaccess_processed_election as elec
