@@ -16,10 +16,6 @@ class Election(models.Model):
 
     Derived from distinct year and type combinations in CandidateScrapedElection.
     """
-    year = models.IntegerField(
-        verbose_name="election year",
-        help_text="Election year",
-    )
     ELECTION_TYPE_CHOICES = (
         ('P', 'Primary'),
         ('G', 'General'),
@@ -53,7 +49,6 @@ class Election(models.Model):
     )
     election_date = models.DateField(
         verbose_name="election date",
-        null=True,
         help_text='Date of the election',
     )
 
