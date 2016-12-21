@@ -1,6 +1,6 @@
 # The app
 django-calaccess-raw-data>=1.4.6
-Django>=1.8
+Django>=1.9
 hurry.filesize
 pytz
 beautifulsoup4
