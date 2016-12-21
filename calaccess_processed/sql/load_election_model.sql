@@ -47,6 +47,9 @@ ON cand.year = prop.year
 AND cand.election_type = prop.election_type;
 
 -- then insert all the special elections
+-- this list is compiled from the candidate elections scraped from CAL-ACCESS: http://cal-access.ss.ca.gov/Campaign/Candidates/
+-- and also here: http://www.sos.ca.gov/elections/prior-elections/special-elections/
+-- and here: http://elections.cdn.sos.ca.gov/special-elections/pdf/special-elections-history.pdf
 INSERT INTO calaccess_processed_election (
     election_type,
     office,
