@@ -12,9 +12,13 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.RemoveField(
             model_name='election',
             name='year',
-            field=models.IntegerField(help_text='Election year', verbose_name='election year'),
+        ),
+        migrations.AlterField(
+            model_name='election',
+            name='election_date',
+            field=models.DateField(help_text='Date of the election', verbose_name='election date'),
         ),
     ]
