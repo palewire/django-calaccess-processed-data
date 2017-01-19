@@ -148,7 +148,7 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True, help_text='Time that this object was created at in the system.')),
                 ('updated_at', models.DateTimeField(auto_now=True, help_text='Time that this object was last updated in the system.')),
                 ('extras', django.contrib.postgres.fields.jsonb.JSONField(blank=True, default=dict, help_text='Common to all Open Civic Data types, the value is a key-value store suitable for storing arbitrary information not covered elsewhere.')),
-                ('id', calaccess_processed.models.opencivicdata.base.OCDIDField(ocd_type=b'jurisdiction', serialize=False, validators=[django.core.validators.RegexValidator(flags=32, message='ID must match ^ocd-jurisdiction/country:[a-z]{2}(/[^\\W\\d]+:[\\w.~-]+)*/\\w+$', regex=b'^ocd-jurisdiction/country:[a-z]{2}(/[^\\W\\d]+:[\\w.~-]+)*/\\w+$')])),
+                ('id', calaccess_processed.models.opencivicdata.base.OCDIDField(ocd_type=b'jurisdiction', serialize=False, validators=[django.core.validators.RegexValidator(flags=32, message='ID must match ^ocd-jurisdiction/country:[a-z]{2}(/[^\\W\\d]+:[\\w.~-]+)*/\\w+$', regex=r'^ocd-jurisdiction/country:[a-z]{2}(/[^\\W\\d]+:[\\w.~-]+)*/\\w+$')])),
                 ('name', models.CharField(max_length=300)),
                 ('url', models.URLField(max_length=2000)),
                 ('classification', models.CharField(choices=[(b'government', b'Government'), (b'legislature', b'Legislature'), (b'executive', b'Executive'), (b'school_system', b'School System'), (b'transit_authority', b'Transit Authority')], db_index=True, default=b'government', max_length=50)),
