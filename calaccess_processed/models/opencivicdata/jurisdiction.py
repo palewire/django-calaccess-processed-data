@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 OCD Jurisdiction-related models and managers.
+
+Copied (with some modifications) from
+https://github.com/opencivicdata/python-opencivicdata-django/blob/master/opencivicdata/models/jurisdiction.py
 """
 from django.db import models
 from django.contrib.postgres.fields import ArrayField

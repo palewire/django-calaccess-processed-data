@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 Base classes for OCD models and model fields.
+
+Copied (with some modifications) from
+https://github.com/opencivicdata/python-opencivicdata-django/blob/master/opencivicdata/models/base.py
 """
 from __future__ import unicode_literals
 import re

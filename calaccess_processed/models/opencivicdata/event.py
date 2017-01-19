@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 OCD Event-related models.
+
+Copied (with some modifications) from
+https://github.com/opencivicdata/python-opencivicdata-django/blob/master/opencivicdata/models/event.py
 """
 from __future__ import unicode_literals
 from django.db import models

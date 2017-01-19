@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 OCD Division-related models and managers.
+
+Copied (with some modifications) from
+https://github.com/opencivicdata/python-opencivicdata-django/blob/master/opencivicdata/models/division.py
 """
 from __future__ import unicode_literals
 from django.db import models

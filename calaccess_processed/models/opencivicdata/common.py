@@ -1,5 +1,8 @@
 """
 Module for declaration of common constants available throughout Open Civic Data code.
+
+Copied from
+https://github.com/opencivicdata/python-opencivicdata-django/blob/master/opencivicdata/common.py
 """
 
 DIVISION_ID_REGEX = r'^ocd-division/country:[a-z]{2}(/[^\W\d]+:[\w.~-]+)*$'

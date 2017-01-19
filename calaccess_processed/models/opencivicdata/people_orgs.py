@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 OCD Person and Organization-related models and manager.
+
+Copied (with some modifications) from
+https://github.com/opencivicdata/python-opencivicdata-django/blob/master/opencivicdata/models/people_orgs.py
 """
 import datetime
 from django.db import models
