@@ -95,7 +95,7 @@ from calaccess_processed.models.opencivicdata.elections.ballot_selection import 
 )
 from calaccess_processed.models.opencivicdata.jurisdiction import Jurisdiction
 from calaccess_processed.models.opencivicdata.people_orgs import (
-    Organization, 
+    Organization,
     OrganizationIdentifier,
     OrganizationName,
     OrganizationContactDetail,
@@ -162,6 +162,7 @@ __all__ = (
     'ScrapedCandidateCommittee',
     'ProcessedDataVersion',
     'ProcessedDataFile',
+    'Candidacy',
     'Division',
     'Event',
     'Election',
@@ -170,12 +171,14 @@ __all__ = (
     'RetentionContest',
     'BallotMeasureSelection',
     'CandidateSelection',
-    'Organization', 
+    'Jurisdiction',
+    'Organization',
     'OrganizationIdentifier',
     'OrganizationName',
     'OrganizationContactDetail',
     'OrganizationLink',
     'OrganizationSource',
+    'Party',
     'Person',
     'PersonIdentifier',
     'PersonName',

@@ -10,13 +10,6 @@ from calaccess_processed.models.opencivicdata.base import (
     OCDIDField,
     OCDBase,
 )
-from calaccess_processed.models.opencivicdata.division import Division
-from calaccess_processed.models.opencivicdata.elections import Election
-from calaccess_processed.models.opencivicdata.elections.party import Party
-from calaccess_processed.models.opencivicdata.people_orgs import (
-    Membership,
-    Post,
-)
 
 
 class ContestBase(OCDBase):
@@ -43,6 +36,9 @@ class ContestBase(OCDBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
@@ -85,7 +81,7 @@ class BallotMeasureContest(ContestBase):
         blank=True,
         help_text='Specifies a statement in favor of the referendum. It does '
                   'not necessarily appear on the ballot.',
-        )
+    )
     summary_text = models.TextField(
         blank=True,
         help_text='Specifies a short summary of the ballot measure that is on '
@@ -101,16 +97,15 @@ class BallotMeasureContest(ContestBase):
         max_length=1,
         blank=True,
         choices=BALLOT_MEASURE_TYPES,
-        help_text='Enumerated among:\n'
-            '\t* ballot-measure: A catch-all for generic types of non-candidate'
-            '-based contests.\n'
-            '\t* initiative: These are usually citizen-driven measures to be '
-            'placed on the ballot. These could include both statutory changes '
-            'and constitutional amendments.\n'
-            '\t* referendum: These could include measures to repeal existing '
-            'acts of legislation, legislative referrals, and legislatively-'
-            'referred state constitutional amendments.\n'
-            '\t* other: Anything that does not fall into the above categories.'
+        help_text='Enumerated among:\n\t* ballot-measure: A catch-all for '
+                  'generic types of non-candidate-based contests.\n\t* '
+                  'initiative: These are usually citizen-driven measures to be '
+                  'placed on the ballot. These could include both statutory '
+                  'changes and constitutional amendments.\n\t* referendum: These '
+                  'could include measures to repeal existing acts of legislation, '
+                  'legislative referrals, and legislatively-referred state '
+                  'constitutional amendments.\n\t* other: Anything that does not '
+                  'fall into the above categories.'
     )
     other_type = models.CharField(
         max_length=300,
@@ -145,7 +140,7 @@ class CandidateContest(ContestBase):
         help_text='If this contest is a runoff to determine the outcome of a '
                   'previously undecided contest, reference to that '
                   '``CandidateContest``.',
-        )
+    )
     is_unexpired_term = models.NullBooleanField(
         null=True,
         help_text='Indicates that the former public office holder vacated the '
@@ -189,7 +184,7 @@ class RetentionContest(BallotMeasureContest):
         help_text='Reference to the OCD ``Membership`` that represents the '
                   'tenure of a particular person (i.e., OCD ``Person`` object) '
                   'in a particular public office (i.e., ``Post`` object).',
-        )
+    )
 
     def __str__(self):
         return self.id

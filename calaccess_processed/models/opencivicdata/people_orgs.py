@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-OCD Person and Organization-related models.
+OCD Person and Organization-related models and manager.
 """
 import datetime
-from django.db import models, transaction
+from django.db import models
 from django.db.models import Q, QuerySet
 from .base import OCDBase, LinkBase, OCDIDField, RelatedBase, IdentifierBase
 from .division import Division
@@ -15,12 +15,18 @@ import common
 
 
 class ContactDetailBase(RelatedBase):
+    """
+    Abstract base class for OCD ContactDetail models.
+    """
     type = models.CharField(max_length=50, choices=common.CONTACT_TYPE_CHOICES)
     value = models.CharField(max_length=300)
     note = models.CharField(max_length=300, blank=True)
     label = models.CharField(max_length=300, blank=True)
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
     def __str__(self):
@@ -28,20 +34,29 @@ class ContactDetailBase(RelatedBase):
 
 
 class OtherNameBase(RelatedBase):
+    """
+    Abstract base class for OCD OtherName models.
+    """
     name = models.CharField(max_length=500, db_index=True)
     note = models.CharField(max_length=500, blank=True)
     start_date = models.CharField(max_length=10, blank=True)    # YYYY[-MM[-DD]]
     end_date = models.CharField(max_length=10, blank=True)      # YYYY[-MM[-DD]]
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
     def __str__(self):
         return '{} ({})'.format(self.name, self.note)
 
-# the actual models
 
+# the actual models
 class Organization(OCDBase):
+    """
+    OCD Organization model, as defined in OCDEP 5: People, Organizations, Posts, and Memberships.
+    """
     id = OCDIDField(ocd_type='organization')
     name = models.CharField(max_length=300)
     image = models.URLField(blank=True, max_length=2000)
@@ -57,6 +72,9 @@ class Organization(OCDBase):
 
     # Access all "ancestor" organizations
     def get_parents(self):
+        """
+        Returns the org's parent orgs.
+        """
         org = self
         while True:
             org = org.parent
@@ -67,7 +85,9 @@ class Organization(OCDBase):
                 break
 
     def get_current_members(self):
-        """ return all Person objects w/ current memberships to org """
+        """
+        Return all Person objects w/ current memberships to org.
+        """
         today = datetime.date.today().isoformat()
 
         return Person.objects.filter(Q(memberships__start_date='') |
@@ -78,6 +98,9 @@ class Organization(OCDBase):
                                      )
 
     class Meta:
+        """
+        Model options.
+        """
         index_together = [
             ['jurisdiction', 'classification', 'name'],
             ['classification', 'name'],
@@ -85,7 +108,13 @@ class Organization(OCDBase):
 
 
 class OrganizationIdentifier(IdentifierBase):
-    organization = models.ForeignKey(Organization, related_name='identifiers')
+    """
+    Model for storing an OCD Organization's other identifiers.
+    """
+    organization = models.ForeignKey(
+        Organization,
+        related_name='identifiers'
+    )
 
     def __str__(self):
         tmpl = '%s identifies %s'
@@ -93,50 +122,105 @@ class OrganizationIdentifier(IdentifierBase):
 
 
 class OrganizationName(OtherNameBase):
-    organization = models.ForeignKey(Organization, related_name='other_names')
+    """
+    Model for storing an OCD Organization's other names.
+    """
+    organization = models.ForeignKey(
+        Organization,
+        related_name='other_names'
+    )
 
 
 class OrganizationContactDetail(ContactDetailBase):
-    organization = models.ForeignKey(Organization, related_name='contact_details')
+    """
+    Model for storing an OCD Organization's contact details.
+    """
+    organization = models.ForeignKey(
+        Organization,
+        related_name='contact_details',
+    )
 
 
 class OrganizationLink(LinkBase):
-    organization = models.ForeignKey(Organization, related_name='links')
+    """
+    Model for storing an OCD Organization's related links.
+    """
+    organization = models.ForeignKey(
+        Organization,
+        related_name='links'
+    )
 
 
 class OrganizationSource(LinkBase):
-    organization = models.ForeignKey(Organization, related_name='sources')
+    """
+    Model for storing an OCD Organization's related source links.
+    """
+    organization = models.ForeignKey(
+        Organization,
+        related_name='sources'
+    )
 
 
 class Post(OCDBase):
+    """
+    OCD Post model, as defined in OCDEP 5: People, Organizations, Posts, and Memberships.
+    """
     id = OCDIDField(ocd_type='post')
     label = models.CharField(max_length=300)
     role = models.CharField(max_length=300, blank=True)
     organization = models.ForeignKey(Organization, related_name='posts')
-    division = models.ForeignKey(Division, related_name='posts', null=True, blank=True,
-                                 default=None)
-    start_date = models.CharField(max_length=10, blank=True)    # YYYY[-MM[-DD]]
-    end_date = models.CharField(max_length=10, blank=True)    # YYYY[-MM[-DD]]
+    division = models.ForeignKey(
+        Division,
+        related_name='posts',
+        null=True,
+        blank=True,
+        default=None
+    )
+    start_date = models.DateField(
+        null=True,
+    )
+    end_date = models.DateField(
+        null=True,
+    )
 
     class Meta:
+        """
+        Model options.
+        """
         index_together = [
             ['organization', 'label']
         ]
 
     def __str__(self):
-        return '{} - {} - {}'.format(self.role, self.label, self.organization)
+        return '{} - {} - {}'.format(
+            self.role,
+            self.label,
+            self.organization
+        )
 
 
 class PostContactDetail(ContactDetailBase):
+    """
+    Model for storing the ContactDetails of an OCD Post.
+    """
     post = models.ForeignKey(Post, related_name='contact_details')
 
 
 class PostLink(LinkBase):
+    """
+    Model for storing the related links of an OCD Post.
+    """
     post = models.ForeignKey(Post, related_name='links')
 
 
 class PersonQuerySet(QuerySet):
+    """
+    Custom queryset manager for OCD Person model.
+    """
     def member_of(self, organization_name, current_only=True):
+        """
+        Returns the a queryset for accessing the Orgs or which the person is a member.
+        """
         filter_params = []
 
         if current_only:
@@ -148,15 +232,22 @@ class PersonQuerySet(QuerySet):
                              Q(memberships__end_date__gte=today),
                              ]
         if organization_name.startswith('ocd-organization/'):
-            qs = self.filter(*filter_params,
-                            memberships__organization_id=organization_name)
+            qs = self.filter(
+                *filter_params,
+                memberships__organization_id=organization_name
+            )
         else:
-            qs = self.filter(*filter_params,
-                            memberships__organization__name=organization_name)
+            qs = self.filter(
+                *filter_params,
+                memberships__organization__name=organization_name
+            )
         return qs
 
 
 class Person(OCDBase):
+    """
+    OCD Person model, as defined in OCDEP 5: People, Organizations, Posts, and Memberships.
+    """
     objects = PersonQuerySet.as_manager()
 
     id = OCDIDField(ocd_type='person')
@@ -170,42 +261,72 @@ class Person(OCDBase):
     summary = models.CharField(max_length=500, blank=True)
     national_identity = models.CharField(max_length=300, blank=True)
     biography = models.TextField(blank=True)
-    birth_date = models.CharField(max_length=10, blank=True)    # YYYY[-MM[-DD]]
-    death_date = models.CharField(max_length=10, blank=True)    # YYYY[-MM[-DD]]
+    birth_date = models.DateField(
+        null=True,
+    )
+    death_date = models.DateField(
+        null=True,
+    )
 
     def __str__(self):
         return self.name
 
     def add_other_name(self, name, note=""):
-        PersonName.objects.create(name=name,
-                        note=note,
-                        person_id=self.id)
+        """
+        Custom method for adding an other name to an OCD Person.
+        """
+        PersonName.objects.create(
+            name=name,
+            note=note,
+            person_id=self.id,
+        )
 
     class Meta:
+        """
+        Model options.
+        """
         verbose_name_plural = "people"
 
 
 class PersonIdentifier(IdentifierBase):
+    """
+    Model for storing an OCD Person's other identifiers.
+    """
     person = models.ForeignKey(Person, related_name='identifiers')
 
 
 class PersonName(OtherNameBase):
+    """
+    Model for storing an OCD Person's other names.
+    """
     person = models.ForeignKey(Person, related_name='other_names')
 
 
 class PersonContactDetail(ContactDetailBase):
+    """
+    Model for storing an OCD Person's contact details.
+    """
     person = models.ForeignKey(Person, related_name='contact_details')
 
 
 class PersonLink(LinkBase):
+    """
+    Model for storing an OCD Person's related links.
+    """
     person = models.ForeignKey(Person, related_name='links')
 
 
 class PersonSource(LinkBase):
+    """
+    Model for storing an OCD Person's related links.
+    """
     person = models.ForeignKey(Person, related_name='sources')
 
 
 class Membership(OCDBase):
+    """
+    OCD Membership model, as defined in OCDEP 5: People, Organizations, Posts, and Memberships.
+    """
     id = OCDIDField(ocd_type='membership')
     organization = models.ForeignKey(Organization, related_name='memberships')
     person = models.ForeignKey(Person, related_name='memberships')
@@ -218,6 +339,9 @@ class Membership(OCDBase):
     end_date = models.CharField(max_length=10, blank=True)      # YYYY[-MM[-DD]]
 
     class Meta:
+        """
+        Model options.
+        """
         index_together = [
             ['organization', 'person', 'label', 'post']
         ]
@@ -227,8 +351,17 @@ class Membership(OCDBase):
 
 
 class MembershipContactDetail(ContactDetailBase):
-    membership = models.ForeignKey(Membership, related_name='contact_details')
+    """
+    Model for storing contact details of an OCD Membership.
+    """
+    membership = models.ForeignKey(
+        Membership,
+        related_name='contact_details',
+    )
 
 
 class MembershipLink(LinkBase):
+    """
+    Model for storing related links of an OCD Membership.
+    """
     membership = models.ForeignKey(Membership, related_name='links')

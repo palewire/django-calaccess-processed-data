@@ -79,17 +79,29 @@ class OCDBase(models.Model):
 
 
 class RelatedBase(models.Model):
+    """
+    Abstract base class for related models.
+    """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
 class LinkBase(RelatedBase):
+    """
+    Abstract base class for related link models.
+    """
     note = models.CharField(max_length=300, blank=True)
     url = models.URLField(max_length=2000)
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
     def __str__(self):
@@ -97,19 +109,31 @@ class LinkBase(RelatedBase):
 
 
 class MimetypeLinkBase(RelatedBase):
+    """
+    Abstract base class for related mime type link models.
+    """
     media_type = models.CharField(max_length=100)
     url = models.URLField(max_length=2000)
     text = models.TextField(default='', blank=True)
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
 
 class IdentifierBase(RelatedBase):
+    """
+    Abstract base class for related identifier models.
+    """
     identifier = models.CharField(max_length=300)
     scheme = models.CharField(max_length=300)
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True
 
     def __str__(self):
@@ -117,6 +141,9 @@ class IdentifierBase(RelatedBase):
 
 
 class RelatedEntityBase(RelatedBase):
+    """
+    Abstract base class for related entity models.
+    """
     name = models.CharField(max_length=2000)
     entity_type = models.CharField(max_length=20, blank=True)
 
@@ -126,6 +153,9 @@ class RelatedEntityBase(RelatedBase):
 
     @property
     def entity_name(self):
+        """
+        Returns the name of the related entity, whether it is a person or org.
+        """
         if self.entity_type == 'organization' and self.organization_id:
             return self.organization.name
         elif self.entity_type == 'person' and self.person_id:
@@ -135,6 +165,9 @@ class RelatedEntityBase(RelatedBase):
 
     @property
     def entity_id(self):
+        """
+        Returns the id of the related entity, whether it is a person or org.
+        """
         if self.entity_type == 'organization':
             return self.organization_id
         if self.entity_type == 'person':
@@ -142,4 +175,7 @@ class RelatedEntityBase(RelatedBase):
         return None
 
     class Meta:
+        """
+        Model options.
+        """
         abstract = True

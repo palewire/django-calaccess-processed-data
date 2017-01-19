@@ -10,18 +10,16 @@ from calaccess_processed.models.opencivicdata.base import (
     OCDIDField,
     OCDBase,
 )
-from calaccess_processed.models.opencivicdata.people_orgs import (
-    Organization,
-    Person,
-    Post,
-)
-from calaccess_processed.models.opencivicdata.elections.ballot_selection import CandidateSelection
 
 
 @python_2_unicode_compatible
 class Candidacy(OCDBase):
     """
-    Represents a person who is a candidate in a particular ``CandidateContest``. If a candidate is running in multiple contests, each contest must have its own ``Candidate`` object. ``Candidate`` objects may not be reused between contests.
+    Represents a person who is a candidate for a public office.
+
+    If a candidate is running in multiple contests, each contest must have its
+    own ``Candidate`` object. ``Candidate`` objects may not be reused between
+    contests.
     """
     id = OCDIDField(
         ocd_type='candidacy',
@@ -29,15 +27,15 @@ class Candidacy(OCDBase):
     )
     ballot_name = models.CharField(
         max_length=300,
-        help_text = "The candidate's name as it will be displayed on the official ballot, "
-                    'e.g. "Ken T. Cuccinelli II".',
-        )
+        help_text="The candidate's name as it will be displayed on the official ballot, "
+                  'e.g. "Ken T. Cuccinelli II".',
+    )
     person_id = models.ForeignKey(
         'Person',
         related_name='candidacies',
         null=True,
         help_text='Reference to an OCD ``Person`` who is the candidate.',
-        )
+    )
     post_id = models.ForeignKey(
         'Post',
         related_name='candidates',

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-OCD Division-related models.
+OCD Division-related models and managers.
 """
 from __future__ import unicode_literals
 from django.db import models

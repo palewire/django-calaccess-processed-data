@@ -10,11 +10,6 @@ from calaccess_processed.models.opencivicdata.base import (
     OCDIDField,
     OCDBase,
 )
-from calaccess_processed.models.opencivicdata.elections.party import Party
-from calaccess_processed.models.opencivicdata.elections.contest import (
-    BallotMeasureContest,
-    CandidateContest,
-)
 
 
 @python_2_unicode_compatible
@@ -41,6 +36,7 @@ class BallotMeasureSelection(OCDBase):
 
     def __str__(self):
         return self.id
+
 
 @python_2_unicode_compatible
 class CandidateSelection(OCDBase):

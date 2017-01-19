@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+OCD Jurisdiction-related models and managers.
+"""
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.utils.encoding import python_2_unicode_compatible
@@ -8,6 +13,9 @@ from .division import Division
 
 @python_2_unicode_compatible
 class Jurisdiction(OCDBase):
+    """
+    OCD Jurisdiction model, as defined in OCDEP 3: Jurisdictions.
+    """
     id = OCDIDField(ocd_type='jurisdiction')
     name = models.CharField(max_length=300)
     url = models.URLField(max_length=2000)
@@ -22,6 +30,9 @@ class Jurisdiction(OCDBase):
 
 @python_2_unicode_compatible
 class LegislativeSession(RelatedBase):
+    """
+    OCD LegislativeSession model, as defined in OCDEP 3: Jurisdictions.
+    """
     jurisdiction = models.ForeignKey(Jurisdiction, related_name='legislative_sessions')
     identifier = models.CharField(max_length=100)
     name = models.CharField(max_length=300)
