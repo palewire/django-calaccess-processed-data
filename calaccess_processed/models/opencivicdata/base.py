@@ -12,7 +12,7 @@ import uuid
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 from django.core.validators import RegexValidator
-from calaccess_processed.models.opencivicdata import common
+from .common import JURISDICTION_ID_REGEX
 
 
 class OCDIDField(models.CharField):
