@@ -33,7 +33,7 @@ class OCDIDField(models.CharField):
             regex = '^ocd-' + self.ocd_type + '/[0-9a-f]{8}-([0-9a-f]{4}-){3}[0-9a-f]{12}$'
         else:
             kwargs['max_length'] = 300
-            regex = common.JURISDICTION_ID_REGEX
+            regex = JURISDICTION_ID_REGEX
 
         kwargs['primary_key'] = True
         # get pattern property if it exists, otherwise just return the object (hopefully a string)
