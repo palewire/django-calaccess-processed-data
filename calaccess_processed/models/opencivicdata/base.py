@@ -9,7 +9,7 @@ import uuid
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 from django.core.validators import RegexValidator
-import common
+from calaccess_processed.models.opencivicdata import common
 
 
 class OCDIDField(models.CharField):
