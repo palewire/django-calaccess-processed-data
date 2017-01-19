@@ -12,7 +12,7 @@ from django.db.models import Q, QuerySet
 from .base import OCDBase, LinkBase, OCDIDField, RelatedBase, IdentifierBase
 from .division import Division
 from .jurisdiction import Jurisdiction
-import common
+import .common
 
 # abstract models
 
