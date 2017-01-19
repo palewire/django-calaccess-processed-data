@@ -21,7 +21,7 @@ class ContactDetailBase(RelatedBase):
     """
     Abstract base class for OCD ContactDetail models.
     """
-    type = models.CharField(max_length=50, choices=common.CONTACT_TYPE_CHOICES)
+    type = models.CharField(max_length=50, choices=CONTACT_TYPE_CHOICES)
     value = models.CharField(max_length=300)
     note = models.CharField(max_length=300, blank=True)
     label = models.CharField(max_length=300, blank=True)
@@ -66,7 +66,7 @@ class Organization(OCDBase):
     parent = models.ForeignKey('self', related_name='children', null=True)
     jurisdiction = models.ForeignKey(Jurisdiction, related_name='organizations', null=True)
     classification = models.CharField(max_length=100, blank=True,
-                                      choices=common.ORGANIZATION_CLASSIFICATION_CHOICES)
+                                      choices=ORGANIZATION_CLASSIFICATION_CHOICES)
     founding_date = models.CharField(max_length=10, blank=True)     # YYYY[-MM[-DD]]
     dissolution_date = models.CharField(max_length=10, blank=True)  # YYYY[-MM[-DD]]
 
