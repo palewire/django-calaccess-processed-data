@@ -6,6 +6,7 @@ OCD Person and Organization-related models and manager.
 Copied (with some modifications) from
 https://github.com/opencivicdata/python-opencivicdata-django/blob/master/opencivicdata/models/people_orgs.py
 """
+from __future__ import unicode_literals
 import datetime
 from django.db import models
 from django.db.models import Q, QuerySet
