@@ -7,13 +7,6 @@ from calaccess_processed.models.campaign.entities import (
     Candidate,
     CandidateCommittee,
 )
-from calaccess_processed.models.campaign.elections import (
-    Election,
-)
-from calaccess_processed.models.campaign.propositions import (
-    Proposition,
-    PropositionCommittee,
-)
 from calaccess_processed.models.campaign.filings.form460 import (
     Form460Filing,
     Form460FilingVersion,
@@ -86,6 +79,41 @@ from calaccess_processed.models.tracking import (
     ProcessedDataVersion,
     ProcessedDataFile,
 )
+from calaccess_processed.models.opencivicdata.division import Division
+from calaccess_processed.models.opencivicdata.event import Event
+from calaccess_processed.models.opencivicdata.elections import Election
+from calaccess_processed.models.opencivicdata.elections.candidacy import Candidacy
+from calaccess_processed.models.opencivicdata.elections.party import Party
+from calaccess_processed.models.opencivicdata.elections.contest import (
+    BallotMeasureContest,
+    CandidateContest,
+    RetentionContest,
+)
+from calaccess_processed.models.opencivicdata.elections.ballot_selection import (
+    BallotMeasureSelection,
+    CandidateSelection,
+)
+from calaccess_processed.models.opencivicdata.jurisdiction import Jurisdiction
+from calaccess_processed.models.opencivicdata.people_orgs import (
+    Organization, 
+    OrganizationIdentifier,
+    OrganizationName,
+    OrganizationContactDetail,
+    OrganizationLink,
+    OrganizationSource,
+    Person,
+    PersonIdentifier,
+    PersonName,
+    PersonContactDetail,
+    PersonLink,
+    PersonSource,
+    Post,
+    PostContactDetail,
+    PostLink,
+    Membership,
+    MembershipContactDetail,
+    MembershipLink,
+)
 
 __all__ = (
     'Candidate',
@@ -132,9 +160,32 @@ __all__ = (
     'ScrapedCandidate',
     'CandidateScrapedElection',
     'ScrapedCandidateCommittee',
-    'Election',
-    'Proposition',
-    'PropositionCommittee',
     'ProcessedDataVersion',
     'ProcessedDataFile',
+    'Division',
+    'Event',
+    'Election',
+    'BallotMeasureContest',
+    'CandidateContest',
+    'RetentionContest',
+    'BallotMeasureSelection',
+    'CandidateSelection',
+    'Organization', 
+    'OrganizationIdentifier',
+    'OrganizationName',
+    'OrganizationContactDetail',
+    'OrganizationLink',
+    'OrganizationSource',
+    'Person',
+    'PersonIdentifier',
+    'PersonName',
+    'PersonContactDetail',
+    'PersonLink',
+    'PersonSource',
+    'Post',
+    'PostContactDetail',
+    'PostLink',
+    'Membership',
+    'MembershipContactDetail',
+    'MembershipLink',
 )
