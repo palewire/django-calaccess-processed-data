@@ -27,3 +27,6 @@ script:
 
 after_success:
  - coveralls
+
+addons:
+  postgresql: "9.4"
