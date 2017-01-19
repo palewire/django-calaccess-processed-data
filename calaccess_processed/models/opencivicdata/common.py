@@ -4,6 +4,7 @@ Module for declaration of common constants available throughout Open Civic Data 
 Copied from
 https://github.com/opencivicdata/python-opencivicdata-django/blob/master/opencivicdata/common.py
 """
+from __future__ import unicode_literals
 
 DIVISION_ID_REGEX = r'^ocd-division/country:[a-z]{2}(/[^\W\d]+:[\w.~-]+)*$'
 JURISDICTION_ID_REGEX = r'^ocd-jurisdiction/country:[a-z]{2}(/[^\W\d]+:[\w.~-]+)*/\w+$'
