@@ -7,7 +7,7 @@ beautifulsoup4
 
 # Databases
 mysqlclient
-psycopg2
+psycopg2>=2.5.4
 
 # Testing
 flake8
