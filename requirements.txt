@@ -1,5 +1,5 @@
 # The app
-django-calaccess-raw-data>=1.4.6
+django-calaccess-raw-data==1.4.7
 Django>=1.9
 hurry.filesize
 pytz
