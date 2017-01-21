@@ -7,16 +7,21 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.models.opencivicdata.event import Event
-
+from calaccess_processed.models.scraped import (
+    CandidateScrapedElection,
+    PropositionScrapedElection,
+)
+import re
+from datetime import datetime
 
 class ElectionManager(models.Manager):
     """
     Manager with custom methods for OCD Division.
     """
 
-    def create(self, start_time, name, state, kwargs):
+    def create(self, start_time, name, **kwargs):
         """
-        Custom create method for Division objects.
+        Custom create method for Election objects.
         """
         return super(
             ElectionManager,
@@ -24,11 +29,37 @@ class ElectionManager(models.Manager):
         ).create(
             start_time=start_time,
             name=name,
-            state=state,
+            state='st06',
             all_day=True,
-            classification='election',
+            classification='E',
             **kwargs
         )
+
+    def load_raw_data(self):
+        """
+        Load Election model from CandidateScrapedElection and PropositionScrapedElection.
+        """
+        date_name_regex = r'^(?P<date>[A-Z]+\s\d{1,2},\s\d{4})\s(?P<name>.+)'
+        
+        for e in PropositionScrapedElection.objects.all():
+            match = re.match(date_name_regex, e.name)
+            print match.groupdict()
+            dt_obj = datetime.strptime(
+                match.groupdict()['date'],
+                '%B %d, %Y',
+            )
+            new_elex = self.create(
+                start_time=dt_obj,
+                name='{0} {1}'.format(
+                    dt_obj.year,
+                    match.groupdict()['name']
+                    # TODO: Set adminstrative_org, external identifiers, source, etc.
+                )
+            )
+
+        # TODO: loop over CandidateScrapedElection, update/create?
+
+        return
 
 
 @python_2_unicode_compatible
@@ -38,7 +69,7 @@ class Election(Event):
     """
     objects = ElectionManager()
 
-    administrative_org_id = models.ForeignKey(
+    administrative_org= models.ForeignKey(
         'Organization',
         related_name='elections',
         null=True,
