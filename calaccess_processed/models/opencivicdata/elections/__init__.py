@@ -44,7 +44,6 @@ class ElectionManager(models.Manager):
 
         for e in PropositionScrapedElection.objects.all():
             match = re.match(date_name_regex, e.name)
-            print match.groupdict()
             dt_obj = datetime.strptime(
                 match.groupdict()['date'],
                 '%B %d, %Y',
