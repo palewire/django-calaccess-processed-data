@@ -8,11 +8,12 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.models.opencivicdata.event import Event
 from calaccess_processed.models.scraped import (
-    CandidateScrapedElection,
+    # CandidateScrapedElection,
     PropositionScrapedElection,
 )
 import re
 from datetime import datetime
+
 
 class ElectionManager(models.Manager):
     """
@@ -40,7 +41,7 @@ class ElectionManager(models.Manager):
         Load Election model from CandidateScrapedElection and PropositionScrapedElection.
         """
         date_name_regex = r'^(?P<date>[A-Z]+\s\d{1,2},\s\d{4})\s(?P<name>.+)'
-        
+
         for e in PropositionScrapedElection.objects.all():
             match = re.match(date_name_regex, e.name)
             print match.groupdict()
@@ -48,7 +49,7 @@ class ElectionManager(models.Manager):
                 match.groupdict()['date'],
                 '%B %d, %Y',
             )
-            new_elex = self.create(
+            self.create(
                 start_time=dt_obj,
                 name='{0} {1}'.format(
                     dt_obj.year,
@@ -69,7 +70,7 @@ class Election(Event):
     """
     objects = ElectionManager()
 
-    administrative_org= models.ForeignKey(
+    administrative_org = models.ForeignKey(
         'Organization',
         related_name='elections',
         null=True,
