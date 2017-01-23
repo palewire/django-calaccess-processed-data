@@ -6,6 +6,7 @@ OCD Election-related models.
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
+from calaccess_processed.models.opencivicdata.base import IdentifierBase
 from calaccess_processed.models.opencivicdata.event import Event
 from calaccess_processed.models.scraped import (
     # CandidateScrapedElection,
@@ -40,6 +41,9 @@ class ElectionManager(models.Manager):
         """
         Load Election model from CandidateScrapedElection and PropositionScrapedElection.
         """
+        
+        self.all().delete()
+        
         date_name_regex = r'^(?P<date>[A-Z]+\s\d{1,2},\s\d{4})\s(?P<name>.+)'
 
         for e in PropositionScrapedElection.objects.all():
@@ -53,9 +57,9 @@ class ElectionManager(models.Manager):
                 name='{0} {1}'.format(
                     dt_obj.year,
                     match.groupdict()['name']
-                    # TODO: Set adminstrative_org, external identifiers, source, etc.
+                    # TODO: Set adminstrative_org, source, etc.
                 )
-            )
+            ).identifiers.create(scheme='ccdc', identifier=str(e.id))
 
         # TODO: loop over CandidateScrapedElection, update/create?
 
@@ -88,3 +92,17 @@ class Election(Event):
 
     def __str__(self):
         return self.name
+
+
+class ElectionIdentifier(IdentifierBase):
+    """
+    Model for storing an OCD Election's other identifiers.
+    """
+    election = models.ForeignKey(
+        Election,
+        related_name='identifiers'
+    )
+
+    def __str__(self):
+        tmpl = '%s identifies %s'
+        return tmpl % (self.identifier, self.election)
