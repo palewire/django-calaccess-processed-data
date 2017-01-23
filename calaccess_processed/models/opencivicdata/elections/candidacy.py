@@ -30,20 +30,20 @@ class Candidacy(OCDBase):
         help_text="The candidate's name as it will be displayed on the official ballot, "
                   'e.g. "Ken T. Cuccinelli II".',
     )
-    person_id = models.ForeignKey(
+    person = models.ForeignKey(
         'Person',
         related_name='candidacies',
         null=True,
         help_text='Reference to an OCD ``Person`` who is the candidate.',
     )
-    post_id = models.ForeignKey(
+    post = models.ForeignKey(
         'Post',
         related_name='candidates',
         null=True,
         help_text='References the ``Post`` that represents the public office '
                   'for which the candidate is competing.',
     )
-    committee_id = models.ForeignKey(
+    committee = models.ForeignKey(
         # this should be switched to Committee whenever we implement the
         # proposed campaign finance models
         'Organization',
@@ -69,7 +69,7 @@ class Candidacy(OCDBase):
                   'President/Vice President ticket. In many states, this is '
                   'also true of the Governor/Lieutenant Governor.'
     )
-    party_id = models.ForeignKey(
+    party = models.ForeignKey(
         'Party',
         related_name='candidates',
         null=True,

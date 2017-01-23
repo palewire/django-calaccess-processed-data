@@ -21,14 +21,14 @@ class ContestBase(OCDBase):
         help_text='Name of the contest, not necessarily as it appears on the '
                   'ballot.'
     )
-    division_id = models.ForeignKey(
+    division = models.ForeignKey(
         'Division',
         related_name='%(class)s_contests',
         help_text='Reference to the OCD ``Division`` that defines the '
                   'geographical scope of the contest, e.g., a specific '
                   'Congressional or State Senate district.',
     )
-    election_id = models.ForeignKey(
+    election = models.ForeignKey(
         'Election',
         related_name='%(class)s_contests',
         help_text='Reference to the OCD ``Election`` in which the contest is '
@@ -133,7 +133,7 @@ class CandidateContest(ContestBase):
         help_text='Specifies the date and time when a candidate must have filed '
                   'for the contest for the office.',
     )
-    runoff_for_contest_id = models.OneToOneField(
+    runoff_for_contest = models.OneToOneField(
         'CandidateContest',
         related_name='runoff_contest',
         null=True,
@@ -160,7 +160,7 @@ class CandidateContest(ContestBase):
                   'President post should be listed before the id for Vice-'
                   'President.',
     )
-    party_id = models.ForeignKey(
+    party = models.ForeignKey(
         'Party',
         null=True,
         help_text='If the contest is among candidates of the same political '
@@ -179,7 +179,7 @@ class RetentionContest(BallotMeasureContest):
 
     For example, a judicial retention or recall election.
     """
-    membership_id = models.ForeignKey(
+    membership = models.ForeignKey(
         'Membership',
         help_text='Reference to the OCD ``Membership`` that represents the '
                   'tenure of a particular person (i.e., OCD ``Person`` object) '
