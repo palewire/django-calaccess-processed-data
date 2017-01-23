@@ -161,6 +161,7 @@ class ScrapeCommand(CalAccessCommand):
         Returns a dict with metadata about the current CAL-ACCESS snapshot.
         """
         response = self.get_url(url, request_type='HEAD')
+        print(response.headers)
         length = int(response.headers['content-length'])
         return {
             'content-length': length,

@@ -6,10 +6,15 @@ OCD Election Contest-related models.
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
+from calaccess_processed.models.scraped import ScrapedProposition
+from calaccess_processed.models.opencivicdata.elections import Election
+from calaccess_processed.models.opencivicdata.division import Division
 from calaccess_processed.models.opencivicdata.base import (
     OCDIDField,
     OCDBase,
 )
+import re
+from datetime import datetime
 
 
 class ContestBase(OCDBase):
@@ -42,11 +47,67 @@ class ContestBase(OCDBase):
         abstract = True
 
 
+class BallotMeasureContestManager(models.Manager):
+    """
+    Manager with custom methods for OCD ballot measure contest.
+    """
+
+    def load_raw_data(self):
+        """
+        Load BallotMeasureContest model from ScrapedProposition.
+        """
+
+        self.all().delete()
+
+        date_name_regex = r'^(?P<date>[A-Z]+\s\d{1,2},\s\d{4})\s(?P<name>.+)'
+        
+        for p in ScrapedProposition.objects.all():
+            # Get the election
+            match = re.match(date_name_regex, p.election.name)
+            dt_obj = datetime.strptime(
+                match.groupdict()['date'],
+                '%B %d, %Y',
+            )
+            election_obj = Election.objects.get(
+              start_time=dt_obj,
+              name='{0} {1}'.format(
+                    dt_obj.year,
+                    match.groupdict()['name']
+                )
+            )
+
+            # Get the division: CA statewide
+            division_obj = Division.objects.get(
+              id='ocd-division/country:us/state:ca'
+            )
+
+            # Measure is either an initiative or a referendum
+            ballot_measure_type = ''
+            if 'REFERENDUM' in p.name:
+              ballot_measure_type = 'r'
+            elif 'RECALL' in p.name:
+              ballot_measure_type = 'o'
+            else:
+              ballot_measure_type = 'i'
+
+            self.create(
+                election_id=election_obj,
+                division_id=division_obj,
+                name=p.name,
+                ballot_measure_type=ballot_measure_type
+            )
+
+        return
+
+
 @python_2_unicode_compatible
 class BallotMeasureContest(ContestBase):
     """
     Contest in which voters can affirm or reject a ballot measure.
     """
+
+    objects = BallotMeasureContestManager()
+
     id = OCDIDField(
         ocd_type='ballotmeasurecontest',
         help_text='Open Civic Data-style id in the format ``ocd-'
