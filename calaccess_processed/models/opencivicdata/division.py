@@ -63,7 +63,10 @@ class DivisionManager(models.Manager):
         url = 'https://raw.githubusercontent.com/opencivicdata/ocd-division-ids/master/identifiers/country-us.csv'  # NOQA
         r = requests.get(url, stream=True)
 
-        for line in r.iter_lines(decode_unicode=True):
+        lines = r.iter_lines(decode_unicode=True)
+        # skip first line
+        first_line = next(lines)
+        for line in lines:
             cols = line.split(',')
 
             id_dict = {
