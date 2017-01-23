@@ -59,7 +59,7 @@ class ElectionManager(models.Manager):
                     match.groupdict()['name']
                     # TODO: Set adminstrative_org, source, etc.
                 )
-            ).identifiers.create(scheme='ccdc', identifier=str(e.id))
+            ).identifiers.create(scheme='ScrapedProposition.id', identifier=str(e.id))
 
         # TODO: loop over CandidateScrapedElection, update/create?
 
