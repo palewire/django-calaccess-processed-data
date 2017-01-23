@@ -74,10 +74,10 @@ class DivisionManager(models.Manager):
             }
 
             if state:
-                if state in id_dict and id_dict['state'] == state.lower():
-                    Division.objects.create(id=cols[0], name=cols[1])
+                if 'state' in id_dict and id_dict['state'] == state.lower():
+                    self.create(id=cols[0], name=cols[1])
             else:
-                Division.objects.create(id=cols[0], name=cols[1])
+                self.create(id=cols[0], name=cols[1])
 
         return
 
