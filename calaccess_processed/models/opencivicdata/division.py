@@ -65,7 +65,7 @@ class DivisionManager(models.Manager):
 
         lines = r.iter_lines(decode_unicode=True)
         # skip first line
-        first_line = next(lines)
+        next(lines)
         for line in lines:
             cols = line.split(',')
 
