@@ -19,7 +19,7 @@ import re
 
 class ElectionManager(models.Manager):
     """
-    Manager with custom methods for OCD Division.
+    Manager with custom methods for OCD Election.
     """
 
     def create(self, start_time, name, **kwargs):
