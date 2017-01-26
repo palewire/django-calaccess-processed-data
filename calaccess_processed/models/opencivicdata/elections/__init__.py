@@ -5,6 +5,7 @@ OCD Election-related models.
 """
 from __future__ import unicode_literals
 from django.db import models
+from django.db.models import Count
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.models.opencivicdata.base import IdentifierBase
@@ -158,12 +159,15 @@ class ElectionManager(models.Manager):
                         '%Y-%m-%d',
                     )
                 )
-
                 # get or create the special election
                 try:
                     elex = self.get(start_time=dt_obj)
                 except self.model.DoesNotExist:
-                    elex = self.create(start_time=dt_obj, name=c.name)
+                    elex = self.create(
+                        start_time=dt_obj,
+                        name=c.name,
+                        is_statewide=False,
+                    )
             else:
                 # assume the candidate election name is in the '{year} {type}' format
                 try:
@@ -181,7 +185,19 @@ class ElectionManager(models.Manager):
                 scheme='calaccess_id',
                 identifier=str(c.scraped_id)
             )
-        # TODO: Remove office from name of special elections with multiple races
+        # Remove office from name of special elections with multiple races
+        special_elections = self.filter(
+            name__regex=r'^\d{4}\sSPECIAL\s.+\(.+$'
+        ).annotate(
+            num_ids=Count('identifiers')
+        ).filter(num_ids__gte=2)
+
+        for se in special_elections:
+            se.name = '{0} SPECIAL ELECTIONS'.format(
+                se.start_time.strftime('%b %Y').upper()
+            )
+            se.save()
+
         return
 
 
