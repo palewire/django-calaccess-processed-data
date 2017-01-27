@@ -4,6 +4,7 @@
 OCD Election-related models.
 """
 from __future__ import unicode_literals
+import re
 from django.db import models
 from django.db.models import Count
 from django.utils import timezone
@@ -14,14 +15,12 @@ from calaccess_processed.models.scraped import (
     CandidateScrapedElection,
     PropositionScrapedElection,
 )
-import re
 
 
 class ElectionManager(models.Manager):
     """
     Manager with custom methods for OCD Election.
     """
-
     def create(self, start_time, name, **kwargs):
         """
         Custom create method for Election objects.
