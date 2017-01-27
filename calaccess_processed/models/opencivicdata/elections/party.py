@@ -6,12 +6,12 @@ OCD Election Party-related models.
 from __future__ import unicode_literals
 from re import findall
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.models.opencivicdata.base import (
     OCDIDField,
     OCDBase,
 )
 from calaccess_raw.models.common import LookupCodesCd
+from django.utils.encoding import python_2_unicode_compatible
 
 
 class PartyManager(models.Manager):
