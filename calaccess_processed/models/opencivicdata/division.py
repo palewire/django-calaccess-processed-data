@@ -60,6 +60,8 @@ class DivisionManager(models.Manager):
         """
         import requests
 
+        self.all().delete()
+
         url = 'https://raw.githubusercontent.com/opencivicdata/ocd-division-ids/master/identifiers/country-us.csv'  # NOQA
         r = requests.get(url, stream=True)
 
