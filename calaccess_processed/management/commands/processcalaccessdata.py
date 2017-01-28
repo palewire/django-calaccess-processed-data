@@ -8,13 +8,17 @@ from django.core.management.base import CommandError
 from django.db import connection
 from django.utils.timezone import now
 from calaccess_raw import get_download_directory
+from calaccess_raw.models.tracking import RawDataVersion
 from calaccess_processed import get_models_to_process
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed.models.tracking import (
     ProcessedDataVersion,
     ProcessedDataFile,
 )
-from calaccess_raw.models.tracking import RawDataVersion
+from calaccess_processed.models.opencivicdata.division import Division
+from calaccess_processed.models.opencivicdata.people_orgs import Organization
+from calaccess_processed.models.opencivicdata.elections import Election
+from calaccess_processed.models.opencivicdata.elections.party import Party
 
 
 class Command(CalAccessCommand):
@@ -28,6 +32,8 @@ class Command(CalAccessCommand):
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
+
+        self.load_ocd_models()
 
         # get the most recently loaded raw data version
         try:
@@ -97,3 +103,24 @@ class Command(CalAccessCommand):
         self.processed_version.save()
 
         self.success("Done!")
+
+    def load_ocd_models(self):
+        """
+        Populate the OCD models from data scraped from CAL-ACCESS.
+        """
+        if self.verbosity > 2:
+            self.log(" Loading divisions...")
+        Division.objects.load(state='ca')
+
+        if self.verbosity > 2:
+            self.log(" Loading organizations...")
+        Organization.objects.load()
+
+        if self.verbosity > 2:
+            self.log(" Loading elections...")
+        Election.objects.load_raw_data()
+        
+        if self.verbosity > 2:
+            self.log(" Loading parties...")
+        Party.objects.load_raw_data()
+
