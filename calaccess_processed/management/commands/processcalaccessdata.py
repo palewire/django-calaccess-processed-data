@@ -122,4 +122,4 @@ class Command(CalAccessCommand):
 
         if self.verbosity > 2:
             self.log(" Loading parties...")
-        Party.objects.load_raw_data()
+        Party.objects.load_raw_data()   
