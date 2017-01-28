@@ -162,7 +162,10 @@ class ScrapeCommand(CalAccessCommand):
         """
         response = self.get_url(url, request_type='HEAD')
         print(response.headers)
-        length = int(response.headers['content-length'])
+        try:
+            length = int(response.headers['content-length'])
+        except KeyError:
+            length = 0
         return {
             'content-length': length,
         }
