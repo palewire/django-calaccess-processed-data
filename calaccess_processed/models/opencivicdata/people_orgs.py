@@ -109,7 +109,7 @@ class Organization(OCDBase):
         blank=True,
         choices=ORGANIZATION_CLASSIFICATION_CHOICES
     )
-    founding_date = models.CharField(max_length=10, blank=True) # YYYY[-MM[-DD]]
+    founding_date = models.CharField(max_length=10, blank=True)  # YYYY[-MM[-DD]]
     dissolution_date = models.CharField(max_length=10, blank=True)  # YYYY[-MM[-DD]]
 
     def __str__(self):

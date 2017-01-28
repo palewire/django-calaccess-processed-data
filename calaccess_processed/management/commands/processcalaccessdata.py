@@ -119,8 +119,7 @@ class Command(CalAccessCommand):
         if self.verbosity > 2:
             self.log(" Loading elections...")
         Election.objects.load_raw_data()
-        
+
         if self.verbosity > 2:
             self.log(" Loading parties...")
         Party.objects.load_raw_data()
-
