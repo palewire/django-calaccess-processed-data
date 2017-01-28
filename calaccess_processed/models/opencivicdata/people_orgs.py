@@ -15,9 +15,8 @@ from .division import Division
 from .jurisdiction import Jurisdiction
 from .common import CONTACT_TYPE_CHOICES, ORGANIZATION_CLASSIFICATION_CHOICES
 
+
 # abstract models
-
-
 class ContactDetailBase(RelatedBase):
     """
     Abstract base class for OCD ContactDetail models.
@@ -56,19 +55,61 @@ class OtherNameBase(RelatedBase):
         return '{} ({})'.format(self.name, self.note)
 
 
+# model managers
+class OrganizationManager(models.Manager):
+    """
+    Manager with custom methods for OCD Organization.
+    """
+    def load(self):
+        """
+        Insert records for California state government organizations.
+        """
+        self.all().delete()
+
+        self.create(
+            name='California State Executive Branch',
+            classification='executive',
+        )
+        leg = self.create(
+            name='California State Legislature',
+            classification='legislature',
+        )
+        self.create(
+            name='California State Senate',
+            classification='upper',
+            parent=leg,
+        )
+        self.create(
+            name='California State Assembly',
+            classification='lower',
+            parent=leg,
+        )
+
+        return
+
+
 # the actual models
 class Organization(OCDBase):
     """
     OCD Organization model, as defined in OCDEP 5: People, Organizations, Posts, and Memberships.
     """
+    objects = OrganizationManager()
+
     id = OCDIDField(ocd_type='organization')
     name = models.CharField(max_length=300)
     image = models.URLField(blank=True, max_length=2000)
     parent = models.ForeignKey('self', related_name='children', null=True)
-    jurisdiction = models.ForeignKey(Jurisdiction, related_name='organizations', null=True)
-    classification = models.CharField(max_length=100, blank=True,
-                                      choices=ORGANIZATION_CLASSIFICATION_CHOICES)
-    founding_date = models.CharField(max_length=10, blank=True)     # YYYY[-MM[-DD]]
+    jurisdiction = models.ForeignKey(
+        Jurisdiction,
+        related_name='organizations',
+        null=True
+    )
+    classification = models.CharField(
+        max_length=100,
+        blank=True,
+        choices=ORGANIZATION_CLASSIFICATION_CHOICES
+    )
+    founding_date = models.CharField(max_length=10, blank=True) # YYYY[-MM[-DD]]
     dissolution_date = models.CharField(max_length=10, blank=True)  # YYYY[-MM[-DD]]
 
     def __str__(self):
