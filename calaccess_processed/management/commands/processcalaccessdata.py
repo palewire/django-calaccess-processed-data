@@ -18,6 +18,7 @@ from calaccess_processed.models.tracking import (
 from calaccess_processed.models.opencivicdata.division import Division
 from calaccess_processed.models.opencivicdata.elections import Election
 from calaccess_processed.models.opencivicdata.elections.candidacy import Candidacy
+from calaccess_processed.models.opencivicdata.elections.contest import BallotMeasureContest
 from calaccess_processed.models.opencivicdata.elections.party import Party
 from calaccess_processed.models.opencivicdata.people_orgs import Organization
 
@@ -118,7 +119,11 @@ class Command(CalAccessCommand):
         Election.objects.load_raw_data()
 
         if self.verbosity > 2:
-            self.log(" Loading elections...")
+            self.log(" Loading ballot measure contests...")
+        BallotMeasureContest.objects.load_raw_data()
+
+        if self.verbosity > 2:
+            self.log(" Loading candidates (and posts, candidate contests, etc...")
         Candidacy.objects.load_raw_data()
 
         if self.verbosity > 2:
