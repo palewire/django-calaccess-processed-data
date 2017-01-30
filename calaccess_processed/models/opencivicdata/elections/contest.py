@@ -7,14 +7,14 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.models.scraped import ScrapedProposition
-from calaccess_processed.models.opencivicdata.elections import Election
+from calaccess_processed.models.opencivicdata.elections import (
+    ElectionIdentifier,
+)
 from calaccess_processed.models.opencivicdata.division import Division
 from calaccess_processed.models.opencivicdata.base import (
     OCDIDField,
     OCDBase,
 )
-import re
-from datetime import datetime
 
 
 class ContestBase(OCDBase):
@@ -57,22 +57,12 @@ class BallotMeasureContestManager(models.Manager):
         """
         self.all().delete()
 
-        date_name_regex = r'^(?P<date>[A-Z]+\s\d{1,2},\s\d{4})\s(?P<name>.+)'
-
         for p in ScrapedProposition.objects.all():
             # Get the election
-            match = re.match(date_name_regex, p.election.name)
-            dt_obj = datetime.strptime(
-                match.groupdict()['date'],
-                '%B %d, %Y',
-            )
-            election_obj = Election.objects.get(
-                start_time=dt_obj,
-                name='{0} {1}'.format(
-                    dt_obj.year,
-                    match.groupdict()['name']
-                )
-            )
+            election_obj = ElectionIdentifier.objects.get(
+                scheme='PropositionScrapedElection.id',
+                identifier=str(p.election_id),
+            ).election
 
             # Get the division: CA statewide
             division_obj = Division.objects.get(
