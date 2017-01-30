@@ -15,6 +15,7 @@ from calaccess_processed.models.scraped import (
     CandidateScrapedElection,
     PropositionScrapedElection,
 )
+import warnings
 
 
 class ElectionManager(models.Manager):
@@ -86,9 +87,13 @@ class ElectionManager(models.Manager):
 
         # the "2008 PRIMARY" on 2/5/2008 is the presidential primary
         # plus some other special elections and propositions
-        feb_08_primary = self.get(name='2008 PRIMARY', start_time__month=2)
-        feb_08_primary.name = '2008 PRESIDENTIAL PRIMARY AND SPECIAL ELECTIONS'
-        feb_08_primary.save()
+        try:
+            feb_08_primary = self.get(name='2008 PRIMARY', start_time__month=2)
+        except Election.DoesNotExist:
+            warnings.warn('Feb 2008 presidential primary election not found.')
+        else:
+            feb_08_primary.name = '2008 PRESIDENTIAL PRIMARY AND SPECIAL ELECTIONS'
+            feb_08_primary.save()
 
         # this list is compiled from the candidate elections scraped from CAL-ACCESS:
         # http://cal-access.ss.ca.gov/Campaign/Candidates/
