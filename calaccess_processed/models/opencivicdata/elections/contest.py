@@ -79,8 +79,8 @@ class BallotMeasureContestManager(models.Manager):
                 ballot_measure_type = 'i'
 
             self.create(
-                election_id=election_obj,
-                division_id=division_obj,
+                election=election_obj,
+                division=division_obj,
                 name=p.name,
                 ballot_measure_type=ballot_measure_type
             )
