@@ -14,6 +14,7 @@ from calaccess_processed.models.opencivicdata.division import Division
 from calaccess_processed.models.opencivicdata.base import (
     OCDIDField,
     OCDBase,
+    IdentifierBase,
 )
 
 
@@ -78,11 +79,16 @@ class BallotMeasureContestManager(models.Manager):
             else:
                 ballot_measure_type = 'i'
 
-            self.create(
+            contest = self.create(
                 election=election_obj,
                 division=division_obj,
                 name=p.name,
                 ballot_measure_type=ballot_measure_type
+            )
+
+            contest.identifiers.create(
+                scheme='calaccess_filer_id',
+                identifier=p.scraped_id,
             )
 
         return
@@ -165,6 +171,21 @@ class BallotMeasureContest(ContestBase):
 
     def __str__(self):
         return self.id
+
+
+@python_2_unicode_compatible
+class BallotMeasureContestIdentifier(IdentifierBase):
+    """
+    Model for storing an OCD BallotMeasureContest's other identifiers.
+    """
+    contest = models.ForeignKey(
+        BallotMeasureContest,
+        related_name='identifiers'
+    )
+
+    def __str__(self):
+        tmpl = '%s identifies %s'
+        return tmpl % (self.identifier, self.contest)
 
 
 @python_2_unicode_compatible
