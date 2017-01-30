@@ -49,7 +49,7 @@ class CandidateSelection(OCDBase):
                   'candidateselection/{{uuid}}``.',
     )
     contest = models.ForeignKey(
-        'BallotMeasureContest',
+        'CandidateContest',
         related_name='candidate_selections',
         help_text='References the ``CandidateContest`` in which the selection '
                   'is an option.',
