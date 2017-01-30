@@ -51,16 +51,14 @@ class BallotMeasureContestManager(models.Manager):
     """
     Manager with custom methods for OCD ballot measure contest.
     """
-
     def load_raw_data(self):
         """
         Load BallotMeasureContest model from ScrapedProposition.
         """
-
         self.all().delete()
 
         date_name_regex = r'^(?P<date>[A-Z]+\s\d{1,2},\s\d{4})\s(?P<name>.+)'
-        
+
         for p in ScrapedProposition.objects.all():
             # Get the election
             match = re.match(date_name_regex, p.election.name)
@@ -69,8 +67,8 @@ class BallotMeasureContestManager(models.Manager):
                 '%B %d, %Y',
             )
             election_obj = Election.objects.get(
-              start_time=dt_obj,
-              name='{0} {1}'.format(
+                start_time=dt_obj,
+                name='{0} {1}'.format(
                     dt_obj.year,
                     match.groupdict()['name']
                 )
@@ -78,17 +76,17 @@ class BallotMeasureContestManager(models.Manager):
 
             # Get the division: CA statewide
             division_obj = Division.objects.get(
-              id='ocd-division/country:us/state:ca'
+                id='ocd-division/country:us/state:ca'
             )
 
             # Measure is either an initiative or a referendum
             ballot_measure_type = ''
             if 'REFERENDUM' in p.name:
-              ballot_measure_type = 'r'
+                ballot_measure_type = 'r'
             elif 'RECALL' in p.name:
-              ballot_measure_type = 'o'
+                ballot_measure_type = 'o'
             else:
-              ballot_measure_type = 'i'
+                ballot_measure_type = 'i'
 
             self.create(
                 election_id=election_obj,
