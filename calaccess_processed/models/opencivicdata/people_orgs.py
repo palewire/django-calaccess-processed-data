@@ -288,6 +288,22 @@ class PersonQuerySet(QuerySet):
             )
         return qs
 
+    def get_using_filer_id(self, filer_id):
+        """
+        Returns an OCD Person object related to the given CAL-ACCESS filer_id.
+
+        Return None if no Person object is related to the given filer_id.
+        """
+        try:
+            person = PersonIdentifier.objects.get(
+                scheme='calaccess_filer_id',
+                identifier=filer_id,
+            ).person
+        except PersonIdentifier.DoesNotExist:
+            person = None
+
+        return person
+
 
 class Person(OCDBase):
     """

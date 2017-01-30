@@ -16,9 +16,10 @@ from calaccess_processed.models.tracking import (
     ProcessedDataFile,
 )
 from calaccess_processed.models.opencivicdata.division import Division
-from calaccess_processed.models.opencivicdata.people_orgs import Organization
 from calaccess_processed.models.opencivicdata.elections import Election
+from calaccess_processed.models.opencivicdata.elections.candidacy import Candidacy
 from calaccess_processed.models.opencivicdata.elections.party import Party
+from calaccess_processed.models.opencivicdata.people_orgs import Organization
 
 
 class Command(CalAccessCommand):
@@ -113,13 +114,17 @@ class Command(CalAccessCommand):
         Division.objects.load(state='ca')
 
         if self.verbosity > 2:
-            self.log(" Loading organizations...")
-        Organization.objects.load()
-
-        if self.verbosity > 2:
             self.log(" Loading elections...")
         Election.objects.load_raw_data()
 
         if self.verbosity > 2:
+            self.log(" Loading elections...")
+        Candidacy.objects.load_raw_data()
+
+        if self.verbosity > 2:
+            self.log(" Loading organizations...")
+        Organization.objects.load()
+
+        if self.verbosity > 2:
             self.log(" Loading parties...")
-        Party.objects.load_raw_data()   
+        Party.objects.load_raw_data()

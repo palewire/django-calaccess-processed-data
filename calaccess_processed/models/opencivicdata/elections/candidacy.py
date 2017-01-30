@@ -10,6 +10,156 @@ from calaccess_processed.models.opencivicdata.base import (
     OCDIDField,
     OCDBase,
 )
+from calaccess_processed.models.opencivicdata.division import Division
+from calaccess_processed.models.opencivicdata.elections import ElectionIdentifier
+from calaccess_processed.models.opencivicdata.elections.ballot_selection import CandidateSelection
+from calaccess_processed.models.opencivicdata.elections.contest import CandidateContest
+from calaccess_processed.models.opencivicdata.people_orgs import (
+    Organization,
+    Person,
+    Post,
+)
+from calaccess_processed.models.scraped import (
+    ScrapedCandidate,
+    CandidateScrapedElection,
+)
+import re
+
+
+class CandidacyManager(models.Manager):
+    """
+    Manager with custom methods for OCD Candidacy.
+    """
+    def load_raw_data(self):
+        """
+        Load Candidacy (and related models) from ScrapedCandidate.
+
+        Models loaded (in order):
+        1. Post
+        2. CandidateContest
+        3. CandidateSelection
+        4. Person
+        5. Candidacy
+        """
+        # flush all the models to be loaded
+        Post.objects.all().delete()
+        CandidateContest.objects.all().delete()
+        CandidateSelection.objects.all().delete()
+        Person.objects.all().delete()
+        Candidacy.objects.all().delete()
+
+        office_pattern = r'^(?P<type>[A-Z ]+)(?P<dist>\d{2})?$'
+
+        for sc in ScrapedCandidate.objects.all():
+            match = re.match(office_pattern, sc.office_name.upper())
+            office_type = match.groupdict()['type'].strip()
+            try:
+                district_num = int(match.groupdict()['dist'])
+            except TypeError:
+                pass
+
+            # prepare to get or create post
+            if office_type == 'STATE SENATE':
+                raw_post = {
+                    'division': Division.objects.get(
+                        subtype2='sldu',
+                        subid2=str(district_num),
+                    ),
+                    'organization': Organization.objects.get(
+                        classification='upper',
+                    ),
+                    'role': 'Senator',
+                }
+            elif office_type == 'ASSEMBLY':
+                raw_post = {
+                    'division': Division.objects.get(
+                        subtype2='sldl',
+                        subid2=str(district_num),
+                    ),
+                    'organization': Organization.objects.get(
+                        classification='lower',
+                    ),
+                    'role': 'Assembly Member',
+                }
+            else:
+                raw_post = {
+                    'division': Division.objects.get(
+                        id='ocd-division/country:us/state:ca'
+                    ),
+                    'organization': Organization.objects.get(
+                        classification='executive',
+                    ),
+                    'role': sc.office_name,
+                }
+            # get or create the Post
+            post = Post.objects.get_or_create(**raw_post)[0]
+
+            # get the scraped_election_id
+            scraped_election = CandidateScrapedElection.objects.get(
+                id=sc.election_id,
+            )
+            # get the election
+            elec = ElectionIdentifier.objects.get(
+                scheme='calaccess_id',
+                identifier=str(scraped_election.scraped_id),
+            ).election
+
+            # get or create the CandidateContest (election and post)
+            try:
+                contest = CandidateContest.objects.filter(
+                    election=elec,
+                    division=post.division,
+                    posts=post,
+                )[0]
+            except IndexError:
+                contest = CandidateContest.objects.create(
+                    election=elec,
+                    division=post.division,
+                    name=sc.office_name,
+                )
+                contest.posts.add(post)
+
+                if 'SPECIAL' in scraped_election.name:
+                    contest.is_unexpired_term = True
+                else:
+                    contest.is_unexpired_term = False
+                # TODO: set runoff_for_contest, party and number_elected
+                contest.save()
+
+            # create the CandidateSelection
+            selection = CandidateSelection.objects.create(
+                contest=contest,
+                # TODO: set endorsement_parties and is_write_in
+            )
+
+            # get or create the Person
+            person = Person.objects.get_using_filer_id(sc.scraped_id)
+            if not person:
+                # split and flip the original name string
+                split_name = sc.name.split(',')
+                split_name.reverse()
+                person = Person.objects.create(
+                    sort_name=sc.name,
+                    name=' '.join(split_name).strip()
+                )
+
+                if sc.scraped_id != '':
+                    person.identifiers.create(
+                        scheme='calaccess_filer_id',
+                        identifier=sc.scraped_id,
+                    )
+
+            # create the Candidacy
+            Candidacy.objects.create(
+                person=person,
+                ballot_name=sc.name,
+                post=post,
+                is_top_ticket=False,
+                candidate_selection=selection,
+                # TODO: set committee, is_incumbent and party
+            )
+
+        return
 
 
 @python_2_unicode_compatible
@@ -21,6 +171,8 @@ class Candidacy(OCDBase):
     own ``Candidate`` object. ``Candidate`` objects may not be reused between
     contests.
     """
+    objects = CandidacyManager()
+
     id = OCDIDField(
         ocd_type='candidacy',
         help_text='Open Civic Data-style id in the format ``ocd-candidacy/{{uuid}}``.',
