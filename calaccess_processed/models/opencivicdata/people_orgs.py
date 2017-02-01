@@ -60,15 +60,20 @@ class OrganizationManager(models.Manager):
     """
     Manager with custom methods for OCD Organization.
     """
-    def load(self):
+    def load_raw_data(self):
         """
         Insert records for California state government organizations.
         """
         self.all().delete()
 
-        self.create(
+        exec_branch = self.create(
             name='California State Executive Branch',
             classification='executive',
+        )
+        self.create(
+            name='State Board of Equalization',
+            classification='executive',
+            parent=exec_branch,
         )
         leg = self.create(
             name='California State Legislature',

@@ -86,11 +86,17 @@ class CandidacyManager(models.Manager):
                     'division': Division.objects.get(
                         id='ocd-division/country:us/state:ca'
                     ),
-                    'organization': Organization.objects.get(
-                        classification='executive',
-                    ),
                     'role': sc.office_name,
                 }
+                if office_type == 'MEMBER BOARD OF EQUALIZATION':
+                    raw_post['organization'] = Organization.objects.get(
+                        name='State Board of Equalization',
+                    )
+                else:
+                    raw_post['organization'] = Organization.objects.get(
+                        name='California State Executive Branch',
+                    )
+
             # get or create the Post
             post = Post.objects.get_or_create(**raw_post)[0]
 
