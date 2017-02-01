@@ -79,6 +79,9 @@ class Party(OCDBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         verbose_name_plural = 'parties'
         ordering = ("name",)
 
