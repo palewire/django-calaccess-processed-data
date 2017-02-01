@@ -57,11 +57,19 @@ from calaccess_processed.admin.tracking import (
     ProcessedDataVersionAdmin,
     ProcessedDataFileAdmin,
 )
+from opencivicdata import (
+    DivisionAdmin,
+    ElectionAdmin,
+    OrganizationAdmin,
+    PartyAdmin
+)
 
 __all__ = (
     'BaseAdmin',
     'CandidateAdmin',
     'CandidateCommitteeAdmin',
+    'DivisionAdmin',
+    'ElectionAdmin',
     'Form460FilingAdmin',
     'Form460FilingVersionAdmin',
     'Form460ScheduleAItemAdmin',
@@ -101,4 +109,6 @@ __all__ = (
     'ProcessedDataFileAdmin',
     'CandidateScrapedElectionAdmin',
     'ScrapedPropositionAdmin',
+    'OrganizationAdmin',
+    'PartyAdmin',
 )

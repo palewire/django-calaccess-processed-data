@@ -78,5 +78,9 @@ class Party(OCDBase):
                   'form enter their political affiliation.',
     )
 
+    class Meta:
+        verbose_name_plural = 'parties'
+        ordering = ("name",)
+
     def __str__(self):
         return self.name
