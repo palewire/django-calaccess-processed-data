@@ -4,6 +4,7 @@
 Load data into processed CAL-ACCESS models, archive processed files and ZIP.
 """
 import os
+from django.db import connection
 from django.core.management import call_command
 from django.core.management.base import CommandError
 from django.utils.timezone import now
