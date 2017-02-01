@@ -4,23 +4,22 @@
 Load data into processed CAL-ACCESS models, archive processed files and ZIP.
 """
 import os
+from django.core.management import call_command
 from django.core.management.base import CommandError
-from django.db import connection
 from django.utils.timezone import now
 from calaccess_raw import get_download_directory
 from calaccess_raw.models.tracking import RawDataVersion
-from calaccess_processed import get_models_to_process
+from calaccess_processed import (
+    get_models_to_process,
+    get_ocd_models_to_load,
+    get_ocd_models_to_archive,
+)
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed.models.tracking import (
     ProcessedDataVersion,
     ProcessedDataFile,
 )
 from calaccess_processed.models.opencivicdata.division import Division
-from calaccess_processed.models.opencivicdata.elections import Election
-from calaccess_processed.models.opencivicdata.elections.candidacy import Candidacy
-from calaccess_processed.models.opencivicdata.elections.contest import BallotMeasureContest
-from calaccess_processed.models.opencivicdata.elections.party import Party
-from calaccess_processed.models.opencivicdata.people_orgs import Organization
 
 
 class Command(CalAccessCommand):
@@ -34,8 +33,6 @@ class Command(CalAccessCommand):
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
-
-        self.load_ocd_models()
 
         # get the most recently loaded raw data version
         try:
@@ -75,6 +72,9 @@ class Command(CalAccessCommand):
             self.processed_version.process_start_datetime = now()
             self.processed_version.save()
 
+        # first, load the OCD processed_models
+        self.load_ocd_models()
+
         # get all of the models
         self.processed_models = get_models_to_process()
 
@@ -104,6 +104,8 @@ class Command(CalAccessCommand):
         self.processed_version.process_finish_datetime = now()
         self.processed_version.save()
 
+        self.archive_csvs()
+
         self.success("Done!")
 
     def load_ocd_models(self):
@@ -114,22 +116,30 @@ class Command(CalAccessCommand):
             self.log(" Loading divisions...")
         Division.objects.load(state='ca')
 
-        if self.verbosity > 2:
-            self.log(" Loading elections...")
-        Election.objects.load_raw_data()
+        for m in get_ocd_models_to_load():
+            processed_file, created = ProcessedDataFile.objects.get_or_create(
+                version=self.processed_version,
+                file_name=m._meta.model_name,
+            )
+            processed_file.process_start_datetime = now()
+            processed_file.save()
 
-        if self.verbosity > 2:
-            self.log(" Loading ballot measure contests...")
-        BallotMeasureContest.objects.load_raw_data()
+            if self.verbosity > 2:
+                self.log(" Loading OCD %s" % m._meta.db_table)
+            m.objects.load_raw_data()
 
-        if self.verbosity > 2:
-            self.log(" Loading candidates (and posts, candidate contests, etc...")
-        Candidacy.objects.load_raw_data()
+            processed_file.records_count = m.objects.count()
+            processed_file.process_finish_datetime = now()
+            processed_file.save()
 
-        if self.verbosity > 2:
-            self.log(" Loading organizations...")
-        Organization.objects.load()
-
-        if self.verbosity > 2:
-            self.log(" Loading parties...")
-        Party.objects.load_raw_data()
+    def archive_csvs(self):
+        """
+        Export and archive csv files to be published.
+        """
+        for m in get_ocd_models_to_archive():
+            if self.verbosity > 2:
+                self.log(" Archiving %s.csv..." % m._meta.object_name)
+            call_command(
+                'archivecalaccessprocessedfile',
+                m._meta.object_name,
+            )

@@ -55,6 +55,44 @@ def get_models_to_process():
     ]
 
 
+def get_ocd_models_to_load():
+    """
+    Returns a list of the OCD models with data to be loaded.
+    """
+    from calaccess_processed.models import opencivicdata
+
+    return [
+        opencivicdata.people_orgs.Organization,
+        opencivicdata.elections.Election,
+        opencivicdata.elections.contest.BallotMeasureContest,
+        opencivicdata.elections.candidacy.Candidacy,
+        opencivicdata.elections.party.Party,
+    ]
+
+
+def get_ocd_models_to_archive():
+    """
+    Returns a list of the OCD models with data to be published.
+    """
+    from calaccess_processed.models import opencivicdata
+
+    return [
+        opencivicdata.elections.Election,
+        opencivicdata.elections.contest.BallotMeasureContest,
+        opencivicdata.elections.candidacy.Candidacy,
+        opencivicdata.elections.party.Party,
+        opencivicdata.elections.contest.BallotMeasureContest,
+        opencivicdata.elections.contest.CandidateContest,
+        opencivicdata.elections.candidacy.Candidacy,
+        opencivicdata.elections.ballot_selection.BallotMeasureSelection,
+        opencivicdata.elections.ballot_selection.CandidateSelection,
+        opencivicdata.event.Event,
+        opencivicdata.people_orgs.Person,
+        opencivicdata.people_orgs.Post,
+        opencivicdata.people_orgs.Organization,
+    ]
+
+
 def archive_directory_path(instance, filename):
     """
     Returns a path to an archived processed data file or ZIP.
