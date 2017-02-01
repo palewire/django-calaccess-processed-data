@@ -86,7 +86,7 @@ class CandidacyManager(models.Manager):
                     'division': Division.objects.get(
                         id='ocd-division/country:us/state:ca'
                     ),
-                    'role': sc.office_name,
+                    'role': sc.office_name.title().replace('Of', 'of'),
                 }
                 if office_type == 'MEMBER BOARD OF EQUALIZATION':
                     raw_post['organization'] = Organization.objects.get(
