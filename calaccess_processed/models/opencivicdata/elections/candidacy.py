@@ -41,13 +41,6 @@ class CandidacyManager(models.Manager):
         4. Person
         5. Candidacy
         """
-        # flush all the models to be loaded
-        Post.objects.all().delete()
-        CandidateContest.objects.all().delete()
-        CandidateSelection.objects.all().delete()
-        Person.objects.all().delete()
-        Candidacy.objects.all().delete()
-
         office_pattern = r'^(?P<type>[A-Z ]+)(?P<dist>\d{2})?$'
 
         for sc in ScrapedCandidate.objects.all():
@@ -132,12 +125,6 @@ class CandidacyManager(models.Manager):
                 # TODO: set runoff_for_contest, party and number_elected
                 contest.save()
 
-            # create the CandidateSelection
-            selection = CandidateSelection.objects.create(
-                contest=contest,
-                # TODO: set endorsement_parties and is_write_in
-            )
-
             # get or create the Person
             person = Person.objects.get_using_filer_id(sc.scraped_id)
             if not person:
@@ -154,16 +141,26 @@ class CandidacyManager(models.Manager):
                         scheme='calaccess_filer_id',
                         identifier=sc.scraped_id,
                     )
+            # check to see if the person has an candidacies for the election
+            q = Candidacy.objects.filter(
+                candidate_selection__contest__election=elec
+            ).filter(person=person)
+            if not q.exists():
+                # create the CandidateSelection
+                selection = CandidateSelection.objects.create(
+                    contest=contest,
+                )
+                # TODO: set or update the endorsement_parties and is_write_in
 
-            # create the Candidacy
-            Candidacy.objects.create(
-                person=person,
-                ballot_name=sc.name,
-                post=post,
-                is_top_ticket=False,
-                candidate_selection=selection,
-                # TODO: set committee, is_incumbent and party
-            )
+                # create the Candidacy
+                Candidacy.objects.create(
+                    person=person,
+                    ballot_name=sc.name,
+                    post=post,
+                    is_top_ticket=False,
+                    candidate_selection=selection,
+                    # TODO: set committee, is_incumbent and party
+                )
 
         return
 

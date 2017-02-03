@@ -43,12 +43,11 @@ class ElectionManager(models.Manager):
         """
         Load Election model from CandidateScrapedElection and PropositionScrapedElection.
         """
-        self.all().delete()
-
         prop_name_pattern = r'^(?P<date>^[A-Z]+\s\d{1,2},\s\d{4})\s(?P<name>.+)$'
 
         # start by loading the prop elections, which include a date in the name
         for p in PropositionScrapedElection.objects.all():
+            # extract the name and date
             match = re.match(prop_name_pattern, p.name)
             dt_obj = timezone.make_aware(
                 timezone.datetime.strptime(
@@ -60,15 +59,19 @@ class ElectionManager(models.Manager):
                 dt_obj.year,
                 match.groupdict()['name'],
             ).upper()
-
+            # try getting an existing OCD election with the same date
             try:
-                elex = self.get(start_time=dt_obj)
+                elec = self.get(start_time=dt_obj)
             except self.model.DoesNotExist:
-                elex = self.create(start_time=dt_obj, name=name)
+                # or make a new one
+                elec = self.create(start_time=dt_obj, name=name)
                 # TODO: Set adminstrative_org, source, etc.
             else:
                 # if election already exists and is named 'SPECIAL' or 'RECALL'
-                if 'SPECIAL' in elex.name.upper() or 'RECALL' in elex.name.upper():
+                if (
+                    'SPECIAL' in elec.name.upper() or
+                    'RECALL' in elec.name.upper()
+                ):
                     # and the matched election's name includes either 'GENERAL'
                     # or 'PRIMARY'...
                     if (
@@ -76,11 +79,13 @@ class ElectionManager(models.Manager):
                         re.match(r'^\d{4} PRIMARY$', name)
                     ):
                         # update the name
-                        elex.name = name
-                        elex.save()
+                        elec.name = name
+                        elec.save()
 
-            # whether creating or matching, add the id
-            elex.identifiers.create(
+            # whether creating or matching, attempt to create the new id
+            # TODO: these prop ids will get flushed with each scraped and might change...
+            # Keep them all anyway?
+            elec.identifiers.get_or_create(
                 scheme='PropositionScrapedElection.id',
                 identifier=str(p.id)
             )
@@ -154,41 +159,49 @@ class ElectionManager(models.Manager):
 
         # then loop over the candidate elections
         for c in CandidateScrapedElection.objects.all():
-            # if the name is in the list of special elections
-            if c.name in (x[0] for x in cand_elections_w_dates):
-                date = dict(cand_elections_w_dates)[c.name]
-                dt_obj = timezone.make_aware(
-                    timezone.datetime.strptime(
-                        date,
-                        '%Y-%m-%d',
-                    )
-                )
-                # get or create the special election
-                try:
-                    elex = self.get(start_time=dt_obj)
-                except self.model.DoesNotExist:
-                    elex = self.create(
-                        start_time=dt_obj,
-                        name=c.name,
-                        is_statewide=False,
-                    )
-            else:
-                # assume the candidate election name is in the '{year} {type}' format
-                try:
-                    elex = self.get(name=c.name)
-                except Election.DoesNotExist:
-                    # this recall election occurred on the same date as 2008 primary
-                    # http://www.sos.ca.gov/elections/prior-elections/special-elections/special-recall-election-senate-district-12-june-3-2008/
-                    # http://www.sos.ca.gov/elections/prior-elections/statewide-election-results/statewide-direct-primary-election-june-3-2008/
-                    if c.name == '2008 RECALL (STATE SENATE 12)':
-                        elex = self.get(name='2008 PRIMARY')
-                    else:
-                        raise Exception('Missing record for %s' % c.name)
-
-            elex.identifiers.create(
+            # skip if the candidata election id is already linked to an OCD election
+            if ElectionIdentifier.objects.filter(
                 scheme='calaccess_id',
                 identifier=str(c.scraped_id)
-            )
+            ).exists():
+                pass
+            else:
+                # if the name is in the list of special elections
+                if c.name in (x[0] for x in cand_elections_w_dates):
+                    date = dict(cand_elections_w_dates)[c.name]
+                    dt_obj = timezone.make_aware(
+                        timezone.datetime.strptime(
+                            date,
+                            '%Y-%m-%d',
+                        )
+                    )
+                    # get or create the special election
+                    try:
+                        elec = self.get(start_time=dt_obj)
+                    except self.model.DoesNotExist:
+                        elec = self.create(
+                            start_time=dt_obj,
+                            name=c.name,
+                            is_statewide=False,
+                        )
+                else:
+                    # assume the candidate election name is in the
+                    # '{year} {type}' format
+                    try:
+                        elec = self.get(name=c.name)
+                    except Election.DoesNotExist:
+                        # this recall election occurred on the same date as 2008 primary
+                        # http://www.sos.ca.gov/elections/prior-elections/special-elections/special-recall-election-senate-district-12-june-3-2008/
+                        # http://www.sos.ca.gov/elections/prior-elections/statewide-election-results/statewide-direct-primary-election-june-3-2008/
+                        if c.name == '2008 RECALL (STATE SENATE 12)':
+                            elec = self.get(name='2008 PRIMARY')
+                        else:
+                            raise Exception('Missing record for %s' % c.name)
+
+                elec.identifiers.create(
+                    scheme='calaccess_id',
+                    identifier=str(c.scraped_id)
+                )
         # Remove office from name of special elections with multiple races
         special_elections = self.filter(
             name__regex=r'^\d{4}\sSPECIAL\s.+\(.+$'
@@ -233,6 +246,7 @@ class Election(Event):
         return self.name
 
 
+@python_2_unicode_compatible
 class ElectionIdentifier(IdentifierBase):
     """
     Model for storing an OCD Election's other identifiers.

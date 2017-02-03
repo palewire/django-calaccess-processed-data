@@ -56,8 +56,6 @@ class BallotMeasureContestManager(models.Manager):
         """
         Load BallotMeasureContest model from ScrapedProposition.
         """
-        self.all().delete()
-
         for p in ScrapedProposition.objects.all():
             # Get the election
             election_obj = ElectionIdentifier.objects.get(
@@ -65,31 +63,42 @@ class BallotMeasureContestManager(models.Manager):
                 identifier=str(p.election_id),
             ).election
 
-            # Get the division: CA statewide
-            division_obj = Division.objects.get(
-                id='ocd-division/country:us/state:ca'
-            )
-
-            # Measure is either an initiative or a referendum
-            ballot_measure_type = ''
-            if 'REFERENDUM' in p.name:
-                ballot_measure_type = 'r'
-            elif 'RECALL' in p.name:
-                ballot_measure_type = 'o'
-            else:
-                ballot_measure_type = 'i'
-
-            contest = self.create(
-                election=election_obj,
-                division=division_obj,
-                name=p.name,
-                ballot_measure_type=ballot_measure_type
-            )
-
-            contest.identifiers.create(
+            q = BallotMeasureContestIdentifier.objects.filter(
                 scheme='calaccess_filer_id',
                 identifier=p.scraped_id,
             )
+            # check if we already have a BallotMeasureContest for the prop
+            if q.exists():
+                # if so, make sure the name is up-to-date
+                if q[0].name != p.name:
+                    q[0].name = p.name
+                    q[0].save()
+            else:
+                # Get the division: CA statewide
+                division_obj = Division.objects.get(
+                    id='ocd-division/country:us/state:ca'
+                )
+
+                # Measure is either an initiative or a referendum
+                ballot_measure_type = ''
+                if 'REFERENDUM' in p.name:
+                    ballot_measure_type = 'r'
+                elif 'RECALL' in p.name:
+                    ballot_measure_type = 'o'
+                else:
+                    ballot_measure_type = 'i'
+
+                contest = self.create(
+                    election=election_obj,
+                    division=division_obj,
+                    name=p.name,
+                    ballot_measure_type=ballot_measure_type
+                )
+
+                contest.identifiers.create(
+                    scheme='calaccess_filer_id',
+                    identifier=p.scraped_id,
+                )
 
         return
 

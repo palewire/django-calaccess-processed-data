@@ -64,27 +64,25 @@ class OrganizationManager(models.Manager):
         """
         Insert records for California state government organizations.
         """
-        self.all().delete()
-
-        exec_branch = self.create(
+        exec_branch = self.get_or_create(
             name='California State Executive Branch',
             classification='executive',
-        )
-        self.create(
+        )[0]
+        self.get_or_create(
             name='State Board of Equalization',
             classification='executive',
             parent=exec_branch,
         )
-        leg = self.create(
+        leg = self.get_or_create(
             name='California State Legislature',
             classification='legislature',
-        )
-        self.create(
+        )[0]
+        self.get_or_create(
             name='California State Senate',
             classification='upper',
             parent=leg,
         )
-        self.create(
+        self.get_or_create(
             name='California State Assembly',
             classification='lower',
             parent=leg,
