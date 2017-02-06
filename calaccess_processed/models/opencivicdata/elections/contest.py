@@ -82,11 +82,11 @@ class BallotMeasureContestManager(models.Manager):
                 # Measure is either an initiative or a referendum
                 ballot_measure_type = ''
                 if 'REFERENDUM' in p.name:
-                    ballot_measure_type = 'r'
+                    ballot_measure_type = 'referendum'
                 elif 'RECALL' in p.name:
-                    ballot_measure_type = 'o'
+                    ballot_measure_type = 'other'
                 else:
-                    ballot_measure_type = 'i'
+                    ballot_measure_type = 'initiative'
 
                 contest = self.create(
                     election=election_obj,
