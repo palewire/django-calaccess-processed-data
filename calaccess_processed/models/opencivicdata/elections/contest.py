@@ -18,10 +18,15 @@ from calaccess_processed.models.opencivicdata.base import (
 )
 
 
+@python_2_unicode_compatible
 class ContestBase(OCDBase):
     """
-    An abstract base class with properties shared by all contest types.
+    A base class with properties shared by all contest types.
     """
+    id = OCDIDField(
+        ocd_type='contest',
+        help_text='Open Civic Data-style id in the format ``ocd-contest/{{uuid}}``.',
+    )
     name = models.CharField(
         max_length=300,
         help_text='Name of the contest, not necessarily as it appears on the '
@@ -41,11 +46,23 @@ class ContestBase(OCDBase):
                   'decided.',
     )
 
-    class Meta:
-        """
-        Model options.
-        """
-        abstract = True
+    def __str__(self):
+        return self.id
+
+
+@python_2_unicode_compatible
+class ContestIdentifier(IdentifierBase):
+    """
+    Model for storing an OCD Contest's other identifiers.
+    """
+    contest = models.ForeignKey(
+        ContestBase,
+        related_name='identifiers'
+    )
+
+    def __str__(self):
+        tmpl = '%s identifies %s'
+        return tmpl % (self.identifier, self.contest)
 
 
 class BallotMeasureContestManager(models.Manager):
@@ -60,18 +77,18 @@ class BallotMeasureContestManager(models.Manager):
             # Get the election
             election_obj = ElectionIdentifier.objects.get(
                 scheme='PropositionScrapedElection.id',
-                identifier=str(p.election_id),
+                identifier=p.election_id,
             ).election
 
-            q = BallotMeasureContestIdentifier.objects.filter(
-                scheme='calaccess_filer_id',
+            q = ContestIdentifier.objects.filter(
+                scheme='ScrapedProposition.scraped_id',
                 identifier=p.scraped_id,
             )
             # check if we already have a BallotMeasureContest for the prop
             if q.exists():
                 # if so, make sure the name is up-to-date
                 if q[0].name != p.name:
-                    q[0].name = p.name
+                    q[0].contest.name = p.name
                     q[0].save()
             else:
                 # Get the division: CA statewide
@@ -96,7 +113,7 @@ class BallotMeasureContestManager(models.Manager):
                 )
 
                 contest.identifiers.create(
-                    scheme='calaccess_filer_id',
+                    scheme='ScrapedProposition.scraped_id',
                     identifier=p.scraped_id,
                 )
 
@@ -108,14 +125,8 @@ class BallotMeasureContest(ContestBase):
     """
     Contest in which voters can affirm or reject a ballot measure.
     """
-
     objects = BallotMeasureContestManager()
 
-    id = OCDIDField(
-        ocd_type='ballotmeasurecontest',
-        help_text='Open Civic Data-style id in the format ``ocd-'
-                  'ballotmeasurecontest/{{uuid}}``.',
-    )
     con_statement = models.TextField(
         blank=True,
         help_text='Specifies a statement in opposition to the ballot measure. '
@@ -183,30 +194,10 @@ class BallotMeasureContest(ContestBase):
 
 
 @python_2_unicode_compatible
-class BallotMeasureContestIdentifier(IdentifierBase):
-    """
-    Model for storing an OCD BallotMeasureContest's other identifiers.
-    """
-    contest = models.ForeignKey(
-        BallotMeasureContest,
-        related_name='identifiers'
-    )
-
-    def __str__(self):
-        tmpl = '%s identifies %s'
-        return tmpl % (self.identifier, self.contest)
-
-
-@python_2_unicode_compatible
 class CandidateContest(ContestBase):
     """
     Contest among candidates competing for election to a public office.
     """
-    id = OCDIDField(
-        ocd_type='candidatecontest',
-        help_text='Open Civic Data-style id in the format ``ocd-'
-                  'candidatecontest/{{uuid}}``.',
-    )
     filing_deadline = models.DateField(
         null=True,
         help_text='Specifies the date and time when a candidate must have filed '

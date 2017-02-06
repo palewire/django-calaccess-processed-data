@@ -147,7 +147,7 @@ class CandidacyManager(models.Manager):
                     )
             # check to see if the person has an candidacies for the election
             q = Candidacy.objects.filter(
-                candidate_selection__contest__election=elec
+                ballot_selection__contest__election=elec
             ).filter(person=person)
             if not q.exists():
                 # create the CandidateSelection
@@ -162,7 +162,7 @@ class CandidacyManager(models.Manager):
                     ballot_name=sc.name,
                     post=post,
                     is_top_ticket=False,
-                    candidate_selection=selection,
+                    ballot_selection=selection,
                     # TODO: set committee, is_incumbent and party
                 )
 
@@ -235,7 +235,7 @@ class Candidacy(OCDBase):
         help_text='Reference to and OCD ``Party`` with which the candidate is '
                   'affiliated.'
     )
-    candidate_selection = models.ForeignKey(
+    ballot_selection = models.ForeignKey(
         'CandidateSelection',
         related_name='candidacies',
         null=True,

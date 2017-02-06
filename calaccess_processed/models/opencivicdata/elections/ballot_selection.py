@@ -13,18 +13,28 @@ from calaccess_processed.models.opencivicdata.base import (
 
 
 @python_2_unicode_compatible
-class BallotMeasureSelection(OCDBase):
+class BallotSelectionBase(OCDBase):
+    """
+    A base class with properties shared by all ballot selection types.
+    """
+    id = OCDIDField(
+        ocd_type='ballotselection',
+        help_text='Open Civic Data-style id in the format ``ocd-'
+                  'ballotselection/{{uuid}}``.',
+    )
+
+    def __str__(self):
+        return self.id
+
+
+@python_2_unicode_compatible
+class BallotMeasureSelection(BallotSelectionBase):
     """
     A ballot option that a voter could select in a ballot measure contest.
     """
-    id = OCDIDField(
-        ocd_type='ballotmeasureselection',
-        help_text='Open Civic Data-style id in the format ``ocd-'
-                  'ballotmeasureselection/{{uuid}}``.',
-    )
     contest = models.ForeignKey(
         'BallotMeasureContest',
-        related_name='ballot_measure_selections',
+        related_name='ballot_selections',
         help_text='References the ``BallotMeasureContest`` in which the '
                   'selection is an option.',
     )
@@ -39,18 +49,13 @@ class BallotMeasureSelection(OCDBase):
 
 
 @python_2_unicode_compatible
-class CandidateSelection(OCDBase):
+class CandidateSelection(BallotSelectionBase):
     """
     A ballot option that a voter could select in a candidate contest.
     """
-    id = OCDIDField(
-        ocd_type='candidateselection',
-        help_text='Open Civic Data-style id in the format ``ocd-'
-                  'candidateselection/{{uuid}}``.',
-    )
     contest = models.ForeignKey(
         'CandidateContest',
-        related_name='candidate_selections',
+        related_name='ballot_selections',
         help_text='References the ``CandidateContest`` in which the selection '
                   'is an option.',
     )
