@@ -35,12 +35,12 @@ class Event(OCDBase):
         help_text='Description of the Event.',
     )
     CLASSIFICATION_CHOICES = (
-        ('C', 'committee-meeting'),
-        ('E', 'election'),
-        ('H', 'hearing'),
+        ('committee-meeting', 'Committee Meeting'),
+        ('election', 'Election'),
+        ('hearing', 'Hearing'),
     )
     classification = models.CharField(
-        max_length=1,
+        max_length=300,
         choices=CLASSIFICATION_CHOICES,
         help_text='Classification of the event.',
     )

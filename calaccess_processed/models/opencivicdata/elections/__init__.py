@@ -35,7 +35,7 @@ class ElectionManager(models.Manager):
             state='st06',
             all_day=True,
             timezone='US/Pacific',
-            classification='E',
+            classification='election',
             **kwargs
         )
 

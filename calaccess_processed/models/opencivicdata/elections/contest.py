@@ -152,13 +152,13 @@ class BallotMeasureContest(ContestBase):
                   'the ballot, below the title, but above the text.',
     )
     BALLOT_MEASURE_TYPES = (
-        ('b', 'ballot-measure'),
-        ('i', 'initiative'),
-        ('r', 'referendum'),
-        ('o', 'other'),
+        ('ballot-measure', 'Ballot Measure'),
+        ('initiative', 'Initiative'),
+        ('referendum', 'Referendum'),
+        ('other', 'Other'),
     )
     ballot_measure_type = models.CharField(
-        max_length=1,
+        max_length=300,
         blank=True,
         choices=BALLOT_MEASURE_TYPES,
         help_text='Enumerated among:\n\t* ballot-measure: A catch-all for '
