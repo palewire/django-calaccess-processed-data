@@ -85,6 +85,10 @@ class CandidacyManager(models.Manager):
                     raw_post['organization'] = Organization.objects.get(
                         name='State Board of Equalization',
                     )
+                elif office_type == 'SECRETARY OF STATE':
+                    raw_post['organization'] = Organization.objects.get(
+                        name='California Secretary of State',
+                    )
                 else:
                     raw_post['organization'] = Organization.objects.get(
                         name='California State Executive Branch',

@@ -11,6 +11,7 @@ from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.models.opencivicdata.base import IdentifierBase
 from calaccess_processed.models.opencivicdata.event import Event
+from calaccess_processed.models.opencivicdata.people_orgs import Organization
 from calaccess_processed.models.scraped import (
     CandidateScrapedElection,
     PropositionScrapedElection,
@@ -26,6 +27,7 @@ class ElectionManager(models.Manager):
         """
         Custom create method for Election objects.
         """
+        elex_div = Organization.objects.get(name='Elections Division')
         return super(
             ElectionManager,
             self,
@@ -36,6 +38,7 @@ class ElectionManager(models.Manager):
             all_day=True,
             timezone='US/Pacific',
             classification='election',
+            administrative_org=elex_div,
             **kwargs
         )
 
@@ -65,7 +68,6 @@ class ElectionManager(models.Manager):
             except self.model.DoesNotExist:
                 # or make a new one
                 elec = self.create(start_time=dt_obj, name=name)
-                # TODO: Set adminstrative_org, source, etc.
             else:
                 # if election already exists and is named 'SPECIAL' or 'RECALL'
                 if (

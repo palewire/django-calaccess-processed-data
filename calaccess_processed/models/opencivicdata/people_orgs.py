@@ -87,6 +87,17 @@ class OrganizationManager(models.Manager):
             classification='lower',
             parent=leg,
         )
+        # also create org for SoS Elections Division
+        sos = self.get_or_create(
+            name='California Secretary of State',
+            classification='executive',
+            parent=exec_branch,
+        )[0]
+        self.get_or_create(
+            name='Elections Division',
+            classification='executive',
+            parent=sos,
+        )
 
         return
 
