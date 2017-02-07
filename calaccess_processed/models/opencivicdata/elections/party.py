@@ -28,7 +28,7 @@ class PartyManager(models.Manager):
         ).exclude(code_id__in=[16011, 16012])
 
         for lc in q:
-            self.get_or_create(
+            party = self.get_or_create(
                 name=lc.code_desc,
                 # combine the first char of each word (except AND) in party name
                 abbreviation=''.join(
@@ -37,8 +37,13 @@ class PartyManager(models.Manager):
                         lc.code_desc.upper().replace(' AND ', '')
                     )
                 ),
-            )
-
+            )[0]
+            if party.name in ['DEMOCRATIC', 'REPUBLICAN']:
+                if party.name == 'DEMOCRATIC':
+                    party.color = '1d0ee9'
+                if party.name == 'REPUBLICAN':
+                    party.color = 'e91d0e'
+                party.save()
         return
 
 
