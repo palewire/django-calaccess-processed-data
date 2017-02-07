@@ -22,15 +22,13 @@ class PartyManager(models.Manager):
         """
         Load Political Parties from raw LOOKUP_CODES_CD.
         """
-        self.all().delete()
-
         q = LookupCodesCd.objects.filter(
             code_type=16000,
-            code_id__gt=16001,
+            code_id__gt=16000,
         ).exclude(code_id__in=[16011, 16012])
 
         for lc in q:
-            self.create(
+            self.get_or_create(
                 name=lc.code_desc,
                 # combine the first char of each word (except AND) in party name
                 abbreviation=''.join(
