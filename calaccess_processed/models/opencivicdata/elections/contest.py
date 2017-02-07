@@ -6,7 +6,10 @@ OCD Election Contest-related models.
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.models.scraped import ScrapedProposition
+from calaccess_processed.models.scraped import (
+    ScrapedCandidate,
+    ScrapedProposition,
+)
 from calaccess_processed.models.opencivicdata.elections import (
     ElectionIdentifier,
 )
@@ -16,6 +19,7 @@ from calaccess_processed.models.opencivicdata.base import (
     OCDBase,
     IdentifierBase,
 )
+from calaccess_processed.models.opencivicdata.people_orgs import Membership
 
 
 @python_2_unicode_compatible
@@ -95,27 +99,65 @@ class BallotMeasureContestManager(models.Manager):
                 division_obj = Division.objects.get(
                     id='ocd-division/country:us/state:ca'
                 )
+                if 'RECALL' in p.name:
+                    if p.name == '2003 RECALL QUESTION':
+                        # look up most recently scraped record for Gov. Gray Davis
+                        scraped_candidate = ScrapedCandidate.objects.filter(
+                            name='DAVIS, GRAY',
+                            office_name='GOVERNOR',
+                        ).latest('created')
+                    elif p.name == 'JUNE 3, 2008 - SPECIAL RECALL ELECTION - SENATE DISTRICT 12':
+                        # look up most recently scraped record for Sen. Jeff Denham
+                        scraped_candidate = ScrapedCandidate.objects.filter(
+                            name='DENHAM, JEFF',
+                            office_name='STATE SENATE 12',
+                        ).latest('created')
+                    else:
+                        # TODO: integrate previous election results
+                        # look up the person currently in the post
+                        raise Exception(
+                            "Missing Membership (Person and Post) for %s." % p.name
+                        )
 
-                # Measure is either an initiative or a referendum
-                ballot_measure_type = ''
-                if 'REFERENDUM' in p.name:
-                    ballot_measure_type = 'referendum'
-                elif 'RECALL' in p.name:
-                    ballot_measure_type = 'other'
+                    # get or create person and post objects
+                    person = scraped_candidate.get_or_create_person()[0]
+                    post = scraped_candidate.get_or_create_post()[0]
+                    # get or create membership object
+                    membership = Membership.objects.get_or_create(
+                        person=person,
+                        post=post,
+                        organization=post.organization,
+                    )[0]
+                    # create the retention contest
+                    contest = RetentionContest.objects.create(
+                        election=election_obj,
+                        division=division_obj,
+                        name=p.name,
+                        ballot_measure_type='initiative',
+                        membership=membership,
+                    )
                 else:
-                    ballot_measure_type = 'initiative'
+                    if 'REFERENDUM' in p.name:
+                        ballot_measure_type = 'referendum'
+                    elif 'INITIATIVE' in p.name or 'INITATIVE' in p.name:
+                        ballot_measure_type = 'initiative'
+                    else:
+                        ballot_measure_type = 'ballot measure'
 
-                contest = self.create(
-                    election=election_obj,
-                    division=division_obj,
-                    name=p.name,
-                    ballot_measure_type=ballot_measure_type
-                )
+                    contest = self.create(
+                        election=election_obj,
+                        division=division_obj,
+                        name=p.name,
+                        ballot_measure_type=ballot_measure_type,
+                    )
 
                 contest.identifiers.create(
                     scheme='ScrapedProposition.scraped_id',
                     identifier=p.scraped_id,
                 )
+
+                contest.ballot_selections.add(selection='Yes')
+                contest.ballot_selections.add(selection='No')
 
         return
 

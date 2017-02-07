@@ -10,20 +10,10 @@ from calaccess_processed.models.opencivicdata.base import (
     OCDIDField,
     OCDBase,
 )
-from calaccess_processed.models.opencivicdata.division import Division
 from calaccess_processed.models.opencivicdata.elections import ElectionIdentifier
 from calaccess_processed.models.opencivicdata.elections.ballot_selection import CandidateSelection
 from calaccess_processed.models.opencivicdata.elections.contest import CandidateContest
-from calaccess_processed.models.opencivicdata.people_orgs import (
-    Organization,
-    Person,
-    Post,
-)
-from calaccess_processed.models.scraped import (
-    ScrapedCandidate,
-    CandidateScrapedElection,
-)
-import re
+from calaccess_processed.models.scraped import ScrapedCandidate
 
 
 class CandidacyManager(models.Manager):
@@ -41,70 +31,14 @@ class CandidacyManager(models.Manager):
         4. Person
         5. Candidacy
         """
-        office_pattern = r'^(?P<type>[A-Z ]+)(?P<dist>\d{2})?$'
-
         for sc in ScrapedCandidate.objects.all():
-            match = re.match(office_pattern, sc.office_name.upper())
-            office_type = match.groupdict()['type'].strip()
-            try:
-                district_num = int(match.groupdict()['dist'])
-            except TypeError:
-                pass
+            # get or create the post
+            post = sc.get_or_create_post()[0]
 
-            # prepare to get or create post
-            if office_type == 'STATE SENATE':
-                raw_post = {
-                    'division': Division.objects.get(
-                        subtype2='sldu',
-                        subid2=str(district_num),
-                    ),
-                    'organization': Organization.objects.get(
-                        classification='upper',
-                    ),
-                    'role': 'Senator',
-                }
-            elif office_type == 'ASSEMBLY':
-                raw_post = {
-                    'division': Division.objects.get(
-                        subtype2='sldl',
-                        subid2=str(district_num),
-                    ),
-                    'organization': Organization.objects.get(
-                        classification='lower',
-                    ),
-                    'role': 'Assembly Member',
-                }
-            else:
-                raw_post = {
-                    'division': Division.objects.get(
-                        id='ocd-division/country:us/state:ca'
-                    ),
-                    'role': sc.office_name.title().replace('Of', 'of'),
-                }
-                if office_type == 'MEMBER BOARD OF EQUALIZATION':
-                    raw_post['organization'] = Organization.objects.get(
-                        name='State Board of Equalization',
-                    )
-                elif office_type == 'SECRETARY OF STATE':
-                    raw_post['organization'] = Organization.objects.get(
-                        name='California Secretary of State',
-                    )
-                else:
-                    raw_post['organization'] = Organization.objects.get(
-                        name='California State Executive Branch',
-                    )
-
-            # get or create the Post
-            post = Post.objects.get_or_create(**raw_post)[0]
-
-            # get the scraped_election_id
-            scraped_election = CandidateScrapedElection.objects.get(
-                id=sc.election_id,
-            )
             # get the election
             elec = ElectionIdentifier.objects.get(
                 scheme='calaccess_id',
-                identifier=str(scraped_election.scraped_id),
+                identifier=sc.election.scraped_id,
             ).election
 
             # get or create the CandidateContest (election and post)
@@ -122,7 +56,7 @@ class CandidacyManager(models.Manager):
                 )
                 contest.posts.add(post)
 
-                if 'SPECIAL' in scraped_election.name:
+                if 'SPECIAL' in sc.election.name:
                     contest.is_unexpired_term = True
                 else:
                     contest.is_unexpired_term = False
@@ -130,24 +64,11 @@ class CandidacyManager(models.Manager):
                 contest.save()
 
             # get or create the Person
-            person = Person.objects.get_using_filer_id(sc.scraped_id)
-            if not person:
-                # split and flip the original name string
-                split_name = sc.name.split(',')
-                split_name.reverse()
-                person = Person.objects.create(
-                    sort_name=sc.name,
-                    name=' '.join(split_name).strip()
-                )
+            person = sc.get_or_create_person()[0]
 
-                if sc.scraped_id != '':
-                    person.identifiers.create(
-                        scheme='calaccess_filer_id',
-                        identifier=sc.scraped_id,
-                    )
-            # check to see if the person has an candidacies for the election
+            # check to see if the person has any candidacies for the contest
             q = Candidacy.objects.filter(
-                ballot_selection__contest__election=elec
+                ballot_selection__contest=contest
             ).filter(person=person)
             if not q.exists():
                 # create the CandidateSelection
