@@ -140,15 +140,41 @@ class Command(BaseCommand):
         print('--------------------------------------------------------')
 
         # BallotSelectionBase
+        ballot_selection = BallotSelectionBase.objects.filter(
+            candidateselection__contest__election=elec,
+            candidateselection__contest__name='STATE SENATE 01',
+        )[0]
+        full_ballot_selection = self.prep_dict(
+            ballot_selection.__dict__
+        ).copy()
+
+        print('Sample BallotSelectionBase')
+        print('++++++++++++++++++++++++++\n\n')
+        print('.. code:: javascript\n')
+        print(self.encoder.encode(full_ballot_selection))
+        print('--------------------------------------------------------')
+
 
         # BallotMeasureSelection
+        ballot_measure_selection = BallotMeasureSelection.objects.get(
+            contest__name='PROPOSITION 060- ADULT FILMS. CONDOMS. HEALTH REQUIREMENTS. INITIATIVE STATUTE.',
+            selection='Yes',
+        )
+        full_ballot_measure_selection = self.prep_dict(
+            ballot_measure_selection.__dict__
+        ).copy()
+
+        print('Sample BallotMeasure')
+        print('++++++++++++++++++++\n\n')
+        print('.. code:: javascript\n')
+        print(self.encoder.encode(full_ballot_measure_selection))
+        print('--------------------------------------------------------')
 
         # CandidateSelection
         candidate_selection = CandidateSelection.objects.filter(
             contest__election=elec,
             contest__name='STATE SENATE 01',
         )[0]
-        print(dir(candidate_selection))
         full_candidate_selection = self.prep_dict(
             candidate_selection.__dict__
         ).copy()
@@ -161,7 +187,7 @@ class Command(BaseCommand):
 
     def prep_dict(self, obj_dict):
         """
-        Remove any keys from the object dict prefixed with '_'
+        Remove unwanted items from given object.
         """
         cp_dict = obj_dict.copy() 
         for k in obj_dict:
