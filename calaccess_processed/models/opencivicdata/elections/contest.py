@@ -34,14 +34,14 @@ class ContestBase(OCDBase):
     )
     division = models.ForeignKey(
         'Division',
-        related_name='%(class)s_contests',
+        related_name='divisions',
         help_text='Reference to the OCD ``Division`` that defines the '
                   'geographical scope of the contest, e.g., a specific '
                   'Congressional or State Senate district.',
     )
     election = models.ForeignKey(
         'Election',
-        related_name='%(class)s_contests',
+        related_name='contests',
         help_text='Reference to the OCD ``Election`` in which the contest is '
                   'decided.',
     )
