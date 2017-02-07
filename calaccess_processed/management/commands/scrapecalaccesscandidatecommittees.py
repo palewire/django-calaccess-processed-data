@@ -60,9 +60,9 @@ class Command(ScrapeCommand):
             c = table.find('a', {'class': 'sublink6'})
             if c:
                 committees.append({
-                    'name': c.text,
-                    'scraped_id': re.match(r'.+id=(\d+)', c['href']).group(1),
-                    'status': table.findAll('tr')[1].findAll('td')[1].text
+                    'name': c.text.strip(),
+                    'scraped_id': re.match(r'.+id=(\d+)', c['href']).group(1).strip(),
+                    'status': table.findAll('tr')[1].findAll('td')[1].text.strip()
                 })
             # Committees with an ID but no link
             else:
@@ -71,9 +71,9 @@ class Command(ScrapeCommand):
                 if c:
                     matches = re.match(regex, c.text)
                     committees.append({
-                        'name': matches.group(1),
-                        'scraped_id': matches.group(2),
-                        'status': table.findAll('tr')[1].findAll('td')[1].text
+                        'name': matches.group(1).strip(),
+                        'scraped_id': matches.group(2).strip(),
+                        'status': table.findAll('tr')[1].findAll('td')[1].text.strip()
                     })
 
         return committees

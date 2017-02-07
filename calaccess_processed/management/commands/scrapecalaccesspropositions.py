@@ -165,7 +165,7 @@ class Command(ScrapeCommand):
                 # Get or create election object
                 election_obj, c = PropositionScrapedElection.objects \
                     .get_or_create(
-                        name=election_name,
+                        name=election_name.strip(),
                     )
 
                 # Loop through propositions
@@ -173,7 +173,7 @@ class Command(ScrapeCommand):
 
                     # Get or create proposition object
                     prop_obj, c = ScrapedProposition.objects.get_or_create(
-                        name=prop_data['name'],
+                        name=prop_data['name'].strip(),
                         scraped_id=prop_data['id'],
                         election=election_obj
                     )
@@ -188,7 +188,7 @@ class Command(ScrapeCommand):
                         # Get or create it
                         committee_obj, c = ScrapedPropositionCommittee \
                             .objects.get_or_create(
-                                name=committee['name'],
+                                name=committee['name'].strip(),
                                 scraped_id=committee['id'],
                                 position=committee['position'],
                                 proposition=prop_obj

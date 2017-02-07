@@ -138,7 +138,7 @@ class Command(ScrapeCommand):
             self.log('Processing %s' % election_data['name'])
 
             election_obj, c = CandidateScrapedElection.objects.get_or_create(
-                name=election_data['name'],
+                name=election_data['name'].strip(),
                 scraped_id=election_data['scraped_id'],
                 sort_index=election_data['sort_index']
             )
@@ -154,9 +154,9 @@ class Command(ScrapeCommand):
 
                     # Create the candidate object
                     candidate_obj, c = ScrapedCandidate.objects.get_or_create(
-                        name=candidate_data['name'],
+                        name=candidate_data['name'].strip(),
                         scraped_id=candidate_data['scraped_id'],
-                        office_name=office_name,
+                        office_name=office_name.strip(),
                         election=election_obj
                     )
 
