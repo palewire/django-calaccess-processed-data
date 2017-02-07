@@ -37,7 +37,7 @@ class CandidacyManager(models.Manager):
 
             # get the election
             elec = ElectionIdentifier.objects.get(
-                scheme='calaccess_id',
+                scheme='calaccess_election_id',
                 identifier=sc.election.scraped_id,
             ).election
 

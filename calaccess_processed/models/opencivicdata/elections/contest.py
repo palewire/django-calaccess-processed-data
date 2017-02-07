@@ -10,9 +10,6 @@ from calaccess_processed.models.scraped import (
     ScrapedCandidate,
     ScrapedProposition,
 )
-from calaccess_processed.models.opencivicdata.elections import (
-    ElectionIdentifier,
-)
 from calaccess_processed.models.opencivicdata.division import Division
 from calaccess_processed.models.opencivicdata.base import (
     OCDIDField,
@@ -78,17 +75,11 @@ class BallotMeasureContestManager(models.Manager):
         Load BallotMeasureContest model from ScrapedProposition.
         """
         for p in ScrapedProposition.objects.all():
-            # Get the election
-            election_obj = ElectionIdentifier.objects.get(
-                scheme='PropositionScrapedElection.id',
-                identifier=p.election_id,
-            ).election
-
+            # check if we already have a BallotMeasureContest for the prop
             q = ContestIdentifier.objects.filter(
-                scheme='ScrapedProposition.scraped_id',
+                scheme='calaccess_measure_id',
                 identifier=p.scraped_id,
             )
-            # check if we already have a BallotMeasureContest for the prop
             if q.exists():
                 contest = q[0]
                 # if so, make sure the name is up-to-date
@@ -100,6 +91,9 @@ class BallotMeasureContestManager(models.Manager):
                 division_obj = Division.objects.get(
                     id='ocd-division/country:us/state:ca'
                 )
+                # Get the election
+                election_obj = p.election.get_or_create_election()[0]
+
                 if 'RECALL' in p.name:
                     if p.name == '2003 RECALL QUESTION':
                         # look up most recently scraped record for Gov. Gray Davis
@@ -153,13 +147,12 @@ class BallotMeasureContestManager(models.Manager):
                     )
 
                 contest.identifiers.create(
-                    scheme='ScrapedProposition.scraped_id',
+                    scheme='calaccess_measure_id',
                     identifier=p.scraped_id,
                 )
 
             if not contest.ballot_selections.filter(selection='Yes').exists():
                 contest.ballot_selections.create(selection='Yes')
-
             if not contest.ballot_selections.filter(selection='No').exists():
                 contest.ballot_selections.create(selection='No')
 

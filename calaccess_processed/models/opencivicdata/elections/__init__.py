@@ -4,7 +4,6 @@
 OCD Election-related models.
 """
 from __future__ import unicode_literals
-import re
 from django.db import models
 from django.db.models import Count
 from django.utils import timezone
@@ -46,51 +45,9 @@ class ElectionManager(models.Manager):
         """
         Load Election model from CandidateScrapedElection and PropositionScrapedElection.
         """
-        prop_name_pattern = r'^(?P<date>^[A-Z]+\s\d{1,2},\s\d{4})\s(?P<name>.+)$'
-
         # start by loading the prop elections, which include a date in the name
         for p in PropositionScrapedElection.objects.all():
-            # extract the name and date
-            match = re.match(prop_name_pattern, p.name)
-            dt_obj = timezone.make_aware(
-                timezone.datetime.strptime(
-                    match.groupdict()['date'],
-                    '%B %d, %Y',
-                )
-            )
-            name = '{0} {1}'.format(
-                dt_obj.year,
-                match.groupdict()['name'],
-            ).upper()
-            # try getting an existing OCD election with the same date
-            try:
-                elec = self.get(start_time=dt_obj)
-            except self.model.DoesNotExist:
-                # or make a new one
-                elec = self.create(start_time=dt_obj, name=name)
-            else:
-                # if election already exists and is named 'SPECIAL' or 'RECALL'
-                if (
-                    'SPECIAL' in elec.name.upper() or
-                    'RECALL' in elec.name.upper()
-                ):
-                    # and the matched election's name includes either 'GENERAL'
-                    # or 'PRIMARY'...
-                    if (
-                        re.match(r'^\d{4} GENERAL$', name) or
-                        re.match(r'^\d{4} PRIMARY$', name)
-                    ):
-                        # update the name
-                        elec.name = name
-                        elec.save()
-
-            # whether creating or matching, attempt to create the new id
-            # TODO: these prop ids will get flushed with each scraped and might change...
-            # Keep them all anyway?
-            elec.identifiers.get_or_create(
-                scheme='PropositionScrapedElection.id',
-                identifier=str(p.id)
-            )
+            p.get_or_create_election()
 
         # the "2008 PRIMARY" on 2/5/2008 is the presidential primary
         # plus some other special elections and propositions
@@ -163,7 +120,7 @@ class ElectionManager(models.Manager):
         for c in CandidateScrapedElection.objects.all():
             # skip if the candidate election id is already linked to an OCD election
             if ElectionIdentifier.objects.filter(
-                scheme='calaccess_id',
+                scheme='calaccess_election_id',
                 identifier=c.scraped_id
             ).exists():
                 pass
@@ -201,7 +158,7 @@ class ElectionManager(models.Manager):
                             raise Exception('Missing record for %s' % c.name)
 
                 elec.identifiers.create(
-                    scheme='calaccess_id',
+                    scheme='calaccess_election_id',
                     identifier=c.scraped_id
                 )
         # Remove office from name of special elections with multiple races
