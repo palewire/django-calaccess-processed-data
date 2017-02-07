@@ -161,10 +161,10 @@ class ElectionManager(models.Manager):
 
         # then loop over the candidate elections
         for c in CandidateScrapedElection.objects.all():
-            # skip if the candidata election id is already linked to an OCD election
+            # skip if the candidate election id is already linked to an OCD election
             if ElectionIdentifier.objects.filter(
                 scheme='calaccess_id',
-                identifier=str(c.scraped_id)
+                identifier=c.scraped_id
             ).exists():
                 pass
             else:
@@ -202,7 +202,7 @@ class ElectionManager(models.Manager):
 
                 elec.identifiers.create(
                     scheme='calaccess_id',
-                    identifier=str(c.scraped_id)
+                    identifier=c.scraped_id
                 )
         # Remove office from name of special elections with multiple races
         special_elections = self.filter(
