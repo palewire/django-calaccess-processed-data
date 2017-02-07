@@ -90,10 +90,11 @@ class BallotMeasureContestManager(models.Manager):
             )
             # check if we already have a BallotMeasureContest for the prop
             if q.exists():
+                contest = q[0]
                 # if so, make sure the name is up-to-date
-                if q[0].name != p.name:
-                    q[0].contest.name = p.name
-                    q[0].save()
+                if contest.name != p.name:
+                    contest.name = p.name
+                    contest.save()
             else:
                 # Get the division: CA statewide
                 division_obj = Division.objects.get(
@@ -156,8 +157,11 @@ class BallotMeasureContestManager(models.Manager):
                     identifier=p.scraped_id,
                 )
 
-                contest.ballot_selections.add(selection='Yes')
-                contest.ballot_selections.add(selection='No')
+            if not contest.ballot_selections.filter(selection='Yes').exists():
+                contest.ballot_selections.create(selection='Yes')
+
+            if not contest.ballot_selections.filter(selection='No').exists():
+                contest.ballot_selections.create(selection='No')
 
         return
 
