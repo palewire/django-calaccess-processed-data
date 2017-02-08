@@ -7,6 +7,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.models.opencivicdata.base import (
+    LinkBase,
     OCDIDField,
     OCDBase,
 )
@@ -63,11 +64,18 @@ class CandidacyManager(models.Manager):
                 # TODO: set runoff_for_contest, party and number_elected
                 contest.save()
 
+            contest.sources.update_or_create(
+                url=sc.url,
+                note='Last scraped on {dt:%Y-%m-%d}'.format(
+                    dt=sc.last_modified,
+                )
+            )
+
             # get or create the Person
             person = sc.get_or_create_person()[0]
 
             # check to see if the person has any candidacies for the contest
-            q = Candidacy.objects.filter(
+            q = self.filter(
                 ballot_selection__contest=contest
             ).filter(person=person)
             if not q.exists():
@@ -86,7 +94,6 @@ class CandidacyManager(models.Manager):
                     ballot_selection=selection,
                     # TODO: set committee, is_incumbent and party
                 )
-
         return
 
 
@@ -167,3 +174,15 @@ class Candidacy(OCDBase):
 
     def __str__(self):
         return self.ballot_name
+
+
+
+@python_2_unicode_compatible
+class CandidacySource(LinkBase):
+    """
+    Model for storing sources for OCD Candidacy objects.
+    """
+    candidacy = models.ForeignKey(Candidacy, related_name='sources')
+
+    def __str__(self):
+        return self.url

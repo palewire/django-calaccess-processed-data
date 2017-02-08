@@ -5,6 +5,7 @@ Scrape links between filers and propositions from the CAL-ACCESS site.
 """
 import re
 from time import sleep
+from six.moves.urllib.parse import urljoin
 from calaccess_processed.management.commands import ScrapeCommand
 from calaccess_processed.models.scraped import (
     PropositionScrapedElection,
@@ -42,11 +43,9 @@ class Command(ScrapeCommand):
         links = soup.findAll('a', href=re.compile(r'^.*\?session=\d+'))
         links = list(set([link['href'] for link in links]))
 
-        results = []
+        results = {}
         for link in links:
-            data = self.scrape_year_page(link)
-            # Add it to the list
-            results.append(data)
+            results[urljoin(self.base_url, link)] = self.scrape_year_page(link)
 
         # Pass it out
         return results
@@ -104,7 +103,7 @@ class Command(ScrapeCommand):
         soup = self.get_html(url)
 
         # Create a data dictionary to put the good stuff in
-        data_dict = {}
+        data_dict = {'url': urljoin(self.base_url, url)}
 
         # Add the title and id out of the page
         data_dict['name'] = soup.find('span', id='measureName').text
@@ -120,10 +119,10 @@ class Command(ScrapeCommand):
             data = table.findAll('span', {'class': 'txt7'})
 
             # The URL
-            url = table.find('a', {'class': 'sublink2'})
+            committee_url = table.find('a', {'class': 'sublink2'})
 
             # The name
-            name = url.text
+            name = committee_url.text
 
             # ID sometimes refers to xref_filer_id rather than filer_id_raw
             id_ = data[0].text
@@ -131,11 +130,12 @@ class Command(ScrapeCommand):
             # Does the committee support or oppose the measure?
             position = data[1].text.strip()
 
-            # Put together a a data dictionary and add it to the list
+            # Put together a data dictionary and add it to the list
             data_dict['committees'].append({
                 'name': name,
                 'id': id_,
-                'position': position
+                'position': position,
+                'url': urljoin(self.base_url, committee_url['href']),
             })
 
         if self.verbosity > 2:
@@ -157,41 +157,38 @@ class Command(ScrapeCommand):
         Save results of scrape to related database tables.
         """
         # For each year page
-        for d in results:
-
+        for url, d in results.items():
             # For each election on that page
             for election_name, prop_list in d.items():
-
                 # Get or create election object
                 election_obj, c = PropositionScrapedElection.objects \
                     .get_or_create(
                         name=election_name.strip(),
+                        url=url,
                     )
-
                 # Loop through propositions
                 for prop_data in prop_list:
-
                     # Get or create proposition object
                     prop_obj, c = ScrapedProposition.objects.get_or_create(
                         name=prop_data['name'].strip(),
                         scraped_id=prop_data['id'],
+                        url=prop_data['url'],
                         election=election_obj
                     )
-
                     # Log it
                     if c and self.verbosity > 2:
                         self.log('Created %s' % prop_obj)
 
                     # Now loop through the committees
                     for committee in prop_data['committees']:
-
                         # Get or create it
                         committee_obj, c = ScrapedPropositionCommittee \
                             .objects.get_or_create(
                                 name=committee['name'].strip(),
                                 scraped_id=committee['id'],
                                 position=committee['position'],
-                                proposition=prop_obj
+                                url=committee['url'],
+                                proposition=prop_obj,
                             )
 
                         # Log it

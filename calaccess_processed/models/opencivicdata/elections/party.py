@@ -7,6 +7,7 @@ from __future__ import unicode_literals
 from re import findall
 from django.db import models
 from calaccess_processed.models.opencivicdata.base import (
+    LinkBase,
     OCDIDField,
     OCDBase,
 )
@@ -90,3 +91,15 @@ class Party(OCDBase):
 
     def __str__(self):
         return self.name
+
+
+
+@python_2_unicode_compatible
+class PartySource(LinkBase):
+    """
+    Model for storing sources for OCD Party objects.
+    """
+    party = models.ForeignKey(Party, related_name='sources')
+
+    def __str__(self):
+        return self.url

@@ -46,6 +46,9 @@ class Command(BaseCommand):
         full_elec['identifiers'] = [
             self.prep_dict(i.__dict__) for i in elec.identifiers.all()
         ]
+        full_elec['sources'] = [
+            self.prep_dict(i.__dict__) for i in elec.sources.all()
+        ]
 
         print('Sample Election')
         print('+++++++++++++++\n\n')
@@ -61,6 +64,9 @@ class Command(BaseCommand):
         full_contest = self.prep_dict(contest.__dict__).copy()
         full_contest['identifiers'] = [
             self.prep_dict(i.__dict__) for i in contest.identifiers.all()
+        ]
+        full_contest['sources'] = [
+            self.prep_dict(i.__dict__) for i in contest.sources.all()
         ]
 
         print('Sample ContestBase')
@@ -78,6 +84,9 @@ class Command(BaseCommand):
         full_ballot_measure['identifiers'] = [
             self.prep_dict(i.__dict__) for i in ballot_measure.identifiers.all()
         ]
+        full_ballot_measure['sources'] = [
+            self.prep_dict(i.__dict__) for i in ballot_measure.sources.all()
+        ]
 
         print('Sample BallotMeasureContest')
         print('+++++++++++++++++++++++++++\n\n')
@@ -94,6 +103,9 @@ class Command(BaseCommand):
         full_candidate_contest['identifiers'] = [
             self.prep_dict(i.__dict__) for i in candidate_contest.identifiers.all()
         ]
+        full_candidate_contest['sources'] = [
+            self.prep_dict(i.__dict__) for i in candidate_contest.sources.all()
+        ]
 
         print('Sample CandidateContest')
         print('+++++++++++++++++++++++\n\n')
@@ -109,6 +121,9 @@ class Command(BaseCommand):
         full_retention_contest['identifiers'] = [
             self.prep_dict(i.__dict__) for i in retention_contest.identifiers.all()
         ]
+        full_retention_contest['sources'] = [
+            self.prep_dict(i.__dict__) for i in retention_contest.sources.all()
+        ]
 
         print('Sample RetentionContest')
         print('+++++++++++++++++++++++\n\n')
@@ -122,6 +137,9 @@ class Command(BaseCommand):
             contest__name='STATE SENATE 01',
         )[0].candidacies.all()[0]
         full_candidacy = self.prep_dict(candidacy.__dict__).copy()
+        full_candidacy['sources'] = [
+            self.prep_dict(i.__dict__) for i in candidacy.sources.all()
+        ]
 
         print('Sample Candidacy')
         print('++++++++++++++++\n\n')
@@ -132,6 +150,9 @@ class Command(BaseCommand):
         # Party
         party = Party.objects.get(name='DEMOCRATIC')
         full_party = self.prep_dict(party.__dict__).copy()
+        full_party['sources'] = [
+            self.prep_dict(i.__dict__) for i in party.sources.all()
+        ]
 
         print('Sample Party')
         print('++++++++++++++++\n\n')
@@ -154,7 +175,6 @@ class Command(BaseCommand):
         print(self.encoder.encode(full_ballot_selection))
         print('--------------------------------------------------------')
 
-
         # BallotMeasureSelection
         ballot_measure_selection = BallotMeasureSelection.objects.get(
             contest__name='PROPOSITION 060- ADULT FILMS. CONDOMS. HEALTH REQUIREMENTS. INITIATIVE STATUTE.',
@@ -164,7 +184,7 @@ class Command(BaseCommand):
             ballot_measure_selection.__dict__
         ).copy()
 
-        print('Sample BallotMeasure')
+        print('Sample BallotMeasureSelection')
         print('++++++++++++++++++++\n\n')
         print('.. code:: javascript\n')
         print(self.encoder.encode(full_ballot_measure_selection))
@@ -178,6 +198,9 @@ class Command(BaseCommand):
         full_candidate_selection = self.prep_dict(
             candidate_selection.__dict__
         ).copy()
+        full_candidate_selection['candidacy_ids'] = [
+            i.id for i in candidate_selection.candidacies.all()
+        ]
 
         print('Sample CandidateSelection')
         print('++++++++++++++++++++++++++\n\n')
@@ -194,7 +217,7 @@ class Command(BaseCommand):
             if re.match(r'^_.+$', k) or '_ptr_' in k:
                 del cp_dict[k]
 
-        if 'scheme' in cp_dict:
+        if 'scheme' in cp_dict or 'url' in cp_dict:
             _id = [k for k in cp_dict if k.endswith('_id')][0]
             del cp_dict[_id]
             del cp_dict['id']

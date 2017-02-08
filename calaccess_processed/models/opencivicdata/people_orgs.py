@@ -212,7 +212,7 @@ class OrganizationLink(LinkBase):
 
 class OrganizationSource(LinkBase):
     """
-    Model for storing an OCD Organization's related source links.
+    Model for storing sources for OCD Organization objects.
     """
     organization = models.ForeignKey(
         Organization,
@@ -393,7 +393,7 @@ class PersonLink(LinkBase):
 
 class PersonSource(LinkBase):
     """
-    Model for storing an OCD Person's related links.
+    Model for storing sources for OCD Person objects.
     """
     person = models.ForeignKey(Person, related_name='sources')
 

@@ -12,9 +12,10 @@ from calaccess_processed.models.scraped import (
 )
 from calaccess_processed.models.opencivicdata.division import Division
 from calaccess_processed.models.opencivicdata.base import (
+    IdentifierBase,
+    LinkBase,
     OCDIDField,
     OCDBase,
-    IdentifierBase,
 )
 from calaccess_processed.models.opencivicdata.people_orgs import Membership
 
@@ -64,6 +65,17 @@ class ContestIdentifier(IdentifierBase):
     def __str__(self):
         tmpl = '%s identifies %s'
         return tmpl % (self.identifier, self.contest)
+
+
+@python_2_unicode_compatible
+class ContestSource(LinkBase):
+    """
+    Model for storing sources for OCD ContestBase objects.
+    """
+    contest = models.ForeignKey(ContestBase, related_name='sources')
+
+    def __str__(self):
+        return self.url
 
 
 class BallotMeasureContestManager(models.Manager):
@@ -155,6 +167,13 @@ class BallotMeasureContestManager(models.Manager):
                 contest.ballot_selections.create(selection='Yes')
             if not contest.ballot_selections.filter(selection='No').exists():
                 contest.ballot_selections.create(selection='No')
+
+            contest.sources.update_or_create(
+                url=p.url,
+                note='Last scraped on {dt:%Y-%m-%d}'.format(
+                    dt=p.last_modified,
+                )
+            )
 
         return
 

@@ -123,7 +123,12 @@ class ElectionManager(models.Manager):
                 scheme='calaccess_election_id',
                 identifier=c.scraped_id
             ).exists():
-                pass
+                elec.sources.update_or_create(
+                    url=c.url,
+                    note='Last scraped on {dt:%Y-%m-%d}'.format(
+                        dt=c.last_modified,
+                    )
+                )
             else:
                 # if the name is in the list of special elections
                 if c.name in (x[0] for x in cand_elections_w_dates):
@@ -161,6 +166,13 @@ class ElectionManager(models.Manager):
                     scheme='calaccess_election_id',
                     identifier=c.scraped_id
                 )
+                elec.sources.update_or_create(
+                    url=c.url,
+                    note='Last scraped on {dt:%Y-%m-%d}'.format(
+                        dt=c.last_modified,
+                    )
+                )
+
         # Remove office from name of special elections with multiple races
         special_elections = self.filter(
             name__regex=r'^\d{4}\sSPECIAL\s.+\(.+$'

@@ -20,6 +20,7 @@ class BaseScrapedModel(models.Model):
     """
     Abstract base model from which all scraped models inherit.
     """
+    url = models.URLField(max_length=2000, null=True)
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
 
@@ -238,6 +239,12 @@ class PropositionScrapedElection(BaseScrapedElection):
                     # update the name
                     elec.name = name
                     elec.save()
+        elec.sources.update_or_create(
+            url=self.url,
+            note='Last scraped on {dt:%Y-%m-%d}'.format(
+                dt=self.last_modified,
+            )
+        )
         return (elec, created)
 
 

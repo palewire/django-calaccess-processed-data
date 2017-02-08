@@ -7,6 +7,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.models.opencivicdata.base import (
+    LinkBase,
     OCDIDField,
     OCDBase,
 )
@@ -25,6 +26,17 @@ class BallotSelectionBase(OCDBase):
 
     def __str__(self):
         return self.id
+
+
+@python_2_unicode_compatible
+class BallotSelectionSource(LinkBase):
+    """
+    Models for storing sources for OCD BallotSelection objects.
+    """
+    ballot_selection = models.ForeignKey(BallotSelectionBase, related_name='sources')
+
+    def __str__(self):
+        return self.url
 
 
 @python_2_unicode_compatible

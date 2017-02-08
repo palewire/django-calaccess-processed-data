@@ -47,7 +47,7 @@ class Command(ScrapeCommand):
         ]
 
         # Loop through the links
-        results = []
+        results = {}
         for i, link in enumerate(links):
             # Get each page and its data
             url = urljoin(self.base_url, link["href"])
@@ -61,7 +61,7 @@ class Command(ScrapeCommand):
             # have the highest id.
             data['sort_index'] = len(links) - i
             # Add it to the list
-            results.append(data)
+            results[url] = data
             # Take a rest
             sleep(0.5)
 
@@ -109,13 +109,15 @@ class Command(ScrapeCommand):
                         'scraped_id': re.match(
                             r'.+id=(\d+)',
                             c['href']
-                        ).group(1)
+                        ).group(1),
+                        'url': urljoin(self.base_url, url),
                     })
 
                 for c in office.findAll('span', {'class': 'txt7'}):
                     candidates.append({
                         'name': c.text,
-                        'scraped_id': ''
+                        'scraped_id': '',
+                        'url': urljoin(self.base_url, url),
                     })
 
                 # Add it to the data dictionary
@@ -124,6 +126,7 @@ class Command(ScrapeCommand):
         return {
             'scraped_id': int(re.match(r'.+electNav=(\d+)', url).group(1)),
             'races': races,
+            'url': urljoin(self.base_url, url)
         }
 
     def save(self, results):
@@ -133,14 +136,14 @@ class Command(ScrapeCommand):
         self.log('Processing %s elections.' % len(results))
 
         # Loop through all the results
-        for election_data in results:
+        for url, election_data in results.items():
 
             self.log('Processing %s' % election_data['name'])
-
             election_obj, c = CandidateScrapedElection.objects.get_or_create(
                 name=election_data['name'].strip(),
                 scraped_id=election_data['scraped_id'],
-                sort_index=election_data['sort_index']
+                sort_index=election_data['sort_index'],
+                url=url,
             )
 
             if c and self.verbosity > 2:
@@ -157,7 +160,8 @@ class Command(ScrapeCommand):
                         name=candidate_data['name'].strip(),
                         scraped_id=candidate_data['scraped_id'],
                         office_name=office_name.strip(),
-                        election=election_obj
+                        url=candidate_data['url'],
+                        election=election_obj,
                     )
 
                     if c and self.verbosity > 2:
