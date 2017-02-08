@@ -80,27 +80,27 @@ class Command(CalAccessCommand):
         self.processed_models = get_models_to_process()
 
         # iterate over all of the processed models
-        # for m in self.processed_models:
-        #     # set up the ProcessedDataFile instance
-        #     processed_file, created = ProcessedDataFile.objects.get_or_create(
-        #         version=self.processed_version,
-        #         file_name=m._meta.model_name,
-        #     )
-        #     processed_file.process_start_datetime = now()
-        #     processed_file.save()
-        #     # flush the processed model
-        #     if self.verbosity > 2:
-        #         self.log(" Truncating %s" % m._meta.db_table)
-        #     with connection.cursor() as c:
-        #         c.execute('TRUNCATE TABLE "%s" CASCADE' % (m._meta.db_table))
-        #     # load the processed model
-        #     if self.verbosity > 2:
-        #         self.log(" Loading raw data into %s" % m._meta.db_table)
-        #     m.objects.load_raw_data()
+        for m in self.processed_models:
+            # set up the ProcessedDataFile instance
+            processed_file, created = ProcessedDataFile.objects.get_or_create(
+                version=self.processed_version,
+                file_name=m._meta.model_name,
+            )
+            processed_file.process_start_datetime = now()
+            processed_file.save()
+            # flush the processed model
+            if self.verbosity > 2:
+                self.log(" Truncating %s" % m._meta.db_table)
+            with connection.cursor() as c:
+                c.execute('TRUNCATE TABLE "%s" CASCADE' % (m._meta.db_table))
+            # load the processed model
+            if self.verbosity > 2:
+                self.log(" Loading raw data into %s" % m._meta.db_table)
+            m.objects.load_raw_data()
 
-        #     processed_file.records_count = m.objects.count()
-        #     processed_file.process_finish_datetime = now()
-        #     processed_file.save()
+            processed_file.records_count = m.objects.count()
+            processed_file.process_finish_datetime = now()
+            processed_file.save()
 
         self.processed_version.process_finish_datetime = now()
         self.processed_version.save()
