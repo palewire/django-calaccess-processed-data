@@ -274,9 +274,8 @@ class CandidateContest(ContestBase):
         help_text='Indicates that the former public office holder vacated the '
                   'post before serving a full term.',
     )
-    number_elected = models.CharField(
-        max_length=300,
-        blank=True,
+    number_elected = models.IntegerField(
+        default=1,
         help_text='Number of candidates that are elected in the contest, i.e. '
                   "'N' of N-of-M.",
     )
