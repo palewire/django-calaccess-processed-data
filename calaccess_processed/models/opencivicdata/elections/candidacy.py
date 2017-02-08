@@ -176,7 +176,6 @@ class Candidacy(OCDBase):
         return self.ballot_name
 
 
-
 @python_2_unicode_compatible
 class CandidacySource(LinkBase):
     """

@@ -119,10 +119,12 @@ class ElectionManager(models.Manager):
         # then loop over the candidate elections
         for c in CandidateScrapedElection.objects.all():
             # skip if the candidate election id is already linked to an OCD election
-            if ElectionIdentifier.objects.filter(
+            e_id = ElectionIdentifier.objects.filter(
                 scheme='calaccess_election_id',
                 identifier=c.scraped_id
-            ).exists():
+            )
+            if e_id.exists():
+                elec = e_id[0].election
                 elec.sources.update_or_create(
                     url=c.url,
                     note='Last scraped on {dt:%Y-%m-%d}'.format(

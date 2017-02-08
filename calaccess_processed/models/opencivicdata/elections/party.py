@@ -93,7 +93,6 @@ class Party(OCDBase):
         return self.name
 
 
-
 @python_2_unicode_compatible
 class PartySource(LinkBase):
     """
