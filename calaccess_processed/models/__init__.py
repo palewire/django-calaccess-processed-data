@@ -85,11 +85,13 @@ from calaccess_processed.models.opencivicdata.elections import Election
 from calaccess_processed.models.opencivicdata.elections.candidacy import Candidacy
 from calaccess_processed.models.opencivicdata.elections.party import Party
 from calaccess_processed.models.opencivicdata.elections.contest import (
+    ContestBase,
     BallotMeasureContest,
     CandidateContest,
     RetentionContest,
 )
 from calaccess_processed.models.opencivicdata.elections.ballot_selection import (
+    BallotSelectionBase,
     BallotMeasureSelection,
     CandidateSelection,
 )
@@ -166,9 +168,11 @@ __all__ = (
     'Division',
     'Event',
     'Election',
+    'ContestBase',
     'BallotMeasureContest',
     'CandidateContest',
     'RetentionContest',
+    'BallotSelectionBase',
     'BallotMeasureSelection',
     'CandidateSelection',
     'Jurisdiction',

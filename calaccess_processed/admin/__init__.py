@@ -57,7 +57,7 @@ from calaccess_processed.admin.tracking import (
     ProcessedDataVersionAdmin,
     ProcessedDataFileAdmin,
 )
-from opencivicdata import (
+from calaccess_processed.admin.opencivicdata import (
     DivisionAdmin,
     ElectionAdmin,
     OrganizationAdmin,
