@@ -9,11 +9,15 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.managers import ProcessedDataManager
-from calaccess_processed.models.campaign.filings import CampaignFinanceFilingBase
+from calaccess_processed.models.filings import (
+    FilingMixin,
+    FilingVersionMixin,
+)
+from calaccess_processed.models.filings.campaign import CampaignFinanceFilingBase
 
 
 @python_2_unicode_compatible
-class Schedule497Filing(CampaignFinanceFilingBase):
+class Schedule497Filing(FilingMixin, CampaignFinanceFilingBase):
     """
     The most recent version of each Schedule 497 filing by campaign filers.
 
@@ -58,7 +62,7 @@ class Schedule497Filing(CampaignFinanceFilingBase):
 
 
 @python_2_unicode_compatible
-class Schedule497FilingVersion(CampaignFinanceFilingBase):
+class Schedule497FilingVersion(FilingVersionMixin, CampaignFinanceFilingBase):
     """
     Every version of each Schedule 497 filing by a campaign filer.
 
