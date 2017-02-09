@@ -71,7 +71,7 @@ from calaccess_processed.models.scraped import (
     CandidateScrapedElection,
     ScrapedCandidateCommittee,
 )
-from calaccess_processed.models.common import (
+from calaccess_processed.models.research import (
     FilerIDValue,
     FilingIDValue,
 )
