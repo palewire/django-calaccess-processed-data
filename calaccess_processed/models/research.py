@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Models for storing general filer and filing data derived from raw CAL-ACCESS data.
+Models for storing general filer and filing data derived from raw CAL-ACCESS data for research of the system.
 """
 from __future__ import unicode_literals
 from django.db import models
