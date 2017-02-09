@@ -14,7 +14,7 @@ from calaccess_processed.models.opencivicdata.base import (
 from calaccess_processed.models.opencivicdata.elections import ElectionIdentifier
 from calaccess_processed.models.opencivicdata.elections.ballot_selection import CandidateSelection
 from calaccess_processed.models.opencivicdata.elections.contest import CandidateContest
-from calaccess_processed.models.scraped import ScrapedCandidate
+from calaccess_processed.models.scraper import ScrapedCandidate
 
 
 class CandidacyManager(models.Manager):

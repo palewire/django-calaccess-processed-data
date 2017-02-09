@@ -11,7 +11,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.models.opencivicdata.base import IdentifierBase
 from calaccess_processed.models.opencivicdata.event import Event
 from calaccess_processed.models.opencivicdata.people_orgs import Organization
-from calaccess_processed.models.scraped import (
+from calaccess_processed.models.scraper import (
     CandidateScrapedElection,
     PropositionScrapedElection,
 )

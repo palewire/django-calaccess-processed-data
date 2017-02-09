@@ -6,7 +6,7 @@ OCD Election Contest-related models.
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.models.scraped import (
+from calaccess_processed.models.scraper import (
     ScrapedCandidate,
     ScrapedProposition,
 )
