@@ -3,19 +3,19 @@
 """
 Import all of the models from submodules and thread them together.
 """
-from calaccess_processed.models.campaign.entities import (
+from calaccess_processed.models.filings.campaign.entities import (
     Candidate,
     CandidateCommittee,
 )
-from calaccess_processed.models.campaign.filings.form460 import (
+from calaccess_processed.models.filings.campaign.form460 import (
     Form460Filing,
     Form460FilingVersion,
 )
-from calaccess_processed.models.campaign.filings.form460.schedules.a import (
+from calaccess_processed.models.filings.campaign.form460.schedules.a import (
     Form460ScheduleAItem,
     Form460ScheduleAItemVersion,
 )
-from calaccess_processed.models.campaign.filings.form460.schedules.b import (
+from calaccess_processed.models.filings.campaign.form460.schedules.b import (
     Form460ScheduleB1Item,
     Form460ScheduleB1ItemVersion,
     Form460ScheduleB2Item,
@@ -23,39 +23,39 @@ from calaccess_processed.models.campaign.filings.form460.schedules.b import (
     Form460ScheduleB2ItemOld,
     Form460ScheduleB2ItemVersionOld,
 )
-from calaccess_processed.models.campaign.filings.form460.schedules.c import (
+from calaccess_processed.models.filings.campaign.form460.schedules.c import (
     Form460ScheduleCItem,
     Form460ScheduleCItemVersion,
 )
-from calaccess_processed.models.campaign.filings.form460.schedules.d import (
+from calaccess_processed.models.filings.campaign.form460.schedules.d import (
     Form460ScheduleDItem,
     Form460ScheduleDItemVersion,
 )
-from calaccess_processed.models.campaign.filings.form460.schedules.e import (
+from calaccess_processed.models.filings.campaign.form460.schedules.e import (
     Form460ScheduleEItem,
     Form460ScheduleEItemVersion,
     Form460ScheduleESubItem,
     Form460ScheduleESubItemVersion,
 )
-from calaccess_processed.models.campaign.filings.form460.schedules.f import (
+from calaccess_processed.models.filings.campaign.form460.schedules.f import (
     Form460ScheduleFItem,
     Form460ScheduleFItemVersion,
 )
-from calaccess_processed.models.campaign.filings.form460.schedules.g import (
+from calaccess_processed.models.filings.campaign.form460.schedules.g import (
     Form460ScheduleGItem,
     Form460ScheduleGItemVersion,
 )
-from calaccess_processed.models.campaign.filings.form460.schedules.h import (
+from calaccess_processed.models.filings.campaign.form460.schedules.h import (
     Form460ScheduleHItem,
     Form460ScheduleHItemVersion,
     Form460ScheduleH2ItemOld,
     Form460ScheduleH2ItemVersionOld,
 )
-from calaccess_processed.models.campaign.filings.form460.schedules.i import (
+from calaccess_processed.models.filings.campaign.form460.schedules.i import (
     Form460ScheduleIItem,
     Form460ScheduleIItemVersion,
 )
-from calaccess_processed.models.campaign.filings.schedule497 import (
+from calaccess_processed.models.filings.campaign.schedule497 import (
     Schedule497Filing,
     Schedule497FilingVersion,
     Schedule497Part1Item,

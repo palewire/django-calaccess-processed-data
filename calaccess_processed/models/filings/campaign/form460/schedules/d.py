@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.managers import ProcessedDataManager
-from calaccess_processed.models.campaign.filings import CampaignExpenditureItemBase
+from calaccess_processed.models.filings.campaign import CampaignExpenditureItemBase
 
 
 class Form460ScheduleDItemBase(CampaignExpenditureItemBase):
