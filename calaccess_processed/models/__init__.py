@@ -98,7 +98,10 @@ from calaccess_processed.models.opencivicdata.elections.ballot_selection import 
     BallotMeasureSelection,
     CandidateSelection,
 )
-from calaccess_processed.models.opencivicdata.jurisdiction import Jurisdiction
+from calaccess_processed.models.opencivicdata.jurisdiction import (
+    Jurisdiction,
+    LegislativeSession
+)
 from calaccess_processed.models.opencivicdata.people_orgs import (
     Organization,
     OrganizationIdentifier,
@@ -182,6 +185,7 @@ __all__ = (
     'BallotMeasureSelection',
     'CandidateSelection',
     'Jurisdiction',
+    'LegislativeSession',
     'Organization',
     'OrganizationIdentifier',
     'OrganizationName',
