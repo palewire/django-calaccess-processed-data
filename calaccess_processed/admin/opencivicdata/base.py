@@ -33,7 +33,6 @@ class JurisdictionAdmin(BaseAdmin):
     pass
 
 
-
 @admin.register(models.LegislativeSession)
 class LegislativeSessionAdmin(BaseAdmin):
     """

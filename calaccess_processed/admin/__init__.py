@@ -63,19 +63,28 @@ from calaccess_processed.admin.tracking import (
     ProcessedDataVersionAdmin,
     ProcessedDataFileAdmin,
 )
-from calaccess_processed.admin.opencivicdata import (
+from .opencivicdata import (
     DivisionAdmin,
-    ElectionAdmin,
+    JurisdictionAdmin,
+    LegislativeSessionAdmin,
+    MembershipAdmin,
     OrganizationAdmin,
-    PartyAdmin
+    PersonAdmin,
+    PostAdmin,
+    ElectionAdmin,
+    PartyAdmin,
+    BallotMeasureContestAdmin,
+    BallotMeasureSelectionAdmin,
+    CandidateContestAdmin,
+    CandidateSelectionAdmin,
+    RetentionContestAdmin,
+    CandidacyAdmin
 )
 
 __all__ = (
     'BaseAdmin',
     'CandidateAdmin',
     'CandidateCommitteeAdmin',
-    'DivisionAdmin',
-    'ElectionAdmin',
     'Form460FilingAdmin',
     'Form460FilingVersionAdmin',
     'Form460ScheduleAItemAdmin',
@@ -119,6 +128,19 @@ __all__ = (
     'PropositionScrapedElectionAdmin',
     'ScrapedPropositionAdmin',
     'ScrapedPropositionCommitteeAdmin',
+    'DivisionAdmin',
+    'JurisdictionAdmin',
+    'LegislativeSessionAdmin',
+    'MembershipAdmin',
     'OrganizationAdmin',
+    'PersonAdmin',
+    'PostAdmin',
+    'ElectionAdmin',
     'PartyAdmin',
+    'BallotMeasureContestAdmin',
+    'BallotMeasureSelectionAdmin',
+    'CandidateContestAdmin',
+    'CandidateSelectionAdmin',
+    'RetentionContestAdmin',
+    'CandidacyAdmin'
 )
