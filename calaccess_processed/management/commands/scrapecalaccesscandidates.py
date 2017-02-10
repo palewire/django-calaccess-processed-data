@@ -7,7 +7,7 @@ import re
 from six.moves.urllib.parse import urljoin
 from time import sleep
 from calaccess_processed.management.commands import ScrapeCommand
-from calaccess_processed.models.scraped import (
+from calaccess_processed.models import (
     ScrapedCandidate,
     CandidateScrapedElection
 )
