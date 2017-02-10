@@ -215,6 +215,12 @@ class Election(Event):
         help_text='Indicates whether the election is statewide.',
     )
 
+    class Meta(Event.Meta):
+        """
+        Model options.
+        """
+        ordering = ("-start_time",)
+
     def __str__(self):
         return self.name
 

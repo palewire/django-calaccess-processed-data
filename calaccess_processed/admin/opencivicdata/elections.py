@@ -35,3 +35,66 @@ class PartyAdmin(BaseAdmin):
         'color',
     )
     search_fields = ('name',)
+
+
+@admin.register(models.BallotMeasureContest)
+class BallotMeasureContestAdmin(BaseAdmin):
+    list_display = (
+        "name",
+        "election"
+    )
+
+
+@admin.register(models.BallotMeasureSelection)
+class BallotMeasureSelectionAdmin(BaseAdmin):
+    """
+    Custom admin for the BallotMeasureSelection model.
+    """
+    list_display = (
+        "contest_name",
+        "selection"
+    )
+
+
+@admin.register(models.CandidateContest)
+class CandidateContestAdmin(BaseAdmin):
+    """
+    Custom admin for the CandidateContest model.
+    """
+    list_display = (
+        "name",
+        "election"
+    )
+
+
+@admin.register(models.CandidateSelection)
+class CandidateSelectionAdmin(BaseAdmin):
+    """
+    Custom admin for the CandidateSelection model.
+    """
+    list_display = (
+        "contest_name",
+    )
+
+
+@admin.register(models.RetentionContest)
+class RetentionContestAdmin(BaseAdmin):
+    """
+    Custom admin for the RetentionContest model.
+    """
+    list_display = (
+        "name",
+        "election"
+    )
+
+
+@admin.register(models.Candidacy)
+class CandidacyAdmin(BaseAdmin):
+    """
+    Custom admin for the Candidacy model.
+    """
+    list_display = (
+        "person",
+        "post",
+        "election"
+    )

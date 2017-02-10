@@ -247,6 +247,9 @@ class BallotMeasureContest(ContestBase):
                   'when type is specified as "other".',
     )
 
+    class Meta:
+        ordering = ("election", "name",)
+
     def __str__(self):
         return self.id
 
@@ -294,6 +297,9 @@ class CandidateContest(ContestBase):
                   'party, e.g., a partisan primary election, reference to the '
                   'OCD ``Party`` representing that political party.',
     )
+
+    class Meta:
+        ordering = ("election", "name")
 
     def __str__(self):
         return self.id
