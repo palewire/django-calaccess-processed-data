@@ -4,6 +4,7 @@
 Submodule for all filing-related models, managers and mixins.
 """
 
+
 class FilingMixin(object):
     """
     Mixin to add custom methods and properties to Filing objects.
@@ -58,6 +59,8 @@ class FilingVersionMixin(object):
         """
         from time import sleep
         import requests
+
+        sleep(0.5)
 
         r = requests.get(self.pdf_url)
 

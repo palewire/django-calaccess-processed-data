@@ -4,11 +4,11 @@
 Import all of the admins from submodules and thread them together.
 """
 from calaccess_raw.admin.base import BaseAdmin
-from calaccess_processed.admin.campaign.entities import (
-    CandidateAdmin,
-    CandidateCommitteeAdmin,
+from calaccess_processed.admin.filings.campaign.form501 import (
+    Form501FilingAdmin,
+    Form501FilingVersionAdmin,
 )
-from calaccess_processed.admin.campaign.filings.form460 import (
+from calaccess_processed.admin.filings.campaign.form460 import (
     Form460FilingAdmin,
     Form460FilingVersionAdmin,
     Form460ScheduleAItemAdmin,
@@ -38,7 +38,7 @@ from calaccess_processed.admin.campaign.filings.form460 import (
     Form460ScheduleIItemAdmin,
     Form460ScheduleIItemVersionAdmin,
 )
-from calaccess_processed.admin.campaign.filings.schedule497 import (
+from calaccess_processed.admin.filings.campaign.schedule497 import (
     Schedule497FilingAdmin,
     Schedule497FilingVersionAdmin,
     Schedule497Part1ItemAdmin,
@@ -52,12 +52,12 @@ from calaccess_processed.admin.common import (
 from calaccess_processed.admin.scraper.candidates import (
     CandidateScrapedElectionAdmin,
     ScrapedCandidateAdmin,
-    ScrapedCandidateCommitteeAdmin
+    ScrapedCandidateCommitteeAdmin,
 )
 from calaccess_processed.admin.scraper.propositions import (
     PropositionScrapedElectionAdmin,
     ScrapedPropositionAdmin,
-    ScrapedPropositionCommitteeAdmin
+    ScrapedPropositionCommitteeAdmin,
 )
 from calaccess_processed.admin.tracking import (
     ProcessedDataVersionAdmin,
@@ -83,8 +83,8 @@ from .opencivicdata import (
 
 __all__ = (
     'BaseAdmin',
-    'CandidateAdmin',
-    'CandidateCommitteeAdmin',
+    'Form501FilingAdmin',
+    'Form501FilingVersionAdmin',
     'Form460FilingAdmin',
     'Form460FilingVersionAdmin',
     'Form460ScheduleAItemAdmin',
@@ -124,7 +124,7 @@ __all__ = (
     'ProcessedDataFileAdmin',
     'CandidateScrapedElectionAdmin',
     'ScrapedCandidateAdmin',
-    'ScrapedCandidateCommitteeAdmin'
+    'ScrapedCandidateCommitteeAdmin',
     'PropositionScrapedElectionAdmin',
     'ScrapedPropositionAdmin',
     'ScrapedPropositionCommitteeAdmin',

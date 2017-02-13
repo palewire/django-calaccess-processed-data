@@ -3,12 +3,6 @@
 """
 Import all of the models from submodules and thread them together.
 """
-from calaccess_processed.models.filings.campaign.form501 import (
-    Form501Filing,
-    Form501FilingVersion,
-    Candidate,
-    CandidateCommittee,
-)
 from calaccess_processed.models.filings.campaign.form460 import (
     Form460Filing,
     Form460FilingVersion,
@@ -56,6 +50,10 @@ from calaccess_processed.models.filings.campaign.form460.schedules.h import (
 from calaccess_processed.models.filings.campaign.form460.schedules.i import (
     Form460ScheduleIItem,
     Form460ScheduleIItemVersion,
+)
+from calaccess_processed.models.filings.campaign.form501 import (
+    Form501Filing,
+    Form501FilingVersion,
 )
 from calaccess_processed.models.filings.campaign.schedule497 import (
     Schedule497Filing,
@@ -126,8 +124,6 @@ from calaccess_processed.models.opencivicdata.people_orgs import (
 )
 
 __all__ = (
-    'Candidate',
-    'CandidateCommittee',
     'Form460Filing',
     'Form460FilingVersion',
     'Form460ScheduleAItem',
