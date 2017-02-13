@@ -3,7 +3,9 @@
 """
 Import all of the models from submodules and thread them together.
 """
-from calaccess_processed.models.filings.campaign.entities import (
+from calaccess_processed.models.filings.campaign.form501 import (
+    Form501Filing,
+    Form501FilingVersion,
     Candidate,
     CandidateCommittee,
 )
@@ -148,6 +150,8 @@ __all__ = (
     'Form460ScheduleH2ItemVersionOld',
     'Form460ScheduleIItem',
     'Form460ScheduleIItemVersion',
+    'Form501Filing',
+    'Form501FilingVersion',
     'FilerIDValue',
     'FilingIDValue',
     'Schedule497Filing',
