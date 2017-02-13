@@ -39,6 +39,9 @@ class PartyAdmin(BaseAdmin):
 
 @admin.register(models.BallotMeasureContest)
 class BallotMeasureContestAdmin(BaseAdmin):
+    """
+    Custom admin for the BallotMeasureContest model.
+    """
     list_display = (
         "name",
         "election"

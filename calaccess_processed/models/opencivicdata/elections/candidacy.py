@@ -173,6 +173,9 @@ class Candidacy(OCDBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         verbose_name_plural = "candidacies"
         ordering = ("ballot_selection", "post", "person",)
 

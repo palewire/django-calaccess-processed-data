@@ -93,6 +93,9 @@ class CandidateSelection(BallotSelectionBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         ordering = ("contest",)
 
     def __str__(self):

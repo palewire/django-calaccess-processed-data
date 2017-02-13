@@ -248,6 +248,9 @@ class BallotMeasureContest(ContestBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         ordering = ("election", "name",)
 
     def __str__(self):
@@ -299,6 +302,9 @@ class CandidateContest(ContestBase):
     )
 
     class Meta:
+        """
+        Model options.
+        """
         ordering = ("election", "name")
 
     def __str__(self):
