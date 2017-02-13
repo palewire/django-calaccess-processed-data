@@ -65,7 +65,10 @@ from calaccess_processed.models.filings.campaign.schedule497 import (
     Schedule497Part2Item,
     Schedule497Part2ItemVersion,
 )
-from calaccess_processed.models.scraped import (
+from calaccess_processed.models.scraper import (
+    BaseScrapedModel,
+    BaseScrapedElection,
+    BaseScrapedCommittee,
     ScrapedProposition,
     PropositionScrapedElection,
     ScrapedPropositionCommittee,
@@ -97,7 +100,10 @@ from calaccess_processed.models.opencivicdata.elections.ballot_selection import 
     BallotMeasureSelection,
     CandidateSelection,
 )
-from calaccess_processed.models.opencivicdata.jurisdiction import Jurisdiction
+from calaccess_processed.models.opencivicdata.jurisdiction import (
+    Jurisdiction,
+    LegislativeSession
+)
 from calaccess_processed.models.opencivicdata.people_orgs import (
     Organization,
     OrganizationIdentifier,
@@ -160,6 +166,9 @@ __all__ = (
     'Schedule497Part1ItemVersion',
     'Schedule497Part2Item',
     'Schedule497Part2ItemVersion',
+    'BaseScrapedModel',
+    'BaseScrapedElection',
+    'BaseScrapedCommittee',
     'ScrapedProposition',
     'PropositionScrapedElection',
     'ScrapedPropositionCommittee',
@@ -180,6 +189,7 @@ __all__ = (
     'BallotMeasureSelection',
     'CandidateSelection',
     'Jurisdiction',
+    'LegislativeSession',
     'Organization',
     'OrganizationIdentifier',
     'OrganizationName',

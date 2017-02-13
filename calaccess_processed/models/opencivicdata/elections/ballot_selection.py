@@ -59,6 +59,13 @@ class BallotMeasureSelection(BallotSelectionBase):
     def __str__(self):
         return self.id
 
+    @property
+    def contest_name(self):
+        """
+        Returns the name of the contest.
+        """
+        return self.contest.name
+
 
 @python_2_unicode_compatible
 class CandidateSelection(BallotSelectionBase):
@@ -85,5 +92,15 @@ class CandidateSelection(BallotSelectionBase):
                   'candidates are allowed for this contest.',
     )
 
+    class Meta:
+        ordering = ("contest",)
+
     def __str__(self):
         return self.id
+
+    @property
+    def contest_name(self):
+        """
+        Returns the name of the contest.
+        """
+        return self.contest.name

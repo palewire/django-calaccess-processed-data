@@ -19,11 +19,34 @@ class DivisionAdmin(BaseAdmin):
         'subtype1',
         'subtype2',
     )
-    search_fields = ('name',)
     list_filter = (
         'subtype1',
         'subtype2',
     )
+
+
+@admin.register(models.Jurisdiction)
+class JurisdictionAdmin(BaseAdmin):
+    """
+    Custom admin for Jurisdiction model.
+    """
+    pass
+
+
+@admin.register(models.LegislativeSession)
+class LegislativeSessionAdmin(BaseAdmin):
+    """
+    Custom admin for LegislativeSession model.
+    """
+    pass
+
+
+@admin.register(models.Membership)
+class MembershipAdmin(BaseAdmin):
+    """
+    Custom admin for the Membership model.
+    """
+    pass
 
 
 @admin.register(models.Organization)
@@ -37,7 +60,30 @@ class OrganizationAdmin(BaseAdmin):
         'jurisdiction',
         'classification'
     )
-    search_fields = ('name',)
     list_filter = (
         'classification',
+    )
+
+
+@admin.register(models.Person)
+class PersonAdmin(BaseAdmin):
+    """
+    Custom admin for the Person model.
+    """
+    pass
+
+
+@admin.register(models.Post)
+class PostAdmin(BaseAdmin):
+    """
+    Custom admin for the Post model.
+    """
+    list_display = (
+        "label",
+        "organization",
+        "role",
+    )
+    list_filter = (
+        "role",
+        "organization"
     )

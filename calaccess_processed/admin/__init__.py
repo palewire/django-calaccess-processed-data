@@ -49,27 +49,42 @@ from calaccess_processed.admin.campaign.filings.schedule497 import (
 from calaccess_processed.admin.common import (
     FilerIDValueAdmin,
 )
-from .scraped import (
+from calaccess_processed.admin.scraper.candidates import (
     CandidateScrapedElectionAdmin,
+    ScrapedCandidateAdmin,
+    ScrapedCandidateCommitteeAdmin
+)
+from calaccess_processed.admin.scraper.propositions import (
+    PropositionScrapedElectionAdmin,
     ScrapedPropositionAdmin,
+    ScrapedPropositionCommitteeAdmin
 )
 from calaccess_processed.admin.tracking import (
     ProcessedDataVersionAdmin,
     ProcessedDataFileAdmin,
 )
-from calaccess_processed.admin.opencivicdata import (
+from .opencivicdata import (
     DivisionAdmin,
-    ElectionAdmin,
+    JurisdictionAdmin,
+    LegislativeSessionAdmin,
+    MembershipAdmin,
     OrganizationAdmin,
-    PartyAdmin
+    PersonAdmin,
+    PostAdmin,
+    ElectionAdmin,
+    PartyAdmin,
+    BallotMeasureContestAdmin,
+    BallotMeasureSelectionAdmin,
+    CandidateContestAdmin,
+    CandidateSelectionAdmin,
+    RetentionContestAdmin,
+    CandidacyAdmin
 )
 
 __all__ = (
     'BaseAdmin',
     'CandidateAdmin',
     'CandidateCommitteeAdmin',
-    'DivisionAdmin',
-    'ElectionAdmin',
     'Form460FilingAdmin',
     'Form460FilingVersionAdmin',
     'Form460ScheduleAItemAdmin',
@@ -108,7 +123,24 @@ __all__ = (
     'ProcessedDataVersionAdmin',
     'ProcessedDataFileAdmin',
     'CandidateScrapedElectionAdmin',
+    'ScrapedCandidateAdmin',
+    'ScrapedCandidateCommitteeAdmin'
+    'PropositionScrapedElectionAdmin',
     'ScrapedPropositionAdmin',
+    'ScrapedPropositionCommitteeAdmin',
+    'DivisionAdmin',
+    'JurisdictionAdmin',
+    'LegislativeSessionAdmin',
+    'MembershipAdmin',
     'OrganizationAdmin',
+    'PersonAdmin',
+    'PostAdmin',
+    'ElectionAdmin',
     'PartyAdmin',
+    'BallotMeasureContestAdmin',
+    'BallotMeasureSelectionAdmin',
+    'CandidateContestAdmin',
+    'CandidateSelectionAdmin',
+    'RetentionContestAdmin',
+    'CandidacyAdmin'
 )

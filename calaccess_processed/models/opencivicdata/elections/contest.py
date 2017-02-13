@@ -6,7 +6,7 @@ OCD Election Contest-related models.
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.models.scraped import (
+from calaccess_processed.models.scraper import (
     ScrapedCandidate,
     ScrapedProposition,
 )
@@ -247,6 +247,9 @@ class BallotMeasureContest(ContestBase):
                   'when type is specified as "other".',
     )
 
+    class Meta:
+        ordering = ("election", "name",)
+
     def __str__(self):
         return self.id
 
@@ -294,6 +297,9 @@ class CandidateContest(ContestBase):
                   'party, e.g., a partisan primary election, reference to the '
                   'OCD ``Party`` representing that political party.',
     )
+
+    class Meta:
+        ordering = ("election", "name")
 
     def __str__(self):
         return self.id

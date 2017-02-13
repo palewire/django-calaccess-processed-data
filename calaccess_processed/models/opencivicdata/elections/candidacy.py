@@ -14,7 +14,7 @@ from calaccess_processed.models.opencivicdata.base import (
 from calaccess_processed.models.opencivicdata.elections import ElectionIdentifier
 from calaccess_processed.models.opencivicdata.elections.ballot_selection import CandidateSelection
 from calaccess_processed.models.opencivicdata.elections.contest import CandidateContest
-from calaccess_processed.models.scraped import ScrapedCandidate
+from calaccess_processed.models.scraper import ScrapedCandidate
 
 
 class CandidacyManager(models.Manager):
@@ -172,8 +172,19 @@ class Candidacy(OCDBase):
                   'choose when voting for the candidate',
     )
 
+    class Meta:
+        verbose_name_plural = "candidacies"
+        ordering = ("ballot_selection", "post", "person",)
+
     def __str__(self):
         return self.ballot_name
+
+    @property
+    def election(self):
+        """
+        Returns the election this candidacy is tied to.
+        """
+        return self.ballot_selection.contest.election
 
 
 @python_2_unicode_compatible
