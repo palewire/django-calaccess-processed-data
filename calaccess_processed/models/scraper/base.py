@@ -5,9 +5,10 @@ Base models for storing information scraped from the CAL-ACCESS website.
 """
 from __future__ import unicode_literals
 from django.db import models
+from calaccess_processed.models import base
 
 
-class BaseScrapedModel(models.Model):
+class BaseScrapedModel(base.CalAccessBaseModel):
     """
     Abstract base model from which all scraped models inherit.
     """

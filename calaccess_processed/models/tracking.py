@@ -51,7 +51,7 @@ class ProcessedDataVersion(models.Model):
         Meta model options.
         """
         app_label = 'calaccess_processed'
-        verbose_name = 'CAL-ACCESS processed data version'
+        verbose_name = 'TRACKING: CAL-ACCESS processed data version'
         ordering = ('-process_start_datetime',)
         get_latest_by = 'process_start_datetime'
 
@@ -122,7 +122,7 @@ class ProcessedDataFile(models.Model):
         """
         app_label = 'calaccess_processed'
         unique_together = (('version', 'file_name'),)
-        verbose_name = 'processed CAL-ACCESS data file'
+        verbose_name = 'TRACKING: processed CAL-ACCESS data file'
         ordering = ('-version_id', 'file_name',)
 
     def __str__(self):

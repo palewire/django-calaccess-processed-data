@@ -11,7 +11,8 @@ from calaccess_processed.models.opencivicdata.base import (
     OCDIDField,
     OCDBase,
 )
-from calaccess_processed.models.opencivicdata.elections import ElectionIdentifier
+from calaccess_processed.models.base import CalAccessBaseModel
+from calaccess_processed.models.opencivicdata.elections.election import ElectionIdentifier
 from calaccess_processed.models.opencivicdata.elections.ballot_selection import CandidateSelection
 from calaccess_processed.models.opencivicdata.elections.contest import CandidateContest
 from calaccess_processed.models.scraper import ScrapedCandidate
@@ -98,7 +99,7 @@ class CandidacyManager(models.Manager):
 
 
 @python_2_unicode_compatible
-class Candidacy(OCDBase):
+class Candidacy(CalAccessBaseModel, OCDBase):
     """
     Represents a person who is a candidate for a public office.
 

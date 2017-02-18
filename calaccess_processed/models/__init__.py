@@ -84,7 +84,7 @@ from calaccess_processed.models.tracking import (
 )
 from calaccess_processed.models.opencivicdata.division import Division
 from calaccess_processed.models.opencivicdata.event import Event
-from calaccess_processed.models.opencivicdata.elections import Election
+from calaccess_processed.models.opencivicdata.elections.election import Election
 from calaccess_processed.models.opencivicdata.elections.candidacy import Candidacy
 from calaccess_processed.models.opencivicdata.elections.party import Party
 from calaccess_processed.models.opencivicdata.elections.contest import (

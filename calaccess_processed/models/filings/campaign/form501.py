@@ -10,10 +10,11 @@ from calaccess_processed.models.filings import (
     FilingMixin,
     FilingVersionMixin,
 )
+from calaccess_processed.models.base import CalAccessBaseModel
 from calaccess_processed.managers import ProcessedDataManager
 
 
-class Form501FilingBase(models.Model):
+class Form501FilingBase(CalAccessBaseModel):
     """
     Base and abstract model for Form 460 filings.
     """

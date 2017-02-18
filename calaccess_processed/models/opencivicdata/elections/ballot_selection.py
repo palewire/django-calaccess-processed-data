@@ -6,6 +6,7 @@ OCD Election BallotSelection-related models.
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
+from calaccess_processed.models.base import CalAccessBaseModel
 from calaccess_processed.models.opencivicdata.base import (
     LinkBase,
     OCDIDField,
@@ -14,7 +15,7 @@ from calaccess_processed.models.opencivicdata.base import (
 
 
 @python_2_unicode_compatible
-class BallotSelectionBase(OCDBase):
+class BallotSelectionBase(CalAccessBaseModel, OCDBase):
     """
     A base class with properties shared by all ballot selection types.
     """

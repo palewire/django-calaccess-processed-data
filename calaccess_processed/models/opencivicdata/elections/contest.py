@@ -10,6 +10,7 @@ from calaccess_processed.models.scraper import (
     ScrapedCandidate,
     ScrapedProposition,
 )
+from calaccess_processed.models.base import CalAccessBaseModel
 from calaccess_processed.models.opencivicdata.division import Division
 from calaccess_processed.models.opencivicdata.base import (
     IdentifierBase,
@@ -21,7 +22,7 @@ from calaccess_processed.models.opencivicdata.people_orgs import Membership
 
 
 @python_2_unicode_compatible
-class ContestBase(OCDBase):
+class ContestBase(CalAccessBaseModel, OCDBase):
     """
     A base class with properties shared by all contest types.
     """

@@ -13,6 +13,7 @@ from calaccess_processed.models.opencivicdata.base import (
 )
 from calaccess_raw.models.common import LookupCodesCd
 from django.utils.encoding import python_2_unicode_compatible
+from calaccess_processed.models.base import CalAccessBaseModel
 
 
 class PartyManager(models.Manager):
@@ -49,7 +50,7 @@ class PartyManager(models.Manager):
 
 
 @python_2_unicode_compatible
-class Party(OCDBase):
+class Party(CalAccessBaseModel, OCDBase):
     """
     Political party with which candidates may be affiliated.
     """
