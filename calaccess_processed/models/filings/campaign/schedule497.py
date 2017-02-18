@@ -291,7 +291,6 @@ class Schedule497Part1Item(Schedule497Part1ItemBase):
             'filing',
             'line_item',
         ),)
-        verbose_name_plural = 'Late contributions received'
 
     def __str__(self):
         return '%s-%s' % (self.filing, self.line_item)
@@ -560,7 +559,6 @@ class Schedule497Part2Item(Schedule497Part2ItemBase):
             'filing',
             'line_item',
         ),)
-        verbose_name_plural = 'Late contributions made'
 
     def __str__(self):
         return '%s-%s' % (self.filing, self.line_item)
