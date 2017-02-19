@@ -25,7 +25,7 @@ class PropositionScrapedElection(BaseScrapedElection):
         Returns a tuple (Election object, created), where created is a boolean
         specifying whether a Election was created.
         """
-        from calaccess_processed.models.opencivicdata.elections import Election
+        from calaccess_processed.models.opencivicdata.elections.election import Election
 
         prop_name_pattern = r'^(?P<date>^[A-Z]+\s\d{1,2},\s\d{4})\s(?P<name>.+)$'
         # extract the name and date

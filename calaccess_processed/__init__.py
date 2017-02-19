@@ -63,7 +63,7 @@ def get_ocd_models_to_load():
 
     return [
         opencivicdata.people_orgs.Organization,
-        opencivicdata.elections.Election,
+        opencivicdata.elections.election.Election,
         opencivicdata.elections.contest.BallotMeasureContest,
         opencivicdata.elections.candidacy.Candidacy,
         opencivicdata.elections.party.Party,
@@ -77,7 +77,7 @@ def get_ocd_models_to_archive():
     from calaccess_processed.models import opencivicdata
 
     return [
-        opencivicdata.elections.Election,
+        opencivicdata.elections.election.Election,
         opencivicdata.elections.contest.BallotMeasureContest,
         opencivicdata.elections.candidacy.Candidacy,
         opencivicdata.elections.party.Party,
