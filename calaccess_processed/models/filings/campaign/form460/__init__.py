@@ -3,11 +3,8 @@
 """
 Models for storing data from Campaign Disclosure Statements (Form 460).
 """
-from .base import (
-    Form460FilingBase,
-    Form460Filing,
-    Form460FilingVersion
-)
+from .base import Form460FilingBase
+from .filing import Form460Filing, Form460FilingVersion
 
 
 __all__ = (
