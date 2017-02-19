@@ -62,6 +62,7 @@ class Form460Filing(FilingMixin, Form460FilingBase):
             'filing_id',
             'amendment_count',
         ),)
+        verbose_name = "Form 460 (Campaign Disclosure) filing"
 
     def __str__(self):
         return str(self.filing_id)
@@ -107,6 +108,7 @@ class Form460FilingVersion(FilingVersionMixin, Form460FilingBase):
             'filing',
             'amend_id',
         ),)
+        verbose_name = "Form 460 (Campaign Disclosure) filing version"
 
     def __str__(self):
         return '%s-%s' % (self.filing, self.amend_id)
