@@ -65,6 +65,7 @@ class Form460ScheduleAItem(Form460ScheduleAItemBase):
             'filing',
             'line_item',
         ),)
+        verbose_name = "Form 460 (Campaign Disclosure) Schedule A item"
 
     def __str__(self):
         return '%s-%s' % (self.filing, self.line_item)
@@ -103,6 +104,7 @@ class Form460ScheduleAItemVersion(Form460ScheduleAItemBase):
             'filing_version',
             'line_item',
         ),)
+        verbose_name = "Form 460 (Campaign Disclosure) Schedule A item version"
 
     def __str__(self):
         return '%s-%s-%s' % (

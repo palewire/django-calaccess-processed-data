@@ -52,6 +52,7 @@ class Form460ScheduleEItem(CampaignExpenditureItemBase):
             'filing',
             'line_item',
         ),)
+        verbose_name = "Form 460 (Campaign Disclosure) Schedule E item"
 
     def __str__(self):
         return '%s-%s' % (self.filing, self.line_item)
@@ -99,6 +100,7 @@ class Form460ScheduleEItemVersion(CampaignExpenditureItemBase):
             'filing_version',
             'line_item',
         ),)
+        verbose_name = "Form 460 (Campaign Disclosure) Schedule E item version"
 
     def __str__(self):
         return '%s-%s-%s' % (
@@ -150,6 +152,7 @@ class Form460ScheduleESubItem(CampaignExpenditureSubItemBase):
             'filing',
             'line_item',
         ),)
+        verbose_name = "Form 460 (Campaign Disclosure) Schedule E subitem"
 
     def __str__(self):
         return '%s-%s' % (self.filing, self.line_item)
@@ -200,6 +203,7 @@ class Form460ScheduleESubItemVersion(CampaignExpenditureSubItemBase):
             'filing_version',
             'line_item',
         ),)
+        verbose_name = "Form 460 (Campaign Disclosure) Schedule E subitem version"
 
     def __str__(self):
         return '%s-%s-%s' % (

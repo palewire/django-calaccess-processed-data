@@ -133,6 +133,7 @@ class Form460ScheduleHItem(Form460ScheduleHItemBase):
             'filing',
             'line_item',
         ),)
+        verbose_name = "Form 460 (Campaign Disclosure) Schedule H item"
 
     def __str__(self):
         return '%s-%s' % (self.filing, self.line_item)
@@ -171,6 +172,7 @@ class Form460ScheduleHItemVersion(Form460ScheduleHItemBase):
             'filing_version',
             'line_item',
         ),)
+        verbose_name = "Form 460 (Campaign Disclosure) Schedule H item version"
 
     def __str__(self):
         return '%s-%s-%s' % (
@@ -265,7 +267,7 @@ class Form460ScheduleH2ItemOld(Form460ScheduleH2ItemBaseOld):
             'filing',
             'line_item',
         ),)
-        verbose_name_plural = "Form460 schedule h2 items old"
+        verbose_name = "Form 460 (Campaign Disclosure) Schedule H2 old item"
 
     def __str__(self):
         return '%s-%s' % (self.filing, self.line_item)
@@ -304,7 +306,7 @@ class Form460ScheduleH2ItemVersionOld(Form460ScheduleH2ItemBaseOld):
             'filing_version',
             'line_item',
         ),)
-        verbose_name_plural = "Form460 schedule h2 item versions old"
+        verbose_name = "Form 460 (Campaign Disclosure) Schedule H2 old item version"
 
     def __str__(self):
         return '%s-%s-%s' % (

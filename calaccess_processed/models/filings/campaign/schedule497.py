@@ -57,6 +57,7 @@ class Schedule497Filing(FilingMixin, CampaignFinanceFilingBase):
             'filing_id',
             'amendment_count',
         ),)
+        verbose_name = "Form 497 (Late Contribution) filing"
 
     def __str__(self):
         return str(self.filing_id)
@@ -101,6 +102,7 @@ class Schedule497FilingVersion(FilingVersionMixin, CampaignFinanceFilingBase):
             'filing',
             'amend_id',
         ),)
+        verbose_name = "Form 497 (Late Contribution) filing version"
 
     def __str__(self):
         return '%s-%s' % (self.filing, self.amend_id)
@@ -292,6 +294,7 @@ class Schedule497Part1Item(Schedule497Part1ItemBase):
             'filing',
             'line_item',
         ),)
+        verbose_name = "Form 497 (Late Contribution) Part 1 item"
 
     def __str__(self):
         return '%s-%s' % (self.filing, self.line_item)
@@ -330,6 +333,7 @@ class Schedule497Part1ItemVersion(Schedule497Part1ItemBase):
             'filing_version',
             'line_item',
         ),)
+        verbose_name = "Form 497 (Late Contribution) Part 1 item version"
 
     def __str__(self):
         return '%s-%s-%s' % (
@@ -560,6 +564,7 @@ class Schedule497Part2Item(Schedule497Part2ItemBase):
             'filing',
             'line_item',
         ),)
+        verbose_name = "Form 497 (Late Contribution) Part 2 item"
 
     def __str__(self):
         return '%s-%s' % (self.filing, self.line_item)
@@ -597,6 +602,7 @@ class Schedule497Part2ItemVersion(Schedule497Part2ItemBase):
             'filing_version',
             'line_item',
         ),)
+        verbose_name = "Form 497 (Late Contribution) Part 2 item version"
 
     def __str__(self):
         return '%s-%s-%s' % (
