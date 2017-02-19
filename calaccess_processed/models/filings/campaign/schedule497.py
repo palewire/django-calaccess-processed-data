@@ -13,6 +13,7 @@ from calaccess_processed.models.filings import (
     FilingMixin,
     FilingVersionMixin,
 )
+from calaccess_processed.models.base import CalAccessBaseModel
 from calaccess_processed.models.filings.campaign import CampaignFinanceFilingBase
 
 
@@ -105,7 +106,7 @@ class Schedule497FilingVersion(FilingVersionMixin, CampaignFinanceFilingBase):
         return '%s-%s' % (self.filing, self.amend_id)
 
 
-class Schedule497ItemBase(models.Model):
+class Schedule497ItemBase(CalAccessBaseModel):
     """
     Abstract base model for items reported on Schedule 497 filings.
 

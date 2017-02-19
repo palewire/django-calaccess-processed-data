@@ -10,13 +10,14 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.utils.encoding import python_2_unicode_compatible
+from calaccess_processed.models.base import CalAccessBaseModel
 from .common import JURISDICTION_CLASSIFICATION_CHOICES, SESSION_CLASSIFICATION_CHOICES
 from .base import OCDBase, OCDIDField, RelatedBase
 from .division import Division
 
 
 @python_2_unicode_compatible
-class Jurisdiction(OCDBase):
+class Jurisdiction(CalAccessBaseModel, OCDBase):
     """
     OCD Jurisdiction model, as defined in OCDEP 3: Jurisdictions.
     """
@@ -33,7 +34,7 @@ class Jurisdiction(OCDBase):
 
 
 @python_2_unicode_compatible
-class LegislativeSession(RelatedBase):
+class LegislativeSession(CalAccessBaseModel, RelatedBase):
     """
     OCD LegislativeSession model, as defined in OCDEP 3: Jurisdictions.
     """

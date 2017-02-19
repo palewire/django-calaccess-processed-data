@@ -9,6 +9,7 @@ https://github.com/opencivicdata/python-opencivicdata-django/blob/master/openciv
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
+from calaccess_processed.models.base import CalAccessBaseModel
 from calaccess_processed.models.opencivicdata.base import (
     LinkBase,
     OCDIDField,
@@ -17,7 +18,7 @@ from calaccess_processed.models.opencivicdata.base import (
 
 
 @python_2_unicode_compatible
-class Event(OCDBase):
+class Event(CalAccessBaseModel, OCDBase):
     """
     OCD Event model.
     """

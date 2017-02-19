@@ -9,6 +9,7 @@ https://github.com/opencivicdata/python-opencivicdata-django/blob/master/openciv
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
+from calaccess_processed.models.base import CalAccessBaseModel
 from calaccess_processed.models.opencivicdata.base import OCDBase
 
 
@@ -85,7 +86,7 @@ class DivisionManager(models.Manager):
 
 
 @python_2_unicode_compatible
-class Division(OCDBase):
+class Division(CalAccessBaseModel, OCDBase):
     """
     Division as defined in OCDEP 2: Division Identifiers.
 

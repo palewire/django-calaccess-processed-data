@@ -10,6 +10,7 @@ from __future__ import unicode_literals
 import datetime
 from django.db import models
 from django.db.models import Q, QuerySet
+from calaccess_processed.models.base import CalAccessBaseModel
 from .base import OCDBase, LinkBase, OCDIDField, RelatedBase, IdentifierBase
 from .division import Division
 from .jurisdiction import Jurisdiction
@@ -17,7 +18,7 @@ from .common import CONTACT_TYPE_CHOICES, ORGANIZATION_CLASSIFICATION_CHOICES
 
 
 # abstract models
-class ContactDetailBase(RelatedBase):
+class ContactDetailBase(CalAccessBaseModel, RelatedBase):
     """
     Abstract base class for OCD ContactDetail models.
     """
@@ -36,7 +37,7 @@ class ContactDetailBase(RelatedBase):
         return '{}: {}'.format(self.get_type_display(), self.value)
 
 
-class OtherNameBase(RelatedBase):
+class OtherNameBase(CalAccessBaseModel, RelatedBase):
     """
     Abstract base class for OCD OtherName models.
     """
@@ -103,7 +104,7 @@ class OrganizationManager(models.Manager):
 
 
 # the actual models
-class Organization(OCDBase):
+class Organization(CalAccessBaseModel, OCDBase):
     """
     OCD Organization model, as defined in OCDEP 5: People, Organizations, Posts, and Memberships.
     """
@@ -220,7 +221,7 @@ class OrganizationSource(LinkBase):
     )
 
 
-class Post(OCDBase):
+class Post(CalAccessBaseModel, OCDBase):
     """
     OCD Post model, as defined in OCDEP 5: People, Organizations, Posts, and Memberships.
     """
@@ -319,7 +320,7 @@ class PersonQuerySet(QuerySet):
         return person
 
 
-class Person(OCDBase):
+class Person(CalAccessBaseModel, OCDBase):
     """
     OCD Person model, as defined in OCDEP 5: People, Organizations, Posts, and Memberships.
     """
@@ -398,7 +399,7 @@ class PersonSource(LinkBase):
     person = models.ForeignKey(Person, related_name='sources')
 
 
-class Membership(OCDBase):
+class Membership(CalAccessBaseModel, OCDBase):
     """
     OCD Membership model, as defined in OCDEP 5: People, Organizations, Posts, and Memberships.
     """

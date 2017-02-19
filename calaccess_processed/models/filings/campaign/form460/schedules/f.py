@@ -7,9 +7,10 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.managers import ProcessedDataManager
+from calaccess_processed.models.base import CalAccessBaseModel
 
 
-class Form460ScheduleFItemBase(models.Model):
+class Form460ScheduleFItemBase(CalAccessBaseModel):
     """
     Abstract base model for items reported on Schedule F of Form 460 filings.
 

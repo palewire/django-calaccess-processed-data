@@ -16,7 +16,6 @@ from calaccess_processed.models.scraper import (
     CandidateScrapedElection,
     PropositionScrapedElection,
 )
-from calaccess_processed.models import base
 
 
 class ElectionManager(models.Manager):
@@ -193,7 +192,7 @@ class ElectionManager(models.Manager):
 
 
 @python_2_unicode_compatible
-class Election(base.CalAccessBaseModel, Event):
+class Election(Event):
     """
     OCD Election model.
     """

@@ -7,6 +7,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.managers import ProcessedDataManager
+from calaccess_processed.models.base import CalAccessBaseModel
 from calaccess_processed.models.filings.campaign import CampaignLoanReceivedItemBase
 
 
@@ -170,7 +171,7 @@ class Form460ScheduleB1ItemVersion(Form460ScheduleB1ItemBase):
         )
 
 
-class Form460ScheduleB2ItemBase(models.Model):
+class Form460ScheduleB2ItemBase(CalAccessBaseModel):
     """
     Abstract base model for items reported on Schedule B, Part 2, of Form 460.
 
