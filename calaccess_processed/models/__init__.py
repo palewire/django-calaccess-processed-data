@@ -3,6 +3,7 @@
 """
 Import all of the models from submodules and thread them together.
 """
+from .base import CalAccessMetaClass, CalAccessBaseModel
 from calaccess_processed.models.filings.campaign.form460 import (
     Form460Filing,
     Form460FilingVersion,
@@ -124,6 +125,8 @@ from calaccess_processed.models.opencivicdata.people_orgs import (
 )
 
 __all__ = (
+    'CalAccessMetaClass',
+    'CalAccessBaseModel',
     'Form460Filing',
     'Form460FilingVersion',
     'Form460ScheduleAItem',

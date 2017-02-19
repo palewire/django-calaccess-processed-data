@@ -10,7 +10,7 @@ from calaccess_processed.models.filings import (
     FilingMixin,
     FilingVersionMixin,
 )
-from calaccess_processed.models.base import CalAccessBaseModel
+from calaccess_processed.models import CalAccessBaseModel
 from calaccess_processed.managers import ProcessedDataManager
 
 
@@ -236,6 +236,7 @@ class Form501Filing(FilingMixin, Form501FilingBase):
             'filing_id',
             'amendment_count',
         ),)
+        verbose_name = "Form 501 (Candidate Intention) filing"
 
     def __str__(self):
         return str(self.filing_id)
@@ -279,6 +280,7 @@ class Form501FilingVersion(FilingVersionMixin, Form501FilingBase):
             'filing',
             'amend_id',
         ),)
+        verbose_name = "Form 501 (Candidate Intention) filing version"
 
     def __str__(self):
-        return '%s-%s' % (self.filing, self.amend_id)
+        return '{}-{}'.format(self.filing, self.amend_id)
