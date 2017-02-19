@@ -16,7 +16,7 @@ from calaccess_processed.managers import ProcessedDataManager
 
 class Form501FilingBase(CalAccessBaseModel):
     """
-    Base and abstract model for Form 460 filings.
+    Base and abstract model for Form 501 filings.
     """
     date_filed = models.DateField(
         verbose_name='from date',
