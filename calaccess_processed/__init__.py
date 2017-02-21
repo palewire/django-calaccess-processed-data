@@ -46,12 +46,12 @@ def get_models_to_process():
         campaign.form460.schedules.i.Form460ScheduleIItem,
         campaign.form501.Form501FilingVersion,
         campaign.form501.Form501Filing,
-        campaign.schedule497.Schedule497FilingVersion,
-        campaign.schedule497.Schedule497Filing,
-        campaign.schedule497.Schedule497Part1ItemVersion,
-        campaign.schedule497.Schedule497Part1Item,
-        campaign.schedule497.Schedule497Part2ItemVersion,
-        campaign.schedule497.Schedule497Part2Item,
+        campaign.form497.form497FilingVersion,
+        campaign.form497.form497Filing,
+        campaign.form497.form497Part1ItemVersion,
+        campaign.form497.form497Part1Item,
+        campaign.form497.form497Part2ItemVersion,
+        campaign.form497.form497Part2Item,
     ]
 
 

@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_schedule497part1itemversion (
+INSERT INTO calaccess_processed_form497part1itemversion (
     filing_version_id,
     line_item,
     date_received,
@@ -54,7 +54,7 @@ SELECT
         ELSE false 
     END AS contributor_is_self_employed
 FROM "S497_CD" s497_line
-JOIN calaccess_processed_schedule497filingversion filing_version
+JOIN calaccess_processed_form497filingversion filing_version
 ON s497_line."FILING_ID" = filing_version.filing_id
 AND s497_line."AMEND_ID" = filing_version.amend_id
 WHERE s497_line."FORM_TYPE" = 'F497P1';

@@ -18,7 +18,7 @@ from calaccess_processed.models.filings.campaign import CampaignFinanceFilingBas
 
 
 @python_2_unicode_compatible
-class Schedule497Filing(FilingMixin, CampaignFinanceFilingBase):
+class Form497Filing(FilingMixin, CampaignFinanceFilingBase):
     """
     The most recent version of each Schedule 497 filing by campaign filers.
 
@@ -64,7 +64,7 @@ class Schedule497Filing(FilingMixin, CampaignFinanceFilingBase):
 
 
 @python_2_unicode_compatible
-class Schedule497FilingVersion(FilingVersionMixin, CampaignFinanceFilingBase):
+class Form497FilingVersion(FilingVersionMixin, CampaignFinanceFilingBase):
     """
     Every version of each Schedule 497 filing by a campaign filer.
 
@@ -73,7 +73,7 @@ class Schedule497FilingVersion(FilingVersionMixin, CampaignFinanceFilingBase):
     schedule497filing.
     """
     filing = models.ForeignKey(
-        'Schedule497Filing',
+        'Form497Filing',
         related_name='versions',
         db_constraint=False,
         null=True,
@@ -108,7 +108,7 @@ class Schedule497FilingVersion(FilingVersionMixin, CampaignFinanceFilingBase):
         return '%s-%s' % (self.filing, self.amend_id)
 
 
-class Schedule497ItemBase(CalAccessBaseModel):
+class Form497ItemBase(CalAccessBaseModel):
     """
     Abstract base model for items reported on Schedule 497 filings.
 
@@ -163,7 +163,7 @@ class Schedule497ItemBase(CalAccessBaseModel):
         abstract = True
 
 
-class Schedule497Part1ItemBase(Schedule497ItemBase):
+class Form497Part1ItemBase(Form497ItemBase):
     """
     Abstract base model for items reported on Part 1 of Schedule 497 filings.
 
@@ -265,18 +265,18 @@ class Schedule497Part1ItemBase(Schedule497ItemBase):
 
 
 @python_2_unicode_compatible
-class Schedule497Part1Item(Schedule497Part1ItemBase):
+class Form497Part1Item(Form497Part1ItemBase):
     """
     Late contributions received by campaign filers.
 
     These transactions are itemized on Part 1 of the most recent version
     of each Schedule 497 filing. For receipts of late contributions itemized
-    on any version of any Schedule 497 filing, see Schedule497Part1ItemVersion.
+    on any version of any Schedule 497 filing, see Form497Part1ItemVersion.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P1'.
     """
     filing = models.ForeignKey(
-        'Schedule497Filing',
+        'Form497Filing',
         related_name='contributions_received',
         null=True,
         on_delete=models.SET_NULL,
@@ -301,17 +301,17 @@ class Schedule497Part1Item(Schedule497Part1ItemBase):
 
 
 @python_2_unicode_compatible
-class Schedule497Part1ItemVersion(Schedule497Part1ItemBase):
+class Form497Part1ItemVersion(Form497Part1ItemBase):
     """
     Every version of each late contribution received by a campaign filer.
 
     For late contributions itemized on Part 1 of the most recent version of
-    each Schedule 497 filing, see Schedule497Part1Item.
+    each Schedule 497 filing, see Form497Part1Item.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P1'.
     """
     filing_version = models.ForeignKey(
-        'Schedule497FilingVersion',
+        'Form497FilingVersion',
         related_name='contributions_received',
         null=True,
         on_delete=models.SET_NULL,
@@ -343,7 +343,7 @@ class Schedule497Part1ItemVersion(Schedule497Part1ItemBase):
         )
 
 
-class Schedule497Part2ItemBase(Schedule497ItemBase):
+class Form497Part2ItemBase(Form497ItemBase):
     """
     Abstract base model for items reported on Part 2 of Schedule 497 filings.
 
@@ -534,18 +534,18 @@ class Schedule497Part2ItemBase(Schedule497ItemBase):
 
 
 @python_2_unicode_compatible
-class Schedule497Part2Item(Schedule497Part2ItemBase):
+class Form497Part2Item(Form497Part2ItemBase):
     """
     Late contributions made by campaign filers.
 
     These transactions are itemized on Part 2 of the most recent version
     of each Schedule 497 filing. For gifts of late contributions itemized on
-    any version of any Schedule 497 filing, see Schedule497Part2ItemVersion.
+    any version of any Schedule 497 filing, see Form497Part2ItemVersion.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P2'.
     """
     filing = models.ForeignKey(
-        'Schedule497Filing',
+        'Form497Filing',
         related_name='contributions_made',
         db_constraint=False,
         null=True,
@@ -571,17 +571,17 @@ class Schedule497Part2Item(Schedule497Part2ItemBase):
 
 
 @python_2_unicode_compatible
-class Schedule497Part2ItemVersion(Schedule497Part2ItemBase):
+class Form497Part2ItemVersion(Form497Part2ItemBase):
     """
     Every version of each late contribution made by a campaign filer.
 
     For late contributions itemized on Part 2 of the most recent version of
-    each Schedule 497 filing, see Schedule497Part2Item.
+    each Schedule 497 filing, see Form497Part2Item.
 
     Derived from S497_CD records where FORM_TYPE is 'F497P2'.
     """
     filing_version = models.ForeignKey(
-        'Schedule497FilingVersion',
+        'Form497FilingVersion',
         related_name='contributions_made',
         null=True,
         on_delete=models.SET_NULL,

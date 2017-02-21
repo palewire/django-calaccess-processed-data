@@ -1,4 +1,4 @@
-INSERT INTO calaccess_processed_schedule497part2item (
+INSERT INTO calaccess_processed_form497part2item (
     filing_id,
     line_item,
     date_received,
@@ -63,9 +63,9 @@ SELECT
     item_version.ballot_measure_jurisdiction,
     item_version.support_opposition_code,
     item_version.election_date
-FROM calaccess_processed_schedule497filing filing
-JOIN calaccess_processed_schedule497filingversion filing_version
+FROM calaccess_processed_form497filing filing
+JOIN calaccess_processed_form497filingversion filing_version
 ON filing.filing_id = filing_version.filing_id
 AND filing.amendment_count = filing_version.amend_id
-JOIN calaccess_processed_schedule497part2itemversion item_version
+JOIN calaccess_processed_form497part2itemversion item_version
 ON filing_version.id = item_version.filing_version_id;

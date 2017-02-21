@@ -9,10 +9,10 @@ from calaccess_processed import models
 from calaccess_raw.admin.base import BaseAdmin
 
 
-@admin.register(models.Schedule497Filing)
-class Schedule497FilingAdmin(BaseAdmin):
+@admin.register(models.Form497Filing)
+class Form497FilingAdmin(BaseAdmin):
     """
-    Custom admin for the Schedule497Filing model.
+    Custom admin for the Form497Filing model.
     """
     list_display = (
         'filing_id',
@@ -25,10 +25,10 @@ class Schedule497FilingAdmin(BaseAdmin):
     )
 
 
-@admin.register(models.Schedule497FilingVersion)
-class Schedule497FilingVersionAdmin(BaseAdmin):
+@admin.register(models.Form497FilingVersion)
+class Form497FilingVersionAdmin(BaseAdmin):
     """
-    Custom admin for the Schedule497FilingVersion model.
+    Custom admin for the Form497FilingVersion model.
     """
     list_display = (
         'filing',
@@ -41,10 +41,10 @@ class Schedule497FilingVersionAdmin(BaseAdmin):
     )
 
 
-@admin.register(models.Schedule497Part1Item)
-class Schedule497Part1ItemAdmin(BaseAdmin):
+@admin.register(models.Form497Part1Item)
+class Form497Part1ItemAdmin(BaseAdmin):
     """
-    Custom admin for the Schedule497Part1Item model.
+    Custom admin for the Form497Part1Item model.
     """
     list_display = (
         'filing',
@@ -58,10 +58,10 @@ class Schedule497Part1ItemAdmin(BaseAdmin):
     )
 
 
-@admin.register(models.Schedule497Part1ItemVersion)
-class Schedule497Part1ItemVersionAdmin(BaseAdmin):
+@admin.register(models.Form497Part1ItemVersion)
+class Form497Part1ItemVersionAdmin(BaseAdmin):
     """
-    Custom admin for the Schedule497Part1ItemVersion model.
+    Custom admin for the Form497Part1ItemVersion model.
     """
     list_display = (
         'filing_version',
@@ -75,10 +75,10 @@ class Schedule497Part1ItemVersionAdmin(BaseAdmin):
     )
 
 
-@admin.register(models.Schedule497Part2Item)
-class Schedule497Part2ItemAdmin(BaseAdmin):
+@admin.register(models.Form497Part2Item)
+class Form497Part2ItemAdmin(BaseAdmin):
     """
-    Custom admin for the Schedule497Part2Item model.
+    Custom admin for the Form497Part2Item model.
     """
     list_display = (
         'filing',
@@ -92,10 +92,10 @@ class Schedule497Part2ItemAdmin(BaseAdmin):
     )
 
 
-@admin.register(models.Schedule497Part2ItemVersion)
-class Schedule497Part2ItemVersionAdmin(BaseAdmin):
+@admin.register(models.Form497Part2ItemVersion)
+class Form497Part2ItemVersionAdmin(BaseAdmin):
     """
-    Custom admin for the Schedule497Part2ItemVersion model.
+    Custom admin for the Form497Part2ItemVersion model.
     """
     list_display = (
         'filing_version',
