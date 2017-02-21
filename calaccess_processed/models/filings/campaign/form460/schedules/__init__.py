@@ -63,7 +63,7 @@ from .i import (
 __all__ = (
     "Form460ScheduleAItemBase",
     "Form460ScheduleAItem",
-    "Form460ScheduleAItemVersion"
+    "Form460ScheduleAItemVersion",
     "Form460ScheduleB1ItemBase",
     "Form460ScheduleB1Item",
     "Form460ScheduleB1ItemVersion",

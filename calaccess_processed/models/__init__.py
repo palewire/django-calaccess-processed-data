@@ -130,7 +130,7 @@ from .opencivicdata.people_orgs import (
 __all__ = (
     'CalAccessMetaClass',
     'CalAccessBaseModel',
-    "FilingVersion",
+    "FilingMixin",
     "FilingVersionMixin",
     "CampaignContributionBase",
     "CampaignExpenditureItemBase",
@@ -153,7 +153,7 @@ __all__ = (
     "Form460FilingVersion",
     "Form460ScheduleAItemBase",
     "Form460ScheduleAItem",
-    "Form460ScheduleAItemVersion"
+    "Form460ScheduleAItemVersion",
     "Form460ScheduleB1ItemBase",
     "Form460ScheduleB1Item",
     "Form460ScheduleB1ItemVersion",

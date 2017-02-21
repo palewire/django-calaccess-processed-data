@@ -7,11 +7,13 @@ from __future__ import unicode_literals
 from django.db import models
 from django.db.models.base import ModelBase
 from django.template.defaultfilters import capfirst
+import textwrap
 
 
 class CalAccessMetaClass(ModelBase):
     """
     A custom metaclass for our base model.
+
     Automatically configures Meta attributes common to all models.
     """
     def __new__(cls, name, bases, attrs):
