@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.models.base import CalAccessBaseModel
-from calaccess_processed.models.opencivicdata.base import (
+from opencivicdata.models.base import (
     LinkBase,
     OCDIDField,
     OCDBase,

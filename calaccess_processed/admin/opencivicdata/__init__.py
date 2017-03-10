@@ -3,15 +3,6 @@
 """
 Import all of the admins from submodules and thread them together.
 """
-from .base import (
-    DivisionAdmin,
-    JurisdictionAdmin,
-    LegislativeSessionAdmin,
-    MembershipAdmin,
-    OrganizationAdmin,
-    PersonAdmin,
-    PostAdmin
-)
 from .elections import (
     ElectionAdmin,
     PartyAdmin,
@@ -24,13 +15,6 @@ from .elections import (
 )
 
 __all__ = (
-    'DivisionAdmin',
-    'JurisdictionAdmin',
-    'LegislativeSessionAdmin',
-    'MembershipAdmin',
-    'OrganizationAdmin',
-    'PersonAdmin',
-    'PostAdmin',
     'ElectionAdmin',
     'PartyAdmin',
     'BallotMeasureContestAdmin',

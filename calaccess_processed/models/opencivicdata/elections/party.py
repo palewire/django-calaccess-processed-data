@@ -6,7 +6,7 @@ OCD Election Party-related models.
 from __future__ import unicode_literals
 from re import findall
 from django.db import models
-from calaccess_processed.models.opencivicdata.base import (
+from opencivicdata.models.base import (
     LinkBase,
     OCDIDField,
     OCDBase,

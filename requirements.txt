@@ -5,6 +5,8 @@ hurry.filesize
 pytz
 beautifulsoup4
 -e git+https://github.com/california-civic-data-coalition/python-opencivicdata-django.git@HEAD#egg=opencivicdata-django
+-e git+https://github.com/california-civic-data-coalition/python-opencivicdata-divisions.git@HEAD#egg=opencivicdata-divisions
+
 
 # Databases
 mysqlclient

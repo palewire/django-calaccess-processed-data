@@ -9,9 +9,9 @@ from django.db import models
 from django.db.models import Count
 from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.models.opencivicdata.base import IdentifierBase
-from calaccess_processed.models.opencivicdata.event import Event
-from calaccess_processed.models.opencivicdata.people_orgs import Organization
+from opencivicdata.models.base import IdentifierBase
+from opencivicdata.models.event import Event
+from opencivicdata.models.people_orgs import Organization
 from calaccess_processed.models.scraper import (
     CandidateScrapedElection,
     PropositionScrapedElection,
@@ -199,7 +199,7 @@ class Election(Event):
     objects = ElectionManager()
 
     administrative_org = models.ForeignKey(
-        'Organization',
+        'opencivicdata.Organization',
         related_name='elections',
         null=True,
         help_text='Reference to the OCD ``Organization`` that administers the election.',

@@ -8,8 +8,8 @@ import re
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.models.scraper.base import BaseScrapedModel
-from calaccess_processed.models.opencivicdata.division import Division
-from calaccess_processed.models.opencivicdata.people_orgs import (
+from opencivicdata.models.division import Division
+from opencivicdata.models.people_orgs import (
     Organization,
     Person,
     Post,

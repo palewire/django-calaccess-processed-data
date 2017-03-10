@@ -11,14 +11,14 @@ from calaccess_processed.models.scraper import (
     ScrapedProposition,
 )
 from calaccess_processed.models.base import CalAccessBaseModel
-from calaccess_processed.models.opencivicdata.division import Division
-from calaccess_processed.models.opencivicdata.base import (
+from opencivicdata.models.division import Division
+from opencivicdata.models.base import (
     IdentifierBase,
     LinkBase,
     OCDIDField,
     OCDBase,
 )
-from calaccess_processed.models.opencivicdata.people_orgs import Membership
+from opencivicdata.models.people_orgs import Membership
 
 
 @python_2_unicode_compatible
@@ -36,7 +36,7 @@ class ContestBase(CalAccessBaseModel, OCDBase):
                   'ballot.'
     )
     division = models.ForeignKey(
-        'Division',
+        'opencivicdata.Division',
         related_name='divisions',
         help_text='Reference to the OCD ``Division`` that defines the '
                   'geographical scope of the contest, e.g., a specific '
@@ -59,7 +59,7 @@ class ContestIdentifier(IdentifierBase):
     Model for storing an OCD Contest's other identifiers.
     """
     contest = models.ForeignKey(
-        ContestBase,
+        'ContestBase',
         related_name='identifiers'
     )
 
@@ -73,7 +73,10 @@ class ContestSource(LinkBase):
     """
     Model for storing sources for OCD ContestBase objects.
     """
-    contest = models.ForeignKey(ContestBase, related_name='sources')
+    contest = models.ForeignKey(
+        'ContestBase',
+        related_name='sources'
+    )
 
     def __str__(self):
         return self.url
@@ -287,7 +290,7 @@ class CandidateContest(ContestBase):
                   "'N' of N-of-M.",
     )
     posts = models.ManyToManyField(
-        'Post',
+        'opencivicdata.Post',
         help_text='References to the OCD ``Post`` representing the public '
                   'offices for which the candidates are competing. If multiple, '
                   'the primary post should be listed first, e.g., the id for the '
@@ -320,7 +323,7 @@ class RetentionContest(BallotMeasureContest):
     For example, a judicial retention or recall election.
     """
     membership = models.ForeignKey(
-        'Membership',
+        'opencivicdata.Membership',
         help_text='Reference to the OCD ``Membership`` that represents the '
                   'tenure of a particular person (i.e., OCD ``Person`` object) '
                   'in a particular public office (i.e., ``Post`` object).',

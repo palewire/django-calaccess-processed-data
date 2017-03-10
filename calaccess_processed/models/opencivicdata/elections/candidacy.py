@@ -6,7 +6,7 @@ OCD Election Candidacy-related models.
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.models.opencivicdata.base import (
+from opencivicdata.models.base import (
     LinkBase,
     OCDIDField,
     OCDBase,
@@ -119,26 +119,17 @@ class Candidacy(CalAccessBaseModel, OCDBase):
                   'e.g. "Ken T. Cuccinelli II".',
     )
     person = models.ForeignKey(
-        'Person',
+        'opencivicdata.Person',
         related_name='candidacies',
         null=True,
         help_text='Reference to an OCD ``Person`` who is the candidate.',
     )
     post = models.ForeignKey(
-        'Post',
+        'opencivicdata.Post',
         related_name='candidates',
         null=True,
         help_text='References the ``Post`` that represents the public office '
                   'for which the candidate is competing.',
-    )
-    committee = models.ForeignKey(
-        # this should be switched to Committee whenever we implement the
-        # proposed campaign finance models
-        'Organization',
-        related_name='candidates',
-        null=True,
-        help_text='Reference to the OCD ``Committee`` that represents the '
-                  "candidate's campaign finance committee for the contest."
     )
     filed_date = models.DateField(
         null=True,
