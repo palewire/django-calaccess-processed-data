@@ -47,6 +47,35 @@ class Form460FilingVersionAdmin(BaseAdmin):
     )
 
 
+@admin.register(models.Form460ScheduleASummary)
+class Form460ScheduleASummaryAdmin(BaseAdmin):
+    """
+    Custom admin for the Form460ScheduleASummary model.
+    """
+    list_display = (
+        'filing',
+        'itemized_contributions',
+        'unitemized_contributions',
+        'total_contributions'
+    )
+    search_fields = (
+        'filing__filing_id',
+    )
+
+
+@admin.register(models.Form460ScheduleASummaryVersion)
+class Form460ScheduleASummaryVersionAdmin(BaseAdmin):
+    """
+    Custom admin for the Form460ScheduleASummaryVersion model.
+    """
+    list_display = (
+        'filing_version',
+        'itemized_contributions',
+        'unitemized_contributions',
+        'total_contributions'
+    )
+
+
 @admin.register(models.Form460ScheduleAItem)
 class Form460ScheduleAItemAdmin(BaseAdmin):
     """

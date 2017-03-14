@@ -4,6 +4,9 @@
 Import all of the admins from submodules and thread them together.
 """
 from .a import (
+    Form460ScheduleASummaryBase,
+    Form460ScheduleASummary,
+    Form460ScheduleASummaryVersion,
     Form460ScheduleAItemBase,
     Form460ScheduleAItem,
     Form460ScheduleAItemVersion
@@ -61,6 +64,9 @@ from .i import (
 
 
 __all__ = (
+    "Form460ScheduleASummaryBase",
+    "Form460ScheduleASummary",
+    "Form460ScheduleASummaryVersion",
     "Form460ScheduleAItemBase",
     "Form460ScheduleAItem",
     "Form460ScheduleAItemVersion",

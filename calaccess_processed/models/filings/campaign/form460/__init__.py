@@ -6,6 +6,9 @@ Models for storing data from Campaign Disclosure Statements (Form 460).
 from .base import Form460FilingBase
 from .filing import Form460Filing, Form460FilingVersion
 from .schedules import (
+    Form460ScheduleASummaryBase,
+    Form460ScheduleASummary,
+    Form460ScheduleASummaryVersion,
     Form460ScheduleAItemBase,
     Form460ScheduleAItem,
     Form460ScheduleAItemVersion,
@@ -50,6 +53,9 @@ __all__ = (
     "Form460FilingBase",
     "Form460Filing",
     "Form460FilingVersion",
+    "Form460ScheduleASummaryBase",
+    "Form460ScheduleASummary",
+    "Form460ScheduleASummaryVersion",
     "Form460ScheduleAItemBase",
     "Form460ScheduleAItem",
     "Form460ScheduleAItemVersion",
