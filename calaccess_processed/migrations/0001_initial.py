@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('opencivicdata', '0007_auto_20170307_2033'),
+        ('opencivicdata', '0007_auto_20170312_0156'),
         ('calaccess_raw', '0013_auto_20161123_2219'),
     ]
 

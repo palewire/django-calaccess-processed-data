@@ -86,46 +86,6 @@ from .tracking import (
     ProcessedDataVersion,
     ProcessedDataFile,
 )
-from .opencivicdata.division import Division
-from .opencivicdata.event import Event
-from .opencivicdata.elections.election import Election
-from .opencivicdata.elections.candidacy import Candidacy
-from .opencivicdata.elections.party import Party
-from .opencivicdata.elections.contest import (
-    ContestBase,
-    BallotMeasureContest,
-    CandidateContest,
-    RetentionContest,
-)
-from .opencivicdata.elections.ballot_selection import (
-    BallotSelectionBase,
-    BallotMeasureSelection,
-    CandidateSelection,
-)
-from .opencivicdata.jurisdiction import (
-    Jurisdiction,
-    LegislativeSession
-)
-from .opencivicdata.people_orgs import (
-    Organization,
-    OrganizationIdentifier,
-    OrganizationName,
-    OrganizationContactDetail,
-    OrganizationLink,
-    OrganizationSource,
-    Person,
-    PersonIdentifier,
-    PersonName,
-    PersonContactDetail,
-    PersonLink,
-    PersonSource,
-    Post,
-    PostContactDetail,
-    PostLink,
-    Membership,
-    MembershipContactDetail,
-    MembershipLink,
-)
 
 __all__ = (
     'CalAccessMetaClass',
@@ -204,36 +164,4 @@ __all__ = (
     'ScrapedCandidateCommittee',
     'ProcessedDataVersion',
     'ProcessedDataFile',
-    'Candidacy',
-    'Division',
-    'Event',
-    'Election',
-    'ContestBase',
-    'BallotMeasureContest',
-    'CandidateContest',
-    'RetentionContest',
-    'BallotSelectionBase',
-    'BallotMeasureSelection',
-    'CandidateSelection',
-    'Jurisdiction',
-    'LegislativeSession',
-    'Organization',
-    'OrganizationIdentifier',
-    'OrganizationName',
-    'OrganizationContactDetail',
-    'OrganizationLink',
-    'OrganizationSource',
-    'Party',
-    'Person',
-    'PersonIdentifier',
-    'PersonName',
-    'PersonContactDetail',
-    'PersonLink',
-    'PersonSource',
-    'Post',
-    'PostContactDetail',
-    'PostLink',
-    'Membership',
-    'MembershipContactDetail',
-    'MembershipLink',
 )
