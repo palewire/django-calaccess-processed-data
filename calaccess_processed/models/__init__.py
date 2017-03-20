@@ -77,6 +77,8 @@ from .scraper import (
     ScrapedCandidate,
     CandidateScrapedElection,
     ScrapedCandidateCommittee,
+    ScrapedIncumbent,
+    IncumbentScrapedElection,
 )
 from .research import (
     FilerIDValue,
@@ -162,6 +164,8 @@ __all__ = (
     'ScrapedCandidate',
     'CandidateScrapedElection',
     'ScrapedCandidateCommittee',
+    'ScrapedIncumbent',
+    'IncumbentScrapedElection',
     'ProcessedDataVersion',
     'ProcessedDataFile',
 )

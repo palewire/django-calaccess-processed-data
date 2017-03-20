@@ -18,6 +18,11 @@ from calaccess_processed.models.scraper.propositions import (
     PropositionScrapedElection,
     ScrapedPropositionCommittee,
 )
+from calaccess_processed.models.scraper.incumbents import (
+    IncumbentScrapedElection,
+    ScrapedIncumbent,
+)
+
 
 __all__ = (
     'BaseScrapedModel',
@@ -29,4 +34,6 @@ __all__ = (
     'ScrapedProposition',
     'PropositionScrapedElection',
     'ScrapedPropositionCommittee',
+    'IncumbentScrapedElection',
+    'ScrapedIncumbent',
 )

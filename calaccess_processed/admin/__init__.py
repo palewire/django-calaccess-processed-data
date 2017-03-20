@@ -54,6 +54,10 @@ from calaccess_processed.admin.scraper.candidates import (
     ScrapedCandidateAdmin,
     ScrapedCandidateCommitteeAdmin,
 )
+from calaccess_processed.admin.scraper.incumbents import (
+    IncumbentScrapedElectionAdmin,
+    ScrapedIncumbentAdmin,
+)
 from calaccess_processed.admin.scraper.propositions import (
     PropositionScrapedElectionAdmin,
     ScrapedPropositionAdmin,
@@ -108,6 +112,8 @@ __all__ = (
     'CandidateScrapedElectionAdmin',
     'ScrapedCandidateAdmin',
     'ScrapedCandidateCommitteeAdmin',
+    'IncumbentScrapedElectionAdmin',
+    'ScrapedIncumbentAdmin',
     'PropositionScrapedElectionAdmin',
     'ScrapedPropositionAdmin',
     'ScrapedPropositionCommitteeAdmin',
