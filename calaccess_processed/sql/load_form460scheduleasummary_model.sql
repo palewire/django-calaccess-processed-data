@@ -6,25 +6,12 @@ INSERT INTO calaccess_processed_form460scheduleasummary (
 )
 SELECT
     filing.filing_id AS filing_id,
-    line_1."AMOUNT_A" AS itemized_contributions,
-    line_2."AMOUNT_A" AS unitemized_contributions,
-    line_3."AMOUNT_A" AS total_contributions
+    summary_version.itemized_contributions,
+    summary_version.unitemized_contributions,
+    summary_version.total_contributions
 FROM calaccess_processed_form460filing filing
--- get itemized contributions
-LEFT JOIN "SMRY_CD" line_1
-ON filing."filing_id" = line_1."FILING_ID"
-AND filing."amendment_count" = line_1."AMEND_ID"
-AND UPPER(line_1."FORM_TYPE") = 'A'
-AND line_1."LINE_ITEM" = '1'
--- get unitemized contributions
-LEFT JOIN "SMRY_CD" line_2
-ON filing."filing_id" = line_2."FILING_ID"
-AND filing."amendment_count" = line_2."AMEND_ID"
-AND UPPER(line_2."FORM_TYPE") = 'A'
-AND line_2."LINE_ITEM" = '2'
--- get total contributions
-LEFT JOIN "SMRY_CD" line_3
-ON filing."filing_id" = line_3."FILING_ID"
-AND filing."amendment_count" = line_3."AMEND_ID"
-AND UPPER(line_3."FORM_TYPE") = 'A'
-AND line_3."LINE_ITEM" = '3';
+JOIN calaccess_processed_form460filingversion filing_version
+ON filing.filing_id = filing_version.filing_id
+AND filing.amendment_count = filing_version.amend_id
+JOIN calaccess_processed_form460scheduleasummaryversion summary_version
+ON filing_version.id = summary_version.filing_version_id;
