@@ -23,6 +23,9 @@ from .b import (
     Form460ScheduleB2ItemVersionOld
 )
 from .c import (
+    Form460ScheduleCSummaryBase,
+    Form460ScheduleCSummary,
+    Form460ScheduleCSummaryVersion,
     Form460ScheduleCItemBase,
     Form460ScheduleCItem,
     Form460ScheduleCItemVersion
@@ -79,6 +82,9 @@ __all__ = (
     "Form460ScheduleB2ItemBaseOld",
     "Form460ScheduleB2ItemOld",
     "Form460ScheduleB2ItemVersionOld",
+    "Form460ScheduleCSummaryBase",
+    "Form460ScheduleCSummary",
+    "Form460ScheduleCSummaryVersion",
     "Form460ScheduleCItemBase",
     "Form460ScheduleCItem",
     "Form460ScheduleCItemVersion",

@@ -7,8 +7,105 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.managers import ProcessedDataManager
+from calaccess_processed.models.base import CalAccessBaseModel
 from calaccess_processed.models.filings.campaign import CampaignContributionBase
 
+
+#
+# Summaries
+#
+
+class Form460ScheduleCSummaryBase(CalAccessBaseModel):
+    """
+    Abstract base model with summary data from Schedule C attachments to Form 460 filings.
+
+    Includes totals for itemized versus unitemized non-monetary contributions.
+    """
+    itemized_contributions = models.FloatField(
+        verbose_name='itemized contributions',
+        null=True,
+        help_text="Amount received this period - itemized nonmonetary contributions. \
+(Include all Schedule C subtotals)",
+    )
+    unitemized_contributions = models.FloatField(
+        verbose_name='unitemized contributions',
+        null=True,
+        help_text="Amount received this period - unitemized nonmonetary contributions of less than $100",
+    )
+    total_contributions = models.FloatField(
+        verbose_name='total contributions',
+        null=True,
+        help_text="Total nonmonetary contributions received this period. (Add Lines 1 and 2. Enter here and on the \
+Summary Page, Column A, Lines 4 and 10.)",
+    )
+
+    class Meta:
+        """
+        Model options.
+        """
+        abstract = True
+
+
+class Form460ScheduleCSummary(Form460ScheduleCSummaryBase):
+    """
+    The summary data included with the most recent version a Schedule C attachment to a Form 460 filing.
+
+    Includes totals for itemized versus unitemized non-monetary contributions.
+    """
+    filing = models.ForeignKey(
+        'Form460Filing',
+        related_name='schedule_c_summaries',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the Form 460 on which the summary was reported',
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        """
+        Model options.
+        """
+        verbose_name = "Form 460 (Campaign Disclosure) Schedule C summary"
+        verbose_name_plural = "Form 460 (Campaign Disclosure) Schedule C summaries"
+
+    def __str__(self):
+        return '%s' % (self.filing)
+
+
+class Form460ScheduleCSummaryVersion(Form460ScheduleCSummaryBase):
+    """
+    The summary data included with each version of a Schedule C attachment to a Form 460 filing.
+
+    Includes totals for itemized versus unitemized non-monetary contributions.
+    """
+    filing_version = models.ForeignKey(
+        'Form460FilingVersion',
+        related_name='schedule_c_summaries',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the version of the Form 460 that '
+                  'includes the summary'
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        """
+        Model options.
+        """
+        verbose_name = "Form 460 (Campaign Disclosure) Schedule C summary version"
+
+    def __str__(self):
+        return '%s-%s' % (
+            self.filing_version.filing_id,
+            self.filing_version.amend_id,
+        )
+
+
+#
+# Items
+#
 
 class Form460ScheduleCItemBase(CampaignContributionBase):
     """
