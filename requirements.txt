@@ -9,7 +9,6 @@ beautifulsoup4
 
 
 # Databases
-mysqlclient
 psycopg2>=2.5.4
 
 # Testing
