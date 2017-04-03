@@ -4,8 +4,6 @@
 Models for storing election information scraped from the CAL-ACCESS website.
 """
 from __future__ import unicode_literals
-import re
-from django.utils import timezone
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.models.scraper.base import BaseScrapedElection
 

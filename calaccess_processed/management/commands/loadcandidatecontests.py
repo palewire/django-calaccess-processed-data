@@ -264,13 +264,13 @@ class Command(LoadOCDModelsCommand):
                 ):
                     contest.is_unexpired_term = True
                     contest.save()
-                if contest_created and self.verbosity > 2::
+                if contest_created and self.verbosity > 2:
                     self.log('Created new CandidateContest: %s' % contest.name)
-                
+
                 person, person_created = self.get_or_create_person(
                     scraped_candidate.name
                 )
-                if person_created and self.verbosity > 2::
+                if person_created and self.verbosity > 2:
                     self.log('Created new Person: %s' % person.name)
 
                 candidacy, candidacy_created = contest.candidacies.get_or_create(
@@ -278,7 +278,7 @@ class Command(LoadOCDModelsCommand):
                     post=contest.posts.all()[0].post,
                     candidate_name=person.name,
                 )
-                if candidacy_created and self.verbosity > 2::
+                if candidacy_created and self.verbosity > 2:
                     self.log('Created new Candidacy: %s' % candidacy)
 
                 # If the candidate has been in the post
@@ -294,7 +294,7 @@ class Command(LoadOCDModelsCommand):
                         IntegerField(),
                     )
                 ).filter(
-                    Q(end_year__gt=contest.election.start_time.year) | 
+                    Q(end_year__gt=contest.election.start_time.year) |
                     Q(end_date='')
                 )
                 if incumbent_q.exists():

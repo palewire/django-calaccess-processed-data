@@ -84,7 +84,7 @@ class Command(LoadOCDModelsCommand):
                 incumbent.office_name,
             )
             if post_created and self.verbosity > 2:
-                self.log('Created new Post: %s' % post.label)            
+                self.log('Created new Post: %s' % post.label)
             # Get or person
             person, person_created = self.get_or_create_person(
                 incumbent.name,
@@ -138,7 +138,7 @@ class Command(LoadOCDModelsCommand):
 
     def set_incumbent_candidacies(self):
         """
-        Set is_incumbent for candidacies within each member's start/end years
+        Set is_incumbent for candidacies within each member's start/end years.
         """
         # If the election of the contest happens after the start year
         # but before the end year, if it exists, then mark as incumbent
@@ -156,4 +156,3 @@ class Command(LoadOCDModelsCommand):
             if candidacies_q.exists():
                 candidacies_q.update(is_incumbent=True)
         return
-
