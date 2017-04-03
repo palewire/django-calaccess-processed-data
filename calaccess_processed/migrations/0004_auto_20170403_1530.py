@@ -16,13 +16,13 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='scrapedcandidate',
             name='election',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='calaccess_processed.CandidateScrapedElection'),
+            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='candidates', to='calaccess_processed.CandidateScrapedElection'),
             preserve_default=False,
         ),
         migrations.AlterField(
             model_name='scrapedproposition',
             name='election',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='calaccess_processed.PropositionScrapedElection'),
+            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='propositions', to='calaccess_processed.PropositionScrapedElection'),
             preserve_default=False,
         ),
     ]

@@ -35,7 +35,10 @@ class ScrapedCandidate(BaseScrapedModel):
         max_length=100,
         blank=True
     )
-    election = models.ForeignKey('CandidateScrapedElection')
+    election = models.ForeignKey(
+        'CandidateScrapedElection',
+        related_name='candidates',
+    )
 
     def __str__(self):
         return self.name

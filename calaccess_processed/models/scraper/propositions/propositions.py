@@ -25,7 +25,10 @@ class ScrapedProposition(BaseScrapedModel):
         verbose_name="proposition identification number",
         max_length=200
     )
-    election = models.ForeignKey('PropositionScrapedElection')
+    election = models.ForeignKey(
+        'PropositionScrapedElection',
+        related_name='propositions',
+    )
 
     class Meta:
         """
