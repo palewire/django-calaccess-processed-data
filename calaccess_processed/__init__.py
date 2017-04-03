@@ -60,9 +60,11 @@ def get_ocd_models_to_load():
     Returns a list of the OCD models with data to be loaded.
     """
     from calaccess_processed.models import opencivicdata
+    # Need to fix when all the models are back under one package and namespace.
+    import opencivicdata as ocd
 
     return [
-        opencivicdata.people_orgs.Organization,
+        ocd.models.people_orgs.Organization,
         opencivicdata.elections.election.Election,
         opencivicdata.elections.contest.BallotMeasureContest,
         opencivicdata.elections.candidacy.Candidacy,
