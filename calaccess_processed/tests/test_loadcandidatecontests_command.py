@@ -3,7 +3,7 @@
 """
 Unittests for management commands.
 """
-from django.test import TestCase
+from unittest import TestCase
 from calaccess_processed.management.commands.loadcandidatecontests import Command
 
 
