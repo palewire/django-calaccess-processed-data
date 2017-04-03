@@ -3,24 +3,8 @@
 """
 Load data into processed CAL-ACCESS models, archive processed files and ZIP.
 """
-import os
-from django.db import connection
 from django.core.management import call_command
-from django.core.management.base import CommandError
-from django.utils.timezone import now
-from calaccess_raw import get_download_directory
-from calaccess_raw.models.tracking import RawDataVersion
-from calaccess_processed import (
-    get_models_to_process,
-    get_ocd_models_to_load,
-    get_ocd_models_to_archive,
-)
 from calaccess_processed.management.commands import CalAccessCommand
-from calaccess_processed.models.tracking import (
-    ProcessedDataVersion,
-    ProcessedDataFile,
-)
-from calaccess_processed.models.opencivicdata.division import Division
 
 
 class Command(CalAccessCommand):
@@ -35,112 +19,38 @@ class Command(CalAccessCommand):
         """
         super(Command, self).handle(*args, **options)
 
-        # get the most recently loaded raw data version
-        try:
-            self.raw_version = RawDataVersion.objects.complete()[0]
-        except IndexError:
-            raise CommandError(
-                'No raw CAL-ACCESS data loaded (run `python manage.py '
-                'updatecalaccessrawdata`).'
-            )
-        # set up processed data directory
-        self.processed_data_dir = os.path.join(
-            get_download_directory(),
-            'processed',
+        call_command(
+            'loadcalaccessfilingmodels',
+            verbosity=self.verbosity,
+            no_color=self.no_color,
         )
-        if not os.path.exists(self.processed_data_dir):
-            os.makedirs(self.processed_data_dir)
 
-        # get or create the ProcessedDataVersion instance
-        self.processed_version, created = ProcessedDataVersion.objects.get_or_create(
-            raw_version=self.raw_version,
+        call_command(
+            'loadparties',
+            verbosity=self.verbosity,
+            no_color=self.no_color,
         )
-        # log if starting or resuming
-        if created:
-            self.header(
-                'Processing {:%m-%d-%Y %H:%M:%S} snapshot'.format(
-                    self.raw_version.release_datetime
-                )
-            )
-        else:
-            self.header(
-                'Resuming processing of {:%m-%d-%Y %H:%M:%S} snapshot'.format(
-                    self.raw_version.release_datetime
-                )
-            )
-        # if there isn't already a process start datetime, set it
-        if not self.processed_version.process_start_datetime:
-            self.processed_version.process_start_datetime = now()
-            self.processed_version.save()
 
-        # first, load the OCD processed_models
-        self.load_ocd_models()
+        call_command(
+            'loadballotmeasurecontests',
+            verbosity=self.verbosity,
+            no_color=self.no_color,
+        )
 
-        # get all of the models
-        self.processed_models = get_models_to_process()
+        call_command(
+            'loadretentioncontests',
+            verbosity=self.verbosity,
+            no_color=self.no_color,
+        )
 
-        # iterate over all of the processed models
-        for m in self.processed_models:
-            # set up the ProcessedDataFile instance
-            processed_file, created = ProcessedDataFile.objects.get_or_create(
-                version=self.processed_version,
-                file_name=m._meta.model_name,
-            )
-            processed_file.process_start_datetime = now()
-            processed_file.save()
-            # flush the processed model
-            if self.verbosity > 2:
-                self.log(" Truncating %s" % m._meta.db_table)
-            with connection.cursor() as c:
-                c.execute('TRUNCATE TABLE "%s" CASCADE' % (m._meta.db_table))
-            # load the processed model
-            if self.verbosity > 2:
-                self.log(" Loading raw data into %s" % m._meta.db_table)
-            m.objects.load_raw_data()
+        call_command(
+            'loadincumbentofficeholders',
+            verbosity=self.verbosity,
+            no_color=self.no_color,
+        )
 
-            processed_file.records_count = m.objects.count()
-            processed_file.process_finish_datetime = now()
-            processed_file.save()
-
-        self.processed_version.process_finish_datetime = now()
-        self.processed_version.save()
-
-        self.archive_csvs()
-
-        self.success("Done!")
-
-    def load_ocd_models(self):
-        """
-        Populate the OCD models from data scraped from CAL-ACCESS.
-        """
-        if self.verbosity > 2:
-            self.log(" Loading divisions...")
-        Division.objects.load(state='ca')
-
-        for m in get_ocd_models_to_load():
-            processed_file, created = ProcessedDataFile.objects.get_or_create(
-                version=self.processed_version,
-                file_name=m._meta.model_name,
-            )
-            processed_file.process_start_datetime = now()
-            processed_file.save()
-
-            if self.verbosity > 2:
-                self.log(" Loading OCD %s" % m._meta.db_table)
-            m.objects.load_raw_data()
-
-            processed_file.records_count = m.objects.count()
-            processed_file.process_finish_datetime = now()
-            processed_file.save()
-
-    def archive_csvs(self):
-        """
-        Export and archive csv files to be published.
-        """
-        for m in get_ocd_models_to_archive():
-            if self.verbosity > 2:
-                self.log(" Archiving %s.csv..." % m._meta.object_name)
-            call_command(
-                'archivecalaccessprocessedfile',
-                m._meta.object_name,
-            )
+        call_command(
+            'loadcandidatecontests',
+            verbosity=self.verbosity,
+            no_color=self.no_color,
+        )
