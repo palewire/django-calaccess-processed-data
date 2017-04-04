@@ -45,6 +45,7 @@ class Command(CalAccessCommand):
                         lc.code_desc.upper().replace(' AND ', '')
                     )
                 ),
+                classification='party',
             )
             if created:
                 if self.verbosity > 2:
