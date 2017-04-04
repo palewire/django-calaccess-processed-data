@@ -300,4 +300,5 @@ class Command(LoadOCDModelsCommand):
                 if incumbent_q.exists():
                     candidacy.is_incumbent = True
                     candidacy.save()
+                    self.log(' Identified as incumbent.')
         return

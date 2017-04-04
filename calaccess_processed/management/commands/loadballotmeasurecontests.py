@@ -121,7 +121,9 @@ class Command(LoadOCDModelsCommand):
         # Loop over scraped elections
         for scraped_elec in self.get_scraped_elecs():
             # Get or create an OCD election
-            ocd_elec = self.get_or_create_election(scraped_elec)[0]
+            ocd_elec, elec_created = self.get_or_create_election(scraped_elec)
+            if elec_created and self.verbosity > 2:
+                self.log('Created new Election: %s' % ocd_elec.name)
             # Update or create the Election source
             ocd_elec.sources.update_or_create(
                 url=scraped_elec.url,
@@ -148,11 +150,22 @@ class Command(LoadOCDModelsCommand):
                         scheme='calaccess_measure_id',
                         identifier=scraped_prop.scraped_id,
                     )
+                    contest_created = True
                 else:
+                    contest_created = False
                     # If the contest already exists, make sure the name is up-to-date
                     if ocd_contest.name != scraped_prop.name:
                         ocd_contest.name = scraped_prop.name
                         ocd_contest.save()
+
+                if contest_created and self.verbosity > 2:
+                    self.log(
+                        'Created new {0}: {1}'.format(
+                            ocd_contest._meta.object_name,
+                            ocd_contest,
+                        )
+                    )
+
                 # Update or create the Contest source
                 ocd_contest.sources.update_or_create(
                     url=scraped_prop.url,

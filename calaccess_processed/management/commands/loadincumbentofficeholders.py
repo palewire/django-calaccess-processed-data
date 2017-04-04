@@ -30,6 +30,7 @@ class Command(LoadOCDModelsCommand):
         self.load()
         self.set_end_dates()
         if Candidacy.objects.exists():
+            self.log('')
             self.set_incumbent_candidacies()
         self.success("Done!")
 
@@ -152,7 +153,14 @@ class Command(LoadOCDModelsCommand):
             candidacies_q = member.person.candidacies.filter(
                 contest__election__start_time__year__gt=int(member.start_date),
                 contest__election__start_time__year__lte=member_end_year,
+                is_incumbent=False,
             )
             if candidacies_q.exists():
-                candidacies_q.update(is_incumbent=True)
+                rows = candidacies_q.update(is_incumbent=True)
+                self.log(
+                    ' {0} identified as incumbent in {1} contests'.format(
+                        member.person.name,
+                        rows,
+                    )
+                )
         return
