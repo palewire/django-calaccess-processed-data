@@ -141,20 +141,19 @@ class Command(LoadOCDModelsCommand):
         """
         Set is_incumbent for candidacies within each member's start/end years.
         """
-        # If the election of the contest happens after the start year
-        # but before the end year, if it exists, then mark as incumbent
+        # For every one of the members candidacies for the office where
+        # the election of the contest happens after the start year
+        # but before the end year, if it exists, mark as incumbent
         for member in Membership.objects.all():
-            # Handle blank member end_date values
-            if member.end_date == '':
-                member_end_year = None
-            else:
-                member_end_year = int(member.end_date)
-
             candidacies_q = member.person.candidacies.filter(
                 contest__election__start_time__year__gt=int(member.start_date),
-                contest__election__start_time__year__lte=member_end_year,
-                is_incumbent=False,
-            )
+                post=member.post,
+            ).exclude(is_incumbent=True)
+            # Handle blank member end_date values
+            if member.end_date != '':
+                member_end_year = int(member.end_date)
+                candidacies_q = candidacies_q.filter(contest__election__start_time__year__lte=member_end_year)
+
             if candidacies_q.exists():
                 rows = candidacies_q.update(is_incumbent=True)
                 self.log(
