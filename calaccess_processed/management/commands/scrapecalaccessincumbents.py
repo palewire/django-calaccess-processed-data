@@ -99,7 +99,7 @@ class Command(ScrapeCommand):
             if match:
                 data['elections'].append(
                     {
-                        'name': match.groups()[0],
+                        'name': match.groups()[0].strip(),
                         'date': datetime.strptime(match.groups()[1], '%m/%d/%y'),
                     }
                 )
@@ -123,17 +123,17 @@ class Command(ScrapeCommand):
                 category = section.find('span', class_='hdr14').text.strip()
 
                 for td in section.find_all('td', width="50%"):
-                    office = td.find('span', class_='txt7').text
+                    office = td.find('span', class_='txt7').text.strip()
                     for a in td.find_all('a', class_='sublink2'):
                         data['incumbents'].append(
                             {
                                 'category': category,
                                 'office_name': office,
-                                'name': a.text,
+                                'name': a.text.strip(),
                                 'url': a['href'],
                                 'scraped_id': re.search(
                                     r'&id=(\d+)',
-                                    a['href']
+                                    a['href'].strip()
                                 ).groups()[0],
                             }
                         )
