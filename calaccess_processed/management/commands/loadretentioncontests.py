@@ -73,6 +73,7 @@ class Command(Command):
         membership = Membership.objects.get_or_create(
             person=person,
             post=post,
+            role=post.role,
             organization=post.organization,
             person_name=person.sort_name,
         )[0]
