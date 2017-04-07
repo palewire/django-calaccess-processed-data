@@ -13,6 +13,16 @@ class ProcessedDataCommandsTest(TestCase):
     """
     Run and test management commands.
     """
+    fixtures = [
+        'divisions.json',
+        'candidate_scraped_elections.json',
+        'scraped_candidates.json',
+        'incumbent_scraped_elections.json',
+        'scraped_incumbents.json',
+        'proposition_scraped_elections.json',
+        'scraped_propositions.json',
+    ]
+
     def test_commands(self):
         """
         Run the data loading and processing commands.
