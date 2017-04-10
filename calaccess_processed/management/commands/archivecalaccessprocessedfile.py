@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Load data into processed CAL-ACCESS models, archive processed files and ZIP.
+Export and archive a .csv file for a given model.
 """
 import os
 from django.apps import apps
@@ -28,6 +28,10 @@ class Command(CalAccessCommand):
         """
         super(Command, self).add_arguments(parser)
         parser.add_argument(
+            'app_name',
+            help="Name of the app with the model"
+        )
+        parser.add_argument(
             'model_name',
             help="Name of the model to archive"
         )
@@ -37,6 +41,7 @@ class Command(CalAccessCommand):
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
+        self.app_name = options['app_name']
         self.model_name = options['model_name']
 
         # get the full path for archiving the csv
@@ -46,7 +51,7 @@ class Command(CalAccessCommand):
             '%s.csv' % self.model_name,
         )
         # get model
-        self.model = apps.get_model('calaccess_processed', self.model_name)
+        self.model = apps.get_model(self.app_name, self.model_name)
         # and the db table name
         self.db_table = self.model._meta.db_table
         # get the processed file object

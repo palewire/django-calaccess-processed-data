@@ -4,6 +4,7 @@
 Base classes for custom management commands.
 """
 import os
+import re
 import logging
 from six.moves.urllib.parse import urljoin
 from six.moves.urllib.request import url2pathname
@@ -14,6 +15,15 @@ from django.conf import settings
 from django.utils.termcolors import colorize
 from calaccess_processed.decorators import retry
 from django.core.management.base import BaseCommand
+from opencivicdata.management.commands.loaddivisions import load_divisions
+from opencivicdata.models import (
+    Division,
+    Jurisdiction,
+    Organization,
+    Person,
+    Post,
+)
+from opencivicdata.models.elections import Election
 logger = logging.getLogger(__name__)
 
 
@@ -248,3 +258,162 @@ class ScrapeCommand(CalAccessCommand):
         This method should process structured data returned by `build_results`.
         """
         raise NotImplementedError
+
+
+class LoadOCDModelsCommand(CalAccessCommand):
+    """
+    Base class for OCD model loading management commands.
+    """
+    def handle(self, *args, **options):
+        """
+        Make it happen.
+        """
+        super(LoadOCDModelsCommand, self).handle(*args, **options)
+        try:
+            self.state_division = Division.objects.get(
+                id='ocd-division/country:us/state:ca'
+            )
+        except Division.DoesNotExist:
+            if self.verbosity > 2:
+                self.log(' CA state division missing. Loading all U.S. divisions')
+            load_divisions('us')
+            self.state_division = Division.objects.get(
+                id='ocd-division/country:us/state:ca'
+            )
+        self.state_jurisdiction = Jurisdiction.objects.get_or_create(
+            name='California State Government',
+            url='http://www.ca.gov',
+            division=self.state_division,
+            classification='government',
+        )[0]
+        self.executive_branch = Organization.objects.get_or_create(
+            name='California State Executive Branch',
+            classification='executive',
+        )[0]
+        self.sos = Organization.objects.get_or_create(
+            name='California Secretary of State',
+            classification='executive',
+            parent=self.executive_branch,
+        )[0]
+
+    def create_election(self, name, date_obj):
+        """
+        Create an OCD Election object.
+        """
+        admin = Organization.objects.get_or_create(
+            name='Elections Division',
+            classification='executive',
+            parent=self.sos,
+        )[0]
+        obj = Election.objects.create(
+            start_time=date_obj,
+            name=name,
+            all_day=True,
+            timezone='US/Pacific',
+            classification='election',
+            administrative_organization=admin,
+            division=self.state_division,
+            jurisdiction=self.state_jurisdiction,
+        )
+        return obj
+
+    def get_or_create_post(self, office_name):
+        """
+        Get or create a Post object with an office_name string.
+
+        office_name is expected to be in the format "{TYPE NAME}[##]".
+
+        Returns a tuple (Post object, created), where created is a boolean
+        specifying whether a Post was created.
+        """
+        office_pattern = r'^(?P<type>[A-Z ]+)(?P<district>\d{2})?$'
+
+        match = re.match(office_pattern, office_name.upper())
+        office_type = match.groupdict()['type'].strip()
+        try:
+            district_num = int(match.groupdict()['district'])
+        except TypeError:
+            pass
+
+        # prepare to get or create post
+        raw_post = {'label': office_name.title().replace('Of', 'of')}
+
+        if office_type == 'STATE SENATE':
+            raw_post['division'] = Division.objects.get(
+                subid1='ca',
+                subtype2='sldu',
+                subid2=str(district_num),
+            )
+            raw_post['organization'] = Organization.objects.get_or_create(
+                name='California State Senate',
+                classification='upper',
+            )[0]
+            raw_post['role'] = 'Senator'
+        elif office_type == 'ASSEMBLY':
+            raw_post['division'] = Division.objects.get(
+                subid1='ca',
+                subtype2='sldl',
+                subid2=str(district_num),
+            )
+            raw_post['organization'] = Organization.objects.get_or_create(
+                name='California State Assembly',
+                classification='lower',
+            )[0]
+            raw_post['role'] = 'Assembly Member'
+        else:
+            # If not Senate or Assembly, assume this is a state office
+            raw_post['division'] = self.state_division
+            if office_type == 'MEMBER BOARD OF EQUALIZATION':
+                raw_post['organization'] = Organization.objects.get_or_create(
+                    name='State Board of Equalization',
+                    parent=self.executive_branch,
+                )[0]
+                raw_post['role'] = 'Board Member'
+            elif office_type == 'SECRETARY OF STATE':
+                raw_post['organization'] = self.sos
+                raw_post['role'] = raw_post['label']
+            else:
+                raw_post['organization'] = self.executive_branch
+                raw_post['role'] = raw_post['label']
+
+        return Post.objects.get_or_create(**raw_post)
+
+    def get_or_create_person(self, name, filer_id=None):
+        """
+        Get or create a Person object with the name string and optional filer_id.
+
+        name is expected to be in the format: "{LAST}[[,]{SUFFIX}[.]], {FIRST}[ {MIDDLE}[.]]".
+
+        The filer_id is added to the Person if it's not already.
+
+        Returns a tuple (Person object, created), where created is a boolean
+        specifying whether a Person was created.
+        """
+        person = None
+        created = False
+
+        if filer_id:
+            try:
+                person = Person.objects.get(
+                    identifiers__scheme='calaccess_filer_id',
+                    identifiers__identifier=filer_id,
+                )
+            except Person.DoesNotExist:
+                pass
+
+        if not person:
+            # split and flip the original name string
+            split_name = name.split(',')
+            split_name.reverse()
+            person = Person.objects.get_or_create(
+                sort_name=name,
+                name=' '.join(split_name).strip()
+            )[0]
+            if filer_id:
+                person.identifiers.create(
+                    scheme='calaccess_filer_id',
+                    identifier=filer_id,
+                )
+            created = True
+
+        return (person, created)

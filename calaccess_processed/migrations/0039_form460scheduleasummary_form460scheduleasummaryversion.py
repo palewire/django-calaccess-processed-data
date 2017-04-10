@@ -9,7 +9,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('calaccess_processed', '0038_auto_20170221_1812'),
+        ('calaccess_processed', '0001_initial'),
     ]
 
     operations = [

@@ -4,9 +4,11 @@ Django>=1.9
 hurry.filesize
 pytz
 beautifulsoup4
+-e git+https://github.com/california-civic-data-coalition/python-opencivicdata-django.git@elections#egg=opencivicdata-django
+-e git+https://github.com/california-civic-data-coalition/python-opencivicdata-divisions.git@HEAD#egg=opencivicdata-divisions
+
 
 # Databases
-mysqlclient
 psycopg2>=2.5.4
 
 # Testing

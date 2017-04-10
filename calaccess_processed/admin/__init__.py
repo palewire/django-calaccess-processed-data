@@ -54,6 +54,10 @@ from calaccess_processed.admin.scraper.candidates import (
     ScrapedCandidateAdmin,
     ScrapedCandidateCommitteeAdmin,
 )
+from calaccess_processed.admin.scraper.incumbents import (
+    IncumbentScrapedElectionAdmin,
+    ScrapedIncumbentAdmin,
+)
 from calaccess_processed.admin.scraper.propositions import (
     PropositionScrapedElectionAdmin,
     ScrapedPropositionAdmin,
@@ -62,23 +66,6 @@ from calaccess_processed.admin.scraper.propositions import (
 from calaccess_processed.admin.tracking import (
     ProcessedDataVersionAdmin,
     ProcessedDataFileAdmin,
-)
-from .opencivicdata import (
-    DivisionAdmin,
-    JurisdictionAdmin,
-    LegislativeSessionAdmin,
-    MembershipAdmin,
-    OrganizationAdmin,
-    PersonAdmin,
-    PostAdmin,
-    ElectionAdmin,
-    PartyAdmin,
-    BallotMeasureContestAdmin,
-    BallotMeasureSelectionAdmin,
-    CandidateContestAdmin,
-    CandidateSelectionAdmin,
-    RetentionContestAdmin,
-    CandidacyAdmin
 )
 
 __all__ = (
@@ -125,22 +112,9 @@ __all__ = (
     'CandidateScrapedElectionAdmin',
     'ScrapedCandidateAdmin',
     'ScrapedCandidateCommitteeAdmin',
+    'IncumbentScrapedElectionAdmin',
+    'ScrapedIncumbentAdmin',
     'PropositionScrapedElectionAdmin',
     'ScrapedPropositionAdmin',
     'ScrapedPropositionCommitteeAdmin',
-    'DivisionAdmin',
-    'JurisdictionAdmin',
-    'LegislativeSessionAdmin',
-    'MembershipAdmin',
-    'OrganizationAdmin',
-    'PersonAdmin',
-    'PostAdmin',
-    'ElectionAdmin',
-    'PartyAdmin',
-    'BallotMeasureContestAdmin',
-    'BallotMeasureSelectionAdmin',
-    'CandidateContestAdmin',
-    'CandidateSelectionAdmin',
-    'RetentionContestAdmin',
-    'CandidacyAdmin'
 )

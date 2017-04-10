@@ -24,9 +24,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.gis',
     'calaccess_processed',
     'calaccess_raw',
     'toolbox',
+    'opencivicdata.apps.BaseConfig',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -56,7 +58,7 @@ TEMPLATES = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'calaccess_processed',
         'USER': 'postgres',
         'PASSWORD': '',
