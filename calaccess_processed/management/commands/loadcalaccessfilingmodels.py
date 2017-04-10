@@ -129,5 +129,6 @@ class Command(CalAccessCommand):
 
             call_command(
                 'archivecalaccessprocessedfile',
+                'calaccess_processed',
                 m._meta.object_name,
             )
