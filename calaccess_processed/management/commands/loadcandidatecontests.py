@@ -154,12 +154,12 @@ class Command(LoadOCDModelsCommand):
             try:
                 ocd_elec = Election.objects.get(
                     name=election_name,
-                    start_time__month=2
+                    start_time=timezone.datetime(2008, 6, 3, 0, 0, tzinfo=timezone.utc),
                 )
             except Election.DoesNotExist:
                 ocd_elec = self.create_election(
                     election_name,
-                    timezone.datetime(2008, 2, 4, 0, 0, tzinfo=timezone.utc),
+                    timezone.datetime(2008, 6, 3, 0, 0, tzinfo=timezone.utc),
                 )
                 created = True
             else:

@@ -66,6 +66,9 @@ class Command(LoadOCDModelsCommand):
             dt_obj.year,
             match.groupdict()['name'],
         ).upper()
+        # Differentiate between two '2008 PRIMARY' ballot measure elections
+        if name == '2008 PRIMARY' and dt_obj.month == 2:
+            name = "PRESIDENTIAL PRIMARY AND SPECIAL ELECTIONS"
         # try getting an existing Election with the same date
         try:
             elec = Election.objects.get(start_time=dt_obj)
