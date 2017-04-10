@@ -68,14 +68,41 @@ class Command(CalAccessCommand):
             self.processed_version.process_start_datetime = now()
             self.processed_version.save()
 
-        self.models = [
+        version_models = [
             m for m in apps.get_app_config('calaccess_processed').get_models()
             if not m._meta.abstract and
-            'filings' in str(m)
+            'filings' in str(m) and
+            'Version' in str(m)
         ]
+        if self.verbosity >= 2:
+            self.log(
+                "Loading raw data into %s filing verison models." % len(version_models)
+            )
+        self.load_model_list(version_models)
 
+        latest_models = [
+            m for m in apps.get_app_config('calaccess_processed').get_models()
+            if not m._meta.abstract and
+            'filings' in str(m) and
+            'Version' not in str(m)
+        ]
+        if self.verbosity >= 2:
+            self.log(
+                "Loading raw data into %s filing models." % len(version_models)
+            )
+        self.load_model_list(latest_models)
+
+        self.processed_version.process_finish_datetime = now()
+        self.processed_version.save()
+
+        self.success("Done!")
+
+    def load_model_list(self, model_list):
+        """
+        Iterate over the given list of models, loading each one.
+        """
         # iterate over all of filing models
-        for m in self.models:
+        for m in model_list:
             # set up the ProcessedDataFile instance
             processed_file, created = ProcessedDataFile.objects.get_or_create(
                 version=self.processed_version,
@@ -104,8 +131,3 @@ class Command(CalAccessCommand):
                 'archivecalaccessprocessedfile',
                 m._meta.object_name,
             )
-
-        self.processed_version.process_finish_datetime = now()
-        self.processed_version.save()
-
-        self.success("Done!")
