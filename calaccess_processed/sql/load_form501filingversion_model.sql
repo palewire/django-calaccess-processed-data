@@ -78,6 +78,6 @@ ON NULLIF(ci."PARTY_CD", 0) = p."CODE_ID"
 AND p."CODE_TYPE" = 16000
 -- election type
 LEFT JOIN "LOOKUP_CODES_CD" AS e
-ON NULLIF(ci."PARTY_CD", 0) = e."CODE_ID"
+ON NULLIF(ci."ELEC_TYPE", 0) = e."CODE_ID"
 and e."CODE_TYPE" = 3000
 WHERE ci."FORM_TYPE" = 'F501';
