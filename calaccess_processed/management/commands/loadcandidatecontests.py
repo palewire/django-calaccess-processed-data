@@ -268,7 +268,8 @@ class Command(LoadOCDModelsCommand):
                     self.log('Created new CandidateContest: %s' % contest.name)
 
                 person, person_created = self.get_or_create_person(
-                    scraped_candidate.name
+                    scraped_candidate.name,
+                    filer_id=scraped_candidate.scraped_id,
                 )
                 if person_created and self.verbosity > 2:
                     self.log('Created new Person: %s' % person.name)

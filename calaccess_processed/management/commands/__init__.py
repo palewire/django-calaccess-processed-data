@@ -382,9 +382,10 @@ class LoadOCDModelsCommand(CalAccessCommand):
         """
         Get or create a Person object with the name string and optional filer_id.
 
-        name is expected to be in the format: "{LAST}[[,]{SUFFIX}[.]], {FIRST}[ {MIDDLE}[.]]".
+        If a filer_id is provided, first attempt to lookup the person by filer_id.
 
-        The filer_id is added to the Person if it's not already.
+        If the person doesn't exist (or the filer_id is not provided), create a
+        new Person.
 
         Returns a tuple (Person object, created), where created is a boolean
         specifying whether a Person was created.
@@ -393,22 +394,23 @@ class LoadOCDModelsCommand(CalAccessCommand):
         created = False
 
         if filer_id:
-            try:
-                person = Person.objects.get(
-                    identifiers__scheme='calaccess_filer_id',
-                    identifiers__identifier=filer_id,
-                )
-            except Person.DoesNotExist:
-                pass
+            if filer_id != '':
+                try:
+                    person = Person.objects.get(
+                        identifiers__scheme='calaccess_filer_id',
+                        identifiers__identifier=filer_id,
+                    )
+                except Person.DoesNotExist:
+                    pass
 
         if not person:
             # split and flip the original name string
             split_name = name.split(',')
             split_name.reverse()
-            person = Person.objects.get_or_create(
+            person = Person.objects.create(
                 sort_name=name,
                 name=' '.join(split_name).strip()
-            )[0]
+            )
             if filer_id:
                 person.identifiers.create(
                     scheme='calaccess_filer_id',
