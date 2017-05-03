@@ -278,6 +278,7 @@ class Command(LoadOCDModelsCommand):
                     person=person,
                     post=contest.posts.all()[0].post,
                     candidate_name=person.name,
+                    registration_status='qualified',
                 )
                 if candidacy_created and self.verbosity > 2:
                     self.log('Created new Candidacy: %s' % candidacy)
