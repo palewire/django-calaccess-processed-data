@@ -142,7 +142,7 @@ class Command(LoadOCDModelsCommand):
         """
         Set is_incumbent for candidacies within each member's start/end years.
         """
-        # For every one of the members candidacies for the office where
+        # For every one of the member's candidacies for the office where
         # the election of the contest happens after the start year
         # but before the end year, if it exists, mark as incumbent
         for member in Membership.objects.all():
