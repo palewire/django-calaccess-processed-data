@@ -13,7 +13,6 @@ psycopg2>=2.5.4
 # Testing
 flake8
 flake8_docstrings
-pydocstyle==1.*
 coverage
 python-coveralls
 
