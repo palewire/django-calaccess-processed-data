@@ -317,43 +317,53 @@ class LoadOCDModelsCommand(CalAccessCommand):
         )
         return obj
 
+    def parse_office_name(self, office_name):
+        """
+        Parse string containg the name for an office.
+
+        Expected format is "{TYPE NAME}[{DISTRICT NUMBER}]".
+
+        Return a dict with two keys: office and district.
+        """
+        office_pattern = r'^(?P<type>[A-Z ]+)(?P<district>\d{2})?$'
+        parsed = re.match(office_pattern, office_name.upper()).groupdict()
+        parsed['type'] = parsed['type'].strip()
+
+        try:
+            parsed['district'] = int(parsed['district'])
+        except TypeError:
+            pass
+
+        return parsed
+
     def get_or_create_post(self, office_name):
         """
         Get or create a Post object with an office_name string.
 
-        office_name is expected to be in the format "{TYPE NAME}[##]".
-
         Returns a tuple (Post object, created), where created is a boolean
         specifying whether a Post was created.
         """
-        office_pattern = r'^(?P<type>[A-Z ]+)(?P<district>\d{2})?$'
-
-        match = re.match(office_pattern, office_name.upper())
-        office_type = match.groupdict()['type'].strip()
-        try:
-            district_num = int(match.groupdict()['district'])
-        except TypeError:
-            pass
+        parsed_office = self.parse_office_name(office_name)
 
         # prepare to get or create post
         raw_post = {'label': office_name.title().replace('Of', 'of')}
 
-        if office_type == 'STATE SENATE':
+        if parsed_office['type'] == 'STATE SENATE':
             raw_post['division'] = Division.objects.get(
                 subid1='ca',
                 subtype2='sldu',
-                subid2=str(district_num),
+                subid2=str(parsed_office['district']),
             )
             raw_post['organization'] = Organization.objects.get_or_create(
                 name='California State Senate',
                 classification='upper',
             )[0]
             raw_post['role'] = 'Senator'
-        elif office_type == 'ASSEMBLY':
+        elif parsed_office['type'] == 'ASSEMBLY':
             raw_post['division'] = Division.objects.get(
                 subid1='ca',
                 subtype2='sldl',
-                subid2=str(district_num),
+                subid2=str(parsed_office['district']),
             )
             raw_post['organization'] = Organization.objects.get_or_create(
                 name='California State Assembly',
@@ -363,13 +373,13 @@ class LoadOCDModelsCommand(CalAccessCommand):
         else:
             # If not Senate or Assembly, assume this is a state office
             raw_post['division'] = self.state_division
-            if office_type == 'MEMBER BOARD OF EQUALIZATION':
+            if parsed_office['type'] == 'MEMBER BOARD OF EQUALIZATION':
                 raw_post['organization'] = Organization.objects.get_or_create(
                     name='State Board of Equalization',
                     parent=self.executive_branch,
                 )[0]
                 raw_post['role'] = 'Board Member'
-            elif office_type == 'SECRETARY OF STATE':
+            elif parsed_office['type'] == 'SECRETARY OF STATE':
                 raw_post['organization'] = self.sos
                 raw_post['role'] = raw_post['label']
             else:

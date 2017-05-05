@@ -5,16 +5,28 @@ Load CandidateContest and related models with data scraped from the CAL-ACCESS w
 """
 import re
 from django.utils import timezone
-from django.db.models import IntegerField, Case, When, Q
-from django.db.models.functions import Cast
+from django.db.models import (
+    IntegerField,
+    CharField,
+    Case,
+    When,
+    Q,
+    Value,
+)
+from django.db.models.functions import Cast, Concat
 from calaccess_processed.management.commands import LoadOCDModelsCommand
-from calaccess_processed.models.scraper import (
+from calaccess_processed.models import (
     CandidateScrapedElection,
     IncumbentScrapedElection,
+    Form501Filing,
 )
-from opencivicdata.models.people_orgs import Membership
-from opencivicdata.models.elections import Election, ElectionIdentifier
-from opencivicdata.models.elections.contests import CandidateContest
+from opencivicdata.models import (
+    Election,
+    ElectionIdentifier,
+    CandidateContest,
+    Membership,
+    Party,
+)
 
 
 class Command(LoadOCDModelsCommand):
@@ -223,6 +235,96 @@ class Command(LoadOCDModelsCommand):
 
         return (contest, contest_created)
 
+    def get_form501_filing(self, scraped_candidate):
+        """
+        Return a Form501Filing that matches the ScrapedCandidate.
+
+        If the ScrapedCandidate has a scraped_id, lookup the Form501Filing
+        by filer_id. Otherwise, lookup using the candidate's name.
+
+        Return None can't match to a single Form501Filing.
+        """
+        election_data = self.parse_election_name(
+            scraped_candidate.election.name,
+        )
+        office_data = self.parse_office_name(
+            scraped_candidate.office_name,
+        )
+
+        # filter all form501 lookups by office type, district and election year
+        q = Form501Filing.objects.filter(
+            office__iexact=office_data['type'],
+            district=office_data['district'],
+            election_year=election_data['year'],
+        )
+
+        if scraped_candidate.scraped_id != '':
+            try:
+                form501 = q.get(filer_id=scraped_candidate.scraped_id)
+            except Form501Filing.MultipleObjectsReturned:
+                # if multiple form501s, try adding election type filter
+                try:
+                    form501 = q.get(
+                        filer_id=scraped_candidate.scraped_id,
+                        election_type=election_data['type'],
+                    )
+                except:
+                    form501 = None
+            except Form501Filing.DoesNotExist:
+                form501 = None
+        else:
+            # if no filer_id, combine name fields from form501
+            # first try "<last_name>, <first_name>" format.
+            q = q.annotate(
+                full_name=Concat(
+                    'last_name',
+                    Value(', '),
+                    'first_name',
+                    output_field=CharField(),
+                )
+            )
+            try:
+                form501 = q.get(
+                    full_name=scraped_candidate.name,
+                )
+            except Form501Filing.MultipleObjectsReturned:
+                # if multiple form501s, try adding election type filter
+                try:
+                    form501 = q.get(
+                        full_name=scraped_candidate.name,
+                        election_type=election_data['type'],
+                    )
+                except:
+                    form501 = None
+            except Form501Filing.DoesNotExist:
+                # then try "<last_name>, <first_name> <middle_name>" format.
+                q = q.annotate(
+                    full_name=Concat(
+                        'last_name',
+                        Value(', '),
+                        'first_name',
+                        'middle_name',
+                        output_field=CharField(),
+                    ),
+                )
+                try:
+                    form501 = q.get(
+                        full_name=scraped_candidate.name,
+                    )
+                except Form501Filing.MultipleObjectsReturned:
+                    # if multiple form501s, try adding election type filter
+                    try:
+                        form501 = q.get(
+                            ffull_name=scraped_candidate.name,
+                            election_type=election_data['type'],
+                        )
+                    except:
+                        form501 = None
+                except Form501Filing.DoesNotExist:
+                    form501 = None
+
+        return form501
+
     def load(self):
         """
         Load OCD Election, CandidateContest and related models with data scraped from CAL-ACCESS website.
@@ -282,6 +384,33 @@ class Command(LoadOCDModelsCommand):
                 )
                 if candidacy_created and self.verbosity > 2:
                     self.log('Created new Candidacy: %s' % candidacy)
+
+                # try looking up form501 and supplementing scraped data
+                form501 = self.get_form501_filing(scraped_candidate)
+                if form501:
+                    # try to lookup the party
+                    try:
+                        # first by full name
+                        party = Party.objects.get(name=form501.party)
+                    except Party.DoesNotExist:
+                        try:
+                            # then by abbrevation
+                            party = Party.objects.get(abbreviation=form501.party)
+                        except Party.DoesNotExist:
+                            party = None
+
+                    candidacy.extras = {'form501filingid': form501.filing_id}
+                    candidacy.party = party
+                    candidacy.filed_date = form501.date_filed
+                    candidacy.save()
+
+                    # if the scraped_candidate lacks a filer_id, add the
+                    # Form501Filing.filer_id
+                    if scraped_candidate.scraped_id == '':
+                        candidacy.person.identifiers.get_or_create(
+                            scheme='calaccess_filer_id',
+                            identifier=form501.filer_id,
+                        )
 
                 # If the candidate has been in the post
                 # and the end year is later than the election year
