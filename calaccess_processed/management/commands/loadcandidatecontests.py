@@ -369,18 +369,10 @@ class Command(LoadOCDModelsCommand):
                 if contest_created and self.verbosity > 2:
                     self.log('Created new CandidateContest: %s' % contest.name)
 
-                person, person_created = self.get_or_create_person(
-                    scraped_candidate.name,
+                candidacy, candidacy_created = self.get_or_create_candidacy(
+                    contest,
                     filer_id=scraped_candidate.scraped_id,
-                )
-                if person_created and self.verbosity > 2:
-                    self.log('Created new Person: %s' % person.name)
-
-                candidacy, candidacy_created = contest.candidacies.get_or_create(
-                    person=person,
-                    post=contest.posts.all()[0].post,
-                    candidate_name=person.name,
-                    registration_status='qualified',
+                    person_name=scraped_candidate.name,
                 )
                 if candidacy_created and self.verbosity > 2:
                     self.log('Created new Candidacy: %s' % candidacy)
@@ -417,7 +409,7 @@ class Command(LoadOCDModelsCommand):
                 # or doesn't have an end_date, mark as incumbent
                 incumbent_q = Membership.objects.filter(
                     post=candidacy.post,
-                    person=person,
+                    person=candidacy.person,
                 ).annotate(
                     # Cast end_date's value as an int, treat '' as NULL
                     end_year=Cast(

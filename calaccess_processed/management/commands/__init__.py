@@ -22,6 +22,7 @@ from opencivicdata.models import (
     Organization,
     Person,
     Post,
+    Candidacy,
 )
 from opencivicdata.models.elections import Election
 logger = logging.getLogger(__name__)
@@ -429,3 +430,60 @@ class LoadOCDModelsCommand(CalAccessCommand):
             created = True
 
         return (person, created)
+
+    def get_or_create_candidacy(self, contest_obj, filer_id=None, person_name=None):
+        """
+        Get or create a Candidacy object.
+
+        First, lookup an existing Candidacy within the given CandidateContest linked
+        to a Person with the given filer_id or person_name.
+
+        If neither filer_id or person_name are provided, an exception is raised.
+
+        If there's no existing Candidacy, a new one is created. A new Person is
+        also created if there's no existing Person with the given filer_id, or no
+        filer_id is provided.
+
+        Returns a tuple (Candidacy object, created), where created is a boolean
+        specifying whether a Candidacy was created.
+        """
+        if not filer_id and not person_name:
+            raise Exception("Must provide either filer_id or person_name.")
+        elif filer_id:
+            person, person_created = self.get_or_create_person(
+                person_name,
+                filer_id=filer_id,
+            )
+            if person_created and self.verbosity > 2:
+                self.log('Created new Person: %s' % person.name)
+            candidacy, candidacy_created = contest_obj.candidacies.get_or_create(
+                person=person,
+                post=contest_obj.posts.all()[0].post,
+                candidate_name=person_name,
+                registration_status='qualified',
+            )
+        else:
+            try:
+                candidacy = contest_obj.candidacies.get(
+                    post=contest_obj.posts.all()[0].post,
+                    person__sort_name=person_name,
+                )
+            except Candidacy.DoesNotExist:
+                person, person_created = self.get_or_create_person(
+                    person_name,
+                    filer_id=filer_id,
+                )
+                if person_created and self.verbosity > 2:
+                    self.log('Created new Person: %s' % person.name)
+
+                candidacy = contest_obj.candidacies.create(
+                    person=person,
+                    post=contest_obj.posts.all()[0].post,
+                    candidate_name=person_name,
+                    registration_status='qualified',
+                )
+                candidacy_created = True
+            else:
+                candidacy_created = False
+
+        return (candidacy, candidacy_created)
