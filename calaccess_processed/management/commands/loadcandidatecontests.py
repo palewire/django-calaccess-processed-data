@@ -360,14 +360,16 @@ class Command(LoadOCDModelsCommand):
                     scraped_candidate.office_name,
                     ocd_elec,
                 )
+                if contest_created and self.verbosity > 2:
+                    self.log('Created new CandidateContest: %s' % contest.name)
+                # Assume all "SPECIAL" candidate elections are for contests
+                # where the previous term of the office was unexpired.
                 if (
                     'SPECIAL' in scraped_election.name and
                     not contest.previous_term_unexpired
                 ):
                     contest.is_unexpired_term = True
                     contest.save()
-                if contest_created and self.verbosity > 2:
-                    self.log('Created new CandidateContest: %s' % contest.name)
 
                 candidacy, candidacy_created = self.get_or_create_candidacy(
                     contest,
