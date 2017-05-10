@@ -134,13 +134,25 @@ class Command(LoadOCDModelsCommand):
         if election_name in (x[0] for x in election_dates):
             date = dict(election_dates)[election_name]
             date_obj = timezone.make_aware(
-                timezone.datetime.strptime(
-                    date,
-                    '%Y-%m-%d',
-                )
+                timezone.datetime.strptime(date, '%Y-%m-%d'),
             )
         else:
-            date_obj = None
+            # if not in the hard-coded list above, check the scraped
+            # incumbent elections.
+            parsed_name = self.parse_election_name(election_name)
+            incumbent_elections_q = IncumbentScrapedElection.objects.filter(
+                date__year=parsed_name['year'],
+                name__icontains=parsed_name['type'],
+            )
+            if incumbent_elections_q.count() == 1:
+                date_obj = timezone.make_aware(
+                    timezone.datetime.combine(
+                        incumbent_elections_q[0].date,
+                        timezone.datetime.min.time(),
+                    )
+                )
+            else:
+                date_obj = None
 
         return date_obj
 
@@ -153,46 +165,28 @@ class Command(LoadOCDModelsCommand):
         """
         parsed_name = self.parse_election_name(election_name)
 
-        ocd_elections_q = Election.objects.filter(
-            start_time__year=parsed_name['year'],
-            name__icontains=parsed_name['type'],
-        )
-        incumbent_elections_q = IncumbentScrapedElection.objects.filter(
-            date__year=parsed_name['year'],
-            name__icontains=parsed_name['type'],
-        )
-
+        # Avoid conflating the Feb 2008 Primary with the Jun 2008 Primary
         if election_name == '2008 PRIMARY':
             try:
                 ocd_elec = Election.objects.get(
                     name=election_name,
-                    start_time=timezone.datetime(2008, 6, 3, 0, 0, tzinfo=timezone.utc),
+                    start_time=timezone.datetime(
+                        2008, 6, 3, 0, 0, tzinfo=timezone.utc
+                    ),
                 )
             except Election.DoesNotExist:
                 ocd_elec = self.create_election(
                     election_name,
-                    timezone.datetime(2008, 6, 3, 0, 0, tzinfo=timezone.utc),
+                    timezone.datetime(
+                        2008, 6, 3, 0, 0, tzinfo=timezone.utc
+                    ),
                 )
                 created = True
             else:
                 created = False
-        elif ocd_elections_q.count() == 1:
-            ocd_elec = ocd_elections_q[0]
-            created = False
-        else:
-            if self.lookup_election_date_from_name(election_name):
-                date_obj = self.lookup_election_date_from_name(election_name)
-            elif incumbent_elections_q.count() == 1:
-                date_obj = timezone.make_aware(
-                    timezone.datetime.combine(
-                        incumbent_elections_q[0].date,
-                        timezone.datetime.min.time(),
-                    )
-                )
-            else:
-                raise Exception(
-                    "Could not match or find date for %s." % election_name
-                )
+        # See if we can use the name to look up the election date
+        elif self.lookup_election_date_from_name(election_name):
+            date_obj = self.lookup_election_date_from_name(election_name)
             # Now that we have a date, get or create the Election
             try:
                 ocd_elec = Election.objects.get(start_time=date_obj)
@@ -204,7 +198,26 @@ class Command(LoadOCDModelsCommand):
                 created = True
             else:
                 created = False
-
+                # if election already exists and is named 'SPECIAL' or
+                # 'RECALL'
+                if (
+                    'SPECIAL' in ocd_elec.name.upper() or
+                    'RECALL' in ocd_elec.name.upper()
+                ):
+                    # and the matched election's name includes either 'GENERAL'
+                    # or 'PRIMARY'...
+                    if (
+                        re.match(r'^\d{4} GENERAL$', election_name) or
+                        re.match(r'^\d{4} PRIMARY$', election_name)
+                    ):
+                        # update the name
+                        ocd_elec.name = election_name
+                        ocd_elec.save()
+        # If lookup by name fails, raise an exception.
+        else:
+            raise Exception(
+                "Could not match or find date for %s." % election_name
+            )
         return (ocd_elec, created)
 
     def get_or_create_candidate_contest(self, office_name, ocd_election):
@@ -330,6 +343,7 @@ class Command(LoadOCDModelsCommand):
         Load OCD Election, CandidateContest and related models with data scraped from CAL-ACCESS website.
         """
         for scraped_election in CandidateScrapedElection.objects.all():
+            # try looking up the election using the scraped id
             id_q = ElectionIdentifier.objects.filter(
                 scheme='calaccess_election_id',
                 identifier=scraped_election.scraped_id,
@@ -393,8 +407,8 @@ class Command(LoadOCDModelsCommand):
                         except Party.DoesNotExist:
                             party = None
 
-                    candidacy.extras = {'form501filingid': form501.filing_id}
                     candidacy.party = party
+                    candidacy.extras = {'form501filingid': form501.filing_id}
                     candidacy.filed_date = form501.date_filed
                     candidacy.save()
 
