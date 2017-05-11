@@ -20,6 +20,7 @@ from calaccess_processed.models import (
     IncumbentScrapedElection,
     Form501Filing,
 )
+from calaccess_raw.models import FilerToFilerTypeCd
 from opencivicdata.models import (
     Election,
     ElectionIdentifier,
@@ -220,7 +221,7 @@ class Command(LoadOCDModelsCommand):
             )
         return (ocd_elec, created)
 
-    def get_or_create_candidate_contest(self, office_name, ocd_election):
+    def get_or_create_candidate_contest(self, office_name, ocd_election, party=None):
         """
         Get or create an OCD CandidateContest object using an office name and Election object.
 
@@ -231,12 +232,19 @@ class Command(LoadOCDModelsCommand):
 
         q = post.contests.filter(contest__election=ocd_election)
 
+        if party:
+            q = q.filter(contest__party=party)
+
         if post_created or not q.exists():
             contest = CandidateContest.objects.create(
                 election=ocd_election,
                 name=office_name,
                 division=post.division,
             )
+            if party:
+                contest.party = party
+                contest.name = '{0} {1} PRIMARY'.format(contest.name, party)
+                contest.save()
             contest.posts.create(
                 post=post,
                 contest=contest,
@@ -338,6 +346,24 @@ class Command(LoadOCDModelsCommand):
 
         return form501
 
+    def get_party_for_filer_id(self, filer_id, election_date):
+        """
+        Lookup the party for the given filer_id.
+
+        Return None if not found.
+        """
+        try:
+            party_cd = FilerToFilerTypeCd.objects.filter(
+                filer_id=1003944,
+                effect_dt__lte=election_date,
+            ).latest('effect_dt').party_cd
+        except:
+            party = None
+        else:
+            party = Party.objects.get(identifiers__identifier=party_cd)
+
+        return party
+
     def load(self):
         """
         Load OCD Election, CandidateContest and related models with data scraped from CAL-ACCESS website.
@@ -361,7 +387,7 @@ class Command(LoadOCDModelsCommand):
                     scheme='calaccess_election_id',
                     identifier=scraped_election.scraped_id,
                 )
-            # Whether Election is new or existing, update EventSource
+            # Whether Election is new or not, update EventSource
             ocd_elec.sources.update_or_create(
                 url=scraped_election.url,
                 note='Last scraped on {dt:%Y-%m-%d}'.format(
@@ -370,10 +396,42 @@ class Command(LoadOCDModelsCommand):
             )
             # Loop over candidates of scraped election
             for scraped_candidate in scraped_election.candidates.all():
-                contest, contest_created = self.get_or_create_candidate_contest(
-                    scraped_candidate.office_name,
-                    ocd_elec,
-                )
+                # get the candidate's form501
+                form501 = self.get_form501_filing(scraped_candidate)
+                # and use it to get the candidate's party
+                if form501:
+                    party = self.lookup_party(form501.party)
+                    if not party:
+                        party = self.get_party_for_filer_id(
+                            int(form501.filer_id),
+                            ocd_elec.start_time.date(),
+                        )
+
+                # if it's a primary election before 2012, use include party
+                # in get_or_create_candidate_contest criteria (if we have a party)
+                if (
+                    'PRIMARY' in scraped_election.name and
+                    ocd_elec.start_time.year < 2012
+                ):
+                    if not party:
+                        raise Exception(
+                            'No party for {0} running for {1} in {2}.'.format(
+                                scraped_candidate.name,
+                                scraped_candidate.office_name,
+                                ocd_elec.name,
+                            )
+                        )
+                    contest, contest_created = self.get_or_create_candidate_contest(
+                        scraped_candidate.office_name,
+                        ocd_elec,
+                        party=party,
+                    )
+                else:
+                    contest, contest_created = self.get_or_create_candidate_contest(
+                        scraped_candidate.office_name,
+                        ocd_elec,
+                    )
+
                 if contest_created and self.verbosity > 2:
                     self.log('Created new CandidateContest: %s' % contest.name)
                 # Assume all "SPECIAL" candidate elections are for contests
@@ -396,17 +454,6 @@ class Command(LoadOCDModelsCommand):
                 # try looking up form501 and supplementing scraped data
                 form501 = self.get_form501_filing(scraped_candidate)
                 if form501:
-                    # try to lookup the party
-                    try:
-                        # first by full name
-                        party = Party.objects.get(name=form501.party)
-                    except Party.DoesNotExist:
-                        try:
-                            # then by abbrevation
-                            party = Party.objects.get(abbreviation=form501.party)
-                        except Party.DoesNotExist:
-                            party = None
-
                     candidacy.party = party
                     candidacy.extras = {'form501filingid': form501.filing_id}
                     candidacy.filed_date = form501.date_filed
@@ -439,5 +486,6 @@ class Command(LoadOCDModelsCommand):
                 if incumbent_q.exists():
                     candidacy.is_incumbent = True
                     candidacy.save()
-                    self.log(' Identified as incumbent.')
+                    if self.verbosity > 2:
+                        self.log(' Identified as incumbent.')
         return

@@ -20,6 +20,7 @@ from opencivicdata.models import (
     Division,
     Jurisdiction,
     Organization,
+    Party,
     Person,
     Post,
     Candidacy,
@@ -487,3 +488,19 @@ class LoadOCDModelsCommand(CalAccessCommand):
                 candidacy_created = False
 
         return (candidacy, candidacy_created)
+
+    def lookup_party(self, party):
+        """
+        Return a Party with a name or abbreviation that matches party.
+        """
+        try:
+            # first by full name
+            party = Party.objects.get(name=party)
+        except Party.DoesNotExist:
+            try:
+                # then by abbrevation
+                party = Party.objects.get(abbreviation=party)
+            except Party.DoesNotExist:
+                party = None
+
+        return party
