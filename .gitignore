@@ -20,3 +20,8 @@ data
 CSV
 ****-**-**_**-**-**/
 .scraper_cache/
+example/test-data/tsv/*.TSV
+example/test-data/csv/
+example/test-data/log/
+example/test-data/processed/
+clean.zip
