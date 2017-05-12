@@ -234,6 +234,8 @@ class Command(LoadOCDModelsCommand):
 
         if party:
             q = q.filter(contest__party=party)
+        else:
+            q = q.filter(contest__party__isnull=True)
 
         if post_created or not q.exists():
             contest = CandidateContest.objects.create(
@@ -436,12 +438,19 @@ class Command(LoadOCDModelsCommand):
                     self.log('Created new CandidateContest: %s' % contest.name)
                 # Assume all "SPECIAL" candidate elections are for contests
                 # where the previous term of the office was unexpired.
-                if (
-                    'SPECIAL' in scraped_election.name and
-                    not contest.previous_term_unexpired
-                ):
-                    contest.is_unexpired_term = True
-                    contest.save()
+                if 'SPECIAL' in scraped_election.name:
+                    if not contest.previous_term_unexpired:
+                        contest.previous_term_unexpired = True
+                        contest.save()
+                    # also include special election label in contest name
+                    # since it will sometimes be part of a "PRIMARY" or "GENERAL"
+                    # election
+                    if 'SPECIAL' not in contest.name:
+                        if 'RUNOFF' in scraped_election.name:
+                            contest.name = '%s SPECIAL RUNOFF' % contest.name
+                        elif 'ELECTION' in scraped_election.name:
+                            contest.name = '%s SPECIAL ELECTION' % contest.name
+                        contest.save()
 
                 candidacy, candidacy_created = self.get_or_create_candidacy(
                     contest,
