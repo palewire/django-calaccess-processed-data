@@ -3,9 +3,11 @@
 """
 Unittests for management commands.
 """
+import os
 from django.test import TestCase
 from django.core.management import call_command
 from django.core.management.base import CommandError
+from calaccess_raw import get_test_download_directory
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed.models import (
     ScrapedCandidate,
@@ -32,6 +34,14 @@ class ProcessedDataCommandsTest(TestCase):
         'proposition_scraped_elections.json',
         'scraped_propositions.json',
     ]
+
+    @classmethod
+    def setUp(self):
+        """
+        Set up test case.
+        """
+        test_tsv_dir = os.path.join(get_test_download_directory(), 'tsv')
+        os.path.exists(test_tsv_dir) or os.makedirs(test_tsv_dir)
 
     def test_commands(self):
         """
