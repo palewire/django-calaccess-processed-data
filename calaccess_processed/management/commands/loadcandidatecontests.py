@@ -41,6 +41,7 @@ class Command(LoadOCDModelsCommand):
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
+        self.header("Load Candidate Contests")
         self.load()
         self.success("Done!")
 
@@ -169,14 +170,14 @@ class Command(LoadOCDModelsCommand):
         # Avoid conflating the Feb 2008 Primary with the Jun 2008 Primary
         if election_name == '2008 PRIMARY':
             try:
-                ocd_elec = Election.objects.get(
+                ocd_election = Election.objects.get(
                     name=election_name,
                     start_time=timezone.datetime(
                         2008, 6, 3, 0, 0, tzinfo=timezone.utc
                     ),
                 )
             except Election.DoesNotExist:
-                ocd_elec = self.create_election(
+                ocd_election = self.create_election(
                     election_name,
                     timezone.datetime(
                         2008, 6, 3, 0, 0, tzinfo=timezone.utc
@@ -190,9 +191,9 @@ class Command(LoadOCDModelsCommand):
             date_obj = self.lookup_election_date_from_name(election_name)
             # Now that we have a date, get or create the Election
             try:
-                ocd_elec = Election.objects.get(start_time=date_obj)
+                ocd_election = Election.objects.get(start_time=date_obj)
             except Election.DoesNotExist:
-                ocd_elec = self.create_election(
+                ocd_election = self.create_election(
                     '{year} {type}'.format(**parsed_name),
                     date_obj,
                 )
@@ -202,61 +203,24 @@ class Command(LoadOCDModelsCommand):
                 # if election already exists and is named 'SPECIAL' or
                 # 'RECALL'
                 if (
-                    'SPECIAL' in ocd_elec.name.upper() or
-                    'RECALL' in ocd_elec.name.upper()
+                    'SPECIAL' in ocd_election.name.upper() or
+                    'RECALL' in ocd_election.name.upper()
                 ):
-                    # and the matched election's name includes either 'GENERAL'
+                    # and the provided election_name includes either 'GENERAL'
                     # or 'PRIMARY'...
                     if (
                         re.match(r'^\d{4} GENERAL$', election_name) or
                         re.match(r'^\d{4} PRIMARY$', election_name)
                     ):
                         # update the name
-                        ocd_elec.name = election_name
-                        ocd_elec.save()
+                        ocd_election.name = election_name
+                        ocd_election.save()
         # If lookup by name fails, raise an exception.
         else:
             raise Exception(
                 "Could not match or find date for %s." % election_name
             )
-        return (ocd_elec, created)
-
-    def get_or_create_candidate_contest(self, office_name, ocd_election, party=None):
-        """
-        Get or create an OCD CandidateContest object using an office name and Election object.
-
-        Returns a tuple (CandidateContest object, created), where created is a boolean
-        specifying whether a CandidateContest was created.
-        """
-        post, post_created = self.get_or_create_post(office_name)
-
-        q = post.contests.filter(contest__election=ocd_election)
-
-        if party:
-            q = q.filter(contest__party=party)
-        else:
-            q = q.filter(contest__party__isnull=True)
-
-        if post_created or not q.exists():
-            contest = CandidateContest.objects.create(
-                election=ocd_election,
-                name=office_name,
-                division=post.division,
-            )
-            if party:
-                contest.party = party
-                contest.name = '{0} {1} PRIMARY'.format(contest.name, party)
-                contest.save()
-            contest.posts.create(
-                post=post,
-                contest=contest,
-            )
-            contest_created = True
-        else:
-            contest = q[0].contest
-            contest_created = False
-
-        return (contest, contest_created)
+        return (ocd_election, created)
 
     def get_form501_filing(self, scraped_candidate):
         """
@@ -317,7 +281,10 @@ class Command(LoadOCDModelsCommand):
                         full_name=scraped_candidate.name,
                         election_type=election_data['type'],
                     )
-                except:
+                except (
+                    Form501Filing.MultipleObjectsReturned,
+                    Form501Filing.DoesNotExist,
+                ):
                     form501 = None
             except Form501Filing.DoesNotExist:
                 # then try "<last_name>, <first_name> <middle_name>" format.
@@ -326,6 +293,7 @@ class Command(LoadOCDModelsCommand):
                         'last_name',
                         Value(', '),
                         'first_name',
+                        Value(' '),
                         'middle_name',
                         output_field=CharField(),
                     ),
@@ -338,10 +306,13 @@ class Command(LoadOCDModelsCommand):
                     # if multiple form501s, try adding election type filter
                     try:
                         form501 = q.get(
-                            ffull_name=scraped_candidate.name,
+                            full_name=scraped_candidate.name,
                             election_type=election_data['type'],
                         )
-                    except:
+                    except (
+                        Form501Filing.MultipleObjectsReturned,
+                        Form501Filing.DoesNotExist,
+                    ):
                         form501 = None
                 except Form501Filing.DoesNotExist:
                     form501 = None
@@ -366,135 +337,196 @@ class Command(LoadOCDModelsCommand):
 
         return party
 
+    def get_or_create_contest(self, scraped_candidate, ocd_election, party=None):
+        """
+        Get or create an OCD CandidateContest object using  and Election object.
+
+        Returns a tuple (CandidateContest object, created), where created is a boolean
+        specifying whether a CandidateContest was created.
+        """
+        office_name = scraped_candidate.office_name
+        post, post_created = self.get_or_create_post(office_name)
+
+        # Assume all "SPECIAL" candidate elections are for contests where the
+        # previous term of the office was unexpired.
+        if 'SPECIAL' in scraped_candidate.election.name:
+            previous_term_unexpired = True
+            scraped_election = scraped_candidate.election.name
+            election_type = self.parse_election_name(scraped_election)['type']
+            contest_name = '{0} ({1})'.format(office_name, election_type)
+        else:
+            previous_term_unexpired = False
+            if party:
+                contest_name = '{0} ({1})'.format(office_name, party.name)
+            else:
+                contest_name = office_name
+
+        contest, contest_created = CandidateContest.objects.get_or_create(
+            election=ocd_election,
+            name=contest_name,
+            previous_term_unexpired=previous_term_unexpired,
+            party=party,
+            division=post.division
+        )
+
+        if contest_created:
+            contest.posts.create(
+                post=post,
+            )
+
+        return (contest, contest_created)
+
+    def add_scraped_candidate_to_election(self, scraped_candidate, ocd_election):
+        """
+        Convert scraped_candidate to a Candidacy and add to ocd_election.
+
+        Return a candidacy object.
+        """
+        # get the candidate's form501
+        form501 = self.get_form501_filing(scraped_candidate)
+        # and use it to get the candidate's party
+        if form501:
+            party = self.lookup_party(form501.party)
+            if not party:
+                party = self.get_party_for_filer_id(
+                    int(form501.filer_id),
+                    ocd_election.start_time.date(),
+                )
+        else:
+            party = None
+
+        # if it's a primary election before 2012, include party in
+        # get_or_create_contest criteria (if we have a party)
+        if (
+            'PRIMARY' in scraped_candidate.election.name and
+            ocd_election.start_time.year < 2012
+        ):
+            if not party:
+                # use UNKNOWN party
+                party = Party.objects.get(identifiers__identifier=16011)
+            contest, contest_created = self.get_or_create_contest(
+                scraped_candidate,
+                ocd_election,
+                party=party,
+            )
+        else:
+            contest, contest_created = self.get_or_create_contest(
+                scraped_candidate,
+                ocd_election,
+            )
+
+        if contest_created and self.verbosity > 2:
+            self.log(' Created new CandidateContest: %s' % contest.name)
+
+        candidacy, candidacy_created = self.get_or_create_candidacy(
+            contest,
+            filer_id=scraped_candidate.scraped_id,
+            person_name=scraped_candidate.name,
+        )
+
+        if candidacy_created and self.verbosity > 2:
+            template = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
+            self.log(template.format(candidacy))
+
+        # add extra data from form501, if available
+        if form501:
+            candidacy.party = party
+            candidacy.extras = {'form501filingid': form501.filing_id}
+            candidacy.filed_date = form501.date_filed
+            candidacy.save()
+
+            # if the scraped_candidate lacks a filer_id, add the
+            # Form501Filing.filer_id
+            if scraped_candidate.scraped_id == '':
+                candidacy.person.identifiers.get_or_create(
+                    scheme='calaccess_filer_id',
+                    identifier=form501.filer_id,
+                )
+
+        return candidacy
+
+    def check_incumbent_status(self, candidacy):
+        """
+        Check if the Candidacy is for the incumbent officeholder.
+
+        Return True if:
+        * Membership exists for the Person and Post linked to the Candidacy, and
+        * Membership.end_date is NULL or has a year later year of Election.start_time
+        """
+        incumbent_q = Membership.objects.filter(
+            post=candidacy.post,
+            person=candidacy.person,
+        ).annotate(
+            # Cast end_date's value as an int, treat '' as NULL
+            end_year=Cast(
+                Case(When(end_date='', then=None)),
+                IntegerField(),
+            )
+        ).filter(
+            Q(end_year__gt=candidacy.election.start_time.year) |
+            Q(end_date='')
+        )
+        if incumbent_q.exists():
+            is_incumbent = True
+        else:
+            is_incumbent = False
+
+        return is_incumbent
+
+    def get_ocd_election(self, scraped_election):
+        """
+        Get and OCD Election from scraped_election.
+        """
+        # try looking up the election using the scraped id
+        try:
+            ocd_election = ElectionIdentifier.objects.filter(
+                scheme='calaccess_election_id',
+                identifier=scraped_election.scraped_id,
+            ).get()
+        except ElectionIdentifier.DoesNotExist:
+            ocd_election, elec_created = self.get_or_create_election_from_name(
+                scraped_election.name,
+            )
+            if elec_created and self.verbosity > 2:
+                self.log(' Created new Election: %s' % ocd_election.name)
+            # Add the missing identifier
+            ocd_election.identifiers.create(
+                scheme='calaccess_election_id',
+                identifier=scraped_election.scraped_id,
+            )
+
+        # Whether Election is new or not, update EventSource
+        ocd_election.sources.update_or_create(
+            url=scraped_election.url,
+            note='Last scraped on {dt:%Y-%m-%d}'.format(
+                dt=scraped_election.last_modified,
+            )
+        )
+
+        return ocd_election
+
     def load(self):
         """
         Load OCD Election, CandidateContest and related models with data scraped from CAL-ACCESS website.
         """
+        # See if we should bother checking incumbent status
+        members_are_loaded = Membership.objects.exists()
+
+        # Loop over scraped_elections
         for scraped_election in CandidateScrapedElection.objects.all():
-            # try looking up the election using the scraped id
-            id_q = ElectionIdentifier.objects.filter(
-                scheme='calaccess_election_id',
-                identifier=scraped_election.scraped_id,
-            )
-            if id_q.exists():
-                ocd_elec = id_q[0].election
-            else:
-                ocd_elec, elec_created = self.get_or_create_election_from_name(
-                    scraped_election.name,
-                )
-                if elec_created and self.verbosity > 2:
-                    self.log('Created new Election: %s' % ocd_elec.name)
-                # Add the missing identifier
-                ocd_elec.identifiers.create(
-                    scheme='calaccess_election_id',
-                    identifier=scraped_election.scraped_id,
-                )
-            # Whether Election is new or not, update EventSource
-            ocd_elec.sources.update_or_create(
-                url=scraped_election.url,
-                note='Last scraped on {dt:%Y-%m-%d}'.format(
-                    dt=scraped_election.last_modified,
-                )
-            )
-            # Loop over candidates of scraped election
+            ocd_election = self.get_ocd_election(scraped_election)
+            # then over candidates in the scraped_election
             for scraped_candidate in scraped_election.candidates.all():
-                # get the candidate's form501
-                form501 = self.get_form501_filing(scraped_candidate)
-                # and use it to get the candidate's party
-                if form501:
-                    party = self.lookup_party(form501.party)
-                    if not party:
-                        party = self.get_party_for_filer_id(
-                            int(form501.filer_id),
-                            ocd_elec.start_time.date(),
-                        )
-
-                # if it's a primary election before 2012, use include party
-                # in get_or_create_candidate_contest criteria (if we have a party)
-                if (
-                    'PRIMARY' in scraped_election.name and
-                    ocd_elec.start_time.year < 2012
-                ):
-                    if not party:
-                        raise Exception(
-                            'No party for {0} running for {1} in {2}.'.format(
-                                scraped_candidate.name,
-                                scraped_candidate.office_name,
-                                ocd_elec.name,
-                            )
-                        )
-                    contest, contest_created = self.get_or_create_candidate_contest(
-                        scraped_candidate.office_name,
-                        ocd_elec,
-                        party=party,
-                    )
-                else:
-                    contest, contest_created = self.get_or_create_candidate_contest(
-                        scraped_candidate.office_name,
-                        ocd_elec,
-                    )
-
-                if contest_created and self.verbosity > 2:
-                    self.log('Created new CandidateContest: %s' % contest.name)
-                # Assume all "SPECIAL" candidate elections are for contests
-                # where the previous term of the office was unexpired.
-                if 'SPECIAL' in scraped_election.name:
-                    if not contest.previous_term_unexpired:
-                        contest.previous_term_unexpired = True
-                        contest.save()
-                    # also include special election label in contest name
-                    # since it will sometimes be part of a "PRIMARY" or "GENERAL"
-                    # election
-                    if 'SPECIAL' not in contest.name:
-                        if 'RUNOFF' in scraped_election.name:
-                            contest.name = '%s SPECIAL RUNOFF' % contest.name
-                        elif 'ELECTION' in scraped_election.name:
-                            contest.name = '%s SPECIAL ELECTION' % contest.name
-                        contest.save()
-
-                candidacy, candidacy_created = self.get_or_create_candidacy(
-                    contest,
-                    filer_id=scraped_candidate.scraped_id,
-                    person_name=scraped_candidate.name,
+                candidacy = self.add_scraped_candidate_to_election(
+                    scraped_candidate,
+                    ocd_election
                 )
-                if candidacy_created and self.verbosity > 2:
-                    self.log('Created new Candidacy: %s' % candidacy)
+                # check incumbent status
+                if members_are_loaded:
+                    if self.check_incumbent_status(candidacy):
+                        candidacy.is_incumbent = True
+                        candidacy.save()
+                        if self.verbosity > 2:
+                            self.log(' Identified as incumbent.')
 
-                # try looking up form501 and supplementing scraped data
-                form501 = self.get_form501_filing(scraped_candidate)
-                if form501:
-                    candidacy.party = party
-                    candidacy.extras = {'form501filingid': form501.filing_id}
-                    candidacy.filed_date = form501.date_filed
-                    candidacy.save()
-
-                    # if the scraped_candidate lacks a filer_id, add the
-                    # Form501Filing.filer_id
-                    if scraped_candidate.scraped_id == '':
-                        candidacy.person.identifiers.get_or_create(
-                            scheme='calaccess_filer_id',
-                            identifier=form501.filer_id,
-                        )
-
-                # If the candidate has been in the post
-                # and the end year is later than the election year
-                # or doesn't have an end_date, mark as incumbent
-                incumbent_q = Membership.objects.filter(
-                    post=candidacy.post,
-                    person=candidacy.person,
-                ).annotate(
-                    # Cast end_date's value as an int, treat '' as NULL
-                    end_year=Cast(
-                        Case(When(end_date='', then=None)),
-                        IntegerField(),
-                    )
-                ).filter(
-                    Q(end_year__gt=contest.election.start_time.year) |
-                    Q(end_date='')
-                )
-                if incumbent_q.exists():
-                    candidacy.is_incumbent = True
-                    candidacy.save()
-                    if self.verbosity > 2:
-                        self.log(' Identified as incumbent.')
         return

@@ -20,6 +20,7 @@ class Command(CalAccessCommand):
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
+        self.header('Loading Parties')
         self.load()
         self.success("Done!")
 
@@ -27,13 +28,10 @@ class Command(CalAccessCommand):
         """
         Insert Party records from the raw LOOKUP_CODES_CD table.
         """
-        if self.verbosity > 2:
-            self.log(" Loading OCD Parties")
-
         q = LookupCodesCd.objects.filter(
             code_type=16000,
             code_id__gt=16000,
-        ).exclude(code_id__in=[16011, 16012])
+        )
 
         for lc in q:
             party, created = Party.objects.get_or_create(
@@ -55,6 +53,9 @@ class Command(CalAccessCommand):
                         party.color = '1d0ee9'
                     if party.name == 'REPUBLICAN':
                         party.color = 'e91d0e'
+                    party.save()
+                elif party.name == 'UNKNOWN':
+                    party.name = 'UNKNOWN PARTY'
                     party.save()
 
             # keep the code_id too
