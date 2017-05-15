@@ -23,7 +23,6 @@ from calaccess_processed.models import (
 from calaccess_raw.models import FilerToFilerTypeCd
 from opencivicdata.models import (
     Election,
-    ElectionIdentifier,
     CandidateContest,
     Membership,
     Party,
@@ -43,6 +42,19 @@ class Command(LoadOCDModelsCommand):
         super(Command, self).handle(*args, **options)
         self.header("Load Candidate Contests")
         self.load()
+
+        # connect runoffs to their previously undecided contests
+        if self.verbosity > 2:
+            self.log(' Linking runoffs to previous contests')
+        runoff_contests_q = CandidateContest.objects.filter(
+            name__contains='RUNOFF'
+        )
+        for runoff in runoff_contests_q.all():
+            previous_contest = self.find_previous_undecided_contest(runoff)
+            if previous_contest:
+                runoff.runoff_for_contest = previous_contest
+                runoff.save()
+
         self.success("Done!")
 
     def parse_election_name(self, election_name):
@@ -128,8 +140,8 @@ class Command(LoadOCDModelsCommand):
             ('2005 SPECIAL ELECTION (ASSEMBLY 53)', '2005-9-13'),
             ('2003 SPECIAL ELECTION (GOVERNOR)', '2003-10-7'),
             ('2001 SPECIAL ELECTION (ASSEMBLY 49)', '2001-5-15'),
-            ('2001 SPECIAL RUNOFF (ASSEMBLY 65)', '2001-2-6'),
-            ('2001 SPECIAL ELECTION (ASSEMBLY 65)', '2001-4-3'),
+            ('2001 SPECIAL RUNOFF (ASSEMBLY 65)', '2001-4-3'),
+            ('2001 SPECIAL ELECTION (ASSEMBLY 65)', '2001-2-6'),
             ('2001 SPECIAL ELECTION (STATE SENATE 24)', '2001-3-26'),
         )
 
@@ -479,11 +491,11 @@ class Command(LoadOCDModelsCommand):
         """
         # try looking up the election using the scraped id
         try:
-            ocd_election = ElectionIdentifier.objects.filter(
-                scheme='calaccess_election_id',
-                identifier=scraped_election.scraped_id,
+            ocd_election = Election.objects.filter(
+                identifiers__scheme='calaccess_election_id',
+                identifiers__identifier=scraped_election.scraped_id,
             ).get()
-        except ElectionIdentifier.DoesNotExist:
+        except Election.DoesNotExist:
             ocd_election, elec_created = self.get_or_create_election_from_name(
                 scraped_election.name,
             )
@@ -504,6 +516,27 @@ class Command(LoadOCDModelsCommand):
         )
 
         return ocd_election
+
+    def find_previous_undecided_contest(self, runoff_contest):
+        """
+        Find the undecided contest that preceeded runoff_contest.
+        """
+        # Get the contest's post (should only ever be one per contest)
+        post = runoff_contest.posts.all()[0].post
+
+        # Then try getting the most recent contest for the same post
+        # that preceeds the runoff contest
+        try:
+            contest = CandidateContest.objects.filter(
+                posts__post=post,
+                election__start_time__lt=runoff_contest.election.start_time,
+            ).latest(
+                'election__start_time'
+            )
+        except CandidateContest.DoesNotExist:
+            contest = None
+
+        return contest
 
     def load(self):
         """
