@@ -20,12 +20,14 @@ class Command(CalAccessCommand):
         """
         super(Command, self).handle(*args, **options)
 
+        # load filing models
         call_command(
             'loadcalaccessfilingmodels',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
 
+        # load OCD models
         call_command(
             'loadparties',
             verbosity=self.verbosity,
@@ -45,13 +47,13 @@ class Command(CalAccessCommand):
         )
 
         call_command(
-            'loadincumbentofficeholders',
+            'loadcandidatecontests',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
 
         call_command(
-            'loadcandidatecontests',
+            'loadincumbentofficeholders',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
