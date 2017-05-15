@@ -238,6 +238,9 @@ class Command(LoadOCDModelsCommand):
         """
         Return a Form501Filing that matches the ScrapedCandidate.
 
+        By default, return the latest Form501FilingVersion, unless earliest
+        is set to True.
+
         If the ScrapedCandidate has a scraped_id, lookup the Form501Filing
         by filer_id. Otherwise, lookup using the candidate's name.
 
@@ -251,26 +254,28 @@ class Command(LoadOCDModelsCommand):
         )
 
         # filter all form501 lookups by office type, district and election year
+        # get the most recently filed Form501 within the election_year
         q = Form501Filing.objects.filter(
             office__iexact=office_data['type'],
             district=office_data['district'],
-            election_year=election_data['year'],
+            election_year__lte=election_data['year'],
         )
 
         if scraped_candidate.scraped_id != '':
             try:
-                form501 = q.get(filer_id=scraped_candidate.scraped_id)
-            except Form501Filing.MultipleObjectsReturned:
-                # if multiple form501s, try adding election type filter
-                try:
-                    form501 = q.get(
-                        filer_id=scraped_candidate.scraped_id,
-                        election_type=election_data['type'],
-                    )
-                except:
-                    form501 = None
+                # first, try to get w/ filer_id and election_type
+                form501 = q.filter(
+                    filer_id=scraped_candidate.scraped_id,
+                    election_type=election_data['type'],
+                ).latest('date_filed')
             except Form501Filing.DoesNotExist:
-                form501 = None
+                # if that fails, try dropping election_type from filter
+                try:
+                    form501 = q.filter(
+                        filer_id=scraped_candidate.scraped_id,
+                    ).latest('date_filed')
+                except Form501Filing.DoesNotExist:
+                    form501 = None
         else:
             # if no filer_id, combine name fields from form501
             # first try "<last_name>, <first_name>" format.
@@ -282,24 +287,9 @@ class Command(LoadOCDModelsCommand):
                     output_field=CharField(),
                 )
             )
-            try:
-                form501 = q.get(
-                    full_name=scraped_candidate.name,
-                )
-            except Form501Filing.MultipleObjectsReturned:
-                # if multiple form501s, try adding election type filter
-                try:
-                    form501 = q.get(
-                        full_name=scraped_candidate.name,
-                        election_type=election_data['type'],
-                    )
-                except (
-                    Form501Filing.MultipleObjectsReturned,
-                    Form501Filing.DoesNotExist,
-                ):
-                    form501 = None
-            except Form501Filing.DoesNotExist:
-                # then try "<last_name>, <first_name> <middle_name>" format.
+            # check if there are any with the "<last_name>, <first_name>"
+            if not q.filter(full_name=scraped_candidate.name).exists():
+                # use "<last_name>, <first_name> <middle_name>" format
                 q = q.annotate(
                     full_name=Concat(
                         'last_name',
@@ -310,22 +300,19 @@ class Command(LoadOCDModelsCommand):
                         output_field=CharField(),
                     ),
                 )
+
+            try:
+                # first, try to get w/ filer_id and election_type
+                form501 = q.filter(
+                    full_name=scraped_candidate.name,
+                    election_type=election_data['type'],
+                ).latest('date_filed')
+            except Form501Filing.DoesNotExist:
+                # if that fails, try dropping election_type from filter
                 try:
-                    form501 = q.get(
+                    form501 = q.filter(
                         full_name=scraped_candidate.name,
-                    )
-                except Form501Filing.MultipleObjectsReturned:
-                    # if multiple form501s, try adding election type filter
-                    try:
-                        form501 = q.get(
-                            full_name=scraped_candidate.name,
-                            election_type=election_data['type'],
-                        )
-                    except (
-                        Form501Filing.MultipleObjectsReturned,
-                        Form501Filing.DoesNotExist,
-                    ):
-                        form501 = None
+                    ).latest('date_filed')
                 except Form501Filing.DoesNotExist:
                     form501 = None
 
@@ -339,13 +326,16 @@ class Command(LoadOCDModelsCommand):
         """
         try:
             party_cd = FilerToFilerTypeCd.objects.filter(
-                filer_id=1003944,
+                filer_id=filer_id,
                 effect_dt__lte=election_date,
             ).latest('effect_dt').party_cd
         except:
             party = None
         else:
-            party = Party.objects.get(identifiers__identifier=party_cd)
+            if party_cd != 0:
+                party = Party.objects.get(identifiers__identifier=party_cd)
+            else:
+                party = None
 
         return party
 
@@ -444,7 +434,8 @@ class Command(LoadOCDModelsCommand):
         if form501:
             candidacy.party = party
             candidacy.extras = {'form501filingid': form501.filing_id}
-            candidacy.filed_date = form501.date_filed
+            # use the filed_date of the earliest version of the form501
+            candidacy.filed_date = form501.versions.earliest('date_filed').date_filed
             candidacy.save()
 
             # if the scraped_candidate lacks a filer_id, add the
