@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from django.conf import settings
 from django.utils.termcolors import colorize
+from calaccess_raw import get_download_directory
 from calaccess_processed.decorators import retry
 from django.core.management.base import BaseCommand
 from opencivicdata.management.commands.loaddivisions import load_divisions
@@ -47,6 +48,14 @@ class CalAccessCommand(BaseCommand):
 
         # Start the clock
         self.start_datetime = datetime.now()
+
+        # set up processed data directory
+        self.processed_data_dir = os.path.join(
+            get_download_directory(),
+            'processed',
+        )
+        if not os.path.exists(self.processed_data_dir):
+            os.makedirs(self.processed_data_dir)
 
     def header(self, string):
         """
@@ -100,6 +109,9 @@ class CalAccessCommand(BaseCommand):
         duration = datetime.now() - self.start_datetime
         self.stdout.write('Duration: {}'.format(str(duration)))
         logger.debug('Duration: {}'.format(str(duration)))
+
+    def __str__(self):
+        return re.sub(r'(.+\.)*', '', self.__class__.__module__)
 
 
 class ScrapeCommand(CalAccessCommand):
@@ -456,7 +468,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
                 filer_id=filer_id,
             )
             if person_created and self.verbosity > 2:
-                self.log('Created new Person: %s' % person.name)
+                self.log(' Created new Person: %s' % person.name)
             candidacy, candidacy_created = contest_obj.candidacies.get_or_create(
                 person=person,
                 post=contest_obj.posts.all()[0].post,
@@ -475,7 +487,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
                     filer_id=filer_id,
                 )
                 if person_created and self.verbosity > 2:
-                    self.log('Created new Person: %s' % person.name)
+                    self.log(' Created new Person: %s' % person.name)
 
                 candidacy = contest_obj.candidacies.create(
                     person=person,

@@ -27,10 +27,10 @@ class Command(LoadOCDModelsCommand):
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
+        self.header("Load Incumbent Office Holders")
         self.load()
         self.set_end_dates()
         if Candidacy.objects.exists():
-            self.log('')
             self.set_incumbent_candidacies()
         self.success("Done!")
 
@@ -85,14 +85,14 @@ class Command(LoadOCDModelsCommand):
                 incumbent.office_name,
             )
             if post_created and self.verbosity > 2:
-                self.log('Created new Post: %s' % post.label)
+                self.log(' Created new Post: %s' % post.label)
             # Get or person
             person, person_created = self.get_or_create_person(
                 incumbent.name,
                 filer_id=incumbent.scraped_id,
             )
             if person_created and self.verbosity > 2:
-                self.log('Created new Person: %s' % person.name)
+                self.log(' Created new Person: %s' % person.name)
             # Get or membership for post and person
             membership, membership_created = Membership.objects.get_or_create(
                 person=person,
@@ -102,7 +102,7 @@ class Command(LoadOCDModelsCommand):
                 person_name=person.sort_name,
             )
             if membership_created and self.verbosity > 2:
-                self.log('Created new Membership: %s' % membership)
+                self.log(' Created new Membership: %s' % membership)
             # Handle start_date on membership
             if membership_created or membership.start_date == '':
                 membership.start_date = incumbent.session
@@ -157,10 +157,11 @@ class Command(LoadOCDModelsCommand):
 
             if candidacies_q.exists():
                 rows = candidacies_q.update(is_incumbent=True)
-                self.log(
-                    ' {0} identified as incumbent in {1} contests'.format(
-                        member.person.name,
-                        rows,
+                if self.verbosity > 2:
+                    self.log(
+                        ' {0} identified as incumbent in {1} contests'.format(
+                            member.person.name,
+                            rows,
+                        )
                     )
-                )
         return

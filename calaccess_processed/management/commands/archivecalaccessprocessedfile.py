@@ -54,6 +54,9 @@ class Command(CalAccessCommand):
         self.model = apps.get_model(self.app_name, self.model_name)
         # and the db table name
         self.db_table = self.model._meta.db_table
+
+        self.log(" Archiving %s.csv" % self.model._meta.object_name)
+
         # get the processed file object
         try:
             self.processed_file = ProcessedDataFile.objects.filter(
@@ -66,8 +69,6 @@ class Command(CalAccessCommand):
             )
 
         if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
-            if self.verbosity > 2:
-                self.log(" Archiving {0}".format(os.path.basename(self.model_name)))
             # Remove previous .CSV and error log files
             self.processed_file.file_archive.delete()
 

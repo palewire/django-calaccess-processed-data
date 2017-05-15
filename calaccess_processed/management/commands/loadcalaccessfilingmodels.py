@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Load data into processed CAL-ACCESS models, archive processed files and ZIP.
+Load and archive the CAL-ACCESS Filing and FilingVersion models.
 """
-import os
 from django.apps import apps
 from django.core.management import call_command
 from django.core.management.base import CommandError
 from django.db import connection
 from django.utils.timezone import now
-from calaccess_raw import get_download_directory
 from calaccess_raw.models.tracking import RawDataVersion
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed.models.tracking import (
@@ -20,9 +18,9 @@ from calaccess_processed.models.tracking import (
 
 class Command(CalAccessCommand):
     """
-    Load data into processed CAL-ACCESS models, archive processed files and ZIP.
+    Load and archive the CAL-ACCESS Filing and FilingVersion models.
     """
-    help = 'Load data into processed CAL-ACCESS models, archive processed files and ZIP.'
+    help = 'Load and archive the CAL-ACCESS Filing and FilingVersion models.'
 
     def handle(self, *args, **options):
         """
@@ -38,13 +36,6 @@ class Command(CalAccessCommand):
                 'No raw CAL-ACCESS data loaded (run `python manage.py '
                 'updatecalaccessrawdata`).'
             )
-        # set up processed data directory
-        self.processed_data_dir = os.path.join(
-            get_download_directory(),
-            'processed',
-        )
-        if not os.path.exists(self.processed_data_dir):
-            os.makedirs(self.processed_data_dir)
 
         # get or create the ProcessedDataVersion instance
         self.processed_version, created = ProcessedDataVersion.objects.get_or_create(
@@ -53,13 +44,13 @@ class Command(CalAccessCommand):
         # log if starting or resuming
         if created:
             self.header(
-                'Processing {:%m-%d-%Y %H:%M:%S} snapshot'.format(
+                'Load filings from {:%m-%d-%Y %H:%M:%S} snapshot'.format(
                     self.raw_version.release_datetime
                 )
             )
         else:
             self.header(
-                'Resuming processing of {:%m-%d-%Y %H:%M:%S} snapshot'.format(
+                'Resume loading of filings from {:%m-%d-%Y %H:%M:%S} snapshot'.format(
                     self.raw_version.release_datetime
                 )
             )
@@ -76,11 +67,11 @@ class Command(CalAccessCommand):
         ]
         if self.verbosity >= 2:
             self.log(
-                "Loading raw data into %s filing verison models." % len(version_models)
+                " Loading filing %s verison models." % len(version_models)
             )
         self.load_model_list(version_models)
 
-        latest_models = [
+        filing_models = [
             m for m in apps.get_app_config('calaccess_processed').get_models()
             if not m._meta.abstract and
             'filings' in str(m) and
@@ -88,9 +79,9 @@ class Command(CalAccessCommand):
         ]
         if self.verbosity >= 2:
             self.log(
-                "Loading raw data into %s filing models." % len(version_models)
+                " Loading filing %s models." % len(filing_models)
             )
-        self.load_model_list(latest_models)
+        self.load_model_list(filing_models)
 
         self.processed_version.process_finish_datetime = now()
         self.processed_version.save()
@@ -117,15 +108,12 @@ class Command(CalAccessCommand):
                 c.execute('TRUNCATE TABLE "%s" CASCADE' % (m._meta.db_table))
             # load the processed model
             if self.verbosity > 2:
-                self.log(" Loading raw data into %s" % m._meta.db_table)
+                self.log(" Loading %s" % m._meta.db_table)
             m.objects.load_raw_data()
 
             processed_file.records_count = m.objects.count()
             processed_file.process_finish_datetime = now()
             processed_file.save()
-
-            if self.verbosity > 2:
-                self.log(" Archiving %s.csv..." % m._meta.object_name)
 
             call_command(
                 'archivecalaccessprocessedfile',
