@@ -411,7 +411,7 @@ class Command(LoadOCDModelsCommand):
             if not party:
                 # use UNKNOWN party
                 party = Party.objects.get(identifiers__identifier=16011)
-            
+
             contest, contest_created = self.get_or_create_contest(
                 scraped_candidate,
                 ocd_election,
