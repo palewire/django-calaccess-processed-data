@@ -329,7 +329,7 @@ class Command(LoadOCDModelsCommand):
                 filer_id=filer_id,
                 effect_dt__lte=election_date,
             ).latest('effect_dt').party_cd
-        except:
+        except FilerToFilerTypeCd.DoesNotExist:
             party = None
         else:
             if party_cd != 0:
@@ -394,6 +394,11 @@ class Command(LoadOCDModelsCommand):
                     int(form501.filer_id),
                     ocd_election.start_time.date(),
                 )
+        elif scraped_candidate.scraped_id != '':
+            party = self.get_party_for_filer_id(
+                int(scraped_candidate.scraped_id),
+                ocd_election.start_time.date(),
+            )
         else:
             party = None
 
@@ -406,6 +411,7 @@ class Command(LoadOCDModelsCommand):
             if not party:
                 # use UNKNOWN party
                 party = Party.objects.get(identifiers__identifier=16011)
+            
             contest, contest_created = self.get_or_create_contest(
                 scraped_candidate,
                 ocd_election,
