@@ -53,6 +53,18 @@ class Command(CalAccessCommand):
         )
 
         call_command(
+            'mergecandidates',
+            verbosity=self.verbosity,
+            no_color=self.no_color,
+        )
+
+        call_command(
+            'loadcandidaciesfrom501s',
+            verbosity=self.verbosity,
+            no_color=self.no_color,
+        )
+
+        call_command(
             'loadincumbentofficeholders',
             verbosity=self.verbosity,
             no_color=self.no_color,

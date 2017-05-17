@@ -20,7 +20,6 @@ from calaccess_processed.models import (
     IncumbentScrapedElection,
     Form501Filing,
 )
-from calaccess_raw.models import FilerToFilerTypeCd
 from opencivicdata.models import (
     Election,
     CandidateContest,
@@ -318,27 +317,6 @@ class Command(LoadOCDModelsCommand):
 
         return form501
 
-    def get_party_for_filer_id(self, filer_id, election_date):
-        """
-        Lookup the party for the given filer_id.
-
-        Return None if not found.
-        """
-        try:
-            party_cd = FilerToFilerTypeCd.objects.filter(
-                filer_id=filer_id,
-                effect_dt__lte=election_date,
-            ).latest('effect_dt').party_cd
-        except FilerToFilerTypeCd.DoesNotExist:
-            party = None
-        else:
-            if party_cd != 0:
-                party = Party.objects.get(identifiers__identifier=party_cd)
-            else:
-                party = None
-
-        return party
-
     def get_or_create_contest(self, scraped_candidate, ocd_election, party=None):
         """
         Get or create an OCD CandidateContest object using  and Election object.
@@ -368,7 +346,7 @@ class Command(LoadOCDModelsCommand):
             name=contest_name,
             previous_term_unexpired=previous_term_unexpired,
             party=party,
-            division=post.division
+            division=post.division,
         )
 
         if contest_created:

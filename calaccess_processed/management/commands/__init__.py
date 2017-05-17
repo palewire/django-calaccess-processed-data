@@ -14,6 +14,7 @@ from datetime import datetime
 from django.conf import settings
 from django.utils.termcolors import colorize
 from calaccess_raw import get_download_directory
+from calaccess_raw.models import FilerToFilerTypeCd
 from calaccess_processed.decorators import retry
 from django.core.management.base import BaseCommand
 from opencivicdata.management.commands.loaddivisions import load_divisions
@@ -337,20 +338,23 @@ class LoadOCDModelsCommand(CalAccessCommand):
 
         Expected format is "{TYPE NAME}[{DISTRICT NUMBER}]".
 
-        Return a dict with two keys: office and district.
+        Return a dict with two keys: type and district.
         """
         office_pattern = r'^(?P<type>[A-Z ]+)(?P<district>\d{2})?$'
-        parsed = re.match(office_pattern, office_name.upper()).groupdict()
-        parsed['type'] = parsed['type'].strip()
-
         try:
-            parsed['district'] = int(parsed['district'])
-        except TypeError:
-            pass
+            parsed = re.match(office_pattern, office_name.upper()).groupdict()
+        except AttributeError:
+            parsed = {'type': None, 'district': None}
+        else:
+            parsed['type'] = parsed['type'].strip()
+            try:
+                parsed['district'] = int(parsed['district'])
+            except TypeError:
+                pass
 
         return parsed
 
-    def get_or_create_post(self, office_name):
+    def get_or_create_post(self, office_name, get_only=False):
         """
         Get or create a Post object with an office_name string.
 
@@ -400,7 +404,16 @@ class LoadOCDModelsCommand(CalAccessCommand):
                 raw_post['organization'] = self.executive_branch
                 raw_post['role'] = raw_post['label']
 
-        return Post.objects.get_or_create(**raw_post)
+        if get_only:
+            post_created = False
+            try:
+                post = Post.objects.get(**raw_post)
+            except Post.DoesNotExist:
+                post = None
+        else:
+            post, post_created = Post.objects.get_or_create(**raw_post)
+
+        return post, post_created
 
     def get_or_create_person(self, name, filer_id=None):
         """
@@ -444,7 +457,8 @@ class LoadOCDModelsCommand(CalAccessCommand):
 
         return (person, created)
 
-    def get_or_create_candidacy(self, contest_obj, filer_id=None, person_name=None):
+    def get_or_create_candidacy(self, contest_obj, person_name, filer_id=None,
+                                registration_status='qualified'):
         """
         Get or create a Candidacy object.
 
@@ -460,9 +474,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
         Returns a tuple (Candidacy object, created), where created is a boolean
         specifying whether a Candidacy was created.
         """
-        if not filer_id and not person_name:
-            raise Exception("Must provide either filer_id or person_name.")
-        elif filer_id:
+        if filer_id:
             person, person_created = self.get_or_create_person(
                 person_name,
                 filer_id=filer_id,
@@ -473,7 +485,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
                 person=person,
                 post=contest_obj.posts.all()[0].post,
                 candidate_name=person_name,
-                registration_status='qualified',
+                registration_status=registration_status,
             )
         else:
             try:
@@ -512,6 +524,27 @@ class LoadOCDModelsCommand(CalAccessCommand):
             try:
                 # then by abbrevation
                 party = Party.objects.get(abbreviation=party)
+            except Party.DoesNotExist:
+                party = None
+
+        return party
+
+    def get_party_for_filer_id(self, filer_id, election_date):
+        """
+        Lookup the party for the given filer_id, effective before election_date.
+
+        Return None if not found.
+        """
+        try:
+            party_cd = FilerToFilerTypeCd.objects.filter(
+                filer_id=filer_id,
+                effect_dt__lte=election_date,
+            ).latest('effect_dt').party_cd
+        except FilerToFilerTypeCd.DoesNotExist:
+            party = None
+        else:
+            try:
+                party = Party.objects.get(identifiers__identifier=party_cd)
             except Party.DoesNotExist:
                 party = None
 
