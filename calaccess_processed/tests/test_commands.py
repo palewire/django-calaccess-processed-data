@@ -71,10 +71,8 @@ class ProcessedDataCommandsTest(TestCase):
         # Confirm that the count of scraped candidates equals the count loaded
         # into Candidacy
         self.assertEqual(
-            ScrapedCandidate.objects.filter(
-                registration_status='qualified'
-            ).count(),
-            Candidacy.objects.count(),
+            ScrapedCandidate.objects.count(),
+            Candidacy.objects.filter(registration_status='qualified').count(),
         )
         # Confirm that no CandidateContest has more than one incumbent
         for contest in CandidateContest.objects.all():
