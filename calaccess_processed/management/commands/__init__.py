@@ -489,7 +489,6 @@ class LoadOCDModelsCommand(CalAccessCommand):
                 person=person,
                 post=contest_obj.posts.all()[0].post,
                 candidate_name=person_name,
-                registration_status=registration_status,
             )
         else:
             try:
@@ -500,7 +499,6 @@ class LoadOCDModelsCommand(CalAccessCommand):
             except Candidacy.DoesNotExist:
                 person, person_created = self.get_or_create_person(
                     person_name,
-                    filer_id=filer_id,
                 )
                 if person_created and self.verbosity > 2:
                     self.log(' Created new Person: %s' % person.name)
@@ -509,11 +507,14 @@ class LoadOCDModelsCommand(CalAccessCommand):
                     person=person,
                     post=contest_obj.posts.all()[0].post,
                     candidate_name=person_name,
-                    registration_status='qualified',
                 )
                 candidacy_created = True
             else:
                 candidacy_created = False
+
+        if candidacy.registration_status != registration_status:
+            candidacy.registration_status = registration_status
+            candidacy.save()
 
         return (candidacy, candidacy_created)
 
@@ -565,13 +566,13 @@ class LoadOCDModelsCommand(CalAccessCommand):
             identifiers__identifier=filer_id,
         ).all()
 
-        if self.verbosity > 2: 
+        if self.verbosity > 2:
             self.log(
-            "Merging {0} Persons sharing filer_id {1}".format(
-                len(persons),
-                filer_id,
+                "Merging {0} Persons sharing filer_id {1}".format(
+                    len(persons),
+                    filer_id,
+                )
             )
-        )
 
         # each person will be merged into this one
         survivor = persons[0]
