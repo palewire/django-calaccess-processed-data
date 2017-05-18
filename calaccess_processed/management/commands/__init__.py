@@ -565,7 +565,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
             identifiers__identifier=filer_id,
         ).all()
 
-        if self.versbosity > 2: 
+        if self.verbosity > 2: 
             self.log(
             "Merging {0} Persons sharing filer_id {1}".format(
                 len(persons),
