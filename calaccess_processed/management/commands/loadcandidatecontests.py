@@ -349,10 +349,19 @@ class Command(LoadOCDModelsCommand):
             division=post.division,
         )
 
+        # if contest was created, add the Post
         if contest_created:
             contest.posts.create(
                 post=post,
             )
+
+        # always update the source for the contest
+        contest.sources.update_or_create(
+            url=scraped_candidate.url,
+            note='Last scraped on {dt:%Y-%m-%d}'.format(
+                dt=scraped_candidate.last_modified,
+            )
+        )
 
         return (contest, contest_created)
 
@@ -437,6 +446,14 @@ class Command(LoadOCDModelsCommand):
                     scheme='calaccess_filer_id',
                     identifier=form501.filer_id,
                 )
+
+        # always update the source for the candidacy
+        candidacy.sources.update_or_create(
+            url=scraped_candidate.url,
+            note='Last scraped on {dt:%Y-%m-%d}'.format(
+                dt=scraped_candidate.last_modified,
+            )
+        )
 
         return candidacy
 
