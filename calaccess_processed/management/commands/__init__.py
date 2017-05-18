@@ -12,6 +12,7 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 from django.conf import settings
+from django.core.exceptions import MultipleObjectsReturned
 from django.utils.termcolors import colorize
 from calaccess_raw import get_download_directory
 from calaccess_raw.models import FilerToFilerTypeCd
@@ -28,6 +29,7 @@ from opencivicdata.models import (
     Candidacy,
 )
 from opencivicdata.models.elections import Election
+from opencivicdata.models.merge import merge
 logger = logging.getLogger(__name__)
 
 
@@ -437,6 +439,8 @@ class LoadOCDModelsCommand(CalAccessCommand):
                         identifiers__scheme='calaccess_filer_id',
                         identifiers__identifier=filer_id,
                     )
+                except MultipleObjectsReturned:
+                    person = self.merge_persons(filer_id)
                 except Person.DoesNotExist:
                     pass
 
@@ -549,3 +553,37 @@ class LoadOCDModelsCommand(CalAccessCommand):
                 party = None
 
         return party
+
+    def merge_persons(self, filer_id):
+        """
+        Merge the Person objects that share the same CAL-ACCESS filer_id.
+
+        Return the merged Person object.
+        """
+        persons = Person.objects.filter(
+            identifiers__scheme='calaccess_filer_id',
+            identifiers__identifier=filer_id,
+        ).all()
+
+        if self.versbosity > 2: 
+            self.log(
+            "Merging {0} Persons sharing filer_id {1}".format(
+                len(persons),
+                filer_id,
+            )
+        )
+
+        # each person will be merged into this one
+        survivor = persons[0]
+
+        # loop over all the rest of them
+        for i in range(1, len(persons)):
+            if survivor.id != persons[i].id:
+                merge(survivor, persons[i])
+
+        # also delete the now duplicated PersonIdentifier objects
+        if survivor.identifiers.count() > 1:
+            for i in survivor.identifiers.filter(scheme='calaccess_filer_id')[1:]:
+                i.delete()
+
+        return survivor
