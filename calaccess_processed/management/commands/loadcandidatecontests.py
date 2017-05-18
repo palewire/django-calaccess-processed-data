@@ -404,10 +404,18 @@ class Command(LoadOCDModelsCommand):
         if contest_created and self.verbosity > 2:
             self.log(' Created new CandidateContest: %s' % contest.name)
 
+        if form501:
+            # "terminated" statement type
+            if form501.statement_type == '10003':
+                registration_status = 'withdrawn'
+            else:
+                registration_status = 'qualified'
+
         candidacy, candidacy_created = self.get_or_create_candidacy(
             contest,
             filer_id=scraped_candidate.scraped_id,
             person_name=scraped_candidate.name,
+            registration_status=registration_status,
         )
 
         if candidacy_created and self.verbosity > 2:
