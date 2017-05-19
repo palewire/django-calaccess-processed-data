@@ -51,7 +51,17 @@ SELECT
     INITCAP(COALESCE(o."CODE_DESC", ci."OFFIC_DSCR")) AS office,
     ci."AGENCY_NAM" AS agency,
     COALESCE(d."CODE_DESC", NULLIF(ci."DIST_NO", ''))::int AS district,
-    UPPER(COALESCE(p."CODE_DESC", ci."PARTY")) AS party,
+    CASE UPPER(COALESCE(p."CODE_DESC", ci."PARTY")) 
+        WHEN 'AI' THEN 'AMERICAN INDEPENDENT PARTY'
+        WHEN 'D' THEN 'DEMOCRATIC'
+        WHEN 'DEMOCRAT' THEN 'DEMOCRATIC'
+        WHEN 'G' THEN 'GREEN PARTY'
+        WHEN 'I' THEN 'INDEPENDENT'
+        WHEN 'L' THEN 'LIBERTARIAN'
+        WHEN 'NP' THEN 'NON PARTISAN'
+        WHEN 'R' THEN 'REPUBLICAN'
+        ELSE UPPER(COALESCE(p."CODE_DESC", ci."PARTY"))
+    END AS party,
     INITCAP(COALESCE(j."CODE_DESC", '')) AS jurisdiction,
     UPPER(e."CODE_DESC") AS election_type,
     ci."YR_OF_ELEC" AS election_year,
@@ -74,7 +84,7 @@ ON NULLIF(ci."JURIS_CD", 0) = j."CODE_ID"
 AND j."CODE_TYPE" = 40500
 -- include party
 LEFT JOIN "LOOKUP_CODES_CD" AS p
-ON NULLIF(ci."PARTY_CD", 0) = p."CODE_ID"
+ON ci."PARTY_CD" = p."CODE_ID"
 AND p."CODE_TYPE" = 16000
 -- election type
 LEFT JOIN "LOOKUP_CODES_CD" AS e
