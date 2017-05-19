@@ -12,12 +12,13 @@ import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
 from django.conf import settings
+from django.core.management import call_command
+from django.core.management.base import BaseCommand
 from django.core.exceptions import MultipleObjectsReturned
 from django.utils.termcolors import colorize
 from calaccess_raw import get_download_directory
 from calaccess_raw.models import FilerToFilerTypeCd
 from calaccess_processed.decorators import retry
-from django.core.management.base import BaseCommand
 from opencivicdata.management.commands.loaddivisions import load_divisions
 from opencivicdata.models import (
     Division,
@@ -519,6 +520,15 @@ class LoadOCDModelsCommand(CalAccessCommand):
         """
         Return a Party with a name or abbreviation that matches party.
         """
+        if not Party.objects.exists():
+            if self.verbosity > 2:
+                self.log(" No parties loaded.")
+            call_command(
+                'loadparties',
+                verbosity=self.verbosity,
+                no_color=self.no_color,
+            )
+
         try:
             # first by full name
             party = Party.objects.get(name=party)

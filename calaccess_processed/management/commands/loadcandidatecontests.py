@@ -550,6 +550,10 @@ class Command(LoadOCDModelsCommand):
             ocd_election = self.get_ocd_election(scraped_election)
             # then over candidates in the scraped_election
             for scraped_candidate in scraped_election.candidates.all():
+                if self.verbosity > 2:
+                    self.log(
+                        ' Processing ScrapedCandidate.id %s' % scraped_candidate.id
+                    )
                 candidacy = self.add_scraped_candidate_to_election(
                     scraped_candidate,
                     ocd_election
