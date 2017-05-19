@@ -121,7 +121,7 @@ class ScrapeCommand(CalAccessCommand):
     """
     Base management command for scraping the CAL-ACCESS website.
     """
-    base_url = 'http://cal-access.ss.ca.gov/'
+    base_url = 'http://cal-access.sos.ca.gov/'
     cache_dir = os.path.join(
         settings.BASE_DIR,
         ".scraper_cache"
@@ -188,10 +188,7 @@ class ScrapeCommand(CalAccessCommand):
         Returns a dict with metadata about the current CAL-ACCESS snapshot.
         """
         response = self.get_url(url, request_type='HEAD')
-        try:
-            length = int(response.headers['content-length'])
-        except KeyError:
-            length = None
+        length = int(response.headers['content-length'])
         return {
             'content-length': length,
         }
