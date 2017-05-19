@@ -26,6 +26,7 @@ class Command(CalAccessCommand):
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
+        self.duration()
 
         # load OCD models
         call_command(
@@ -33,42 +34,49 @@ class Command(CalAccessCommand):
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
+        self.duration()
 
         call_command(
             'loadballotmeasurecontests',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
+        self.duration()
 
         call_command(
             'loadretentioncontests',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
+        self.duration()
 
         call_command(
             'loadcandidatecontests',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
+        self.duration()
 
         call_command(
             'mergecandidates',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
+        self.duration()
 
         call_command(
             'loadcandidaciesfrom501s',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
+        self.duration()
 
         call_command(
             'loadincumbentofficeholders',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
+        self.duration()
 
         # Archive OCD models
         ocd_models = [
@@ -83,3 +91,4 @@ class Command(CalAccessCommand):
                 'opencivicdata',
                 m._meta.object_name,
             )
+        self.duration()
