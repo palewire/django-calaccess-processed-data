@@ -3,6 +3,7 @@
 """
 Load the Candidacy models from records extracted from Form501Filings.
 """
+from django.core.management.base import CommandError
 from calaccess_raw.models import FilerToFilerTypeCd, LookupCodesCd
 from calaccess_processed.management.commands import LoadOCDModelsCommand
 from calaccess_processed.models import Form501Filing
@@ -25,9 +26,17 @@ class Command(LoadOCDModelsCommand):
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
-        self.header("Loading additional candidacies from Form 501 filings")
-        self.load()
-        self.success("Done!")
+
+        if not CandidateContest.objects.exists():
+            error_message = 'No contests currently loaded (run loadcandidatecontests).'
+            if self._called_from_command_line:
+                self.failure(error_message)
+            else:
+                raise CommandError(error_message)
+        else:
+            self.header("Loading additional candidacies from Form 501 filings")
+            self.load()
+            self.success("Done!")
 
     def get_election(self, year, election_type):
         """
