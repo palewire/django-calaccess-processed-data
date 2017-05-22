@@ -84,7 +84,7 @@ class Command(LoadOCDModelsCommand):
         Use a scraped candidate election name to look up the election date.
 
         Name to date mappings are hardcoded, compiled from CAL-ACCESS:
-        http://cal-access.ss.ca.gov/Campaign/Candidates/
+        http://cal-access.sos.ca.gov/Campaign/Candidates/
 
         And also the SoS site:
         * http://www.sos.ca.gov/elections/prior-elections/special-elections/

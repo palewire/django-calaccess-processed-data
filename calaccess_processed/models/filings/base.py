@@ -14,7 +14,7 @@ class FilingMixin(object):
         """
         Returns the url for pdf of the most recent version of the CAL-ACCESS filing.
         """
-        return 'http://cal-access.ss.ca.gov/PDFGen/pdfgen.prg?filingid={0}&amendid={1}'.format(
+        return 'http://cal-access.sos.ca.gov/PDFGen/pdfgen.prg?filingid={0}&amendid={1}'.format(
             self.filing_id,
             self.amendment_count
         )
@@ -45,7 +45,7 @@ class FilingVersionMixin(object):
         """
         Returns the url for pdf of the version of the CAL-ACCESS filing.
         """
-        return 'http://cal-access.ss.ca.gov/PDFGen/pdfgen.prg?filingid={0}&amendid={1}'.format(
+        return 'http://cal-access.sos.ca.gov/PDFGen/pdfgen.prg?filingid={0}&amendid={1}'.format(
             self.filing.filing_id,
             self.amend_id
         )

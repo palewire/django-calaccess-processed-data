@@ -73,7 +73,7 @@ class ProcessedDataCommandsTest(TestCase):
         self.assertEqual(
             ScrapedCandidate.objects.count(),
             Candidacy.objects.filter(
-                sources__url__contains='http://cal-access.ss.ca.gov/Campaign/Candidates/list.aspx?view=certified' # noqa
+                sources__url__contains='http://cal-access.sos.ca.gov/Campaign/Candidates/list.aspx?view=certified' # noqa
             ).count(),
         )
         # Confirm that no CandidateContest has more than one incumbent
