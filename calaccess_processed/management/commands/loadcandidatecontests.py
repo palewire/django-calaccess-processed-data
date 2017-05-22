@@ -337,7 +337,10 @@ class Command(LoadOCDModelsCommand):
         else:
             previous_term_unexpired = False
             if party:
-                contest_name = '{0} ({1})'.format(office_name, party.name)
+                if party.name == 'UNKNOWN':
+                    contest_name = '{0} ({1} PARTY)'.format(office_name, party.name)
+                else:
+                    contest_name = '{0} ({1})'.format(office_name, party.name)
             else:
                 contest_name = office_name
 

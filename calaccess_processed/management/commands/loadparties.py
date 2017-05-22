@@ -50,9 +50,6 @@ class Command(CalAccessCommand):
                         party.color = '1d0ee9'
                     if party.name == 'REPUBLICAN':
                         party.color = 'e91d0e'
-                elif party.name == 'UNKNOWN':
-                    party.name = 'UNKNOWN PARTY'
-
                 party.save()
 
             # keep the code_id too
