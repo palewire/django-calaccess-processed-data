@@ -45,6 +45,11 @@ class Command(LoadOCDModelsCommand):
             timezone.datetime.combine(scraped_elec.date, timezone.datetime.min.time())
         )
         name = '{0} {1}'.format(dt_obj.year, scraped_elec.name)
+        # remove "ELECTION" suffix from general and primary elections
+        if 'GENERAL' in name or 'PRIMARY' in name:
+            if 'SPECIAL' not in name:
+                if 'ELECTION' in name:
+                    name = name.replace('ELECTION', '').strip()
         try:
             elec = Election.objects.get(start_time=dt_obj)
         except Election.DoesNotExist:

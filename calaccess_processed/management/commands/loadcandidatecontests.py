@@ -165,7 +165,13 @@ class Command(LoadOCDModelsCommand):
                     )
                 )
             else:
-                date_obj = None
+                try:
+                    date_obj = self.get_regular_election_date(
+                        parsed_name['year'],
+                        parsed_name['type'],
+                    )
+                except:
+                    date_obj = None
 
         return date_obj
 

@@ -4,11 +4,15 @@
 Unittests for management commands.
 """
 import os
+from django.utils import timezone
 from django.test import TestCase
 from django.core.management import call_command
 from django.core.management.base import CommandError
 from calaccess_raw import get_test_download_directory
-from calaccess_processed.management.commands import CalAccessCommand
+from calaccess_processed.management.commands import (
+    CalAccessCommand,
+    LoadOCDModelsCommand,
+)
 from calaccess_processed.models import (
     ScrapedCandidate,
     ScrapedProposition,
@@ -95,3 +99,51 @@ class ProcessedDataCommandsTest(TestCase):
         c.warn("")
         c.failure("")
         c.duration()
+
+    def test_2016_primary_date(self):
+        """
+        Confirm correct calculation of 2016 primary date.
+        """
+        c = LoadOCDModelsCommand()
+        self.assertEqual(
+            timezone.datetime(
+                2016, 6, 7, tzinfo=timezone.utc
+            ),
+            c.get_regular_election_date(2016, 'PRIMARY'),
+        )
+
+    def test_2016_general_date(self):
+        """
+        Confirm correct calculation of 2016 general date.
+        """
+        c = LoadOCDModelsCommand()
+        self.assertEqual(
+            timezone.datetime(
+                2016, 11, 8, tzinfo=timezone.utc
+            ),
+            c.get_regular_election_date(2016, 'GENERAL'),
+        )
+
+    def test_2014_primary_date(self):
+        """
+        Confirm correct calculation of 2014 primary date.
+        """
+        c = LoadOCDModelsCommand()
+        self.assertEqual(
+            timezone.datetime(
+                2014, 6, 3, tzinfo=timezone.utc
+            ),
+            c.get_regular_election_date(2014, 'PRIMARY'),
+        )
+
+    def test_2010_general_date(self):
+        """
+        Confirm correct calculation of 2010 general date.
+        """
+        c = LoadOCDModelsCommand()
+        self.assertEqual(
+            timezone.datetime(
+                2010, 11, 2, tzinfo=timezone.utc
+            ),
+            c.get_regular_election_date(2010, 'GENERAL'),
+        )

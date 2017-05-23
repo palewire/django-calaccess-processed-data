@@ -3,6 +3,7 @@
 """
 Load the Candidacy models from records extracted from Form501Filings.
 """
+from datetime import date
 from django.core.management.base import CommandError
 from calaccess_raw.models import FilerToFilerTypeCd, LookupCodesCd
 from calaccess_processed.management.commands import LoadOCDModelsCommand
@@ -50,7 +51,15 @@ class Command(LoadOCDModelsCommand):
                 name__contains=election_type,
             )
         except (Election.DoesNotExist, Election.MultipleObjectsReturned):
-            election = None
+            # if it's a future primary, try to calculate the date
+            if year >= date.today().year and election_type == 'PRIMARY':
+                dt_obj = self.get_regular_election_date(year, election_type)
+                election = self.create_election(
+                    '{0} {1}'.format(year, election_type),
+                    dt_obj,
+                )
+            else:
+                election = None
 
         return election
 
@@ -162,7 +171,22 @@ class Command(LoadOCDModelsCommand):
             try:
                 contest = CandidateContest.objects.get(**contest_data)
             except CandidateContest.DoesNotExist:
-                contest = None
+                # if the election date is later than today, but no contest
+                if election.start_time.date() > date.today():
+                    # make the contest (CAL-ACCESS website might behind)
+                    contest = CandidateContest.objects.create(
+                        name=post.label.upper(),
+                        division=contest_data['division'],
+                        election=contest_data['election'],
+                    )
+                    contest.posts.create(
+                        contest=contest,
+                        post=contest_data['posts__post'],
+                    )
+                    if self.verbosity > 2:
+                        self.log(' Created new CandidateContest: %s' % contest.name)
+                else:
+                    contest = None
 
         return contest
 
@@ -232,7 +256,6 @@ class Command(LoadOCDModelsCommand):
         for form501 in unmatched_form501s_q.all():
             if self.verbosity > 2:
                 self.log(' Processing Form 501: %s' % form501.filing_id)
-                self.log(' See filing at: %s' % form501.pdf_url)
             self.process_form501(form501)
 
         return
