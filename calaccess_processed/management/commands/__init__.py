@@ -19,6 +19,7 @@ from django.utils import timezone
 from django.utils.termcolors import colorize
 from calaccess_raw import get_download_directory
 from calaccess_raw.models import FilerToFilerTypeCd
+from calaccess_processed.candidate_party_corrections import corrections
 from calaccess_processed.decorators import retry
 from opencivicdata.management.commands.loaddivisions import load_divisions
 from opencivicdata.models import (
@@ -549,6 +550,31 @@ class LoadOCDModelsCommand(CalAccessCommand):
 
         return (candidacy, candidacy_created)
 
+    def lookup_candidate_party_correction(self, candidate_name, year,
+                                          election_type, office):
+        """
+        Return the correct party for a given candidate name, year, election_type and office.
+
+        Return None if no correction found.
+        """
+        filtered = [
+            i[-1] for i in corrections if (
+                i[0] == candidate_name and
+                i[1] == year and
+                i[2] == election_type and
+                i[3] == office
+            )
+        ]
+
+        if len(filtered) > 1:
+            raise Exception('More than one correction found.')
+        elif len(filtered) == 0:
+            party = None
+        else:
+            party = filtered[0]
+
+        return party
+
     def lookup_party(self, party):
         """
         Return a Party with a name or abbreviation that matches party.
@@ -561,6 +587,9 @@ class LoadOCDModelsCommand(CalAccessCommand):
                 verbosity=self.verbosity,
                 no_color=self.no_color,
             )
+
+        if party in ['INDEPENDENT', 'NON-PARTISAN']:
+            party = 'NO PARTY PREFERENCE'
 
         try:
             # first by full name
@@ -588,6 +617,9 @@ class LoadOCDModelsCommand(CalAccessCommand):
         except FilerToFilerTypeCd.DoesNotExist:
             party = None
         else:
+            # transform "INDEPENDENT" and "NON-PARTISAN" to "NO PARTY PREFERENCE"
+            if party_cd in [16007, 16009]:
+                party_cd = 16012
             try:
                 party = Party.objects.get(identifiers__identifier=party_cd)
             except Party.DoesNotExist:

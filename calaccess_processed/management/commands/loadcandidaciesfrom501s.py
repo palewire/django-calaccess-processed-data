@@ -134,8 +134,18 @@ class Command(LoadOCDModelsCommand):
 
         Return Party object or None.
         """
-        party = self.lookup_party(form501.party)
-        # if unable to match form501 party, try looking in FilerToFilerTypes
+        # first try the corrections
+        party = self.lookup_candidate_party_correction(
+            '{0.last_name}, {0.first_name} {0.middle_name}'.format(form501).strip(),
+            form501.election_year,
+            form501.election_type,
+            '{0.office} {0.district}'.format(form501).strip(),
+        )
+        # then try using the party on the form501
+        if not party:
+            party = self.lookup_party(form501.party)
+
+        # finally, try looking in FilerToFilerTypes
         if not party:
             party = self.get_party_for_filer_id(
                 int(form501.filer_id),

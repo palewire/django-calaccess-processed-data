@@ -6,7 +6,7 @@ Load OCD Party model from LOOKUP_CODES_CD table in raw CAL-ACCESS data.
 import re
 from calaccess_raw.models.common import LookupCodesCd
 from calaccess_processed.management.commands import CalAccessCommand
-from opencivicdata.models.elections import Party
+from opencivicdata.models import Party
 
 
 class Command(CalAccessCommand):
@@ -28,7 +28,10 @@ class Command(CalAccessCommand):
         """
         Insert Party records from the raw LOOKUP_CODES_CD table.
         """
-        q = LookupCodesCd.objects.filter(code_type=16000).exclude(code_id=16000)
+        q = LookupCodesCd.objects.filter(code_type=16000).exclude(
+            # exclude "PARTY CODE" and "INDEPENDENT"
+            code_id__in=[16000, 16007]
+        )
 
         for lc in q:
             party, created = Party.objects.get_or_create(
