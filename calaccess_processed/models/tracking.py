@@ -17,7 +17,7 @@ class ProcessedDataVersion(models.Model):
     """
     raw_version = models.OneToOneField(
         'calaccess_raw.RawDataVersion',
-        related_name='processed_versions',
+        related_name='processed_version',
         verbose_name='raw data version',
         help_text='Foreign key referencing the raw data version processed'
     )
@@ -57,6 +57,34 @@ class ProcessedDataVersion(models.Model):
 
     def __str__(self):
         return str(self.raw_version.release_datetime)
+
+    @property
+    def update_completed(self):
+        """
+        Check if the database update to the version completed.
+
+        Return True or False.
+        """
+        if self.process_finish_datetime:
+            is_completed = True
+        else:
+            is_completed = False
+
+        return is_completed
+
+    @property
+    def update_stalled(self):
+        """
+        Check if the database update to the version started but did not complete.
+
+        Return True or False.
+        """
+        if self.process_start_datetime and not self.update_finish_datetime:
+            is_stalled = True
+        else:
+            is_stalled = False
+
+        return is_stalled
 
     def pretty_zip_size(self):
         """
