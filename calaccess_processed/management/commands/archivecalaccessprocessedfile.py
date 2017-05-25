@@ -8,7 +8,6 @@ from django.apps import apps
 from django.conf import settings
 from django.core.files import File
 from django.db import connection
-from calaccess_raw import get_download_directory
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed.models.tracking import (
     ProcessedDataVersion,
@@ -46,8 +45,7 @@ class Command(CalAccessCommand):
 
         # get the full path for archiving the csv
         self.csv_path = os.path.join(
-            get_download_directory(),
-            'processed',
+            self.processed_data_dir,
             '%s.csv' % self.model_name,
         )
         # get model
@@ -69,7 +67,7 @@ class Command(CalAccessCommand):
             )
 
         if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
-            # Remove previous .CSV and error log files
+            # Remove previous .CSV files
             self.processed_file.file_archive.delete()
 
             with connection.cursor() as c:
@@ -86,3 +84,6 @@ class Command(CalAccessCommand):
                     '%s.csv' % self.model_name,
                     File(csv_file),
                 )
+
+        self.processed_file.file_size = os.path.getsize(self.csv_path)
+        self.processed_file.save()
