@@ -5,7 +5,6 @@ Export and archive a .csv file for a given model.
 """
 import os
 from django.apps import apps
-from django.conf import settings
 from django.core.files import File
 from django.db import connection
 from calaccess_processed.management.commands import CalAccessCommand
