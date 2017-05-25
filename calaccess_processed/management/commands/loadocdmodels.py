@@ -4,6 +4,7 @@
 Load data extracted from scrape and raw data snapshot into OCD models.
 """
 from django.apps import apps
+from django.conf import settings
 from django.utils.timezone import now
 from django.core.management import call_command
 from calaccess_processed.models import ProcessedDataVersion
@@ -27,7 +28,9 @@ class Command(CalAccessCommand):
         self.start_datetime = now()
         self.load()
         self.finish_datetime = now()
-        self.archive()
+        # archive if django project setting enabled
+        if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
+            self.archive()
 
         self.success('Done!')
         self.duration()

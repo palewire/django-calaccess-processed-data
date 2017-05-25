@@ -4,6 +4,7 @@
 Load and archive the CAL-ACCESS Filing and FilingVersion models.
 """
 from django.apps import apps
+from django.conf import settings
 from django.core.management import call_command
 from django.db import connection
 from django.utils.timezone import now
@@ -158,8 +159,10 @@ class Command(CalAccessCommand):
             processed_file.process_finish_datetime = now()
             processed_file.save()
 
-            call_command(
-                'archivecalaccessprocessedfile',
-                'calaccess_processed',
-                m._meta.object_name,
-            )
+            # archive if django project setting enabled
+            if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
+                call_command(
+                    'archivecalaccessprocessedfile',
+                    'calaccess_processed',
+                    m._meta.object_name,
+                )

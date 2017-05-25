@@ -66,24 +66,23 @@ class Command(CalAccessCommand):
                 version=ProcessedDataVersion.objects.latest('process_start_datetime')
             )
 
-        if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
-            # Remove previous .CSV files
-            self.processed_file.file_archive.delete()
+        # Remove previous .CSV files
+        self.processed_file.file_archive.delete()
 
-            with connection.cursor() as c:
-                c.execute(
-                    """
-                    COPY {db_table} TO '{csv_path}' CSV HEADER;
-                    """.format(**self.__dict__)
-                )
+        with connection.cursor() as c:
+            c.execute(
+                """
+                COPY {db_table} TO '{csv_path}' CSV HEADER;
+                """.format(**self.__dict__)
+            )
 
-            # Open up the .CSV file for reading so we can wrap it in the Django File obj
-            with open(self.csv_path, 'rb') as csv_file:
-                # Save the .CSV on the raw data file
-                self.processed_file.file_archive.save(
-                    '%s.csv' % self.model_name,
-                    File(csv_file),
-                )
+        # Open up the .CSV file for reading so we can wrap it in the Django File obj
+        with open(self.csv_path, 'rb') as csv_file:
+            # Save the .CSV on the raw data file
+            self.processed_file.file_archive.save(
+                '%s.csv' % self.model_name,
+                File(csv_file),
+            )
 
         self.processed_file.file_size = os.path.getsize(self.csv_path)
         self.processed_file.save()

@@ -4,6 +4,7 @@
 Load data into processed CAL-ACCESS models, archive processed files and ZIP.
 """
 import os
+from django.conf import settings
 from django.core.management import call_command
 from django.core.files import File
 from django.utils.timezone import now
@@ -51,7 +52,7 @@ class Command(CalAccessCommand):
         if self.processed_version.update_completed and not self.force_restart:
             msg_tmp = 'Processing completed at %s.'
             self.success(
-                msg_tmp % self.processed_version.release_datetime.ctime()
+                msg_tmp % self.processed_version.process_finish_datetime.ctime()
             )
         else:
             # start the clock if created (or restart if forcing restart)
@@ -68,8 +69,10 @@ class Command(CalAccessCommand):
                 self.scrape_all()
             # then load
             self.load()
-            # then zip
-            self.zip()
+            # zip only if django project setting enabled
+            if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
+                # then zip
+                self.zip()
 
             self.success('Processing complete')
             self.duration()

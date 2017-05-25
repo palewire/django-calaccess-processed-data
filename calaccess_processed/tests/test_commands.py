@@ -16,6 +16,7 @@ from calaccess_processed.management.commands import (
 from calaccess_processed.models import (
     ScrapedCandidate,
     ScrapedProposition,
+    ProcessedDataVersion,
 )
 from opencivicdata.models import (
     BallotMeasureContest,
@@ -51,10 +52,11 @@ class ProcessedDataCommandsTest(TestCase):
         """
         Run the data loading and processing commands.
         """
-        with self.assertRaises(CommandError):
-            call_command("processcalaccessdata", verbosity=3, noinput=True)
-        call_command("updatecalaccessrawdata", verbosity=3, test_data=True, noinput=True)
-        call_command("processcalaccessdata", verbosity=3, noinput=True, scrape=False)
+        with self.settings(CALACCESS_STORE_ARCHIVE=True):
+            with self.assertRaises(CommandError):
+                call_command("processcalaccessdata", verbosity=3, noinput=True)
+            call_command("updatecalaccessrawdata", verbosity=3, test_data=True, noinput=True)
+            call_command("processcalaccessdata", verbosity=3, noinput=True, scrape=False)
 
         # Confirm count of scraped propositions with a name that doesn't
         # include "RECALL" equals the count of loaded BallotMeasureContest.
@@ -85,6 +87,29 @@ class ProcessedDataCommandsTest(TestCase):
             self.assertTrue(
                 contest.candidacies.filter(is_incumbent=True).count() <= 1,
                 msg="Multiple incumbents in {}!".format(contest),
+            )
+
+        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+        # Confirm that the version finished
+        self.assertTrue(processed_version.update_completed)
+        # Confirm that zip file was archived
+        self.assertTrue(processed_version.zip_archive)
+        # Confirm that the size is correct
+        self.assertEqual(
+            processed_version.zip_size,
+            os.path.getsize(processed_version.zip_archive.path)
+        )
+
+        # For each processed data file...
+        for df in processed_version.files:
+            # Confirm the update completed
+            self.assertTrue(df.update_completed)
+            # Confirm that csv files where archived
+            self.assertTrue(df.file_archive)
+            # Confirm the correct file size
+            self.assertEqual(
+                df.file_size,
+                os.path.getsize(processed_version.file_archive.path)
             )
 
     def test_base_command(self):
