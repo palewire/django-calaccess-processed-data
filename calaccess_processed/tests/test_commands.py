@@ -54,7 +54,7 @@ class ProcessedDataCommandsTest(TestCase):
         with self.assertRaises(CommandError):
             call_command("processcalaccessdata", verbosity=3, noinput=True)
         call_command("updatecalaccessrawdata", verbosity=3, test_data=True, noinput=True)
-        call_command("processcalaccessdata", verbosity=3, noinput=True)
+        call_command("processcalaccessdata", verbosity=3, noinput=True, scrape=False)
 
         # Confirm count of scraped propositions with a name that doesn't
         # include "RECALL" equals the count of loaded BallotMeasureContest.

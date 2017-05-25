@@ -10,15 +10,16 @@ from six.moves.urllib.parse import urljoin
 from six.moves.urllib.request import url2pathname
 import requests
 from bs4 import BeautifulSoup
-from datetime import date, datetime
+from datetime import date
 from django.conf import settings
-from django.core.management import call_command
+from django.core.management import call_command, CommandError
 from django.core.management.base import BaseCommand
 from django.core.exceptions import MultipleObjectsReturned
 from django.utils import timezone
 from django.utils.termcolors import colorize
 from calaccess_raw import get_download_directory
-from calaccess_raw.models import FilerToFilerTypeCd
+from calaccess_raw.models import RawDataVersion, FilerToFilerTypeCd
+from calaccess_processed.models import ProcessedDataVersion
 from calaccess_processed.candidate_party_corrections import corrections
 from calaccess_processed.decorators import retry
 from opencivicdata.management.commands.loaddivisions import load_divisions
@@ -53,15 +54,45 @@ class CalAccessCommand(BaseCommand):
         self.no_color = options.get("no_color")
 
         # Start the clock
-        self.start_datetime = datetime.now()
+        self.start_datetime = timezone.now()
 
         # set up processed data directory
+        self.data_dir = get_download_directory()
         self.processed_data_dir = os.path.join(
-            get_download_directory(),
+            self.data_dir,
             'processed',
         )
         if not os.path.exists(self.processed_data_dir):
             os.makedirs(self.processed_data_dir)
+
+    def get_or_create_processed_version(self):
+        """
+        Get or create the current processed version.
+
+        Return a tuple (ProcessedDataVersion object, created), where
+        created is a boolean specifying whether a version was created.
+        """
+        # get the latest raw data version
+        try:
+            latest_raw_version = RawDataVersion.objects.latest(
+                'release_datetime',
+            )
+        except RawDataVersion.DoesNotExist:
+            raise CommandError(
+                'No raw CAL-ACCESS data loaded (run `python manage.py '
+                'updatecalaccessrawdata`).'
+            )
+
+        # check if latest raw version update completed
+        if latest_raw_version.update_stalled:
+            msg_tmp = 'Update to raw version released at %s did not complete'
+            raise CommandError(
+                msg_tmp % latest_raw_version.release_datetime.ctime()
+            )
+
+        return ProcessedDataVersion.objects.get_or_create(
+            raw_version=latest_raw_version,
+        )
 
     def header(self, string):
         """
@@ -112,7 +143,7 @@ class CalAccessCommand(BaseCommand):
         """
         Calculates how long command has been running and writes it to stdout.
         """
-        duration = datetime.now() - self.start_datetime
+        duration = timezone.now() - self.start_datetime
         self.stdout.write('Duration: {}'.format(str(duration)))
         logger.debug('Duration: {}'.format(str(duration)))
 
@@ -654,7 +685,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
             if survivor.id != persons[i].id:
                 merge(survivor, persons[i])
 
-        # also delete the now duplicated PersonIdentifier objects
+        # also delete the timezone.now duplicated PersonIdentifier objects
         if survivor.identifiers.count() > 1:
             for i in survivor.identifiers.filter(scheme='calaccess_filer_id')[1:]:
                 i.delete()
