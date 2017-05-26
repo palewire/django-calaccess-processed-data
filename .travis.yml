@@ -19,8 +19,8 @@ install:
  - pip install -q Django==$DJANGO_VERSION
 
 before_script:
-  - psql -c 'create database calaccess_processed;' -U echo $USER
-  - psql -c "CREATE EXTENSION postgis;" -U echo $USER -d calaccess_processed
+  - psql -c 'create database calaccess_processed;' -U $USER
+  - psql -c "CREATE EXTENSION postgis;" -U $USER -d calaccess_processed
   - cp example/settings_local.py.template example/settings_local.py
 
 script:
