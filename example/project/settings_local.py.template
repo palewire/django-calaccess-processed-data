@@ -1,0 +1,14 @@
+import os
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'calaccess_processed',
+        'USER': os.getenv('USER'),
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    },
+}
+
+CALACCESS_STORE_ARCHIVE = True
