@@ -21,7 +21,7 @@ install:
 before_script:
   - psql -c 'create database calaccess_processed;' -U $USER
   - psql -c "CREATE EXTENSION postgis;" -U $USER -d calaccess_processed
-  - cp example/settings_local.py.template example/settings_local.py
+  - cp example/project/settings_local.py.template example/project/settings_local.py
 
 script:
  - flake8 calaccess_processed
