@@ -19,7 +19,7 @@ install:
  - pip install -q Django==$DJANGO_VERSION
 
 before_script:
-  - chown -R postgres ~/california-civic-data-coalition/django-calaccess-processed-data/example/test-data/
+  - chown -R postgres ~/build/california-civic-data-coalition/django-calaccess-processed-data/example/test-data/
   - psql -c 'create database calaccess_processed;' -U postgres
   - psql -c "CREATE EXTENSION postgis;" -U postgres -d calaccess_processed
 
