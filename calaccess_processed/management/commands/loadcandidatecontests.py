@@ -384,9 +384,9 @@ class Command(LoadOCDModelsCommand):
 
         candidacy, candidacy_created = self.get_or_create_candidacy(
             contest,
+            scraped_candidate.name,
+            registration_status,
             filer_id=scraped_candidate.scraped_id,
-            person_name=scraped_candidate.name,
-            registration_status=registration_status,
         )
 
         if candidacy_created and self.verbosity > 2:

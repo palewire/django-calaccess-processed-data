@@ -25,9 +25,7 @@ class Command(CalAccessCommand):
 
         self.processed_version = ProcessedDataVersion.objects.latest()
 
-        self.start_datetime = now()
         self.load()
-        self.finish_datetime = now()
         # archive if django project setting enabled
         if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
             self.archive()
@@ -104,14 +102,14 @@ class Command(CalAccessCommand):
             processed_data_file, created = self.processed_version.files.get_or_create(
                 file_name=m,
             )
-            processed_data_file.process_start_time = self.start_datetime
+            processed_data_file.process_start_time = now()
             processed_data_file.save()
             call_command(
                 'archivecalaccessprocessedfile',
                 'opencivicdata',
                 m,
             )
-            processed_data_file.process_finish_time = self.finish_datetime
+            processed_data_file.process_finish_time = now()
             processed_data_file.save()
 
         self.duration()

@@ -90,6 +90,7 @@ class ProcessedDataCommandsTest(TestCase):
             )
 
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+
         # Confirm that the version finished
         self.assertTrue(processed_version.update_completed)
         # Confirm that zip file was archived
@@ -101,9 +102,9 @@ class ProcessedDataCommandsTest(TestCase):
         )
 
         # For each processed data file...
-        for df in processed_version.files:
+        for df in processed_version.files.all():
             # Confirm the update completed
-            self.assertTrue(df.update_completed)
+            self.assertTrue(df.process_finish_datetime)
             # Confirm that csv files where archived
             self.assertTrue(df.file_archive)
             # Confirm the correct file size

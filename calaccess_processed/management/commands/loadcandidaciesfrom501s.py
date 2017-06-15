@@ -225,15 +225,15 @@ class Command(LoadOCDModelsCommand):
                     registration_status = 'filed'
 
                 # format the name
-                name = '{0.last_name}, {0.first_name} {0.middle_name}'.format(
+                person_name = '{0.last_name}, {0.first_name} {0.middle_name}'.format(
                     form501
                 ).strip()
                 # Create the Candidacy
                 candidacy, candidacy_created = self.get_or_create_candidacy(
                     contest,
+                    person_name,
+                    registration_status,
                     filer_id=form501.filer_id,
-                    person_name=name,
-                    registration_status=registration_status,
                 )
 
                 if candidacy_created and self.verbosity > 2:

@@ -57,9 +57,10 @@ class Command(CalAccessCommand):
         else:
             # start the clock if created (or restart if forcing restart)
             if created or self.force_restart:
-                self.processed_version.processed_start_datetime = now()
-                # scrape only if not skipping
-                # and either forcing restart or no models loaded yet
+                self.processed_version.process_start_datetime = now()
+                self.processed_version.save()
+            # scrape only if not skipping
+            # and either forcing restart or no models loaded yet
             if (
                 self.scrape and (
                     self.force_restart or
@@ -74,6 +75,8 @@ class Command(CalAccessCommand):
                 # then zip
                 self.zip()
 
+            self.processed_version.process_finish_datetime = now()
+            self.processed_version.save()
             self.success('Processing complete')
             self.duration()
 
