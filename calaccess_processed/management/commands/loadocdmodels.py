@@ -102,14 +102,14 @@ class Command(CalAccessCommand):
             processed_data_file, created = self.processed_version.files.get_or_create(
                 file_name=m,
             )
-            processed_data_file.process_start_time = now()
+            processed_data_file.process_start_datetime = now()
             processed_data_file.save()
+
             call_command(
                 'archivecalaccessprocessedfile',
                 'opencivicdata',
                 m,
             )
-            processed_data_file.process_finish_time = now()
+            processed_data_file.refresh_from_db()
+            processed_data_file.process_finish_datetime = now()
             processed_data_file.save()
-
-        self.duration()
