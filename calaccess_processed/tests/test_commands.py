@@ -5,7 +5,7 @@ Unittests for management commands.
 """
 import os
 from django.utils import timezone
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
 from calaccess_raw import get_test_download_directory
@@ -26,6 +26,7 @@ from opencivicdata.models import (
 )
 
 
+@override_settings(CALACCESS_STORE_ARCHIVE=True)
 class ProcessedDataCommandsTest(TestCase):
     """
     Run and test management commands.
@@ -52,11 +53,10 @@ class ProcessedDataCommandsTest(TestCase):
         """
         Run the data loading and processing commands.
         """
-        with self.settings(CALACCESS_STORE_ARCHIVE=True):
-            with self.assertRaises(CommandError):
-                call_command("processcalaccessdata", verbosity=3, noinput=True)
-            call_command("updatecalaccessrawdata", verbosity=3, test_data=True, noinput=True)
-            call_command("processcalaccessdata", verbosity=3, noinput=True, scrape=False)
+        with self.assertRaises(CommandError):
+            call_command("processcalaccessdata", verbosity=3, noinput=True)
+        call_command("updatecalaccessrawdata", verbosity=3, test_data=True, noinput=True)
+        call_command("processcalaccessdata", verbosity=3, noinput=True, scrape=False)
 
         # Confirm count of scraped propositions with a name that doesn't
         # include "RECALL" equals the count of loaded BallotMeasureContest.
