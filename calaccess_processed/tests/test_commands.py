@@ -110,7 +110,7 @@ class ProcessedDataCommandsTest(TestCase):
             # Confirm the correct file size
             self.assertEqual(
                 df.file_size,
-                os.path.getsize(processed_version.file_archive.path)
+                os.path.getsize(df.file_archive.path)
             )
 
     def test_base_command(self):
