@@ -22,7 +22,7 @@ before_script:
   - cp example/project/settings_local.py.template example/settings_local.py
   - psql -c 'create database calaccess_processed;' -U postgres
   - psql -c "CREATE EXTENSION postgis;" -U postgres -d calaccess_processed
-  - sudo chmod -R 777 /home/travis/build/california-civic-data-coalition/django-calaccess-processed-data/example/test-data/processed/
+  - sudo chmod -R 777 /home/travis/build/california-civic-data-coalition/django-calaccess-processed-data/example/test-data/
 
 script:
  - flake8 calaccess_processed
