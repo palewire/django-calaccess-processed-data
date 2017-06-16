@@ -69,6 +69,8 @@ class Command(CalAccessCommand):
         # Remove previous .CSV files
         self.processed_file.file_archive.delete()
 
+        print(self.csv_path)
+
         with connection.cursor() as c:
             c.execute(
                 """
