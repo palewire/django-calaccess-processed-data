@@ -261,7 +261,6 @@ class Command(LoadOCDModelsCommand):
             filing_id__in=[
                 i['extras']['form501filingid'] for i in candidacies_w_form501_q
             ]
-        # exclude Public Employees Retirement Board candidates
         ).exclude(office__icontains='RETIREMENT')
 
         for form501 in unmatched_form501s_q.all():
