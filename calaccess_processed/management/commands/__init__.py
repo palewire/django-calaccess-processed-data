@@ -522,8 +522,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
 
         return (person, created)
 
-    def get_or_create_candidacy(self, contest_obj, person_name, filer_id=None,
-                                registration_status='qualified'):
+    def get_or_create_candidacy(self, contest_obj, person_name, registration_status, filer_id=None):
         """
         Get or create a Candidacy object.
 
@@ -557,6 +556,8 @@ class LoadOCDModelsCommand(CalAccessCommand):
                     post=contest_obj.posts.all()[0].post,
                     person__sort_name=person_name,
                 )
+            except Candidacy.MultipleObjectsReturned:
+                import ipdb; ipdb.set_trace() # noqa
             except Candidacy.DoesNotExist:
                 person, person_created = self.get_or_create_person(
                     person_name,
@@ -683,9 +684,15 @@ class LoadOCDModelsCommand(CalAccessCommand):
         # loop over all the rest of them
         for i in range(1, len(persons)):
             if survivor.id != persons[i].id:
-                merge(survivor, persons[i])
+                if (
+                    survivor.name != persons[i].name or
+                    survivor.sort_name != persons[i].sort_name
+                ):
+                    import ipdb; ipdb.set_trace() # noqa
+                else:
+                    merge(survivor, persons[i])
 
-        # also delete the timezone.now duplicated PersonIdentifier objects
+        # also delete the now duplicated PersonIdentifier objects
         if survivor.identifiers.count() > 1:
             for i in survivor.identifiers.filter(scheme='calaccess_filer_id')[1:]:
                 i.delete()

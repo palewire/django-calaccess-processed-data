@@ -67,9 +67,6 @@ class Command(CalAccessCommand):
         filing_models = self.get_model_list('filing')
         self.load_model_list(filing_models)
 
-        self.processed_version.process_finish_datetime = now()
-        self.processed_version.save()
-
         self.success("Done!")
 
     def get_model_list(self, model_type):

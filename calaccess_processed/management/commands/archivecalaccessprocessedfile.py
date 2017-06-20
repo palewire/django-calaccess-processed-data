@@ -54,19 +54,22 @@ class Command(CalAccessCommand):
 
         self.log(" Archiving %s.csv" % self.model._meta.object_name)
 
-        # get the processed file object
+        # get the current version
+        self.version = ProcessedDataVersion.objects.latest('process_start_datetime')
+
+        # and the processed file object
         try:
-            self.processed_file = ProcessedDataFile.objects.filter(
-                file_name=self.model_name.lower()
-            ).latest('process_finish_datetime')
+            self.processed_file = self.version.files.get(file_name=self.model_name)
         except ProcessedDataFile.DoesNotExist:
-            self.processed_file = ProcessedDataFile.objects.create(
-                file_name=self.model_name.lower(),
-                version=ProcessedDataVersion.objects.latest('process_start_datetime')
+            self.processed_file = self.version.files.create(
+                file_name=self.model_name,
+                records_count=self.model.objects.count(),
             )
 
         # Remove previous .CSV files
         self.processed_file.file_archive.delete()
+
+        print(self.csv_path)
 
         with connection.cursor() as c:
             c.execute(

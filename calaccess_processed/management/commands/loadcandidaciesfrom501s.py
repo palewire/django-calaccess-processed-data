@@ -225,15 +225,15 @@ class Command(LoadOCDModelsCommand):
                     registration_status = 'filed'
 
                 # format the name
-                name = '{0.last_name}, {0.first_name} {0.middle_name}'.format(
+                person_name = '{0.last_name}, {0.first_name} {0.middle_name}'.format(
                     form501
                 ).strip()
                 # Create the Candidacy
                 candidacy, candidacy_created = self.get_or_create_candidacy(
                     contest,
+                    person_name,
+                    registration_status,
                     filer_id=form501.filer_id,
-                    person_name=name,
-                    registration_status=registration_status,
                 )
 
                 if candidacy_created and self.verbosity > 2:
@@ -261,7 +261,7 @@ class Command(LoadOCDModelsCommand):
             filing_id__in=[
                 i['extras']['form501filingid'] for i in candidacies_w_form501_q
             ]
-        )
+        ).exclude(office__icontains='RETIREMENT')
 
         for form501 in unmatched_form501s_q.all():
             if self.verbosity > 2:

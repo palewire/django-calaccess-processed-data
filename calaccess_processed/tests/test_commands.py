@@ -4,10 +4,11 @@
 Unittests for management commands.
 """
 import os
-from django.utils import timezone
-from django.test import TestCase
+from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
+from django.utils import timezone
+from django.test import TestCase, override_settings
 from calaccess_raw import get_test_download_directory
 from calaccess_processed.management.commands import (
     CalAccessCommand,
@@ -26,6 +27,7 @@ from opencivicdata.models import (
 )
 
 
+@override_settings(CALACCESS_STORE_ARCHIVE=False)
 class ProcessedDataCommandsTest(TestCase):
     """
     Run and test management commands.
@@ -52,11 +54,10 @@ class ProcessedDataCommandsTest(TestCase):
         """
         Run the data loading and processing commands.
         """
-        with self.settings(CALACCESS_STORE_ARCHIVE=True):
-            with self.assertRaises(CommandError):
-                call_command("processcalaccessdata", verbosity=3, noinput=True)
-            call_command("updatecalaccessrawdata", verbosity=3, test_data=True, noinput=True)
-            call_command("processcalaccessdata", verbosity=3, noinput=True, scrape=False)
+        with self.assertRaises(CommandError):
+            call_command("processcalaccessdata", verbosity=3, noinput=True)
+        call_command("updatecalaccessrawdata", verbosity=3, test_data=True, noinput=True)
+        call_command("processcalaccessdata", verbosity=3, noinput=True, scrape=False)
 
         # Confirm count of scraped propositions with a name that doesn't
         # include "RECALL" equals the count of loaded BallotMeasureContest.
@@ -89,28 +90,30 @@ class ProcessedDataCommandsTest(TestCase):
                 msg="Multiple incumbents in {}!".format(contest),
             )
 
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        # Confirm that the version finished
-        self.assertTrue(processed_version.update_completed)
-        # Confirm that zip file was archived
-        self.assertTrue(processed_version.zip_archive)
-        # Confirm that the size is correct
-        self.assertEqual(
-            processed_version.zip_size,
-            os.path.getsize(processed_version.zip_archive.path)
-        )
+        if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
+            processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
 
-        # For each processed data file...
-        for df in processed_version.files:
-            # Confirm the update completed
-            self.assertTrue(df.update_completed)
-            # Confirm that csv files where archived
-            self.assertTrue(df.file_archive)
-            # Confirm the correct file size
+            # Confirm that the version finished
+            self.assertTrue(processed_version.update_completed)
+            # Confirm that zip file was archived
+            self.assertTrue(processed_version.zip_archive)
+            # Confirm that the size is correct
             self.assertEqual(
-                df.file_size,
-                os.path.getsize(processed_version.file_archive.path)
+                processed_version.zip_size,
+                os.path.getsize(processed_version.zip_archive.path)
             )
+
+            # For each processed data file...
+            for df in processed_version.files.all():
+                # Confirm the update completed
+                self.assertTrue(df.process_finish_datetime)
+                # Confirm that csv files where archived
+                self.assertTrue(df.file_archive)
+                # Confirm the correct file size
+                self.assertEqual(
+                    df.file_size,
+                    os.path.getsize(df.file_archive.path)
+                )
 
     def test_base_command(self):
         """
