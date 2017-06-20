@@ -4,10 +4,11 @@
 Unittests for management commands.
 """
 import os
-from django.utils import timezone
-from django.test import TestCase, override_settings
+from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
+from django.utils import timezone
+from django.test import TestCase, override_settings
 from calaccess_raw import get_test_download_directory
 from calaccess_processed.management.commands import (
     CalAccessCommand,
@@ -26,7 +27,7 @@ from opencivicdata.models import (
 )
 
 
-@override_settings(CALACCESS_STORE_ARCHIVE=True)
+@override_settings(CALACCESS_STORE_ARCHIVE=False)
 class ProcessedDataCommandsTest(TestCase):
     """
     Run and test management commands.
@@ -89,29 +90,30 @@ class ProcessedDataCommandsTest(TestCase):
                 msg="Multiple incumbents in {}!".format(contest),
             )
 
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+        if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
+            processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
 
-        # Confirm that the version finished
-        self.assertTrue(processed_version.update_completed)
-        # Confirm that zip file was archived
-        self.assertTrue(processed_version.zip_archive)
-        # Confirm that the size is correct
-        self.assertEqual(
-            processed_version.zip_size,
-            os.path.getsize(processed_version.zip_archive.path)
-        )
-
-        # For each processed data file...
-        for df in processed_version.files.all():
-            # Confirm the update completed
-            self.assertTrue(df.process_finish_datetime)
-            # Confirm that csv files where archived
-            self.assertTrue(df.file_archive)
-            # Confirm the correct file size
+            # Confirm that the version finished
+            self.assertTrue(processed_version.update_completed)
+            # Confirm that zip file was archived
+            self.assertTrue(processed_version.zip_archive)
+            # Confirm that the size is correct
             self.assertEqual(
-                df.file_size,
-                os.path.getsize(df.file_archive.path)
+                processed_version.zip_size,
+                os.path.getsize(processed_version.zip_archive.path)
             )
+
+            # For each processed data file...
+            for df in processed_version.files.all():
+                # Confirm the update completed
+                self.assertTrue(df.process_finish_datetime)
+                # Confirm that csv files where archived
+                self.assertTrue(df.file_archive)
+                # Confirm the correct file size
+                self.assertEqual(
+                    df.file_size,
+                    os.path.getsize(df.file_archive.path)
+                )
 
     def test_base_command(self):
         """
