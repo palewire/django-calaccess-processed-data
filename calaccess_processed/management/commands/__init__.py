@@ -22,18 +22,16 @@ from calaccess_raw.models import RawDataVersion, FilerToFilerTypeCd
 from calaccess_processed.models import ProcessedDataVersion
 from calaccess_processed.candidate_party_corrections import corrections
 from calaccess_processed.decorators import retry
-from opencivicdata.management.commands.loaddivisions import load_divisions
-from opencivicdata.models import (
+from opencivicdata.core.management.commands.loaddivisions import load_divisions
+from opencivicdata.core.models import (
     Division,
     Jurisdiction,
     Organization,
-    Party,
     Person,
     Post,
-    Candidacy,
 )
-from opencivicdata.models.elections import Election
-from opencivicdata.models.merge import merge
+from opencivicdata.elections.models import Election, Candidacy
+from opencivicdata.merge import merge
 logger = logging.getLogger(__name__)
 
 
@@ -610,7 +608,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
         """
         Return a Party with a name or abbreviation that matches party.
         """
-        if not Party.objects.exists():
+        if not Organizations.filter(classification='party').objects.exists():
             if self.verbosity > 2:
                 self.log(" No parties loaded.")
             call_command(
@@ -619,17 +617,19 @@ class LoadOCDModelsCommand(CalAccessCommand):
                 no_color=self.no_color,
             )
 
-        if party in ['INDEPENDENT', 'NON-PARTISAN']:
-            party = 'NO PARTY PREFERENCE'
+        party_q = Organization.objects.filter(classification='party')
 
         try:
             # first by full name
-            party = Party.objects.get(name=party)
-        except Party.DoesNotExist:
+            party = party_q.get(name=party)
+        except Organization.DoesNotExist:
+            # then try an alternate name
             try:
-                # then by abbrevation
-                party = Party.objects.get(abbreviation=party)
-            except Party.DoesNotExist:
+                # then try alternate names
+                party = Organization.objects.get(
+                    other_name__name=party,
+                )
+            except Organization.DoesNotExist:
                 party = None
 
         return party
