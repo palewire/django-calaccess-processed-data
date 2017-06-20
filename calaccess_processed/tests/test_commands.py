@@ -27,7 +27,7 @@ from opencivicdata.models import (
 )
 
 
-@override_settings(CALACCESS_STORE_ARCHIVE=False)
+@override_settings(CALACCESS_STORE_ARCHIVE=True)
 class ProcessedDataCommandsTest(TestCase):
     """
     Run and test management commands.
