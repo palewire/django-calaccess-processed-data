@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Includes a mapping of special election names to dates.
+Includes correct party affiliation for candidate in specific contests.
 """
 corrections = (
     # http://elections.cdn.sos.ca.gov/statewide-elections/2014-primary/updated-contact-info.pdf # noqa
