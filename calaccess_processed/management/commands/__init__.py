@@ -61,7 +61,10 @@ class CalAccessCommand(BaseCommand):
             'processed',
         )
         if not os.path.exists(self.processed_data_dir):
+            # make the processed data director
             os.makedirs(self.processed_data_dir)
+            # set permissions to allow other users to write and execute
+            os.chmod(self.data_dir, 0o703)
 
     def get_or_create_processed_version(self):
         """
@@ -558,6 +561,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
                 )
             except Candidacy.MultipleObjectsReturned:
                 import ipdb; ipdb.set_trace() # noqa
+                # merge issue, needs to be investigated
             except Candidacy.DoesNotExist:
                 person, person_created = self.get_or_create_person(
                     person_name,
