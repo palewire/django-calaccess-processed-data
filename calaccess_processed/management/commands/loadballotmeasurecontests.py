@@ -7,9 +7,8 @@ import re
 from django.utils import timezone
 from calaccess_processed.management.commands import LoadOCDModelsCommand
 from calaccess_processed.models.scraper import PropositionScrapedElection
-from opencivicdata.models.elections import Election
-from opencivicdata.models.elections.contests import (
-    ContestBase,
+from opencivicdata.elections.models import (
+    Election,
     BallotMeasureContest,
 )
 
@@ -60,25 +59,23 @@ class Command(LoadOCDModelsCommand):
         prop_name_pattern = r'^(?P<date>^[A-Z]+\s\d{1,2},\s\d{4})\s(?P<name>.+)$'
         # extract the name and date
         match = re.match(prop_name_pattern, scraped_elec.name)
-        dt_obj = timezone.make_aware(
-            timezone.datetime.strptime(
-                match.groupdict()['date'],
-                '%B %d, %Y',
-            )
-        )
+        date_obj = timezone.datetime.strptime(
+            match.groupdict()['date'],
+            '%B %d, %Y',
+        ).date()
         name = '{0} {1}'.format(
-            dt_obj.year,
+            date_obj.year,
             match.groupdict()['name'],
         ).upper()
         # Differentiate between two '2008 PRIMARY' ballot measure elections
-        if name == '2008 PRIMARY' and dt_obj.month == 2:
+        if name == '2008 PRIMARY' and date_obj.month == 2:
             name = "2008 PRESIDENTIAL PRIMARY AND SPECIAL ELECTIONS"
         # try getting an existing Election with the same date
         try:
-            elec = Election.objects.get(start_time=dt_obj)
+            elec = Election.objects.get(date=date_obj)
         except Election.DoesNotExist:
             # or make a new one
-            elec = self.create_election(name, dt_obj)
+            elec = self.create_election(name, date_obj)
             created = True
         else:
             created = False
@@ -142,11 +139,11 @@ class Command(LoadOCDModelsCommand):
             for scraped_prop in self.get_scraped_props(scraped_elec):
                 try:
                     # Try getting the contest using scraped_id
-                    ocd_contest = ocd_elec.contests.get(
+                    ocd_contest = ocd_elec.ballotmeasurecontests.get(
                         identifiers__scheme='calaccess_measure_id',
                         identifiers__identifier=scraped_prop.scraped_id,
                     )
-                except ContestBase.DoesNotExist:
+                except BallotMeasureContest.DoesNotExist:
                     # If not there, create one
                     ocd_contest = self.create_contest(scraped_prop, ocd_elec)
                     # Add the options

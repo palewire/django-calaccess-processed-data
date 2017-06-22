@@ -4,6 +4,7 @@
 Load CandidateContest and related models with data scraped from the CAL-ACCESS website.
 """
 import re
+from datetime import date
 from django.utils import timezone
 from django.db.models import (
     IntegerField,
@@ -21,12 +22,8 @@ from calaccess_processed.models import (
     IncumbentScrapedElection,
     Form501Filing,
 )
-from opencivicdata.models import (
-    Election,
-    CandidateContest,
-    Membership,
-    Party,
-)
+from opencivicdata.core.models import Membership, Organization
+from opencivicdata.elections.models import Election, CandidateContest
 
 
 class Command(LoadOCDModelsCommand):
@@ -88,9 +85,7 @@ class Command(LoadOCDModelsCommand):
         """
         if election_name in (x[0] for x in special_elections.names_to_dates):
             date = dict(special_elections.names_to_dates)[election_name]
-            date_obj = timezone.make_aware(
-                timezone.datetime.strptime(date, '%Y-%m-%d'),
-            )
+            date_obj = timezone.datetime.strptime(date, '%Y-%m-%d').date()
         else:
             # if not in the hard-coded list above, check the scraped
             # incumbent elections.
@@ -100,12 +95,7 @@ class Command(LoadOCDModelsCommand):
                 name__icontains=parsed_name['type'],
             )
             if incumbent_elections_q.count() == 1:
-                date_obj = timezone.make_aware(
-                    timezone.datetime.combine(
-                        incumbent_elections_q[0].date,
-                        timezone.datetime.min.time(),
-                    )
-                )
+                date_obj = incumbent_elections_q[0].date
             else:
                 try:
                     date_obj = self.get_regular_election_date(
@@ -131,16 +121,12 @@ class Command(LoadOCDModelsCommand):
             try:
                 ocd_election = Election.objects.get(
                     name=election_name,
-                    start_time=timezone.datetime(
-                        2008, 6, 3, 0, 0, tzinfo=timezone.utc
-                    ),
+                    date=date(2008, 6, 3),
                 )
             except Election.DoesNotExist:
                 ocd_election = self.create_election(
                     election_name,
-                    timezone.datetime(
-                        2008, 6, 3, 0, 0, tzinfo=timezone.utc
-                    ),
+                    date(2008, 6, 3),
                 )
                 created = True
             else:
@@ -150,7 +136,7 @@ class Command(LoadOCDModelsCommand):
             date_obj = self.lookup_election_date_from_name(election_name)
             # Now that we have a date, get or create the Election
             try:
-                ocd_election = Election.objects.get(start_time=date_obj)
+                ocd_election = Election.objects.get(date=date_obj)
             except Election.DoesNotExist:
                 ocd_election = self.create_election(
                     '{year} {type}'.format(**parsed_name),
@@ -327,24 +313,24 @@ class Command(LoadOCDModelsCommand):
 
         party = self.lookup_candidate_party_correction(
             scraped_candidate.name,
-            ocd_election.start_time.year,
+            ocd_election.date.year,
             self.parse_election_name(scraped_candidate.election.name)['type'],
             scraped_candidate.office_name,
         )
 
         if scraped_candidate.office_name == 'SUPERINTENDENT OF PUBLIC INSTRUCTION':
-            party = Party.objects.get(name="NO PARTY PREFERENCE")
+            party = Organization.objects.get(name="NO PARTY PREFERENCE")
         elif form501 and not party:
             party = self.lookup_party(form501.party)
             if not party:
                 party = self.get_party_for_filer_id(
                     int(form501.filer_id),
-                    ocd_election.start_time.date(),
+                    ocd_election.date,
                 )
         elif scraped_candidate.scraped_id != '':
             party = self.get_party_for_filer_id(
                 int(scraped_candidate.scraped_id),
-                ocd_election.start_time.date(),
+                ocd_election.date,
             )
         else:
             party = None
@@ -354,12 +340,12 @@ class Command(LoadOCDModelsCommand):
         # get_or_create_contest criteria (if we have a party)
         if (
             'PRIMARY' in scraped_candidate.election.name and
-            ocd_election.start_time.year < 2012 and
+            ocd_election.date.year < 2012 and
             scraped_candidate.office_name != 'SUPERINTENDENT OF PUBLIC INSTRUCTION'
         ):
             if not party:
                 # use UNKNOWN party
-                party = Party.objects.get(identifiers__identifier=16011)
+                party = Organization.objects.get(identifiers__identifier=16011)
 
             contest, contest_created = self.get_or_create_contest(
                 scraped_candidate,
@@ -425,7 +411,7 @@ class Command(LoadOCDModelsCommand):
 
         Return True if:
         * Membership exists for the Person and Post linked to the Candidacy, and
-        * Membership.end_date is NULL or has a year later year of Election.start_time
+        * Membership.end_date is NULL or has a year later year of Election.date
         """
         incumbent_q = Membership.objects.filter(
             post=candidacy.post,
@@ -437,7 +423,7 @@ class Command(LoadOCDModelsCommand):
                 IntegerField(),
             )
         ).filter(
-            Q(end_year__gt=candidacy.election.start_time.year) |
+            Q(end_year__gt=candidacy.election.date.year) |
             Q(end_date='')
         )
         if incumbent_q.exists():
@@ -491,10 +477,8 @@ class Command(LoadOCDModelsCommand):
         try:
             contest = CandidateContest.objects.filter(
                 posts__post=post,
-                election__start_time__lt=runoff_contest.election.start_time,
-            ).latest(
-                'election__start_time'
-            )
+                election__date__lt=runoff_contest.election.date,
+            ).latest('election__date')
         except CandidateContest.DoesNotExist:
             contest = None
 

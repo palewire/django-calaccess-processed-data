@@ -6,7 +6,7 @@ Unittests for management commands.
 import os
 from django.core.management import call_command
 from django.core.management.base import CommandError
-from django.utils import timezone
+from datetime import date
 from django.test import TestCase, override_settings
 from calaccess_raw import get_test_download_directory
 from calaccess_processed.management.commands import (
@@ -18,7 +18,7 @@ from calaccess_processed.models import (
     ScrapedProposition,
     ProcessedDataVersion,
 )
-from opencivicdata.models import (
+from opencivicdata.elections.models import (
     BallotMeasureContest,
     Candidacy,
     CandidateContest,
@@ -132,9 +132,7 @@ class ProcessedDataCommandsTest(TestCase):
         """
         c = LoadOCDModelsCommand()
         self.assertEqual(
-            timezone.datetime(
-                2016, 6, 7, tzinfo=timezone.utc
-            ),
+            date(2016, 6, 7),
             c.get_regular_election_date(2016, 'PRIMARY'),
         )
 
@@ -144,9 +142,7 @@ class ProcessedDataCommandsTest(TestCase):
         """
         c = LoadOCDModelsCommand()
         self.assertEqual(
-            timezone.datetime(
-                2016, 11, 8, tzinfo=timezone.utc
-            ),
+            date(2016, 11, 8),
             c.get_regular_election_date(2016, 'GENERAL'),
         )
 
@@ -156,9 +152,7 @@ class ProcessedDataCommandsTest(TestCase):
         """
         c = LoadOCDModelsCommand()
         self.assertEqual(
-            timezone.datetime(
-                2014, 6, 3, tzinfo=timezone.utc
-            ),
+            date(2014, 6, 3),
             c.get_regular_election_date(2014, 'PRIMARY'),
         )
 
@@ -168,8 +162,6 @@ class ProcessedDataCommandsTest(TestCase):
         """
         c = LoadOCDModelsCommand()
         self.assertEqual(
-            timezone.datetime(
-                2010, 11, 2, tzinfo=timezone.utc
-            ),
+            date(2010, 11, 2),
             c.get_regular_election_date(2010, 'GENERAL'),
         )

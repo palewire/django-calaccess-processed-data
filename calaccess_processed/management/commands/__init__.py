@@ -373,9 +373,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
         # calculate day or first tuesday after first monday
         day_or_month = (7 - first_weekday) % 7 + 2
 
-        return timezone.datetime(
-            year, month, day_or_month, tzinfo=timezone.utc
-        )
+        return date(year, month, day_or_month)
 
     def create_election(self, name, date_obj):
         """
@@ -387,14 +385,10 @@ class LoadOCDModelsCommand(CalAccessCommand):
             parent=self.sos,
         )[0]
         obj = Election.objects.create(
-            start_time=date_obj,
+            date=date_obj,
             name=name,
-            all_day=True,
-            timezone='US/Pacific',
-            classification='election',
             administrative_organization=admin,
             division=self.state_division,
-            jurisdiction=self.state_jurisdiction,
         )
         return obj
 
@@ -613,7 +607,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
         """
         Return a Party with a name or abbreviation that matches party.
         """
-        if not Organizations.filter(classification='party').objects.exists():
+        if not Organization.objects.filter(classification='party').exists():
             if self.verbosity > 2:
                 self.log(" No parties loaded.")
             call_command(
@@ -632,7 +626,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
             try:
                 # then try alternate names
                 party = Organization.objects.get(
-                    other_name__name=party,
+                    other_names__name=party,
                 )
             except Organization.DoesNotExist:
                 party = None
@@ -657,8 +651,8 @@ class LoadOCDModelsCommand(CalAccessCommand):
             if party_cd in [16007, 16009]:
                 party_cd = 16012
             try:
-                party = Party.objects.get(identifiers__identifier=party_cd)
-            except Party.DoesNotExist:
+                party = Organization.objects.get(identifiers__identifier=party_cd)
+            except Organization.DoesNotExist:
                 party = None
 
         return party

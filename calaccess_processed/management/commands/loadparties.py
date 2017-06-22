@@ -6,7 +6,7 @@ Load OCD Party model from LOOKUP_CODES_CD table in raw CAL-ACCESS data.
 import re
 from calaccess_raw.models.common import LookupCodesCd
 from calaccess_processed.management.commands import CalAccessCommand
-from opencivicdata.models import Party
+from opencivicdata.core.models import Organization
 
 
 class Command(CalAccessCommand):
@@ -29,31 +29,36 @@ class Command(CalAccessCommand):
         Insert Party records from the raw LOOKUP_CODES_CD table.
         """
         q = LookupCodesCd.objects.filter(code_type=16000).exclude(
-            # exclude "PARTY CODE" and "INDEPENDENT"
-            code_id__in=[16000, 16007]
+            # exclude "PARTY CODE"
+            code_id__in=[16000]
         )
 
         for lc in q:
-            party, created = Party.objects.get_or_create(
-                name=lc.code_desc,
-                # combine the first char of each word (except AND) in party name
-                abbreviation=''.join(
-                    re.findall(
-                        r'([A-z])\w+',
-                        lc.code_desc.upper().replace(' AND ', '')
-                    )
-                ),
+            # treat INDEPENDENT and NON-PARTISAN as NO PARTY PREFERENCE
+            if lc.code_desc in ['INDEPENDENT', 'NON-PARTISAN']:
+                party_name = 'NO PARTY PREFERENCE'
+            else:
+                party_name = lc.code_desc
+
+            party, created = Organization.objects.get_or_create(
+                name=party_name,
                 classification='party',
             )
             if created:
                 if self.verbosity > 2:
                     self.log(" Created %s" % party)
-                if party.name in ['DEMOCRATIC', 'REPUBLICAN']:
-                    if party.name == 'DEMOCRATIC':
-                        party.color = '1d0ee9'
-                    if party.name == 'REPUBLICAN':
-                        party.color = 'e91d0e'
-                party.save()
+                # save abbreviation as other party name
+                # combine the first char of each word (except AND)
+                abbreviation = ''.join(
+                    re.findall(
+                        r'([A-z])\w+',
+                        lc.code_desc.upper().replace(' AND ', '')
+                    )
+                )
+                party.other_names.get_or_create(
+                    name=abbreviation,
+                    note='abbreviation'
+                )
 
             # keep the code_id too
             p_id, created = party.identifiers.get_or_create(

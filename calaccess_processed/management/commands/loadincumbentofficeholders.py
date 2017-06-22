@@ -4,7 +4,6 @@
 Load incumbent candidate data scraped from the CAL-ACCESS website into OCD models.
 """
 import re
-from django.utils import timezone
 from django.db.models import IntegerField
 from django.db.models.functions import Cast
 from calaccess_processed.management.commands import LoadOCDModelsCommand
@@ -12,8 +11,8 @@ from calaccess_processed.models.scraper import (
     IncumbentScrapedElection,
     ScrapedIncumbent,
 )
-from opencivicdata.models import Membership
-from opencivicdata.models.elections import Election, Candidacy
+from opencivicdata.core.models import Membership
+from opencivicdata.elections.models import Election, Candidacy
 
 
 class Command(LoadOCDModelsCommand):
@@ -41,9 +40,7 @@ class Command(LoadOCDModelsCommand):
         Returns a tuple (Election object, created), where created is a boolean
         specifying whether a Election was created.
         """
-        dt_obj = timezone.make_aware(
-            timezone.datetime.combine(scraped_elec.date, timezone.datetime.min.time())
-        )
+        dt_obj = scraped_elec.date
         name = '{0} {1}'.format(dt_obj.year, scraped_elec.name)
         # remove "ELECTION" suffix from general and primary elections
         if 'GENERAL' in name or 'PRIMARY' in name:
@@ -51,7 +48,7 @@ class Command(LoadOCDModelsCommand):
                 if 'ELECTION' in name:
                     name = name.replace('ELECTION', '').strip()
         try:
-            elec = Election.objects.get(start_time=dt_obj)
+            elec = Election.objects.get(date=dt_obj)
         except Election.DoesNotExist:
             # or make a new one
             elec = self.create_election(name, dt_obj)
@@ -152,13 +149,13 @@ class Command(LoadOCDModelsCommand):
         # but before the end year, if it exists, mark as incumbent
         for member in Membership.objects.all():
             candidacies_q = member.person.candidacies.filter(
-                contest__election__start_time__year__gt=int(member.start_date),
+                contest__election__date__year__gt=int(member.start_date),
                 post=member.post,
             ).exclude(is_incumbent=True)
             # Handle blank member end_date values
             if member.end_date != '':
                 member_end_year = int(member.end_date)
-                candidacies_q = candidacies_q.filter(contest__election__start_time__year__lte=member_end_year)
+                candidacies_q = candidacies_q.filter(contest__election__date__year__lte=member_end_year)
 
             if candidacies_q.exists():
                 rows = candidacies_q.update(is_incumbent=True)

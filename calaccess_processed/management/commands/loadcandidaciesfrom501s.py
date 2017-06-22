@@ -8,10 +8,10 @@ from django.core.management.base import CommandError
 from calaccess_raw.models import FilerToFilerTypeCd, LookupCodesCd
 from calaccess_processed.management.commands import LoadOCDModelsCommand
 from calaccess_processed.models import Form501Filing
-from opencivicdata.models import (
+from opencivicdata.core.models import Division
+from opencivicdata.elections.models import (
     CandidateContest,
     Candidacy,
-    Division,
     Election,
 )
 
@@ -47,7 +47,7 @@ class Command(LoadOCDModelsCommand):
         """
         try:
             election = Election.objects.get(
-                start_time__year=year,
+                date__year=year,
                 name__contains=election_type,
             )
         except (Election.DoesNotExist, Election.MultipleObjectsReturned):
@@ -115,7 +115,7 @@ class Command(LoadOCDModelsCommand):
             # try extracting office and district from FilerToFilerTypeCd
             office_name = self.lookup_office_for_filer_id(
                 form501.filer_id,
-                election.start_time.date(),
+                election.date,
             )
             if office_name:
                 try:
@@ -172,17 +172,17 @@ class Command(LoadOCDModelsCommand):
                 'election': election,
             }
             # if looking for a pre-2012 primary, include party
-            if election.start_time.year < 2012 and 'PRIMARY' in election.name:
+            if election.date.year < 2012 and 'PRIMARY' in election.name:
                 contest_data['party'] = self.get_party_from_form501(
                     form501,
-                    election.start_time.date()
+                    election.date,
                 )
 
             try:
                 contest = CandidateContest.objects.get(**contest_data)
             except CandidateContest.DoesNotExist:
                 # if the election date is later than today, but no contest
-                if election.start_time.date() > date.today():
+                if election.date > date.today():
                     # make the contest (CAL-ACCESS website might behind)
                     contest = CandidateContest.objects.create(
                         name=post.label.upper(),
@@ -242,7 +242,7 @@ class Command(LoadOCDModelsCommand):
 
                 candidacy.party = self.get_party_from_form501(
                     form501,
-                    contest.election.start_time.date()
+                    contest.election.date
                 )
                 candidacy.extras = {'form501filingid': form501.filing_id}
                 candidacy.filed_date = form501.date_filed

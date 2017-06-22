@@ -90,25 +90,31 @@ class Command(CalAccessCommand):
         """
         Save a csv file for each loaded OCD model.
         """
-        ocd_models = [
-            m._meta.object_name for m in apps.get_app_config(
-                'opencivicdata'
-            ).get_models()
+        core_models = [
+            m for m in apps.get_app_config('core').get_models()
             if not m._meta.abstract and
             m.objects.count() > 0
         ]
 
-        for m in ocd_models:
+        elections_models = [
+            m for m in apps.get_app_config('elections').get_models()
+            if not m._meta.abstract and
+            m.objects.count() > 0
+        ]
+
+        models_to_load = core_models + elections_models
+
+        for m in models_to_load:
             processed_data_file, created = self.processed_version.files.get_or_create(
-                file_name=m,
+                file_name=m._meta.object_name,
             )
             processed_data_file.process_start_datetime = now()
             processed_data_file.save()
 
             call_command(
                 'archivecalaccessprocessedfile',
-                'opencivicdata',
-                m,
+                m._meta.app_label,
+                m._meta.object_name,
             )
             processed_data_file.refresh_from_db()
             processed_data_file.process_finish_datetime = now()

@@ -10,8 +10,8 @@ from calaccess_processed.models.scraper import (
     ScrapedIncumbent,
     ScrapedCandidate,
 )
-from opencivicdata.models import Membership
-from opencivicdata.models.elections.contests import RetentionContest
+from opencivicdata.core.models import Membership
+from opencivicdata.elections.models import RetentionContest
 
 
 class Command(Command):
@@ -88,7 +88,6 @@ class Command(Command):
             election=ocd_elec,
             division=post.division,
             name=scraped_prop.name,
-            classification='initiative',
             membership=membership,
         )
 

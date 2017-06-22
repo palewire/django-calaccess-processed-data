@@ -28,7 +28,8 @@ INSTALLED_APPS = (
     'calaccess_processed',
     'calaccess_raw',
     'toolbox',
-    'opencivicdata.apps.BaseConfig',
+    'opencivicdata.core.apps.BaseConfig',
+    'opencivicdata.elections.apps.BaseConfig',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -75,6 +76,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 try:
-    from settings_local import *
+    from .settings_local import *
 except ImportError:
     pass
