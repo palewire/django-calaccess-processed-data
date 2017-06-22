@@ -9,7 +9,7 @@ SELECT
     filing_version.id AS filing_version_id,
     line_1."AMOUNT_A" AS itemized_expenditures,
     line_2."AMOUNT_A" AS unitemized_expenditures,
-    line_3."AMOUNT_A" AS interest_paid
+    line_3."AMOUNT_A" AS interest_paid,
     line_4."AMOUNT_A" AS total_expenditures
 FROM calaccess_processed_form460filingversion filing_version
 -- get itemized
