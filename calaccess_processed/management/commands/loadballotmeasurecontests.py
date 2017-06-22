@@ -37,9 +37,7 @@ class Command(LoadOCDModelsCommand):
 
         Return QuerySet.
         """
-        return PropositionScrapedElection.objects.exclude(
-            propositions__name__icontains='RECALL',
-        )
+        return PropositionScrapedElection.objects.all()
 
     def get_scraped_props(self, scraped_elec):
         """
