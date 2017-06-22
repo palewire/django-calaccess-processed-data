@@ -36,6 +36,9 @@ from .d import (
     Form460ScheduleDItemVersion
 )
 from .e import (
+    Form460ScheduleESummaryBase,
+    Form460ScheduleESummary,
+    Form460ScheduleESummaryVersion,
     Form460ScheduleEItem,
     Form460ScheduleEItemVersion,
     Form460ScheduleESubItem,
@@ -91,6 +94,9 @@ __all__ = (
     "Form460ScheduleDItemBase",
     "Form460ScheduleDItem",
     "Form460ScheduleDItemVersion",
+    "Form460ScheduleESummaryBase",
+    "Form460ScheduleESummary",
+    "Form460ScheduleESummaryVersion",
     "Form460ScheduleEItem",
     "Form460ScheduleEItemVersion",
     "Form460ScheduleESubItem",

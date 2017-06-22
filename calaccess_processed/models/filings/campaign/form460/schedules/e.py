@@ -7,10 +7,111 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.managers import ProcessedDataManager
+from calaccess_processed.models.base import CalAccessBaseModel
 from calaccess_processed.models.filings.campaign import (
     CampaignExpenditureItemBase,
     CampaignExpenditureSubItemBase,
 )
+
+#
+# Summaries
+#
+
+
+class Form460ScheduleESummaryBase(CalAccessBaseModel):
+    """
+    Abstract base model with summary data from Schedule E attachments to Form 460 filings.
+
+    Includes totals for itemized versus unitemized expenditures.
+    """
+    itemized_expenditures = models.FloatField(
+        verbose_name='itemized expenditures',
+        null=True,
+        help_text="Payments made this period of $100 or more. (Include all Schedule E subtotals.)",
+    )
+    unitemized_expenditures = models.FloatField(
+        verbose_name='unitemized expenditures',
+        null=True,
+        help_text="Unitemized payments made this period of under $100.",
+    )
+    interest_paid = models.FloatField(
+        verbose_name='interest paid',
+        null=True,
+        help_text="Total interest paid this period on loans. (Enter amount from Schedule B, Part 1, Column (e).)",
+    )
+    total_expenditures = models.FloatField(
+        verbose_name='total expenditures',
+        null=True,
+        help_text="Total payments made this period. (Add lines 1, 2, and 3. Enter here and on the Summary Page, Column \
+A, Line 6.) ",
+    )
+
+    class Meta:
+        """
+        Model options.
+        """
+        abstract = True
+
+
+class Form460ScheduleESummary(Form460ScheduleESummaryBase):
+    """
+    The summary data included with the most recent version a Schedule E attachment to a Form 460 filing.
+
+    Includes totals for itemized versus unitemized expenditures.
+    """
+    filing = models.ForeignKey(
+        'Form460Filing',
+        related_name='schedule_e_summaries',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the Form 460 on which the summary was reported',
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        """
+        Model options.
+        """
+        verbose_name = "Form 460 (Campaign Disclosure) Schedule E summary"
+        verbose_name_plural = "Form 460 (Campaign Disclosure) Schedule E summaries"
+
+    def __str__(self):
+        return '%s' % (self.filing)
+
+
+class Form460ScheduleESummaryVersion(Form460ScheduleESummaryBase):
+    """
+    The summary data included with each version of a Schedule E attachment to a Form 460 filing.
+
+    Includes totals for itemized versus unitemized expenditures.
+    """
+    filing_version = models.ForeignKey(
+        'Form460FilingVersion',
+        related_name='schedule_e_summaries',
+        null=True,
+        on_delete=models.SET_NULL,
+        help_text='Foreign key referring to the version of the Form 460 that '
+                  'includes the summary'
+    )
+
+    objects = ProcessedDataManager()
+
+    class Meta:
+        """
+        Model options.
+        """
+        verbose_name = "Form 460 (Campaign Disclosure) Schedule E summary version"
+
+    def __str__(self):
+        return '%s-%s' % (
+            self.filing_version.filing_id,
+            self.filing_version.amend_id,
+        )
+
+#
+# Items
+#
 
 
 @python_2_unicode_compatible
