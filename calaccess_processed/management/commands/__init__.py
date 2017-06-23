@@ -605,7 +605,9 @@ class LoadOCDModelsCommand(CalAccessCommand):
 
     def lookup_party(self, party):
         """
-        Return a Party with a name or abbreviation that matches party.
+        Return an Organization with a name or abbreviation that matches party.
+
+        If none found, return the "UKNOWN" Organization.
         """
         if not Organization.objects.filter(classification='party').exists():
             if self.verbosity > 2:
@@ -629,7 +631,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
                     other_names__name=party,
                 )
             except Organization.DoesNotExist:
-                party = None
+                party = Organization.objects.get(name='UNKNOWN')
 
         return party
 
@@ -637,7 +639,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
         """
         Lookup the party for the given filer_id, effective before election_date.
 
-        Return None if not found.
+        If not found, return the "UNKNOWN" Organization object.
         """
         try:
             party_cd = FilerToFilerTypeCd.objects.filter(
@@ -645,7 +647,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
                 effect_dt__lte=election_date,
             ).latest('effect_dt').party_cd
         except FilerToFilerTypeCd.DoesNotExist:
-            party = None
+            party = Organization.objects.get(name='UNKNOWN')
         else:
             # transform "INDEPENDENT" and "NON-PARTISAN" to "NO PARTY PREFERENCE"
             if party_cd in [16007, 16009]:
@@ -653,7 +655,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
             try:
                 party = Organization.objects.get(identifiers__identifier=party_cd)
             except Organization.DoesNotExist:
-                party = None
+                party = Organization.objects.get(name='UNKNOWN')
 
         return party
 
