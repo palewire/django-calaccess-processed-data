@@ -14,4 +14,6 @@ corrections = (
     ('VALENTINE, ROBERT S.', 2011, 'SPECIAL ELECTION', 'STATE SENATE 28', 'REPUBLICAN'),
     # http://elections.cdn.sos.ca.gov/statewide-elections/2014-general/updated-contact-info.pdf
     ('KEPHART, GARY', 2014, 'GENERAL', 'STATE SENATE 36', 'DEMOCRATIC'),
+    # http://elections.cdn.sos.ca.gov/statewide-elections/2014-primary/updated-contact-info.pdf   
+    ('WAHL, BERNT RAINER', 2014, 'PRIMARY', 'ASSEMBLY 15', 'NO PARTY PREFERENCE'),
 )
