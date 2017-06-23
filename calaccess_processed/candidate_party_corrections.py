@@ -12,6 +12,6 @@ corrections = (
     ('ESPINOSA, GEBY E.', 2014, 'PRIMARY', 'ASSEMBLY 24', 'DEMOCRATIC'),
     # http://elections.cdn.sos.ca.gov/special-elections/2011-sd28/certified-list.pdf
     ('VALENTINE, ROBERT S.', 2011, 'SPECIAL ELECTION', 'STATE SENATE 28', 'REPUBLICAN'),
-    # http://elections.cdn.sos.ca.gov/statewide-elections/2014-general/updated-contact-info.pdf
-    ('KEPHART, GARY', 2014, 'GENERAL', 'STATE SENATE 36', 'DEMOCRATIC'),
+    # http://cal-access.sos.ca.gov/Campaign/Candidates/Detail.aspx?id=1273672
+    ('WALDRON, MARIE', 2018, 'PRIMARY', 'ASSEMBLY 75', 'REPUBLICAN'),
 )
