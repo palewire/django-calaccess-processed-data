@@ -14,6 +14,6 @@ corrections = (
     ('VALENTINE, ROBERT S.', 2011, 'SPECIAL ELECTION', 'STATE SENATE 28', 'REPUBLICAN'),
     # http://elections.cdn.sos.ca.gov/statewide-elections/2014-general/updated-contact-info.pdf
     ('KEPHART, GARY', 2014, 'GENERAL', 'STATE SENATE 36', 'DEMOCRATIC'),
-)
-    ('RODRIGUEZ, GREG', 2016, 'GENERAL', 'STATE ASSEMBLY 42', 'DEMOCRATIC'),
     # http://elections.cdn.sos.ca.gov//statewide-elections/2016-general/november2016-certified-list-of-candidates.pdf
+    ('RODRIGUEZ, GREG', 2016, 'GENERAL', 'STATE ASSEMBLY 42', 'DEMOCRATIC'),
+)
