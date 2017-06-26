@@ -6,7 +6,7 @@ Load OCD BallotMeasureContest and related models with data scraped from the CAL-
 import re
 from django.utils import timezone
 from calaccess_processed.management.commands import LoadOCDModelsCommand
-from calaccess_processed.models.scraper import PropositionScrapedElection
+from calaccess_scraped.models import PropositionScrapedElection
 from opencivicdata.elections.models import (
     Election,
     BallotMeasureContest,

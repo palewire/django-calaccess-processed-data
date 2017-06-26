@@ -13,10 +13,10 @@ from calaccess_processed.management.commands import (
     CalAccessCommand,
     LoadOCDModelsCommand,
 )
-from calaccess_processed.models import (
+from calaccess_processed.models import ProcessedDataVersion
+from calaccess_scraped.models import (
     ScrapedCandidate,
-    ScrapedProposition,
-    ProcessedDataVersion,
+    ScrapedProposition
 )
 from opencivicdata.elections.models import (
     BallotMeasureContest,

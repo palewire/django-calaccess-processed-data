@@ -17,11 +17,11 @@ from django.db.models import (
 from django.db.models.functions import Cast, Concat
 from calaccess_processed import special_elections
 from calaccess_processed.management.commands import LoadOCDModelsCommand
-from calaccess_processed.models import (
+from calaccess_scraped.models import (
     CandidateScrapedElection,
     IncumbentScrapedElection,
-    Form501Filing,
 )
+from calaccess_processed.models import Form501Filing
 from opencivicdata.core.models import Membership, Organization
 from opencivicdata.elections.models import Election, CandidateContest
 
