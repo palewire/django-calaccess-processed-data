@@ -76,19 +76,6 @@ from .filings import (
     Form501Filing,
     Form501FilingVersion,
 )
-from .scraper import (
-    BaseScrapedModel,
-    BaseScrapedElection,
-    BaseScrapedCommittee,
-    ScrapedProposition,
-    PropositionScrapedElection,
-    ScrapedPropositionCommittee,
-    ScrapedCandidate,
-    CandidateScrapedElection,
-    ScrapedCandidateCommittee,
-    ScrapedIncumbent,
-    IncumbentScrapedElection,
-)
 from .research import (
     FilerIDValue,
     FilingIDValue,
@@ -173,17 +160,6 @@ __all__ = (
     "Form501FilingVersion",
     'FilerIDValue',
     'FilingIDValue',
-    'BaseScrapedModel',
-    'BaseScrapedElection',
-    'BaseScrapedCommittee',
-    'ScrapedProposition',
-    'PropositionScrapedElection',
-    'ScrapedPropositionCommittee',
-    'ScrapedCandidate',
-    'CandidateScrapedElection',
-    'ScrapedCandidateCommittee',
-    'ScrapedIncumbent',
-    'IncumbentScrapedElection',
     'ProcessedDataVersion',
     'ProcessedDataFile',
 )

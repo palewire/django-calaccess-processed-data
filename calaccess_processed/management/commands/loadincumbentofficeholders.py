@@ -7,7 +7,7 @@ import re
 from django.db.models import IntegerField
 from django.db.models.functions import Cast
 from calaccess_processed.management.commands import LoadOCDModelsCommand
-from calaccess_processed.models.scraper import (
+from calaccess_scraped.models import (
     IncumbentScrapedElection,
     ScrapedIncumbent,
 )

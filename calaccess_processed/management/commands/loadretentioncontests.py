@@ -5,7 +5,7 @@ Load OCD BallotMeasureContest and related models with data scraped from the CAL-
 """
 import re
 from calaccess_processed.management.commands.loadballotmeasurecontests import Command
-from calaccess_processed.models.scraper import (
+from calaccess_scraped.models import (
     PropositionScrapedElection,
     ScrapedIncumbent,
     ScrapedCandidate,
