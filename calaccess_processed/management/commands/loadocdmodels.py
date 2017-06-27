@@ -23,7 +23,7 @@ class Command(CalAccessCommand):
         """
         super(Command, self).handle(*args, **options)
 
-        self.processed_version = ProcessedDataVersion.objects.latest()
+        self.processed_version = self.get_or_create_processed_version()[0]
 
         self.load()
         # archive if django project setting enabled
