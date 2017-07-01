@@ -10,11 +10,12 @@ from datetime import date
 from django.core.management import call_command, CommandError
 from django.core.management.base import BaseCommand
 from django.core.exceptions import MultipleObjectsReturned
+from django.db.models import Count, Q
 from django.utils import timezone
 from django.utils.termcolors import colorize
 from calaccess_raw import get_download_directory
 from calaccess_raw.models import RawDataVersion, FilerToFilerTypeCd
-from calaccess_processed.models import ProcessedDataVersion
+from calaccess_processed.models import ProcessedDataVersion, Form501FilingVersion
 from calaccess_processed.candidate_party_corrections import corrections
 from opencivicdata.core.management.commands.loaddivisions import load_divisions
 from opencivicdata.core.models import (
@@ -312,11 +313,13 @@ class LoadOCDModelsCommand(CalAccessCommand):
 
         return post, post_created
 
-    def get_or_create_person(self, name, filer_id=None):
+    def get_or_create_person(self, sort_name, filer_id=None):
         """
         Get or create a Person object with the name string and optional filer_id.
 
-        If a filer_id is provided, first attempt to lookup the person by filer_id.
+        If a filer_id is provided, first attempt to lookup the Person by filer_id.
+        If matched, and the provided name doesn't match the current name of the Person
+        and isn't included in the other names of the Person, add it as an other_name.
 
         If the person doesn't exist (or the filer_id is not provided), create a
         new Person.
@@ -324,6 +327,9 @@ class LoadOCDModelsCommand(CalAccessCommand):
         Returns a tuple (Person object, created), where created is a boolean
         specifying whether a Person was created.
         """
+        split_name = sort_name.split(',')
+        split_name.reverse()
+        name = ' '.join(split_name).strip()
         person = None
         created = False
 
@@ -335,17 +341,26 @@ class LoadOCDModelsCommand(CalAccessCommand):
                         identifiers__identifier=filer_id,
                     )
                 except MultipleObjectsReturned:
-                    person = self.merge_persons(filer_id)
+                    # check to see if this is still necessary
+                    import ipdb; ipdb.set_trace() # noqa 
+                    # person = self.merge_persons(filer_id)
                 except Person.DoesNotExist:
                     pass
-
+                else:
+                    if (
+                        person.name != name and
+                        not person.other_names.filter(name=name).exists()
+                    ):
+                        person.other_names.create(
+                            name=name,
+                            note='Matched on calaccess_filer_id'
+                        )
         if not person:
             # split and flip the original name string
-            split_name = name.split(',')
-            split_name.reverse()
+            split_name = name.split(',').reverse()
             person = Person.objects.create(
-                sort_name=name,
-                name=' '.join(split_name).strip()
+                name=name,
+                sort_name=sort_name,
             )
             if filer_id:
                 person.identifiers.create(
@@ -356,64 +371,157 @@ class LoadOCDModelsCommand(CalAccessCommand):
 
         return (person, created)
 
-    def get_or_create_candidacy(self, contest_obj, person_name, registration_status, filer_id=None):
+    def get_or_create_candidacy(self, contest_obj, sort_name, registration_status, filer_id=None):
         """
         Get or create a Candidacy object.
 
-        First, lookup an existing Candidacy within the given CandidateContest linked
-        to a Person with the given filer_id or person_name.
+        First, try getting an existing Candidacy within the given CandidateContest
+        linked to a Person with the provided filer_id. If matched and the matched Person
+        has different current name and doesn't have the provided name as an other name,
+        add the other name.
 
-        If neither filer_id or person_name are provided, an exception is raised.
+        Next, try getting an existing Candidacy within the given CandidateContest
+        linked to a Person with provided name (as default name or other name). If
+        matched and match candidate doesn't already have filer_id, add the filer_id.
 
-        If there's no existing Candidacy, a new one is created. A new Person is
-        also created if there's no existing Person with the given filer_id, or no
-        filer_id is provided.
+        If no match or if the matched person already has a different filer_id, create
+        a new Candidacy (this may also create a new Person record).
 
         Returns a tuple (Candidacy object, created), where created is a boolean
         specifying whether a Candidacy was created.
         """
+        split_name = sort_name.split(',')
+        split_name.reverse()
+        name = ' '.join(split_name).strip()
+        candidacy = None
+
+        # first, try matching to existing candidate in contest with filer_id
         if filer_id:
+            try:
+                candidacy = contest_obj.candidacies.get(
+                    person__identifiers__scheme='calaccess_filer_id',
+                    person__identifiers__identifier=filer_id,
+                )
+            except Candidacy.DoesNotExist:
+                pass
+            else:
+                candidacy_created = False
+                # if provided name not person's current name and not linked to person
+                # add it
+                if (
+                    candidacy.person.name != name and
+                    not candidacy.person.other_names.filter(name=name).exists()
+                ):
+                    candidacy.person.other_names.create(
+                        name=name,
+                        note='Matched on CandidateContest and calaccess_filer_id'
+                    )
+        # if filer_id match fails (or no filer_id), try matching to candidate
+        # in contest with provided name
+        if not candidacy:
+            try:
+                candidacy = contest_obj.candidacies.get(
+                    Q(candidate_name=name) |
+                    Q(person__name=name) |
+                    Q(person__other_names__name=name)
+                )
+            except Candidacy.MultipleObjectsReturned:
+                # weird case when someone filed for the same race
+                # with three different filer_ids
+                if sort_name == 'MC NEA, DOUGLAS A.':
+                    candidacy = None
+            except Candidacy.DoesNotExist:
+                pass
+            else:
+                candidacy_created = False
+                # if filer_id provided
+                if filer_id:
+                    # check to make sure candidate with same name doesn't have
+                    # diff filer_id
+                    has_diff_filer_id = candidacy.person.identifiers.filter(
+                        scheme='calaccess_filer_id',
+                    ).exists()
+                    if has_diff_filer_id:
+                        # if so, don't conflate
+                        candidacy = None
+                    else:
+                        # add filer_id to existing candidate
+                        candidacy.person.identifiers.create(
+                            scheme='calaccess_filer_id',
+                            identifier=filer_id,
+                        )
+        # if no matched candidate yet, make a new one
+        if not candidacy:
+            candidacy_created = True
             person, person_created = self.get_or_create_person(
-                person_name,
+                sort_name,
                 filer_id=filer_id,
             )
             if person_created and self.verbosity > 2:
                 self.log(' Created new Person: %s' % person.name)
-            candidacy, candidacy_created = contest_obj.candidacies.get_or_create(
+
+            # if provided name not person's current name or other_name
+            if (
+                person.name != name and
+                not person.other_names.filter(name=name).exists()
+            ):
+                person.other_names.create(
+                    name=name,
+                    note='From %s candidacy' % contest_obj
+                )
+
+            candidacy = contest_obj.candidacies.create(
                 person=person,
                 post=contest_obj.posts.all()[0].post,
-                candidate_name=person_name,
+                candidate_name=name,
+                registration_status=registration_status,
             )
-        else:
-            try:
-                candidacy = contest_obj.candidacies.get(
-                    post=contest_obj.posts.all()[0].post,
-                    person__sort_name=person_name,
-                )
-            except Candidacy.MultipleObjectsReturned:
-                import ipdb; ipdb.set_trace() # noqa
-                # merge issue, needs to be investigated
-            except Candidacy.DoesNotExist:
-                person, person_created = self.get_or_create_person(
-                    person_name,
-                )
-                if person_created and self.verbosity > 2:
-                    self.log(' Created new Person: %s' % person.name)
 
-                candidacy = contest_obj.candidacies.create(
-                    person=person,
-                    post=contest_obj.posts.all()[0].post,
-                    candidate_name=person_name,
-                )
-                candidacy_created = True
-            else:
-                candidacy_created = False
-
-        if candidacy.registration_status != registration_status:
+        # if provided registration does not equal the default, update
+        if registration_status != 'filed':
             candidacy.registration_status = registration_status
             candidacy.save()
 
         return (candidacy, candidacy_created)
+
+    def link_form501_to_candidacy(self, form501_id, candidacy_obj):
+        """
+        Link a Form501Filing to a Candidacy, if it isn't already.
+        """
+        if 'form501_filing_ids' in candidacy_obj.extras:
+            if form501_id not in candidacy_obj.extras['form501_filing_ids']:
+                candidacy_obj.extras['form501_filing_ids'].append(form501_id)
+        else:
+            candidacy_obj.extras['form501_filing_ids'] = [form501_id]
+
+        candidacy_obj.save()
+
+        return
+
+    def update_candidacy_from_form501s(self, candidacy_obj):
+        """
+        Set Candidacy fields using data extracted from linked Form501Filings.
+        """
+        # get all Form501FilingVersions linked to Candidacy
+        filing_ids = candidacy_obj.extras['form501_filing_ids']
+        filings = Form501FilingVersion.objects.filter(filing_id__in=filing_ids)
+
+        # keep the earliest filed_date
+        first_filed_date = filings.earliest('date_filed').date_filed
+
+        if candidacy_obj.filed_date != first_filed_date:
+            candidacy_obj.filed_date = first_filed_date
+            candidacy_obj.save()
+
+        # keep if latest filing says withdrawn
+        latest = filings.latest('date_filed')
+        if latest.statement_type == '10003':
+            if candidacy_obj.registration_status != 'withdrawn':
+                candidacy_obj.registration_status = 'withdrawn'
+
+        candidacy_obj.save()
+
+        return
 
     def lookup_candidate_party_correction(self, candidate_name, year,
                                           election_type, office):
@@ -496,42 +604,87 @@ class LoadOCDModelsCommand(CalAccessCommand):
 
         return party
 
-    def merge_persons(self, filer_id):
+    def merge_persons(self, persons):
         """
-        Merge the Person objects that share the same CAL-ACCESS filer_id.
+        Merge items in persons iterable into one Person object.
 
         Return the merged Person object.
         """
-        persons = Person.objects.filter(
-            identifiers__scheme='calaccess_filer_id',
-            identifiers__identifier=filer_id,
-        ).all()
-
-        if self.verbosity > 2:
-            self.log(
-                "Merging {0} Persons sharing filer_id {1}".format(
-                    len(persons),
-                    filer_id,
-                )
-            )
-
         # each person will be merged into this one
-        survivor = persons[0]
+        keep = persons[0]
 
-        # loop over all the rest of them
+        # loop over all the rest
         for i in range(1, len(persons)):
-            if survivor.id != persons[i].id:
-                if (
-                    survivor.name != persons[i].name or
-                    survivor.sort_name != persons[i].sort_name
-                ):
-                    import ipdb; ipdb.set_trace() # noqa
-                else:
-                    merge(survivor, persons[i])
+            discard = persons[i]
+            if keep.id != discard.id:
+                merge(keep, discard)
+                keep.refresh_from_db()
 
         # also delete the now duplicated PersonIdentifier objects
-        if survivor.identifiers.count() > 1:
-            for i in survivor.identifiers.filter(scheme='calaccess_filer_id')[1:]:
-                i.delete()
+        keep_filer_ids = keep.identifiers.filter(scheme='calaccess_filer_id')
 
-        return survivor
+        dupe_filer_ids = keep_filer_ids.values("identifier").annotate(
+            row_count=Count('id'),
+        ).order_by().filter(row_count__gt=1)
+
+        for i in dupe_filer_ids.all():
+            # delete all rows with that filer_id
+            keep_filer_ids.filter(identifier=i['identifier']).delete()
+            # then re-add the one
+            keep.identifiers.create(
+                scheme='calaccess_filer_id',
+                identifier=i['identifier'],
+            )
+
+        # and dedupe candidacy records
+        contest_group_q = keep.candidacies.values("contest").annotate(
+            row_count=Count('id')
+        ).filter(row_count__gt=1)
+
+        for group in contest_group_q.all():
+            cands = keep.candidacies.filter(contest=group['contest'])
+            # preference to "qualified" candidacy (from scrape)
+            if cands.filter(registration_status='qualified').exists():
+                cand_to_keep = cands.filter(registration_status='qualified').all()[0]
+            # or the one with the most recent filed_date
+            else:
+                cand_to_keep = cands.latest('filed_date')
+
+            for i in range(1, len(cands)):
+                cand_to_discard = cands[i]
+                # keep earliest filed_date
+                if cand_to_keep.filed_date and cand_to_discard.filed_date:
+                    if cand_to_keep.filed_date > cand_to_discard.filed_date:
+                        cand_to_keep.filed_date = cand_to_discard.filed_date
+                elif cand_to_discard.filed_date:
+                    cand_to_keep.filed_date = cand_to_discard.filed_date
+                # keep is_incumbent if True
+                if not cand_to_keep.is_incumbent and cand_to_discard.is_incumbent:
+                    cand_to_keep.is_incumbent = cand_to_discard.is_incumbent
+                # keep the candidate_name, if not already somewhere else
+                if (
+                    cand_to_discard.candidate_name != cand_to_keep.candidate_name and
+                    cand_to_discard.candidate_name != cand_to_keep.person.name and
+                    not cand_to_keep.person.other_names.filter(
+                        name=cand_to_discard.candidate_name
+                    ).exists()
+                ):
+                    keep.other_names.create(
+                        name=cand_to_discard.candidate_name,
+                        note='From merge of %s candidacies' % cand_to_keep.contest
+                    )
+                # assuming not trying to merge candidacies with different parties
+                if not cand_to_keep.party and cand_to_discard.party:
+                    cand_to_keep.party = cand_to_discard.party
+                # assuming the only thing in extras is form501_filing_ids
+                if 'form501_filing_ids' in cand_to_discard.extras:
+                    for i in cand_to_discard.extras['form501_filing_ids']:
+                        self.link_form501_to_candidacy(i, cand_to_keep)
+
+                cand_to_keep.save()
+                if 'form501_filing_ids' in cand_to_keep.extras:
+                    self.update_candidacy_from_form501s(cand_to_keep)
+                cand_to_keep.refresh_from_db()
+                cand_to_discard.delete()
+
+        return keep

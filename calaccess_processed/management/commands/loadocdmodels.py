@@ -7,7 +7,6 @@ from django.apps import apps
 from django.conf import settings
 from django.utils.timezone import now
 from django.core.management import call_command
-from calaccess_processed.models import ProcessedDataVersion
 from calaccess_processed.management.commands import CalAccessCommand
 
 
@@ -66,7 +65,7 @@ class Command(CalAccessCommand):
         self.duration()
 
         call_command(
-            'mergecandidates',
+            'mergepersonsbyfilerid',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
@@ -74,6 +73,13 @@ class Command(CalAccessCommand):
 
         call_command(
             'loadcandidaciesfrom501s',
+            verbosity=self.verbosity,
+            no_color=self.no_color,
+        )
+        self.duration()
+
+        call_command(
+            'mergepersonsbycontestandname',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )

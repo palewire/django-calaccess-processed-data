@@ -5,7 +5,7 @@ Merge Persons that share the same CAL-ACCESS filer_id.
 """
 from django.db.models import Count
 from calaccess_processed.management.commands import LoadOCDModelsCommand
-from opencivicdata.core.models import PersonIdentifier
+from opencivicdata.core.models import Person, PersonIdentifier
 
 
 class Command(LoadOCDModelsCommand):
@@ -34,7 +34,20 @@ class Command(LoadOCDModelsCommand):
             "Merging %s Person sets with shared CAL-ACCESS filer_id" % shared_filer_ids_q.count()
         )
 
-        for filer_id in shared_filer_ids_q.all():
-            self.merge_persons(filer_id['identifier'])
+        for group in shared_filer_ids_q.all():
+            persons = Person.objects.filter(
+                identifiers__scheme='calaccess_filer_id',
+                identifiers__identifier=group['identifier'],
+            ).all()
+
+            if self.verbosity > 2:
+                self.log(
+                    "Merging {0} Persons sharing filer_id {1}".format(
+                        len(persons),
+                        group['identifier'],
+                    )
+                )
+
+            self.merge_persons(persons)
 
         self.success("Done!")

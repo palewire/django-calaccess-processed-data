@@ -3,6 +3,7 @@
 """
 Load the Candidacy models from records extracted from Form501Filings.
 """
+import itertools
 from datetime import date
 from django.core.management.base import CommandError
 from calaccess_raw.models import FilerToFilerTypeCd, LookupCodesCd
@@ -217,22 +218,16 @@ class Command(LoadOCDModelsCommand):
             contest = self.get_contest_from_form501(form501, election)
 
             if contest:
-                # "terminated" statement type
-                if form501.statement_type == '10003':
-                    registration_status = 'withdrawn'
-                else:
-                    # these are the "uncertified" who did not qualify
-                    registration_status = 'filed'
-
-                # format the name
-                person_name = '{0.last_name}, {0.first_name} {0.middle_name}'.format(
+                # cast in sort_name format
+                sort_name = '{0.last_name}, {0.first_name} {0.middle_name}'.format(
                     form501
                 ).strip()
-                # Create the Candidacy
+
                 candidacy, candidacy_created = self.get_or_create_candidacy(
                     contest,
-                    person_name,
-                    registration_status,
+                    sort_name,
+                    # registration status: these are the "uncertified" who did not qualify
+                    'filed',
                     filer_id=form501.filer_id,
                 )
 
@@ -244,22 +239,25 @@ class Command(LoadOCDModelsCommand):
                     form501,
                     contest.election.date
                 )
-                candidacy.extras = {'form501filingid': form501.filing_id}
-                candidacy.filed_date = form501.date_filed
                 candidacy.save()
+                self.link_form501_to_candidacy(form501.filing_id, candidacy)
+                self.update_candidacy_from_form501s(candidacy)
         return
 
     def load(self):
         """
         Loop over unmatched Form501Filings, creating Candidacy objects.
         """
-        candidacies_w_form501_q = Candidacy.objects.filter(
-            extras__has_key='form501filingid'
-        ).values('extras')
+        matched_form501_ids = [
+            i['extras']['form501_filing_ids'] for i in
+            Candidacy.objects.filter(
+                extras__has_key='form501_filing_ids'
+            ).values('extras')
+        ]
 
         unmatched_form501s_q = Form501Filing.objects.exclude(
             filing_id__in=[
-                i['extras']['form501filingid'] for i in candidacies_w_form501_q
+                i for i in itertools.chain.from_iterable(matched_form501_ids)
             ]
         ).exclude(office__icontains='RETIREMENT')
 

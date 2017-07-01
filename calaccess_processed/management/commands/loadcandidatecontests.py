@@ -363,10 +363,6 @@ class Command(LoadOCDModelsCommand):
 
         # default status for scraped candidates
         registration_status = 'qualified'
-        if form501:
-            # "terminated" statement type
-            if form501.statement_type == '10003':
-                registration_status = 'withdrawn'
 
         candidacy, candidacy_created = self.get_or_create_candidacy(
             contest,
@@ -381,11 +377,8 @@ class Command(LoadOCDModelsCommand):
 
         # add extra data from form501, if available
         if form501:
-            candidacy.party = party
-            candidacy.extras = {'form501filingid': form501.filing_id}
-            # use the filed_date of the earliest version of the form501
-            candidacy.filed_date = form501.versions.earliest('date_filed').date_filed
-            candidacy.save()
+            self.link_form501_to_candidacy(form501.filing_id, candidacy)
+            self.update_candidacy_from_form501s(candidacy)
 
             # if the scraped_candidate lacks a filer_id, add the
             # Form501Filing.filer_id
@@ -394,6 +387,9 @@ class Command(LoadOCDModelsCommand):
                     scheme='calaccess_filer_id',
                     identifier=form501.filer_id,
                 )
+        if party and not candidacy.party:
+            candidacy.party = party
+            candidacy.save()
 
         # always update the source for the candidacy
         candidacy.sources.update_or_create(
