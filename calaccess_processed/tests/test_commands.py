@@ -6,6 +6,7 @@ Unittests for management commands.
 import os
 from django.core.management import call_command
 from django.core.management.base import CommandError
+from django.db.models import Count
 from datetime import date
 from django.test import TestCase, override_settings
 from calaccess_raw import get_test_download_directory
@@ -14,10 +15,7 @@ from calaccess_processed.management.commands import (
     LoadOCDModelsCommand,
 )
 from calaccess_processed.models import ProcessedDataVersion
-from calaccess_scraped.models import (
-    ScrapedCandidate,
-    ScrapedProposition
-)
+from calaccess_scraped.models import ScrapedCandidate, ScrapedProposition
 from opencivicdata.elections.models import (
     BallotMeasureContest,
     Candidacy,
@@ -82,12 +80,32 @@ class ProcessedDataCommandsTest(TestCase):
                 sources__url__contains='http://cal-access.sos.ca.gov/Campaign/Candidates/list.aspx?view=certified' # noqa
             ).count(),
         )
-        # Confirm that no CandidateContest has more than one incumbent
+        # For each CandidateContest...
         for contest in CandidateContest.objects.all():
+            # Confirm there isn't more than one incumbent
             self.assertTrue(
                 contest.candidacies.filter(is_incumbent=True).count() <= 1,
                 msg="Multiple incumbents in {}!".format(contest),
             )
+            # Confirm there aren't multiple Candidacies with the same filer_id
+            filer_id_groups_q = contest.candidacies.filter(
+                person__identifiers__scheme='calaccess_filer_id'
+            ).values(
+                'person__identifiers__identifier'
+            ).annotate(
+                row_count=Count('id'),
+            ).order_by().filter(row_count__gt=1)
+
+            self.assertTrue(
+                filer_id_groups_q.count() == 0,
+                msg="Multiple candidacies with same filer_id in {}!".format(
+                    contest
+                ),
+            )
+
+
+            # Confirm there aren't multiple Candidacies with the same name
+            # but not different filer_ids or different parties
 
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
 
