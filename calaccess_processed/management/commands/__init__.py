@@ -9,7 +9,6 @@ import logging
 from datetime import date
 from django.core.management import call_command, CommandError
 from django.core.management.base import BaseCommand
-from django.core.exceptions import MultipleObjectsReturned
 from django.db.models import Count, Q
 from django.utils import timezone
 from django.utils.termcolors import colorize
@@ -340,10 +339,6 @@ class LoadOCDModelsCommand(CalAccessCommand):
                         identifiers__scheme='calaccess_filer_id',
                         identifiers__identifier=filer_id,
                     )
-                except MultipleObjectsReturned:
-                    # check to see if this is still necessary
-                    import ipdb; ipdb.set_trace() # noqa 
-                    # person = self.merge_persons(filer_id)
                 except Person.DoesNotExist:
                     pass
                 else:
@@ -680,6 +675,14 @@ class LoadOCDModelsCommand(CalAccessCommand):
                 if 'form501_filing_ids' in cand_to_discard.extras:
                     for i in cand_to_discard.extras['form501_filing_ids']:
                         self.link_form501_to_candidacy(i, cand_to_keep)
+                # keep the candidacy sources
+                if cand_to_discard.sources.exists():
+                    for source in cand_to_discard.sources.all():
+                        if not cand_to_keep.sources.filter(url=source.url).exists():
+                            cand_to_keep.sources.create(
+                                url=source.url,
+                                note=source.note,
+                            )
 
                 cand_to_keep.save()
                 if 'form501_filing_ids' in cand_to_keep.extras:
