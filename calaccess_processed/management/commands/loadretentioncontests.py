@@ -6,9 +6,9 @@ Load OCD BallotMeasureContest and related models with data scraped from the CAL-
 import re
 from calaccess_processed.management.commands.loadballotmeasurecontests import Command
 from calaccess_scraped.models import (
-    PropositionScrapedElection,
-    ScrapedIncumbent,
-    ScrapedCandidate,
+    PropositionElection as ScrapedPropositionElection,
+    Incumbent as ScrapedIncumbent,
+    Candidate as ScrapedCandidate,
 )
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import RetentionContest
@@ -26,7 +26,7 @@ class Command(Command):
 
         Return QuerySet.
         """
-        return PropositionScrapedElection.objects.filter(
+        return ScrapedPropositionElection.objects.filter(
             propositions__name__icontains='RECALL',
         )
 

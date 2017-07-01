@@ -18,8 +18,8 @@ from django.db.models.functions import Cast, Concat
 from calaccess_processed import special_elections
 from calaccess_processed.management.commands import LoadOCDModelsCommand
 from calaccess_scraped.models import (
-    CandidateScrapedElection,
-    IncumbentScrapedElection,
+    CandidateElection as ScrapedCandidateElection,
+    IncumbentElection as ScrapedIncumbentElection,
 )
 from calaccess_processed.models import Form501Filing
 from opencivicdata.core.models import Membership, Organization
@@ -90,7 +90,7 @@ class Command(LoadOCDModelsCommand):
             # if not in the hard-coded list above, check the scraped
             # incumbent elections.
             parsed_name = self.parse_election_name(election_name)
-            incumbent_elections_q = IncumbentScrapedElection.objects.filter(
+            incumbent_elections_q = ScrapedIncumbentElection.objects.filter(
                 date__year=parsed_name['year'],
                 name__icontains=parsed_name['type'],
             )
@@ -169,12 +169,12 @@ class Command(LoadOCDModelsCommand):
 
     def get_form501_filing(self, scraped_candidate):
         """
-        Return a Form501Filing that matches the ScrapedCandidate.
+        Return a Form501Filing that matches the scraped Candidate.
 
         By default, return the latest Form501FilingVersion, unless earliest
         is set to True.
 
-        If the ScrapedCandidate has a scraped_id, lookup the Form501Filing
+        If the scraped Candidate has a scraped_id, lookup the Form501Filing
         by filer_id. Otherwise, lookup using the candidate's name.
 
         Return None can't match to a single Form501Filing.
@@ -488,13 +488,13 @@ class Command(LoadOCDModelsCommand):
         members_are_loaded = Membership.objects.exists()
 
         # Loop over scraped_elections
-        for scraped_election in CandidateScrapedElection.objects.all():
+        for scraped_election in ScrapedCandidateElection.objects.all():
             ocd_election = self.get_ocd_election(scraped_election)
             # then over candidates in the scraped_election
             for scraped_candidate in scraped_election.candidates.all():
                 if self.verbosity > 2:
                     self.log(
-                        ' Processing ScrapedCandidate.id %s' % scraped_candidate.id
+                        ' Processing scraped Candidate.id %s' % scraped_candidate.id
                     )
                 candidacy = self.add_scraped_candidate_to_election(
                     scraped_candidate,

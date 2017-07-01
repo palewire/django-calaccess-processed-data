@@ -6,7 +6,7 @@ Load OCD BallotMeasureContest and related models with data scraped from the CAL-
 import re
 from django.utils import timezone
 from calaccess_processed.management.commands import LoadOCDModelsCommand
-from calaccess_scraped.models import PropositionScrapedElection
+from calaccess_scraped.models import PropositionElection as ScrapedPropositionElection
 from opencivicdata.elections.models import (
     Election,
     BallotMeasureContest,
@@ -37,7 +37,7 @@ class Command(LoadOCDModelsCommand):
 
         Return QuerySet.
         """
-        return PropositionScrapedElection.objects.all()
+        return ScrapedPropositionElection.objects.all()
 
     def get_scraped_props(self, scraped_elec):
         """
@@ -49,7 +49,7 @@ class Command(LoadOCDModelsCommand):
 
     def get_or_create_election(self, scraped_elec):
         """
-        Get or create an OCD Election object using the PropositionScrapedElection.
+        Get or create an OCD Election object using the ScrapedPropositionElection.
 
         Returns a tuple (Election object, created), where created is a boolean
         specifying whether a Election was created.

@@ -15,7 +15,8 @@ from calaccess_processed.management.commands import (
     LoadOCDModelsCommand,
 )
 from calaccess_processed.models import ProcessedDataVersion
-from calaccess_scraped.models import ScrapedCandidate, ScrapedProposition
+from calaccess_scraped.models import Candidate as ScrapedCandidate
+from calaccess_scraped.models import Proposition as ScrapedProposition
 from opencivicdata.elections.models import (
     BallotMeasureContest,
     Candidacy,
@@ -31,12 +32,12 @@ class ProcessedDataCommandsTest(TestCase):
     """
     fixtures = [
         'divisions.json',
-        'candidate_scraped_elections.json',
-        'scraped_candidates.json',
-        'incumbent_scraped_elections.json',
-        'scraped_incumbents.json',
-        'proposition_scraped_elections.json',
-        'scraped_propositions.json',
+        'candidate_election.json',
+        'candidate.json',
+        'incumbent_election.json',
+        'incumbent.json',
+        'proposition_election.json',
+        'proposition.json',
     ]
 
     @classmethod
@@ -73,7 +74,7 @@ class ProcessedDataCommandsTest(TestCase):
             RetentionContest.objects.count(),
         )
         # Confirm that the count of scraped candidates equals the count loaded
-        # into Candidacy
+        # into Candidacy with a scraped source
         self.assertEqual(
             ScrapedCandidate.objects.count(),
             Candidacy.objects.filter(
@@ -102,10 +103,6 @@ class ProcessedDataCommandsTest(TestCase):
                     contest
                 ),
             )
-
-
-            # Confirm there aren't multiple Candidacies with the same name
-            # but not different filer_ids or different parties
 
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
 

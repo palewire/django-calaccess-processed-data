@@ -8,8 +8,8 @@ from django.db.models import IntegerField
 from django.db.models.functions import Cast
 from calaccess_processed.management.commands import LoadOCDModelsCommand
 from calaccess_scraped.models import (
-    IncumbentScrapedElection,
-    ScrapedIncumbent,
+    IncumbentElection as ScrapedIncumbentElection,
+    Incumbent as ScrapedIncumbent,
 )
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import Election, Candidacy
@@ -35,7 +35,7 @@ class Command(LoadOCDModelsCommand):
 
     def get_or_create_election(self, scraped_elec):
         """
-        Get or create an OCD Election object using the IncumbentScrapedElection.
+        Get or create an OCD Election object using the scraped IncumbentElection.
 
         Returns a tuple (Election object, created), where created is a boolean
         specifying whether a Election was created.
@@ -72,7 +72,7 @@ class Command(LoadOCDModelsCommand):
         """
         Load OCD Election, Membership and related models with data scraped from CAL-ACCESS website.
         """
-        for scraped_elec in IncumbentScrapedElection.objects.all():
+        for scraped_elec in ScrapedIncumbentElection.objects.all():
             ocd_elec = self.get_or_create_election(scraped_elec)[0]
             ocd_elec.sources.update_or_create(
                 url=scraped_elec.url,
