@@ -28,17 +28,19 @@ class Command(LoadOCDModelsCommand):
         ).filter(
             scheme='calaccess_filer_id',
             person_count__gt=1,
-        )
+        ).order_by()
 
         self.log(
             "Merging %s Person sets with shared CAL-ACCESS filer_id" % shared_filer_ids_q.count()
         )
 
         for group in shared_filer_ids_q.all():
-            persons = Person.objects.filter(
-                identifiers__scheme='calaccess_filer_id',
-                identifiers__identifier=group['identifier'],
-            ).all()
+            persons = [
+                p for p in Person.objects.filter(
+                    identifiers__scheme='calaccess_filer_id',
+                    identifiers__identifier=group['identifier'],
+                ).all()
+            ]
 
             if self.verbosity > 2:
                 self.log(

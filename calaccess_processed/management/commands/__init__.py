@@ -606,14 +606,12 @@ class LoadOCDModelsCommand(CalAccessCommand):
         Return the merged Person object.
         """
         # each person will be merged into this one
-        keep = persons[0]
+        keep = persons.pop(0)
 
         # loop over all the rest
-        for i in range(1, len(persons)):
-            discard = persons[i]
-            if keep.id != discard.id:
-                merge(keep, discard)
-                keep.refresh_from_db()
+        for i in persons:
+            merge(keep, i)
+            keep.refresh_from_db()
 
         # also delete the now duplicated PersonIdentifier objects
         keep_filer_ids = keep.identifiers.filter(scheme='calaccess_filer_id')
@@ -632,10 +630,12 @@ class LoadOCDModelsCommand(CalAccessCommand):
             )
 
         # and dedupe candidacy records
+        # first, make groups by contests with more than one candidacy
         contest_group_q = keep.candidacies.values("contest").annotate(
             row_count=Count('id')
         ).filter(row_count__gt=1)
 
+        # loop over each contest group
         for group in contest_group_q.all():
             cands = keep.candidacies.filter(contest=group['contest'])
             # preference to "qualified" candidacy (from scrape)
@@ -645,17 +645,18 @@ class LoadOCDModelsCommand(CalAccessCommand):
             else:
                 cand_to_keep = cands.latest('filed_date')
 
-            for i in range(1, len(cands)):
-                cand_to_discard = cands[i]
-                # keep earliest filed_date
-                if cand_to_keep.filed_date and cand_to_discard.filed_date:
-                    if cand_to_keep.filed_date > cand_to_discard.filed_date:
-                        cand_to_keep.filed_date = cand_to_discard.filed_date
-                elif cand_to_discard.filed_date:
-                    cand_to_keep.filed_date = cand_to_discard.filed_date
-                # keep is_incumbent if True
-                if not cand_to_keep.is_incumbent and cand_to_discard.is_incumbent:
-                    cand_to_keep.is_incumbent = cand_to_discard.is_incumbent
+            # loop over all the other candidacy in the group
+            for cand_to_discard in cands.exclude(id=cand_to_keep.id).all():
+                # assuming the only thing in extras is form501_filing_ids
+                if 'form501_filing_ids' in cand_to_discard.extras:
+                    for i in cand_to_discard.extras['form501_filing_ids']:
+                        self.link_form501_to_candidacy(i, cand_to_keep)
+                cand_to_keep.refresh_from_db()
+
+                if 'form501_filing_ids' in cand_to_keep.extras:
+                    self.update_candidacy_from_form501s(cand_to_keep)
+                cand_to_keep.refresh_from_db()
+
                 # keep the candidate_name, if not already somewhere else
                 if (
                     cand_to_discard.candidate_name != cand_to_keep.candidate_name and
@@ -668,13 +669,8 @@ class LoadOCDModelsCommand(CalAccessCommand):
                         name=cand_to_discard.candidate_name,
                         note='From merge of %s candidacies' % cand_to_keep.contest
                     )
-                # assuming not trying to merge candidacies with different parties
-                if not cand_to_keep.party and cand_to_discard.party:
-                    cand_to_keep.party = cand_to_discard.party
-                # assuming the only thing in extras is form501_filing_ids
-                if 'form501_filing_ids' in cand_to_discard.extras:
-                    for i in cand_to_discard.extras['form501_filing_ids']:
-                        self.link_form501_to_candidacy(i, cand_to_keep)
+                    cand_to_keep.refresh_from_db()
+
                 # keep the candidacy sources
                 if cand_to_discard.sources.exists():
                     for source in cand_to_discard.sources.all():
@@ -683,11 +679,23 @@ class LoadOCDModelsCommand(CalAccessCommand):
                                 url=source.url,
                                 note=source.note,
                             )
+                        cand_to_keep.refresh_from_db()
+
+                # keep earliest filed_date
+                if cand_to_keep.filed_date and cand_to_discard.filed_date:
+                    if cand_to_keep.filed_date > cand_to_discard.filed_date:
+                        cand_to_keep.filed_date = cand_to_discard.filed_date
+                elif cand_to_discard.filed_date:
+                    cand_to_keep.filed_date = cand_to_discard.filed_date
+                # keep is_incumbent if True
+                if not cand_to_keep.is_incumbent and cand_to_discard.is_incumbent:
+                    cand_to_keep.is_incumbent = cand_to_discard.is_incumbent
+                # assuming not trying to merge candidacies with different parties
+                if not cand_to_keep.party and cand_to_discard.party:
+                    cand_to_keep.party = cand_to_discard.party
 
                 cand_to_keep.save()
-                if 'form501_filing_ids' in cand_to_keep.extras:
-                    self.update_candidacy_from_form501s(cand_to_keep)
-                cand_to_keep.refresh_from_db()
                 cand_to_discard.delete()
 
+        keep.refresh_from_db()
         return keep
