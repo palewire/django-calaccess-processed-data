@@ -88,6 +88,21 @@ class ProcessedDataCommandsTest(TestCase):
                 contest.candidacies.filter(is_incumbent=True).count() <= 1,
                 msg="Multiple incumbents in {}!".format(contest),
             )
+
+            # Confirm there aren't multiple Candidacies with the same person_id
+            person_id_groups_q = contest.candidacies.values(
+                'person_id',
+            ).annotate(
+                row_count=Count('id'),
+            ).order_by().filter(row_count__gt=1)
+
+            self.assertTrue(
+                person_id_groups_q.count() == 0,
+                msg="Multiple candidacies with same person_id in {}!".format(
+                    contest
+                ),
+            )
+
             # Confirm there aren't multiple Candidacies with the same filer_id
             filer_id_groups_q = contest.candidacies.filter(
                 person__identifiers__scheme='calaccess_filer_id'
