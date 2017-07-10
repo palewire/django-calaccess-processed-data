@@ -543,7 +543,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
         corrections = [d for d in corrections if d['party']]
 
         # Filter down to the ones that match
-        filtered = [
+        matches = [
             d['party'] for d in corrections if (
                 d['candidate_name'] == candidate_name and
                 d['year'] == year and
@@ -553,14 +553,14 @@ class LoadOCDModelsCommand(CalAccessCommand):
         ]
 
         # If there's more than one result throw an error
-        if len(filtered) > 1:
+        if len(matches) > 1:
             raise Exception('More than one correction found.')
         # If there's no match return None
-        elif len(filtered) == 0:
+        elif len(matches) == 0:
             return None
         # If there's only one match return that
         else:
-            return filtered[0]
+            return matches[0]
 
     def lookup_party(self, party):
         """
