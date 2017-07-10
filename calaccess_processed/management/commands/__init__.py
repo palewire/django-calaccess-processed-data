@@ -5,8 +5,10 @@ Base classes for custom management commands.
 """
 import os
 import re
+import csv
 import logging
 from datetime import date
+from django.apps import apps
 from django.core.management import call_command, CommandError
 from django.core.management.base import BaseCommand
 from django.db.models import Count, Q
@@ -15,7 +17,6 @@ from django.utils.termcolors import colorize
 from calaccess_raw import get_download_directory
 from calaccess_raw.models import RawDataVersion, FilerToFilerTypeCd
 from calaccess_processed.models import ProcessedDataVersion, Form501FilingVersion
-from calaccess_processed.candidate_party_corrections import corrections
 from opencivicdata.core.management.commands.loaddivisions import load_divisions
 from opencivicdata.core.models import (
     Division,
@@ -518,30 +519,48 @@ class LoadOCDModelsCommand(CalAccessCommand):
 
         return
 
-    def lookup_candidate_party_correction(self, candidate_name, year,
-                                          election_type, office):
+    def lookup_candidate_party_correction(
+        self,
+        candidate_name,
+        year,
+        election_type,
+        office
+    ):
         """
         Return the correct party for a given candidate name, year, election_type and office.
 
         Return None if no correction found.
         """
+        # Get the path to our corrections file
+        app = apps.get_app_config("calaccess_processed")
+        module_dir = os.path.abspath(os.path.dirname(app.module.__file__))
+        corrections_path = os.path.join(module_dir, 'corrections', "candidate_party.csv")
+
+        # Open up the corrections
+        corrections = csv.DictReader(open(corrections_path, 'r'))
+
+        # Filter down to the ones we've corrected
+        corrections = [d for d in corrections if d['party']]
+
+        # Filter down to the ones that match
         filtered = [
-            i[-1] for i in corrections if (
-                i[0] == candidate_name and
-                i[1] == year and
-                i[2] == election_type and
-                i[3] == office
+            d['party'] for d in corrections if (
+                d['candidate_name'] == candidate_name and
+                d['year'] == year and
+                d['election_type'] == election_type and
+                d['office'] == office
             )
         ]
 
+        # If there's more than one result throw an error
         if len(filtered) > 1:
             raise Exception('More than one correction found.')
+        # If there's no match return None
         elif len(filtered) == 0:
-            party = None
+            return None
+        # If there's only one match return that
         else:
-            party = filtered[0]
-
-        return party
+            return filtered[0]
 
     def lookup_party(self, party):
         """
