@@ -119,6 +119,82 @@ class ProcessedDataCommandsTest(TestCase):
                 ),
             )
 
+            # Confirm there aren't multiple Candidacies with the same candidate_name
+            # unless party_id is different or person's filer_id is different
+            candidate_name_groups_q = contest.candidacies.values(
+                'candidate_name',
+            ).annotate(
+                row_count=Count('id'),
+            ).order_by().filter(row_count__gt=1)
+
+            # loop over each group of multiple candidacies sharing the same candidate_name
+            for group in candidate_name_groups_q.all():
+                candidacies_q = contest.candidacies.filter(
+                    candidate_name=group['candidate_name'],
+                )
+
+                filer_id_party_groups_q = candidacies_q.filter(
+                    person__identifiers__scheme='calaccess_filer_id'
+                ).order_by(
+                    'person__identifiers__identifier',
+                    'party',
+                ).values(
+                    'person__identifiers__identifier',
+                    'party',
+                ).distinct()
+
+                # confirm that count of candidacies equals count of
+                # distinct filer_id/party groups
+                self.assertEqual(
+                    candidacies_q.count(),
+                    filer_id_party_groups_q.count(),
+                    msg='{0} candidacies in {1} with candidate_name "{2}" have {3} '
+                        'distinct filer_id/party combos!'.format(
+                        candidacies_q.count(),
+                        contest,
+                        group['candidate_name'],
+                        filer_id_party_groups_q.count(),
+                    ),
+                )
+
+            # Confirm there aren't multiple Candidacies with the same person.name
+            # unless party_id is different or person's filer_id is different
+            person_name_groups_q = contest.candidacies.values(
+                'person__name',
+            ).annotate(
+                row_count=Count('id'),
+            ).order_by().filter(row_count__gt=1)
+
+            # loop over each group of multiple candidacies sharing the same candidate_name
+            for group in person_name_groups_q.all():
+                candidacies_q = contest.candidacies.filter(
+                    person__name=group['person__name'],
+                )
+
+                filer_id_party_groups_q = candidacies_q.filter(
+                    person__identifiers__scheme='calaccess_filer_id'
+                ).order_by(
+                    'person__identifiers__identifier',
+                    'party',
+                ).values(
+                    'person__identifiers__identifier',
+                    'party',
+                ).distinct()
+
+                # confirm that count of candidacies equals count of
+                # distinct filer_id/party groups
+                self.assertEqual(
+                    candidacies_q.count(),
+                    filer_id_party_groups_q.count(),
+                    msg='{0} candidacies in {1} with person__name "{2}" have {3} '
+                        'distinct filer_id/party combos!'.format(
+                        candidacies_q.count(),
+                        contest,
+                        group['person__name'],
+                        filer_id_party_groups_q.count(),
+                    ),
+                )
+
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
 
         # Confirm that the version finished
