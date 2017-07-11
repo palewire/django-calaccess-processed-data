@@ -9,12 +9,14 @@ import csv
 import logging
 from datetime import date
 from django.apps import apps
-from django.core.management import call_command, CommandError
-from django.core.management.base import BaseCommand
-from django.db.models import Count, Q
 from django.utils import timezone
+from django.db.models import Count, Q
+from opencivicdata.merge import merge
 from django.utils.termcolors import colorize
 from calaccess_raw import get_download_directory
+from django.core.management.base import BaseCommand
+from django.core.management import call_command, CommandError
+from opencivicdata.elections.models import Election, Candidacy
 from calaccess_raw.models import RawDataVersion, FilerToFilerTypeCd
 from calaccess_processed.models import ProcessedDataVersion, Form501FilingVersion
 from opencivicdata.core.management.commands.loaddivisions import load_divisions
@@ -25,8 +27,6 @@ from opencivicdata.core.models import (
     Person,
     Post,
 )
-from opencivicdata.elections.models import Election, Candidacy
-from opencivicdata.merge import merge
 logger = logging.getLogger(__name__)
 
 
