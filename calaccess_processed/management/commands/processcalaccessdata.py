@@ -5,11 +5,11 @@ Load data into processed CAL-ACCESS models, archive processed files and ZIP.
 """
 import os
 from django.conf import settings
-from django.core.management import call_command
 from django.core.files import File
 from django.utils.timezone import now
-from calaccess_processed.management.commands import CalAccessCommand
+from django.core.management import call_command
 from zipfile import ZIP_DEFLATED, ZIP_STORED, ZipFile
+from calaccess_processed.management.commands import CalAccessCommand
 
 
 class Command(CalAccessCommand):
