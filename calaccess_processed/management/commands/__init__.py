@@ -18,8 +18,8 @@ from django.core.management.base import BaseCommand
 from django.core.management import call_command, CommandError
 from opencivicdata.elections.models import Election, Candidacy
 from calaccess_raw.models import RawDataVersion, FilerToFilerTypeCd
-from calaccess_processed.models import ProcessedDataVersion, Form501FilingVersion
 from opencivicdata.core.management.commands.loaddivisions import load_divisions
+from calaccess_processed.models import ProcessedDataVersion, Form501FilingVersion
 from opencivicdata.core.models import (
     Division,
     Jurisdiction,
