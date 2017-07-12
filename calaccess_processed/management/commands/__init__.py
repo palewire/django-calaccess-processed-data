@@ -537,10 +537,10 @@ class LoadOCDModelsCommand(CalAccessCommand):
         corrections_path = os.path.join(module_dir, 'corrections', "candidate_party.csv")
 
         # Open up the corrections
-        corrections = csv.DictReader(open(corrections_path, 'r'))
-
-        # Filter down to the ones we've corrected
-        corrections = [d for d in corrections if d['party']]
+        with open(corrections_path, 'r') as f:
+            corrections = csv.DictReader(f)
+            # Filter down to the ones we've corrected
+            corrections = [d for d in corrections if d['party']]
 
         # Filter down to the ones that match
         matches = [
