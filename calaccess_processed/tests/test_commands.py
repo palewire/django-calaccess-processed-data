@@ -4,12 +4,15 @@
 Unittests for management commands.
 """
 import os
+import shutil
+from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
 from django.db.models import Count
+from django.utils.timezone import now
 from datetime import date
 from django.test import TestCase, override_settings
-from calaccess_raw import get_test_download_directory
+from calaccess_raw.models import RawDataVersion
 from calaccess_processed.management.commands import (
     CalAccessCommand,
     LoadOCDModelsCommand,
@@ -25,7 +28,9 @@ from opencivicdata.elections.models import (
 )
 
 
-@override_settings(CALACCESS_STORE_ARCHIVE=True)
+@override_settings(
+    CALACCESS_DATA_DIR=os.path.join(settings.BASE_DIR, 'test-data')
+)
 class ProcessedDataCommandsTest(TestCase):
     """
     Run and test management commands.
@@ -40,21 +45,29 @@ class ProcessedDataCommandsTest(TestCase):
         'proposition.json',
     ]
 
-    @classmethod
-    def setUp(self):
-        """
-        Set up test case.
-        """
-        test_tsv_dir = os.path.join(get_test_download_directory(), 'tsv')
-        os.path.exists(test_tsv_dir) or os.makedirs(test_tsv_dir)
-
     def test_commands(self):
         """
         Run the data loading and processing commands.
         """
+        # Confirm processing will not proceed without raw data
         with self.assertRaises(CommandError):
             call_command("processcalaccessdata", verbosity=3, noinput=True)
-        call_command("updatecalaccessrawdata", verbosity=3, test_data=True, noinput=True)
+
+        # fake a raw data download
+        download_dir = os.path.join(settings.CALACCESS_DATA_DIR, 'download')
+        os.path.exists(download_dir) or os.mkdir(download_dir)
+        zip_path = os.path.join(
+            settings.CALACCESS_DATA_DIR,
+            'dbwebexport.zip',
+        )
+        shutil.copy(zip_path, download_dir)
+        RawDataVersion.objects.create(
+            release_datetime=now(),
+            download_start_datetime=now(),
+            download_finish_datetime=now(),
+            expected_size=os.stat(zip_path).st_size,
+        )
+        call_command("updatecalaccessrawdata", verbosity=3, noinput=True)
         call_command("processcalaccessdata", verbosity=3, noinput=True, scrape=False)
 
         # Confirm count of scraped propositions with a name that doesn't
