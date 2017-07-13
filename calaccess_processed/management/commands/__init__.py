@@ -18,6 +18,7 @@ from django.core.management.base import BaseCommand
 from django.core.management import call_command, CommandError
 from opencivicdata.elections.models import Election, Candidacy
 from opencivicdata.core.management.commands.loaddivisions import load_divisions
+from calaccess_raw import get_data_directory
 from calaccess_raw.models import RawDataVersion, FilerToFilerTypeCd
 from calaccess_processed.models import ProcessedDataVersion, Form501FilingVersion
 from opencivicdata.core.models import (
@@ -50,7 +51,7 @@ class CalAccessCommand(BaseCommand):
         self.start_datetime = timezone.now()
 
         # set up processed data directory
-        self.data_dir = settings.CALACCESS_DATA_DIR
+        self.data_dir = get_data_directory()
         self.processed_data_dir = os.path.join(
             self.data_dir,
             'processed',
