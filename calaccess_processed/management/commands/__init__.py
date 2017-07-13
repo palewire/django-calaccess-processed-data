@@ -13,7 +13,6 @@ from django.utils import timezone
 from django.db.models import Count, Q
 from opencivicdata.merge import merge
 from django.utils.termcolors import colorize
-from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.core.management import call_command, CommandError
 from opencivicdata.elections.models import Election, Candidacy
