@@ -88,19 +88,7 @@ class Command(CalAccessCommand):
         Run all of the CAL-ACCESS scrapers.
         """
         call_command(
-            'scrapecalaccesspropositions',
-            verbosity=self.verbosity,
-            no_color=self.no_color,
-            force_flush=True,
-        )
-        call_command(
-            'scrapecalaccesscandidates',
-            verbosity=self.verbosity,
-            no_color=self.no_color,
-            force_flush=True,
-        )
-        call_command(
-            'scrapecalaccessincumbents',
+            'scrapecalaccess',
             verbosity=self.verbosity,
             no_color=self.no_color,
             force_flush=True,
