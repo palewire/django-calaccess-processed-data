@@ -31,6 +31,10 @@ from opencivicdata.elections.models import (
 @override_settings(
     CALACCESS_DATA_DIR=os.path.join(settings.BASE_DIR, 'test-data')
 )
+@override_settings(
+    MEDIA_ROOT=os.path.join(settings.BASE_DIR, 'test-data', ".media")
+)
+@override_settings(CALACCESS_STORE_ARCHIVE=True)
 class ProcessedDataCommandsTest(TestCase):
     """
     Run and test management commands.
