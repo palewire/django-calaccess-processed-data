@@ -12,7 +12,11 @@ from calaccess_scraped.models import (
     Incumbent as ScrapedIncumbent,
 )
 from opencivicdata.core.models import Membership
-from opencivicdata.elections.models import Election, Candidacy
+from opencivicdata.elections.models import (
+    Election,
+    Candidacy,
+    CandidateContest,
+)
 
 
 class Command(LoadOCDModelsCommand):
@@ -166,4 +170,14 @@ class Command(LoadOCDModelsCommand):
                             rows,
                         )
                     )
+        # loop over all contest with an incumbent candidate
+        contests_q = CandidateContest.objects.filter(
+            candidacies__is_incumbent=True
+        )
+        for contest in contests_q.all():
+            # set is_incumbent False for all other candidacies in contest
+            contest.candidacies.exclude(
+                is_incumbent=True
+            ).update(is_incumbent=False)
+
         return
