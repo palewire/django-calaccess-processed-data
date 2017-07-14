@@ -512,6 +512,9 @@ class LoadOCDModelsCommand(CalAccessCommand):
             'contest__election__date',
         ).candidate_name
         if person.name != latest_candidate_name:
+            # move current Person.name into other_names
+            if not person.other_names.filter(name=person.name).exists():
+                person.other_names.create(name=person.name)
             person.name = latest_candidate_name
         person.save()
 
@@ -760,6 +763,9 @@ class LoadOCDModelsCommand(CalAccessCommand):
             'contest__election__date',
         ).candidate_name
         if keep.name != latest_candidate_name:
+            # move current Person.name into other_names
+            if not keep.other_names.filter(name=keep.name).exists():
+                keep.other_names.create(name=keep.name)
             keep.name = latest_candidate_name
         keep.save()
 
