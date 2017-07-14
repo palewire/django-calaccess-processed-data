@@ -313,6 +313,41 @@ class LoadOCDModelsCommand(CalAccessCommand):
 
         return post, post_created
 
+    def format_person_name_fields(self, sort_name):
+        """
+        Return a dict of formatted Person name field values.
+        """
+        # sort_name is undoctored name from scrape
+        name_dict = {'sort_name': sort_name.strip()}
+
+        # parse out these suffixes: JR, SR, II, III
+        suffix_pattern = r'(?:^|\s)((?:[JS]R\.?)|(?:I{2,3}))(?:,|\s|$)'
+        match = re.search(suffix_pattern, sort_name)
+        if match:
+            # replace suffix with a comma
+            sort_name = sort_name.replace(
+                match.group(), ','
+            # replace any double commas, strip any trailing
+            ).replace(',,', ',')
+            sort_name = re.sub(r',\s?$', '', sort_name).strip()
+
+        # split once, strip and flip the sort_name to make name
+        split_name = [i.strip() for i in sort_name.split(',', 1)]
+        name_list = split_name.copy()
+        name_list.reverse()
+        name_dict['name'] = ' '.join(name_list).strip()
+        name_dict['family_name'] = split_name[0]
+        if len(split_name) > 1:
+            name_dict['given_name'] = split_name[1]
+        if match:
+            # append suffix to end of name and given_name
+            suffix = ' %s' % match.group().replace(',', '').strip()
+            name_dict['name'] += suffix
+            if 'given_name' in name_dict:
+                name_dict['given_name'] += suffix
+
+        return name_dict
+
     def get_or_create_person(self, sort_name, filer_id=None):
         """
         Get or create a Person object with the name string and optional filer_id.
@@ -326,10 +361,9 @@ class LoadOCDModelsCommand(CalAccessCommand):
 
         Returns a tuple (Person object, created), where created is a boolean
         specifying whether a Person was created.
-        """
-        split_name = sort_name.split(',')
-        split_name.reverse()
-        name = ' '.join(split_name).strip()
+        """ 
+        name_dict = self.format_person_name_fields(sort_name)
+
         person = None
         created = False
 
@@ -344,20 +378,18 @@ class LoadOCDModelsCommand(CalAccessCommand):
                     pass
                 else:
                     if (
-                        person.name != name and
-                        not person.other_names.filter(name=name).exists()
+                        person.name != name_dict['name'] and
+                        not person.other_names.filter(
+                            name=name_dict['name']
+                        ).exists()
                     ):
                         person.other_names.create(
-                            name=name,
+                            name=name_dict['name'],
                             note='Matched on calaccess_filer_id'
                         )
         if not person:
-            # split and flip the original name string
-            split_name = name.split(',').reverse()
-            person = Person.objects.create(
-                name=name,
-                sort_name=sort_name,
-            )
+            person = Person.objects.create(**name_dict)
+
             if filer_id:
                 person.identifiers.create(
                     scheme='calaccess_filer_id',
@@ -386,9 +418,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
         Returns a tuple (Candidacy object, created), where created is a boolean
         specifying whether a Candidacy was created.
         """
-        split_name = sort_name.split(',')
-        split_name.reverse()
-        name = ' '.join(split_name).strip()
+        name = self.format_person_name_fields(sort_name)['name']
         candidacy = None
 
         # first, try matching to existing candidate in contest with filer_id
