@@ -331,7 +331,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
 
         # split once, strip and flip the sort_name to make name
         split_name = [i.strip() for i in sort_name.split(',', 1)]
-        name_list = split_name.copy()
+        name_list = list(split_name)
         name_list.reverse()
         name_dict['name'] = ' '.join(name_list).strip()
         name_dict['family_name'] = split_name[0]
