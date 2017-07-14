@@ -364,7 +364,7 @@ class Command(LoadOCDModelsCommand):
         # default status for scraped candidates
         registration_status = 'qualified'
 
-        # http://www.sos.ca.gov/elections/prior-elections/statewide-election-results/primary-election-march-7-2000/certified-list-candidates/ #noqa
+        # http://www.sos.ca.gov/elections/prior-elections/statewide-election-results/primary-election-march-7-2000/certified-list-candidates/ # noqa
         if scraped_candidate.name == 'COURTRIGHT DONNA':
             scraped_candidate_name = 'COURTRIGHT, DONNA'
         else:

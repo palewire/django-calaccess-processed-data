@@ -325,10 +325,8 @@ class LoadOCDModelsCommand(CalAccessCommand):
         match = re.search(suffix_pattern, sort_name)
         if match:
             # replace suffix with a comma
-            sort_name = sort_name.replace(
-                match.group(), ','
-            # replace any double commas, strip any trailing
-            ).replace(',,', ',')
+            # and replace any double commas, strip any trailing
+            sort_name = sort_name.replace(match.group(), ',').replace(',,', ',')
             sort_name = re.sub(r',\s?$', '', sort_name).strip()
 
         # split once, strip and flip the sort_name to make name
@@ -361,7 +359,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
 
         Returns a tuple (Person object, created), where created is a boolean
         specifying whether a Person was created.
-        """ 
+        """
         name_dict = self.format_person_name_fields(sort_name)
 
         person = None
