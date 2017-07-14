@@ -364,9 +364,15 @@ class Command(LoadOCDModelsCommand):
         # default status for scraped candidates
         registration_status = 'qualified'
 
+        # http://www.sos.ca.gov/elections/prior-elections/statewide-election-results/primary-election-march-7-2000/certified-list-candidates/ #noqa
+        if scraped_candidate.name == 'COURTRIGHT DONNA':
+            scraped_candidate_name = 'COURTRIGHT, DONNA'
+        else:
+            scraped_candidate_name = scraped_candidate.name
+
         candidacy, candidacy_created = self.get_or_create_candidacy(
             contest,
-            scraped_candidate.name,
+            scraped_candidate_name,
             registration_status,
             filer_id=scraped_candidate.scraped_id,
         )
@@ -407,7 +413,7 @@ class Command(LoadOCDModelsCommand):
 
         Return True if:
         * Membership exists for the Person and Post linked to the Candidacy, and
-        * Membership.end_date is NULL or has a year later year of Election.date
+        * Membership.end_date is NULL or has a year later than Election.date.year.
         """
         incumbent_q = Membership.objects.filter(
             post=candidacy.post,
@@ -507,5 +513,9 @@ class Command(LoadOCDModelsCommand):
                         candidacy.save()
                         if self.verbosity > 2:
                             self.log(' Identified as incumbent.')
-
+                        # set is_incumbent False for all other candidacies
+                        contest = candidacy.contest
+                        contest.candidacies.exclude(
+                            is_incumbent=True
+                        ).update(is_incumbent=False)
         return
