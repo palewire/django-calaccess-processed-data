@@ -20,6 +20,7 @@ from calaccess_processed.management.commands import (
 from calaccess_processed.models import ProcessedDataVersion
 from calaccess_scraped.models import Candidate as ScrapedCandidate
 from calaccess_scraped.models import Proposition as ScrapedProposition
+from opencivicdata.core.models import Person
 from opencivicdata.elections.models import (
     BallotMeasureContest,
     Candidacy,
@@ -211,6 +212,22 @@ class ProcessedDataCommandsTest(TestCase):
                         filer_id_party_groups_q.count(),
                     ),
                 )
+
+        # For each Person...
+        for person in Person.objects.all():
+            # Confirm name is same as most recent candidate_name
+            latest_candidate_name = person.candidacies.latest(
+                'contest__election__date'
+            ).candidate_name
+
+            self.assertEqual(
+                person.name,
+                latest_candidate_name,
+                msg='Person.name "{0}" doesn\'t match latest candidate_name "{1}!'.format(
+                    person.name,
+                    latest_candidate_name,
+                )
+            )
 
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
 

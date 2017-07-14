@@ -506,6 +506,15 @@ class LoadOCDModelsCommand(CalAccessCommand):
             candidacy.registration_status = registration_status
             candidacy.save()
 
+        # make sure Person name is same as most recent candidate_name
+        person.refresh_from_db()
+        latest_candidate_name = person.candidacies.latest(
+            'contest__election__date',
+        ).candidate_name
+        if person.name != latest_candidate_name:
+            person.name = latest_candidate_name
+        person.save()
+
         return (candidacy, candidacy_created)
 
     def link_form501_to_candidacy(self, form501_id, candidacy_obj):
@@ -692,7 +701,7 @@ class LoadOCDModelsCommand(CalAccessCommand):
             else:
                 cand_to_keep = cands.latest('filed_date')
 
-            # loop over all the other candidacy in the group
+            # loop over all the other candidacies in the group
             for cand_to_discard in cands.exclude(id=cand_to_keep.id).all():
                 # assuming the only thing in extras is form501_filing_ids
                 if 'form501_filing_ids' in cand_to_discard.extras:
@@ -745,4 +754,13 @@ class LoadOCDModelsCommand(CalAccessCommand):
                 cand_to_discard.delete()
 
         keep.refresh_from_db()
+
+        # make sure Person name is same as most recent candidate_name
+        latest_candidate_name = keep.candidacies.latest(
+            'contest__election__date',
+        ).candidate_name
+        if keep.name != latest_candidate_name:
+            keep.name = latest_candidate_name
+        keep.save()
+
         return keep
