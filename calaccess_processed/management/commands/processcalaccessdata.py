@@ -42,51 +42,60 @@ class Command(CalAccessCommand):
         """
         Make it happen.
         """
+        # Set options
         super(Command, self).handle(*args, **options)
-
         self.force_restart = options.get("restart")
         self.scrape = options.get("scrape")
 
+        # Get or create the logger record
         self.processed_version, created = self.get_or_create_processed_version()
 
+        # If the version is already fully processed and we're not forcing a do-over
+        # then just quit out now
         if self.processed_version.update_completed and not self.force_restart:
             msg_tmp = 'Processing completed at %s.'
             self.success(
                 msg_tmp % self.processed_version.process_finish_datetime.ctime()
             )
-        else:
-            # start the clock if created (or restart if forcing restart)
-            if created or self.force_restart:
-                self.processed_version.process_start_datetime = now()
-                # also reset finish time if forcing re-start
-                if self.force_restart:
-                    self.processed_version.process_finish_datetime = None
-                self.processed_version.save()
-            # scrape only if not skipping
-            # and either forcing restart or no models loaded yet
-            if (
-                self.scrape and (
-                    self.force_restart or
-                    self.processed_version.files.count() == 0
-                )
-            ):
-                call_command(
-                    'scrapecalaccess',
-                    verbosity=self.verbosity,
-                    no_color=self.no_color,
-                    force_flush=True,
-                )
-            # then load
-            self.load()
-            # zip only if django project setting enabled
-            if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
-                # then zip
-                self.zip()
+            return False
 
-            self.processed_version.process_finish_datetime = now()
+        # Otherwise proceed with the standard routine
+        # Firt, start the clock if created (or restart if forcing restart)
+        if created or self.force_restart:
+            self.processed_version.process_start_datetime = now()
+            # also reset finish time if forcing re-start
+            if self.force_restart:
+                self.processed_version.process_finish_datetime = None
             self.processed_version.save()
-            self.success('Processing complete')
-            self.duration()
+
+        # Then scrape only if not skipping
+        # and either forcing restart or no models loaded yet
+        if (
+            self.scrape and (
+                self.force_restart or
+                self.processed_version.files.count() == 0
+            )
+        ):
+            call_command(
+                'scrapecalaccess',
+                verbosity=self.verbosity,
+                no_color=self.no_color,
+                force_flush=True,
+            )
+
+        # then load
+        self.load()
+
+        # Zip only if django project setting enabled
+        if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
+            # then zip
+            self.zip()
+
+        # Wrap up the log
+        self.processed_version.process_finish_datetime = now()
+        self.processed_version.save()
+        self.success('Processing complete')
+        self.duration()
 
     def load(self):
         """
