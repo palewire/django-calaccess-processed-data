@@ -27,6 +27,9 @@ class Command(CalAccessCommand):
     help = "Flush data from OCD models."
 
     def handle(self, *args, **options):
+        """
+        Make it happen.
+        """
         super(Command, self).handle(*args, **options)
 
         # Flush models
