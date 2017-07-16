@@ -53,7 +53,7 @@ class Command(CalAccessCommand):
         call_command('loadocdretentioncontests', **options)
         self.duration()
 
-        call_command('loadocdcandidatecontests', **options)
+        call_command('loadocdcandidaciesfromscrape', **options)
         self.duration()
 
         call_command('mergeocdpersonsbyfilerid', **options)
