@@ -120,8 +120,6 @@ class Command(LoadOCDModelsCommand):
                     membership.start_date = incumbent.session
                     membership.save()
 
-        return
-
     def set_end_dates(self):
         """
         Set the end_date for each Membership based on the start_date of each successor.
@@ -142,7 +140,6 @@ class Command(LoadOCDModelsCommand):
             if successor_q.exists():
                 member.end_date = int(successor_q[0].start_date)
                 member.save()
-        return
 
     def set_incumbent_candidacies(self):
         """

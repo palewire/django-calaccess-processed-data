@@ -95,7 +95,6 @@ class Command(LoadOCDModelsCommand):
                         contest.candidacies.exclude(
                             is_incumbent=True
                         ).update(is_incumbent=False)
-        return
 
     def add_scraped_candidate_to_election(self, scraped_candidate, ocd_election):
         """
@@ -249,7 +248,6 @@ class Command(LoadOCDModelsCommand):
             parsed_name['office'] = parsed_name['office'].strip()
         if parsed_name['district']:
             parsed_name['district'] = int(parsed_name['district'])
-
         return parsed_name
 
     def lookup_election_date_from_name(self, election_name):
@@ -273,13 +271,9 @@ class Command(LoadOCDModelsCommand):
                 date_obj = incumbent_elections_q[0].date
             else:
                 try:
-                    date_obj = self.get_regular_election_date(
-                        parsed_name['year'],
-                        parsed_name['type'],
-                    )
+                    date_obj = self.get_regular_election_date(parsed_name['year'], parsed_name['type'])
                 except:
                     date_obj = None
-
         return date_obj
 
     def get_or_create_election_from_name(self, election_name):
@@ -354,12 +348,8 @@ class Command(LoadOCDModelsCommand):
 
         Return None can't match to a single Form501Filing.
         """
-        election_data = self.parse_election_name(
-            scraped_candidate.election.name,
-        )
-        office_data = self.parse_office_name(
-            scraped_candidate.office_name,
-        )
+        election_data = self.parse_election_name(scraped_candidate.election.name)
+        office_data = self.parse_office_name(scraped_candidate.office_name)
 
         # filter all form501 lookups by office type, district and election year
         # get the most recently filed Form501 within the election_year
@@ -502,7 +492,6 @@ class Command(LoadOCDModelsCommand):
             is_incumbent = True
         else:
             is_incumbent = False
-
         return is_incumbent
 
     def get_ocd_election(self, scraped_election):
