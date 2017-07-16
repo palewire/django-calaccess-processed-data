@@ -20,6 +20,15 @@ class Command(Command):
     """
     help = 'Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website'
 
+    def handle(self, *args, **options):
+        """
+        Make it happen.
+        """
+        super(Command, self).handle(*args, **options)
+        self.header('Loading Retention Contests')
+        self.load()
+        self.success("Done!")
+
     def get_scraped_elecs(self):
         """
         Get the scraped elections with propositions to load.

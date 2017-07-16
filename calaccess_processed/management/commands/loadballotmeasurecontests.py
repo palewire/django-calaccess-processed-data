@@ -24,10 +24,7 @@ class Command(LoadOCDModelsCommand):
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
-        if str(self) == 'loadballotmeasurecontests':
-            self.header('Loading Ballot Measure Contests')
-        elif str(self) == 'loadretentioncontests':
-            self.header('Loading Retention Contests')
+        self.header('Loading Ballot Measure Contests')
         self.load()
         self.success("Done!")
 
@@ -110,6 +107,7 @@ class Command(LoadOCDModelsCommand):
             classification = 'initiative'
         else:
             classification = 'ballot measure'
+
         # Create the object
         return BallotMeasureContest.objects.create(
             election=ocd_elec,
