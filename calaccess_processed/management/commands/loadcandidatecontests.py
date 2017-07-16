@@ -72,7 +72,10 @@ class Command(LoadOCDModelsCommand):
             for scraped_candidate in scraped_election.candidates.all():
                 if self.verbosity > 2:
                     self.log(
-                        ' Processing scraped Candidate.id %s' % scraped_candidate.id
+                        ' Processing scraped Candidate.id {} ({})'.format(
+                            scraped_candidate.id,
+                            scraped_candidate
+                        )
                     )
                 candidacy = self.add_scraped_candidate_to_election(
                     scraped_candidate,
