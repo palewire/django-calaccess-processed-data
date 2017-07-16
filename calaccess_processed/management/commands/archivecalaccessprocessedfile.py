@@ -47,11 +47,14 @@ class Command(CalAccessCommand):
             self.processed_data_dir,
             '%s.csv' % self.model_name,
         )
+
         # get model
         self.model = apps.get_model(self.app_name, self.model_name)
+
         # and the db table name
         self.db_table = self.model._meta.db_table
 
+        # Log out what we're doing
         self.log(" Archiving %s.csv" % self.model._meta.object_name)
 
         # get the current version
@@ -70,11 +73,8 @@ class Command(CalAccessCommand):
         self.processed_file.file_archive.delete()
 
         with connection.cursor() as c:
-            c.execute(
-                """
-                COPY {db_table} TO '{csv_path}' CSV HEADER;
-                """.format(**self.__dict__)
-            )
+            copy_sql = "COPY {db_table} TO '{csv_path}' CSV HEADER;".format(**self.__dict__)
+            c.execute(copy_sql)
 
         # Open up the .CSV file for reading so we can wrap it in the Django File obj
         with open(self.csv_path, 'rb') as csv_file:
