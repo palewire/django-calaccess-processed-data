@@ -16,9 +16,9 @@ from calaccess_processed.management.commands.loadballotmeasurecontests import Co
 
 class Command(Command):
     """
-    Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website.
+    Load OCD RetentionContest and related models with data scraped from the CAL-ACCESS website.
     """
-    help = 'Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website.'
+    help = 'Load OCD RetentionContest and related models with data scraped from the CAL-ACCESS website.'
 
     def handle(self, *args, **options):
         """
@@ -26,8 +26,19 @@ class Command(Command):
         """
         super(Command, self).handle(*args, **options)
         self.header('Loading Retention Contests')
+        if options['flush']:
+            self.flush()
         self.load()
         self.success("Done!")
+
+    def flush(self):
+        """
+        Flush the database tables filled by this command.
+        """
+        qs = RetentionContest.objects.all()
+        if self.verbosity > 0:
+            self.log("Flushing {} RetentionContest objects".format(qs.count()))
+        qs.delete()
 
     def get_scraped_elecs(self):
         """
@@ -49,9 +60,9 @@ class Command(Command):
 
     def create_contest(self, scraped_prop, ocd_elec):
         """
-        Create an OCD BallotMeasureContest object derived from a ScrapedProposition.
+        Create an OCD RetentionContest object derived from a ScrapedProposition.
 
-        Return a BallotMeasureContest object.
+        Return a RetentionContest object.
         """
         if scraped_prop.name == '2003 RECALL QUESTION':
             # look up most recently scraped record for Gov. Gray Davis

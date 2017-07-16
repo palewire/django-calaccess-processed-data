@@ -16,14 +16,37 @@ class Command(LoadOCDModelsCommand):
     """
     help = 'Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website'
 
+    def add_arguments(self, parser):
+        """
+        Adds custom arguments specific to this command.
+        """
+        parser.add_argument(
+            "--flush",
+            action="store_true",
+            dest="flush",
+            default=False,
+            help="Flush the database tables filled by this command."
+        )
+
     def handle(self, *args, **options):
         """
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
         self.header('Loading Ballot Measure Contests')
+        if options['flush']:
+            self.flush()
         self.load()
         self.success("Done!")
+
+    def flush(self):
+        """
+        Flush the database tables filled by this command.
+        """
+        qs = BallotMeasureContest.objects.all()
+        if self.verbosity > 0:
+            self.log("Flushing {} BallotMeasureContest objects".format(qs.count()))
+        qs.delete()
 
     def get_scraped_elecs(self):
         """
