@@ -113,7 +113,6 @@ class Command(LoadOCDModelsCommand):
             name=scraped_prop.name,
             classification=classification,
         )
-
         return ocd_contest
 
     def load(self):
@@ -152,21 +151,18 @@ class Command(LoadOCDModelsCommand):
                         scheme='calaccess_measure_id',
                         identifier=scraped_prop.scraped_id,
                     )
-                    contest_created = True
+                    if self.verbosity > 2:
+                        self.log(
+                            'Created new {0}: {1}'.format(
+                                ocd_contest._meta.object_name,
+                                ocd_contest,
+                            )
+                        )
                 else:
-                    contest_created = False
                     # If the contest already exists, make sure the name is up-to-date
                     if ocd_contest.name != scraped_prop.name:
                         ocd_contest.name = scraped_prop.name
                         ocd_contest.save()
-
-                if contest_created and self.verbosity > 2:
-                    self.log(
-                        'Created new {0}: {1}'.format(
-                            ocd_contest._meta.object_name,
-                            ocd_contest,
-                        )
-                    )
 
                 # Update or create the Contest source
                 ocd_contest.sources.update_or_create(
