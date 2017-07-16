@@ -15,6 +15,7 @@ class Command(LoadOCDModelsCommand):
     Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website.
     """
     help = 'Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website'
+    header = 'Loading Ballot Measure Contests'
 
     def add_arguments(self, parser):
         """
@@ -33,7 +34,7 @@ class Command(LoadOCDModelsCommand):
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
-        self.header('Loading Ballot Measure Contests')
+        self.header(self.header)
         if options['flush']:
             self.flush()
         self.load()

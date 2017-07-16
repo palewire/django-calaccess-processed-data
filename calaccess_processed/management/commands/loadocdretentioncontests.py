@@ -19,17 +19,7 @@ class Command(Command):
     Load OCD RetentionContest and related models with data scraped from the CAL-ACCESS website.
     """
     help = 'Load OCD RetentionContest and related models with data scraped from the CAL-ACCESS website.'
-
-    def handle(self, *args, **options):
-        """
-        Make it happen.
-        """
-        super(Command, self).handle(*args, **options)
-        self.header('Loading Retention Contests')
-        if options['flush']:
-            self.flush()
-        self.load()
-        self.success("Done!")
+    header = 'Loading Retention Contests'
 
     def flush(self):
         """
