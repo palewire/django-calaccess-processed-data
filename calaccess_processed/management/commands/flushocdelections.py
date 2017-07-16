@@ -4,6 +4,7 @@
 Flush data from OCD models.
 """
 from opencivicdata.core.models import (
+    Jurisdiction,
     Membership,
     Organization,
     Person,
@@ -38,7 +39,8 @@ class Command(CalAccessCommand):
             Membership.objects.all(),
             Person.objects.all(),
             Post.objects.all(),
-            Organization.objects.filter(classification='party')
+            Organization.objects.all(),
+            Jurisdiction.objects.all(),
         ]
         for qs in qs_list:
             if self.verbosity > 0:
