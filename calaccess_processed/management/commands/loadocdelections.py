@@ -44,28 +44,28 @@ class Command(CalAccessCommand):
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
-        call_command('loadparties', **options)
+        call_command('loadocdparties', **options)
         self.duration()
 
-        call_command('loadballotmeasurecontests', **options)
+        call_command('loadocdballotmeasurecontests', **options)
         self.duration()
 
-        call_command('loadretentioncontests', **options)
+        call_command('loadocdretentioncontests', **options)
         self.duration()
 
-        call_command('loadcandidatecontests', **options)
+        call_command('loadocdcandidatecontests', **options)
         self.duration()
 
-        call_command('mergepersonsbyfilerid', **options)
+        call_command('mergeocdpersonsbyfilerid', **options)
         self.duration()
 
-        call_command('loadcandidaciesfrom501s', **options)
+        call_command('loadocdcandidaciesfrom501s', **options)
         self.duration()
 
-        call_command('mergepersonsbycontestandname', **options)
+        call_command('mergeocdpersonsbycontestandname', **options)
         self.duration()
 
-        call_command('loadincumbentofficeholders', **options)
+        call_command('loadocdincumbentofficeholders', **options)
         self.duration()
 
     def archive(self):
