@@ -122,6 +122,7 @@ class Command(CalAccessCommand):
         """
         if self.verbosity:
             self.header("Zipping processed files")
+
         # Remove previous zip file
         self.processed_version.zip_archive.delete()
         zip_path = os.path.join(self.data_dir, 'processed.zip')

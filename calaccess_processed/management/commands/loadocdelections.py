@@ -14,7 +14,7 @@ class Command(CalAccessCommand):
     """
     Load data extracted from scrape and raw data snapshot into OCD models.
     """
-    help = 'Load data extracted from scrape and raw data snapshot into OCD models'
+    help = 'Load data extracted from scrape and raw data snapshot into OCD models.'
 
     def handle(self, *args, **options):
         """
@@ -22,13 +22,17 @@ class Command(CalAccessCommand):
         """
         super(Command, self).handle(*args, **options)
 
+        # Get the logger for this version
         self.processed_version = self.get_or_create_processed_version()[0]
 
+        # Start off loading all the data
         self.load()
+
         # archive if django project setting enabled
         if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
             self.archive()
 
+        # Wrap it up
         self.success('Done!')
         self.duration()
 
