@@ -18,7 +18,7 @@ class Command(Command):
     """
     Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website.
     """
-    help = 'Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website'
+    help = 'Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website.'
 
     def handle(self, *args, **options):
         """
