@@ -12,7 +12,7 @@ class Command(LoadOCDModelsCommand):
     """
     Merge duplicate Candidacies within the same CandidateContest.
     """
-    help = 'Merge duplicate Candidacies within the same CandidateContest'
+    help = 'Merge duplicate Candidacies within the same CandidateContest.'
 
     def handle(self, *args, **options):
         """
@@ -136,6 +136,8 @@ class Command(LoadOCDModelsCommand):
                         group_q.all()[0].contest,
                     )
                 )
+                for c in group_q.all():
+                    self.log(' - {}'.format(c.person))
             # merge
             self.merge_persons([c.person for c in group_q.all()])
         # handle multiple parties in the group
