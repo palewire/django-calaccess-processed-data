@@ -45,6 +45,7 @@ class Command(LoadOCDModelsCommand):
 
         Return QuerySet.
         """
+        # Recalls are being excluded so they can be loaded in a separate command.
         return scraped_elec.propositions.exclude(name__icontains='RECALL')
 
     def get_or_create_election(self, scraped_elec):
@@ -110,13 +111,12 @@ class Command(LoadOCDModelsCommand):
         else:
             classification = 'ballot measure'
         # Create the object
-        ocd_contest = BallotMeasureContest.objects.create(
+        return BallotMeasureContest.objects.create(
             election=ocd_elec,
             division=self.state_division,
             name=scraped_prop.name,
             classification=classification,
         )
-        return ocd_contest
 
     def load(self):
         """

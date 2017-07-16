@@ -63,12 +63,14 @@ class Command(Command):
                 raise Exception(
                     "Unknown Incumbent in %s." % scraped_prop.name
                 )
+
         # get or create person and post objects
         person = self.get_or_create_person(
             incumbent.name,
             filer_id=incumbent.scraped_id,
         )[0]
         post = self.get_or_create_post(incumbent.office_name)[0]
+
         # get or create membership object
         membership = Membership.objects.get_or_create(
             person=person,
@@ -77,6 +79,7 @@ class Command(Command):
             organization=post.organization,
             person_name=person.sort_name,
         )[0]
+
         # set the start_date and end_date for Governor Gray Davis
         if scraped_prop.name == '2003 RECALL QUESTION':
             membership.start_date = '1999'
