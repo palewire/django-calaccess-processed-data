@@ -110,7 +110,7 @@ class Command(CalAccessCommand):
         self.duration()
 
         call_command(
-            'localocdelections',
+            'loadocdelections',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
