@@ -556,8 +556,6 @@ class LoadOCDModelsCommand(CalAccessCommand):
 
         candidacy_obj.save()
 
-        return
-
     def lookup_candidate_party_correction(
         self,
         candidate_name,

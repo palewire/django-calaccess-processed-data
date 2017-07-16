@@ -6,7 +6,6 @@ Load incumbent candidate data scraped from the CAL-ACCESS website into OCD model
 import re
 from django.db.models import IntegerField
 from django.db.models.functions import Cast
-from calaccess_processed.management.commands import LoadOCDModelsCommand
 from calaccess_scraped.models import (
     IncumbentElection as ScrapedIncumbentElection,
     Incumbent as ScrapedIncumbent,
@@ -17,6 +16,7 @@ from opencivicdata.elections.models import (
     Candidacy,
     CandidateContest,
 )
+from calaccess_processed.management.commands import LoadOCDModelsCommand
 
 
 class Command(LoadOCDModelsCommand):

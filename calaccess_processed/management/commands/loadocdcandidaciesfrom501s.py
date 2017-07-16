@@ -30,7 +30,7 @@ class Command(LoadOCDModelsCommand):
         super(Command, self).handle(*args, **options)
 
         if not CandidateContest.objects.exists():
-            error_message = 'No contests currently loaded (run loadcandidatecontests).'
+            error_message = 'No contests currently loaded (run loadocdcandidatecontests).'
             if self._called_from_command_line:
                 self.failure(error_message)
             else:

@@ -27,7 +27,7 @@ from calaccess_scraped.models import (
 )
 from calaccess_processed.models import Form501Filing
 from opencivicdata.core.models import Membership, Organization
-from opencivicdata.elections.models import Election, CandidateContest
+from opencivicdata.elections.models import Election, CandidateContest, Candidacy
 
 
 class Command(LoadOCDModelsCommand):
@@ -36,12 +36,28 @@ class Command(LoadOCDModelsCommand):
     """
     help = 'Load CandidateContest and related models with data scraped from the CAL-ACCESS website.'
 
+    def add_arguments(self, parser):
+        """
+        Adds custom arguments specific to this command.
+        """
+        parser.add_argument(
+            "--flush",
+            action="store_true",
+            dest="flush",
+            default=False,
+            help="Flush the database tables filled by this command."
+        )
+
     def handle(self, *args, **options):
         """
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
         self.header("Load Candidate Contests")
+
+        # Flush, if the options has been passed
+        if options['flush']:
+            self.flush()
 
         # Load everything we can from the scrape
         self.load()
@@ -59,6 +75,17 @@ class Command(LoadOCDModelsCommand):
                 runoff.save()
 
         self.success("Done!")
+
+    def flush(self):
+        """
+        Flush the database tables filled by this command.
+        """
+        models = [Candidacy, CandidateContest]
+        for m in models:
+            qs = m.objects.all()
+            if self.verbosity > 0:
+                self.log("Flushing {} {} objects".format(qs.count(), m.__name__))
+            qs.delete()
 
     def load(self):
         """
