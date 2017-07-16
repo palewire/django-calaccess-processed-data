@@ -55,6 +55,7 @@ class Command(LoadOCDModelsCommand):
         specifying whether a Election was created.
         """
         prop_name_pattern = r'^(?P<date>^[A-Z]+\s\d{1,2},\s\d{4})\s(?P<name>.+)$'
+
         # extract the name and date
         match = re.match(prop_name_pattern, scraped_elec.name)
         date_obj = timezone.datetime.strptime(
@@ -65,9 +66,11 @@ class Command(LoadOCDModelsCommand):
             date_obj.year,
             match.groupdict()['name'],
         ).upper()
+
         # Differentiate between two '2008 PRIMARY' ballot measure elections
         if name == '2008 PRIMARY' and date_obj.month == 2:
             name = "2008 PRESIDENTIAL PRIMARY AND SPECIAL ELECTIONS"
+
         # try getting an existing Election with the same date
         try:
             elec = Election.objects.get(date=date_obj)
@@ -125,6 +128,7 @@ class Command(LoadOCDModelsCommand):
             ocd_elec, elec_created = self.get_or_create_election(scraped_elec)
             if elec_created and self.verbosity > 2:
                 self.log('Created new Election: %s' % ocd_elec.name)
+
             # Update or create the Election source
             ocd_elec.sources.update_or_create(
                 url=scraped_elec.url,
