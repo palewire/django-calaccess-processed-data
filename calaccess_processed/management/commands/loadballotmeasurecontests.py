@@ -131,6 +131,7 @@ class Command(LoadOCDModelsCommand):
                     dt=scraped_elec.last_modified,
                 )
             )
+
             # Loop over election's scraped propositions
             for scraped_prop in self.get_scraped_props(scraped_elec):
                 try:
@@ -159,6 +160,7 @@ class Command(LoadOCDModelsCommand):
                         )
                 else:
                     # If the contest already exists, make sure the name is up-to-date
+                    # because they could change on subsequent scrapes of the SoS website
                     if ocd_contest.name != scraped_prop.name:
                         ocd_contest.name = scraped_prop.name
                         ocd_contest.save()
