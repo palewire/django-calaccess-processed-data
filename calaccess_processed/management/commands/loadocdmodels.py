@@ -36,60 +36,32 @@ class Command(CalAccessCommand):
         """
         Load all of the processed models.
         """
-        call_command(
-            'loadparties',
+        options = dict(
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
+        call_command('loadparties', **options)
         self.duration()
 
-        call_command(
-            'loadballotmeasurecontests',
-            verbosity=self.verbosity,
-            no_color=self.no_color,
-        )
+        call_command('loadballotmeasurecontests', **options)
         self.duration()
 
-        call_command(
-            'loadretentioncontests',
-            verbosity=self.verbosity,
-            no_color=self.no_color,
-        )
+        call_command('loadretentioncontests', **options)
         self.duration()
 
-        call_command(
-            'loadcandidatecontests',
-            verbosity=self.verbosity,
-            no_color=self.no_color,
-        )
+        call_command('loadcandidatecontests', **options)
         self.duration()
 
-        call_command(
-            'mergepersonsbyfilerid',
-            verbosity=self.verbosity,
-            no_color=self.no_color,
-        )
+        call_command('mergepersonsbyfilerid', **options)
         self.duration()
 
-        call_command(
-            'loadcandidaciesfrom501s',
-            verbosity=self.verbosity,
-            no_color=self.no_color,
-        )
+        call_command('loadcandidaciesfrom501s', **options)
         self.duration()
 
-        call_command(
-            'mergepersonsbycontestandname',
-            verbosity=self.verbosity,
-            no_color=self.no_color,
-        )
+        call_command('mergepersonsbycontestandname', **options)
         self.duration()
 
-        call_command(
-            'loadincumbentofficeholders',
-            verbosity=self.verbosity,
-            no_color=self.no_color,
-        )
+        call_command('loadincumbentofficeholders', **options)
         self.duration()
 
     def archive(self):
