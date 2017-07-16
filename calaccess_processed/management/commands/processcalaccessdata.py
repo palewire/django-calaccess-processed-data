@@ -70,7 +70,12 @@ class Command(CalAccessCommand):
                     self.processed_version.files.count() == 0
                 )
             ):
-                self.scrape_all()
+                call_command(
+                    'scrapecalaccess',
+                    verbosity=self.verbosity,
+                    no_color=self.no_color,
+                    force_flush=True,
+                )
             # then load
             self.load()
             # zip only if django project setting enabled
@@ -82,17 +87,6 @@ class Command(CalAccessCommand):
             self.processed_version.save()
             self.success('Processing complete')
             self.duration()
-
-    def scrape_all(self):
-        """
-        Run all of the CAL-ACCESS scrapers.
-        """
-        call_command(
-            'scrapecalaccess',
-            verbosity=self.verbosity,
-            no_color=self.no_color,
-            force_flush=True,
-        )
 
     def load(self):
         """
