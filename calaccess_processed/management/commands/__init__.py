@@ -507,10 +507,9 @@ class LoadOCDModelsCommand(CalAccessCommand):
             candidacy.save()
 
         # make sure Person name is same as most recent candidate_name
+        person = candidacy.person
         person.refresh_from_db()
-        latest_candidate_name = person.candidacies.latest(
-            'contest__election__date',
-        ).candidate_name
+        latest_candidate_name = person.candidacies.latest('contest__election__date').candidate_name
         if person.name != latest_candidate_name:
             # move current Person.name into other_names
             if not person.other_names.filter(name=person.name).exists():
