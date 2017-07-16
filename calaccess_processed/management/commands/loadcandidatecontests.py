@@ -34,7 +34,7 @@ class Command(LoadOCDModelsCommand):
     """
     Load CandidateContest and related models with data scraped from the CAL-ACCESS website.
     """
-    help = 'Load CandidateContest and related models with data scraped from the CAL-ACCESS website'
+    help = 'Load CandidateContest and related models with data scraped from the CAL-ACCESS website.'
 
     def handle(self, *args, **options):
         """
@@ -57,6 +57,40 @@ class Command(LoadOCDModelsCommand):
                 runoff.save()
 
         self.success("Done!")
+
+    def load(self):
+        """
+        Load OCD Election, CandidateContest and related models with data scraped from CAL-ACCESS website.
+        """
+        # See if we should bother checking incumbent status
+        members_are_loaded = Membership.objects.exists()
+
+        # Loop over scraped_elections
+        for scraped_election in ScrapedCandidateElection.objects.all():
+            ocd_election = self.get_ocd_election(scraped_election)
+            # then over candidates in the scraped_election
+            for scraped_candidate in scraped_election.candidates.all():
+                if self.verbosity > 2:
+                    self.log(
+                        ' Processing scraped Candidate.id %s' % scraped_candidate.id
+                    )
+                candidacy = self.add_scraped_candidate_to_election(
+                    scraped_candidate,
+                    ocd_election
+                )
+                # check incumbent status
+                if members_are_loaded:
+                    if self.check_incumbent_status(candidacy):
+                        candidacy.is_incumbent = True
+                        candidacy.save()
+                        if self.verbosity > 2:
+                            self.log(' Identified as incumbent.')
+                        # set is_incumbent False for all other candidacies
+                        contest = candidacy.contest
+                        contest.candidacies.exclude(
+                            is_incumbent=True
+                        ).update(is_incumbent=False)
+        return
 
     def parse_election_name(self, election_name):
         """
@@ -489,37 +523,3 @@ class Command(LoadOCDModelsCommand):
             contest = None
 
         return contest
-
-    def load(self):
-        """
-        Load OCD Election, CandidateContest and related models with data scraped from CAL-ACCESS website.
-        """
-        # See if we should bother checking incumbent status
-        members_are_loaded = Membership.objects.exists()
-
-        # Loop over scraped_elections
-        for scraped_election in ScrapedCandidateElection.objects.all():
-            ocd_election = self.get_ocd_election(scraped_election)
-            # then over candidates in the scraped_election
-            for scraped_candidate in scraped_election.candidates.all():
-                if self.verbosity > 2:
-                    self.log(
-                        ' Processing scraped Candidate.id %s' % scraped_candidate.id
-                    )
-                candidacy = self.add_scraped_candidate_to_election(
-                    scraped_candidate,
-                    ocd_election
-                )
-                # check incumbent status
-                if members_are_loaded:
-                    if self.check_incumbent_status(candidacy):
-                        candidacy.is_incumbent = True
-                        candidacy.save()
-                        if self.verbosity > 2:
-                            self.log(' Identified as incumbent.')
-                        # set is_incumbent False for all other candidacies
-                        contest = candidacy.contest
-                        contest.candidacies.exclude(
-                            is_incumbent=True
-                        ).update(is_incumbent=False)
-        return
