@@ -34,11 +34,18 @@ class Command(CalAccessCommand):
         super(Command, self).handle(*args, **options)
         self.header('Loading Parties')
         if options['flush']:
-            qs = Organization.objects.filter(classification='party')
-            self.log("Flushing {} Organization objects".format(qs.count()))
-            qs.delete()
+            self.flush()
         self.load()
         self.success("Done!")
+
+    def flush(self):
+        """
+        Flush the database tables filled by this command.
+        """
+        qs = Organization.objects.filter(classification='party')
+        if self.verbosity > 0:
+            self.log("Flushing {} Organization objects".format(qs.count()))
+        qs.delete()
 
     def load(self):
         """
