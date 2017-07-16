@@ -335,7 +335,6 @@ class Command(LoadOCDModelsCommand):
         # previous term of the office was unexpired.
         if 'SPECIAL' in scraped_candidate.election.name:
             previous_term_unexpired = True
-            scraped_election = scraped_candidate.election.name
             election_type = scraped_candidate.election.parsed_name['type']
             contest_name = '{0} ({1})'.format(office_name, election_type)
         else:
