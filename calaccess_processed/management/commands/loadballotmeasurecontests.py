@@ -49,24 +49,24 @@ class Command(LoadOCDModelsCommand):
         Returns a tuple (Election object, created), where created is a boolean
         specifying whether a Election was created.
         """
+        # Extract the name and date from the election name
         prop_name_pattern = r'^(?P<date>^[A-Z]+\s\d{1,2},\s\d{4})\s(?P<name>.+)$'
-
-        # extract the name and date
         match = re.match(prop_name_pattern, scraped_elec.name)
+
+        # Convert it to a datetime object
         date_obj = timezone.datetime.strptime(
             match.groupdict()['date'],
             '%B %d, %Y',
         ).date()
-        name = '{0} {1}'.format(
-            date_obj.year,
-            match.groupdict()['name'],
-        ).upper()
+
+        # Format that as a string
+        name = '{0} {1}'.format(date_obj.year, match.groupdict()['name']).upper()
 
         # Differentiate between two '2008 PRIMARY' ballot measure elections
         if name == '2008 PRIMARY' and date_obj.month == 2:
             name = "2008 PRESIDENTIAL PRIMARY AND SPECIAL ELECTIONS"
 
-        # try getting an existing Election with the same date
+        # Try getting an existing Election with the same date
         try:
             elec = Election.objects.get(date=date_obj)
         except Election.DoesNotExist:
@@ -75,15 +75,14 @@ class Command(LoadOCDModelsCommand):
             created = True
         else:
             created = False
-            # if election already exists and is named 'SPECIAL' or 'RECALL'
+            # If election already exists and is named 'SPECIAL' or 'RECALL' ...
             if 'SPECIAL' in elec.name.upper() or 'RECALL' in elec.name.upper():
-                # and the matched election's name includes either 'GENERAL'
-                # or 'PRIMARY'...
+                # ... and the matched election's name includes either 'GENERAL' or 'PRIMARY'...
                 if (
                     re.match(r'^\d{4} GENERAL$', name) or
                     re.match(r'^\d{4} PRIMARY$', name)
                 ):
-                    # update the name
+                    # Update the name, since it could change on the site
                     elec.name = name
                     elec.save()
         return (elec, created)
