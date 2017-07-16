@@ -6,6 +6,10 @@ Load CandidateContest and related models with data scraped from the CAL-ACCESS w
 import re
 from datetime import date
 from django.utils import timezone
+from calaccess_processed import special_elections
+from calaccess_processed.management.commands import LoadOCDModelsCommand
+
+# Database utilities
 from django.db.models import (
     IntegerField,
     CharField,
@@ -15,8 +19,8 @@ from django.db.models import (
     Value,
 )
 from django.db.models.functions import Cast, Concat
-from calaccess_processed import special_elections
-from calaccess_processed.management.commands import LoadOCDModelsCommand
+
+# Models
 from calaccess_scraped.models import (
     CandidateElection as ScrapedCandidateElection,
     IncumbentElection as ScrapedIncumbentElection,
