@@ -4,9 +4,9 @@
 Load OCD Party model from LOOKUP_CODES_CD table in raw CAL-ACCESS data.
 """
 import re
+from opencivicdata.core.models import Organization
 from calaccess_raw.models.common import LookupCodesCd
 from calaccess_processed.management.commands import CalAccessCommand
-from opencivicdata.core.models import Organization
 
 
 class Command(CalAccessCommand):
@@ -15,12 +15,28 @@ class Command(CalAccessCommand):
     """
     help = 'Load OCD Party model from LOOKUP_CODES_CD table in raw CAL-ACCESS data'
 
+    def add_arguments(self, parser):
+        """
+        Adds custom arguments specific to this command.
+        """
+        parser.add_argument(
+            "--flush",
+            action="store_true",
+            dest="flush",
+            default=False,
+            help="Flush the database tables filled by this command."
+        )
+
     def handle(self, *args, **options):
         """
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
         self.header('Loading Parties')
+        if options['flush']:
+            qs = Organization.objects.filter(classification='party')
+            self.log("Flushing {} Organization objects".format(qs.count()))
+            qs.delete()
         self.load()
         self.success("Done!")
 
@@ -28,10 +44,9 @@ class Command(CalAccessCommand):
         """
         Insert Party records from the raw LOOKUP_CODES_CD table.
         """
-        q = LookupCodesCd.objects.filter(code_type=16000).exclude(
-            # exclude "PARTY CODE"
-            code_id__in=[16000]
-        )
+        # Pull all of the raw LookupCodes in the 16000 code_type series
+        # exclude the title entry of "PARTY CODE" with the identical number
+        q = LookupCodesCd.objects.filter(code_type=16000).exclude(code_id=16000)
 
         for lc in q:
             # treat INDEPENDENT and NON-PARTISAN as NO PARTY PREFERENCE
@@ -70,5 +85,3 @@ class Command(CalAccessCommand):
                     self.log(
                         " {0.identifier} indentifies {0.organization.name}".format(p_id)
                     )
-
-        return
