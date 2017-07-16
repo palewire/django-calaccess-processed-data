@@ -4,7 +4,7 @@
 Unittests for management commands.
 """
 from unittest import TestCase
-from calaccess_processed.management.commands.loadcandidatecontests import Command
+from calaccess_processed.management.commands.loadocdcandidatecontests import Command
 
 
 class LoadCandidateContestCommandTest(TestCase):

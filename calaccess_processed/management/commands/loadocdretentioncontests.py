@@ -11,7 +11,7 @@ from calaccess_scraped.models import (
 )
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import RetentionContest
-from calaccess_processed.management.commands.loadballotmeasurecontests import Command
+from calaccess_processed.management.commands.loadocdballotmeasurecontests import Command
 
 
 class Command(Command):
