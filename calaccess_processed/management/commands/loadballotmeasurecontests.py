@@ -171,4 +171,3 @@ class Command(LoadOCDModelsCommand):
                         dt=scraped_prop.last_modified,
                     )
                 )
-        return
