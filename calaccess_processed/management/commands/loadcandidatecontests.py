@@ -345,13 +345,18 @@ class Command(LoadOCDModelsCommand):
 
     def add_scraped_candidate_to_election(self, scraped_candidate, ocd_election):
         """
-        Convert scraped_candidate to a Candidacy and add to ocd_election.
+        Converts scraped_candidate from the CAL-ACCESS site to an OCD Candidacy. Links it to an ocd_election.
 
-        Return a candidacy object.
+        Returns a candidacy object.
         """
-        # get the candidate's form501
+        # Get the candidate's form501 "statement of intention"
         form501 = self.get_form501_filing(scraped_candidate)
 
+        #
+        # Fallback system to connect the candidacy to a party
+        #
+
+        # Get the candidate's party, looking in our correction file for any fixes
         party = self.lookup_candidate_party_correction(
             scraped_candidate.name,
             ocd_election.date.year,
@@ -359,20 +364,25 @@ class Command(LoadOCDModelsCommand):
             scraped_candidate.office_name,
         )
 
+        # If the candidate is running for this office, it is by definition non-partisan
         if scraped_candidate.office_name == 'SUPERINTENDENT OF PUBLIC INSTRUCTION':
             party = Organization.objects.get(name="NO PARTY PREFERENCE")
+        # If don't have their party yet, but they have a 501, let's use that
         elif form501 and not party:
             party = self.lookup_party(form501.party)
+            # If the 501 doesn't have a party, try using the filer id
             if not party:
                 party = self.get_party_for_filer_id(
                     int(form501.filer_id),
                     ocd_election.date,
                 )
+        # If they don't have a scraped_id, just try the filer_id
         elif scraped_candidate.scraped_id != '':
             party = self.get_party_for_filer_id(
                 int(scraped_candidate.scraped_id),
                 ocd_election.date,
             )
+        # Otherwise, set the party to none.
         else:
             party = None
 
