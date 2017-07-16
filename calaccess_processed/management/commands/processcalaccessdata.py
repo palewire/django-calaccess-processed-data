@@ -107,7 +107,7 @@ class Command(CalAccessCommand):
         self.duration()
 
         call_command(
-            'loadocdmodels',
+            'localocdelections',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
