@@ -382,9 +382,13 @@ class Command(LoadOCDModelsCommand):
                 int(scraped_candidate.scraped_id),
                 ocd_election.date,
             )
-        # Otherwise, set the party to none.
+        # Otherwise, set the party to noneself.
         else:
             party = None
+
+        #
+        # Get or create the Contest
+        #
 
         # if it's a primary election before 2012 for an office other than
         # superintendent of public instruction, include party in
@@ -410,16 +414,24 @@ class Command(LoadOCDModelsCommand):
             )
 
         if contest_created and self.verbosity > 2:
-            self.log(' Created new CandidateContest: %s' % contest.name)
+            self.log(' Created new CandidateContest: {}'.format(contest.name))
 
-        # default status for scraped candidates
+        #
+        # Get or create Candidacy
+        #
+
+        # Set default registration_status
         registration_status = 'qualified'
 
-        # http://www.sos.ca.gov/elections/prior-elections/statewide-election-results/primary-election-march-7-2000/certified-list-candidates/ # noqa
-        if scraped_candidate.name == 'COURTRIGHT DONNA':
-            scraped_candidate_name = 'COURTRIGHT, DONNA'
-        else:
-            scraped_candidate_name = scraped_candidate.name
+        # Correct any names we now are bad
+        name_fixes = {
+            # http://www.sos.ca.gov/elections/prior-elections/statewide-election-results/primary-election-march-7-2000/certified-list-candidates/ # noqa
+            'COURTRIGHT DONNA': 'COURTRIGHT, DONNA'
+        }
+        scraped_candidate_name = name_fixes.get(
+            scraped_candidate.name,
+            scraped_candidate.name
+        )
 
         candidacy, candidacy_created = self.get_or_create_candidacy(
             contest,
@@ -431,6 +443,10 @@ class Command(LoadOCDModelsCommand):
         if candidacy_created and self.verbosity > 2:
             template = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
             self.log(template.format(candidacy))
+
+        #
+        # Dress it up with extra
+        #
 
         # add extra data from form501, if available
         if form501:
@@ -444,6 +460,7 @@ class Command(LoadOCDModelsCommand):
                     scheme='calaccess_filer_id',
                     identifier=form501.filer_id,
                 )
+        # Fill the party if the candidacy doesn't have it
         if party and not candidacy.party:
             candidacy.party = party
             candidacy.save()
