@@ -61,3 +61,5 @@ names_to_dates = (
     ('2001 SPECIAL ELECTION (ASSEMBLY 65)', '2001-2-6'),
     ('2001 SPECIAL ELECTION (STATE SENATE 24)', '2001-3-26'),
 )
+
+names_to_dates_dict = dict(t for t in names_to_dates)
