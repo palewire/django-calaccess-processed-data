@@ -147,7 +147,7 @@ class ScrapedCandidateProxy(Candidate):
         # Check if this candidate has been manually corrected.
         party = corrections.candidate_party(
             self.name,
-            ocd_election.date.year,
+            ocd_election.parsed_date.year,
             ocd_election.parsed_name['type'],
             self.office_name,
         )
@@ -170,7 +170,7 @@ class ScrapedCandidateProxy(Candidate):
             party = OCDPartyProxy.objects.get_by_name(form501.party)
             # If they still don't have a party, try using their filer_id
             if party.is_unknown():
-                party = OCDPartyProxy.objects.get_by_filer_id(int(form501.filer_id), ocd_election.date)
+                party = OCDPartyProxy.objects.get_by_filer_id(int(form501.filer_id), ocd_election.parsed_date)
             # If we got a real one, return that and we're done.
             else:
                 return party
@@ -178,7 +178,7 @@ class ScrapedCandidateProxy(Candidate):
         # If there's no 501, or if the 501 returned an unknown party ...
         # ... try one last stab at using the filer id (assuming it exists)
         if (party is None or party.is_unknown()) and self.scraped_id:
-            return OCDPartyProxy.objects.get_by_filer_id(int(self.scraped_id), ocd_election.date)
+            return OCDPartyProxy.objects.get_by_filer_id(int(self.scraped_id), ocd_election.parsed_date)
         # Otherwise just give up and return the unknown party
         else:
             return OCDPartyProxy.objects.get(name="UNKNOWN")
