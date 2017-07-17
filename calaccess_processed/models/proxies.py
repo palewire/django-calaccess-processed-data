@@ -6,14 +6,135 @@ Proxy models for augmenting our source data tables with methods useful for proce
 import re
 from datetime import date
 from django.utils import timezone
+from django.db.models import Value
+from django.db.models.functions import Concat
+from django.db.models import CharField
 from calaccess_processed import special_elections
 from opencivicdata.elections.models import Election
-from calaccess_scraped.models import CandidateElection, IncumbentElection
+from calaccess_processed.models import Form501Filing
+from calaccess_scraped.models import CandidateElection, IncumbentElection, Candidate
+
+
+class ScrapedCandidateProxy(Candidate):
+    """
+    A proxy for the Candidate model in calaccess_scraped.
+    """
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True
+
+    @property
+    def election_proxy(self):
+        """
+        Return the proxy model for the related election object.
+        """
+        return ScrapedCandidateElectionProxy.objects.get(id=self.election.id)
+
+    def parse_office_name(self):
+        """
+        Parse string containg the name for an office.
+
+        Expected format is "{TYPE NAME}[{DISTRICT NUMBER}]".
+
+        Return a dict with two keys: type and district.
+        """
+        office_pattern = r'^(?P<type>[A-Z ]+)(?P<district>\d{2})?$'
+        try:
+            parsed = re.match(office_pattern, self.office_name.upper()).groupdict()
+        except AttributeError:
+            parsed = {'type': None, 'district': None}
+        else:
+            parsed['type'] = parsed['type'].strip()
+            try:
+                parsed['district'] = int(parsed['district'])
+            except TypeError:
+                pass
+        return parsed
+
+    def get_form501_filing(self):
+        """
+        Return a Form501Filing that matches the scraped Candidate.
+
+        By default, return the latest Form501FilingVersion, unless earliest
+        is set to True.
+
+        If the scraped Candidate has a scraped_id, lookup the Form501Filing
+        by filer_id. Otherwise, lookup using the candidate's name.
+
+        Return None can't match to a single Form501Filing.
+        """
+        election_data = self.election_proxy.parsed_name
+        office_data = self.parse_office_name()
+
+        # filter all form501 lookups by office type, district and election year
+        # get the most recently filed Form501 within the election_year
+        q = Form501Filing.objects.filter(
+            office__iexact=office_data['type'],
+            district=office_data['district'],
+            election_year__lte=election_data['year'],
+        )
+
+        if self.scraped_id != '':
+            try:
+                # first, try to get w/ filer_id and election_type
+                form501 = q.filter(
+                    filer_id=self.scraped_id,
+                    election_type=election_data['type'],
+                ).latest('date_filed')
+            except Form501Filing.DoesNotExist:
+                # if that fails, try dropping election_type from filter
+                try:
+                    form501 = q.filter(
+                        filer_id=self.scraped_id,
+                    ).latest('date_filed')
+                except Form501Filing.DoesNotExist:
+                    form501 = None
+        else:
+            # if no filer_id, combine name fields from form501
+            # first try "<last_name>, <first_name>" format.
+            q = q.annotate(
+                full_name=Concat(
+                    'last_name',
+                    Value(', '),
+                    'first_name',
+                    output_field=CharField(),
+                )
+            )
+            # check if there are any with the "<last_name>, <first_name>"
+            if not q.filter(full_name=self.name).exists():
+                # use "<last_name>, <first_name> <middle_name>" format
+                q = q.annotate(
+                    full_name=Concat(
+                        'last_name',
+                        Value(', '),
+                        'first_name',
+                        Value(' '),
+                        'middle_name',
+                        output_field=CharField(),
+                    ),
+                )
+
+            try:
+                # first, try to get w/ filer_id and election_type
+                form501 = q.filter(
+                    full_name=self.name,
+                    election_type=election_data['type'],
+                ).latest('date_filed')
+            except Form501Filing.DoesNotExist:
+                # if that fails, try dropping election_type from filter
+                try:
+                    form501 = q.filter(full_name=self.name).latest('date_filed')
+                except Form501Filing.DoesNotExist:
+                    form501 = None
+
+        return form501
 
 
 class ScrapedCandidateElectionProxy(CandidateElection):
     """
-    A proxy for the CandidateElection model in calacess_scraped.
+    A proxy for the CandidateElection model in calaccsess_scraped.
     """
     class Meta:
         """

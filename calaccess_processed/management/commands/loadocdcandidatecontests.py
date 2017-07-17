@@ -3,13 +3,13 @@
 """
 Load CandidateContest and related models with data scraped from the CAL-ACCESS website.
 """
-from django.db.models import Case, When, Q, Value
-from django.db.models.functions import Cast, Concat
-from django.db.models import IntegerField, CharField
-from calaccess_processed.models import Form501Filing
+from django.db.models import Case, When, Q
+from django.db.models.functions import Cast
+from django.db.models import IntegerField
 from opencivicdata.core.models import Membership, Organization
 from opencivicdata.elections.models import CandidateContest, Candidacy
 from calaccess_processed.management.commands import LoadOCDModelsCommand
+from calaccess_processed.models.proxies import ScrapedCandidateProxy
 from calaccess_processed.models.proxies import ScrapedCandidateElectionProxy
 
 
@@ -84,7 +84,8 @@ class Command(LoadOCDModelsCommand):
             ocd_election = scraped_election.get_ocd_election()
 
             # then over candidates in the scraped_election
-            for scraped_candidate in scraped_election.candidates.all():
+            scraped_candidate_list = ScrapedCandidateProxy.objects.filter(election=scraped_election)
+            for scraped_candidate in scraped_candidate_list:
                 if self.verbosity > 2:
                     self.log(
                         ' Processing scraped Candidate.id {} ({})'.format(
@@ -116,7 +117,7 @@ class Command(LoadOCDModelsCommand):
         Returns a candidacy object.
         """
         # Get the candidate's form501 "statement of intention"
-        form501 = self.get_form501_filing(scraped_candidate)
+        form501 = scraped_candidate.get_form501_filing()
 
         #
         # Fallback system to connect the candidacy to a party
@@ -126,7 +127,7 @@ class Command(LoadOCDModelsCommand):
         party = self.lookup_candidate_party_correction(
             scraped_candidate.name,
             ocd_election.date.year,
-            scraped_candidate.election.parsed_name['type'],
+            scraped_candidate.election_proxy.parsed_name['type'],
             scraped_candidate.office_name,
         )
 
@@ -241,86 +242,6 @@ class Command(LoadOCDModelsCommand):
 
         return candidacy
 
-    def get_form501_filing(self, scraped_candidate):
-        """
-        Return a Form501Filing that matches the scraped Candidate.
-
-        By default, return the latest Form501FilingVersion, unless earliest
-        is set to True.
-
-        If the scraped Candidate has a scraped_id, lookup the Form501Filing
-        by filer_id. Otherwise, lookup using the candidate's name.
-
-        Return None can't match to a single Form501Filing.
-        """
-        election_data = scraped_candidate.election.parsed_name
-        office_data = self.parse_office_name(scraped_candidate.office_name)
-
-        # filter all form501 lookups by office type, district and election year
-        # get the most recently filed Form501 within the election_year
-        q = Form501Filing.objects.filter(
-            office__iexact=office_data['type'],
-            district=office_data['district'],
-            election_year__lte=election_data['year'],
-        )
-
-        if scraped_candidate.scraped_id != '':
-            try:
-                # first, try to get w/ filer_id and election_type
-                form501 = q.filter(
-                    filer_id=scraped_candidate.scraped_id,
-                    election_type=election_data['type'],
-                ).latest('date_filed')
-            except Form501Filing.DoesNotExist:
-                # if that fails, try dropping election_type from filter
-                try:
-                    form501 = q.filter(
-                        filer_id=scraped_candidate.scraped_id,
-                    ).latest('date_filed')
-                except Form501Filing.DoesNotExist:
-                    form501 = None
-        else:
-            # if no filer_id, combine name fields from form501
-            # first try "<last_name>, <first_name>" format.
-            q = q.annotate(
-                full_name=Concat(
-                    'last_name',
-                    Value(', '),
-                    'first_name',
-                    output_field=CharField(),
-                )
-            )
-            # check if there are any with the "<last_name>, <first_name>"
-            if not q.filter(full_name=scraped_candidate.name).exists():
-                # use "<last_name>, <first_name> <middle_name>" format
-                q = q.annotate(
-                    full_name=Concat(
-                        'last_name',
-                        Value(', '),
-                        'first_name',
-                        Value(' '),
-                        'middle_name',
-                        output_field=CharField(),
-                    ),
-                )
-
-            try:
-                # first, try to get w/ filer_id and election_type
-                form501 = q.filter(
-                    full_name=scraped_candidate.name,
-                    election_type=election_data['type'],
-                ).latest('date_filed')
-            except Form501Filing.DoesNotExist:
-                # if that fails, try dropping election_type from filter
-                try:
-                    form501 = q.filter(
-                        full_name=scraped_candidate.name,
-                    ).latest('date_filed')
-                except Form501Filing.DoesNotExist:
-                    form501 = None
-
-        return form501
-
     def get_or_create_contest(self, scraped_candidate, ocd_election, party=None):
         """
         Get or create an OCD CandidateContest object using  and Election object.
@@ -335,7 +256,7 @@ class Command(LoadOCDModelsCommand):
         # previous term of the office was unexpired.
         if 'SPECIAL' in scraped_candidate.election.name:
             previous_term_unexpired = True
-            election_type = scraped_candidate.election.parsed_name['type']
+            election_type = scraped_candidate.election_proxy.parsed_name['type']
             contest_name = '{0} ({1})'.format(office_name, election_type)
         else:
             previous_term_unexpired = False
