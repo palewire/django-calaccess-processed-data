@@ -119,39 +119,8 @@ class Command(LoadOCDModelsCommand):
         # Get the candidate's form501 "statement of intention"
         form501 = scraped_candidate.get_form501_filing()
 
-        #
-        # Fallback system to connect the candidacy to a party
-        #
-
         # Get the candidate's party, looking in our correction file for any fixes
-        party = self.lookup_candidate_party_correction(
-            scraped_candidate.name,
-            ocd_election.date.year,
-            scraped_candidate.election_proxy.parsed_name['type'],
-            scraped_candidate.office_name,
-        )
-
-        # If the candidate is running for this office, it is by definition non-partisan
-        if scraped_candidate.office_name == 'SUPERINTENDENT OF PUBLIC INSTRUCTION':
-            party = Organization.objects.get(name="NO PARTY PREFERENCE")
-        # If don't have their party yet, but they have a 501, let's use that
-        elif form501 and not party:
-            party = self.lookup_party(form501.party)
-            # If the 501 doesn't have a party, try using the filer id
-            if not party:
-                party = self.get_party_for_filer_id(
-                    int(form501.filer_id),
-                    ocd_election.date,
-                )
-        # If they don't have a scraped_id, just try the filer_id
-        elif scraped_candidate.scraped_id != '':
-            party = self.get_party_for_filer_id(
-                int(scraped_candidate.scraped_id),
-                ocd_election.date,
-            )
-        # Otherwise, set the party to noneself.
-        else:
-            party = None
+        party = scraped_candidate.get_party()
 
         #
         # Get or create the Contest

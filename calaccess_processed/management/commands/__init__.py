@@ -5,20 +5,18 @@ Base classes for custom management commands.
 """
 import os
 import re
-import csv
 import logging
 from datetime import date
-from django.apps import apps
 from django.utils import timezone
 from django.db.models import Count, Q
 from opencivicdata.merge import merge
 from django.utils.termcolors import colorize
 from django.core.management.base import BaseCommand
-from django.core.management import call_command, CommandError
+from django.core.management import CommandError
 from opencivicdata.elections.models import Election, Candidacy
 from opencivicdata.core.management.commands.loaddivisions import load_divisions
 from calaccess_raw import get_data_directory
-from calaccess_raw.models import RawDataVersion, FilerToFilerTypeCd
+from calaccess_raw.models import RawDataVersion
 from calaccess_processed.models import ProcessedDataVersion, Form501FilingVersion
 from opencivicdata.core.models import (
     Division,
@@ -555,105 +553,6 @@ class LoadOCDModelsCommand(CalAccessCommand):
                 candidacy_obj.registration_status = 'withdrawn'
 
         candidacy_obj.save()
-
-    def lookup_candidate_party_correction(
-        self,
-        candidate_name,
-        year,
-        election_type,
-        office
-    ):
-        """
-        Return the correct party for a given candidate name, year, election_type and office.
-
-        Return None if no correction found.
-        """
-        # Get the path to our corrections file
-        app = apps.get_app_config("calaccess_processed")
-        module_dir = os.path.abspath(os.path.dirname(app.module.__file__))
-        corrections_path = os.path.join(module_dir, 'corrections', "candidate_party.csv")
-
-        # Open up the corrections
-        with open(corrections_path, 'r') as f:
-            corrections = csv.DictReader(f)
-            # Filter down to the ones we've corrected
-            corrections = [d for d in corrections if d['party']]
-
-        # Filter down to the ones that match
-        matches = [
-            d['party'] for d in corrections if (
-                d['candidate_name'] == candidate_name and
-                d['year'] == year and
-                d['election_type'] == election_type and
-                d['office'] == office
-            )
-        ]
-
-        # If there's more than one result throw an error
-        if len(matches) > 1:
-            raise Exception('More than one correction found.')
-        # If there's no match return None
-        elif len(matches) == 0:
-            return None
-        # If there's only one match return that
-        else:
-            return matches[0]
-
-    def lookup_party(self, party):
-        """
-        Return an Organization with a name or abbreviation that matches party.
-
-        If none found, return the "UKNOWN" Organization.
-        """
-        if not Organization.objects.filter(classification='party').exists():
-            if self.verbosity > 2:
-                self.log(" No parties loaded.")
-            call_command(
-                'loadparties',
-                verbosity=self.verbosity,
-                no_color=self.no_color,
-            )
-
-        party_q = Organization.objects.filter(classification='party')
-
-        try:
-            # first by full name
-            party = party_q.get(name=party)
-        except Organization.DoesNotExist:
-            # then try an alternate name
-            try:
-                # then try alternate names
-                party = Organization.objects.get(
-                    other_names__name=party,
-                )
-            except Organization.DoesNotExist:
-                party = Organization.objects.get(name='UNKNOWN')
-
-        return party
-
-    def get_party_for_filer_id(self, filer_id, election_date):
-        """
-        Lookup the party for the given filer_id, effective before election_date.
-
-        If not found, return the "UNKNOWN" Organization object.
-        """
-        try:
-            party_cd = FilerToFilerTypeCd.objects.filter(
-                filer_id=filer_id,
-                effect_dt__lte=election_date,
-            ).latest('effect_dt').party_cd
-        except FilerToFilerTypeCd.DoesNotExist:
-            party = Organization.objects.get(name='UNKNOWN')
-        else:
-            # transform "INDEPENDENT" and "NON-PARTISAN" to "NO PARTY PREFERENCE"
-            if party_cd in [16007, 16009]:
-                party_cd = 16012
-            try:
-                party = Organization.objects.get(identifiers__identifier=party_cd)
-            except Organization.DoesNotExist:
-                party = Organization.objects.get(name='UNKNOWN')
-
-        return party
 
     def merge_persons(self, persons):
         """

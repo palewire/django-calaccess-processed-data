@@ -5,10 +5,12 @@ Load the Candidacy models from records extracted from Form501Filings.
 """
 import itertools
 from datetime import date
+from calaccess_processed import corrections
 from django.core.management.base import CommandError
 from calaccess_raw.models import FilerToFilerTypeCd, LookupCodesCd
 from calaccess_processed.management.commands import LoadOCDModelsCommand
 from calaccess_processed.models import Form501Filing
+from calaccess_processed.models.proxies import OCDPartyProxy
 from opencivicdata.core.models import Division
 from opencivicdata.elections.models import (
     CandidateContest,
@@ -136,22 +138,20 @@ class Command(LoadOCDModelsCommand):
         Return Party object or None.
         """
         # first try the corrections
-        party = self.lookup_candidate_party_correction(
+        party = corrections.candidate_party(
             '{0.last_name}, {0.first_name} {0.middle_name}'.format(form501).strip(),
             form501.election_year,
             form501.election_type,
             '{0.office} {0.district}'.format(form501).strip(),
         )
+
         # then try using the party on the form501
         if not party:
-            party = self.lookup_party(form501.party)
+            party = OCDPartyProxy.objects.get_by_name(form501.party)
 
         # finally, try looking in FilerToFilerTypes
         if not party:
-            party = self.get_party_for_filer_id(
-                int(form501.filer_id),
-                election_date,
-            )
+            party = OCDPartyProxy.objects.get_by_filer_id(int(form501.filer_id), election_date)
 
         return party
 
