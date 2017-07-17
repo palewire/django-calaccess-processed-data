@@ -145,15 +145,16 @@ class ScrapedCandidateProxy(Candidate):
         ocd_election = self.election_proxy
 
         # Check if this candidate has been manually corrected.
-        party = corrections.candidate_party(
-            self.name,
-            ocd_election.parsed_date.year,
-            ocd_election.parsed_name['type'],
-            self.office_name,
-        )
-        # If so, just pass that out right away
-        if party:
-            return party
+        if ocd_election.parsed_date:
+            party = corrections.candidate_party(
+                self.name,
+                ocd_election.parsed_date.year,
+                ocd_election.parsed_name['type'],
+                self.office_name,
+            )
+            # If so, just pass that out right away
+            if party:
+                return party
 
         #
         # Otherwise, proceed with our standard fallback system for infering their party
