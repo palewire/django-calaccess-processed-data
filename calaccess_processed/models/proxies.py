@@ -7,8 +7,8 @@ import re
 from datetime import date
 from django.utils import timezone
 from django.db.models import Value
-from django.db.models.functions import Concat
 from django.db.models import CharField
+from django.db.models.functions import Concat
 from calaccess_processed import special_elections
 from opencivicdata.elections.models import Election
 from calaccess_processed.models import Form501Filing
