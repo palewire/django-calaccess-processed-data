@@ -15,7 +15,7 @@ class LoadCandidateContestCommandTest(TestCase):
         """
         Test .parse_election_name() on "2016 GENERAL".
         """
-        parsed_name = ScrapedCandidateElectionProxy(name='2016 GENERAL').parse_election_name()
+        parsed_name = ScrapedCandidateElectionProxy(name='2016 GENERAL').parsed_name
         assert parsed_name == {
             'year': 2016,
             'type': 'GENERAL',
@@ -27,7 +27,7 @@ class LoadCandidateContestCommandTest(TestCase):
         """
         Test .parse_election_name() on "2009 SPECIAL ELECTION (STATE SENATE 26)".
         """
-        parsed_name = ScrapedCandidateElectionProxy(name='2009 SPECIAL ELECTION (STATE SENATE 26)').parse_election_name()
+        parsed_name = ScrapedCandidateElectionProxy(name='2009 SPECIAL ELECTION (STATE SENATE 26)').parsed_name
         assert parsed_name == {
             'year': 2009,
             'type': 'SPECIAL ELECTION',
@@ -39,7 +39,7 @@ class LoadCandidateContestCommandTest(TestCase):
         """
         Test .parse_election_name() on "2010 SPECIAL RUNOFF (ASSEMBLY 72)".
         """
-        parsed_name = ScrapedCandidateElectionProxy(name='2010 SPECIAL RUNOFF (ASSEMBLY 72)').parse_election_name()
+        parsed_name = ScrapedCandidateElectionProxy(name='2010 SPECIAL RUNOFF (ASSEMBLY 72)').parsed_name
         assert parsed_name == {
             'year': 2010,
             'type': 'SPECIAL RUNOFF',
@@ -51,7 +51,7 @@ class LoadCandidateContestCommandTest(TestCase):
         """
         Test .parse_election_name() on "2003 SPECIAL ELECTION (GOVERNOR)".
         """
-        parsed_name = ScrapedCandidateElectionProxy(name='2003 SPECIAL ELECTION (GOVERNOR)').parse_election_name()
+        parsed_name = ScrapedCandidateElectionProxy(name='2003 SPECIAL ELECTION (GOVERNOR)').parsed_name
         assert parsed_name == {
             'year': 2003,
             'type': 'SPECIAL ELECTION',
