@@ -94,5 +94,6 @@ class Command(CalAccessCommand):
                 File(csv_file),
             )
 
+        # Save it to the model
         self.processed_file.file_size = os.path.getsize(self.csv_path)
         self.processed_file.save()
