@@ -3,7 +3,7 @@
 """
 Utilities for correcting raw data.
 """
-from candidate_party import candidate_party
+from .candidate_party import candidate_party
 
 
 __all__ = (
