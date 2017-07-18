@@ -6,11 +6,11 @@ Load CandidateContest and related models with data scraped from the CAL-ACCESS w
 from django.db.models import Case, When, Q
 from django.db.models.functions import Cast
 from django.db.models import IntegerField
+from calaccess_processed.models import ScrapedCandidateProxy
+from calaccess_processed.models import ScrapedCandidateElectionProxy
 from opencivicdata.core.models import Membership, Organization
 from opencivicdata.elections.models import CandidateContest, Candidacy
 from calaccess_processed.management.commands import LoadOCDModelsCommand
-from calaccess_processed.models.proxies import ScrapedCandidateProxy
-from calaccess_processed.models.proxies import ScrapedCandidateElectionProxy
 
 
 class Command(LoadOCDModelsCommand):

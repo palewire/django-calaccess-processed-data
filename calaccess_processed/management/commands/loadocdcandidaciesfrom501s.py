@@ -9,8 +9,7 @@ from calaccess_processed import corrections
 from django.core.management.base import CommandError
 from calaccess_raw.models import FilerToFilerTypeCd, LookupCodesCd
 from calaccess_processed.management.commands import LoadOCDModelsCommand
-from calaccess_processed.models import Form501Filing
-from calaccess_processed.models.proxies import OCDPartyProxy
+from calaccess_processed.models import Form501Filing, OCDPartyProxy
 from opencivicdata.core.models import Division
 from opencivicdata.elections.models import (
     CandidateContest,

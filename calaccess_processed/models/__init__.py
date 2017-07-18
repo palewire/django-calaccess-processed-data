@@ -84,6 +84,12 @@ from .tracking import (
     ProcessedDataVersion,
     ProcessedDataFile,
 )
+from .proxies import (
+    OCDPartyProxy,
+    ScrapedCandidateProxy,
+    ScrapedCandidateElectionProxy
+)
+
 
 __all__ = (
     'CalAccessMetaClass',
@@ -162,4 +168,7 @@ __all__ = (
     'FilingIDValue',
     'ProcessedDataVersion',
     'ProcessedDataFile',
+    'ScrapedCandidateProxy',
+    'ScrapedCandidateElectionProxy',
+    'OCDPartyProxy',
 )

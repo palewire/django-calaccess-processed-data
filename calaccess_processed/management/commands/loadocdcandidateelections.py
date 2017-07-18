@@ -6,8 +6,8 @@ Load OCD Election models with data scraped from the CAL-ACCESS website.
 from datetime import date
 from opencivicdata.core.models import Organization
 from opencivicdata.elections.models import Election
+from calaccess_processed.models import ScrapedCandidateElectionProxy
 from calaccess_processed.management.commands import LoadOCDModelsCommand
-from calaccess_processed.models.proxies import ScrapedCandidateElectionProxy
 
 
 class Command(LoadOCDModelsCommand):
