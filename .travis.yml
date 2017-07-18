@@ -12,6 +12,9 @@ python:
 
 addons:
   postgresql: "9.6"
+  apt:
+      packages:
+          - postgresql-9.6-postgis-2.3
 
 env:
  - DJANGO_VERSION=1.10
