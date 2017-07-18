@@ -148,31 +148,20 @@ class ScrapedCandidateProxy(Candidate):
         # Next pull the OCD election record so we have it to inspect
         ocd_election = self.election_proxy
 
-        # Pull the Form 501 so we have that to inspect
-        form501 = self.get_form501_filing()
-
-        # If the record doesn't have either of those, we're not going to get an answer
-        if not ocd_election.parsed_date and not form501:
-            return OCDPartyProxy.objects.get(name="UNKNOWN")
-
-        #
-        # Otherwise, proceed with our standard fallback system for infering their party
-        #
-
         # Check if this candidate has been manually corrected.
-        if ocd_election.parsed_date:
-            party = corrections.candidate_party(
-                self.name,
-                ocd_election.parsed_date.year,
-                ocd_election.parsed_name['type'],
-                self.office_name,
-            )
-            # If so, just pass that out right away
-            if party:
-                return party
+        party = corrections.candidate_party(
+            self.name,
+            ocd_election.parsed_date.year,
+            ocd_election.parsed_name['type'],
+            self.office_name,
+        )
+        # If so, just pass that out right away
+        if party:
+            return party
 
         # Next, if they have filed a 501 form, let's use that
         party = None
+        form501 = self.get_form501_filing()
         if form501:
             party = OCDPartyProxy.objects.get_by_name(form501.party)
             # If they still don't have a party, try using their filer_id
@@ -360,10 +349,14 @@ class ScrapedCandidateElectionProxy(CandidateElection):
 
         Return a timezone aware date object, if found, else None.
         """
+        # If this is the 2008, we have a hacked out edge case solution
+        if self.name == '2008 PRIMARY':
+            return date(2008, 6, 3)
+
         try:
             # Check if the date is in our hardcoded list of special election
-            date = special_elections.names_to_dates_dict[self.name]
-            return timezone.datetime.strptime(date, '%Y-%m-%d').date()
+            dt = special_elections.names_to_dates_dict[self.name]
+            return timezone.datetime.strptime(dt, '%Y-%m-%d').date()
         except KeyError:
             pass
 
