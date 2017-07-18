@@ -4,6 +4,7 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 import re
+import logging
 from django.db.models import Value
 from .parties import OCDPartyProxy
 from django.db.models import CharField
@@ -12,6 +13,7 @@ from django.db.models.functions import Concat
 from calaccess_scraped.models import Candidate
 from .elections import ScrapedCandidateElectionProxy
 from calaccess_processed.models import Form501Filing
+logger = logging.getLogger(__name__)
 
 
 class ScrapedCandidateProxy(Candidate):
@@ -58,6 +60,7 @@ class ScrapedCandidateProxy(Candidate):
         """
         # First, if the candidate is running for this office, it is by definition non-partisan
         if self.office_name == 'SUPERINTENDENT OF PUBLIC INSTRUCTION':
+            logger.debug("{} party set to NO PARTY PREFERENCE based on office".format(self))
             return OCDPartyProxy.objects.get(name="NO PARTY PREFERENCE")
 
         # Next pull the OCD election record so we have it to inspect
@@ -72,26 +75,33 @@ class ScrapedCandidateProxy(Candidate):
         )
         # If so, just pass that out right away
         if party:
+            logger.debug("{} party set to {} based on correction".format(self, party))
             return party
 
         # Next, if they have filed a 501 form, let's use that
-        party = None
         form501 = self.get_form501_filing()
         if form501:
+            # Try getting party from form 501 party
             party = OCDPartyProxy.objects.get_by_name(form501.party)
-            # If they still don't have a party, try using their filer_id
-            if party.is_unknown():
-                party = OCDPartyProxy.objects.get_by_filer_id(int(form501.filer_id), ocd_election.parsed_date)
-            # If we got a real one, return that and we're done.
-            else:
+            if not party.is_unknown():
+                logger.debug("{} party set to {} based on Form 501 party".format(self, party))
+                return party
+
+            # Try getting it from form 501 filer id
+            party = OCDPartyProxy.objects.get_by_filer_id(int(form501.filer_id), ocd_election.parsed_date)
+            if not party.is_unknown():
+                logger.debug("{} party set to {} based on Form 501 filer id".format(self, party))
                 return party
 
         # If there's no 501, or if the 501 returned an unknown party ...
         # ... try one last stab at using the filer id (assuming it exists)
-        if (party is None or party.is_unknown()) and self.scraped_id:
-            return OCDPartyProxy.objects.get_by_filer_id(int(self.scraped_id), ocd_election.parsed_date)
+        if self.scraped_id:
+            party = OCDPartyProxy.objects.get_by_filer_id(int(self.scraped_id), ocd_election.parsed_date)
+            logger.debug("{} party set to {} after checking its scraped filer id".format(self, party))
+            return party
         # Otherwise just give up and return the unknown party
         else:
+            logger.debug("{} party set to UNKNOWN after failing to find a match".format(self))
             return OCDPartyProxy.objects.get(name="UNKNOWN")
 
     def get_form501_filing(self):
