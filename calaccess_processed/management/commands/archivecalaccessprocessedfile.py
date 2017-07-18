@@ -4,6 +4,8 @@
 Export and archive a .csv file for a given model.
 """
 import os
+import shutil
+import tempfile
 from django.apps import apps
 from django.core.files import File
 from django.db import connection
@@ -43,6 +45,10 @@ class Command(CalAccessCommand):
         self.model_name = options['model_name']
 
         # get the full path for archiving the csv
+        self.temp_path = os.path.join(
+            tempfile.gettempdir(),
+            '%s.csv' % self.model_name,
+        )
         self.csv_path = os.path.join(
             self.processed_data_dir,
             '%s.csv' % self.model_name,
@@ -72,9 +78,13 @@ class Command(CalAccessCommand):
         # Remove previous .CSV files
         self.processed_file.file_archive.delete()
 
+        # Write out to the temp directory
         with connection.cursor() as c:
-            copy_sql = "COPY {db_table} TO '{csv_path}' CSV HEADER;".format(**self.__dict__)
+            copy_sql = "COPY {db_table} TO '{temp_path}' CSV HEADER;".format(**self.__dict__)
             c.execute(copy_sql)
+
+        # Move the file to the csv directory
+        shutil.copy2(self.temp_path, self.csv_path)
 
         # Open up the .CSV file for reading so we can wrap it in the Django File obj
         with open(self.csv_path, 'rb') as csv_file:
