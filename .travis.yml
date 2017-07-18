@@ -10,6 +10,9 @@ python:
  - "3.5"
  - "3.6"
 
+addons:
+  postgresql: "9.6"
+
 env:
  - DJANGO_VERSION=1.10
  - DJANGO_VERSION=1.11
@@ -22,6 +25,7 @@ install:
 before_script:
   - cp example/project/settings_local.py.template example/settings_local.py
   - psql -c 'create database calaccess_processed;' -U postgres
+  - psql -c "CREATE EXTENSION postgis;" -U postgres -d calaccess_processed
 
 script:
  - flake8 calaccess_processed
@@ -29,6 +33,3 @@ script:
 
 after_success:
  - coveralls
-
-addons:
-  postgresql: "9.4"
