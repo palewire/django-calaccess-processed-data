@@ -141,8 +141,23 @@ class ScrapedCandidateProxy(Candidate):
         """
         Returns the party we believe the candidate was associated with this election.
         """
-        # Pull the OCD election record so have it to inspect
+        # First, if the candidate is running for this office, it is by definition non-partisan
+        if self.office_name == 'SUPERINTENDENT OF PUBLIC INSTRUCTION':
+            return OCDPartyProxy.objects.get(name="NO PARTY PREFERENCE")
+
+        # Next pull the OCD election record so we have it to inspect
         ocd_election = self.election_proxy
+
+        # Pull the Form 501 so we have that to inspect
+        form501 = self.get_form501_filing()
+
+        # If the record doesn't have either of those, we're not going to get an answer
+        if not ocd_election.parsed_date and not form501:
+            return OCDPartyProxy.objects.get(name="UNKNOWN")
+
+        #
+        # Otherwise, proceed with our standard fallback system for infering their party
+        #
 
         # Check if this candidate has been manually corrected.
         if ocd_election.parsed_date:
@@ -156,17 +171,8 @@ class ScrapedCandidateProxy(Candidate):
             if party:
                 return party
 
-        #
-        # Otherwise, proceed with our standard fallback system for infering their party
-        #
-
-        # First, if the candidate is running for this office, it is by definition non-partisan
-        if self.office_name == 'SUPERINTENDENT OF PUBLIC INSTRUCTION':
-            return OCDPartyProxy.objects.get(name="NO PARTY PREFERENCE")
-
         # Next, if they have filed a 501 form, let's use that
         party = None
-        form501 = self.get_form501_filing()
         if form501:
             party = OCDPartyProxy.objects.get_by_name(form501.party)
             # If they still don't have a party, try using their filer_id
