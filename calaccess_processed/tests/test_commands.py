@@ -56,6 +56,10 @@ class ProcessedDataCommandsTest(TestCase):
         """
         Load data for other tests.
         """
+        # Confirm processing will not proceed without raw data
+        with self.assertRaises(CommandError):
+            call_command("processcalaccessdata", verbosity=3, noinput=True)
+
         # fake a raw data download
         download_dir = os.path.join(settings.CALACCESS_DATA_DIR, 'download')
         os.path.exists(download_dir) or os.mkdir(download_dir)
@@ -72,14 +76,6 @@ class ProcessedDataCommandsTest(TestCase):
         )
         call_command("updatecalaccessrawdata", verbosity=3, noinput=True)
         call_command("processcalaccessdata", verbosity=3, noinput=True, scrape=False)
-
-    def test_commands(self):
-        """
-        Run the data loading and processing commands.
-        """
-        # Confirm processing will not proceed without raw data
-        with self.assertRaises(CommandError):
-            call_command("processcalaccessdata", verbosity=3, noinput=True)
 
     def test_scraped_propositions(self):
         """
