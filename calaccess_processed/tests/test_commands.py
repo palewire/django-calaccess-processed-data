@@ -30,6 +30,18 @@ from opencivicdata.elections.models import (
 )
 
 
+class NoProcessedDataTest(TestCase):
+    """
+    Tests to run with no data loaded.
+    """
+    def test_no_raw_data(self):
+        """
+        Confirm process command will not run without data.
+        """
+        with self.assertRaises(CommandError):
+            call_command("processcalaccessdata", verbosity=3, noinput=True)
+
+
 @override_settings(
     CALACCESS_DATA_DIR=os.path.join(settings.BASE_DIR, 'test-data')
 )
@@ -37,7 +49,7 @@ from opencivicdata.elections.models import (
     MEDIA_ROOT=os.path.join(settings.BASE_DIR, 'test-data', ".media")
 )
 @override_settings(CALACCESS_STORE_ARCHIVE=True)
-class ProcessedDataCommandsTest(TestCase):
+class ProcessedDataTest(TestCase):
     """
     Run and test management commands.
     """
@@ -56,10 +68,6 @@ class ProcessedDataCommandsTest(TestCase):
         """
         Load data for other tests.
         """
-        # Confirm processing will not proceed without raw data
-        with cls.assertRaises(CommandError):
-            call_command("processcalaccessdata", verbosity=3, noinput=True)
-
         # fake a raw data download
         download_dir = os.path.join(settings.CALACCESS_DATA_DIR, 'download')
         os.path.exists(download_dir) or os.mkdir(download_dir)
