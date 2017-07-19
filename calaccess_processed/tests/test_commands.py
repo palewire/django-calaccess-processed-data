@@ -17,7 +17,8 @@ from calaccess_processed.management.commands import (
     CalAccessCommand,
     LoadOCDModelsCommand,
 )
-from calaccess_processed.models import ProcessedDataVersion
+from calaccess_processed import corrections
+from calaccess_processed.models import ProcessedDataVersion, ScrapedCandidateProxy
 from calaccess_scraped.models import Candidate as ScrapedCandidate
 from calaccess_scraped.models import Proposition as ScrapedProposition
 from opencivicdata.core.models import Person
@@ -50,14 +51,11 @@ class ProcessedDataCommandsTest(TestCase):
         'proposition.json',
     ]
 
-    def test_commands(self):
+    @classmethod
+    def setUpTestData(cls):
         """
-        Run the data loading and processing commands.
+        Load data for other tests.
         """
-        # Confirm processing will not proceed without raw data
-        with self.assertRaises(CommandError):
-            call_command("processcalaccessdata", verbosity=3, noinput=True)
-
         # fake a raw data download
         download_dir = os.path.join(settings.CALACCESS_DATA_DIR, 'download')
         os.path.exists(download_dir) or os.mkdir(download_dir)
@@ -75,6 +73,18 @@ class ProcessedDataCommandsTest(TestCase):
         call_command("updatecalaccessrawdata", verbosity=3, noinput=True)
         call_command("processcalaccessdata", verbosity=3, noinput=True, scrape=False)
 
+    def test_commands(self):
+        """
+        Run the data loading and processing commands.
+        """
+        # Confirm processing will not proceed without raw data
+        with self.assertRaises(CommandError):
+            call_command("processcalaccessdata", verbosity=3, noinput=True)
+
+    def test_scraped_propositions(self):
+        """
+        Test the scraped propostions loaded into the database.
+        """
         # Confirm count of scraped propositions with a name that doesn't
         # include "RECALL" equals the count of loaded BallotMeasureContest.
         self.assertEqual(
@@ -91,6 +101,11 @@ class ProcessedDataCommandsTest(TestCase):
             ).count(),
             RetentionContest.objects.count(),
         )
+
+    def test_scraped_candidates(self):
+        """
+        Test the scraped candidates loaded into the database.
+        """
         # Confirm that the count of scraped candidates equals the count loaded
         # into Candidacy with a scraped source
         self.assertEqual(
@@ -229,6 +244,10 @@ class ProcessedDataCommandsTest(TestCase):
                 )
             )
 
+    def test_processed_versions(self):
+        """
+        Test processed versions.
+        """
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
 
         # Confirm that the version finished
@@ -305,3 +324,22 @@ class ProcessedDataCommandsTest(TestCase):
             date(2010, 11, 2),
             c.get_regular_election_date(2010, 'GENERAL'),
         )
+
+    def test_correction(self):
+        """
+        Test that we can retrieve a correction directly.
+        """
+        correx = corrections.candidate_party(
+            "WINSTON, ALMA MARIE",
+            "2014",
+            "PRIMARY",
+            "GOVERNOR"
+        )
+        self.assertEqual(correx.name, "REPUBLICAN")
+
+    def test_correction_assignment_by_proxy(self):
+        """
+        Test that a correction is properly being applied when parties are retrieved.
+        """
+        obj = ScrapedCandidateProxy.objects.get(name='WINSTON, ALMA MARIE')
+        self.assertEqual(obj.get_party().name, 'REPUBLICAN')
