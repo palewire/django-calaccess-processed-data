@@ -132,14 +132,12 @@ class ScrapedCandidateProxy(Candidate):
                 # first, try to get w/ filer_id and election_type
                 form501 = q.filter(
                     filer_id=self.scraped_id,
-                    election_type=election_data['type'],
+                    election_type=election_data['type']
                 ).latest('date_filed')
             except Form501Filing.DoesNotExist:
                 # if that fails, try dropping election_type from filter
                 try:
-                    form501 = q.filter(
-                        filer_id=self.scraped_id,
-                    ).latest('date_filed')
+                    form501 = q.filter(filer_id=self.scraped_id).latest('date_filed')
                 except Form501Filing.DoesNotExist:
                     form501 = None
         else:
