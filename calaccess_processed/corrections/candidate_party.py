@@ -29,7 +29,7 @@ def candidate_party(candidate_name, year, election_type, office):
     matches = [
         d['party'] for d in corrections if (
             d['candidate_name'] == candidate_name and
-            d['year'] == year and
+            str(d['year']) == str(year) and
             d['election_type'] == election_type and
             d['office'] == office
         )
