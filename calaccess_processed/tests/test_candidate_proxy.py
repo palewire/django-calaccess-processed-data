@@ -6,6 +6,7 @@ Unittests for election proxy.
 from django.test import TestCase
 from calaccess_processed import corrections
 from calaccess_processed.models import ScrapedCandidateProxy
+from calaccess_processed.models.proxies import OCDPartyProxy
 
 
 class ScrapedCandidatePartyAssignment(TestCase):
@@ -22,6 +23,9 @@ class ScrapedCandidatePartyAssignment(TestCase):
         'proposition.json',
     ]
 
+    def setUp(self):
+        OCDPartyProxy.objects.create(classification="party", name="REPUBLICAN")
+
     def test_correction(self):
         """
         Test that we can retrieve a correction directly.
@@ -32,11 +36,11 @@ class ScrapedCandidatePartyAssignment(TestCase):
             "PRIMARY",
             "GOVERNOR"
         )
-        self.assertEqual(correx, "REPUBLICAN")
+        self.assertEqual(correx.name, "REPUBLICAN")
 
     def test_correction_assignment_by_proxy(self):
         """
         Test that a correction is properly being applied when parties are retrieved.
         """
         obj = ScrapedCandidateProxy.objects.get(name='WINSTON, ALMA MARIE')
-        self.assertEqual(obj.get_party(), 'REPUBLICAN')
+        self.assertEqual(obj.get_party().name, 'REPUBLICAN')

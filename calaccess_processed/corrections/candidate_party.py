@@ -10,10 +10,12 @@ from django.apps import apps
 
 def candidate_party(candidate_name, year, election_type, office):
     """
-    Return the correct party for a given candidate name, year, election_type and office.
+    Returns the correct OCD party organization object for a given candidate name, year, election_type and office.
 
-    Return None if no correction found.
+    Returns None if no correction is found.
     """
+    from calaccess_processed.models.proxies import OCDPartyProxy
+
     # Get the path to our corrections file
     app = apps.get_app_config("calaccess_processed")
     module_dir = os.path.abspath(os.path.dirname(app.module.__file__))
@@ -43,4 +45,4 @@ def candidate_party(candidate_name, year, election_type, office):
         return None
     # If there's only one match return that
     else:
-        return matches[0]
+        return OCDPartyProxy.objects.get_by_name(matches[0])
