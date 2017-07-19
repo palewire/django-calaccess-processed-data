@@ -24,6 +24,9 @@ class ScrapedCandidatePartyAssignment(TestCase):
     ]
 
     def setUp(self):
+        """
+        Common configuration for all the tests.
+        """
         OCDPartyProxy.objects.create(classification="party", name="REPUBLICAN")
 
     def test_correction(self):
