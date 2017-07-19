@@ -57,7 +57,7 @@ class ProcessedDataCommandsTest(TestCase):
         Load data for other tests.
         """
         # Confirm processing will not proceed without raw data
-        with self.assertRaises(CommandError):
+        with cls.assertRaises(CommandError):
             call_command("processcalaccessdata", verbosity=3, noinput=True)
 
         # fake a raw data download
