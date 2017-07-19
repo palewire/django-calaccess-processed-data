@@ -4,12 +4,31 @@
 Unittests for management commands.
 """
 from unittest import TestCase
-from calaccess_processed.models.proxies import ScrapedCandidateElectionProxy
+from calaccess_processed import corrections
+from calaccess_processed.models import ScrapedCandidateProxy
+from calaccess_processed.models import ScrapedCandidateElectionProxy
 
 
-class LoadCandidateContestCommandTest(TestCase):
+class ScrapedCandidatePartyAssignment(TestCase):
     """
-    Run and test management commands.
+    Test how scraped candidates are assigned a party.
+    """
+    def test_correction(self):
+        """
+        Test that we can retrieve a correction directly.
+        """
+        correx = corrections.candidate_party(
+            "WINSTON, ALMA MARIE",
+            "2014",
+            "PRIMARY",
+            "GOVERNOR"
+        )
+        self.assertEqual(correx, "REPUBLICAN")
+
+
+class ScrapedCandidatElectioneNameParsing(TestCase):
+    """
+    Test how candidate names are parsed from scraped data.
     """
     def test_parse_of_general_election_name(self):
         """
