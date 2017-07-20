@@ -3,12 +3,13 @@
 """
 Load CandidateContest and related models with data scraped from the CAL-ACCESS website.
 """
+from django.db.models import IntegerField
 from django.db.models import Case, When, Q
 from django.db.models.functions import Cast
-from django.db.models import IntegerField
+from opencivicdata.core.models import Membership
+from calaccess_processed.models import OCDRunoffProxy
 from calaccess_processed.models import ScrapedCandidateProxy
 from calaccess_processed.models import ScrapedCandidateElectionProxy
-from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import CandidateContest, Candidacy
 from calaccess_processed.management.commands import LoadOCDModelsCommand
 
@@ -48,14 +49,7 @@ class Command(LoadOCDModelsCommand):
         # connect runoffs to their previously undecided contests
         if self.verbosity > 2:
             self.log(' Linking runoffs to previous contests')
-        runoff_contests_q = CandidateContest.objects.filter(
-            name__contains='RUNOFF'
-        )
-        for runoff in runoff_contests_q.all():
-            previous_contest = self.find_previous_undecided_contest(runoff)
-            if previous_contest:
-                runoff.runoff_for_contest = previous_contest
-                runoff.save()
+        OCDRunoffProxy.objects.set_parents()
 
         self.success("Done!")
 
@@ -212,22 +206,3 @@ class Command(LoadOCDModelsCommand):
         else:
             is_incumbent = False
         return is_incumbent
-
-    def find_previous_undecided_contest(self, runoff_contest):
-        """
-        Find the undecided contest that preceeded runoff_contest.
-        """
-        # Get the contest's post (should only ever be one per contest)
-        post = runoff_contest.posts.all()[0].post
-
-        # Then try getting the most recent contest for the same post
-        # that preceeds the runoff contest
-        try:
-            contest = CandidateContest.objects.filter(
-                posts__post=post,
-                election__date__lt=runoff_contest.election.date,
-            ).latest('election__date')
-        except CandidateContest.DoesNotExist:
-            contest = None
-
-        return contest

@@ -9,6 +9,7 @@ from .elections import ScrapedCandidateElectionProxy
 from .organizations import OCDOrganizationProxy
 from .parties import OCDPartyProxy
 from .posts import OCDPostProxy
+from .candidatecontests import OCDRunoffProxy
 
 
 __all__ = (
@@ -18,4 +19,5 @@ __all__ = (
     'OCDOrganizationProxy',
     'OCDPartyProxy',
     'OCDPostProxy',
+    'OCDRunoffProxy',
 )
