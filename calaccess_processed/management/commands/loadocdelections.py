@@ -68,8 +68,8 @@ class Command(CalAccessCommand):
         call_command('mergeocdpersonsbycontestandname', **options)
         self.duration()
 
-        call_command('loadocdincumbentofficeholders', **options)
-        self.duration()
+        # call_command('loadocdincumbentofficeholders', **options)
+        # self.duration()
 
     def archive(self):
         """
