@@ -110,12 +110,6 @@ class Command(LoadOCDModelsCommand):
 
         Returns a candidacy object.
         """
-        # Get the candidate's form501 "statement of intention"
-        form501 = scraped_candidate.get_form501_filing()
-
-        # Get the candidate's party, looking in our correction file for any fixes
-        # party = scraped_candidate.get_party()
-
         # Create contest
         contest, contest_created = scraped_candidate.get_or_create_contest()
         if contest_created and self.verbosity > 2:
@@ -154,6 +148,8 @@ class Command(LoadOCDModelsCommand):
         #
 
         # add extra data from form501, if available
+        form501 = scraped_candidate.get_form501_filing()
+
         if form501:
             self.link_form501_to_candidacy(form501.filing_id, candidacy)
             self.update_candidacy_from_form501s(candidacy)
@@ -165,10 +161,14 @@ class Command(LoadOCDModelsCommand):
                     scheme='calaccess_filer_id',
                     identifier=form501.filer_id,
                 )
+
         # Fill the party if the candidacy doesn't have it
-        if party and not candidacy.party:
-            candidacy.party = party
-            candidacy.save()
+        # Get the candidate's party, looking in our correction file for any fixes
+        if not candidacy.party:
+            party =scraped_candidate.get_party()
+            if party:
+                candidacy.party = party
+                candidacy.save()
 
         # always update the source for the candidacy
         candidacy.sources.update_or_create(
