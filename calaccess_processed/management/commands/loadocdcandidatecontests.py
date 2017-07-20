@@ -49,7 +49,7 @@ class Command(LoadOCDModelsCommand):
         # connect runoffs to their previously undecided contests
         if self.verbosity > 2:
             self.log(' Linking runoffs to previous contests')
-        # OCDRunoffProxy.objects.set_parents()
+        OCDRunoffProxy.objects.set_parents()
 
         self.success("Done!")
 
@@ -91,18 +91,18 @@ class Command(LoadOCDModelsCommand):
                     scraped_candidate,
                     ocd_election
                 )
-                # # check incumbent status
-                # if members_are_loaded:
-                #     if self.check_incumbent_status(candidacy):
-                #         candidacy.is_incumbent = True
-                #         candidacy.save()
-                #         if self.verbosity > 2:
-                #             self.log(' Identified as incumbent.')
-                #         # set is_incumbent False for all other candidacies
-                #         contest = candidacy.contest
-                #         contest.candidacies.exclude(
-                #             is_incumbent=True
-                #         ).update(is_incumbent=False)
+                # check incumbent status
+                if members_are_loaded:
+                    if self.check_incumbent_status(candidacy):
+                        candidacy.is_incumbent = True
+                        candidacy.save()
+                        if self.verbosity > 2:
+                            self.log(' Identified as incumbent.')
+                        # set is_incumbent False for all other candidacies
+                        contest = candidacy.contest
+                        contest.candidacies.exclude(
+                            is_incumbent=True
+                        ).update(is_incumbent=False)
 
     def add_scraped_candidate_to_election(self, scraped_candidate, ocd_election):
         """
@@ -125,60 +125,60 @@ class Command(LoadOCDModelsCommand):
         # Get or create Candidacy
         #
 
-        # # Set default registration_status
-        # registration_status = 'qualified'
+        # Set default registration_status
+        registration_status = 'qualified'
+
+        # Correct any names we now are bad
+        name_fixes = {
+            # http://www.sos.ca.gov/elections/prior-elections/statewide-election-results/primary-election-march-7-2000/certified-list-candidates/ # noqa
+            'COURTRIGHT DONNA': 'COURTRIGHT, DONNA'
+        }
+        scraped_candidate_name = name_fixes.get(
+            scraped_candidate.name,
+            scraped_candidate.name
+        )
+
+        candidacy, candidacy_created = self.get_or_create_candidacy(
+            contest,
+            scraped_candidate_name,
+            registration_status,
+            filer_id=scraped_candidate.scraped_id,
+        )
+
+        if candidacy_created and self.verbosity > 2:
+            template = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
+            self.log(template.format(candidacy))
+
         #
-        # # Correct any names we now are bad
-        # name_fixes = {
-        #     # http://www.sos.ca.gov/elections/prior-elections/statewide-election-results/primary-election-march-7-2000/certified-list-candidates/ # noqa
-        #     'COURTRIGHT DONNA': 'COURTRIGHT, DONNA'
-        # }
-        # scraped_candidate_name = name_fixes.get(
-        #     scraped_candidate.name,
-        #     scraped_candidate.name
-        # )
+        # Dress it up with extra
         #
-        # candidacy, candidacy_created = self.get_or_create_candidacy(
-        #     contest,
-        #     scraped_candidate_name,
-        #     registration_status,
-        #     filer_id=scraped_candidate.scraped_id,
-        # )
-        #
-        # if candidacy_created and self.verbosity > 2:
-        #     template = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
-        #     self.log(template.format(candidacy))
-        #
-        # #
-        # # Dress it up with extra
-        # #
-        #
-        # # add extra data from form501, if available
-        # if form501:
-        #     self.link_form501_to_candidacy(form501.filing_id, candidacy)
-        #     self.update_candidacy_from_form501s(candidacy)
-        #
-        #     # if the scraped_candidate lacks a filer_id, add the
-        #     # Form501Filing.filer_id
-        #     if scraped_candidate.scraped_id == '':
-        #         candidacy.person.identifiers.get_or_create(
-        #             scheme='calaccess_filer_id',
-        #             identifier=form501.filer_id,
-        #         )
-        # # Fill the party if the candidacy doesn't have it
-        # if party and not candidacy.party:
-        #     candidacy.party = party
-        #     candidacy.save()
-        #
-        # # always update the source for the candidacy
-        # candidacy.sources.update_or_create(
-        #     url=scraped_candidate.url,
-        #     note='Last scraped on {dt:%Y-%m-%d}'.format(
-        #         dt=scraped_candidate.last_modified,
-        #     )
-        # )
-        #
-        # return candidacy
+
+        # add extra data from form501, if available
+        if form501:
+            self.link_form501_to_candidacy(form501.filing_id, candidacy)
+            self.update_candidacy_from_form501s(candidacy)
+
+            # if the scraped_candidate lacks a filer_id, add the
+            # Form501Filing.filer_id
+            if scraped_candidate.scraped_id == '':
+                candidacy.person.identifiers.get_or_create(
+                    scheme='calaccess_filer_id',
+                    identifier=form501.filer_id,
+                )
+        # Fill the party if the candidacy doesn't have it
+        if party and not candidacy.party:
+            candidacy.party = party
+            candidacy.save()
+
+        # always update the source for the candidacy
+        candidacy.sources.update_or_create(
+            url=scraped_candidate.url,
+            note='Last scraped on {dt:%Y-%m-%d}'.format(
+                dt=scraped_candidate.last_modified,
+            )
+        )
+
+        return candidacy
 
     def check_incumbent_status(self, candidacy):
         """

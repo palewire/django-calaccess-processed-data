@@ -36,6 +36,44 @@ class OCDPostManager(models.Manager):
 
         return parsed
 
+    def get_by_name(self, office_name):
+        """
+        Get a Post object with an office string.
+        """
+        parsed_office = self.parse_office_name(office_name)
+
+        # prepare to get or create post
+        label = office_name.title().replace('Of', 'of')
+
+        if parsed_office['type'] == 'STATE SENATE':
+            division = OCDDivisionProxy.senate.get(subid2=parsed_office['district'])
+            organization = OCDOrganizationProxy.objects.senate()
+            role = 'Senator'
+        elif parsed_office['type'] == 'ASSEMBLY':
+            division = OCDDivisionProxy.assembly.get(subid2=parsed_office['district'])
+            organization = OCDOrganizationProxy.objects.assembly()
+            role = 'Assembly Member'
+        else:
+            # If not Senate or Assembly, assume this is a state office
+            division = OCDDivisionProxy.objects.california()
+            if parsed_office['type'] == 'MEMBER BOARD OF EQUALIZATION':
+                organization = OCDOrganizationProxy.objects.board_of_equalization()
+                role = 'Board Member'
+            elif parsed_office['type'] == 'SECRETARY OF STATE':
+                organization = OCDOrganizationProxy.objects.secretary_of_state()
+                role = label
+            else:
+                organization = OCDOrganizationProxy.objects.executive_branch()
+                role = label
+
+        # Pass it out
+        return self.get_queryset().get(
+            label=label,
+            role=role,
+            division=division,
+            organization=organization
+        )
+
     def get_or_create_by_name(self, office_name):
         """
         Get or create a Post object with an office_name string.

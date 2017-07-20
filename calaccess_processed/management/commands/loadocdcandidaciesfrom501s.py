@@ -9,7 +9,7 @@ from calaccess_processed import corrections
 from django.core.management.base import CommandError
 from calaccess_raw.models import FilerToFilerTypeCd, LookupCodesCd
 from calaccess_processed.management.commands import LoadOCDModelsCommand
-from calaccess_processed.models import Form501Filing, OCDPartyProxy
+from calaccess_processed.models import Form501Filing, OCDPartyProxy, OCDPostProxy
 from opencivicdata.core.models import Division
 from opencivicdata.elections.models import (
     CandidateContest,
@@ -89,11 +89,11 @@ class Command(LoadOCDModelsCommand):
             else:
                 if ftft.district_cd and ftft.district_cd != 0:
                     try:
-                        district = LookupCodesCd.objects.get(
-                            code_id=ftft.district_cd
-                        )
+                        district = LookupCodesCd.objects.get(code_id=ftft.district_cd)
                     except LookupCodesCd.DoesNotExist:
                         district = None
+                else:
+                    district = None
 
                 result = '{0} {1}'.format(office, district).strip()
 
@@ -109,11 +109,8 @@ class Command(LoadOCDModelsCommand):
         office_name = '{0.office} {0.district}'.format(form501).strip()
 
         try:
-            post = self.get_or_create_post(
-                office_name,
-                get_only=True,
-            )[0]
-        except Division.DoesNotExist:
+            post = OCDPostProxy.objects.get_by_name(office_name)
+        except OCDPostProxy.DoesNotExist:
             # try extracting office and district from FilerToFilerTypeCd
             office_name = self.lookup_office_for_filer_id(
                 form501.filer_id,
@@ -121,10 +118,7 @@ class Command(LoadOCDModelsCommand):
             )
             if office_name:
                 try:
-                    post = self.get_or_create_post(
-                        office_name,
-                        get_only=True,
-                    )[0]
+                    post = OCDPostProxy.objects.get_by_name(office_name)
                 except Division.DoesNotExist:
                     pass
 

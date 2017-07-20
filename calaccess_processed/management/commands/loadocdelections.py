@@ -62,8 +62,8 @@ class Command(CalAccessCommand):
         call_command('mergeocdpersonsbyfilerid', **options)
         self.duration()
 
-        call_command('loadocdcandidaciesfrom501s', **options)
-        self.duration()
+        # call_command('loadocdcandidaciesfrom501s', **options)
+        # self.duration()
 
         call_command('mergeocdpersonsbycontestandname', **options)
         self.duration()
