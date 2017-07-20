@@ -213,7 +213,7 @@ class ScrapedCandidateProxy(Candidate):
             # Beyond that, there are two different cases depending on when the election was held.
             # Prior to 2012, California held partisan primaries. Since then, the state has held
             # open "jungle" primaries that set all candidates from the same party against each other.
-            # In the case of partisan elections, we want to make sure the party is included in the name.
+            # In the case of partisan elections, we want to make sure the candidates are separated by party.
             # The one exception to this is superintendent races which have always been non-partisan.
             if scraped_election.is_partisan_primary() and self.office_name != 'SUPERINTENDENT OF PUBLIC INSTRUCTION':
                 # In this case, the contest party should be the same as the candidate party.
@@ -224,12 +224,11 @@ class ScrapedCandidateProxy(Candidate):
                 # For a regular party, we shouldn't have to do much here.
                 else:
                     contest_name = '{} ({})'.format(self.office_name, candidate_party.name)
-            # If it a general election prior to 2012, or any non-special election since then,
-            # we just keep the office name as it came in.
+            # If this is a general election prior to 2012, or any non-special election since then ...
             else:
-                # In this case, there is no party for the contest
+                # ... there is no party for the contest ...
                 contest_party = None
-                # And there's no need to do anything to the contest name
+                # ... and there's no need to do anything to the contest name.
                 contest_name = self.office_name
 
         # Make it happen
