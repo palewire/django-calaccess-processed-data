@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Load data extracted from scrape and raw data snapshot into OCD models.
+Load data extracted from scrape and raw data snapshot into OCD elections models.
 """
 from django.apps import apps
 from django.conf import settings
@@ -12,9 +12,9 @@ from calaccess_processed.management.commands import CalAccessCommand
 
 class Command(CalAccessCommand):
     """
-    Load data extracted from scrape and raw data snapshot into OCD models.
+    Load data extracted from scrape and raw data snapshot into OCD elections models.
     """
-    help = 'Load data extracted from scrape and raw data snapshot into OCD models.'
+    help = 'Load data extracted from scrape and raw data snapshot into OCD elections models.'
 
     def handle(self, *args, **options):
         """
