@@ -194,7 +194,6 @@ class ScrapedCandidateProxy(Candidate):
 
         # Get election data
         scraped_election = self.election_proxy
-        ocd_election = scraped_election.get_ocd_election()
 
         # Get the candidate's party
         party = self.get_party()
@@ -203,7 +202,7 @@ class ScrapedCandidateProxy(Candidate):
         # previous term of the office was unexpired.
         if scraped_election.is_special():
             previous_term_unexpired = True
-            contest_name = '{0} ({1})'.format(self.office_name, scraped_election.parsed_name['type'])
+            contest_name = '{} ({})'.format(self.office_name, scraped_election.parsed_name['type'])
         # Otherwise, we assume this a typical election
         else:
             # At a minimum, that means that the previous term has expired for the office
@@ -214,9 +213,10 @@ class ScrapedCandidateProxy(Candidate):
             # In the case of partisan elections, we want to make sure the party is included in the name.
             # The one exception to this is superintendent races which have always been non-partisan.
             if scraped_election.is_partisan_primary() and self.office_name != 'SUPERINTENDENT OF PUBLIC INSTRUCTION':
-                # If the party is unknown, just take party on the endof
+                # If the party is unknown, just tack party on the end of the name
                 if party.is_unknown():
                     contest_name = '{} ({} PARTY)'.format(self.office_name, party.name)
+                # For a regular party, we shouldn't have to do much here.
                 else:
                     contest_name = '{} ({})'.format(self.office_name, party.name)
             # If it a general election prior to 2012, or any non-special election since then,
@@ -226,7 +226,7 @@ class ScrapedCandidateProxy(Candidate):
 
         # Make it happen
         contest, created = CandidateContest.objects.get_or_create(
-            election=ocd_election,
+            election=scraped_election.get_ocd_election(),
             name=contest_name,
             previous_term_unexpired=previous_term_unexpired,
             party=party,
