@@ -28,3 +28,4 @@ example/test-data/processed.zip
 example/test-data/processed/
 example/test-data/clean.zip
 example/test-data/.media
+.python-version
