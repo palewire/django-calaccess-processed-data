@@ -202,6 +202,8 @@ class ScrapedCandidateProxy(Candidate):
         # previous term of the office was unexpired.
         if scraped_election.is_special():
             previous_term_unexpired = True
+            # We are not setting a contest party here for the reasons laid out in the following ticket:
+            # https://github.com/california-civic-data-coalition/django-calaccess-processed-data/issues/70#issuecomment-300836502  # NOQA
             contest_party = None
             contest_name = '{} ({})'.format(self.office_name, scraped_election.parsed_name['type'])
         # Otherwise, we assume this a typical election
