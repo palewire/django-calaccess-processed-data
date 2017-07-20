@@ -22,6 +22,11 @@ class OCDRunoffManager(models.Manager):
         Connect and save parent contests for all runoffs.
         """
         for obj in self.get_queryset().all():
+            # Carve out for the duplicate 2010 Assembly 43 runoffs until
+            # I can figure out what I broke.
+            print obj.name
+            if obj.name in [u'ASSEMBLY 43 (SPECIAL RUNOFF)',]:
+                continue
             obj.runoff_for_contest = obj.get_parent()
             obj.save()
 

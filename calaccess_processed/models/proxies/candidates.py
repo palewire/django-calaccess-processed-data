@@ -5,13 +5,13 @@ Proxy models for augmenting our source data tables with methods useful for proce
 """
 import re
 import logging
-from django.db.models import Value
+from .posts import OCDPostProxy
 from .parties import OCDPartyProxy
+from django.db.models import Value
 from django.db.models import CharField
 from calaccess_processed import corrections
 from django.db.models.functions import Concat
 from calaccess_scraped.models import Candidate
-from .posts import OCDPostProxy
 from .elections import ScrapedCandidateElectionProxy
 from calaccess_processed.models import Form501Filing
 from opencivicdata.elections.models import CandidateContest
@@ -189,12 +189,15 @@ class ScrapedCandidateProxy(Candidate):
         Returns a tuple (CandidateContest object, created), where created is a boolean
         specifying whether a CandidateContest was created.
         """
-        party = self.get_party()
+        # Get or create a post
+        post, post_created = OCDPostProxy.objects.get_or_create_by_name(self.office_name)
+
+        # Get election data
         scraped_election = self.election_proxy
         ocd_election = scraped_election.get_ocd_election()
 
-        # Get or create a post
-        post, post_created = OCDPostProxy.objects.get_or_create_by_name(self.office_name)
+        # Get the candidate's party
+        party = self.get_party()
 
         # Assume all "SPECIAL" candidate elections are for contests where the
         # previous term of the office was unexpired.

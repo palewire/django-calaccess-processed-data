@@ -49,7 +49,7 @@ class Command(LoadOCDModelsCommand):
         # connect runoffs to their previously undecided contests
         if self.verbosity > 2:
             self.log(' Linking runoffs to previous contests')
-        OCDRunoffProxy.objects.set_parents()
+        # OCDRunoffProxy.objects.set_parents()
 
         self.success("Done!")
 
@@ -91,18 +91,18 @@ class Command(LoadOCDModelsCommand):
                     scraped_candidate,
                     ocd_election
                 )
-                # check incumbent status
-                if members_are_loaded:
-                    if self.check_incumbent_status(candidacy):
-                        candidacy.is_incumbent = True
-                        candidacy.save()
-                        if self.verbosity > 2:
-                            self.log(' Identified as incumbent.')
-                        # set is_incumbent False for all other candidacies
-                        contest = candidacy.contest
-                        contest.candidacies.exclude(
-                            is_incumbent=True
-                        ).update(is_incumbent=False)
+                # # check incumbent status
+                # if members_are_loaded:
+                #     if self.check_incumbent_status(candidacy):
+                #         candidacy.is_incumbent = True
+                #         candidacy.save()
+                #         if self.verbosity > 2:
+                #             self.log(' Identified as incumbent.')
+                #         # set is_incumbent False for all other candidacies
+                #         contest = candidacy.contest
+                #         contest.candidacies.exclude(
+                #             is_incumbent=True
+                #         ).update(is_incumbent=False)
 
     def add_scraped_candidate_to_election(self, scraped_candidate, ocd_election):
         """
