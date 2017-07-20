@@ -196,12 +196,13 @@ class ScrapedCandidateProxy(Candidate):
         scraped_election = self.election_proxy
 
         # Get the candidate's party
-        party = self.get_party()
+        candidate_party = self.get_party()
 
         # Assume all "SPECIAL" candidate elections are for contests where the
         # previous term of the office was unexpired.
         if scraped_election.is_special():
             previous_term_unexpired = True
+            contest_party = None
             contest_name = '{} ({})'.format(self.office_name, scraped_election.parsed_name['type'])
         # Otherwise, we assume this a typical election
         else:
@@ -213,15 +214,20 @@ class ScrapedCandidateProxy(Candidate):
             # In the case of partisan elections, we want to make sure the party is included in the name.
             # The one exception to this is superintendent races which have always been non-partisan.
             if scraped_election.is_partisan_primary() and self.office_name != 'SUPERINTENDENT OF PUBLIC INSTRUCTION':
-                # If the party is unknown, just tack party on the end of the name
-                if party.is_unknown():
-                    contest_name = '{} ({} PARTY)'.format(self.office_name, party.name)
+                # In this case, the contest party should be the same as the candidate party.
+                contest_party = candidate_party
+                # If the party is unknown, just tack party on the end of the contest name
+                if candidate_party.is_unknown():
+                    contest_name = '{} ({} PARTY)'.format(self.office_name, candidate_party.name)
                 # For a regular party, we shouldn't have to do much here.
                 else:
-                    contest_name = '{} ({})'.format(self.office_name, party.name)
+                    contest_name = '{} ({})'.format(self.office_name, candidate_party.name)
             # If it a general election prior to 2012, or any non-special election since then,
             # we just keep the office name as it came in.
             else:
+                # In this case, there is no party for the contest
+                contest_party = None
+                # And there's no need to do anything to the contest name
                 contest_name = self.office_name
 
         # Make it happen
@@ -229,7 +235,7 @@ class ScrapedCandidateProxy(Candidate):
             election=scraped_election.get_ocd_election(),
             name=contest_name,
             previous_term_unexpired=previous_term_unexpired,
-            party=party,
+            party=contest_party,
             division=post.division,
         )
 
