@@ -8,7 +8,7 @@ from django.db.models.functions import Cast
 from django.db.models import IntegerField
 from calaccess_processed.models import ScrapedCandidateProxy
 from calaccess_processed.models import ScrapedCandidateElectionProxy
-from opencivicdata.core.models import Membership, Organization
+from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import CandidateContest, Candidacy
 from calaccess_processed.management.commands import LoadOCDModelsCommand
 
@@ -122,33 +122,8 @@ class Command(LoadOCDModelsCommand):
         # Get the candidate's party, looking in our correction file for any fixes
         party = scraped_candidate.get_party()
 
-        #
-        # Get or create the Contest
-        #
-
-        # if it's a primary election before 2012 for an office other than
-        # superintendent of public instruction, include party in
-        # get_or_create_contest criteria (if we have a party)
-        if (
-            'PRIMARY' in scraped_candidate.election.name and
-            ocd_election.date.year < 2012 and
-            scraped_candidate.office_name != 'SUPERINTENDENT OF PUBLIC INSTRUCTION'
-        ):
-            if not party:
-                # use UNKNOWN party
-                party = Organization.objects.get(identifiers__identifier=16011)
-
-            contest, contest_created = self.get_or_create_contest(
-                scraped_candidate,
-                ocd_election,
-                party=party,
-            )
-        else:
-            contest, contest_created = self.get_or_create_contest(
-                scraped_candidate,
-                ocd_election,
-            )
-
+        # Create contest
+        contest, contest_created = scraped_candidate.get_or_create_contest()
         if contest_created and self.verbosity > 2:
             self.log(' Created new CandidateContest: {}'.format(contest.name))
 
@@ -210,56 +185,6 @@ class Command(LoadOCDModelsCommand):
         )
 
         return candidacy
-
-    def get_or_create_contest(self, scraped_candidate, ocd_election, party=None):
-        """
-        Get or create an OCD CandidateContest object using  and Election object.
-
-        Returns a tuple (CandidateContest object, created), where created is a boolean
-        specifying whether a CandidateContest was created.
-        """
-        office_name = scraped_candidate.office_name
-        post, post_created = self.get_or_create_post(office_name)
-
-        # Assume all "SPECIAL" candidate elections are for contests where the
-        # previous term of the office was unexpired.
-        if 'SPECIAL' in scraped_candidate.election.name:
-            previous_term_unexpired = True
-            election_type = scraped_candidate.election_proxy.parsed_name['type']
-            contest_name = '{0} ({1})'.format(office_name, election_type)
-        else:
-            previous_term_unexpired = False
-            if party:
-                if party.name == 'UNKNOWN':
-                    contest_name = '{0} ({1} PARTY)'.format(office_name, party.name)
-                else:
-                    contest_name = '{0} ({1})'.format(office_name, party.name)
-            else:
-                contest_name = office_name
-
-        contest, contest_created = CandidateContest.objects.get_or_create(
-            election=ocd_election,
-            name=contest_name,
-            previous_term_unexpired=previous_term_unexpired,
-            party=party,
-            division=post.division,
-        )
-
-        # if contest was created, add the Post
-        if contest_created:
-            contest.posts.create(
-                post=post,
-            )
-
-        # always update the source for the contest
-        contest.sources.update_or_create(
-            url=scraped_candidate.url,
-            note='Last scraped on {dt:%Y-%m-%d}'.format(
-                dt=scraped_candidate.last_modified,
-            )
-        )
-
-        return (contest, contest_created)
 
     def check_incumbent_status(self, candidacy):
         """

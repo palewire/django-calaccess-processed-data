@@ -23,7 +23,6 @@ from opencivicdata.core.models import (
     Jurisdiction,
     Organization,
     Person,
-    Post,
 )
 logger = logging.getLogger(__name__)
 
@@ -227,89 +226,6 @@ class LoadOCDModelsCommand(CalAccessCommand):
             division=self.state_division,
         )
         return obj
-
-    def parse_office_name(self, office_name):
-        """
-        Parse string containg the name for an office.
-
-        Expected format is "{TYPE NAME}[{DISTRICT NUMBER}]".
-
-        Return a dict with two keys: type and district.
-        """
-        office_pattern = r'^(?P<type>[A-Z ]+)(?P<district>\d{2})?$'
-        try:
-            parsed = re.match(office_pattern, office_name.upper()).groupdict()
-        except AttributeError:
-            parsed = {'type': None, 'district': None}
-        else:
-            parsed['type'] = parsed['type'].strip()
-            try:
-                parsed['district'] = int(parsed['district'])
-            except TypeError:
-                pass
-
-        return parsed
-
-    def get_or_create_post(self, office_name, get_only=False):
-        """
-        Get or create a Post object with an office_name string.
-
-        Returns a tuple (Post object, created), where created is a boolean
-        specifying whether a Post was created.
-        """
-        parsed_office = self.parse_office_name(office_name)
-
-        # prepare to get or create post
-        raw_post = {'label': office_name.title().replace('Of', 'of')}
-
-        if parsed_office['type'] == 'STATE SENATE':
-            raw_post['division'] = Division.objects.get(
-                subid1='ca',
-                subtype2='sldu',
-                subid2=str(parsed_office['district']),
-            )
-            raw_post['organization'] = Organization.objects.get_or_create(
-                name='California State Senate',
-                classification='upper',
-            )[0]
-            raw_post['role'] = 'Senator'
-        elif parsed_office['type'] == 'ASSEMBLY':
-            raw_post['division'] = Division.objects.get(
-                subid1='ca',
-                subtype2='sldl',
-                subid2=str(parsed_office['district']),
-            )
-            raw_post['organization'] = Organization.objects.get_or_create(
-                name='California State Assembly',
-                classification='lower',
-            )[0]
-            raw_post['role'] = 'Assembly Member'
-        else:
-            # If not Senate or Assembly, assume this is a state office
-            raw_post['division'] = self.state_division
-            if parsed_office['type'] == 'MEMBER BOARD OF EQUALIZATION':
-                raw_post['organization'] = Organization.objects.get_or_create(
-                    name='State Board of Equalization',
-                    parent=self.executive_branch,
-                )[0]
-                raw_post['role'] = 'Board Member'
-            elif parsed_office['type'] == 'SECRETARY OF STATE':
-                raw_post['organization'] = self.sos
-                raw_post['role'] = raw_post['label']
-            else:
-                raw_post['organization'] = self.executive_branch
-                raw_post['role'] = raw_post['label']
-
-        if get_only:
-            post_created = False
-            try:
-                post = Post.objects.get(**raw_post)
-            except Post.DoesNotExist:
-                post = None
-        else:
-            post, post_created = Post.objects.get_or_create(**raw_post)
-
-        return post, post_created
 
     def format_person_name_fields(self, sort_name):
         """

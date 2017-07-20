@@ -9,6 +9,7 @@ from calaccess_scraped.models import (
     Incumbent as ScrapedIncumbent,
     Candidate as ScrapedCandidate,
 )
+from calaccess_processed.models import OCDPostProxy
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import RetentionContest
 from calaccess_processed.management.commands.loadocdballotmeasurecontests import Command
@@ -79,7 +80,7 @@ class Command(Command):
             incumbent.name,
             filer_id=incumbent.scraped_id,
         )[0]
-        post = self.get_or_create_post(incumbent.office_name)[0]
+        post = OCDPostProxy.objects.get_or_create_by_name(incumbent.office_name)[0]
 
         # get or create membership object
         membership = Membership.objects.get_or_create(

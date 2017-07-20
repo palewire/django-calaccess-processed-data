@@ -85,7 +85,10 @@ from .tracking import (
     ProcessedDataFile,
 )
 from .proxies import (
+    OCDDivisionProxy,
+    OCDOrganizationProxy,
     OCDPartyProxy,
+    OCDPostProxy,
     ScrapedCandidateProxy,
     ScrapedCandidateElectionProxy
 )
@@ -170,5 +173,8 @@ __all__ = (
     'ProcessedDataFile',
     'ScrapedCandidateProxy',
     'ScrapedCandidateElectionProxy',
+    'OCDDivisionProxy',
+    'OCDOrganizationProxy',
     'OCDPartyProxy',
+    'OCDPostProxy',
 )

@@ -11,8 +11,10 @@ from django.db.models import CharField
 from calaccess_processed import corrections
 from django.db.models.functions import Concat
 from calaccess_scraped.models import Candidate
+from .posts import OCDPostProxy
 from .elections import ScrapedCandidateElectionProxy
 from calaccess_processed.models import Form501Filing
+from opencivicdata.elections.models import CandidateContest
 logger = logging.getLogger(__name__)
 
 
@@ -64,13 +66,13 @@ class ScrapedCandidateProxy(Candidate):
             return OCDPartyProxy.objects.get(name="NO PARTY PREFERENCE")
 
         # Next pull the OCD election record so we have it to inspect
-        ocd_election = self.election_proxy
+        scraped_election = self.election_proxy
 
         # Check if this candidate has been manually corrected.
         party = corrections.candidate_party(
             self.name,
-            ocd_election.parsed_date.year,
-            ocd_election.parsed_name['type'],
+            scraped_election.parsed_date.year,
+            scraped_election.parsed_name['type'],
             self.office_name,
         )
         # If so, just pass that out right away
@@ -88,7 +90,7 @@ class ScrapedCandidateProxy(Candidate):
                 return party
 
             # Try getting it from form 501 filer id
-            party = OCDPartyProxy.objects.get_by_filer_id(int(form501.filer_id), ocd_election.parsed_date)
+            party = OCDPartyProxy.objects.get_by_filer_id(int(form501.filer_id), scraped_election.parsed_date)
             if not party.is_unknown():
                 logger.debug("{} party set to {} based on Form 501 filer id".format(self, party))
                 return party
@@ -96,7 +98,7 @@ class ScrapedCandidateProxy(Candidate):
         # If there's no 501, or if the 501 returned an unknown party ...
         # ... try one last stab at using the filer id (assuming it exists)
         if self.scraped_id:
-            party = OCDPartyProxy.objects.get_by_filer_id(int(self.scraped_id), ocd_election.parsed_date)
+            party = OCDPartyProxy.objects.get_by_filer_id(int(self.scraped_id), scraped_election.parsed_date)
             logger.debug("{} party set to {} after checking its scraped filer id".format(self, party))
             return party
         # Otherwise just give up and return the unknown party
@@ -179,3 +181,51 @@ class ScrapedCandidateProxy(Candidate):
                     form501 = None
 
         return form501
+
+    def get_or_create_contest(self):
+        """
+        Get or create an OCD CandidateContest object.
+
+        Returns a tuple (CandidateContest object, created), where created is a boolean
+        specifying whether a CandidateContest was created.
+        """
+        party = self.get_party()
+        scraped_election = self.election_proxy
+        ocd_election = scraped_election.get_ocd_election()
+
+        # Get or create a post
+        post, post_created = OCDPostProxy.objects.get_or_create_by_name(self.office_name)
+
+        # Assume all "SPECIAL" candidate elections are for contests where the
+        # previous term of the office was unexpired.
+        if scraped_election.is_special():
+            previous_term_unexpired = True
+            contest_name = '{0} ({1})'.format(self.office_name, scraped_election.parsed_name['type'])
+        else:
+            previous_term_unexpired = False
+            if party.is_unknown():
+                contest_name = '{} ({} PARTY)'.format(self.office_name, party.name)
+            else:
+                contest_name = '{} ({})'.format(self.office_name, party.name)
+
+        # Make it happen
+        contest, created = CandidateContest.objects.get_or_create(
+            election=ocd_election,
+            name=contest_name,
+            previous_term_unexpired=previous_term_unexpired,
+            party=party,
+            division=post.division,
+        )
+
+        # if contest was created, add the Post
+        if created:
+            contest.posts.create(post=post)
+
+        # Always update the source for the contest
+        contest.sources.update_or_create(
+            url=self.url,
+            note='Last scraped on {dt:%Y-%m-%d}'.format(dt=self.last_modified)
+        )
+
+        # Return the contest and whether or not it was created
+        return contest, created
