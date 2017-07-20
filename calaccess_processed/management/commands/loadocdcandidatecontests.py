@@ -114,7 +114,7 @@ class Command(LoadOCDModelsCommand):
         form501 = scraped_candidate.get_form501_filing()
 
         # Get the candidate's party, looking in our correction file for any fixes
-        party = scraped_candidate.get_party()
+        # party = scraped_candidate.get_party()
 
         # Create contest
         contest, contest_created = scraped_candidate.get_or_create_contest()
@@ -125,60 +125,60 @@ class Command(LoadOCDModelsCommand):
         # Get or create Candidacy
         #
 
-        # Set default registration_status
-        registration_status = 'qualified'
-
-        # Correct any names we now are bad
-        name_fixes = {
-            # http://www.sos.ca.gov/elections/prior-elections/statewide-election-results/primary-election-march-7-2000/certified-list-candidates/ # noqa
-            'COURTRIGHT DONNA': 'COURTRIGHT, DONNA'
-        }
-        scraped_candidate_name = name_fixes.get(
-            scraped_candidate.name,
-            scraped_candidate.name
-        )
-
-        candidacy, candidacy_created = self.get_or_create_candidacy(
-            contest,
-            scraped_candidate_name,
-            registration_status,
-            filer_id=scraped_candidate.scraped_id,
-        )
-
-        if candidacy_created and self.verbosity > 2:
-            template = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
-            self.log(template.format(candidacy))
-
+        # # Set default registration_status
+        # registration_status = 'qualified'
         #
-        # Dress it up with extra
+        # # Correct any names we now are bad
+        # name_fixes = {
+        #     # http://www.sos.ca.gov/elections/prior-elections/statewide-election-results/primary-election-march-7-2000/certified-list-candidates/ # noqa
+        #     'COURTRIGHT DONNA': 'COURTRIGHT, DONNA'
+        # }
+        # scraped_candidate_name = name_fixes.get(
+        #     scraped_candidate.name,
+        #     scraped_candidate.name
+        # )
         #
-
-        # add extra data from form501, if available
-        if form501:
-            self.link_form501_to_candidacy(form501.filing_id, candidacy)
-            self.update_candidacy_from_form501s(candidacy)
-
-            # if the scraped_candidate lacks a filer_id, add the
-            # Form501Filing.filer_id
-            if scraped_candidate.scraped_id == '':
-                candidacy.person.identifiers.get_or_create(
-                    scheme='calaccess_filer_id',
-                    identifier=form501.filer_id,
-                )
-        # Fill the party if the candidacy doesn't have it
-        if party and not candidacy.party:
-            candidacy.party = party
-            candidacy.save()
-
-        # always update the source for the candidacy
-        candidacy.sources.update_or_create(
-            url=scraped_candidate.url,
-            note='Last scraped on {dt:%Y-%m-%d}'.format(
-                dt=scraped_candidate.last_modified,
-            )
-        )
-
-        return candidacy
+        # candidacy, candidacy_created = self.get_or_create_candidacy(
+        #     contest,
+        #     scraped_candidate_name,
+        #     registration_status,
+        #     filer_id=scraped_candidate.scraped_id,
+        # )
+        #
+        # if candidacy_created and self.verbosity > 2:
+        #     template = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
+        #     self.log(template.format(candidacy))
+        #
+        # #
+        # # Dress it up with extra
+        # #
+        #
+        # # add extra data from form501, if available
+        # if form501:
+        #     self.link_form501_to_candidacy(form501.filing_id, candidacy)
+        #     self.update_candidacy_from_form501s(candidacy)
+        #
+        #     # if the scraped_candidate lacks a filer_id, add the
+        #     # Form501Filing.filer_id
+        #     if scraped_candidate.scraped_id == '':
+        #         candidacy.person.identifiers.get_or_create(
+        #             scheme='calaccess_filer_id',
+        #             identifier=form501.filer_id,
+        #         )
+        # # Fill the party if the candidacy doesn't have it
+        # if party and not candidacy.party:
+        #     candidacy.party = party
+        #     candidacy.save()
+        #
+        # # always update the source for the candidacy
+        # candidacy.sources.update_or_create(
+        #     url=scraped_candidate.url,
+        #     note='Last scraped on {dt:%Y-%m-%d}'.format(
+        #         dt=scraped_candidate.last_modified,
+        #     )
+        # )
+        #
+        # return candidacy
 
     def check_incumbent_status(self, candidacy):
         """

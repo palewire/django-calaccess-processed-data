@@ -204,12 +204,25 @@ class ScrapedCandidateProxy(Candidate):
         if scraped_election.is_special():
             previous_term_unexpired = True
             contest_name = '{0} ({1})'.format(self.office_name, scraped_election.parsed_name['type'])
+        # Otherwise, we assume this a typical election
         else:
+            # At a minimum, that means that the previous term has expired for the office
             previous_term_unexpired = False
-            if party.is_unknown():
-                contest_name = '{} ({} PARTY)'.format(self.office_name, party.name)
+            # Beyond that, there are two different cases depending on when the election was held.
+            # Prior to 2012, California held partisan primaries. Since then, the state has held
+            # open "jungle" primaries that set all candidates from the same party against each other.
+            # In the case of partisan elections, we want to make sure the party is included in the name.
+            # The one exception to this is superintendent races which have always been non-partisan.
+            if scraped_election.is_partisan_primary() and self.office_name != 'SUPERINTENDENT OF PUBLIC INSTRUCTION':
+                # If the party is unknown, just take party on the endof
+                if party.is_unknown():
+                    contest_name = '{} ({} PARTY)'.format(self.office_name, party.name)
+                else:
+                    contest_name = '{} ({})'.format(self.office_name, party.name)
+            # If it a general election prior to 2012, or any non-special election since then,
+            # we just keep the office name as it came in.
             else:
-                contest_name = '{} ({})'.format(self.office_name, party.name)
+                contest_name = self.office_name
 
         # Make it happen
         contest, created = CandidateContest.objects.get_or_create(
