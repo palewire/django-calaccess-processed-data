@@ -17,14 +17,14 @@ from the California Secretary of State’s `CAL-ACCESS <http://www.sos.ca.gov/pr
 -  Coverage:
    `coveralls.io/r/california-civic-data-coalition/django-calaccess-processed-data <https://coveralls.io/r/california-civic-data-coalition/django-calaccess-processed-data>`__
 
-.. |Build Status| image:: https://travis-ci.org/california-civic-data-coalition/django-calaccess-processed-data.png?branch=master
+.. |Build Status| image:: https://travis-ci.org/california-civic-data-coalition/django-calaccess-processed-data.svg?branch=master
    :target: https://travis-ci.org/california-civic-data-coalition/django-calaccess-processed-data
-.. |PyPI version| image:: https://badge.fury.io/py/django-calaccess-processed-data.png
+.. |PyPI version| image:: https://badge.fury.io/py/django-calaccess-processed-data.svg
    :target: http://badge.fury.io/py/django-calaccess-processed-data
-.. |Coverage Status| image:: https://coveralls.io/repos/california-civic-data-coalition/django-calaccess-processed-data/badge.png?branch=master
+.. |Coverage Status| image:: https://coveralls.io/repos/california-civic-data-coalition/django-calaccess-processed-data/badge.svg?branch=master
    :target: https://coveralls.io/r/california-civic-data-coalition/django-calaccess-processed-data?branch=master
-.. |Documentation Status| image:: https://readthedocs.org/projects/django-calaccess-processed-data/badge/?version=latest
-   :target: https://django-calaccess-processed-data.readthedocs.org/
+.. |Documentation Status| image:: https://readthedocs.org/projects/django-calaccess-processed-data/badge/
+   :target: http://django-calaccess.californiacivicdata.org
 
 Warning
 -------
