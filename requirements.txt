@@ -14,6 +14,7 @@ flake8
 flake8_docstrings
 coverage
 python-coveralls
+requests_mock
 
 # Packaging
 wheel
