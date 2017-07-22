@@ -7,6 +7,7 @@ import re
 import logging
 from .posts import OCDPostProxy
 from .parties import OCDPartyProxy
+from .candidacies import OCDCandidacyProxy
 from django.db.models import Value
 from django.db.models import CharField
 from calaccess_processed import corrections
@@ -34,6 +35,53 @@ class ScrapedCandidateProxy(Candidate):
         Return the proxy model for the related election object.
         """
         return ScrapedCandidateElectionProxy.objects.get(id=self.election.id)
+
+    @property
+    def corrected_name(self):
+        """
+        Returns the scraped name with any corrections made.
+        """
+        fixes = {
+            # http://www.sos.ca.gov/elections/prior-elections/statewide-election-results/primary-election-march-7-2000/certified-list-candidates/ # noqa
+            'COURTRIGHT DONNA': 'COURTRIGHT, DONNA'
+        }
+        return name_fixes.get(self.name, self.name)
+
+    @property
+    def parsed_name(self):
+        """
+        Return a dict of formatted Person name field values.
+        """
+        # sort_name is undoctored name from scrape
+        d = {
+            'sort_name': self.name.strip()
+        }
+
+        # parse out these suffixes: JR, SR, II, III
+        suffix_pattern = r'(?:^|\s)((?:[JS]R\.?)|(?:I{2,3}))(?:,|\s|$)'
+        match = re.search(suffix_pattern, d['sort_name'])
+        if match:
+            # replace suffix with a comma
+            # and replace any double commas, strip any trailing
+            d['sort_name'] = d['sort_name'].replace(match.group(), ',').replace(',,', ',')
+            d['sort_name'] = re.sub(r',\s?$', '', d['sort_name']).strip()
+
+        # split once, strip and flip the sort_name to make name
+        split_name = [i.strip() for i in d['sort_name'].split(',', 1)]
+        name_list = list(split_name)
+        name_list.reverse()
+        d['name'] = ' '.join(name_list).strip()
+        d['family_name'] = split_name[0]
+        if len(split_name) > 1:
+            d['given_name'] = split_name[1]
+        if match:
+            # append suffix to end of name and given_name
+            suffix = ' %s' % match.group().replace(',', '').strip()
+            d['name'] += suffix
+            if 'given_name' in d:
+                d['given_name'] += suffix
+
+        return d
 
     def parse_office_name(self):
         """
@@ -252,3 +300,168 @@ class ScrapedCandidateProxy(Candidate):
 
         # Return the contest and whether or not it was created
         return contest, created
+
+    def get_or_create_person(self, filer_id=None):
+        """
+        Get or create a Person object with the name string and optional filer_id.
+
+        If a filer_id is provided, first attempt to lookup the Person by filer_id.
+        If matched, and the provided name doesn't match the current name of the Person
+        and isn't included in the other names of the Person, add it as an other_name.
+
+        If the person doesn't exist (or the filer_id is not provided), create a
+        new Person.
+
+        Returns a tuple (Person object, created), where created is a boolean
+        specifying whether a Person was created.
+        """
+        # Parse out the parts of the name
+        name_dict = self.parsed_name
+
+        # If a filer_id is not provided, use the candidate's scraped id
+        filer_id = filer_id or self.scraped_id or None
+
+        if filer_id:
+            try:
+                person = OCDPersonProxy.objects.get(
+                    identifiers__scheme='calaccess_filer_id',
+                    identifiers__identifier=filer_id,
+                )
+            except OCDPersonProxy.DoesNotExist:
+                pass
+            else:
+                # If we find a match, make sure it has this name variation logged
+                if person.name != name_dict['name']:
+                    if not person.other_names.filter(name=name_dict['name']).exists():
+                        person.other_names.create(
+                            name=name_dict['name'],
+                            note='Matched on calaccess_filer_id'
+                        )
+                # Then pass it out.
+                return person, False
+
+        # Otherwise create a new one
+        person = OCDPersonProxy.objects.create(**name_dict)
+        if filer_id:
+            person.identifiers.create(
+                scheme='calaccess_filer_id',
+                identifier=filer_id,
+            )
+        return person, True
+
+    def get_or_create_candidacy(self, registration_status='filed', filer_id=None):
+        """
+        Get or create a Candidacy object.
+
+        First, try getting an existing Candidacy within the given CandidateContest
+        linked to a Person with the provided filer_id. If matched and the matched Person
+        has different current name and doesn't have the provided name as an other name,
+        add the other name.
+
+        Next, try getting an existing Candidacy within the given CandidateContest
+        linked to a Person with provided name (as default name or other name). If
+        matched and match candidate doesn't already have filer_id, add the filer_id.
+
+        If no match or if the matched person already has a different filer_id, create
+        a new Candidacy (this may also create a new Person record).
+
+        Returns a tuple (Candidacy object, created), where created is a boolean
+        specifying whether a Candidacy was created.
+        """
+        # Get contest
+        contest_obj, contest_created = self.get_or_create_contest()
+
+        # If a filer_id is not provided, use the candidate's scraped id
+        filer_id = filer_id or self.scraped_id or None
+
+        name = self.parsed_name['name']
+        candidacy = None
+
+        # first, try matching to existing candidate in contest with filer_id
+        if filer_id:
+            try:
+                candidacy = OCDCandidacyProxy.objects.filter(contest=contest_obj).get(
+                    person__identifiers__scheme='calaccess_filer_id',
+                    person__identifiers__identifier=filer_id,
+                )
+            except OCDCandidacyProxy.DoesNotExist:
+                pass
+            else:
+                candidacy_created = False
+                # if provided name not person's current name and not linked to person add it
+                if candidacy.person.name != name:
+                    if not candidacy.person.other_names.filter(name=name).exists():
+                        candidacy.person.other_names.create(
+                            name=name,
+                            note='Matched on CandidateContest and calaccess_filer_id'
+                        )
+
+        # if filer_id match fails (or no filer_id), try matching to candidate
+        # in contest with provided name
+        if not candidacy:
+            try:
+                candidacy = OCDCandidacyProxy.objects.filter(contest=contest_obj).candidacies.get(
+                    Q(candidate_name=name) |
+                    Q(person__name=name) |
+                    Q(person__other_names__name=name)
+                )
+            except OCDCandidacyProxy.MultipleObjectsReturned:
+                # weird case when someone filed for the same race
+                # with three different filer_ids
+                if self.name == 'MC NEA, DOUGLAS A.':
+                    candidacy = None
+            except OCDCandidacyProxy.DoesNotExist:
+                pass
+            else:
+                candidacy_created = False
+                # if filer_id provided
+                if filer_id:
+                    # check to make sure candidate with same name doesn't have diff filer_id
+                    has_diff_filer_id = candidacy.person.identifiers.filter(
+                        scheme='calaccess_filer_id',
+                    ).exists()
+                    if has_diff_filer_id:
+                        # if so, don't conflate
+                        candidacy = None
+                    else:
+                        # if so, add filer_id to existing candidate
+                        candidacy.person.identifiers.create(
+                            scheme='calaccess_filer_id',
+                            identifier=filer_id,
+                        )
+
+        # if no matched candidate yet, make a new one
+        if not candidacy:
+            # First make a Person object
+            person, person_created = self.get_or_create_person(filer_id=filer_id)
+
+            # if provided name not person's current name or other_name
+            if person.name != name:
+                if not person.other_names.filter(name=name).exists():
+                    person.other_names.create(
+                        name=name,
+                        note='From %s candidacy' % contest_obj
+                    )
+
+            # Then make the candidacy
+            candidacy = OCDCandidacyProxy.objects.create(
+                contest=contest_obj,
+                person=person,
+                post=contest_obj.posts.all()[0].post,
+                candidate_name=name,
+                registration_status=registration_status,
+            )
+            candidacy_created = True
+
+        # if provided registration does not equal the default, update
+        if registration_status != 'filed':
+            candidacy.registration_status = registration_status
+            candidacy.save()
+
+        # make sure Person name is same as most recent candidate_name
+        person = candidacy.person
+        person.refresh_from_db()
+        person.__class__ = OCDPersonProxy
+        person.update_name()
+
+        return candidacy, candidacy_created
