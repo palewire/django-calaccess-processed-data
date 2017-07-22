@@ -10,11 +10,15 @@ rs:
 runserver:
 	python example/manage.py runserver
 
+sh:
+	python example/manage.py shell
+
 shell:
 	python example/manage.py shell
 
-sh:
-	python example/manage.py shell
+ship:
+	python setup.py sdist bdist_wheel
+	twine upload dist/* --skip-existing
 
 test:
 	flake8 calaccess_processed

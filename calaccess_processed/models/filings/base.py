@@ -3,6 +3,8 @@
 """
 Filing-related models, managers and mixins.
 """
+from time import sleep
+import requests
 
 
 class FilingMixin(object):
@@ -26,12 +28,9 @@ class FilingMixin(object):
 
         Pause for half a second before making the request.
         """
-        from time import sleep
-        import requests
-
         sleep(0.5)
 
-        r = requests.get(self.pdf_url)
+        r = requests.head(self.pdf_url)
 
         return r.status_code == 200
 
@@ -57,11 +56,8 @@ class FilingVersionMixin(object):
 
         Pause for half a second before making the request.
         """
-        from time import sleep
-        import requests
-
         sleep(0.5)
 
-        r = requests.get(self.pdf_url)
+        r = requests.head(self.pdf_url)
 
         return r.status_code == 200
