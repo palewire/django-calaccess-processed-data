@@ -5,9 +5,9 @@ Load the Candidacy models from records extracted from Form501Filings.
 """
 from __future__ import unicode_literals
 from django.core.management.base import CommandError
-from calaccess_processed.models import Form501Filing
 from opencivicdata.elections.models import CandidateContest
 from calaccess_processed.management.commands import LoadOCDModelsCommand
+from calaccess_processed.models import Form501Filing, ScrapedCandidateProxy
 
 
 class Command(LoadOCDModelsCommand):
@@ -42,7 +42,11 @@ class Command(LoadOCDModelsCommand):
                 if not contest:
                     return None
 
-                candidacy, candidacy_created = form501.get_or_create_candidacy(contest, registration_status='filed')
+                candidacy, candidacy_created = ScrapedCandidateProxy.objects.get_or_create_candidacy(
+                    contest,
+                    form501.sort_name,
+                    candidate_filer_id=form501.filer_id
+                )
 
                 if candidacy_created and self.verbosity > 2:
                     tmp = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'

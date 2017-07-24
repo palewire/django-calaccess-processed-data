@@ -38,14 +38,16 @@ class Command(LoadOCDModelsCommand):
                         )
                     )
 
-                #
-                # Make a Candidacy
-                #
+                # Get contest
+                contest, contest_created = scraped_candidate.get_or_create_contest()
 
-                candidacy, candidacy_created = scraped_candidate.get_or_create_candidacy(
-                    registration_status='qualified'
+                # Create candidacy
+                candidacy, candidacy_created = ScrapedCandidateProxy.objects.get_or_create_candidacy(
+                    contest,
+                    scraped_candidate.parsed_name['name'],
+                    candidate_status='qualified',
+                    candidate_filer_id=scraped_candidate.scraped_id or None
                 )
-
                 if candidacy_created and self.verbosity > 2:
                     msg = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'.format(candidacy)
                     self.log(msg)

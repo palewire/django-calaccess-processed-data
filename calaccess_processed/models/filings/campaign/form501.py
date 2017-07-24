@@ -8,7 +8,6 @@ import itertools
 from datetime import date
 import calaccess_processed
 from django.db import models
-from django.db.models import Q
 from calaccess_processed import corrections
 from opencivicdata.elections.models import CandidateContest
 from calaccess_processed.managers import ProcessedDataManager
@@ -394,83 +393,6 @@ class Form501Filing(FilingMixin, Form501FilingBase):
             # Otherwise give up
             else:
                 return None
-
-    def get_or_create_candidacy(self, contest, registration_status='filed'):
-        """
-        Get or create a Candidacy object.
-        """
-        from calaccess_processed.models import OCDCandidacyProxy, OCDPersonProxy
-
-        # If a filer_id is not provided, use the candidate's scraped id
-        filer_id = self.filer_id or None
-
-        name = self.sort_name
-        candidacy = None
-
-        # first, try matching to existing candidate in contest with filer_id
-        if filer_id:
-            try:
-                candidacy = OCDCandidacyProxy.objects.filter(contest=contest).get_by_filer_id(filer_id)
-            except OCDCandidacyProxy.DoesNotExist:
-                pass
-            else:
-                candidacy_created = False
-                # if provided name not person's current name and not linked to person add it
-                candidacy.person.add_other_name(name, 'Matched on CandidateContest and calaccess_filer_id')
-
-        # if filer_id match fails (or no filer_id), try matching to candidate
-        # in contest with provided name
-        if not candidacy:
-            try:
-                candidacy = OCDCandidacyProxy.objects.filter(contest=contest).get_by_name(name)
-            except OCDCandidacyProxy.MultipleObjectsReturned:
-                # weird case when someone filed for the same race
-                # with three different filer_ids
-                if self.sort_name == 'MC NEA, DOUGLAS A.':
-                    candidacy = None
-            except OCDCandidacyProxy.DoesNotExist:
-                pass
-            else:
-                candidacy_created = False
-                # if filer_id provided
-                if filer_id:
-                    # check to make sure candidate with same name doesn't have diff filer_id
-                    if candidacy.person.identifiers.filter(scheme='calaccess_filer_id').exists():
-                        # if so, don't conflate
-                        candidacy = None
-                    else:
-                        # if so, add filer_id to existing candidate
-                        candidacy.person.add_filer_id(filer_id)
-
-        # if no matched candidate yet, make a new one
-        if not candidacy:
-            # First make a Person object
-            person, person_created = self.get_or_create_person()
-            person.add_other_name(name, 'From {} candidacy'.format(contest))
-
-            # Then make the candidacy
-            candidacy = OCDCandidacyProxy.objects.create(
-                contest=contest,
-                person=person,
-                post=contest.posts.all()[0].post,
-                candidate_name=name,
-                registration_status=registration_status,
-                party=self.get_party(),
-            )
-            candidacy_created = True
-
-        # if provided registration does not equal the default, update
-        if registration_status != 'filed' and registration_status != candidacy.registration_status:
-            candidacy.registration_status = registration_status
-            candidacy.save()
-
-        # make sure Person name is same as most recent candidate_name
-        person = candidacy.person
-        person.refresh_from_db()
-        person.__class__ = OCDPersonProxy
-        person.update_name()
-
-        return candidacy, candidacy_created
 
     def get_or_create_person(self):
         """
