@@ -6,6 +6,7 @@ Load OCD BallotMeasureContest and related models with data scraped from the CAL-
 import re
 from django.utils import timezone
 from calaccess_processed.models import OCDElectionProxy
+from opencivicdata.elections.models import OCDDivisionProxy
 from calaccess_processed.management.commands import LoadOCDModelsCommand
 from opencivicdata.elections.models import Election, BallotMeasureContest
 from calaccess_scraped.models import PropositionElection as ScrapedPropositionElection
@@ -132,7 +133,7 @@ class Command(LoadOCDModelsCommand):
         # Create the object
         return BallotMeasureContest.objects.create(
             election=ocd_elec,
-            division=self.state_division,
+            division=OCDDivisionProxy.objects.california(),
             name=scraped_prop.name,
             classification=classification,
         )

@@ -5,9 +5,9 @@ Load OCD Election models with data scraped from the CAL-ACCESS website.
 """
 from datetime import date
 from opencivicdata.core.models import Organization
-from opencivicdata.elections.models import Election
 from calaccess_processed.models import ScrapedCandidateElectionProxy
 from calaccess_processed.management.commands import LoadOCDModelsCommand
+from opencivicdata.elections.models import Election, OCDDivisionProxy, OCDOrganizationProxy
 
 
 class Command(LoadOCDModelsCommand):
@@ -118,7 +118,7 @@ class Command(LoadOCDModelsCommand):
         admin = Organization.objects.get_or_create(
             name='Elections Division',
             classification='executive',
-            parent=self.sos,
+            parent=OCDOrganizationProxy.objects.secretary_of_state(),
         )[0]
 
         # Create the election
@@ -126,7 +126,7 @@ class Command(LoadOCDModelsCommand):
             date=date,
             name=name,
             administrative_organization=admin,
-            division=self.state_division,
+            division=OCDDivisionProxy.objects.california(),
         )
 
         # And add the identifier so we can find it in the future using scraped data

@@ -13,15 +13,10 @@ from opencivicdata.merge import merge
 from django.utils.termcolors import colorize
 from django.core.management.base import BaseCommand
 from django.core.management import CommandError
-from opencivicdata.core.management.commands.loaddivisions import load_divisions
 from calaccess_raw import get_data_directory
 from calaccess_raw.models import RawDataVersion
-from calaccess_processed.models import ProcessedDataVersion
-from opencivicdata.core.models import (
-    Division,
-    Jurisdiction,
-    Organization
-)
+from calaccess_processed.models import ProcessedDataVersion, OCDDivisionProxy
+from opencivicdata.core.management.commands.loaddivisions import load_divisions
 logger = logging.getLogger(__name__)
 
 
@@ -152,31 +147,11 @@ class LoadOCDModelsCommand(CalAccessCommand):
         """
         super(LoadOCDModelsCommand, self).handle(*args, **options)
         try:
-            self.state_division = Division.objects.get(
-                id='ocd-division/country:us/state:ca'
-            )
-        except Division.DoesNotExist:
+            self.state_division = OCDDivisionProxy.objects.california()
+        except OCDDivisionProxy.DoesNotExist:
             if self.verbosity > 2:
                 self.log(' CA state division missing. Loading all U.S. divisions')
             load_divisions('us')
-            self.state_division = Division.objects.get(
-                id='ocd-division/country:us/state:ca'
-            )
-        self.state_jurisdiction = Jurisdiction.objects.get_or_create(
-            name='California State Government',
-            url='http://www.ca.gov',
-            division=self.state_division,
-            classification='government',
-        )[0]
-        self.executive_branch = Organization.objects.get_or_create(
-            name='California State Executive Branch',
-            classification='executive',
-        )[0]
-        self.sos = Organization.objects.get_or_create(
-            name='California Secretary of State',
-            classification='executive',
-            parent=self.executive_branch,
-        )[0]
 
     def merge_persons(self, persons):
         """

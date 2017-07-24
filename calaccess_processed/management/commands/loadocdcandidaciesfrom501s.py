@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 from django.core.management.base import CommandError
 from opencivicdata.elections.models import CandidateContest
 from calaccess_processed.management.commands import LoadOCDModelsCommand
-from calaccess_processed.models import Form501Filing, ScrapedCandidateProxy, OCDCandidacyProxy
+from calaccess_processed.models import Form501Filing, OCDCandidacyProxy
 
 
 class Command(LoadOCDModelsCommand):

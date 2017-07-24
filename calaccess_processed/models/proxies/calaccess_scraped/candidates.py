@@ -11,7 +11,6 @@ from django.db.models.functions import Concat
 from django.db.models import Value, CharField
 from ..opencivicdata.posts import OCDPostProxy
 from ..opencivicdata.parties import OCDPartyProxy
-from ..opencivicdata.people import OCDPersonProxy
 from .elections import ScrapedCandidateElectionProxy
 from calaccess_scraped.models import Candidate, Incumbent
 from opencivicdata.elections.models import CandidateContest

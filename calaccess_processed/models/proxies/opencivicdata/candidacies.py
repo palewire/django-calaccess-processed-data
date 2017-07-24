@@ -42,6 +42,9 @@ class OCDCandidacyManager(models.Manager):
     Manager for custom methods on the OCDCandidacyProxy model.
     """
     def get_queryset(self):
+        """
+        Returns the custom QuerySet for this manager.
+        """
         return OCDCandidacyQuerySet(self.model, using=self._db)
 
     def matched_form501_ids(self):
