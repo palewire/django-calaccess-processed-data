@@ -93,7 +93,8 @@ from .proxies import (
     OCDPostProxy,
     OCDRunoffProxy,
     ScrapedCandidateProxy,
-    ScrapedCandidateElectionProxy
+    ScrapedCandidateElectionProxy,
+    ScrapedIncumbentProxy
 )
 
 
@@ -176,6 +177,7 @@ __all__ = (
     'ProcessedDataFile',
     'ScrapedCandidateProxy',
     'ScrapedCandidateElectionProxy',
+    'ScrapedIncumbentProxy',
     'OCDCandidacyProxy',
     'OCDDivisionProxy',
     'OCDOrganizationProxy',

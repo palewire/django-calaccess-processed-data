@@ -3,7 +3,6 @@
 """
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
-from django.db import models
 from opencivicdata.core.models import Person
 
 
@@ -26,7 +25,7 @@ class OCDPersonProxy(Person):
         # If the latest candidate name doesn't match the current name
         if self.name != latest_candidate_name:
             # Move the current name into other_names
-            if not self.other_names.filter(name=person.name).exists():
+            if not self.other_names.filter(name=self.name).exists():
                 self.other_names.create(name=self.name)
             # Reset the main one
             self.name = latest_candidate_name

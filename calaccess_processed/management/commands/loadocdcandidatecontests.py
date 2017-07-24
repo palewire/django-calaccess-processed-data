@@ -68,8 +68,8 @@ class Command(LoadOCDModelsCommand):
         """
         Load OCD Election, CandidateContest and related models with data scraped from CAL-ACCESS website.
         """
-        # See if we should bother checking incumbent status
-        members_are_loaded = Membership.objects.exists()
+        # # See if we should bother checking incumbent status
+        # members_are_loaded = Membership.objects.exists()
 
         # Loop over scraped_elections
         for scraped_election in ScrapedCandidateElectionProxy.objects.all():
@@ -91,6 +91,7 @@ class Command(LoadOCDModelsCommand):
                     scraped_candidate,
                     ocd_election
                 )
+                print candidacy
                 # # check incumbent status
                 # if members_are_loaded:
                 #     if self.check_incumbent_status(candidacy):
@@ -113,9 +114,6 @@ class Command(LoadOCDModelsCommand):
         #
         # Get or create Candidacy
         #
-
-        # Set default registration_status
-        registration_status = 'qualified'
 
         candidacy, candidacy_created = scraped_candidate.get_or_create_candidacy(registration_status='qualified')
 

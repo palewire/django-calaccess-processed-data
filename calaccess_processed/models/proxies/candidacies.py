@@ -3,7 +3,6 @@
 """
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
-from django.db import models
 from opencivicdata.elections.models import Candidacy
 from calaccess_processed.models import Form501FilingVersion
 
@@ -18,25 +17,25 @@ class OCDCandidacyProxy(Candidacy):
         """
         proxy = True
 
-    def link_form501(self):
+    def link_form501(self, form501):
         """
         Link a Form501Filing to a Candidacy, if it isn't already.
         """
         # Check if the attribute is already there
         if 'form501_filing_ids' in self.extras:
             # If it is, check if we already have this id
-            if form501.id not in candidacy_obj.extras['form501_filing_ids']:
+            if form501.id not in self.extras['form501_filing_ids']:
                 # If we don't, append it to the list
-                candidacy_obj.extras['form501_filing_ids'].append(form501.id)
+                self.extras['form501_filing_ids'].append(form501.id)
                 # Save out
                 self.save()
         # If the attribute isn't there, go ahead and add it.
         else:
-            candidacy_obj.extras['form501_filing_ids'] = [form501.id]
+            self.extras['form501_filing_ids'] = [form501.id]
             # Save out
             self.save()
 
-    def update_from_form501(self):
+    def update_from_form501(self, form501):
         """
         Set Candidacy fields using data extracted from linked Form501Filings.
         """

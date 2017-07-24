@@ -4,15 +4,11 @@
 Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website.
 """
 import re
-from calaccess_scraped.models import (
-    PropositionElection as ScrapedPropositionElection,
-    Incumbent as ScrapedIncumbent,
-    Candidate as ScrapedCandidate,
-)
-from calaccess_processed.models import OCDPostProxy
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import RetentionContest
+from calaccess_scraped.models import PropositionElection as ScrapedPropositionElection
 from calaccess_processed.management.commands.loadocdballotmeasurecontests import Command
+from calaccess_processed.models import OCDPostProxy, ScrapedCandidateProxy, ScrapedIncumbentProxy
 
 
 class Command(Command):
@@ -22,24 +18,13 @@ class Command(Command):
     help = 'Load OCD RetentionContest and related models with data scraped from the CAL-ACCESS website.'
     header_log = 'Loading Retention Contests'
 
-    def flush(self):
-        """
-        Flush the database tables filled by this command.
-        """
-        qs = RetentionContest.objects.all()
-        if self.verbosity > 0:
-            self.log("Flushing {} RetentionContest objects".format(qs.count()))
-        qs.delete()
-
     def get_scraped_elecs(self):
         """
         Get the scraped elections with propositions to load.
 
         Return QuerySet.
         """
-        return ScrapedPropositionElection.objects.filter(
-            propositions__name__icontains='RECALL',
-        )
+        return ScrapedPropositionElection.objects.filter(propositions__name__icontains='RECALL')
 
     def get_scraped_props(self, scraped_elec):
         """
@@ -57,7 +42,7 @@ class Command(Command):
         """
         if scraped_prop.name == '2003 RECALL QUESTION':
             # look up most recently scraped record for Gov. Gray Davis
-            incumbent = ScrapedCandidate.objects.filter(
+            incumbent = ScrapedCandidateProxy.objects.filter(
                 name='DAVIS, GRAY',
                 office_name='GOVERNOR',
             ).latest('created')
@@ -66,20 +51,15 @@ class Command(Command):
             office = scraped_prop.name.split(' - ')[2].replace('DISTRICT ', '')
             try:
                 # look up the most recent scraped incumbent in the office
-                incumbent = ScrapedIncumbent.objects.filter(
+                incumbent = ScrapedIncumbentProxy.objects.filter(
                     office_name__contains=office,
                     session__lt=re.search('\d{4}', scraped_prop.election.name).group()
                 )[0]
             except IndexError:
-                raise Exception(
-                    "Unknown Incumbent in %s." % scraped_prop.name
-                )
+                raise Exception("Unknown Incumbent in %s." % scraped_prop.name)
 
         # get or create person and post objects
-        person = self.get_or_create_person(
-            incumbent.name,
-            filer_id=incumbent.scraped_id,
-        )[0]
+        person = incumbent.get_or_create_person(filer_id=incumbent.scraped_id)[0]
         post = OCDPostProxy.objects.get_or_create_by_name(incumbent.office_name)[0]
 
         # get or create membership object

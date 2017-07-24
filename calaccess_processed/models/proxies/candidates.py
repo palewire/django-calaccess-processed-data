@@ -12,30 +12,19 @@ from django.db.models import Value
 from django.db.models import CharField
 from calaccess_processed import corrections
 from django.db.models.functions import Concat
-from calaccess_scraped.models import Candidate
 from .elections import ScrapedCandidateElectionProxy
+from .people import OCDPersonProxy
+from django.db.models import Q
 from calaccess_processed.models import Form501Filing
+from calaccess_scraped.models import Candidate, Incumbent
 from opencivicdata.elections.models import CandidateContest
 logger = logging.getLogger(__name__)
 
 
-class ScrapedCandidateProxy(Candidate):
+class NameMixin(object):
     """
-    A proxy for the Candidate model in calaccess_scraped.
+    Tools for cleaning up scraped candidate names.
     """
-    class Meta:
-        """
-        Make this a proxy model.
-        """
-        proxy = True
-
-    @property
-    def election_proxy(self):
-        """
-        Return the proxy model for the related election object.
-        """
-        return ScrapedCandidateElectionProxy.objects.get(id=self.election.id)
-
     @property
     def corrected_name(self):
         """
@@ -45,7 +34,7 @@ class ScrapedCandidateProxy(Candidate):
             # http://www.sos.ca.gov/elections/prior-elections/statewide-election-results/primary-election-march-7-2000/certified-list-candidates/ # noqa
             'COURTRIGHT DONNA': 'COURTRIGHT, DONNA'
         }
-        return name_fixes.get(self.name, self.name)
+        return fixes.get(self.name, self.name)
 
     @property
     def parsed_name(self):
@@ -103,6 +92,88 @@ class ScrapedCandidateProxy(Candidate):
             except TypeError:
                 pass
         return parsed
+
+
+class PersonMixin(object):
+    """
+    Tools for creating Person objects out of scraped candidates.
+    """
+    def get_or_create_person(self, filer_id=None):
+        """
+        Get or create a Person object with the name string and optional filer_id.
+
+        If a filer_id is provided, first attempt to lookup the Person by filer_id.
+        If matched, and the provided name doesn't match the current name of the Person
+        and isn't included in the other names of the Person, add it as an other_name.
+
+        If the person doesn't exist (or the filer_id is not provided), create a
+        new Person.
+
+        Returns a tuple (Person object, created), where created is a boolean
+        specifying whether a Person was created.
+        """
+        # Parse out the parts of the name
+        name_dict = self.parsed_name
+
+        # If a filer_id is not provided, use the candidate's scraped id
+        filer_id = filer_id or self.scraped_id or None
+
+        if filer_id:
+            try:
+                person = OCDPersonProxy.objects.get(
+                    identifiers__scheme='calaccess_filer_id',
+                    identifiers__identifier=filer_id,
+                )
+            except OCDPersonProxy.DoesNotExist:
+                pass
+            else:
+                # If we find a match, make sure it has this name variation logged
+                if person.name != name_dict['name']:
+                    if not person.other_names.filter(name=name_dict['name']).exists():
+                        person.other_names.create(
+                            name=name_dict['name'],
+                            note='Matched on calaccess_filer_id'
+                        )
+                # Then pass it out.
+                return person, False
+
+        # Otherwise create a new one
+        person = OCDPersonProxy.objects.create(**name_dict)
+        if filer_id:
+            person.identifiers.create(
+                scheme='calaccess_filer_id',
+                identifier=filer_id,
+            )
+        return person, True
+
+
+class ScrapedIncumbentProxy(Incumbent, PersonMixin, NameMixin):
+    """
+    A proxy for the Incumbent model.
+    """
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True
+
+
+class ScrapedCandidateProxy(Candidate, PersonMixin, NameMixin):
+    """
+    A proxy for the Candidate model in calaccess_scraped.
+    """
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True
+
+    @property
+    def election_proxy(self):
+        """
+        Return the proxy model for the related election object.
+        """
+        return ScrapedCandidateElectionProxy.objects.get(id=self.election.id)
 
     def get_party(self):
         """
@@ -301,54 +372,6 @@ class ScrapedCandidateProxy(Candidate):
         # Return the contest and whether or not it was created
         return contest, created
 
-    def get_or_create_person(self, filer_id=None):
-        """
-        Get or create a Person object with the name string and optional filer_id.
-
-        If a filer_id is provided, first attempt to lookup the Person by filer_id.
-        If matched, and the provided name doesn't match the current name of the Person
-        and isn't included in the other names of the Person, add it as an other_name.
-
-        If the person doesn't exist (or the filer_id is not provided), create a
-        new Person.
-
-        Returns a tuple (Person object, created), where created is a boolean
-        specifying whether a Person was created.
-        """
-        # Parse out the parts of the name
-        name_dict = self.parsed_name
-
-        # If a filer_id is not provided, use the candidate's scraped id
-        filer_id = filer_id or self.scraped_id or None
-
-        if filer_id:
-            try:
-                person = OCDPersonProxy.objects.get(
-                    identifiers__scheme='calaccess_filer_id',
-                    identifiers__identifier=filer_id,
-                )
-            except OCDPersonProxy.DoesNotExist:
-                pass
-            else:
-                # If we find a match, make sure it has this name variation logged
-                if person.name != name_dict['name']:
-                    if not person.other_names.filter(name=name_dict['name']).exists():
-                        person.other_names.create(
-                            name=name_dict['name'],
-                            note='Matched on calaccess_filer_id'
-                        )
-                # Then pass it out.
-                return person, False
-
-        # Otherwise create a new one
-        person = OCDPersonProxy.objects.create(**name_dict)
-        if filer_id:
-            person.identifiers.create(
-                scheme='calaccess_filer_id',
-                identifier=filer_id,
-            )
-        return person, True
-
     def get_or_create_candidacy(self, registration_status='filed', filer_id=None):
         """
         Get or create a Candidacy object.
@@ -400,7 +423,7 @@ class ScrapedCandidateProxy(Candidate):
         # in contest with provided name
         if not candidacy:
             try:
-                candidacy = OCDCandidacyProxy.objects.filter(contest=contest_obj).candidacies.get(
+                candidacy = OCDCandidacyProxy.objects.filter(contest=contest_obj).get(
                     Q(candidate_name=name) |
                     Q(person__name=name) |
                     Q(person__other_names__name=name)

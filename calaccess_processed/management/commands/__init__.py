@@ -8,22 +8,20 @@ import re
 import logging
 from datetime import date
 from django.utils import timezone
-from django.db.models import Count, Q
+from django.db.models import Count
 from opencivicdata.merge import merge
 from django.utils.termcolors import colorize
 from django.core.management.base import BaseCommand
 from django.core.management import CommandError
-from opencivicdata.elections.models import Election, Candidacy
+from opencivicdata.elections.models import Election
 from opencivicdata.core.management.commands.loaddivisions import load_divisions
 from calaccess_raw import get_data_directory
 from calaccess_raw.models import RawDataVersion
-from calaccess_processed.models import OCDCandidacyProxy
-from calaccess_processed.models import ProcessedDataVersion, Form501FilingVersion
+from calaccess_processed.models import ProcessedDataVersion
 from opencivicdata.core.models import (
     Division,
     Jurisdiction,
-    Organization,
-    Person,
+    Organization
 )
 logger = logging.getLogger(__name__)
 
