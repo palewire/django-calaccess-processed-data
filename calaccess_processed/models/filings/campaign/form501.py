@@ -9,7 +9,7 @@ from datetime import date
 import calaccess_processed
 from django.db import models
 from calaccess_processed import corrections
-from opencivicdata.elections.models import Election, CandidateContest
+from opencivicdata.elections.models import CandidateContest
 from calaccess_processed.managers import ProcessedDataManager
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.models import CalAccessBaseModel
@@ -259,8 +259,7 @@ class Form501Filing(FilingMixin, Form501FilingBase):
     @property
     def sort_name(self):
         """
-        Return the 'sort_name' of the candidate to match the format we typically scrape
-        from the CAL-ACCESS website.
+        Return the 'sort_name' of the candidate to match the format we typically scrape from the CAL-ACCESS website.
 
         This is useful when trying to consolidate these forms with scraped data in our OCD models.
         """
@@ -269,8 +268,7 @@ class Form501Filing(FilingMixin, Form501FilingBase):
     @property
     def office_name(self):
         """
-        Return the 'office_name' of the candidate to match the format we typically scrape
-        from the CAL-ACCESS website.
+        Return the 'office_name' of the candidate to match the format we typically scrape from the CAL-ACCESS website.
 
         This is useful when trying to consolidate these forms with scraped data in our OCD models.
         """
