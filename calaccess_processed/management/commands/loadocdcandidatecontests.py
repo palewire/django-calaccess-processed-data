@@ -107,6 +107,4 @@ class Command(LoadOCDModelsCommand):
                     if self.verbosity > 2:
                         self.log(' Identified as incumbent.')
                     # set is_incumbent False for all other candidacies
-                    candidacy.contest.candidacies.exclude(
-                        is_incumbent=True
-                    ).update(is_incumbent=False)
+                    candidacy.contest.candidacies.exclude(is_incumbent=True).update(is_incumbent=False)
