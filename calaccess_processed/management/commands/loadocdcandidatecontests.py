@@ -42,6 +42,8 @@ class Command(LoadOCDModelsCommand):
             # then over candidates in the scraped_election
             scraped_candidate_list = ScrapedCandidateProxy.objects.filter(election=scraped_election)
             for scraped_candidate in scraped_candidate_list:
+
+                # Logging
                 if self.verbosity > 2:
                     self.log(
                         ' Processing scraped Candidate.id {} ({})'.format(
