@@ -10,13 +10,40 @@ from django.db.models import Case, When, Q
 from django.db.models.functions import Cast
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import Candidacy
-from calaccess_processed.models import OCDPersonProxy
+from .people import OCDPersonProxy
+
+
+class OCDCandidacyQuerySet(models.QuerySet):
+    """
+    Custom QuerySet for the Candidacy model.
+    """
+    def get_by_filer_id(self, filer_id):
+        """
+        Returns a Candidacy object linked to a CAL-ACCESS filer_id, if it exists.
+        """
+        return self.get(
+            person__identifiers__scheme='calaccess_filer_id',
+            person__identifiers__identifier=filer_id,
+        )
+
+    def get_by_name(self, name):
+        """
+        Returns a Candidacy object with the provided name from the CAL-ACCESS database or scrape.
+        """
+        return self.get(
+            Q(candidate_name=name) |
+            Q(person__name=name) |
+            Q(person__other_names__name=name)
+        )
 
 
 class OCDCandidacyManager(models.Manager):
     """
     Manager for custom methods on the OCDCandidacyProxy model.
     """
+    def get_queryset(self):
+        return OCDCandidacyQuerySet(self.model, using=self._db)
+
     def matched_form501_ids(self):
         """
         Return all the Form 501 filing ids matched to a candidacy record.
@@ -26,26 +53,13 @@ class OCDCandidacyManager(models.Manager):
             self.get_queryset().filter(extras__has_key='form501_filing_ids').values('extras')
         ]
 
-    def get_by_filer_id(self, filer_id):
-        """
-        Returns a Candidacy object linked to a CAL-ACCESS filer_id, if it exists.
-        """
-        return self.get_queryset().get(
-            person__identifiers__scheme='calaccess_filer_id',
-            person__identifiers__identifier=filer_id,
-        )
-
-    def get_by_name(self, name):
-        """
-        Returns a Candidacy object with the provided name from the CAL-ACCESS database or scrape.
-        """
-        return self.get_queryset().get(
-            Q(candidate_name=name) |
-            Q(person__name=name) |
-            Q(person__other_names__name=name)
-        )
-
-    def get_or_create_from_calaccess(self, contest, candidate_name, candidate_status="filed", candidate_filer_id=None):
+    def get_or_create_from_calaccess(
+        self,
+        contest,
+        candidate_name_dict,
+        candidate_status="filed",
+        candidate_filer_id=None
+    ):
         """
         Get or create a Candidacy object with data from the CAL-ACCESS database.
 
@@ -69,25 +83,28 @@ class OCDCandidacyManager(models.Manager):
         # first, try matching to existing candidate in contest with filer_id
         if candidate_filer_id:
             try:
-                candidacy = self.get_queryset().filter(contest=contest).get_by_filer_id(candidate_filer_id)
-            except OCDCandidacyProxy.DoesNotExist:
+                candidacy = self.model.objects.filter(contest=contest).get_by_filer_id(candidate_filer_id)
+            except self.model.DoesNotExist:
                 pass
             else:
                 candidacy_created = False
                 # if provided name not person's current name and not linked to person add it
-                candidacy.person.add_other_name(candidate_name, 'Matched on CandidateContest and calaccess_filer_id')
+                candidacy.person.add_other_name(
+                    candidate_name_dict['name'],
+                    'Matched on CandidateContest and calaccess_filer_id'
+                )
 
         # if filer_id match fails (or no filer_id), try matching to candidate
         # in contest with provided name
         if not candidacy:
             try:
-                candidacy = OCDCandidacyProxy.objects.filter(contest=contest).get_by_name(candidate_name)
-            except OCDCandidacyProxy.MultipleObjectsReturned:
+                candidacy = self.model.objects.filter(contest=contest).get_by_name(candidate_name_dict['name'])
+            except self.model.MultipleObjectsReturned:
                 # weird case when someone filed for the same race
                 # with three different filer_ids
-                if candidate_name == 'MC NEA, DOUGLAS A.':
+                if candidate_name_dict['sort_name'] == 'MC NEA, DOUGLAS A.':
                     candidacy = None
-            except OCDCandidacyProxy.DoesNotExist:
+            except self.model.DoesNotExist:
                 pass
             else:
                 candidacy_created = False
@@ -104,15 +121,18 @@ class OCDCandidacyManager(models.Manager):
         # if no matched candidate yet, make a new one
         if not candidacy:
             # First make a Person object
-            person, person_created = self.get_or_create_person(filer_id=candidate_filer_id)
-            person.add_other_name(candidate_name, 'From {} candidacy'.format(contest))
+            person, person_created = OCDPersonProxy.objects.get_or_create_from_calaccess(
+                candidate_name_dict,
+                candidate_filer_id=candidate_filer_id
+            )
+            person.add_other_name(candidate_name_dict['name'], 'From {} candidacy'.format(contest))
 
             # Then make the Candidacy
             candidacy = OCDCandidacyProxy.objects.create(
                 contest=contest,
                 person=person,
                 post=contest.posts.all()[0].post,
-                candidate_name=candidate_name,
+                candidate_name=candidate_name_dict['name'],
                 registration_status=candidate_status,
             )
             candidacy_created = True

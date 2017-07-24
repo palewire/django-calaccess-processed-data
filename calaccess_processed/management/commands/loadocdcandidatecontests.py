@@ -3,7 +3,7 @@
 """
 Load CandidateContest and related models with data scraped from the CAL-ACCESS website.
 """
-from calaccess_processed.models import OCDRunoffProxy
+from calaccess_processed.models import OCDRunoffProxy, OCDCandidacyProxy
 from calaccess_processed.models import ScrapedCandidateProxy
 from calaccess_processed.models import ScrapedCandidateElectionProxy
 from calaccess_processed.management.commands import LoadOCDModelsCommand
@@ -42,9 +42,9 @@ class Command(LoadOCDModelsCommand):
                 contest, contest_created = scraped_candidate.get_or_create_contest()
 
                 # Create candidacy
-                candidacy, candidacy_created = ScrapedCandidateProxy.objects.get_or_create_candidacy(
+                candidacy, candidacy_created = OCDCandidacyProxy.objects.get_or_create_from_calaccess(
                     contest,
-                    scraped_candidate.parsed_name['name'],
+                    scraped_candidate.parsed_name,
                     candidate_status='qualified',
                     candidate_filer_id=scraped_candidate.scraped_id or None
                 )

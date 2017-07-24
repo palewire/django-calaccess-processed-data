@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 from django.core.management.base import CommandError
 from opencivicdata.elections.models import CandidateContest
 from calaccess_processed.management.commands import LoadOCDModelsCommand
-from calaccess_processed.models import Form501Filing, ScrapedCandidateProxy
+from calaccess_processed.models import Form501Filing, ScrapedCandidateProxy, OCDCandidacyProxy
 
 
 class Command(LoadOCDModelsCommand):
@@ -42,9 +42,9 @@ class Command(LoadOCDModelsCommand):
                 if not contest:
                     return None
 
-                candidacy, candidacy_created = ScrapedCandidateProxy.objects.get_or_create_candidacy(
+                candidacy, candidacy_created = OCDCandidacyProxy.objects.get_or_create_from_calaccess(
                     contest,
-                    form501.sort_name,
+                    form501.parsed_name,
                     candidate_filer_id=form501.filer_id
                 )
 

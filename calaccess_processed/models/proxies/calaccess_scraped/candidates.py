@@ -91,48 +91,7 @@ class NameMixin(object):
         return parsed
 
 
-class PersonMixin(object):
-    """
-    Tools for creating Person objects out of scraped candidates.
-    """
-    def get_or_create_person(self, filer_id=None):
-        """
-        Get or create a Person object with the name string and optional filer_id.
-
-        If a filer_id is provided, first attempt to lookup the Person by filer_id.
-        If matched, and the provided name doesn't match the current name of the Person
-        and isn't included in the other names of the Person, add it as an other_name.
-
-        If the person doesn't exist (or the filer_id is not provided), create a
-        new Person.
-
-        Returns a tuple (Person object, created), where created is a boolean
-        specifying whether a Person was created.
-        """
-        # If there is a filer_id, try to go that way
-        if filer_id:
-            try:
-                person = OCDPersonProxy.objects.get_by_filer_id(filer_id)
-            except OCDPersonProxy.DoesNotExist:
-                pass
-            else:
-                # If we find a match, make sure it has this name variation logged
-                person.add_other_name(self.parsed_name['name'], 'Matched on calaccess_filer_id')
-                # Then pass it out.
-                return person, False
-
-        # Otherwise create a new one
-        person, person_created = OCDPersonProxy.objects.get_or_create(**self.parsed_name)
-
-        # If there's a filer_id, add it on
-        if filer_id:
-            person.add_filer_id(filer_id)
-
-        # Pass it back
-        return person, person_created
-
-
-class ScrapedIncumbentProxy(Incumbent, PersonMixin, NameMixin):
+class ScrapedIncumbentProxy(Incumbent, NameMixin):
     """
     A proxy for the Incumbent model.
     """
@@ -143,7 +102,7 @@ class ScrapedIncumbentProxy(Incumbent, PersonMixin, NameMixin):
         proxy = True
 
 
-class ScrapedCandidateProxy(Candidate, PersonMixin, NameMixin):
+class ScrapedCandidateProxy(Candidate, NameMixin):
     """
     A proxy for the Candidate model in calaccess_scraped.
     """

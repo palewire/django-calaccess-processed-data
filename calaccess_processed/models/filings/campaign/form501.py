@@ -274,6 +274,16 @@ class Form501Filing(FilingMixin, Form501FilingBase):
         return '{0.last_name}, {0.first_name} {0.middle_name}'.format(self).strip()
 
     @property
+    def parsed_name(self):
+        """
+        The parsed name of the candidate ready to be converted into an OCD Person.
+        """
+        return dict(
+            name=self.name,
+            sort_name=self.name
+        )
+
+    @property
     def office_name(self):
         """
         Return the 'office_name' of the candidate to match the format we typically scrape from the CAL-ACCESS website.
@@ -392,41 +402,6 @@ class Form501Filing(FilingMixin, Form501FilingBase):
             # Otherwise give up
             else:
                 return None
-
-    def get_or_create_person(self):
-        """
-        Get or create a Person object with the name string and optional filer_id.
-
-        If a filer_id is provided, first attempt to lookup the Person by filer_id.
-        If matched, and the provided name doesn't match the current name of the Person
-        and isn't included in the other names of the Person, add it as an other_name.
-
-        If the person doesn't exist (or the filer_id is not provided), create a
-        new Person.
-
-        Returns a tuple (Person object, created), where created is a boolean
-        specifying whether a Person was created.
-        """
-        from calaccess_processed.models import OCDPersonProxy
-
-        try:
-            person = OCDPersonProxy.objects.get_by_filer_id(self.filer_id)
-        except OCDPersonProxy.DoesNotExist:
-            pass
-        else:
-            # If we find a match, make sure it has this name variation logged
-            person.add_other_name(self.name, 'Matched on calaccess_filer_id')
-            # Then pass it out.
-            return person, False
-
-        # Otherwise create a new one
-        person, person_created = OCDPersonProxy.objects.get_or_create(name=self.name, sort_name=self.sort_name)
-
-        # Make sure the filer_id is included
-        person.add_filer_id(self.filer_id)
-
-        # Pass it out
-        return person, person_created
 
 
 @python_2_unicode_compatible
