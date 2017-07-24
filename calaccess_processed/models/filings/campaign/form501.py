@@ -525,8 +525,7 @@ class Form501Filing(FilingMixin, Form501FilingBase):
 
         # Otherwise create a new one
         person = OCDPersonProxy.objects.create(name=self.name, sort_name=self.sort_name)
-        if filer_id:
-            person.add_filer_id(filer_id)
+        person.add_filer_id(self.filer_id)
 
         # Pass it out
         return person, True
