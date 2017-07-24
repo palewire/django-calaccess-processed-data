@@ -3,6 +3,8 @@
 """
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
+from __future__ import unicode_literals
+from django.db import models
 from django.db.models import IntegerField
 from django.db.models import Case, When, Q
 from django.db.models.functions import Cast
@@ -11,10 +13,26 @@ from opencivicdata.elections.models import Candidacy
 from calaccess_processed.models import Form501FilingVersion
 
 
+class OCDCandidacyManager(models.Manager):
+    """
+    Manager for custom methods on the OCDCandidacyProxy model.
+    """
+    def matched_form501_ids(self):
+        """
+        Return all the Form 501 filing ids matched to a candidacy record.
+        """
+        return [
+            i['extras']['form501_filing_ids'] for i in
+            self.get_queryset().filter(extras__has_key='form501_filing_ids').values('extras')
+        ]
+
+
 class OCDCandidacyProxy(Candidacy):
     """
     A proxy on the OCD Candidacy model with helper methods.
     """
+    objects = OCDCandidacyManager()
+
     class Meta:
         """
         Make this a proxy model.

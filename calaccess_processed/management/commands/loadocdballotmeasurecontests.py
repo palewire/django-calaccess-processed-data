@@ -5,6 +5,7 @@ Load OCD BallotMeasureContest and related models with data scraped from the CAL-
 """
 import re
 from django.utils import timezone
+from calaccess_processed.models import OCDElectionProxy
 from calaccess_processed.management.commands import LoadOCDModelsCommand
 from opencivicdata.elections.models import Election, BallotMeasureContest
 from calaccess_scraped.models import PropositionElection as ScrapedPropositionElection
@@ -95,7 +96,7 @@ class Command(LoadOCDModelsCommand):
             elec = Election.objects.get(date=date_obj)
         except Election.DoesNotExist:
             # or make a new one
-            elec = self.create_election(name, date_obj)
+            elec = OCDElectionProxy.objects.create_with_name_and_date(name, date_obj)
             created = True
         else:
             created = False

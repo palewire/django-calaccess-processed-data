@@ -36,24 +36,11 @@ class Command(LoadOCDModelsCommand):
         super(Command, self).handle(*args, **options)
         self.header("Load Candidate Contests")
 
-        # Flush, if the options has been passed
-        if options['flush']:
-            self.flush()
-
         # Load everything we can from the scrape
         self.load()
 
         # connect runoffs to their previously undecided contests
         self.success("Done!")
-
-    def flush(self):
-        """
-        Flush the database tables filled by this command.
-        """
-        qs = Election.objects.all()
-        if self.verbosity > 0:
-            self.log("Flushing {} Election objects".format(qs.count()))
-        qs.delete()
 
     def load(self):
         """

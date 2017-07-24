@@ -3,17 +3,16 @@
 """
 Base classes for custom management commands.
 """
+from __future__ import unicode_literals
 import os
 import re
 import logging
-from datetime import date
 from django.utils import timezone
 from django.db.models import Count
 from opencivicdata.merge import merge
 from django.utils.termcolors import colorize
 from django.core.management.base import BaseCommand
 from django.core.management import CommandError
-from opencivicdata.elections.models import Election
 from opencivicdata.core.management.commands.loaddivisions import load_divisions
 from calaccess_raw import get_data_directory
 from calaccess_raw.models import RawDataVersion
@@ -178,53 +177,6 @@ class LoadOCDModelsCommand(CalAccessCommand):
             classification='executive',
             parent=self.executive_branch,
         )[0]
-
-    def get_regular_election_date(self, year, election_type):
-        """
-        Get the date of the election in the given year and type.
-
-        Raise an exception if year is not even or if election_type is not
-        "PRIMARY" or "GENERAL".
-
-        Return a date object.
-        """
-        # Rules defined here:
-        # https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=ELEC&division=1.&title=&part=&chapter=1.&article= # noqa
-        if year % 2 != 0:
-            raise Exception("Regular elections occur in even years.")
-        elif election_type.upper() == 'PRIMARY':
-            # Primary elections are in June
-            month = 6
-        elif election_type.upper() == 'GENERAL':
-            # General elections are in November
-            month = 11
-        else:
-            raise Exception("election_type must 'PRIMARY' or 'GENERAL'.")
-
-        # get the first weekday
-        # zero-indexed starting with monday
-        first_weekday = date(year, month, 1).weekday()
-        # calculate day or first tuesday after first monday
-        day_or_month = (7 - first_weekday) % 7 + 2
-
-        return date(year, month, day_or_month)
-
-    def create_election(self, name, date_obj):
-        """
-        Create an OCD Election object.
-        """
-        admin = Organization.objects.get_or_create(
-            name='Elections Division',
-            classification='executive',
-            parent=self.sos,
-        )[0]
-        obj = Election.objects.create(
-            date=date_obj,
-            name=name,
-            administrative_organization=admin,
-            division=self.state_division,
-        )
-        return obj
 
     def merge_persons(self, persons):
         """

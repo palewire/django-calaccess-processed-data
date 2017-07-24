@@ -48,6 +48,16 @@ class OCDOrganizationManager(models.Manager):
             parent=self.executive_branch(),
         )[0]
 
+    def elections_division(self):
+        """
+        Returns the elections division of the secretary of state organization.
+        """
+        return self.get_queryset().get_or_create(
+            name='Elections Division',
+            classification='executive',
+            parent=self.secretary_of_state(),
+        )[0]
+
     def board_of_equalization(self):
         """
         Returns board of equalization organization.

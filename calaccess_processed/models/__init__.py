@@ -85,16 +85,18 @@ from .tracking import (
     ProcessedDataFile,
 )
 from .proxies import (
+    RawFilerToFilerTypeCdManager,
+    ScrapedCandidateProxy,
+    ScrapedCandidateElectionProxy,
+    ScrapedIncumbentProxy,
     OCDCandidacyProxy,
     OCDDivisionProxy,
+    OCDElectionProxy,
     OCDOrganizationProxy,
     OCDPartyProxy,
     OCDPersonProxy,
     OCDPostProxy,
     OCDRunoffProxy,
-    ScrapedCandidateProxy,
-    ScrapedCandidateElectionProxy,
-    ScrapedIncumbentProxy
 )
 
 
@@ -175,11 +177,13 @@ __all__ = (
     'FilingIDValue',
     'ProcessedDataVersion',
     'ProcessedDataFile',
+    'RawFilerToFilerTypeCdManager',
     'ScrapedCandidateProxy',
     'ScrapedCandidateElectionProxy',
     'ScrapedIncumbentProxy',
     'OCDCandidacyProxy',
     'OCDDivisionProxy',
+    'OCDElectionProxy',
     'OCDOrganizationProxy',
     'OCDPartyProxy',
     'OCDPersonProxy',

@@ -4,14 +4,30 @@
 Models for storing campaign-related entities derived from raw CAL-ACCESS data.
 """
 from __future__ import unicode_literals
+import itertools
+from datetime import date
+import calaccess_processed
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.models.filings import (
-    FilingMixin,
-    FilingVersionMixin,
-)
-from calaccess_processed.models import CalAccessBaseModel
+from calaccess_processed import corrections
+from opencivicdata.elections.models import Election, CandidateContest
 from calaccess_processed.managers import ProcessedDataManager
+from django.utils.encoding import python_2_unicode_compatible
+from calaccess_processed.models import CalAccessBaseModel
+from calaccess_processed.models.filings import FilingMixin, FilingVersionMixin
+
+
+class Form501FilingManager(ProcessedDataManager):
+    """
+    A custom manager for Form 501 filings.
+    """
+    def without_candidacy(self):
+        """
+        Returns Form 501 filings that do not have an OCD Candidacy yet.
+        """
+        from calaccess_processed.models import OCDCandidacyProxy
+        matched_qs = OCDCandidacyProxy.objects.matched_form501_ids()
+        matched_list = [i for i in itertools.chain.from_iterable(matched_qs)]
+        return self.get_queryset().exclude(filing_id__in=matched_list, office__icontains='RETIREMENT')
 
 
 class Form501FilingBase(CalAccessBaseModel):
@@ -225,8 +241,7 @@ class Form501Filing(FilingMixin, Form501FilingBase):
         help_text='Number of amendments to the Form 501 filing (from '
                   'maximum value of F501_502_CD.AMEND_ID)',
     )
-
-    objects = ProcessedDataManager()
+    objects = Form501FilingManager()
 
     class Meta:
         """
@@ -240,6 +255,137 @@ class Form501Filing(FilingMixin, Form501FilingBase):
 
     def __str__(self):
         return str(self.filing_id)
+
+    @property
+    def sort_name(self):
+        """
+        Return the 'sort_name' of the candidate to match the format we typically scrape
+        from the CAL-ACCESS website.
+
+        This is useful when trying to consolidate these forms with scraped data in our OCD models.
+        """
+        return '{0.last_name}, {0.first_name} {0.middle_name}'.format(self).strip()
+
+    @property
+    def office_name(self):
+        """
+        Return the 'office_name' of the candidate to match the format we typically scrape
+        from the CAL-ACCESS website.
+
+        This is useful when trying to consolidate these forms with scraped data in our OCD models.
+        """
+        return '{0.office} {0.district}'.format(self).strip()
+
+    @property
+    def ocd_election(self):
+        """
+        Return Election occurring in year with name in including election_type.
+
+        Return None if none found.
+        """
+        from calaccess_processed.models import OCDElectionProxy
+
+        if not self.election_year or not self.election_type:
+            return None
+        try:
+            return OCDElectionProxy.objects.get(
+                date__year=self.election_year,
+                name__contains=self.election_type,
+            )
+        except (OCDElectionProxy.DoesNotExist, OCDElectionProxy.MultipleObjectsReturned):
+            # if it's a future primary, try to calculate the date
+            if self.election_year >= date.today().year and self.election_type == 'PRIMARY':
+                try:
+                    dt_obj = calaccess_processed.get_expected_election_date(self.election_year, self.election_type)
+                except:
+                    return None
+                return OCDElectionProxy.objects.create_with_name_and_date(
+                    '{0} {1}'.format(self.election_year, self.election_type),
+                    dt_obj,
+                )
+            else:
+                return None
+
+    def get_party(self):
+        """
+        Get the Party from Form501Filing.
+
+        Return Party object or None.
+        """
+        from calaccess_processed.models import OCDPartyProxy
+
+        # first try the corrections
+        party = corrections.candidate_party(
+            '{0.last_name}, {0.first_name} {0.middle_name}'.format(self).strip(),
+            self.election_year,
+            self.election_type,
+            '{0.office} {0.district}'.format(self).strip(),
+        )
+        if party:
+            return party
+
+        # then try using the party on the form501
+        party = OCDPartyProxy.objects.get_by_name(self.party)
+        if not party.is_unknown():
+            return party
+
+        # finally, try looking in FilerToFilerTypes
+        ocd_election = self.ocd_election
+        if not ocd_election:
+            return OCDPartyProxy.objects.unknown()
+        return OCDPartyProxy.objects.get_by_filer_id(int(self.filer_id), ocd_election.date)
+
+    def get_contest(self):
+        """
+        Get CandidateContest by extracting info form Form501Filing.
+
+        Return a CandidateContest or None.
+        """
+        from calaccess_processed.models import OCDPostProxy
+
+        # Get election
+        ocd_election = self.ocd_election
+        if not ocd_election:
+            return None
+
+        # Get or create a post
+        post = OCDPostProxy.objects.get_by_form501(self)
+
+        # Don't bother trying to get contest unless we have a post
+        if not post:
+            return None
+
+        # Seed contest data
+        contest_data = {
+            'posts__post': post,
+            'division': post.division,
+            'election': ocd_election,
+        }
+
+        # if looking for a pre-2012 primary, include party
+        if ocd_election.is_partisan_primary():
+            contest_data['party'] = self.get_party()
+
+        # Try to get it from the database
+        try:
+            return CandidateContest.objects.get(**contest_data)
+        except CandidateContest.DoesNotExist:
+            # if the election date is later than today, but no contest
+            if ocd_election.date > date.today():
+                # make the contest (CAL-ACCESS website might behind)
+                contest = CandidateContest.objects.create(
+                    name=post.label.upper(),
+                    division=contest_data['division'],
+                    election=contest_data['election'],
+                )
+                contest.posts.create(
+                    contest=contest,
+                    post=contest_data['posts__post'],
+                )
+                return contest
+            # Otherwise give up
+            else:
+                return None
 
 
 @python_2_unicode_compatible

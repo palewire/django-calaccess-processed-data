@@ -16,6 +16,7 @@ from opencivicdata.elections.models import (
     Candidacy,
     CandidateContest,
 )
+from calaccess_processed.models import OCDElectionProxy
 from calaccess_processed.management.commands import LoadOCDModelsCommand
 
 
@@ -55,7 +56,7 @@ class Command(LoadOCDModelsCommand):
             elec = Election.objects.get(date=dt_obj)
         except Election.DoesNotExist:
             # or make a new one
-            elec = self.create_election(name, dt_obj)
+            elec = OCDElectionProxy.objects.create_with_name_and_date(name, dt_obj)
             created = True
         else:
             created = False

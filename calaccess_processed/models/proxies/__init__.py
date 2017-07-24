@@ -3,23 +3,32 @@
 """
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
-from .candidates import ScrapedCandidateProxy, ScrapedIncumbentProxy
-from .candidacies import OCDCandidacyProxy
-from .divisions import OCDDivisionProxy
-from .elections import ScrapedCandidateElectionProxy
-from .organizations import OCDOrganizationProxy
-from .parties import OCDPartyProxy
-from .people import OCDPersonProxy
-from .posts import OCDPostProxy
-from .candidatecontests import OCDRunoffProxy
+from .calaccess_raw import RawFilerToFilerTypeCdManager
+from .calaccess_scraped import (
+    ScrapedCandidateProxy,
+    ScrapedIncumbentProxy,
+    ScrapedCandidateElectionProxy
+)
+from .opencivicdata import (
+    OCDCandidacyProxy,
+    OCDDivisionProxy,
+    OCDElectionProxy,
+    OCDOrganizationProxy,
+    OCDPartyProxy,
+    OCDPersonProxy,
+    OCDPostProxy,
+    OCDRunoffProxy,
+)
 
 
 __all__ = (
+    'RawFilerToFilerTypeCdManager',
     'ScrapedCandidateProxy',
     'ScrapedCandidateElectionProxy',
     'ScrapedIncumbentProxy',
     'OCDCandidacyProxy',
     'OCDDivisionProxy',
+    'OCDElectionProxy',
     'OCDOrganizationProxy',
     'OCDPartyProxy',
     'OCDPersonProxy',

@@ -5,15 +5,15 @@ Proxy models for augmenting our source data tables with methods useful for proce
 """
 import re
 import logging
-from .posts import OCDPostProxy
-from .parties import OCDPartyProxy
-from .candidacies import OCDCandidacyProxy
+from ..opencivicdata.posts import OCDPostProxy
+from ..opencivicdata.parties import OCDPartyProxy
+from ..opencivicdata.candidacies import OCDCandidacyProxy
 from django.db.models import Value
 from django.db.models import CharField
 from calaccess_processed import corrections
 from django.db.models.functions import Concat
 from .elections import ScrapedCandidateElectionProxy
-from .people import OCDPersonProxy
+from ..opencivicdata.people import OCDPersonProxy
 from django.db.models import Q
 from calaccess_processed.models import Form501Filing
 from calaccess_scraped.models import Candidate, Incumbent

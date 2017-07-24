@@ -18,6 +18,12 @@ class OCDPartyManager(models.Manager):
         """
         return super(OCDPartyManager, self).get_queryset().filter(classification='party')
 
+    def unknown(self):
+        """
+        Returns the UNKNOWN party.
+        """
+        return self.get_queryset().get(name='UNKNOWN')
+
     def get_by_name(self, name):
         """
         Helper for getting the OCD party object giving a raw name from CAL-ACCESS.
@@ -37,7 +43,7 @@ class OCDPartyManager(models.Manager):
             pass
 
         # And if that doesn't work, just return the unknown party object
-        return self.get_queryset().get(name='UNKNOWN')
+        return self.unknown()
 
     def get_by_filer_id(self, filer_id, election_date):
         """
@@ -53,7 +59,7 @@ class OCDPartyManager(models.Manager):
             ).latest('effect_dt').party_cd
         except FilerToFilerTypeCd.DoesNotExist:
             # If it doesn't hit just quit now
-            return self.get_queryset().get(name='UNKNOWN')
+            return self.get_queryset().unknown()
 
         # IF we have a code, transform "INDEPENDENT" and "NON-PARTISAN" codes to "NO PARTY PREFERENCE"
         if party_code in [16007, 16009]:
@@ -66,7 +72,7 @@ class OCDPartyManager(models.Manager):
             pass
 
         # If that fails, just quit and return the unknown party object
-        return self.get_queryset().get(name='UNKNOWN')
+        return self.get_queryset().unknown()
 
 
 class OCDPartyProxy(Organization):

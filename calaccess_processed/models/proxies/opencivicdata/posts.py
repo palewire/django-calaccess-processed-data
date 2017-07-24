@@ -8,6 +8,7 @@ from django.db import models
 from .divisions import OCDDivisionProxy
 from opencivicdata.core.models import Post
 from .organizations import OCDOrganizationProxy
+from ..calaccess_raw.filertofilertype import RawFilerToFilerTypeCdProxy
 
 
 class OCDPostManager(models.Manager):
@@ -114,6 +115,34 @@ class OCDPostManager(models.Manager):
             division=division,
             organization=organization
         )
+
+    def get_by_form501(self, form501):
+        """
+        Get a Post using data extracted from Form501Filing.
+
+        Return Post object or None if not found.
+        """
+        # Try to get it using office_name
+        try:
+            return self.get_by_name(form501.office_name)
+        except (self.model.DoesNotExist, OCDDivisionProxy.DoesNotExist):
+            pass
+
+        # Try extracting office and district from FilerToFilerTypeCd
+        filer_id_office_name = RawFilerToFilerTypeCdProxy.objects.get_office_by_filer_id_and_date(
+            form501.filer_id,
+            form501.ocd_election.date
+        )
+
+        # If you can't find that, just quit
+        if not filer_id_office_name:
+            return None
+
+        # If you can, try to get that
+        try:
+            return self.get_by_name(filer_id_office_name)
+        except (self.model.DoesNotExist, OCDDivisionProxy.DoesNotExist):
+            return None
 
 
 class OCDPostProxy(Post):

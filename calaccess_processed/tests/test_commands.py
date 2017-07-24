@@ -5,6 +5,7 @@ Unittests for management commands.
 """
 import os
 import shutil
+import calaccess_processed
 from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
@@ -13,10 +14,7 @@ from django.utils.timezone import now
 from datetime import date
 from django.test import TestCase, override_settings
 from calaccess_raw.models import RawDataVersion
-from calaccess_processed.management.commands import (
-    CalAccessCommand,
-    LoadOCDModelsCommand,
-)
+from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed import corrections
 from calaccess_processed.models import ProcessedDataVersion, ScrapedCandidateProxy
 from calaccess_scraped.models import Candidate as ScrapedCandidate
@@ -293,40 +291,36 @@ class ProcessedDataTest(TestCase):
         """
         Confirm correct calculation of 2016 primary date.
         """
-        c = LoadOCDModelsCommand()
         self.assertEqual(
             date(2016, 6, 7),
-            c.get_regular_election_date(2016, 'PRIMARY'),
+            calaccess_processed.get_expected_election_date(2016, 'PRIMARY'),
         )
 
     def test_2016_general_date(self):
         """
         Confirm correct calculation of 2016 general date.
         """
-        c = LoadOCDModelsCommand()
         self.assertEqual(
             date(2016, 11, 8),
-            c.get_regular_election_date(2016, 'GENERAL'),
+            calaccess_processed.get_expected_election_date(2016, 'GENERAL'),
         )
 
     def test_2014_primary_date(self):
         """
         Confirm correct calculation of 2014 primary date.
         """
-        c = LoadOCDModelsCommand()
         self.assertEqual(
             date(2014, 6, 3),
-            c.get_regular_election_date(2014, 'PRIMARY'),
+            calaccess_processed.get_expected_election_date(2014, 'PRIMARY'),
         )
 
     def test_2010_general_date(self):
         """
         Confirm correct calculation of 2010 general date.
         """
-        c = LoadOCDModelsCommand()
         self.assertEqual(
             date(2010, 11, 2),
-            c.get_regular_election_date(2010, 'GENERAL'),
+            calaccess_processed.get_expected_election_date(2010, 'GENERAL'),
         )
 
     def test_correction(self):
