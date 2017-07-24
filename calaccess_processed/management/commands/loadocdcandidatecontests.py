@@ -89,9 +89,8 @@ class Command(LoadOCDModelsCommand):
                 # Get the candidate's party, looking in our correction file for any fixes
                 if not candidacy.party:
                     party = scraped_candidate.get_party()
-                    if party:
-                        candidacy.party = party
-                        candidacy.save()
+                    candidacy.party = party
+                    candidacy.save()
 
                 # always update the source for the candidacy
                 candidacy.sources.update_or_create(
