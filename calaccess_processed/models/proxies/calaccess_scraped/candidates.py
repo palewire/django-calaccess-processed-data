@@ -15,7 +15,6 @@ from django.db.models.functions import Concat
 from .elections import ScrapedCandidateElectionProxy
 from ..opencivicdata.people import OCDPersonProxy
 from django.db.models import Q
-from calaccess_processed.models import Form501Filing
 from calaccess_scraped.models import Candidate, Incumbent
 from opencivicdata.elections.models import CandidateContest
 logger = logging.getLogger(__name__)
@@ -237,6 +236,8 @@ class ScrapedCandidateProxy(Candidate, PersonMixin, NameMixin):
 
         Return None can't match to a single Form501Filing.
         """
+        from calaccess_processed.models import Form501Filing
+
         election_data = self.election_proxy.parsed_name
         office_data = self.parse_office_name()
 

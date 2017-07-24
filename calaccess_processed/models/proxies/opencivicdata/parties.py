@@ -59,7 +59,7 @@ class OCDPartyManager(models.Manager):
             ).latest('effect_dt').party_cd
         except FilerToFilerTypeCd.DoesNotExist:
             # If it doesn't hit just quit now
-            return self.get_queryset().unknown()
+            return self.unknown()
 
         # IF we have a code, transform "INDEPENDENT" and "NON-PARTISAN" codes to "NO PARTY PREFERENCE"
         if party_code in [16007, 16009]:
@@ -72,7 +72,7 @@ class OCDPartyManager(models.Manager):
             pass
 
         # If that fails, just quit and return the unknown party object
-        return self.get_queryset().unknown()
+        return self.unknown()
 
 
 class OCDPartyProxy(Organization):

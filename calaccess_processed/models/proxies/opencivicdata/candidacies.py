@@ -10,7 +10,6 @@ from django.db.models import Case, When, Q
 from django.db.models.functions import Cast
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import Candidacy
-from calaccess_processed.models import Form501FilingVersion
 
 
 class OCDCandidacyManager(models.Manager):
@@ -61,9 +60,11 @@ class OCDCandidacyProxy(Candidacy):
         """
         Set Candidacy fields using data extracted from linked Form501Filings.
         """
-        # get all Form501FilingVersions linked to Candidacy
+        from calaccess_processed.models import Form501Filing
+
+        # get all Form501Filing linked to Candidacy
         filing_ids = self.extras['form501_filing_ids']
-        filings = Form501FilingVersion.objects.filter(filing_id__in=filing_ids)
+        filings = Form501Filing.objects.filter(filing_id__in=filing_ids)
 
         # keep the earliest filed_date
         first_filed_date = filings.earliest('date_filed').date_filed

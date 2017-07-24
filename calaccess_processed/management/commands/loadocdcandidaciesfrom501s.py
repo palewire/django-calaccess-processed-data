@@ -49,17 +49,11 @@ class Command(LoadOCDModelsCommand):
         if not contest:
             return None
 
-        # candidacy, candidacy_created = self.get_or_create_candidacy(
-        #     contest,
-        #     sort_name,
-        #     # registration status: these are the "uncertified" who did not qualify
-        #     'filed',
-        #     filer_id=form501.filer_id,
-        # )
-        #
-        # if candidacy_created and self.verbosity > 2:
-        #     tmp = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
-        #     self.log(tmp.format(candidacy))
+        candidacy, candidacy_created = form501.get_or_create_candidacy(contest, registration_status='filed')
+
+        if candidacy_created and self.verbosity > 2:
+            tmp = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
+            self.log(tmp.format(candidacy))
         #
         # candidacy.party = self.get_party_from_form501(
         #     form501,
