@@ -23,20 +23,6 @@ class Command(LoadOCDModelsCommand):
         self.header("Load Candidate Contests")
 
         # Load everything we can from the scrape
-        self.load()
-
-        # connect runoffs to their previously undecided contests
-        if self.verbosity > 2:
-            self.log(' Linking runoffs to previous contests')
-        OCDRunoffProxy.objects.set_parents()
-
-        self.success("Done!")
-
-    def load(self):
-        """
-        Load OCD Election, CandidateContest and related models with data scraped from CAL-ACCESS website.
-        """
-        # Loop over scraped_elections
         for scraped_election in ScrapedCandidateElectionProxy.objects.all():
 
             # then over candidates in the scraped_election
@@ -96,3 +82,10 @@ class Command(LoadOCDModelsCommand):
                         dt=scraped_candidate.last_modified,
                     )
                 )
+
+        # connect runoffs to their previously undecided contests
+        if self.verbosity > 2:
+            self.log(' Linking runoffs to previous contests')
+        OCDRunoffProxy.objects.set_parents()
+
+        self.success("Done!")
