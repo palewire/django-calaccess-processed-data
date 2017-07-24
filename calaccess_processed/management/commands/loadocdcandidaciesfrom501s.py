@@ -46,13 +46,6 @@ class Command(LoadOCDModelsCommand):
         """
         Extract data from Form501Filing and load into OCD models.
         """
-        # Get the election
-        election = form501.ocd_election
-
-        # If there is no linked election, just give up
-        if not election:
-            return None
-
         # Get a linked contest
         contest = form501.get_contest()
 
