@@ -3,22 +3,22 @@
 """
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
+from __future__ import unicode_literals
 import re
 import logging
-from ..opencivicdata.posts import OCDPostProxy
-from ..opencivicdata.parties import OCDPartyProxy
-from django.db.models import Value
-from django.db.models import CharField
 from calaccess_processed import corrections
 from django.db.models.functions import Concat
-from .elections import ScrapedCandidateElectionProxy
+from django.db.models import Value, CharField
+from ..opencivicdata.posts import OCDPostProxy
+from ..opencivicdata.parties import OCDPartyProxy
 from ..opencivicdata.people import OCDPersonProxy
+from .elections import ScrapedCandidateElectionProxy
 from calaccess_scraped.models import Candidate, Incumbent
 from opencivicdata.elections.models import CandidateContest
 logger = logging.getLogger(__name__)
 
 
-class NameMixin(object):
+class ScrapedNameMixin(object):
     """
     Tools for cleaning up scraped candidate names.
     """
@@ -91,7 +91,7 @@ class NameMixin(object):
         return parsed
 
 
-class ScrapedIncumbentProxy(Incumbent, NameMixin):
+class ScrapedIncumbentProxy(Incumbent, ScrapedNameMixin):
     """
     A proxy for the Incumbent model.
     """
@@ -102,7 +102,7 @@ class ScrapedIncumbentProxy(Incumbent, NameMixin):
         proxy = True
 
 
-class ScrapedCandidateProxy(Candidate, NameMixin):
+class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
     """
     A proxy for the Candidate model in calaccess_scraped.
     """

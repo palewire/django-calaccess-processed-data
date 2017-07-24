@@ -3,6 +3,7 @@
 """
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
+from __future__ import unicode_literals
 import re
 from django.db import models
 from .divisions import OCDDivisionProxy

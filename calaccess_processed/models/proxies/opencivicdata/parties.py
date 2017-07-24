@@ -3,6 +3,7 @@
 """
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
+from __future__ import unicode_literals
 from django.db import models
 from opencivicdata.core.models import Organization
 from calaccess_raw.models import FilerToFilerTypeCd
