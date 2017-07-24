@@ -42,13 +42,13 @@ class Command(LoadOCDModelsCommand):
                 if not contest:
                     return None
 
-                candidacy, candidacy_created = OCDCandidacyProxy.objects.get_or_create_from_calaccess(
+                candidacy, created = OCDCandidacyProxy.objects.get_or_create_from_calaccess(
                     contest,
                     form501.parsed_name,
                     candidate_filer_id=form501.filer_id
                 )
 
-                if candidacy_created and self.verbosity > 2:
+                if created and self.verbosity > 2:
                     tmp = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
                     self.log(tmp.format(candidacy))
 
