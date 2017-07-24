@@ -5,8 +5,6 @@ opencivicdata
 Django>=1.10
 hurry.filesize
 pytz
--e git+https://github.com/california-civic-data-coalition/python-opencivicdata-django.git@HEAD#egg=python-opencivicdata
--e git+https://github.com/california-civic-data-coalition/django-calaccess-scraped-data.git@HEAD#egg=django-calaccess-scraped-data
 
 # Databases
 psycopg2>=2.5.4
