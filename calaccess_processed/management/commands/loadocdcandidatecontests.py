@@ -10,7 +10,6 @@ from opencivicdata.core.models import Membership
 from calaccess_processed.models import OCDRunoffProxy
 from calaccess_processed.models import ScrapedCandidateProxy
 from calaccess_processed.models import ScrapedCandidateElectionProxy
-from opencivicdata.elections.models import CandidateContest, Candidacy
 from calaccess_processed.management.commands import LoadOCDModelsCommand
 
 
@@ -26,10 +25,6 @@ class Command(LoadOCDModelsCommand):
         """
         super(Command, self).handle(*args, **options)
         self.header("Load Candidate Contests")
-
-        # Flush, if the options has been passed
-        if options['flush']:
-            self.flush()
 
         # Load everything we can from the scrape
         self.load()
@@ -102,20 +97,20 @@ class Command(LoadOCDModelsCommand):
         # Dress it up with extra
         #
 
-        # # add extra data from form501, if available
-        # form501 = scraped_candidate.get_form501_filing()
-        #
-        # if form501:
-        #     self.link_form501_to_candidacy(form501.filing_id, candidacy)
-        #     self.update_candidacy_from_form501s(candidacy)
-        #
-        #     # if the scraped_candidate lacks a filer_id, add the
-        #     # Form501Filing.filer_id
-        #     if scraped_candidate.scraped_id == '':
-        #         candidacy.person.identifiers.get_or_create(
-        #             scheme='calaccess_filer_id',
-        #             identifier=form501.filer_id,
-        #         )
+        # add extra data from form501, if available
+        form501 = scraped_candidate.get_form501_filing()
+
+        if form501:
+            candidacy.link_form501(form501)
+            candidacy.update_from_form501(form501)
+
+            # if the scraped_candidate lacks a filer_id, add the
+            # Form501Filing.filer_id
+            if scraped_candidate.scraped_id == '':
+                candidacy.person.identifiers.get_or_create(
+                    scheme='calaccess_filer_id',
+                    identifier=form501.filer_id,
+                )
 
         # Fill the party if the candidacy doesn't have it
         # Get the candidate's party, looking in our correction file for any fixes
