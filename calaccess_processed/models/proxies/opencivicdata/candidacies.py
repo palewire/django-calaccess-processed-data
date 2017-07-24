@@ -25,6 +25,15 @@ class OCDCandidacyManager(models.Manager):
             self.get_queryset().filter(extras__has_key='form501_filing_ids').values('extras')
         ]
 
+    def get_by_filer_id(self, filer_id):
+        """
+        Returns a Candidacy object linked to a CAL-ACCESS filer_id, if it exists.
+        """
+        return self.get_queryset().get(
+            person__identifiers__scheme='calaccess_filer_id',
+            person__identifiers__identifier=filer_id,
+        )
+
 
 class OCDCandidacyProxy(Candidacy):
     """

@@ -392,10 +392,7 @@ class ScrapedCandidateProxy(Candidate, PersonMixin, NameMixin):
         # first, try matching to existing candidate in contest with filer_id
         if filer_id:
             try:
-                candidacy = OCDCandidacyProxy.objects.filter(contest=contest_obj).get(
-                    person__identifiers__scheme='calaccess_filer_id',
-                    person__identifiers__identifier=filer_id,
-                )
+                candidacy = OCDCandidacyProxy.objects.filter(contest=contest_obj).get_by_filer_id(filer_id)
             except OCDCandidacyProxy.DoesNotExist:
                 pass
             else:
