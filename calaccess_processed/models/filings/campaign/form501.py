@@ -258,6 +258,15 @@ class Form501Filing(FilingMixin, Form501FilingBase):
         return str(self.filing_id)
 
     @property
+    def name(self):
+        """
+        Return the 'name' of the candidate to match the format we typically put in the OCD Person model.
+        """
+        split_name = self.sort_name.split(',')
+        split_name.reverse()
+        return ' '.join(split_name).strip()
+
+    @property
     def sort_name(self):
         """
         Return the 'sort_name' of the candidate to match the format we typically scrape from the CAL-ACCESS website.
@@ -504,42 +513,22 @@ class Form501Filing(FilingMixin, Form501FilingBase):
         """
         from calaccess_processed.models import OCDPersonProxy
 
-        split_name = self.sort_name.split(',')
-        split_name.reverse()
-        name = ' '.join(split_name).strip()
-
-        # If a filer_id is not provided, use the candidate's scraped id
-        filer_id = self.filer_id or None
-
-        if filer_id:
-            try:
-                person = OCDPersonProxy.objects.get(
-                    identifiers__scheme='calaccess_filer_id',
-                    identifiers__identifier=filer_id,
-                )
-            except OCDPersonProxy.DoesNotExist:
-                pass
-            else:
-                # If we find a match, make sure it has this name variation logged
-                if person.name != self.sort_name:
-                    if not person.other_names.filter(name=self.sort_name).exists():
-                        person.other_names.create(
-                            name=self.sort_name,
-                            note='Matched on calaccess_filer_id'
-                        )
-                # Then pass it out.
-                return person, False
+        try:
+            person = OCDPersonProxy.objects.get_by_filer_id(self.filer_id)
+        except OCDPersonProxy.DoesNotExist:
+            pass
+        else:
+            # If we find a match, make sure it has this name variation logged
+            person.add_other_name(self.name, 'Matched on calaccess_filer_id')
+            # Then pass it out.
+            return person, False
 
         # Otherwise create a new one
-        person = OCDPersonProxy.objects.create(
-            name=name,
-            sort_name=self.sort_name,
-        )
+        person = OCDPersonProxy.objects.create(name=self.name, sort_name=self.sort_name)
         if filer_id:
-            person.identifiers.create(
-                scheme='calaccess_filer_id',
-                identifier=filer_id,
-            )
+            person.add_filer_id(filer_id)
+
+        # Pass it out
         return person, True
 
 
