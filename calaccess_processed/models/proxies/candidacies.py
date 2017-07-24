@@ -3,6 +3,10 @@
 """
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
+from django.db.models import IntegerField
+from django.db.models import Case, When, Q
+from django.db.models.functions import Cast
+from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import Candidacy
 from calaccess_processed.models import Form501FilingVersion
 
@@ -58,3 +62,29 @@ class OCDCandidacyProxy(Candidacy):
             if self.registration_status != 'withdrawn':
                 self.registration_status = 'withdrawn'
                 self.save()
+
+    def check_incumbency(self):
+        """
+        Check if the Candidacy is for the incumbent officeholder.
+
+        Return True if:
+        * Membership exists for the Person and Post linked to the Candidacy, and
+        * Membership.end_date is NULL or has a year later than Election.date.year.
+        """
+        incumbent_q = Membership.objects.filter(
+            post=self.post,
+            person=self.person,
+        ).annotate(
+            # Cast end_date's value as an int, treat '' as NULL
+            end_year=Cast(
+                Case(When(end_date='', then=None)),
+                IntegerField(),
+            )
+        ).filter(
+            Q(end_year__gt=self.election.date.year) |
+            Q(end_date='')
+        )
+        if incumbent_q.exists():
+            return True
+        else:
+            return False

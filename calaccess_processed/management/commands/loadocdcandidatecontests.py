@@ -3,9 +3,6 @@
 """
 Load CandidateContest and related models with data scraped from the CAL-ACCESS website.
 """
-from django.db.models import IntegerField
-from django.db.models import Case, When, Q
-from django.db.models.functions import Cast
 from opencivicdata.core.models import Membership
 from calaccess_processed.models import OCDRunoffProxy
 from calaccess_processed.models import ScrapedCandidateProxy
@@ -40,14 +37,11 @@ class Command(LoadOCDModelsCommand):
         """
         Load OCD Election, CandidateContest and related models with data scraped from CAL-ACCESS website.
         """
-        # # See if we should bother checking incumbent status
-        # members_are_loaded = Membership.objects.exists()
+        # See if we should bother checking incumbent status
+        members_are_loaded = Membership.objects.exists()
 
         # Loop over scraped_elections
         for scraped_election in ScrapedCandidateElectionProxy.objects.all():
-
-            # Get election record
-            ocd_election = scraped_election.get_ocd_election()
 
             # then over candidates in the scraped_election
             scraped_candidate_list = ScrapedCandidateProxy.objects.filter(election=scraped_election)
@@ -59,100 +53,61 @@ class Command(LoadOCDModelsCommand):
                             scraped_candidate
                         )
                     )
-                candidacy = self.add_scraped_candidate_to_election(
-                    scraped_candidate,
-                    ocd_election
-                )
-                print candidacy
-                # # check incumbent status
-                # if members_are_loaded:
-                #     if self.check_incumbent_status(candidacy):
-                #         candidacy.is_incumbent = True
-                #         candidacy.save()
-                #         if self.verbosity > 2:
-                #             self.log(' Identified as incumbent.')
-                #         # set is_incumbent False for all other candidacies
-                #         contest = candidacy.contest
-                #         contest.candidacies.exclude(
-                #             is_incumbent=True
-                #         ).update(is_incumbent=False)
 
-    def add_scraped_candidate_to_election(self, scraped_candidate, ocd_election):
-        """
-        Converts scraped_candidate from the CAL-ACCESS site to an OCD Candidacy. Links it to an ocd_election.
+                #
+                # Make a Candidacy
+                #
 
-        Returns a candidacy object.
-        """
-        #
-        # Get or create Candidacy
-        #
-
-        candidacy, candidacy_created = scraped_candidate.get_or_create_candidacy(registration_status='qualified')
-
-        if candidacy_created and self.verbosity > 2:
-            template = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
-            self.log(template.format(candidacy))
-
-        #
-        # Dress it up with extra
-        #
-
-        # add extra data from form501, if available
-        form501 = scraped_candidate.get_form501_filing()
-
-        if form501:
-            candidacy.link_form501(form501)
-            candidacy.update_from_form501(form501)
-
-            # if the scraped_candidate lacks a filer_id, add the
-            # Form501Filing.filer_id
-            if scraped_candidate.scraped_id == '':
-                candidacy.person.identifiers.get_or_create(
-                    scheme='calaccess_filer_id',
-                    identifier=form501.filer_id,
+                candidacy, candidacy_created = scraped_candidate.get_or_create_candidacy(
+                    registration_status='qualified'
                 )
 
-        # Fill the party if the candidacy doesn't have it
-        # Get the candidate's party, looking in our correction file for any fixes
-        if not candidacy.party:
-            party = scraped_candidate.get_party()
-            if party:
-                candidacy.party = party
-                candidacy.save()
+                if candidacy_created and self.verbosity > 2:
+                    template = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
+                    self.log(template.format(candidacy))
 
-        # always update the source for the candidacy
-        candidacy.sources.update_or_create(
-            url=scraped_candidate.url,
-            note='Last scraped on {dt:%Y-%m-%d}'.format(
-                dt=scraped_candidate.last_modified,
-            )
-        )
+                #
+                # Dress it up with extra stuff
+                #
 
-        return candidacy
+                # add extra data from form501, if available
+                form501 = scraped_candidate.get_form501_filing()
 
-    def check_incumbent_status(self, candidacy):
-        """
-        Check if the Candidacy is for the incumbent officeholder.
+                if form501:
+                    candidacy.link_form501(form501)
+                    candidacy.update_from_form501(form501)
 
-        Return True if:
-        * Membership exists for the Person and Post linked to the Candidacy, and
-        * Membership.end_date is NULL or has a year later than Election.date.year.
-        """
-        incumbent_q = Membership.objects.filter(
-            post=candidacy.post,
-            person=candidacy.person,
-        ).annotate(
-            # Cast end_date's value as an int, treat '' as NULL
-            end_year=Cast(
-                Case(When(end_date='', then=None)),
-                IntegerField(),
-            )
-        ).filter(
-            Q(end_year__gt=candidacy.election.date.year) |
-            Q(end_date='')
-        )
-        if incumbent_q.exists():
-            is_incumbent = True
-        else:
-            is_incumbent = False
-        return is_incumbent
+                    # if the scraped_candidate lacks a filer_id, add the
+                    # Form501Filing.filer_id
+                    if scraped_candidate.scraped_id == '':
+                        candidacy.person.identifiers.get_or_create(
+                            scheme='calaccess_filer_id',
+                            identifier=form501.filer_id,
+                        )
+
+                # Fill the party if the candidacy doesn't have it
+                # Get the candidate's party, looking in our correction file for any fixes
+                if not candidacy.party:
+                    party = scraped_candidate.get_party()
+                    if party:
+                        candidacy.party = party
+                        candidacy.save()
+
+                # always update the source for the candidacy
+                candidacy.sources.update_or_create(
+                    url=scraped_candidate.url,
+                    note='Last scraped on {dt:%Y-%m-%d}'.format(
+                        dt=scraped_candidate.last_modified,
+                    )
+                )
+
+                # check incumbent status
+                if members_are_loaded and candidacy.check_incumbency():
+                    candidacy.is_incumbent = True
+                    candidacy.save()
+                    if self.verbosity > 2:
+                        self.log(' Identified as incumbent.')
+                    # set is_incumbent False for all other candidacies
+                    candidacy.contest.candidacies.exclude(
+                        is_incumbent=True
+                    ).update(is_incumbent=False)
