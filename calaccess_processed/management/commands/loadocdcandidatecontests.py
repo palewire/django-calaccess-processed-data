@@ -63,8 +63,8 @@ class Command(LoadOCDModelsCommand):
                 )
 
                 if candidacy_created and self.verbosity > 2:
-                    template = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
-                    self.log(template.format(candidacy))
+                    msg = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'.format(candidacy)
+                    self.log(msg)
 
                 #
                 # Dress it up with extra stuff
