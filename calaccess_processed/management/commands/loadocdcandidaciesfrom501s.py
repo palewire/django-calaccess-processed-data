@@ -4,14 +4,10 @@
 Load the Candidacy models from records extracted from Form501Filings.
 """
 from __future__ import unicode_literals
-from datetime import date
-from calaccess_processed import corrections
-from opencivicdata.core.models import Division
 from django.core.management.base import CommandError
 from opencivicdata.elections.models import CandidateContest
-from calaccess_raw.models import FilerToFilerTypeCd, LookupCodesCd
 from calaccess_processed.management.commands import LoadOCDModelsCommand
-from calaccess_processed.models import Form501Filing, OCDPartyProxy, OCDPostProxy
+from calaccess_processed.models import Form501Filing
 
 
 class Command(LoadOCDModelsCommand):
