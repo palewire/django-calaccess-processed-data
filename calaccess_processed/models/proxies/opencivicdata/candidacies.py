@@ -34,6 +34,16 @@ class OCDCandidacyManager(models.Manager):
             person__identifiers__identifier=filer_id,
         )
 
+    def get_by_name(self, name):
+        """
+        Returns a Candidacy object with the provided name from the CAL-ACCESS database or scrape.
+        """
+        return self.get_queryset().get(
+            Q(candidate_name=name) |
+            Q(person__name=name) |
+            Q(person__other_names__name=name)
+        )
+
 
 class OCDCandidacyProxy(Candidacy):
     """

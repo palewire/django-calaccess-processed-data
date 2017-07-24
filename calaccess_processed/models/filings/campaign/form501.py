@@ -416,22 +416,13 @@ class Form501Filing(FilingMixin, Form501FilingBase):
             else:
                 candidacy_created = False
                 # if provided name not person's current name and not linked to person add it
-                if candidacy.person.name != name:
-                    if not candidacy.person.other_names.filter(name=name).exists():
-                        candidacy.person.other_names.create(
-                            name=name,
-                            note='Matched on CandidateContest and calaccess_filer_id'
-                        )
+                candidacy.person.add_other_name(name, 'Matched on CandidateContest and calaccess_filer_id')
 
         # if filer_id match fails (or no filer_id), try matching to candidate
         # in contest with provided name
         if not candidacy:
             try:
-                candidacy = OCDCandidacyProxy.objects.filter(contest=contest).get(
-                    Q(candidate_name=name) |
-                    Q(person__name=name) |
-                    Q(person__other_names__name=name)
-                )
+                candidacy = OCDCandidacyProxy.objects.filter(contest=contest).get_by_name(name)
             except OCDCandidacyProxy.MultipleObjectsReturned:
                 # weird case when someone filed for the same race
                 # with three different filer_ids
