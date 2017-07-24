@@ -524,11 +524,13 @@ class Form501Filing(FilingMixin, Form501FilingBase):
             return person, False
 
         # Otherwise create a new one
-        person = OCDPersonProxy.objects.create(name=self.name, sort_name=self.sort_name)
+        person, person_created = OCDPersonProxy.objects.get_or_create(name=self.name, sort_name=self.sort_name)
+
+        # Make sure the filer_id is included
         person.add_filer_id(self.filer_id)
 
         # Pass it out
-        return person, True
+        return person, person_created
 
 
 @python_2_unicode_compatible

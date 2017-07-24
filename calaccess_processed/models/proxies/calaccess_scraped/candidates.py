@@ -111,9 +111,6 @@ class PersonMixin(object):
         Returns a tuple (Person object, created), where created is a boolean
         specifying whether a Person was created.
         """
-        # If a filer_id is not provided, use the candidate's scraped id
-        filer_id = filer_id or self.scraped_id or None
-
         # If there is a filer_id, try to go that way
         if filer_id:
             try:
@@ -127,12 +124,14 @@ class PersonMixin(object):
                 return person, False
 
         # Otherwise create a new one
-        person = OCDPersonProxy.objects.create(**self.parsed_name)
+        person, person_created = OCDPersonProxy.objects.get_or_create(**self.parsed_name)
+
+        # If there's a filer_id, add it on
         if filer_id:
             person.add_filer_id(filer_id)
 
         # Pass it back
-        return person, True
+        return person, person_created
 
 
 class ScrapedIncumbentProxy(Incumbent, PersonMixin, NameMixin):
