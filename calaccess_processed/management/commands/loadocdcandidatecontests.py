@@ -20,18 +20,6 @@ class Command(LoadOCDModelsCommand):
     """
     help = 'Load CandidateContest and related models with data scraped from the CAL-ACCESS website.'
 
-    def add_arguments(self, parser):
-        """
-        Adds custom arguments specific to this command.
-        """
-        parser.add_argument(
-            "--flush",
-            action="store_true",
-            dest="flush",
-            default=False,
-            help="Flush the database tables filled by this command."
-        )
-
     def handle(self, *args, **options):
         """
         Make it happen.
@@ -52,17 +40,6 @@ class Command(LoadOCDModelsCommand):
         OCDRunoffProxy.objects.set_parents()
 
         self.success("Done!")
-
-    def flush(self):
-        """
-        Flush the database tables filled by this command.
-        """
-        models = [Candidacy, CandidateContest]
-        for m in models:
-            qs = m.objects.all()
-            if self.verbosity > 0:
-                self.log("Flushing {} {} objects".format(qs.count(), m.__name__))
-            qs.delete()
 
     def load(self):
         """
