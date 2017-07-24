@@ -34,31 +34,21 @@ class Command(LoadOCDModelsCommand):
             for form501 in Form501Filing.objects.without_candidacy():
                 if self.verbosity > 2:
                     self.log(' Processing Form 501: %s' % form501.filing_id)
-                self.process_form501(form501)
+
+                # Get a linked contest
+                contest = form501.get_contest()
+
+                # If there is no contest, quit.
+                if not contest:
+                    return None
+
+                candidacy, candidacy_created = form501.get_or_create_candidacy(contest, registration_status='filed')
+
+                if candidacy_created and self.verbosity > 2:
+                    tmp = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
+                    self.log(tmp.format(candidacy))
+
+                candidacy.link_form501(form501)
+                candidacy.update_from_form501(form501)
 
             self.success("Done!")
-
-    def process_form501(self, form501):
-        """
-        Extract data from Form501Filing and load into OCD models.
-        """
-        # Get a linked contest
-        contest = form501.get_contest()
-
-        # If there is no contest, quit.
-        if not contest:
-            return None
-
-        candidacy, candidacy_created = form501.get_or_create_candidacy(contest, registration_status='filed')
-
-        if candidacy_created and self.verbosity > 2:
-            tmp = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
-            self.log(tmp.format(candidacy))
-        #
-        # candidacy.party = self.get_party_from_form501(
-        #     form501,
-        #     contest.election.date
-        # )
-        # candidacy.save()
-        # self.link_form501_to_candidacy(form501.filing_id, candidacy)
-        # self.update_candidacy_from_form501s(candidacy)

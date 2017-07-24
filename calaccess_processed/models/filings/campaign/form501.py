@@ -471,6 +471,7 @@ class Form501Filing(FilingMixin, Form501FilingBase):
                 post=contest.posts.all()[0].post,
                 candidate_name=name,
                 registration_status=registration_status,
+                party=self.get_party(),
             )
             candidacy_created = True
 
