@@ -435,18 +435,13 @@ class Form501Filing(FilingMixin, Form501FilingBase):
                 # if filer_id provided
                 if filer_id:
                     # check to make sure candidate with same name doesn't have diff filer_id
-                    has_diff_filer_id = candidacy.person.identifiers.filter(
-                        scheme='calaccess_filer_id',
-                    ).exists()
-                    if has_diff_filer_id:
+                    # check to make sure candidate with same name doesn't have diff filer_id
+                    if candidacy.person.identifiers.filter(scheme='calaccess_filer_id').exists():
                         # if so, don't conflate
                         candidacy = None
                     else:
                         # if so, add filer_id to existing candidate
-                        candidacy.person.identifiers.create(
-                            scheme='calaccess_filer_id',
-                            identifier=filer_id,
-                        )
+                        candidacy.person.add_filer_id(filer_id)
 
         # if no matched candidate yet, make a new one
         if not candidacy:
@@ -466,7 +461,7 @@ class Form501Filing(FilingMixin, Form501FilingBase):
             candidacy_created = True
 
         # if provided registration does not equal the default, update
-        if registration_status != 'filed':
+        if registration_status != 'filed' and registration_status != candidacy.registration_status:
             candidacy.registration_status = registration_status
             candidacy.save()
 
