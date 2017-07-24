@@ -435,7 +435,6 @@ class Form501Filing(FilingMixin, Form501FilingBase):
                 # if filer_id provided
                 if filer_id:
                     # check to make sure candidate with same name doesn't have diff filer_id
-                    # check to make sure candidate with same name doesn't have diff filer_id
                     if candidacy.person.identifiers.filter(scheme='calaccess_filer_id').exists():
                         # if so, don't conflate
                         candidacy = None
