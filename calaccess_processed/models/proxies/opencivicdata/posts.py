@@ -68,7 +68,7 @@ class OCDPostManager(models.Manager):
                 organization = OCDOrganizationProxy.objects.executive_branch()
                 role = label
 
-        # Grab the method passed in
+        # Grab the method passed in. You can see why we did this in the method just below this one.
         func = getattr(self.get_queryset(), method)
 
         # Run it pass back the result.
