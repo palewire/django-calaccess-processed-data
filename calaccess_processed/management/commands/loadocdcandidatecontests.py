@@ -3,7 +3,6 @@
 """
 Load CandidateContest and related models with data scraped from the CAL-ACCESS website.
 """
-from opencivicdata.core.models import Membership
 from calaccess_processed.models import OCDRunoffProxy
 from calaccess_processed.models import ScrapedCandidateProxy
 from calaccess_processed.models import ScrapedCandidateElectionProxy
@@ -37,9 +36,6 @@ class Command(LoadOCDModelsCommand):
         """
         Load OCD Election, CandidateContest and related models with data scraped from CAL-ACCESS website.
         """
-        # See if we should bother checking incumbent status
-        members_are_loaded = Membership.objects.exists()
-
         # Loop over scraped_elections
         for scraped_election in ScrapedCandidateElectionProxy.objects.all():
 
@@ -99,12 +95,3 @@ class Command(LoadOCDModelsCommand):
                         dt=scraped_candidate.last_modified,
                     )
                 )
-
-                # check incumbent status
-                if members_are_loaded and candidacy.check_incumbency():
-                    candidacy.is_incumbent = True
-                    candidacy.save()
-                    if self.verbosity > 2:
-                        self.log(' Identified as incumbent.')
-                    # set is_incumbent False for all other candidacies
-                    candidacy.contest.candidacies.exclude(is_incumbent=True).update(is_incumbent=False)
