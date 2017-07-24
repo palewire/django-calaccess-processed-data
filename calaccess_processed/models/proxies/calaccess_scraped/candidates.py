@@ -111,38 +111,27 @@ class PersonMixin(object):
         Returns a tuple (Person object, created), where created is a boolean
         specifying whether a Person was created.
         """
-        # Parse out the parts of the name
-        name_dict = self.parsed_name
-
         # If a filer_id is not provided, use the candidate's scraped id
         filer_id = filer_id or self.scraped_id or None
 
+        # If there is a filer_id, try to go that way
         if filer_id:
             try:
-                person = OCDPersonProxy.objects.get(
-                    identifiers__scheme='calaccess_filer_id',
-                    identifiers__identifier=filer_id,
-                )
+                person = OCDPersonProxy.objects.get_by_filer_id(filer_id)
             except OCDPersonProxy.DoesNotExist:
                 pass
             else:
                 # If we find a match, make sure it has this name variation logged
-                if person.name != name_dict['name']:
-                    if not person.other_names.filter(name=name_dict['name']).exists():
-                        person.other_names.create(
-                            name=name_dict['name'],
-                            note='Matched on calaccess_filer_id'
-                        )
+                person.add_other_name(self.parsed_name['name'], 'Matched on calaccess_filer_id')
                 # Then pass it out.
                 return person, False
 
         # Otherwise create a new one
-        person = OCDPersonProxy.objects.create(**name_dict)
+        person = OCDPersonProxy.objects.create(**self.parsed_name)
         if filer_id:
-            person.identifiers.create(
-                scheme='calaccess_filer_id',
-                identifier=filer_id,
-            )
+            person.add_filer_id(filer_id)
+
+        # Pass it back
         return person, True
 
 
