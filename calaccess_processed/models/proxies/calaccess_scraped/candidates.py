@@ -434,14 +434,7 @@ class ScrapedCandidateProxy(Candidate, PersonMixin, NameMixin):
         if not candidacy:
             # First make a Person object
             person, person_created = self.get_or_create_person(filer_id=filer_id)
-
-            # if provided name not person's current name or other_name
-            if person.name != name:
-                if not person.other_names.filter(name=name).exists():
-                    person.other_names.create(
-                        name=name,
-                        note='From %s candidacy' % contest_obj
-                    )
+            person.add_other_name(name, 'From {} candidacy'.format(contest))
 
             # Then make the candidacy
             candidacy = OCDCandidacyProxy.objects.create(
