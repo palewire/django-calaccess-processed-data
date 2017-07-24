@@ -1,6 +1,8 @@
 # The app
-django-calaccess-raw-data==1.6.0rc1
-Django>=1.9
+django-calaccess-raw-data
+django-calaccess-scraped-data
+opencivicdata
+Django>=1.10
 hurry.filesize
 pytz
 -e git+https://github.com/california-civic-data-coalition/python-opencivicdata-django.git@HEAD#egg=python-opencivicdata
