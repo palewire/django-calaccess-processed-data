@@ -38,7 +38,7 @@ class OCDPostManager(models.Manager):
 
         return parsed
 
-    def get_by_name(self, office_name):
+    def get_by_name(self, office_name, method="get"):
         """
         Get a Post object with an office string.
         """
@@ -68,8 +68,11 @@ class OCDPostManager(models.Manager):
                 organization = OCDOrganizationProxy.objects.executive_branch()
                 role = label
 
-        # Pass it out
-        return self.get_queryset().get(
+        # Grab the method passed in
+        func = getattr(self.get_queryset(), method)
+
+        # Run it pass back the result.
+        return func(
             label=label,
             role=role,
             division=division,
@@ -80,42 +83,10 @@ class OCDPostManager(models.Manager):
         """
         Get or create a Post object with an office_name string.
 
-        Returns a tuple (Post object, created), where created is a boolean
-        specifying whether a Post was created.
+        Returns a tuple (Post object, created), where created is a boolean specifying whether a Post was created.
         """
-        parsed_office = self.parse_office_name(office_name)
-
-        # prepare to get or create post
-        label = office_name.title().replace('Of', 'of')
-
-        if parsed_office['type'] == 'STATE SENATE':
-            division = OCDDivisionProxy.senate.get(subid2=parsed_office['district'])
-            organization = OCDOrganizationProxy.objects.senate()
-            role = 'Senator'
-        elif parsed_office['type'] == 'ASSEMBLY':
-            division = OCDDivisionProxy.assembly.get(subid2=parsed_office['district'])
-            organization = OCDOrganizationProxy.objects.assembly()
-            role = 'Assembly Member'
-        else:
-            # If not Senate or Assembly, assume this is a state office
-            division = OCDDivisionProxy.objects.california()
-            if parsed_office['type'] == 'MEMBER BOARD OF EQUALIZATION':
-                organization = OCDOrganizationProxy.objects.board_of_equalization()
-                role = 'Board Member'
-            elif parsed_office['type'] == 'SECRETARY OF STATE':
-                organization = OCDOrganizationProxy.objects.secretary_of_state()
-                role = label
-            else:
-                organization = OCDOrganizationProxy.objects.executive_branch()
-                role = label
-
-        # Pass it out
-        return self.get_queryset().get_or_create(
-            label=label,
-            role=role,
-            division=division,
-            organization=organization
-        )
+        # We'll use a hack on the method above to get this done so we can avoid repeating code.
+        return self.get_by_name(office_name, method="get_or_create")
 
     def get_by_form501(self, form501):
         """
