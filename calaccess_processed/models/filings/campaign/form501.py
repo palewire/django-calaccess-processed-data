@@ -161,7 +161,6 @@ class Form501FilingBase(CalAccessBaseModel):
         help_text='Political party of the candidate (from LOOKUP_CODES_CD.'
                   'CODE_DESC, unless NULL or 0, then F501_502_CD.PARTY)',
     )
-
     jurisdiction = models.CharField(
         max_length=30,
         verbose_name='jurisdiction',
