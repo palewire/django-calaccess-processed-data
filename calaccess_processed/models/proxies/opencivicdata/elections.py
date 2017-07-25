@@ -14,16 +14,27 @@ class OCDElectionManager(models.Manager):
     """
     Custom helpers for the OCD Post model.
     """
-    def create_with_name_and_date(self, name, dt):
+    def create_from_calaccess(self, name, dt, election_id=None, election_type=None):
         """
         Create an OCD Election object.
         """
-        return self.get_queryset().create(
+        # Create the object
+        obj = self.get_queryset().create(
             name=name,
             date=dt,
             administrative_organization=OCDOrganizationProxy.objects.elections_division(),
             division=OCDDivisionProxy.objects.california(),
         )
+
+        # And add the identifier so we can find it in the future
+        if calaccess_election_id:
+            obj.identifiers.create(scheme='calaccess_election_id', identifier=calaccess_election_id)
+
+        # Add the election type so we can pull it out later if we want it.
+        if election_type:
+            obj.extras['calaccess_election_type'] = election_type
+            obj.save()
+
 
 
 class OCDElectionProxy(Election):

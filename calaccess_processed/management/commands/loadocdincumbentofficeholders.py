@@ -56,7 +56,12 @@ class Command(CalAccessCommand):
             elec = Election.objects.get(date=dt_obj)
         except Election.DoesNotExist:
             # or make a new one
-            elec = OCDElectionProxy.objects.create_with_name_and_date(name, dt_obj)
+            elec = OCDElectionProxy.objects.create_from_calaccess(
+                name,
+                dt_obj,
+                election_id=scraped_elec.scraped_id,
+                election_type=scraped_elec.parsed_name['type']
+            )
             created = True
         else:
             created = False

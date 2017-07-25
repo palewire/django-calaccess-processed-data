@@ -73,7 +73,7 @@ class Command(CalAccessCommand):
             elec = OCDElectionProxy.objects.get(date=date_obj)
         except OCDElectionProxy.DoesNotExist:
             # or make a new one
-            elec = OCDElectionProxy.objects.create_with_name_and_date(name, date_obj)
+            elec = OCDElectionProxy.objects.create_from_calaccess(name, date_obj)
             created = True
         else:
             created = False

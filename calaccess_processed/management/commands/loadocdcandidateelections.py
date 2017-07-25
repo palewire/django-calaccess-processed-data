@@ -79,10 +79,10 @@ class Command(CalAccessCommand):
             raise Exception("Could not match or find date for %s." % scraped_election.name)
 
         # If we can, let's create an election
-        ocd_election = self.create_election(
+        ocd_election = OCDElectionProxy.objects.create_from_calaccess(
             '{year} {type}'.format(**parsed_name),
             parsed_date,
-            scraped_id=scraped_election.scraped_id,
+            election_id=scraped_election.scraped_id,
             election_type=parsed_name['type'],
         )
 
@@ -99,33 +99,3 @@ class Command(CalAccessCommand):
 
         # Finally pass it out.
         return ocd_election, True
-
-    def create_election(self, name, date, scraped_id=None, election_type=None):
-        """
-        Create an OCD Election object.
-        """
-        # Pull its parent division within OCD
-        admin = Organization.objects.get_or_create(
-            name='Elections Division',
-            classification='executive',
-            parent=OCDOrganizationProxy.objects.secretary_of_state(),
-        )[0]
-
-        # Create the election
-        obj = Election.objects.create(
-            date=date,
-            name=name,
-            administrative_organization=admin,
-            division=OCDDivisionProxy.objects.california(),
-        )
-
-        # And add the identifier so we can find it in the future using scraped data
-        if scraped_id:
-            obj.identifiers.create(scheme='calaccess_election_id', identifier=scraped_id)
-
-        if election_type:
-            obj.extras['calaccess_election_type'] = election_type
-            obj.save()
-
-        # Pass it out.
-        return obj
