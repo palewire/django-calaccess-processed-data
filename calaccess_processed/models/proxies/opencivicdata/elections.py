@@ -52,3 +52,10 @@ class OCDElectionProxy(Election):
             if self.date.year < 2012:
                 return True
         return False
+
+    @property
+    def election_type(self):
+        """
+        Returns the CAL-ACCESS election type if it's been included with this record.
+        """
+        return self.extras.get('calaccess_election_type', None)
