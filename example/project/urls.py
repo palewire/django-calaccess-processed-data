@@ -8,6 +8,7 @@ admin.autodiscover()
 
 urlpatterns = (
     url(r'^$', views.election_list, name="election_list"),
+    url(r'^election/(?P<id>(.*))/$', views.election_detail, name="election_detail"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^static/(?P<path>.*)$', serve, {
         'document_root': settings.STATIC_ROOT,

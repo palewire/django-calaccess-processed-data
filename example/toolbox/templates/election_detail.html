@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>{{ object }}</h1>
+
+    {% if object.ballotmeasurecontests.count %}
+        <h3>Ballot measure contests ({{ object.ballotmeasurecontests.count }})</h3>
+        <table class="table table-bordered">
+            {% for obj in object.ballotmeasurecontests.all|dictsort:"name" %}
+            <tr>
+                <td>{{ obj.name }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+
+    {% if object.candidatecontests.count %}
+        <h3>Candidate contests ({{ object.candidatecontests.count }})</h3>
+        <table class="table table-bordered">
+            {% for obj in object.candidatecontests.all|dictsort:"name" %}
+            <tr>
+                <td>{{ obj.name }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+{% endblock %}
