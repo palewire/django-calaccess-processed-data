@@ -21,8 +21,6 @@ class Command(CalAccessCommand):
         """
         super(Command, self).handle(*args, **options)
         self.header('Loading Parties')
-        if options['flush']:
-            self.flush()
         self.load()
         self.success("Done!")
 
@@ -68,6 +66,4 @@ class Command(CalAccessCommand):
             )
             if created:
                 if self.verbosity > 2:
-                    self.log(
-                        " {0.identifier} indentifies {0.organization.name}".format(p_id)
-                    )
+                    self.log(" {0.identifier} indentifies {0.organization.name}".format(p_id))
