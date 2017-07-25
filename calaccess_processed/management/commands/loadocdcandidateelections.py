@@ -70,7 +70,8 @@ class Command(CalAccessCommand):
             return self.create_election(
                 scraped_election.name,
                 date(2008, 6, 3),
-                scraped_election.scraped_id
+                scraped_id=scraped_election.scraped_id,
+                election_type="PRIMARY",
             ), True
 
         # If we can't parse out a date, we should just quit now
@@ -81,7 +82,8 @@ class Command(CalAccessCommand):
         ocd_election = self.create_election(
             '{year} {type}'.format(**parsed_name),
             parsed_date,
-            scraped_election.scraped_id
+            scraped_id=scraped_election.scraped_id,
+            election_type=parsed_name['type'],
         )
 
         # If election does already exists and is named 'SPECIAL' or 'RECALL'...
@@ -98,7 +100,7 @@ class Command(CalAccessCommand):
         # Finally pass it out.
         return ocd_election, True
 
-    def create_election(self, name, date, scraped_id=None):
+    def create_election(self, name, date, scraped_id=None, election_type=None):
         """
         Create an OCD Election object.
         """
@@ -120,6 +122,10 @@ class Command(CalAccessCommand):
         # And add the identifier so we can find it in the future using scraped data
         if scraped_id:
             obj.identifiers.create(scheme='calaccess_election_id', identifier=scraped_id)
+
+        if election_type:
+            obj.extras['calaccess_election_type'] = election_type
+            obj.save()
 
         # Pass it out.
         return obj

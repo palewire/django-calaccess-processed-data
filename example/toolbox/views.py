@@ -13,3 +13,10 @@ def election_list(request):
     context = dict(object_list=object_list, group_list=group_list)
     template = "election_list.html"
     return render(request, template, context)
+
+
+def election_detail(request, id):
+    obj = OCDElectionProxy.objects.get(id=id)
+    context = dict(object=obj)
+    template = "election_detail.html"
+    return render(request, template, context)

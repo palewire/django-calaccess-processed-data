@@ -8,9 +8,22 @@
         <h3>{{ year }} ({{ year_list|length }})</h3>
 
         <table class="table table-bordered">
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Ballot measures</th>
+                <th>Candidate contests</th>
+            </tr>
             {% for obj in year_list %}
             <tr>
-                <td>{{ obj.date|date:"N j" }} {{ obj.extra }}</td>
+                <td style="width: 150px;">
+                    <a href="{% url 'election_detail' obj.id %}">
+                        {{ obj.date|date:"N j" }}
+                    </a>
+                </td>
+                <td>{{ obj.election_type|lower|title }}</td>
+                <td>{{ obj.ballotmeasurecontests.count }}</td>
+                <td>{{ obj.candidatecontests.count }}</td>
             </tr>
             {% endfor %}
         </table>
