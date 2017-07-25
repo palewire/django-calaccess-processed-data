@@ -160,6 +160,5 @@ class Command(CalAccessCommand):
             if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
                 call_command(
                     'archivecalaccessprocessedfile',
-                    'calaccess_processed',
                     m._meta.object_name,
                 )
