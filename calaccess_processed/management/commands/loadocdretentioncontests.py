@@ -5,8 +5,8 @@ Load OCD BallotMeasureContest and related models with data scraped from the CAL-
 """
 import re
 from opencivicdata.core.models import Membership
+from calaccess_scraped.models import PropositionElection
 from opencivicdata.elections.models import RetentionContest
-from calaccess_scraped.models import PropositionElection as ScrapedPropositionElection
 from calaccess_processed.management.commands.loadocdballotmeasurecontests import Command
 from calaccess_processed.models import OCDPostProxy, ScrapedCandidateProxy, ScrapedIncumbentProxy
 
@@ -24,7 +24,7 @@ class Command(Command):
 
         Return QuerySet.
         """
-        return ScrapedPropositionElection.objects.filter(propositions__name__icontains='RECALL')
+        return PropositionElection.objects.filter(propositions__name__icontains='RECALL')
 
     def get_scraped_props(self, scraped_elec):
         """
