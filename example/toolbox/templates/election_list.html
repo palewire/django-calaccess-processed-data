@@ -7,7 +7,7 @@
 <table class="table table-bordered table-hover">
     {% for obj in year_list %}
     <tr>
-        <td>{{ obj }}</td>
+        <td>{{ obj.date|date:"N j" }}</td>
     </tr>
     {% endfor %}
 </table>
