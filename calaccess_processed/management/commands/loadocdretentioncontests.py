@@ -78,11 +78,9 @@ class Command(Command):
             membership.save()
 
         # create the retention contest
-        ocd_contest = RetentionContest.objects.create(
+        return RetentionContest.objects.create(
             election=ocd_elec,
             division=post.division,
             name=scraped_prop.name,
             membership=membership,
         )
-
-        return ocd_contest
