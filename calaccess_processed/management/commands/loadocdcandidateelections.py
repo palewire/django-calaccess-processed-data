@@ -92,10 +92,7 @@ class Command(CalAccessCommand):
         )
 
         # If election does already exists and is named 'SPECIAL' or 'RECALL'...
-        if (
-            'SPECIAL' in ocd_election.name.upper() or
-            'RECALL' in ocd_election.name.upper()
-        ):
+        if ocd_election.is_special() or ocd_election.is_recall():
             # ... and the provided election_name includes either 'GENERAL' or 'PRIMARY'...
             if scraped_election.is_primary() or scraped_election.is_general():
                 # ... update the name.
