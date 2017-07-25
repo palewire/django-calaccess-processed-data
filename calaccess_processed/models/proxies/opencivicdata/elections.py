@@ -39,7 +39,6 @@ class OCDElectionManager(models.Manager):
         return obj
 
 
-
 class OCDElectionProxy(Election):
     """
     A proxy for the Election model in opencivicdata app.

@@ -4,8 +4,6 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
-import re
-from django.utils import timezone
 from calaccess_scraped.models import Proposition
 
 

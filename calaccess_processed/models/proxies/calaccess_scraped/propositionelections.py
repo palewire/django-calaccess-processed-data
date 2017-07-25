@@ -99,30 +99,4 @@ class ScrapedPropositionElectionProxy(PropositionElection):
             return OCDElectionProxy.objects.get(name__icontains="PRIMARY", date=date(2008, 6, 3))
 
         # Otherwise proceed by trying to get the record via its date
-        print self.name
-        print self.parsed_date
         return OCDElectionProxy.objects.get(date=self.parsed_date)
-
-
-
-
-        #
-        #
-        #
-        # # If this is the 2008 primary, we have a hacked out edge case solution
-        # if self.name == '2008 PRIMARY':
-        #     return Election.objects.get(name=self.name, date=date(2008, 6, 3))
-        #
-        # # Otherwise proceed by trying to get the record via its scraped id
-        # try:
-        #     return Election.objects.get(
-        #         identifiers__scheme='calaccess_election_id',
-        #         identifiers__identifier=self.scraped_id,
-        #     )
-        # except Election.DoesNotExist:
-        #     # If that doesn't exist, try getting it by date
-        #     if self.parsed_date:
-        #         return Election.objects.get(date=self.parsed_date)
-        #     else:
-        #         # If that fails raise the DoesNotExist error
-        #         raise

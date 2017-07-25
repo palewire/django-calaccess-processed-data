@@ -3,8 +3,6 @@
 """
 Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website.
 """
-import re
-from django.utils import timezone
 from calaccess_processed.models import ScrapedPropositionElectionProxy, ScrapedPropositionProxy
 from opencivicdata.elections.models import BallotMeasureContest
 from calaccess_processed.management.commands import CalAccessCommand
