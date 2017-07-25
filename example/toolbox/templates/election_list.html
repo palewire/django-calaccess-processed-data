@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Elections ({{ object_list|length }})</h1>
+{% for year, year_list in group_list.items %}
+<h3>{{ year }} ({{ year_list|length }})</h3>
+<table class="table table-bordered table-hover">
+    {% for obj in year_list %}
+    <tr>
+        <td>{{ obj }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endfor %}
+{% endblock %}
