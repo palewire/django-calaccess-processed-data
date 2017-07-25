@@ -11,6 +11,8 @@
             <tr>
                 <th>Date</th>
                 <th>Type</th>
+                <th>Ballot measures</th>
+                <th>Candidate contests</th>
             </tr>
             {% for obj in year_list %}
             <tr>
@@ -20,6 +22,8 @@
                     </a>
                 </td>
                 <td>{{ obj.election_type|lower|title }}</td>
+                <td>{{ obj.ballotmeasurecontests.count }}</td>
+                <td>{{ obj.candidatecontests.count }}</td>
             </tr>
             {% endfor %}
         </table>
