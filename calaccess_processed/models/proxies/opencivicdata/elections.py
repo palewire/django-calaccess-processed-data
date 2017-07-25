@@ -27,13 +27,16 @@ class OCDElectionManager(models.Manager):
         )
 
         # And add the identifier so we can find it in the future
-        if calaccess_election_id:
-            obj.identifiers.create(scheme='calaccess_election_id', identifier=calaccess_election_id)
+        if election_id:
+            obj.identifiers.create(scheme='calaccess_election_id', identifier=election_id)
 
         # Add the election type so we can pull it out later if we want it.
         if election_type:
             obj.extras['calaccess_election_type'] = election_type
             obj.save()
+
+        # Pass it back
+        return obj
 
 
 

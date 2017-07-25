@@ -16,7 +16,7 @@ from opencivicdata.elections.models import (
     Candidacy,
     CandidateContest,
 )
-from calaccess_processed.models import OCDElectionProxy
+from calaccess_processed.models import OCDElectionProxy, OCDElectionProxy
 from calaccess_processed.management.commands import CalAccessCommand
 
 
