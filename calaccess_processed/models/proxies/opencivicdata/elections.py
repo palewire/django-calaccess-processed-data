@@ -5,9 +5,10 @@ Proxy models for augmenting our source data tables with methods useful for proce
 """
 from __future__ import unicode_literals
 from django.db import models
-from opencivicdata.elections.models import Election
-from .organizations import OCDOrganizationProxy
 from .divisions import OCDDivisionProxy
+from django.utils.text import get_text_list
+from .organizations import OCDOrganizationProxy
+from opencivicdata.elections.models import Election
 
 
 class OCDElectionManager(models.Manager):
@@ -90,3 +91,18 @@ class OCDElectionProxy(Election):
         Returns the CAL-ACCESS election type if it's been included with this record.
         """
         return self.extras.get('calaccess_election_type', None)
+
+    @property
+    def identifier_list(self):
+        """
+        Returns a prettified list of OCD identifiers.
+        """
+        template = "{0.scheme}: {0.identifier}"
+        return get_text_list([template.format(i) for i in self.identifiers.all()])
+
+    @property
+    def source_list(self):
+        """
+        Returns a prettified list of OCD sources.
+        """
+        return get_text_list(list(self.sources.all()))
