@@ -7,7 +7,9 @@ from django.apps import apps
 from django.conf import settings
 from django.utils.timezone import now
 from django.core.management import call_command
+from calaccess_processed.models import OCDDivisionProxy
 from calaccess_processed.management.commands import CalAccessCommand
+from opencivicdata.core.management.commands.loaddivisions import load_divisions
 
 
 class Command(CalAccessCommand):
@@ -40,6 +42,14 @@ class Command(CalAccessCommand):
         """
         Load all of the processed models.
         """
+        # Verify that OCD divisions have been loaded
+        try:
+            OCDDivisionProxy.objects.california()
+        except OCDDivisionProxy.DoesNotExist:
+            if self.verbosity > 2:
+                self.log(' CA state division missing. Loading all U.S. divisions')
+            load_divisions('us')
+
         options = dict(
             verbosity=self.verbosity,
             no_color=self.no_color,

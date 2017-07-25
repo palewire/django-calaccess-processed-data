@@ -17,10 +17,10 @@ from opencivicdata.elections.models import (
     CandidateContest,
 )
 from calaccess_processed.models import OCDElectionProxy
-from calaccess_processed.management.commands import LoadOCDModelsCommand
+from calaccess_processed.management.commands import CalAccessCommand
 
 
-class Command(LoadOCDModelsCommand):
+class Command(CalAccessCommand):
     """
     Load incumbent candidate data scraped from the CAL-ACCESS website into OCD models.
     """

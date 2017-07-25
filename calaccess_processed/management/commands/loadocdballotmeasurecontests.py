@@ -7,12 +7,12 @@ import re
 from django.utils import timezone
 from calaccess_processed.models import OCDElectionProxy
 from opencivicdata.elections.models import OCDDivisionProxy
-from calaccess_processed.management.commands import LoadOCDModelsCommand
+from calaccess_processed.management.commands import CalAccessCommand
 from opencivicdata.elections.models import Election, BallotMeasureContest
 from calaccess_scraped.models import PropositionElection as ScrapedPropositionElection
 
 
-class Command(LoadOCDModelsCommand):
+class Command(CalAccessCommand):
     """
     Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website.
     """

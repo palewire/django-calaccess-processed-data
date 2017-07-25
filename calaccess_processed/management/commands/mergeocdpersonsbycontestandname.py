@@ -4,11 +4,12 @@
 Merge duplicate Candidacies within the same CandidateContest.
 """
 from django.db.models import Count
-from calaccess_processed.management.commands import LoadOCDModelsCommand
+from calaccess.models import OCDPersonProxy
 from opencivicdata.elections.models import CandidateContest
+from calaccess_processed.management.commands import CalAccessCommand
 
 
-class Command(LoadOCDModelsCommand):
+class Command(CalAccessCommand):
     """
     Merge duplicate Candidacies within the same CandidateContest.
     """
@@ -139,7 +140,7 @@ class Command(LoadOCDModelsCommand):
                 for c in group_q.all():
                     self.log(' - {}'.format(c.person))
             # merge
-            self.merge_persons([c.person for c in group_q.all()])
+            OCDPersonProxy.objects.merge([c.person for c in group_q.all()])
         # handle multiple parties in the group
         elif group_q.distinct('party').count() > 1:
             # for each group with the same party in the group
@@ -147,7 +148,7 @@ class Command(LoadOCDModelsCommand):
                 # if there's only one filer_id
                 if self.get_group_filer_id_count(party_group_q) <= 1:
                     # merge the group
-                    self.merge_persons(
+                    OCDPersonProxy.objects.merge(
                         [c.person for c in party_group_q.all()]
                     )
         return
