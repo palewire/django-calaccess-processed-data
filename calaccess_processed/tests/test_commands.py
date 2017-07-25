@@ -53,12 +53,12 @@ class ProcessedDataTest(TestCase):
     """
     fixtures = [
         'divisions.json',
-        'calaccess_scraped/fixtures/candidate_election.json',
-        'calaccess_scraped/fixtures/candidate.json',
-        'calaccess_scraped/fixtures/incumbent_election.json',
-        'calaccess_scraped/fixtures/incumbent.json',
-        'calaccess_scraped/fixtures/proposition_election.json',
-        'calaccess_scraped/fixtures/proposition.json',
+        'candidate_election.json',
+        'candidate.json',
+        'incumbent_election.json',
+        'incumbent.json',
+        'proposition_election.json',
+        'proposition.json',
     ]
 
     @classmethod
