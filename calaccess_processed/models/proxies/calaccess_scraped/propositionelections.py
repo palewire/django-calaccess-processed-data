@@ -5,7 +5,9 @@ Proxy models for augmenting our source data tables with methods useful for proce
 """
 from __future__ import unicode_literals
 import re
+from datetime import date
 from django.utils import timezone
+from ..opencivicdata.elections import OCDElectionProxy
 from calaccess_scraped.models import PropositionElection
 
 
@@ -85,3 +87,42 @@ class ScrapedPropositionElectionProxy(PropositionElection):
 
         # Convert it to a datetime object
         return timezone.datetime.strptime(match.groupdict()['date'], '%B %d, %Y').date()
+
+    def get_ocd_election(self):
+        """
+        Returns an OCD Election object for this record, if it exists.
+        """
+        # If this is the 2008 recall or primary we have a hacked out edge case solution
+        if self.name == 'JUNE 3, 2008 RECALL':
+            return OCDElectionProxy.objects.get(name__icontains="RECALL", date=date(2008, 6, 3))
+        elif self.name == 'JUNE 3, 2008 PRIMARY':
+            return OCDElectionProxy.objects.get(name__icontains="PRIMARY", date=date(2008, 6, 3))
+
+        # Otherwise proceed by trying to get the record via its date
+        print self.name
+        print self.parsed_date
+        return OCDElectionProxy.objects.get(date=self.parsed_date)
+
+
+
+
+        #
+        #
+        #
+        # # If this is the 2008 primary, we have a hacked out edge case solution
+        # if self.name == '2008 PRIMARY':
+        #     return Election.objects.get(name=self.name, date=date(2008, 6, 3))
+        #
+        # # Otherwise proceed by trying to get the record via its scraped id
+        # try:
+        #     return Election.objects.get(
+        #         identifiers__scheme='calaccess_election_id',
+        #         identifiers__identifier=self.scraped_id,
+        #     )
+        # except Election.DoesNotExist:
+        #     # If that doesn't exist, try getting it by date
+        #     if self.parsed_date:
+        #         return Election.objects.get(date=self.parsed_date)
+        #     else:
+        #         # If that fails raise the DoesNotExist error
+        #         raise

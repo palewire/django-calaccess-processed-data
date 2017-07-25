@@ -55,7 +55,7 @@ class Command(CalAccessCommand):
         """
         # Try getting an existing Election with the same date
         try:
-            ocd_election = OCDElectionProxy.objects.get(date=scraped_election.parsed_date)
+            ocd_election = scraped_election.get_ocd_election()
         except OCDElectionProxy.DoesNotExist:
             # or make a new one
             ocd_election = OCDElectionProxy.objects.create_from_calaccess(

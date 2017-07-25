@@ -8,7 +8,7 @@ import re
 from datetime import date
 from django.utils import timezone
 from calaccess_processed import special_elections
-from opencivicdata.elections.models import Election
+from ..opencivicdata.elections import OCDElectionProxy
 from calaccess_scraped.models import CandidateElection, IncumbentElection
 
 
@@ -61,18 +61,18 @@ class ScrapedCandidateElectionProxy(CandidateElection):
         """
         # If this is the 2008, we have a hacked out edge case solution
         if self.name == '2008 PRIMARY':
-            return Election.objects.get(name=self.name, date=date(2008, 6, 3))
+            return OCDElectionProxy.objects.get(name=self.name, date=date(2008, 6, 3))
 
         # Otherwise proceed by trying to get the record via its scraped id
         try:
-            return Election.objects.get(
+            return OCDElectionProxy.objects.get(
                 identifiers__scheme='calaccess_election_id',
                 identifiers__identifier=self.scraped_id,
             )
-        except Election.DoesNotExist:
+        except OCDElectionProxy.DoesNotExist:
             # If that doesn't exist, try getting it by date
             if self.parsed_date:
-                return Election.objects.get(date=self.parsed_date)
+                return OCDElectionProxy.objects.get(date=self.parsed_date)
             else:
                 # If that fails raise the DoesNotExist error
                 raise
