@@ -6,10 +6,9 @@ Load OCD BallotMeasureContest and related models with data scraped from the CAL-
 import re
 from django.utils import timezone
 from calaccess_processed.models import OCDElectionProxy
-from opencivicdata.elections.models import OCDDivisionProxy
+from calaccess_scraped.models import PropositionElection
 from calaccess_processed.management.commands import CalAccessCommand
-from opencivicdata.elections.models import Election, BallotMeasureContest
-from calaccess_scraped.models import PropositionElection as ScrapedPropositionElection
+from opencivicdata.elections.models import OCDDivisionProxy, BallotMeasureContest
 
 
 class Command(CalAccessCommand):
@@ -36,7 +35,7 @@ class Command(CalAccessCommand):
 
         Return QuerySet.
         """
-        return ScrapedPropositionElection.objects.all()
+        return PropositionElection.objects.all()
 
     def get_scraped_props(self, scraped_elec):
         """
@@ -49,7 +48,7 @@ class Command(CalAccessCommand):
 
     def get_or_create_election(self, scraped_elec):
         """
-        Get or create an OCD Election object using the ScrapedPropositionElection.
+        Get or create an OCD Election object using the scraped PropositionElection.
 
         Returns a tuple (Election object, created), where created is a boolean
         specifying whether a Election was created.
@@ -73,8 +72,8 @@ class Command(CalAccessCommand):
 
         # Try getting an existing Election with the same date
         try:
-            elec = Election.objects.get(date=date_obj)
-        except Election.DoesNotExist:
+            elec = OCDElectionProxy.objects.get(date=date_obj)
+        except OCDElectionProxy.DoesNotExist:
             # or make a new one
             elec = OCDElectionProxy.objects.create_with_name_and_date(name, date_obj)
             created = True
