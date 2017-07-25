@@ -14,6 +14,7 @@ class Command(CalAccessCommand):
     Load OCD Party model from LOOKUP_CODES_CD table in raw CAL-ACCESS data.
     """
     help = 'Load OCD Party model from LOOKUP_CODES_CD table in raw CAL-ACCESS data'
+    first_letters_regex = re.compile(r'([A-z])\w+')
 
     def handle(self, *args, **options):
         """
@@ -30,40 +31,34 @@ class Command(CalAccessCommand):
         """
         # Pull all of the raw LookupCodes in the 16000 code_type series
         # exclude the title entry of "PARTY CODE" with the identical number
-        q = LookupCodesCd.objects.filter(code_type=16000).exclude(code_id=16000)
+        object_list = LookupCodesCd.objects.filter(code_type=16000).exclude(code_id=16000)
 
-        for lc in q:
-            # treat INDEPENDENT and NON-PARTISAN as NO PARTY PREFERENCE
-            if lc.code_desc in ['INDEPENDENT', 'NON-PARTISAN']:
+        # Loop through them all
+        for obj in object_list:
+            # Pull out the party name ...
+            # ... but treat INDEPENDENT and NON-PARTISAN as NO PARTY PREFERENCE
+            if obj.code_desc in ['INDEPENDENT', 'NON-PARTISAN']:
                 party_name = 'NO PARTY PREFERENCE'
             else:
-                party_name = lc.code_desc
+                party_name = obj.code_desc
 
-            party, created = Organization.objects.get_or_create(
-                name=party_name,
-                classification='party',
-            )
+            # Get a party object from the OCD Organization model
+            party, created = Organization.objects.get_or_create(name=party_name, classification='party')
+
+            # If it's new...
             if created:
+                # Log it out
                 if self.verbosity > 2:
-                    self.log(" Created %s" % party)
-                # save abbreviation as other party name
+                    self.log(" Created %s party" % party)
+                # Save abbreviation as an alternative party name
                 # combine the first char of each word (except AND)
-                abbreviation = ''.join(
-                    re.findall(
-                        r'([A-z])\w+',
-                        lc.code_desc.upper().replace(' AND ', '')
-                    )
-                )
-                party.other_names.get_or_create(
-                    name=abbreviation,
-                    note='abbreviation'
-                )
+                trimmed_party = party_name.upper().replace(' AND ', '')
+                first_letters = self.first_letters_regex.findall(trimmed_party)
+                abbreviation = ''.join(first_letters)
+                party.other_names.get_or_create(name=abbreviation, note='abbreviation')
 
             # keep the code_id too
             p_id, created = party.identifiers.get_or_create(
                 scheme='calaccess_lookup_code_id',
-                identifier=lc.code_id,
+                identifier=obj.code_id,
             )
-            if created:
-                if self.verbosity > 2:
-                    self.log(" {0.identifier} indentifies {0.organization.name}".format(p_id))
