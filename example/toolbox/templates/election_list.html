@@ -21,9 +21,9 @@
                         {{ obj.date|date:"N j" }}
                     </a>
                 </td>
-                <td>{{ obj.election_type|lower|title }}</td>
-                <td>{{ obj.ballotmeasurecontests.count }}</td>
-                <td>{{ obj.candidatecontests.count }}</td>
+                <td style="width: 150px;">{{ obj.election_type|lower|title }}</td>
+                <td style="width: 150px;">{{ obj.ballotmeasurecontests.count }}</td>
+                <td style="width: 150px;">{{ obj.candidatecontests.count }}</td>
             </tr>
             {% endfor %}
         </table>

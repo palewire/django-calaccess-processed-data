@@ -8,7 +8,12 @@ from opencivicdata.core.models import Membership
 from calaccess_scraped.models import PropositionElection
 from opencivicdata.elections.models import RetentionContest
 from calaccess_processed.management.commands.loadocdballotmeasurecontests import Command
-from calaccess_processed.models import OCDPostProxy, ScrapedCandidateProxy, ScrapedIncumbentProxy
+from calaccess_processed.models import (
+    OCDPostProxy,
+    OCDPersonProxy,
+    ScrapedCandidateProxy,
+    ScrapedIncumbentProxy,
+)
 
 
 class Command(Command):
@@ -59,7 +64,10 @@ class Command(Command):
                 raise Exception("Unknown Incumbent in %s." % scraped_prop.name)
 
         # get or create person and post objects
-        person = incumbent.get_or_create_person(filer_id=incumbent.scraped_id)[0]
+        person = OCDPersonProxy.objects.get_or_create_from_calaccess(
+            incumbent.parsed_name,
+            candidate_filer_id=incumbent.scraped_id
+        )[0]
         post = OCDPostProxy.objects.get_or_create_by_name(incumbent.office_name)[0]
 
         # get or create membership object
