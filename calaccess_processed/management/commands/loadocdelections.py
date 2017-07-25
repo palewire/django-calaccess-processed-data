@@ -108,7 +108,6 @@ class Command(CalAccessCommand):
 
             call_command(
                 'archivecalaccessprocessedfile',
-                m._meta.app_label,
                 m._meta.object_name,
             )
             processed_data_file.refresh_from_db()
