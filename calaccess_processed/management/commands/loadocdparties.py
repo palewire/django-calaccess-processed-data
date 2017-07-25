@@ -15,18 +15,6 @@ class Command(CalAccessCommand):
     """
     help = 'Load OCD Party model from LOOKUP_CODES_CD table in raw CAL-ACCESS data'
 
-    def add_arguments(self, parser):
-        """
-        Adds custom arguments specific to this command.
-        """
-        parser.add_argument(
-            "--flush",
-            action="store_true",
-            dest="flush",
-            default=False,
-            help="Flush the database tables filled by this command."
-        )
-
     def handle(self, *args, **options):
         """
         Make it happen.
@@ -37,15 +25,6 @@ class Command(CalAccessCommand):
             self.flush()
         self.load()
         self.success("Done!")
-
-    def flush(self):
-        """
-        Flush the database tables filled by this command.
-        """
-        qs = Organization.objects.filter(classification='party')
-        if self.verbosity > 0:
-            self.log("Flushing {} Organization objects".format(qs.count()))
-        qs.delete()
 
     def load(self):
         """
