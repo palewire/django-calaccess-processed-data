@@ -30,13 +30,6 @@ class Command(CalAccessCommand):
             default=False,
             help="Force re-start (overrides auto-resume)."
         )
-        parser.add_argument(
-            "--no-scrape",
-            action="store_false",
-            dest="scrape",
-            default=True,
-            help="Skip scraping."
-        )
 
     def handle(self, *args, **options):
         """
@@ -45,7 +38,6 @@ class Command(CalAccessCommand):
         # Set options
         super(Command, self).handle(*args, **options)
         self.force_restart = options.get("restart")
-        self.scrape = options.get("scrape")
 
         # Get or create the logger record
         self.processed_version, created = self.get_or_create_processed_version()
@@ -67,21 +59,6 @@ class Command(CalAccessCommand):
             if self.force_restart:
                 self.processed_version.process_finish_datetime = None
             self.processed_version.save()
-
-        # Then scrape only if not skipping
-        # and either forcing restart or no models loaded yet
-        if (
-            self.scrape and (
-                self.force_restart or
-                self.processed_version.files.count() == 0
-            )
-        ):
-            call_command(
-                'scrapecalaccess',
-                verbosity=self.verbosity,
-                no_color=self.no_color,
-                force_flush=True,
-            )
 
         # then load
         self.load()

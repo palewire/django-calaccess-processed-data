@@ -8,6 +8,7 @@ import shutil
 import tempfile
 from django.apps import apps
 from django.core.files import File
+from django.core.management import CommandError
 from django.db import connection
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed.models.tracking import (
@@ -28,10 +29,6 @@ class Command(CalAccessCommand):
         """
         super(Command, self).add_arguments(parser)
         parser.add_argument(
-            'app_name',
-            help="Name of the app with the model"
-        )
-        parser.add_argument(
             'model_name',
             help="Name of the model to archive"
         )
@@ -41,7 +38,6 @@ class Command(CalAccessCommand):
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
-        self.app_name = options['app_name']
         self.model_name = options['model_name']
 
         # get the full path for archiving the csv
@@ -55,7 +51,7 @@ class Command(CalAccessCommand):
         )
 
         # get model
-        self.model = apps.get_model(self.app_name, self.model_name)
+        self.model = self.get_model()
 
         # and the db table name
         self.db_table = self.model._meta.db_table
@@ -97,3 +93,22 @@ class Command(CalAccessCommand):
         # Save it to the model
         self.processed_file.file_size = os.path.getsize(self.csv_path)
         self.processed_file.save()
+
+    def get_model(self):
+        """
+        Return the model with model_name, or None.
+        """
+        model_list = [
+            m for m in apps.get_models()
+            if m._meta.object_name == self.model_name
+        ]
+
+        if len(model_list) > 1:
+            raise CommandError("Mulitple models named: %s" % self.model_name)
+        else:
+            try:
+                model = model_list.pop()
+            except IndexError:
+                raise CommandError("No model named: %s" % self.model_name)
+
+        return model
