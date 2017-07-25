@@ -72,10 +72,10 @@ class Command(CalAccessCommand):
         # Handle an edge case with bad data that conflates
         # the Feb 2008 Primary with the Jun 2008 Primary
         if scraped_election.name == '2008 PRIMARY':
-            return self.create_election(
+            return OCDElectionProxy.objects.create_from_calaccess(
                 scraped_election.name,
                 date(2008, 6, 3),
-                scraped_id=scraped_election.scraped_id,
+                election_id=scraped_election.scraped_id,
                 election_type="PRIMARY",
             ), True
 

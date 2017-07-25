@@ -57,13 +57,13 @@ class Command(CalAccessCommand):
         call_command('loadocdparties', **options)
         self.duration()
 
+        call_command('loadocdcandidateelections', **options)
+        self.duration()
+
         call_command('loadocdballotmeasurecontests', **options)
         self.duration()
 
         call_command('loadocdretentioncontests', **options)
-        self.duration()
-
-        call_command('loadocdcandidateelections', **options)
         self.duration()
 
         call_command('loadocdcandidatecontests', **options)

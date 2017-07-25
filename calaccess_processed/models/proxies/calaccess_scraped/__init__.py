@@ -4,11 +4,15 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from .candidates import ScrapedCandidateProxy, ScrapedIncumbentProxy
-from .elections import ScrapedCandidateElectionProxy
+from .candidateelections import ScrapedCandidateElectionProxy
+from .propositions import ScrapedPropositionProxy
+from .propositionelections import ScrapedPropositionElectionProxy
 
 
 __all__ = (
     'ScrapedCandidateProxy',
     'ScrapedCandidateElectionProxy',
     'ScrapedIncumbentProxy',
+    'ScrapedPropositionProxy',
+    'ScrapedPropositionElectionProxy',
 )

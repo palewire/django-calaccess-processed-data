@@ -14,7 +14,7 @@ from calaccess_scraped.models import CandidateElection, IncumbentElection
 
 class ScrapedCandidateElectionProxy(CandidateElection):
     """
-    A proxy for the CandidateElection model in calaccsess_scraped.
+    A proxy for the CandidateElection model in calaccess_scraped.
     """
     class Meta:
         """

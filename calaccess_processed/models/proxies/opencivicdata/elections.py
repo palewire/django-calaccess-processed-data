@@ -58,6 +58,24 @@ class OCDElectionProxy(Election):
         """
         return 'PRIMARY' in self.name.upper()
 
+    def is_general(self):
+        """
+        Returns whether or now the election was a general election.
+        """
+        return 'GENERAL' in self.name.upper()
+
+    def is_special(self):
+        """
+        Returns whether or now the election was a special election.
+        """
+        return 'SPECIAL' in self.name.upper()
+
+    def is_recall(self):
+        """
+        Returns whether or now the election was a recall.
+        """
+        return 'RECALL' in self.name.upper()
+
     def is_partisan_primary(self):
         """
         Returns whether or not this was a priamry election held in the partisan era prior to 2012.

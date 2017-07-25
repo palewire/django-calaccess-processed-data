@@ -7,7 +7,9 @@ from .calaccess_raw import RawFilerToFilerTypeCdManager
 from .calaccess_scraped import (
     ScrapedCandidateProxy,
     ScrapedIncumbentProxy,
-    ScrapedCandidateElectionProxy
+    ScrapedCandidateElectionProxy,
+    ScrapedPropositionProxy,
+    ScrapedPropositionElectionProxy
 )
 from .opencivicdata import (
     OCDCandidacyProxy,
@@ -26,6 +28,8 @@ __all__ = (
     'ScrapedCandidateProxy',
     'ScrapedCandidateElectionProxy',
     'ScrapedIncumbentProxy',
+    'ScrapedPropositionProxy',
+    'ScrapedPropositionElectionProxy',
     'OCDCandidacyProxy',
     'OCDDivisionProxy',
     'OCDElectionProxy',

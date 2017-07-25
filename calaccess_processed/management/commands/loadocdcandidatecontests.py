@@ -5,7 +5,7 @@ Load CandidateContest and related models with data scraped from the CAL-ACCESS w
 """
 from calaccess_processed.models import (
     OCDRunoffProxy,
-    OCDCandidacyProxy
+    OCDCandidacyProxy,
     ScrapedCandidateProxy,
     ScrapedCandidateElectionProxy
 )

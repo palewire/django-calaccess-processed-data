@@ -5,7 +5,7 @@ Load OCD BallotMeasureContest and related models with data scraped from the CAL-
 """
 import re
 from django.utils import timezone
-from calaccess_scraped.models import PropositionElection
+from calaccess_processed.models import ScrapedPropositionElectionProxy, ScrapedPropositionProxy
 from opencivicdata.elections.models import BallotMeasureContest
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed.models import OCDElectionProxy, OCDDivisionProxy
@@ -33,7 +33,7 @@ class Command(CalAccessCommand):
 
         Return QuerySet.
         """
-        return PropositionElection.objects.all()
+        return ScrapedPropositionElectionProxy.objects.all()
 
     def get_scraped_props(self, scraped_elec):
         """
@@ -42,52 +42,38 @@ class Command(CalAccessCommand):
         Return QuerySet.
         """
         # Recalls are being excluded so they can be loaded in a separate command.
-        return scraped_elec.propositions.exclude(name__icontains='RECALL')
+        return ScrapedPropositionProxy.objects.filter(
+            election=scraped_elec
+        ).exclude(name__icontains='RECALL')
 
-    def get_or_create_election(self, scraped_elec):
+    def get_or_create_election(self, scraped_election):
         """
         Get or create an OCD Election object using the scraped PropositionElection.
 
         Returns a tuple (Election object, created), where created is a boolean
         specifying whether a Election was created.
         """
-        # Extract the name and date from the election name
-        prop_name_pattern = r'^(?P<date>^[A-Z]+\s\d{1,2},\s\d{4})\s(?P<name>.+)$'
-        match = re.match(prop_name_pattern, scraped_elec.name)
-
-        # Convert it to a datetime object
-        date_obj = timezone.datetime.strptime(
-            match.groupdict()['date'],
-            '%B %d, %Y',
-        ).date()
-
-        # Format that as a string
-        name = '{0} {1}'.format(date_obj.year, match.groupdict()['name']).upper()
-
-        # Differentiate between two '2008 PRIMARY' ballot measure elections
-        if name == '2008 PRIMARY' and date_obj.month == 2:
-            name = "2008 PRESIDENTIAL PRIMARY AND SPECIAL ELECTIONS"
-
         # Try getting an existing Election with the same date
         try:
-            elec = OCDElectionProxy.objects.get(date=date_obj)
+            ocd_election = OCDElectionProxy.objects.get(date=scraped_election.parsed_date)
         except OCDElectionProxy.DoesNotExist:
             # or make a new one
-            elec = OCDElectionProxy.objects.create_from_calaccess(name, date_obj)
+            ocd_election = OCDElectionProxy.objects.create_from_calaccess(
+                scraped_election.parsed_name,
+                scraped_election.parsed_date,
+            )
             created = True
         else:
             created = False
             # If election already exists and is named 'SPECIAL' or 'RECALL' ...
-            if 'SPECIAL' in elec.name.upper() or 'RECALL' in elec.name.upper():
+            if ocd_election.is_special() or ocd_election.is_recall():
                 # ... and the matched election's name includes either 'GENERAL' or 'PRIMARY'...
-                if (
-                    re.match(r'^\d{4} GENERAL$', name) or
-                    re.match(r'^\d{4} PRIMARY$', name)
-                ):
+                if scraped_election.is_general() or scraped_election.is_primary():
                     # Update the name, since it could change on the site
-                    elec.name = name
-                    elec.save()
-        return (elec, created)
+                    ocd_election.name = scraped_election.parsed_name
+                    ocd_election.save()
+        # Pass it back out
+        return ocd_election, created
 
     def create_contest(self, scraped_prop, ocd_elec):
         """
@@ -95,23 +81,12 @@ class Command(CalAccessCommand):
 
         Return a BallotMeasureContest object.
         """
-        # Set the classification
-        if 'REFERENDUM' in scraped_prop.name:
-            classification = 'referendum'
-        elif (
-            'INITIATIVE' in scraped_prop.name or
-            'INITATIVE' in scraped_prop.name
-        ):
-            classification = 'initiative'
-        else:
-            classification = 'ballot measure'
-
         # Create the object
         return BallotMeasureContest.objects.create(
             election=ocd_elec,
             division=OCDDivisionProxy.objects.california(),
             name=scraped_prop.name,
-            classification=classification,
+            classification=scraped_prop.classification,
         )
 
     def load(self):
