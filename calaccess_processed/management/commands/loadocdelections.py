@@ -50,14 +50,31 @@ class Command(CalAccessCommand):
                 self.log(' CA state division missing. Loading all U.S. divisions')
             load_divisions('us')
 
-        options = dict(
-            verbosity=self.verbosity,
-            no_color=self.no_color,
-        )
+        # Set options for commands
+        options = dict(verbosity=self.verbosity, no_color=self.no_color)
+
+        #
+        # Load parties
+        #
+
         call_command('loadocdparties', **options)
         self.duration()
 
+        #
+        # Load elections
+        #
+
         call_command('loadocdcandidateelections', **options)
+        self.duration()
+
+        call_command('loadocdballotmeasureelections', **options)
+        self.duration()
+
+        #
+        # Load contests and candidates
+        #
+
+        call_command('loadocdcandidatecontests', **options)
         self.duration()
 
         call_command('loadocdballotmeasurecontests', **options)
@@ -66,20 +83,21 @@ class Command(CalAccessCommand):
         call_command('loadocdretentioncontests', **options)
         self.duration()
 
-        call_command('loadocdcandidatecontests', **options)
-        self.duration()
-
-        call_command('mergeocdpersonsbyfilerid', **options)
-        self.duration()
-
         call_command('loadocdcandidaciesfrom501s', **options)
-        self.duration()
-
-        call_command('mergeocdpersonsbycontestandname', **options)
         self.duration()
 
         # call_command('loadocdincumbentofficeholders', **options)
         # self.duration()
+
+        #
+        # Merge duplicates
+        #
+
+        call_command('mergeocdpersonsbyfilerid', **options)
+        self.duration()
+
+        call_command('mergeocdpersonsbycontestandname', **options)
+        self.duration()
 
     def archive(self):
         """
