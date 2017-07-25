@@ -24,8 +24,6 @@ class Command(CalAccessCommand):
         """
         super(Command, self).handle(*args, **options)
         self.header(self.header_log)
-        if options['flush']:
-            self.flush()
         self.load()
         self.success("Done!")
 
