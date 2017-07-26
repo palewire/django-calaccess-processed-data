@@ -70,12 +70,16 @@ class Command(CalAccessCommand):
                         ))
                     ocd_election.name = scraped_election.name
                     ocd_election.extras['calaccess_election_type'] = scraped_election.parsed_name['type']
-                    ocd_election.identifiers.get_or_create(
-                        scheme='calaccess_election_id',
-                        identifier=scraped_election.scraped_id
-                    )
                     ocd_election.save()
+            # If the match has a different scraped_id lets add that too
+            ocd_election.identifiers.get_or_create(
+                scheme='calaccess_election_id',
+                identifier=scraped_election.scraped_id
+            )
+            # Then we're good to pass back the match
             return ocd_election, False
+
+        # If we got this far, we are making a new election ...
 
         # Parse out data from the scraped object
         parsed_name = scraped_election.parsed_name
