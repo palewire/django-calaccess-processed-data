@@ -22,14 +22,9 @@ class Command(CalAccessCommand):
         """
         Make it happen.
         """
-        # Start it up.
         super(Command, self).handle(*args, **options)
         self.header("Load Candidate Contests")
-
-        # Load everything we can from the scrape
         self.load()
-
-        # connect runoffs to their previously undecided contests
         self.success("Done!")
 
     def load(self):
