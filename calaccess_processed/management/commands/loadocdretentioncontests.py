@@ -5,39 +5,32 @@ Load OCD BallotMeasureContest and related models with data scraped from the CAL-
 """
 import re
 from opencivicdata.core.models import Membership
-from calaccess_scraped.models import PropositionElection
 from opencivicdata.elections.models import RetentionContest
-from calaccess_processed.management.commands.loadocdballotmeasurecontests import Command
+from opencivicdata.elections.models import BallotMeasureContest
+from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed.models import (
     OCDPostProxy,
     OCDPersonProxy,
     ScrapedCandidateProxy,
     ScrapedIncumbentProxy,
+    ScrapedPropositionProxy
 )
 
 
-class Command(Command):
+class Command(CalAccessCommand):
     """
     Load OCD RetentionContest and related models with data scraped from the CAL-ACCESS website.
     """
     help = 'Load OCD RetentionContest and related models with data scraped from the CAL-ACCESS website.'
-    header_log = 'Loading Retention Contests'
 
-    def get_scraped_elecs(self):
+    def handle(self, *args, **options):
         """
-        Get the scraped elections with propositions to load.
-
-        Return QuerySet.
+        Make it happen.
         """
-        return PropositionElection.objects.filter(propositions__name__icontains='RECALL')
-
-    def get_scraped_props(self, scraped_elec):
-        """
-        Get the scraped propositions within the scraped election to load.
-
-        Return QuerySet.
-        """
-        return scraped_elec.propositions.filter(name__icontains='RECALL')
+        super(Command, self).handle(*args, **options)
+        self.header('Loading Retention Contests')
+        self.load()
+        self.success("Done!")
 
     def create_contest(self, scraped_prop, ocd_elec):
         """
@@ -92,3 +85,49 @@ class Command(Command):
             name=scraped_prop.name,
             membership=membership,
         )
+
+    def load(self):
+        """
+        Load OCD ballot measure-related models with data scraped from CAL-ACCESS website.
+        """
+        object_list = ScrapedPropositionProxy.objects.filter(name__icontains='RECALL')
+        for scraped_prop in object_list:
+            ocd_election = scraped_prop.election_proxy.get_ocd_election()
+            try:
+                # Try getting the contest using scraped_id
+                ocd_contest = ocd_election.ballotmeasurecontests.get(
+                    identifiers__scheme='calaccess_measure_id',
+                    identifiers__identifier=scraped_prop.scraped_id,
+                )
+            except BallotMeasureContest.DoesNotExist:
+                # If not there, create one
+                ocd_contest = self.create_contest(scraped_prop, ocd_election)
+                # Add the options
+                ocd_contest.options.create(text='yes')
+                ocd_contest.options.create(text='no')
+                # Add the identifiers
+                ocd_contest.identifiers.create(
+                    scheme='calaccess_measure_id',
+                    identifier=scraped_prop.scraped_id,
+                )
+                if self.verbosity > 2:
+                    self.log(
+                        'Created new {0}: {1}'.format(
+                            ocd_contest._meta.object_name,
+                            ocd_contest,
+                        )
+                    )
+            else:
+                # If the contest already exists, make sure the name is up-to-date
+                # because they could change on subsequent scrapes of the SoS website
+                if ocd_contest.name != scraped_prop.name:
+                    ocd_contest.name = scraped_prop.name
+                    ocd_contest.save()
+
+            # Update or create the Contest source
+            ocd_contest.sources.update_or_create(
+                url=scraped_prop.url,
+                note='Last scraped on {dt:%Y-%m-%d}'.format(
+                    dt=scraped_prop.last_modified,
+                )
+            )

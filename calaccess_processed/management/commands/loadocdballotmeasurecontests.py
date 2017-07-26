@@ -13,14 +13,13 @@ class Command(CalAccessCommand):
     Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website.
     """
     help = 'Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website'
-    header_log = 'Loading Ballot Measure Contests'
 
     def handle(self, *args, **options):
         """
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
-        self.header(self.header_log)
+        self.header('Loading Ballot Measure Contests')
         self.load()
         self.success("Done!")
 
