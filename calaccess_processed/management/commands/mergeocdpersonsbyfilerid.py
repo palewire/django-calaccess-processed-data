@@ -4,7 +4,7 @@
 Merge Persons that share the same CAL-ACCESS filer_id.
 """
 from django.db.models import Count
-from calaccess.models import OCDPersonProxy
+from calaccess_processed.models import OCDPersonProxy
 from calaccess_processed.management.commands import CalAccessCommand
 from opencivicdata.core.models import Person, PersonIdentifier
 

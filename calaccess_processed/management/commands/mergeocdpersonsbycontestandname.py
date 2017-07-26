@@ -4,7 +4,7 @@
 Merge duplicate Candidacies within the same CandidateContest.
 """
 from django.db.models import Count
-from calaccess.models import OCDPersonProxy
+from calaccess_processed.models import OCDPersonProxy
 from opencivicdata.elections.models import CandidateContest
 from calaccess_processed.management.commands import CalAccessCommand
 
