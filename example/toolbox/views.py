@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from collections import defaultdict
-from calaccess_processed.models import OCDElectionProxy
+from calaccess_processed.models import OCDElectionProxy, OCDCandidacyProxy
+from opencivicdata.elections.models import CandidateContest
 
 
 
@@ -19,4 +20,12 @@ def election_detail(request, id):
     obj = OCDElectionProxy.objects.get(id=id)
     context = dict(object=obj)
     template = "election_detail.html"
+    return render(request, template, context)
+
+
+def candidatecontest_detail(request, id):
+    obj = CandidateContest.objects.get(id=id)
+    candidate_list = OCDCandidacyProxy.objects.filter(contest=obj)
+    context = dict(object=obj, candidate_list=candidate_list)
+    template = "candidatecontest_detail.html"
     return render(request, template, context)

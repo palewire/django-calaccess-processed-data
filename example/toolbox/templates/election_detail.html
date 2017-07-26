@@ -15,20 +15,33 @@
         </table>
     {% endif %}
 
-
     {% if object.candidatecontests.count %}
         <h3>Candidate contests ({{ object.candidatecontests.count }})</h3>
         <table class="table table-bordered">
             <tr>
                 <th>Name</th>
                 <th>Party</th>
+                <th>Posts</th>
                 <th>Candidates</th>
+                <th>Sources</th>
             </tr>
             {% for obj in object.candidatecontests.all|dictsort:"name" %}
             <tr>
-                <td>{{ obj.name }}</td>
+                <td>
+                    <a href="{% url 'candidatecontest_detail' obj.id %}">
+                        {{ obj.name }}
+                    </a>
+                </td>
                 <td>{{ obj.party }}</td>
+                <td>{{ obj.posts.count }}</td>
                 <td>{{ obj.candidacies.count }}</td>
+                <td class="small">
+                    <ul>
+                        {% for obj in obj.sources.all %}
+                            <li>{{ obj.url|urlize }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
             </tr>
             {% endfor %}
         </table>

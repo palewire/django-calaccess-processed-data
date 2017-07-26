@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>{{ object }}</h1>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>Party</th>
+            <td>{{ object.party }}</td>
+        </tr>
+        <tr>
+            <th>Posts</th>
+            <td>{% for obj in object.posts.all %}{{ obj }}{% if not forloop.last %},{% endif %}{% endfor %}
+        </tr>
+        <tr>
+            <th>Sources</th>
+            <td>
+                <ul>
+                    {% for obj in object.sources.all %}
+                        <li>{{ obj.url|urlize }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <h3>Candidacies ({{ candidate_list.count }})</h3>
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Sort name</th>
+            <th>Party</th>
+            <th>Incumbent</th>
+            <th>Status</th>
+            <th>Filer ID</th>
+            <th>Sources</th>
+        </tr>
+        {% for obj in candidate_list %}
+        <tr>
+            <td>{{ obj.person }}</td>
+            <td>{{ obj.person.sort_name }}</td>
+            <td>{{ obj.party }}</td>
+            <td>{{ obj.is_incumbent }}</td>
+            <td>{{ obj.registration_status }}</td>
+            <td>
+                <a href="http://cal-access.sos.ca.gov/Campaign/Candidates/Detail.aspx?id={{ obj.filer_id }}">
+                    {{ obj.filer_id }}
+                </a>
+            </td>
+            <td>
+                <ul>
+                    {% for obj in obj.sources.all %}
+                        <li>{{ obj.url|urlize }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

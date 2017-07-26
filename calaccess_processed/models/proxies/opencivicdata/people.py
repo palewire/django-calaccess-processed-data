@@ -232,3 +232,10 @@ class OCDPersonProxy(Person):
         # Otherwise add it.
         self.identifiers.create(**kwargs)
         return True
+
+    @property
+    def filer_id(self):
+        """
+        Returns the CAL-ACCESS filer_id linked with the object, if any.
+        """
+        return self.identifiers.get("calaccess_filer_id")
