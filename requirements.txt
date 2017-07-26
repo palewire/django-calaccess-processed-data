@@ -2,7 +2,7 @@
 django-calaccess-raw-data
 # Need to install from repo, which includes fixtures necessary for tests
 -e git+https://github.com/california-civic-data-coalition/django-calaccess-scraped-data.git@HEAD#egg=django-calaccess-scraped-data
-opencivicdata --no-use-wheel
+opencivicdata
 Django>=1.10
 hurry.filesize
 pytz
