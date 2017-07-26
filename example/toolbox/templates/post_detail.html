@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>{{ object }}</h1>
+
+    <h3>Contests ({{ object.contests.count }})</h3>
+
+    {% for obj in object.contests.all %}
+    <h5>{{ obj.contest.election }}</h5>
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Sort name</th>
+            <th>Party</th>
+            <th>Incumbent</th>
+            <th>Status</th>
+            <th>Sources</th>
+        </tr>
+        {% for candidate in obj.candidacies.all %}
+        <tr>
+            <td>{{ candidate.person }}</td>
+            <td>{{ candidate.person.sort_name }}</td>
+            <td>{{ candidate.party }}</td>
+            <td>{{ candidate.is_incumbent }}</td>
+            <td>{{ candidate.registration_status }}</td>
+            <td>
+                <ul>
+                    {% for source in candidate.sources.all %}
+                        <li>{{ source.url|urlize }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endfor %}
+
+
+{% endblock %}

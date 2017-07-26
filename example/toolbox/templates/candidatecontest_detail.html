@@ -11,7 +11,11 @@
         </tr>
         <tr>
             <th>Posts</th>
-            <td>{% for obj in object.posts.all %}{{ obj }}{% if not forloop.last %},{% endif %}{% endfor %}
+            <td>
+                {% for obj in object.posts.all %}
+                    <a href="{% url 'post_detail' obj.post_id %}">{{ obj.post }}</a>{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            </td>
         </tr>
         <tr>
             <th>Sources</th>
