@@ -27,10 +27,6 @@ class Command(CalAccessCommand):
             # Get or create an election record
             ocd_election, ocd_created = self.get_or_create_ocd_election(scraped_election)
 
-            # Log it out
-            if ocd_created and self.verbosity > 2:
-                self.log(' Created new Election: {}'.format(ocd_election))
-
             # Whether Election is new or not, update EventSource
             ocd_election.sources.update_or_create(
                 url=scraped_election.url,
@@ -46,24 +42,17 @@ class Command(CalAccessCommand):
         # Try getting an existing Election with the same date
         try:
             # Get the existing election
-            ocd_election = scraped_election.get_ocd_election()
+            return scraped_election.get_ocd_election(), False
         except OCDElectionProxy.DoesNotExist:
-            # or make a new one
-            return OCDElectionProxy.objects.create_from_calaccess(
+            # If we get this far, we are making a new election
+            ocd_election = OCDElectionProxy.objects.create_from_calaccess(
                 scraped_election.parsed_name,
                 scraped_election.parsed_date,
-            ), True
+            )
 
-        # Extra stuff after you've gotten a prexisting object to make sure it's up to date.
-        created = False
+            # Log it out
+            if self.verbosity > 1:
+                self.log(' Created new Election: {}'.format(ocd_election))
 
-        # # If election already exists and is named 'SPECIAL' or 'RECALL' ...
-        # if ocd_election.is_special() or ocd_election.is_recall():
-        #     # ... and the matched election's name includes either 'GENERAL' or 'PRIMARY'...
-        #     if scraped_election.is_general() or scraped_election.is_primary():
-        #         # Update the name, since it could change on the site
-        #         ocd_election.name = scraped_election.parsed_name
-        #         ocd_election.save()
-
-        # Pass it back out
-        return ocd_election, created
+            # Pass it back
+            return ocd_election, True
