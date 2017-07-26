@@ -62,10 +62,11 @@ class ProcessedDataTest(TestCase):
     ]
 
     @classmethod
-    def setUpTestData(cls):
+    def setUpClass(cls):
         """
         Load data for other tests.
         """
+        super(ProcessedDataTest, cls).setUpClass()
         # fake a raw data download
         download_dir = os.path.join(settings.CALACCESS_DATA_DIR, 'download')
         os.path.exists(download_dir) or os.mkdir(download_dir)
