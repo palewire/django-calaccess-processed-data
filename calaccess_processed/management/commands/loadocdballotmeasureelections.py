@@ -52,7 +52,7 @@ class Command(CalAccessCommand):
 
             # Log it out
             if self.verbosity > 1:
-                self.log(' Created new Election: {}'.format(ocd_election))
+                self.log(' Created Election: {}'.format(ocd_election))
 
             # Pass it back
             return ocd_election, True

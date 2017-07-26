@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from collections import defaultdict
-from calaccess_processed.models import OCDElectionProxy, OCDCandidacyProxy, OCDPostProxy
+from calaccess_processed.models import (
+    OCDElectionProxy,
+    OCDCandidacyProxy,
+    OCDPostProxy,
+    OCDPersonProxy
+)
 from opencivicdata.elections.models import CandidateContest
 from django.views.generic import DetailView
 
@@ -35,3 +40,8 @@ def candidatecontest_detail(request, id):
 class PostDetail(DetailView):
     model = OCDPostProxy
     template_name = "post_detail.html"
+
+
+class PersonDetail(DetailView):
+    model = OCDPersonProxy
+    template_name = "person_detail.html"

@@ -12,7 +12,6 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Sort name</th>
                 <th>Party</th>
                 <th>Incumbent</th>
                 <th>Status</th>
@@ -22,8 +21,11 @@
         <tbody>
         {% for candidate in obj.candidacies.all %}
         <tr>
-            <td>{{ candidate.person }}</td>
-            <td>{{ candidate.person.sort_name }}</td>
+            <td>
+                <a href="{% url 'person_detail' candidate.person.id %}">
+                    {{ candidate.person }}
+                </a>
+            </td>
             <td>{{ candidate.party }}</td>
             <td>{{ candidate.is_incumbent }}</td>
             <td>{{ candidate.registration_status }}</td>

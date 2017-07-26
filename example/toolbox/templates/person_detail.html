@@ -6,34 +6,25 @@
 
     <table class="table table-sm">
         <tr>
-            <th>Party</th>
-            <td>{{ object.party }}</td>
+            <th>Filer ID</th>
+            <td>{{ object.filer_id }}</td>
         </tr>
         <tr>
-            <th>Posts</th>
+            <th>Other names</th>
             <td>
-                {% for obj in object.posts.all %}
-                    <a href="{% url 'post_detail' obj.post_id %}">{{ obj.post }}</a>{% if not forloop.last %},{% endif %}
+                {% for obj in object.other_names.all %}
+                    {{ obj }}{% if not forloop.last %},{% endif %}
                 {% endfor %}
-            </td>
-        </tr>
-        <tr>
-            <th>Sources</th>
-            <td>
-                <ul>
-                    {% for obj in object.sources.all %}
-                        <li>{{ obj.url|urlize }}</li>
-                    {% endfor %}
-                </ul>
             </td>
         </tr>
     </table>
 
-    <h3>Candidacies ({{ candidate_list.count }})</h3>
+    <h3>Candidacies ({{ object.candidacies.count }})</h3>
     <table class="table table-sm">
         <thead>
             <tr>
-                <th>Name</th>
+                <th>Election</th>
+                <th>Post</th>
                 <th>Party</th>
                 <th>Incumbent</th>
                 <th>Status</th>
@@ -41,11 +32,16 @@
                 <th>Sources</th>
             </tr>
         </thead>
-        {% for obj in candidate_list %}
+        {% for obj in object.candidacies.all %}
         <tr>
             <td>
-                <a href="{% url 'person_detail' obj.person.id %}">
-                    {{ obj.person }}
+                <a href="{% url 'election_detail' obj.election.id %}">
+                    {{ obj.election }}
+                </a>
+            </td>
+            <td>
+                <a href="{% url 'post_detail' obj.post.id %}">
+                    {{ obj.post }}
                 </a>
             </td>
             <td>{{ obj.party }}</td>

@@ -238,4 +238,4 @@ class OCDPersonProxy(Person):
         """
         Returns the CAL-ACCESS filer_id linked with the object, if any.
         """
-        return self.identifiers.get("calaccess_filer_id")
+        return self.identifiers.get(scheme="calaccess_filer_id")

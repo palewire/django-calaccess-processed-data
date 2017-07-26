@@ -32,15 +32,6 @@ class Command(CalAccessCommand):
             scraped_candidate_list = ScrapedCandidateProxy.objects.filter(election=scraped_election)
             for scraped_candidate in scraped_candidate_list:
 
-                # Logging
-                if self.verbosity > 2:
-                    self.log(
-                        ' Processing scraped Candidate.id {} ({})'.format(
-                            scraped_candidate.id,
-                            scraped_candidate
-                        )
-                    )
-
                 # Get contest
                 contest, contest_created = scraped_candidate.get_or_create_contest()
 
@@ -51,8 +42,8 @@ class Command(CalAccessCommand):
                     candidate_status='qualified',
                     candidate_filer_id=scraped_candidate.scraped_id or None
                 )
-                if candidacy_created and self.verbosity > 2:
-                    msg = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'.format(candidacy)
+                if candidacy_created and self.verbosity > 1:
+                    msg = ' Created Candidacy: {0.candidate_name} in {0.post.label}'.format(candidacy)
                     self.log(msg)
 
                 #

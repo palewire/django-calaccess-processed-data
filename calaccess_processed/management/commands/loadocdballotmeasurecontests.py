@@ -63,7 +63,7 @@ class Command(CalAccessCommand):
                 )
                 if self.verbosity > 2:
                     self.log(
-                        'Created new {0}: {1}'.format(
+                        'Created {0}: {1}'.format(
                             ocd_contest._meta.object_name,
                             ocd_contest,
                         )
