@@ -2,7 +2,22 @@
 
 {% block content %}
 
-    <h1>{{ object }}</h1>
+    <h1>{{ object.label }}</h1>
+
+    <table class="table table-sm">
+        <tr>
+            <th>Role</th>
+            <td>{{ object.role }}</td>
+        </tr>
+        <tr>
+            <th>Organization</th>
+            <td>{{ object.organization }}</td>
+        </tr>
+        <tr>
+            <th>Division</th>
+            <td>{{ object.division }}</td>
+        </tr>
+    </table>
 
     <h3>Contests ({{ object.contests.count }})</h3>
 

@@ -2,12 +2,24 @@
 
 {% block content %}
 
-    <h1>{{ object }}</h1>
+    <h1>{{ object.name }}</h1>
 
     <table class="table table-sm">
         <tr>
             <th>Filer ID</th>
             <td>{{ object.filer_id }}</td>
+        </tr>
+        <tr>
+            <th>Sort name</th>
+            <td>{{ object.sort_name }}</td>
+        </tr>
+        <tr>
+            <th>Family name</th>
+            <td>{{ object.family_name }}</td>
+        </tr>
+        <tr>
+            <th>Given name</th>
+            <td>{{ object.given_name }}</td>
         </tr>
         <tr>
             <th>Other names</th>
@@ -41,7 +53,7 @@
             </td>
             <td>
                 <a href="{% url 'post_detail' obj.post.id %}">
-                    {{ obj.post }}
+                    {{ obj.post.label }}
                 </a>
             </td>
             <td>{{ obj.party }}</td>
