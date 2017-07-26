@@ -42,10 +42,6 @@ class Command(CalAccessCommand):
             # Get or create an election record
             ocd_election, ocd_created = self.get_or_create_ocd_election(scraped_election)
 
-            # Log it out
-            if ocd_created and self.verbosity > 2:
-                self.log(' Created new Election: {}'.format(ocd_election))
-
             # Whether Election is new or not, update EventSource
             ocd_election.sources.update_or_create(
                 url=scraped_election.url,
@@ -58,9 +54,28 @@ class Command(CalAccessCommand):
         """
         # try looking up the election using the scraped id
         try:
-            return scraped_election.get_ocd_election(), False
+            ocd_election = scraped_election.get_ocd_election()
         except Election.DoesNotExist:
             pass
+        else:
+            # If election does already exists and is named 'SPECIAL' or 'RECALL'...
+            if ocd_election.is_special() or ocd_election.is_recall():
+                # ... and the provided election_name includes either 'GENERAL' or 'PRIMARY'...
+                if scraped_election.is_primary() or scraped_election.is_general():
+                    # ... update the name
+                    if self.verbosity > 2:
+                        self.log(' Updated scraped name from {} to {}'.format(
+                            ocd_election.name,
+                            scraped_election.name
+                        ))
+                    ocd_election.name = scraped_election.name
+                    ocd_election.extras['calaccess_election_type'] = scraped_election.parsed_name['type']
+                    ocd_election.identifiers.get_or_create(
+                        scheme='calaccess_election_id',
+                        identifier=scraped_election.scraped_id
+                    )
+                    ocd_election.save()
+            return ocd_election, False
 
         # Parse out data from the scraped object
         parsed_name = scraped_election.parsed_name
@@ -88,13 +103,9 @@ class Command(CalAccessCommand):
             election_type=parsed_name['type'],
         )
 
-        # If election does already exists and is named 'SPECIAL' or 'RECALL'...
-        if ocd_election.is_special() or ocd_election.is_recall():
-            # ... and the provided election_name includes either 'GENERAL' or 'PRIMARY'...
-            if scraped_election.is_primary() or scraped_election.is_general():
-                # ... update the name.
-                ocd_election.name = scraped_election.name
-                ocd_election.save()
+        # Log it out
+        if self.verbosity > 1:
+            self.log(' Created new Election: {}'.format(ocd_election))
 
         # Finally pass it out.
         return ocd_election, True

@@ -57,13 +57,13 @@ class Command(CalAccessCommand):
         # Extra stuff after you've gotten a prexisting object to make sure it's up to date.
         created = False
 
-        # If election already exists and is named 'SPECIAL' or 'RECALL' ...
-        if ocd_election.is_special() or ocd_election.is_recall():
-            # ... and the matched election's name includes either 'GENERAL' or 'PRIMARY'...
-            if scraped_election.is_general() or scraped_election.is_primary():
-                # Update the name, since it could change on the site
-                ocd_election.name = scraped_election.parsed_name
-                ocd_election.save()
+        # # If election already exists and is named 'SPECIAL' or 'RECALL' ...
+        # if ocd_election.is_special() or ocd_election.is_recall():
+        #     # ... and the matched election's name includes either 'GENERAL' or 'PRIMARY'...
+        #     if scraped_election.is_general() or scraped_election.is_primary():
+        #         # Update the name, since it could change on the site
+        #         ocd_election.name = scraped_election.parsed_name
+        #         ocd_election.save()
 
         # Pass it back out
         return ocd_election, created
