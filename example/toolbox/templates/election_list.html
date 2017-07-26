@@ -28,9 +28,13 @@
                 </td>
                 <td style="width: 150px;">{{ obj.election_type|lower|title }}</td>
                 <td style="width: 150px;">{{ obj.ballotmeasurecontests.count }}</td>
-                <td style="width: 150px;">{{ obj.candidatecontests.count }}</td>
-                <td>{{ obj.identifier_list }}</td>
-                <td>
+                <td style="width: 200px;">{{ obj.candidatecontests.count }}</td>
+                <td style="width: 150px;">
+                    {% for obj in obj.identifiers.all %}
+                        {{ obj.identifier }}{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                </td>
+                <td style="width: 150px;">
                     {% for obj in obj.sources.all %}
                         <a href="{{ obj.url }}">{{ forloop.counter }}{% if not forloop.last %},{% endif %}</a>
                     {% endfor %}
