@@ -6,7 +6,7 @@
 
     {% if object.ballotmeasurecontests.count %}
         <h3>Ballot measure contests ({{ object.ballotmeasurecontests.count }})</h3>
-        <table class="table table-bordered">
+        <table class="table table-sm">
             {% for obj in object.ballotmeasurecontests.all|dictsort:"name" %}
             <tr>
                 <td>{{ obj.name }}</td>
@@ -17,14 +17,16 @@
 
     {% if object.candidatecontests.count %}
         <h3>Candidate contests ({{ object.candidatecontests.count }})</h3>
-        <table class="table table-bordered">
-            <tr>
-                <th>Name</th>
-                <th>Party</th>
-                <th>Posts</th>
-                <th>Candidates</th>
-                <th>Sources</th>
-            </tr>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Party</th>
+                    <th>Posts</th>
+                    <th>Candidates</th>
+                    <th>Sources</th>
+                </tr>
+            </thead>
             {% for obj in object.candidatecontests.all|dictsort:"name" %}
             <tr>
                 <td>
@@ -35,12 +37,10 @@
                 <td>{{ obj.party }}</td>
                 <td>{{ obj.posts.count }}</td>
                 <td>{{ obj.candidacies.count }}</td>
-                <td class="small">
-                    <ul>
-                        {% for obj in obj.sources.all %}
-                            <li>{{ obj.url|urlize }}</li>
-                        {% endfor %}
-                    </ul>
+                <td>
+                    {% for obj in obj.sources.all %}
+                        <a href="{{ obj.url }}">{{ forloop.counter }}{% if not forloop.last %},{% endif %}</a>
+                    {% endfor %}
                 </td>
             </tr>
             {% endfor %}

@@ -4,7 +4,7 @@
 
     <h1>{{ object }}</h1>
 
-    <table class="table table-bordered">
+    <table class="table table-sm">
         <tr>
             <th>Party</th>
             <td>{{ object.party }}</td>
@@ -30,16 +30,18 @@
     </table>
 
     <h3>Candidacies ({{ candidate_list.count }})</h3>
-    <table class="table table-bordered">
-        <tr>
-            <th>Name</th>
-            <th>Sort name</th>
-            <th>Party</th>
-            <th>Incumbent</th>
-            <th>Status</th>
-            <th>Filer ID</th>
-            <th>Sources</th>
-        </tr>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Sort name</th>
+                <th>Party</th>
+                <th>Incumbent</th>
+                <th>Status</th>
+                <th>Filer ID</th>
+                <th>Sources</th>
+            </tr>
+        </thead>
         {% for obj in candidate_list %}
         <tr>
             <td>{{ obj.person }}</td>
@@ -55,7 +57,7 @@
             <td>
                 <ul>
                     {% for obj in obj.sources.all %}
-                        <li>{{ obj.url|urlize }}</li>
+                        <a href="{{ obj.url }}">{{ forloop.counter }}{% if not forloop.last %},{% endif %}</a>
                     {% endfor %}
                 </ul>
             </td>

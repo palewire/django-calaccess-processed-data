@@ -7,15 +7,18 @@
     {% for year, year_list in group_list %}
         <h3>{{ year }} ({{ year_list|length }})</h3>
 
-        <table class="table table-bordered">
-            <tr>
-                <th>Date</th>
-                <th>Type</th>
-                <th>Ballot measures</th>
-                <th>Candidate contests</th>
-                <th>Identifiers</th>
-                <th>Sources</th>
-            </tr>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Ballot measures</th>
+                    <th>Candidate contests</th>
+                    <th>Identifiers</th>
+                    <th>Sources</th>
+                </tr>
+            </thead>
+            <tbody>
             {% for obj in year_list %}
             <tr>
                 <td style="width: 150px;">
@@ -27,15 +30,14 @@
                 <td style="width: 150px;">{{ obj.ballotmeasurecontests.count }}</td>
                 <td style="width: 150px;">{{ obj.candidatecontests.count }}</td>
                 <td>{{ obj.identifier_list }}</td>
-                <td class="small">
-                    <ul>
-                        {% for obj in obj.sources.all %}
-                            <li>{{ obj.url|urlize }}</li>
-                        {% endfor %}
-                    </ul>
+                <td>
+                    {% for obj in obj.sources.all %}
+                        <a href="{{ obj.url }}">{{ forloop.counter }}{% if not forloop.last %},{% endif %}</a>
+                    {% endfor %}
                 </td>
             </tr>
             {% endfor %}
+            </tbody>
         </table>
     {% endfor %}
 
