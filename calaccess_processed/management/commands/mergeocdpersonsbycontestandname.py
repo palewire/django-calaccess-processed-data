@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Merge duplicate Candidacies within the same CandidateContest.
+Find and merge OCD Person records that share a name and CandidateContest.
 """
 from django.db.models import Count
 from calaccess_processed.models import OCDPersonProxy
@@ -11,9 +11,9 @@ from calaccess_processed.management.commands import CalAccessCommand
 
 class Command(CalAccessCommand):
     """
-    Merge duplicate Candidacies within the same CandidateContest.
+    Find and merge OCD Person records that share a name and CandidateContest.
     """
-    help = 'Merge duplicate Candidacies within the same CandidateContest.'
+    help = 'Find and merge OCD Person records that share a name and CandidateContest'
 
     def handle(self, *args, **options):
         """

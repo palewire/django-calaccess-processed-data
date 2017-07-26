@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Load OCD Election models with data scraped from the CAL-ACCESS website.
+Load the OCD Election model with data from the ScrapedCandidateElection model.
 """
 from datetime import date
 from calaccess_processed.models import (
@@ -14,9 +14,9 @@ from opencivicdata.elections.models import Election
 
 class Command(CalAccessCommand):
     """
-    Load OCD Election models with data scraped from the CAL-ACCESS website.
+    Load the OCD Election model with data from the ScrapedCandidateElection model.
     """
-    help = 'Load OCD Election models with data scraped from the CAL-ACCESS website.'
+    help = 'Load the OCD Election model with data from the ScrapedCandidateElection model'
 
     def handle(self, *args, **options):
         """

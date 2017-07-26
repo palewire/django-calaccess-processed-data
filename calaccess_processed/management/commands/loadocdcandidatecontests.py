@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Load CandidateContest and related models with data scraped from the CAL-ACCESS website.
+Load the OCD CandidateContest and related models with scraped CAL-ACCESS data.
 """
 from calaccess_processed.models import (
     OCDRunoffProxy,
@@ -14,9 +14,9 @@ from calaccess_processed.management.commands import CalAccessCommand
 
 class Command(CalAccessCommand):
     """
-    Load CandidateContest and related models with data scraped from the CAL-ACCESS website.
+    Load the OCD CandidateContest and related models with scraped CAL-ACCESS data.
     """
-    help = 'Load CandidateContest and related models with data scraped from the CAL-ACCESS website.'
+    help = 'Load the OCD CandidateContest and related models with scraped CAL-ACCESS data'
 
     def handle(self, *args, **options):
         """

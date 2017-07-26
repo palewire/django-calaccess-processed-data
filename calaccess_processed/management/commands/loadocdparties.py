@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Load OCD Party model from LOOKUP_CODES_CD table in raw CAL-ACCESS data.
+Load OCD Organization model with parties extracted from raw CAL-ACCESS data.
 """
 import re
 from opencivicdata.core.models import Organization
@@ -11,9 +11,9 @@ from calaccess_processed.management.commands import CalAccessCommand
 
 class Command(CalAccessCommand):
     """
-    Load OCD Party model from LOOKUP_CODES_CD table in raw CAL-ACCESS data.
+    Load OCD Organization model with parties extracted from raw CAL-ACCESS data.
     """
-    help = 'Load OCD Party model from LOOKUP_CODES_CD table in raw CAL-ACCESS data'
+    help = 'Load OCD Organization model with parties extracted from raw CAL-ACCESS data'
     first_letters_regex = re.compile(r'([A-z])\w+')
 
     def handle(self, *args, **options):

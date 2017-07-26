@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Merge Persons that share the same CAL-ACCESS filer_id.
+Find and merge OCD Person records that share the same CAL-ACCESS filer_id.
 """
 from django.db.models import Count
 from calaccess_processed.models import OCDPersonProxy
@@ -11,9 +11,9 @@ from opencivicdata.core.models import Person, PersonIdentifier
 
 class Command(CalAccessCommand):
     """
-    Merge Persons that share the same CAL-ACCESS filer_id.
+    Find and merge OCD Person records that share the same CAL-ACCESS filer_id.
     """
-    help = 'Merge Persons that share the same CAL-ACCESS filer_id'
+    help = 'Find and merge OCD Person records that share the same CAL-ACCESS filer_id'
 
     def handle(self, *args, **options):
         """
