@@ -82,7 +82,7 @@ class ProcessedDataTest(TestCase):
             expected_size=os.stat(zip_path).st_size,
         )
         call_command("updatecalaccessrawdata", verbosity=3, noinput=True)
-        call_command("processcalaccessdata", verbosity=3, noinput=True, scrape=False)
+        call_command("processcalaccessdata", verbosity=3, noinput=True)
 
     def test_scraped_propositions(self):
         """
