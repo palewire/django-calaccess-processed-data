@@ -33,7 +33,7 @@ class CalAccessBaseModelTests(TestCase):
         db_table_name = '{app_label}_{model_name}'.format(
             **Form460Filing()._meta.__dict__
         )
-        self.assertEquals(Form460Filing().db_table, db_table_name)
+        self.assertEqual(Form460Filing().db_table, db_table_name)
 
     def test_klass(self):
         """
@@ -45,7 +45,7 @@ class CalAccessBaseModelTests(TestCase):
         """
         Confirm model name equals klass_name string.
         """
-        self.assertEquals('Form460Filing', Form460Filing().klass_name)
+        self.assertEqual('Form460Filing', Form460Filing().klass_name)
 
     def test_klass_group(self):
         """
