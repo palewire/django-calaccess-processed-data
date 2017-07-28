@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 import re
 from datetime import date
 from django.utils import timezone
-from calaccess_processed import special_elections
+from calaccess_processed import get_expected_election_date, special_elections
 from calaccess_scraped.models import CandidateElection, IncumbentElection
 from .electionsbase import ElectionProxyMixin
 from ..opencivicdata.elections import OCDElectionProxy
@@ -40,40 +40,6 @@ class ScrapedCandidateElectionProxy(ElectionProxyMixin, CandidateElection):
             else:
                 # If that fails raise the DoesNotExist error
                 raise
-
-    def guess_election_date(self, year, election_type):
-        """
-        Get the date of the election in the given year and type.
-
-        Raise an exception if year is not even or if election_type is not "PRIMARY" or "GENERAL".
-
-        Return a date object.
-        """
-        # Rules defined here:
-        # https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=ELEC&division=1.&title=&part=&chapter=1.&article= # noqa
-
-        # Parse out the data we need from the name
-        parsed_year = self.parsed_name['year']
-
-        # Make sure it's a regular election year
-        if parsed_year % 2 != 0:
-            raise Exception("Regular elections occur in even years.")
-        elif self.is_primary:
-            # Primary elections are in June
-            month = 6
-        elif self.is_general == 'GENERAL':
-            # General elections are in November
-            month = 11
-        else:
-            raise Exception("election_type must 'PRIMARY' or 'GENERAL'.")
-
-        # get the first weekday
-        # zero-indexed starting with monday
-        first_weekday = date(parsed_year, month, 1).weekday()
-        # calculate day or first tuesday after first monday
-        day_or_month = (7 - first_weekday) % 7 + 2
-        # Pass it out
-        return date(year, month, day_or_month)
 
     @property
     def election_type(self):
@@ -114,7 +80,9 @@ class ScrapedCandidateElectionProxy(ElectionProxyMixin, CandidateElection):
 
         # If that doesn't work either, try parsing the election date from the name
         try:
-            return self.guess_election_date()
+            return get_expected_election_date(
+                self.date.year, self.election_type
+            )
         except:
             # If that fails, just give up and return None
             return None
