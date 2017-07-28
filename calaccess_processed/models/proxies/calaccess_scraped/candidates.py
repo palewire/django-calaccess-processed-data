@@ -133,8 +133,8 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
         # Check if this candidate has been manually corrected.
         party = corrections.candidate_party(
             self.name,
-            scraped_election.parsed_date.year,
-            scraped_election.parsed_name['type'],
+            scraped_election.date.year,
+            scraped_election.election_type,
             self.office_name,
         )
         # If so, just pass that out right away
@@ -152,7 +152,7 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
                 return party
 
             # Try getting it from form 501 filer id
-            party = OCDPartyProxy.objects.get_by_filer_id(int(form501.filer_id), scraped_election.parsed_date)
+            party = OCDPartyProxy.objects.get_by_filer_id(int(form501.filer_id), scraped_election.date)
             if not party.is_unknown():
                 logger.debug("{} party set to {} based on Form 501 filer id".format(self, party))
                 return party
@@ -160,7 +160,7 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
         # If there's no 501, or if the 501 returned an unknown party ...
         # ... try one last stab at using the filer id (assuming it exists)
         if self.scraped_id:
-            party = OCDPartyProxy.objects.get_by_filer_id(int(self.scraped_id), scraped_election.parsed_date)
+            party = OCDPartyProxy.objects.get_by_filer_id(int(self.scraped_id), scraped_election.date)
             logger.debug("{} party set to {} after checking its scraped filer id".format(self, party))
             return party
         # Otherwise just give up and return the unknown party
@@ -264,12 +264,12 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
 
         # Assume all "SPECIAL" candidate elections are for contests where the
         # previous term of the office was unexpired.
-        if scraped_election.is_special():
+        if scraped_election.is_special:
             previous_term_unexpired = True
             # We are not setting a contest party here for the reasons laid out in the following ticket:
             # https://github.com/california-civic-data-coalition/django-calaccess-processed-data/issues/70#issuecomment-300836502  # NOQA
             contest_party = None
-            contest_name = '{} ({})'.format(self.office_name, scraped_election.parsed_name['type'])
+            contest_name = '{} ({})'.format(self.office_name, scraped_election.election_type)
         # Otherwise, we assume this a typical election
         else:
             # At a minimum, that means that the previous term has expired for the office
@@ -279,7 +279,7 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
             # open "jungle" primaries that set all candidates from the same party against each other.
             # In the case of partisan elections, we want to make sure the candidates are separated by party.
             # The one exception to this is superintendent races which have always been non-partisan.
-            if scraped_election.is_partisan_primary() and self.office_name != 'SUPERINTENDENT OF PUBLIC INSTRUCTION':
+            if scraped_election.is_partisan_primary and self.office_name != 'SUPERINTENDENT OF PUBLIC INSTRUCTION':
                 # In this case, the contest party should be the same as the candidate party.
                 contest_party = candidate_party
                 # If the party is unknown, just tack party on the end of the contest name
