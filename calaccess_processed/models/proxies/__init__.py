@@ -8,6 +8,7 @@ from .calaccess_scraped import (
     ScrapedCandidateProxy,
     ScrapedIncumbentProxy,
     ScrapedCandidateElectionProxy,
+    ScrapedIncumbentElectionProxy,
     ScrapedPropositionProxy,
     ScrapedPropositionElectionProxy
 )
@@ -28,6 +29,7 @@ __all__ = (
     'ScrapedCandidateProxy',
     'ScrapedCandidateElectionProxy',
     'ScrapedIncumbentProxy',
+    'ScrapedIncumbentElectionProxy',
     'ScrapedPropositionProxy',
     'ScrapedPropositionElectionProxy',
     'OCDCandidacyProxy',

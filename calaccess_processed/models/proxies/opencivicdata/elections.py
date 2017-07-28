@@ -33,7 +33,7 @@ class OCDElectionManager(models.Manager):
 
         # Add the election type so we can pull it out later if we want it.
         if election_type:
-            obj.extras['calaccess_election_type'] = election_type
+            obj.extras['calaccess_election_type'] = [election_type]
             obj.save()
 
         # Pass it back
@@ -51,6 +51,43 @@ class OCDElectionProxy(Election):
         Make this a proxy model.
         """
         proxy = True
+
+    def add_election_type(self, election_type):
+        """
+        Add election_type to 'calaccess_election_type' in extras field (if missing).
+        """
+        if 'election_type' in self.extras.keys():
+            # and if this one isn't included
+            if election_type not in self.extras[
+                'calaccess_election_type'
+            ]:
+                # then append
+                self.extras['calaccess_election_type'].append(election_type)
+                # and save
+                self.save()
+        else:
+            # if election doesn't already have types, add the key
+            self.extras['calaccess_election_type'] = [election_type]
+            # and save
+            self.save()
+
+        return
+
+    def add_election_id(self, election_id):
+        """
+        Add election_id to identifiers, if missing.
+        """
+        if not self.identifiers.filter(
+            scheme='calaccess_election_id',
+            identifier=election_id,
+        ).exists():
+            self.identifiers.create(
+                scheme='calaccess_election_id',
+                identifier=election_id,
+            )
+            self.save()
+
+        return
 
     def is_primary(self):
         """

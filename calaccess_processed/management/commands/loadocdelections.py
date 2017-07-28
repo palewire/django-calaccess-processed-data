@@ -64,10 +64,10 @@ class Command(CalAccessCommand):
         # Load elections
         #
 
-        call_command('loadocdcandidateelections', **options)
+        call_command('loadocdballotmeasureelections', **options)
         self.duration()
 
-        call_command('loadocdballotmeasureelections', **options)
+        call_command('loadocdcandidateelections', **options)
         self.duration()
 
         #

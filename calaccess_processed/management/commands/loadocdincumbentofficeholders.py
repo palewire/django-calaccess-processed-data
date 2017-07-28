@@ -3,20 +3,11 @@
 """
 Load incumbent candidate data scraped from the CAL-ACCESS website into OCD models.
 """
-import re
 from django.db.models import IntegerField
 from django.db.models.functions import Cast
-from calaccess_scraped.models import (
-    IncumbentElection as ScrapedIncumbentElection,
-    Incumbent as ScrapedIncumbent,
-)
+from calaccess_scraped.models import ScrapedIncumbent
 from opencivicdata.core.models import Membership
-from opencivicdata.elections.models import (
-    Election,
-    Candidacy,
-    CandidateContest,
-)
-from calaccess_processed.models import OCDElectionProxy
+from opencivicdata.elections.models import Candidacy, CandidateContest
 from calaccess_processed.management.commands import CalAccessCommand
 
 
@@ -38,59 +29,10 @@ class Command(CalAccessCommand):
             self.set_incumbent_candidacies()
         self.success("Done!")
 
-    def get_or_create_election(self, scraped_elec):
-        """
-        Get or create an OCD Election object using the scraped IncumbentElection.
-
-        Returns a tuple (Election object, created), where created is a boolean
-        specifying whether a Election was created.
-        """
-        dt_obj = scraped_elec.date
-        name = '{0} {1}'.format(dt_obj.year, scraped_elec.name)
-        # remove "ELECTION" suffix from general and primary elections
-        if 'GENERAL' in name or 'PRIMARY' in name:
-            if 'SPECIAL' not in name:
-                if 'ELECTION' in name:
-                    name = name.replace('ELECTION', '').strip()
-        try:
-            elec = Election.objects.get(date=dt_obj)
-        except Election.DoesNotExist:
-            # or make a new one
-            elec = OCDElectionProxy.objects.create_from_calaccess(
-                name,
-                dt_obj,
-                election_id=scraped_elec.scraped_id,
-                election_type=scraped_elec.parsed_name['type']
-            )
-            created = True
-        else:
-            created = False
-            # if election already exists and is named 'SPECIAL' or 'RECALL'
-            if 'SPECIAL' in elec.name.upper() or 'RECALL' in elec.name.upper():
-                # and the matched election's name includes either 'GENERAL'
-                # or 'PRIMARY'...
-                if (
-                    re.match(r'^\d{4} GENERAL$', scraped_elec.name) or
-                    re.match(r'^\d{4} PRIMARY$', scraped_elec.name)
-                ):
-                    # update the name
-                    elec.name = name
-                    elec.save()
-        return (elec, created)
-
     def load(self):
         """
         Load OCD Election, Membership and related models with data scraped from CAL-ACCESS website.
         """
-        for scraped_elec in ScrapedIncumbentElection.objects.all():
-            ocd_elec = self.get_or_create_election(scraped_elec)[0]
-            ocd_elec.sources.update_or_create(
-                url=scraped_elec.url,
-                note='Last scraped on {dt:%Y-%m-%d}'.format(
-                    dt=scraped_elec.last_modified,
-                )
-            )
-
         for incumbent in ScrapedIncumbent.objects.all().order_by('-session'):
             # Get or create post
             post, post_created = self.get_or_create_post(

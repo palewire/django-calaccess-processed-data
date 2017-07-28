@@ -8,11 +8,12 @@ import re
 from datetime import date
 from django.utils import timezone
 from calaccess_processed import special_elections
-from ..opencivicdata.elections import OCDElectionProxy
 from calaccess_scraped.models import CandidateElection, IncumbentElection
+from .electionsbase import ElectionProxyMixin
+from ..opencivicdata.elections import OCDElectionProxy
 
 
-class ScrapedCandidateElectionProxy(CandidateElection):
+class ScrapedCandidateElectionProxy(ElectionProxyMixin, CandidateElection):
     """
     A proxy for the CandidateElection model in calaccess_scraped.
     """
@@ -22,48 +23,11 @@ class ScrapedCandidateElectionProxy(CandidateElection):
         """
         proxy = True
 
-    def is_primary(self):
-        """
-        Returns whether or now the election was a primary.
-        """
-        return 'PRIMARY' in self.name.upper()
-
-    def is_general(self):
-        """
-        Returns whether or now the election was a general election.
-        """
-        return 'GENERAL' in self.name.upper()
-
-    def is_special(self):
-        """
-        Returns whether or now the election was a special election.
-        """
-        return 'SPECIAL' in self.name.upper()
-
-    def is_recall(self):
-        """
-        Returns whether or now the election was a recall.
-        """
-        return 'RECALL' in self.name.upper()
-
-    def is_partisan_primary(self):
-        """
-        Returns whether or not this was a priamry election held in the partisan era prior to 2012.
-        """
-        if self.is_primary():
-            if self.get_ocd_election().date.year < 2012:
-                return True
-        return False
-
     def get_ocd_election(self):
         """
         Returns an OCD Election object for this record, if it exists.
         """
-        # If this is the 2008, we have a hacked out edge case solution
-        if self.name == '2008 PRIMARY':
-            return OCDElectionProxy.objects.get(name=self.name, date=date(2008, 6, 3))
-
-        # Otherwise proceed by trying to get the record via its scraped id
+        # First, try getting the record via election's scraped_id
         try:
             return OCDElectionProxy.objects.get(
                 identifiers__scheme='calaccess_election_id',
@@ -71,42 +35,57 @@ class ScrapedCandidateElectionProxy(CandidateElection):
             )
         except OCDElectionProxy.DoesNotExist:
             # If that doesn't exist, try getting it by date
-            if self.parsed_date:
-                return OCDElectionProxy.objects.get(date=self.parsed_date)
+            if self.date:
+                return OCDElectionProxy.objects.get(date=self.date)
             else:
                 # If that fails raise the DoesNotExist error
                 raise
 
-    @property
-    def parsed_name(self):
+    def guess_election_date(self, year, election_type):
         """
-        Parse a scraped candidate election name into its constituent parts.
+        Get the date of the election in the given year and type.
 
-        Parts include:
-        * Four-digit year (int)
-        * Type (str), e.g., "GENERAL", "PRIMARY", "SPECIAL ELECTION", "SPECIAL RUNOFF")
-        * Office (optional str)
-        * District (optional int)
+        Raise an exception if year is not even or if election_type is not "PRIMARY" or "GENERAL".
 
-        Returns a dict with year, type, office and district as keys.
+        Return a date object.
         """
-        # Parse out the data
-        pattern = r'^(?P<year>\d{4}) (?P<type>\b(?:[A-Z]| )+)(?: \((?P<office>(?:[A-Z]| )+)(?P<district>\d+)?\))?$' # NOQA
-        parsed_name = re.match(pattern, self.name).groupdict()
+        # Rules defined here:
+        # https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=ELEC&division=1.&title=&part=&chapter=1.&article= # noqa
 
-        # Clean up the contents
-        parsed_name['year'] = int(parsed_name['year'])
-        parsed_name['type'] = parsed_name['type'].strip()
-        if parsed_name['office']:
-            parsed_name['office'] = parsed_name['office'].strip()
-        if parsed_name['district']:
-            parsed_name['district'] = int(parsed_name['district'])
+        # Parse out the data we need from the name
+        parsed_year = self.parsed_name['year']
 
+        # Make sure it's a regular election year
+        if parsed_year % 2 != 0:
+            raise Exception("Regular elections occur in even years.")
+        elif self.is_primary:
+            # Primary elections are in June
+            month = 6
+        elif self.is_general == 'GENERAL':
+            # General elections are in November
+            month = 11
+        else:
+            raise Exception("election_type must 'PRIMARY' or 'GENERAL'.")
+
+        # get the first weekday
+        # zero-indexed starting with monday
+        first_weekday = date(parsed_year, month, 1).weekday()
+        # calculate day or first tuesday after first monday
+        day_or_month = (7 - first_weekday) % 7 + 2
         # Pass it out
-        return parsed_name
+        return date(year, month, day_or_month)
 
     @property
-    def parsed_date(self):
+    def election_type(self):
+        """
+        Return the scraped incumbent election's type.
+
+        (e.g., "GENERAL", "PRIMARY", "SPECIAL ELECTION", "SPECIAL RUNOFF")
+        """
+        return self.parsed_name['type']
+
+    @property
+    def date(self):
         """
         Use a scraped candidate election name to look up the election date.
 
@@ -140,37 +119,76 @@ class ScrapedCandidateElectionProxy(CandidateElection):
             # If that fails, just give up and return None
             return None
 
-    def guess_election_date(self, year, election_type):
+    @property
+    def parsed_name(self):
         """
-        Get the date of the election in the given year and type.
+        Parse a scraped candidate election name into its constituent parts.
 
-        Raise an exception if year is not even or if election_type is not "PRIMARY" or "GENERAL".
+        Parts include:
+        * Four-digit year (int)
+        * Type (str), e.g., "GENERAL", "PRIMARY", "SPECIAL ELECTION", "SPECIAL RUNOFF"
+        * Office (optional str)
+        * District (optional int)
 
-        Return a date object.
+        Returns a dict with year, type, office and district as keys.
         """
-        # Rules defined here:
-        # https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=ELEC&division=1.&title=&part=&chapter=1.&article= # noqa
+        # Parse out the data
+        pattern = r'^(?P<year>\d{4}) (?P<type>\b(?:[A-Z]| )+)(?: \((?P<office>(?:[A-Z]| )+)(?P<district>\d+)?\))?$' # NOQA
+        parsed_name = re.match(pattern, self.name).groupdict()
 
-        # Parse out the data we need from the name
-        parsed_year = self.parsed_name['year']
-        parsed_type = self.parsed_name['type']
+        # Clean up the contents
+        parsed_name['year'] = int(parsed_name['year'])
+        parsed_name['type'] = parsed_name['type'].strip()
+        if parsed_name['office']:
+            parsed_name['office'] = parsed_name['office'].strip()
+        if parsed_name['district']:
+            parsed_name['district'] = int(parsed_name['district'])
 
-        # Make sure it's a regular election year
-        if parsed_year % 2 != 0:
-            raise Exception("Regular elections occur in even years.")
-        elif parsed_type.upper() == 'PRIMARY':
-            # Primary elections are in June
-            month = 6
-        elif parsed_type.upper() == 'GENERAL':
-            # General elections are in November
-            month = 11
-        else:
-            raise Exception("election_type must 'PRIMARY' or 'GENERAL'.")
-
-        # get the first weekday
-        # zero-indexed starting with monday
-        first_weekday = date(parsed_year, month, 1).weekday()
-        # calculate day or first tuesday after first monday
-        day_or_month = (7 - first_weekday) % 7 + 2
         # Pass it out
-        return date(year, month, day_or_month)
+        return parsed_name
+
+
+class ScrapedIncumbentElectionProxy(ElectionProxyMixin, IncumbentElection):
+    """
+    A proxy for the IncumbentElection model in calaccess_scraped.
+    """
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True
+
+    def get_ocd_election(self):
+        """
+        Returns an OCD Election object for this record, if it exists.
+        """
+        try:
+            ocd_election = OCDElectionProxy.objects.get(
+                name=self.ocd_name,
+                date=self.date,
+            )
+        except OCDElectionProxy.DoesNotExist:
+            # If that doesn't exist, try getting it by date
+            try:
+                ocd_election = OCDElectionProxy.objects.get(date=self.date)
+            except (
+                OCDElectionProxy.DoesNotExist,
+                OCDElectionProxy.MultipleObjectsReturned
+            ):
+                raise
+
+        return ocd_election
+
+    @property
+    def election_type(self):
+        """
+        Return the scraped incumbent election's type.
+
+        (e.g., "GENERAL", "PRIMARY", "SPECIAL ELECTION", "SPECIAL RUNOFF")
+        """
+        if self.name == 'SPECIAL ELECTION':
+            election_type = self.name
+        else:
+            election_type = self.name.replace('ELECTION', '').strip()
+
+        return election_type

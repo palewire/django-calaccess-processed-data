@@ -5,17 +5,17 @@ Proxy models for augmenting our source data tables with methods useful for proce
 """
 from __future__ import unicode_literals
 import re
-from datetime import date
 from django.utils import timezone
-from ..opencivicdata.elections import OCDElectionProxy
 from calaccess_scraped.models import PropositionElection
+from .electionsbase import ElectionProxyMixin
+from ..opencivicdata.elections import OCDElectionProxy
 
 
-class ScrapedPropositionElectionProxy(PropositionElection):
+class ScrapedPropositionElectionProxy(ElectionProxyMixin, PropositionElection):
     """
     A proxy for the PropositionElection model in calaccess_scraped.
     """
-    NAME_PATTERN = re.compile(r'^(?P<date>^[A-Z]+\s\d{1,2},\s\d{4})\s(?P<name>.+)$')
+    NAME_PATTERN = re.compile(r'^(?P<date>^[A-Z]+\s\d{1,2},\s\d{4})\s(?P<type>.+)$')
 
     class Meta:
         """
@@ -23,62 +23,22 @@ class ScrapedPropositionElectionProxy(PropositionElection):
         """
         proxy = True
 
-    def is_primary(self):
-        """
-        Returns whether or now the election was a primary.
-        """
-        return 'PRIMARY' in self.parsed_name.upper()
-
-    def is_general(self):
-        """
-        Returns whether or now the election was a general election.
-        """
-        return 'GENERAL' in self.parsed_name.upper()
-
-    def is_special(self):
-        """
-        Returns whether or now the election was a special election.
-        """
-        return 'SPECIAL' in self.parsed_name.upper()
-
-    def is_recall(self):
-        """
-        Returns whether or now the election was a recall.
-        """
-        return 'RECALL' in self.parsed_name.upper()
-
     @property
-    def parsed_name(self):
+    def election_type(self):
         """
-        Parse a scraped candidate election name into its constituent parts.
+        Return the scraped incumbent election's type.
 
-        Parts include:
-        * Four-digit year (int)
-        * Type (str), e.g., "GENERAL", "PRIMARY", "SPECIAL ELECTION", "SPECIAL RUNOFF")
-        * Office (optional str)
-        * District (optional int)
-
-        Returns a dict with year, type, office and district as keys.
+        (e.g., "GENERAL", "PRIMARY", "SPECIAL ELECTION", "RECALL")
         """
         # Extract the name and date from the election name
         match = self.NAME_PATTERN.match(self.name)
 
-        # Convert it to a datetime object
-        date_obj = timezone.datetime.strptime(match.groupdict()['date'], '%B %d, %Y').date()
-
-        # Format that as a string
-        name = '{0} {1}'.format(date_obj.year, match.groupdict()['name']).upper()
-
-        # Differentiate between two '2008 PRIMARY' ballot measure elections
-        if name == '2008 PRIMARY' and date_obj.month == 2:
-            name = "2008 PRESIDENTIAL PRIMARY AND SPECIAL ELECTIONS"
-
-        return name
+        return match.groupdict()['type'].upper()
 
     @property
-    def parsed_date(self):
+    def date(self):
         """
-        Use a scraped candidate election name to look up the election date.
+        Parse date from scraped proposition election's name.
 
         Return a timezone aware date object, if found, else None.
         """
@@ -92,11 +52,19 @@ class ScrapedPropositionElectionProxy(PropositionElection):
         """
         Returns an OCD Election object for this record, if it exists.
         """
-        # If this is the 2008 recall or primary we have a hacked out edge case solution
-        if self.name == 'JUNE 3, 2008 RECALL':
-            return OCDElectionProxy.objects.get(name__icontains="RECALL", date=date(2008, 6, 3))
-        elif self.name == 'JUNE 3, 2008 PRIMARY':
-            return OCDElectionProxy.objects.get(name__icontains="PRIMARY", date=date(2008, 6, 3))
+        try:
+            ocd_election = OCDElectionProxy.objects.get(
+                name=self.ocd_name,
+                date=self.date,
+            )
+        except OCDElectionProxy.DoesNotExist:
+            # If that doesn't exist, try getting it by date
+            try:
+                ocd_election = OCDElectionProxy.objects.get(date=self.date)
+            except (
+                OCDElectionProxy.DoesNotExist,
+                OCDElectionProxy.MultipleObjectsReturned
+            ):
+                raise
 
-        # Otherwise proceed by trying to get the record via its date
-        return OCDElectionProxy.objects.get(date=self.parsed_date)
+        return ocd_election
