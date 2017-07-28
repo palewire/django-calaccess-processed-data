@@ -56,7 +56,7 @@ class OCDElectionProxy(Election):
         """
         Add election_type to 'calaccess_election_type' in extras field (if missing).
         """
-        if 'election_type' in self.extras.keys():
+        if 'calaccess_election_type' in self.extras.keys():
             # and if this one isn't included
             if election_type not in self.extras[
                 'calaccess_election_type'
