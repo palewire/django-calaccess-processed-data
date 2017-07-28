@@ -5,10 +5,14 @@ Load incumbent candidate data scraped from the CAL-ACCESS website into OCD model
 """
 from django.db.models import IntegerField
 from django.db.models.functions import Cast
-from calaccess_scraped.models import ScrapedIncumbent
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import Candidacy, CandidateContest
 from calaccess_processed.management.commands import CalAccessCommand
+from calaccess_processed.models import (
+    OCDPersonProxy,
+    OCDPostProxy,
+    ScrapedIncumbentProxy,
+)
 
 
 class Command(CalAccessCommand):
@@ -33,27 +37,27 @@ class Command(CalAccessCommand):
         """
         Load OCD Election, Membership and related models with data scraped from CAL-ACCESS website.
         """
-        for incumbent in ScrapedIncumbent.objects.all().order_by('-session'):
+        for incumbent in ScrapedIncumbentProxy.objects.all():
             # Get or create post
-            post, post_created = self.get_or_create_post(
+            post, post_created = OCDPostProxy.objects.get_or_create_by_name(
                 incumbent.office_name,
             )
             if post_created and self.verbosity > 2:
                 self.log(' Created new Post: %s' % post.label)
             # Get or person
-            person, person_created = self.get_or_create_person(
-                incumbent.name,
-                filer_id=incumbent.scraped_id,
+            person, person_created = OCDPersonProxy.objects.get_or_create_from_calaccess(
+                incumbent.parsed_name,
+                candidate_filer_id=incumbent.scraped_id,
             )
             if person_created and self.verbosity > 2:
                 self.log(' Created new Person: %s' % person.name)
-            # Get or membership for post and person
+            # Get or create membership for post and person
             membership, membership_created = Membership.objects.get_or_create(
                 person=person,
                 post=post,
                 role=post.role,
                 organization=post.organization,
-                person_name=person.sort_name,
+                person_name=person.name,
             )
             if membership_created and self.verbosity > 2:
                 self.log(' Created new Membership: %s' % membership)

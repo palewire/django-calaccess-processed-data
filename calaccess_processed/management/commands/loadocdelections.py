@@ -86,8 +86,8 @@ class Command(CalAccessCommand):
         call_command('loadocdcandidaciesfrom501s', **options)
         self.duration()
 
-        # call_command('loadocdincumbentofficeholders', **options)
-        # self.duration()
+        call_command('loadocdincumbentofficeholders', **options)
+        self.duration()
 
         #
         # Merge duplicates

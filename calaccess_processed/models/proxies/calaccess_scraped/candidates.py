@@ -72,7 +72,7 @@ class ScrapedNameMixin(object):
         """
         Parse string containg the name for an office.
 
-        Expected format is "{TYPE NAME}[{DISTRICT NUMBER}]".
+        Expected format is "{TYPE NAME} [{DISTRICT NUMBER}]".
 
         Return a dict with two keys: type and district.
         """
@@ -99,6 +99,7 @@ class ScrapedIncumbentProxy(Incumbent, ScrapedNameMixin):
         Make this a proxy model.
         """
         proxy = True
+        ordering = ['-session']
 
 
 class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
