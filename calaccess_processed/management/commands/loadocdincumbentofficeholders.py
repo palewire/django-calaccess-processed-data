@@ -80,12 +80,17 @@ class Command(CalAccessCommand):
             # Each member's end year should be the start year of their successor.
             # Successor is the member in the same post with the earliest
             # start year greater than the incumbent's start year
+            if member.start_date == '':
+                start_year = 0
+            else:
+                start_year = int(member.start_date)
+
             successor_q = Membership.objects.exclude(
                 start_date='',
             ).annotate(
                 start_year=Cast('start_date', IntegerField()),
             ).filter(
-                start_year__gt=int(member.start_date),
+                start_year__gt=start_year,
                 post=member.post,
             ).order_by('start_year')
 
@@ -108,7 +113,9 @@ class Command(CalAccessCommand):
             # Handle blank member end_date values
             if member.end_date != '':
                 member_end_year = int(member.end_date)
-                candidacies_q = candidacies_q.filter(contest__election__date__year__lte=member_end_year)
+                candidacies_q = candidacies_q.filter(
+                    contest__election__date__year__lte=member_end_year
+                )
 
             if candidacies_q.exists():
                 rows = candidacies_q.update(is_incumbent=True)

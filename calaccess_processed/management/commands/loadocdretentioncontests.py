@@ -69,7 +69,7 @@ class Command(CalAccessCommand):
             post=post,
             role=post.role,
             organization=post.organization,
-            person_name=person.sort_name,
+            person_name=person.name,
         )[0]
 
         # set the start_date and end_date for Governor Gray Davis
