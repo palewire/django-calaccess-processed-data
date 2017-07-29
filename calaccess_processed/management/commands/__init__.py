@@ -108,7 +108,7 @@ class CalAccessCommand(BaseCommand):
         """
         Writes string to stdout formatted yellow to communicate a warning.
         """
-        logger.warn(string)
+        logger.warning(string)
         if not getattr(self, 'no_color', None):
             string = colorize(string, fg="yellow")
         self.stdout.write(string)
