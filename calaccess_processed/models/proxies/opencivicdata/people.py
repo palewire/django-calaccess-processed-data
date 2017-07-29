@@ -209,14 +209,9 @@ class OCDPersonProxy(Person):
         if name == self.name:
             return False
 
-        # If the other name has already been logged, quit.
-        exists = self.other_names.filter(name=name).exists()
-        if exists:
-            return False
-
         # If we've made it this far, it's time to add
-        self.other_names.create(name=name, note=note)
-        return True
+        name, created = self.other_names.get_or_create(name=name, note=note)
+        return created
 
     def add_filer_id(self, filer_id):
         """

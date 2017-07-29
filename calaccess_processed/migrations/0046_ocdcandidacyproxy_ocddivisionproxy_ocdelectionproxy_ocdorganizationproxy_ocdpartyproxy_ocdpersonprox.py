@@ -12,8 +12,8 @@ class Migration(migrations.Migration):
     dependencies = [
         ('calaccess_scraped', '0002_auto_20170628_1500'),
         ('elections', '0001_initial'),
-        ('calaccess_raw', '0015_auto_20170729_0218'),
-        ('core', '0002_post_maximum_memberships'),
+        # ('calaccess_raw', '0015_auto_20170729_0218'),
+        # ('core', '0002_post_maximum_memberships'),
         ('calaccess_processed', '0045_auto_20170626_1505'),
     ]
 

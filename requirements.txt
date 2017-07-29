@@ -1,14 +1,12 @@
 # The app
---pre django-calaccess-raw-data
-# Need to install from repo, which includes fixtures necessary for tests
+-e git+https://github.com/california-civic-data-coalition/django-calaccess-raw-data.git@HEAD#egg=django-calaccess-raw-data
 -e git+https://github.com/california-civic-data-coalition/django-calaccess-scraped-data.git@HEAD#egg=django-calaccess-scraped-data
-opencivicdata
+-e git+https://github.com/opencivicdata/python-opencivicdata.git@HEAD#egg=opencivicdata
 Django>=1.10
-hurry.filesize
 pytz
 
 # Databases
-psycopg2>=2.5.4
+psycopg2>=2.7.1
 
 # Testing
 flake8
