@@ -26,7 +26,11 @@
                         {{ obj.date|date:"N j" }}
                     </a>
                 </td>
-                <td style="width: 150px;">{{ obj.election_type|lower|title }}</td>
+                <td style="width: 150px;">
+                    {% for type in obj.election_types %}
+                        {{ type|lower|title }}{% if not forloop.last %},{% endif %}
+                    {% endfor %}
+                </td>
                 <td style="width: 150px;">{{ obj.ballotmeasurecontests.count }}</td>
                 <td style="width: 200px;">{{ obj.candidatecontests.count }}</td>
                 <td style="width: 150px;">
