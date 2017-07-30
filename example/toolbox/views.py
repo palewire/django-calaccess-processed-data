@@ -54,3 +54,15 @@ class CandidateNoPartyList(ListView):
     """
     queryset = OCDCandidacyProxy.objects.filter(party=OCDPartyProxy.objects.unknown())
     template_name = "candidatenoparty_list.html"
+
+
+class PrimaryNoPartyList(ListView):
+    """
+    Lists all the OCD partisan primaries with an unknown party.
+    """
+    template_name = "electionnoparty_list.html"
+
+    def get_queryset(self):
+        primary_list = OCDElectionProxy.partisan_primaries.all()
+        contest_list = CandidateContest.objects.filter(election__in=primary_list)
+        return contest_list.filter(party=OCDPartyProxy.objects.unknown())

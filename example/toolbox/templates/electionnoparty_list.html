@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Partisan contests without a party {{ object_list|length }}</h1>
+
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Election</th>
+                <th>Candidates</th>
+                <th>Sources</th>
+            </tr>
+        </thead>
+        {% for obj in object_list %}
+        <tr>
+            <td>
+                <a href="{% url 'candidatecontest_detail' obj.id %}">
+                    {{ obj.name }}
+                </a>
+            </td>
+            <td><a href="{% url 'election_detail' obj.election.id %}">{{ obj.election }}</a></td>
+            <td>{{ obj.candidacies.count }}</td>
+            <td>
+                {% for obj in obj.sources.all %}
+                    <a href="{{ obj.url }}">{{ forloop.counter }}{% if not forloop.last %},{% endif %}</a>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

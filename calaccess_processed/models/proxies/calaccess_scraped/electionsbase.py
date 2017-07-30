@@ -81,7 +81,7 @@ class ElectionProxyMixin(object):
     @property
     def is_partisan_primary(self):
         """
-        Returns whether or not this was a priamry election held in the partisan era prior to 2012.
+        Returns whether or not this was a primary election held in the partisan era prior to 2012.
         """
         if self.is_primary:
             if self.get_ocd_election().date.year < 2012:

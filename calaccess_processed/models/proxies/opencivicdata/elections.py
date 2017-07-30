@@ -11,9 +11,22 @@ from .organizations import OCDOrganizationProxy
 from opencivicdata.elections.models import Election
 
 
+class OCDPartisanPrimaryManager(models.Manager):
+    """
+    Custom manager for limiting OCD elections querysets to partisan primaries.
+    """
+    def get_queryset(self):
+        """
+        Returns whether or not this was a primary election held in the partisan era prior to 2012.
+        """
+        return super(OCDPartisanPrimaryManager, self).get_queryset().filter(
+            date__year__lt=2012,
+            name__icontains='PRIMARY'
+        )
+
 class OCDElectionManager(models.Manager):
     """
-    Custom helpers for the OCD Post model.
+    Custom helpers for the OCD Election model.
     """
     def create_from_calaccess(self, name, dt, election_id=None, election_type=None):
         """
@@ -45,6 +58,7 @@ class OCDElectionProxy(Election):
     A proxy for the Election model in opencivicdata app.
     """
     objects = OCDElectionManager()
+    partisan_primaries = OCDPartisanPrimaryManager()
 
     class Meta:
         """
