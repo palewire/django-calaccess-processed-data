@@ -90,11 +90,11 @@ class OCDElectionProxy(Election):
         return
 
     @property
-    def election_type(self):
+    def election_types(self):
         """
         Returns the CAL-ACCESS election type if it's been included with this record.
         """
-        return self.extras.get('calaccess_election_type', None)
+        return self.extras.get('calaccess_election_type', [])
 
     @property
     def identifier_list(self):

@@ -78,7 +78,7 @@ class OCDPartyManager(models.Manager):
 
 class OCDPartyProxy(Organization):
     """
-    A proxy on the OCD Organization model with helper methods for interacting with party entities.
+    A proxy on the OCD Organization model with helper methods for interacting with political parties.
     """
     objects = OCDPartyManager()
 

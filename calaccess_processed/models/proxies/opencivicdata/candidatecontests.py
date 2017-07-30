@@ -10,7 +10,7 @@ from opencivicdata.elections.models import CandidateContest
 
 class OCDRunoffManager(models.Manager):
     """
-    Custom helpers for the OCD CandidateContest model.
+    Custom helpers for the OCD CandidateContest model that limit it to runoffs.
     """
     def get_queryset(self):
         """
@@ -31,7 +31,7 @@ class OCDRunoffManager(models.Manager):
 
 class OCDRunoffProxy(CandidateContest):
     """
-    A proxy on the OCD Division model with helper methods..
+    A proxy on the OCD CandidateContest model with helper methods and limited to runoffs.
     """
     objects = OCDRunoffManager()
 

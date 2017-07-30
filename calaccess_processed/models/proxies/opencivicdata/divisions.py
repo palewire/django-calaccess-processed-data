@@ -49,7 +49,7 @@ class OCDCaliforniaDivisionManager(models.Manager):
 
 class OCDDivisionProxy(Division):
     """
-    A proxy on the OCD Division model with helper methods..
+    A proxy on the OCD Division model with helper methods.
     """
     objects = OCDCaliforniaDivisionManager()
     assembly = OCDAssemblyDivisionManager()

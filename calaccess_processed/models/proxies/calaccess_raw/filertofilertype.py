@@ -10,7 +10,7 @@ from calaccess_raw.models import FilerToFilerTypeCd, LookupCodesCd
 
 class RawFilerToFilerTypeCdManager(models.Manager):
     """
-    Custom helpers for the OCD Post model.
+    Custom helpers for the calaccess_raw FilerToFilerTypeCd model.
     """
     def get_office_by_filer_id_and_date(self, filer_id, election_date):
         """
@@ -49,7 +49,7 @@ class RawFilerToFilerTypeCdManager(models.Manager):
 
 class RawFilerToFilerTypeCdProxy(FilerToFilerTypeCd):
     """
-    Proxy model with extra tools for working with this raw data.
+    Proxy model with extra tools for working with the calaccess_raw FilerToFilerTypeCd model.
     """
     objects = RawFilerToFilerTypeCdManager()
 

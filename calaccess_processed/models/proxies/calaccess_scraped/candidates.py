@@ -92,7 +92,7 @@ class ScrapedNameMixin(object):
 
 class ScrapedIncumbentProxy(Incumbent, ScrapedNameMixin):
     """
-    A proxy for the Incumbent model.
+    A proxy for the calaccess_scraped Incumbent model.
     """
     class Meta:
         """
@@ -104,7 +104,7 @@ class ScrapedIncumbentProxy(Incumbent, ScrapedNameMixin):
 
 class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
     """
-    A proxy for the Candidate model in calaccess_scraped.
+    A proxy for the calaccess_scraped Candidate model.
     """
     class Meta:
         """

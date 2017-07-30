@@ -5,17 +5,17 @@ Proxy models for augmenting our source data tables with methods useful for proce
 """
 from __future__ import unicode_literals
 from django.db import models
+from .people import OCDPersonProxy
 from django.db.models import IntegerField
 from django.db.models import Case, When, Q
 from django.db.models.functions import Cast
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import Candidacy
-from .people import OCDPersonProxy
 
 
 class OCDCandidacyQuerySet(models.QuerySet):
     """
-    Custom QuerySet for the Candidacy model.
+    Custom QuerySet for the OCD Candidacy model.
     """
     def get_by_filer_id(self, filer_id):
         """
