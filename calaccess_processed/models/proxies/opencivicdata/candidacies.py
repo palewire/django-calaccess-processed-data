@@ -238,8 +238,8 @@ class OCDCandidacyProxy(Candidacy):
             return False
 
     @property
-    def filer_id(self):
+    def filer_ids(self):
         """
         Returns the CAL-ACCESS filer_id linked with the object, if any.
         """
-        return self.person.identifiers.get(scheme="calaccess_filer_id")
+        return self.person.identifiers.filter(scheme="calaccess_filer_id")

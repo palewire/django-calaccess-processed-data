@@ -4,10 +4,11 @@ from calaccess_processed.models import (
     OCDElectionProxy,
     OCDCandidacyProxy,
     OCDPostProxy,
-    OCDPersonProxy
+    OCDPersonProxy,
+    OCDPartyProxy
 )
 from opencivicdata.elections.models import CandidateContest
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 
 
 
@@ -45,3 +46,11 @@ class PostDetail(DetailView):
 class PersonDetail(DetailView):
     model = OCDPersonProxy
     template_name = "person_detail.html"
+
+
+class CandidateNoPartyList(ListView):
+    """
+    Lists all the OCD candidates with an unknown party.
+    """
+    queryset = OCDCandidacyProxy.objects.filter(party=OCDPartyProxy.objects.unknown())
+    template_name = "candidatenoparty_list.html"
