@@ -52,7 +52,10 @@ class CandidateNoPartyList(ListView):
     """
     Lists all the OCD candidates with an unknown party.
     """
-    queryset = OCDCandidacyProxy.objects.filter(party=OCDPartyProxy.objects.unknown())
+    try:
+        queryset = OCDCandidacyProxy.objects.filter(party=OCDPartyProxy.objects.unknown())
+    except OCDPartyProxy.DoesNotExist:
+        queryset = None
     template_name = "candidatenoparty_list.html"
 
 
