@@ -1671,7 +1671,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('elections.candidacy',),
         ),
@@ -1681,7 +1681,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('core.division',),
         ),
@@ -1691,7 +1691,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('elections.election',),
         ),
@@ -1701,7 +1701,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('core.organization',),
         ),
@@ -1711,7 +1711,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('core.organization',),
         ),
@@ -1721,7 +1721,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('core.person',),
         ),
@@ -1731,7 +1731,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('core.post',),
         ),
@@ -1741,7 +1741,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('elections.candidatecontest',),
         ),
@@ -1751,7 +1751,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('calaccess_raw.filertofilertypecd',),
         ),
@@ -1761,7 +1761,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=(calaccess_processed.models.proxies.calaccess_scraped.electionsbase.ElectionProxyMixin, 'calaccess_scraped.candidateelection'),
         ),
@@ -1771,7 +1771,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('calaccess_scraped.candidate', calaccess_processed.models.proxies.calaccess_scraped.candidates.ScrapedNameMixin),
         ),
@@ -1781,7 +1781,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=(calaccess_processed.models.proxies.calaccess_scraped.electionsbase.ElectionProxyMixin, 'calaccess_scraped.incumbentelection'),
         ),
@@ -1792,7 +1792,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
                 'ordering': ['-session'],
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('calaccess_scraped.incumbent', calaccess_processed.models.proxies.calaccess_scraped.candidates.ScrapedNameMixin),
         ),
@@ -1802,7 +1802,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=(calaccess_processed.models.proxies.calaccess_scraped.electionsbase.ElectionProxyMixin, 'calaccess_scraped.propositionelection'),
         ),
@@ -1812,7 +1812,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('calaccess_scraped.proposition',),
         ),
