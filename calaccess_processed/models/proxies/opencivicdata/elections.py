@@ -24,6 +24,7 @@ class OCDPartisanPrimaryManager(models.Manager):
             name__icontains='PRIMARY'
         )
 
+
 class OCDElectionManager(models.Manager):
     """
     Custom helpers for the OCD Election model.
