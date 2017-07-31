@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         ('calaccess_raw', '0015_auto_20170729_0218'),
         ('calaccess_scraped', '0002_auto_20170628_1500'),
         ('core', '0002_post_maximum_memberships'),
-        ('elections', '0002_auto_20170731_1919'),
+        ('elections', '0001_initial.py'),
     ]
 
     operations = [
