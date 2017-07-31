@@ -1,5 +1,5 @@
 # The app
--e git+https://github.com/california-civic-data-coalition/django-calaccess-raw-data.git@HEAD#egg=django-calaccess-raw-data
+django-calaccess-raw-data==1.6.1rc0
 -e git+https://github.com/california-civic-data-coalition/django-calaccess-scraped-data.git@HEAD#egg=django-calaccess-scraped-data
 -e git+https://github.com/opencivicdata/python-opencivicdata.git@HEAD#egg=opencivicdata
 Django>=1.10
