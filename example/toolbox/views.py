@@ -1,3 +1,4 @@
+from django.db import ProgrammingError
 from django.shortcuts import render
 from collections import defaultdict
 from calaccess_processed.models import (
@@ -53,9 +54,9 @@ class CandidateNoPartyList(ListView):
     Lists all the OCD candidates with an unknown party.
     """
     try:
-        queryset = OCDCandidacyProxy.objects.filter(party=OCDPartyProxy.objects.unknown())
-    except OCDPartyProxy.DoesNotExist:
-        queryset = None
+        OCDCandidacyProxy.objects.filter(party=OCDPartyProxy.objects.unknown())
+    except ProgrammingError:
+        OCDCandidacyProxy.objects.none()
     template_name = "candidatenoparty_list.html"
 
 
