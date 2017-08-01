@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Load the OCD Candidacy model from records extracted from Form501Filing records.
+Load the OCD Candidacy model with data extracted from the Form501Filing model.
 """
 from __future__ import unicode_literals
 from django.core.management.base import CommandError
@@ -12,9 +12,9 @@ from calaccess_processed.models import Form501Filing, OCDCandidacyProxy
 
 class Command(CalAccessCommand):
     """
-    Load the OCD Candidacy model from records extracted from Form501Filing records.
+    Load the OCD Candidacy model with data extracted from the Form501Filing model.
     """
-    help = 'Load the OCD Candidacy model from records extracted from Form501Filing records'
+    help = 'Load the OCD Candidacy model with data extracted from the Form501Filing model'
 
     def handle(self, *args, **options):
         """

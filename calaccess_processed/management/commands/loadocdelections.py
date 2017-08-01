@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Load OCD elections models with raw/scraped CAL-ACCESS data.
+Load OCD elections models with data extracted and scraped from CAL-ACCESS.
 """
 from django.apps import apps
 from django.conf import settings
@@ -14,9 +14,9 @@ from opencivicdata.core.management.commands.loaddivisions import load_divisions
 
 class Command(CalAccessCommand):
     """
-    Load OCD elections models with raw/scraped CAL-ACCESS data.
+    Load OCD elections models with data extracted and scraped from CAL-ACCESS.
     """
-    help = 'Load OCD elections models with raw/scraped CAL-ACCESS data'
+    help = 'Load OCD elections models with data extracted and scraped from CAL-ACCESS'
 
     def handle(self, *args, **options):
         """

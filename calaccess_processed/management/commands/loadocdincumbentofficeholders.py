@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Load incumbent candidate data scraped from the CAL-ACCESS website into OCD models.
+Load OCD Membership with data from the scraped Incumbent model.
 """
 from django.db.models import IntegerField
 from django.db.models.functions import Cast
@@ -17,9 +17,9 @@ from calaccess_processed.models import (
 
 class Command(CalAccessCommand):
     """
-    Load incumbent candidate data scraped from the CAL-ACCESS website into OCD models.
+    Load OCD Membership with data from the scraped Incumbent model.
     """
-    help = 'Load incumbent candidate data scraped from the CAL-ACCESS website into OCD models'
+    help = 'Load OCD Membership with data from the scraped Incumbent model'
 
     def handle(self, *args, **options):
         """

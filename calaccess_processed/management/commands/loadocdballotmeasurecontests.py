@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website.
+Load OCD BallotMeasureContest and related models with scraped CAL-ACCESS data.
 """
 from opencivicdata.elections.models import BallotMeasureContest
 from calaccess_processed.management.commands import CalAccessCommand
@@ -10,9 +10,9 @@ from calaccess_processed.models import ScrapedPropositionProxy, OCDDivisionProxy
 
 class Command(CalAccessCommand):
     """
-    Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website.
+    Load OCD BallotMeasureContest and related models with scraped CAL-ACCESS data.
     """
-    help = 'Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website'
+    help = 'Load OCD BallotMeasureContest and related models with scraped CAL-ACCESS data'
 
     def handle(self, *args, **options):
         """

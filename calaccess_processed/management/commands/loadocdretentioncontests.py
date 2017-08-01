@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Load OCD BallotMeasureContest and related models with data scraped from the CAL-ACCESS website.
+Load OCD RetentionContest and related models with data scraped from CAL-ACCESS.
 """
 import re
 from opencivicdata.core.models import Membership
@@ -19,9 +19,9 @@ from calaccess_processed.models import (
 
 class Command(CalAccessCommand):
     """
-    Load OCD RetentionContest and related models with data scraped from the CAL-ACCESS website.
+    Load OCD RetentionContest and related models with data scraped from CAL-ACCESS.
     """
-    help = 'Load OCD RetentionContest and related models with data scraped from the CAL-ACCESS website.'
+    help = 'Load OCD RetentionContest and related models with data scraped from CAL-ACCESS'
 
     def handle(self, *args, **options):
         """

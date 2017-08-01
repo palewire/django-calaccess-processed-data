@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Load OCD Election models with data scraped from the CAL-ACCESS website.
+Load the OCD Election model from the scraped PropositionElection model.
 """
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed.models import ScrapedPropositionElectionProxy
@@ -9,9 +9,9 @@ from calaccess_processed.models import ScrapedPropositionElectionProxy
 
 class Command(CalAccessCommand):
     """
-    Load OCD Election models with data scraped from the CAL-ACCESS website.
+    Load the OCD Election model from the scraped PropositionElection model.
     """
-    help = 'Load OCD Election models with data scraped from the CAL-ACCESS website.'
+    help = 'Load the OCD Election model from the scraped PropositionElection model'
 
     def handle(self, *args, **options):
         """
