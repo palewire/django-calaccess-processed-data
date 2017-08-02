@@ -19,6 +19,7 @@ node_modules
 data
 CSV
 django.log
+*.csv#
 ****-**-**_**-**-**/
 .scraper_cache/
 example/test-data/tsv/*.TSV
