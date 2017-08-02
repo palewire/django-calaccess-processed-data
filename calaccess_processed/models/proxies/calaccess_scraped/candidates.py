@@ -17,6 +17,7 @@ from opencivicdata.elections.models import CandidateContest
 logger = logging.getLogger(__name__)
 corrections
 
+
 class ScrapedNameMixin(object):
     """
     Tools for cleaning up scraped candidate names.
