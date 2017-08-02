@@ -15,7 +15,7 @@ from .candidateelections import ScrapedCandidateElectionProxy
 from calaccess_scraped.models import Candidate, Incumbent
 from opencivicdata.elections.models import CandidateContest
 logger = logging.getLogger(__name__)
-
+corrections
 
 class ScrapedNameMixin(object):
     """
@@ -119,6 +119,18 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
         """
         return ScrapedCandidateElectionProxy.objects.get(id=self.election.id)
 
+    def get_corrected_party(self):
+        """
+        Returns a manually correction to the candidate's party, if it's been made. Otherwise returns None.
+        """
+        scraped_election = self.election_proxy
+        return corrections.candidate_party(
+            self.name,
+            scraped_election.date.year,
+            scraped_election.election_type,
+            self.office_name,
+        )
+
     def get_party(self):
         """
         Returns the party we believe the candidate was associated with this election.
@@ -132,12 +144,7 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
         scraped_election = self.election_proxy
 
         # Check if this candidate has been manually corrected.
-        party = corrections.candidate_party(
-            self.name,
-            scraped_election.date.year,
-            scraped_election.election_type,
-            self.office_name,
-        )
+        party = self.get_corrected_party()
         # If so, just pass that out right away
         if party:
             logger.debug("{} party set to {} based on correction".format(self, party))
