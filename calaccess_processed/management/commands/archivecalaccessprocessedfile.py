@@ -4,7 +4,6 @@
 Export and archive a .csv file for a given model.
 """
 import os
-import tempfile
 from django.apps import apps
 from django.core.files import File
 from django.core.management import CommandError
@@ -40,10 +39,6 @@ class Command(CalAccessCommand):
         self.model_name = options['model_name']
 
         # get the full path for archiving the csv
-        self.temp_path = os.path.join(
-            tempfile.gettempdir(),
-            '%s.csv' % self.model_name,
-        )
         self.csv_path = os.path.join(
             self.processed_data_dir,
             '%s.csv' % self.model_name,
