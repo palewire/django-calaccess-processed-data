@@ -8,37 +8,21 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Post</th>
+                <th>Year</th>
                 <th>Election</th>
-                <th>Status</th>
-                <th>Filer ID</th>
-                <th>Sources</th>
+                <th>Post</th>
             </tr>
         </thead>
         {% for obj in object_list %}
         <tr>
             <td>
                 <a href="{% url 'person_detail' obj.person.id %}">
-                    {{ obj.person }}
+                    {{ obj.person.sort_name }}
                 </a>
             </td>
-            <td><a href="{% url 'post_detail' obj.post.id %}">{{ obj.post.label }}</a></td>
-            <td><a href="{% url 'election_detail' obj.election.id %}">{{ obj.election }}</a></td>
-            <td>{{ obj.registration_status|title }}</td>
-            <td>
-                {% for obj in obj.filer_ids %}
-                <a href="http://cal-access.sos.ca.gov/Campaign/Candidates/Detail.aspx?id={{ obj.filer_id }}">
-                    {{ obj.identifier }}
-                </a>{% if not forloop.last %},{% endif %}
-                {% endfor %}
-            </td>
-            <td>
-                <ul>
-                    {% for obj in obj.sources.all %}
-                        <a href="{{ obj.url }}">{{ forloop.counter }}{% if not forloop.last %},{% endif %}</a>
-                    {% endfor %}
-                </ul>
-            </td>
+            <td>{{ obj.election_proxy.date.year }}</td>
+            <td>{{ obj.election_proxy.election_type }}</td>
+            <td>{{ obj.post.label|upper }}</td>
         </tr>
         {% endfor %}
     </table>

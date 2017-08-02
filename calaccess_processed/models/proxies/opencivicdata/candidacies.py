@@ -6,6 +6,7 @@ Proxy models for augmenting our source data tables with methods useful for proce
 from __future__ import unicode_literals
 from django.db import models
 from .people import OCDPersonProxy
+from .elections import OCDElectionProxy
 from django.db.models import IntegerField
 from django.db.models import Case, When, Q
 from django.db.models.functions import Cast
@@ -166,6 +167,13 @@ class OCDCandidacyProxy(Candidacy):
         Make this a proxy model.
         """
         proxy = True
+
+    @property
+    def election_proxy(self):
+        """
+        Returns the proxied OCDElectionProxy linked to this candidacy.
+        """
+        return OCDElectionProxy.objects.get(id=self.contest.election_id)
 
     def link_form501(self, form501):
         """
