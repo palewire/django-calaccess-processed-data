@@ -11,11 +11,11 @@ candidate_name,year,election_type,office,party,source
 "LEAL, MARCO ANTONIO ""TONY""",2016,GENERAL,ASSEMBLY 62,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2016-general/sov/2016-complete-sov.pdf
 "ISLAM, MESBAH",2016,GENERAL,ASSEMBLY 73,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2016-general/sov/2016-complete-sov.pdf
 "KROPP, ELMER MARK",2016,PRIMARY,ASSEMBLY 04,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2016-general/sov/2016-complete-sov.pdf
-"SOUZA, JACOB R.",2016,PRIMARY,ASSEMBLY 13,,
-"GOLLEHON, ERNIE",2016,PRIMARY,ASSEMBLY 34,,
-"CERVANTES, AARON",2016,PRIMARY,ASSEMBLY 43,,
-"RATCLIFF, GLEN",2016,PRIMARY,ASSEMBLY 54,,
-"LEAL, MARCO ANTONIO ""TONY""",2016,PRIMARY,ASSEMBLY 62,,
+"SOUZA, JACOB R.",2016,PRIMARY,ASSEMBLY 13,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2016-primary/110-state-assembly-formatted.pdf
+"GOLLEHON, ERNIE",2016,PRIMARY,ASSEMBLY 34,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2016-primary/110-state-assembly-formatted.pdf
+"CERVANTES, AARON",2016,PRIMARY,ASSEMBLY 43,AMERICAN INDEPENDENT,http://elections.cdn.sos.ca.gov/sov/2016-primary/110-state-assembly-formatted.pdf
+"RATCLIFF, GLEN",2016,PRIMARY,ASSEMBLY 54,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2016-primary/110-state-assembly-formatted.pdf
+"LEAL, MARCO ANTONIO ""TONY""",2016,PRIMARY,ASSEMBLY 62,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2016-primary/110-state-assembly-formatted.pdf
 "PHAM, NAM",2016,PRIMARY,ASSEMBLY 72,DEMOCRATIC,http://elections.cdn.sos.ca.gov//statewide-elections/2016-primary/june-2016-abbrev-candidates.pdf
 "ISLAM, MESBAH",2016,PRIMARY,ASSEMBLY 73,,
 "SMITH, BRIGHAM SAWYER",2014,GENERAL,ASSEMBLY 01,,
