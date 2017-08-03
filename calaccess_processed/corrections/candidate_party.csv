@@ -218,28 +218,28 @@ candidate_name,year,election_type,office,party,source
 "JOHNSON, TIMOTHY",2004,PRIMARY,STATE SENATE 35,,
 "BOURKE, KENNETH P.",2004,PRIMARY,STATE SENATE 39,,
 "NAVE, PAUL",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"CARSON, MICHAEL TODD",2003,SPECIAL,GOVERNOR,,
-"COOK, MARY ""MARY CAREY""",2003,SPECIAL,GOVERNOR,,
-"GALLAGHER, LEO A.",2003,SPECIAL,GOVERNOR,,
-"PAWLIK, GREGORY J.",2003,SPECIAL,GOVERNOR,,
-"MC CLAIN, ROBERT H.",2003,SPECIAL,GOVERNOR,,
-"MEDNICK, SCOTT A.",2003,SPECIAL,GOVERNOR,,
-"MARTORANA, GINO",2003,SPECIAL,GOVERNOR,,
-"KESSINGER, D. E.",2003,SPECIAL,GOVERNOR,,
-"HERNANDEZ, RALPH A.",2003,SPECIAL,GOVERNOR,,
-ALEX - ST. JAMES,2003,SPECIAL,GOVERNOR,,
-"MORTENSEN, JOHN S.",2003,SPECIAL,GOVERNOR,,
-"BOCK, AUDIE E.",2003,SPECIAL,GOVERNOR,,
-ANGELYNE,2003,SPECIAL,GOVERNOR,,
-"KIMBALL, KELLY P.",2003,SPECIAL,GOVERNOR,,
-"TRACY, BRIAN S.",2003,SPECIAL,GOVERNOR,,
-"PINEDA, CHARLES",2003,SPECIAL,GOVERNOR,,
-"ARIF, MOHAMMAD",2003,SPECIAL,GOVERNOR,,
-"MC CARTHY, MIKE P.",2003,SPECIAL,GOVERNOR,,
-"MC MAHON, DENNIS D.",2003,SPECIAL,GOVERNOR,,
-"HENDERSON, C. STEPHEN",2003,SPECIAL,GOVERNOR,,
-"ADAM, IRIS",2003,SPECIAL,GOVERNOR,,
-"DOLE, ROBERT ""BUTCH""",2003,SPECIAL,GOVERNOR,,
+"CARSON, MICHAEL TODD",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"COOK, MARY ""MARY CAREY""",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"GALLAGHER, LEO A.",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"PAWLIK, GREGORY J.",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"MC CLAIN, ROBERT H.",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"MEDNICK, SCOTT A.",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"MARTORANA, GINO",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"KESSINGER, D. E.",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"HERNANDEZ, RALPH A.",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+ALEX - ST. JAMES,2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"MORTENSEN, JOHN S.",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"BOCK, AUDIE E.",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+ANGELYNE,2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"KIMBALL, KELLY P.",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"TRACY, BRIAN S.",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"PINEDA, CHARLES",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"ARIF, MOHAMMAD",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"MC CARTHY, MIKE P.",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"MC MAHON, DENNIS D.",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"HENDERSON, C. STEPHEN",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"ADAM, IRIS",2003,SPECIAL,GOVERNOR,NATURAL LAW,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"DOLE, ROBERT ""BUTCH""",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
 "THRON, DOUG RILEY",2002,GENERAL,ASSEMBLY 01,,
 "BRET, PETE ANTHONY",2002,GENERAL,ASSEMBLY 02,,
 "POSTON, DOUGLAS",2002,GENERAL,ASSEMBLY 09,,
