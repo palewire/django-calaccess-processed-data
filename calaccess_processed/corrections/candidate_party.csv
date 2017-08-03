@@ -17,7 +17,7 @@ candidate_name,year,election_type,office,party,source
 "RATCLIFF, GLEN",2016,PRIMARY,ASSEMBLY 54,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2016-primary/110-state-assembly-formatted.pdf
 "LEAL, MARCO ANTONIO ""TONY""",2016,PRIMARY,ASSEMBLY 62,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2016-primary/110-state-assembly-formatted.pdf
 "PHAM, NAM",2016,PRIMARY,ASSEMBLY 72,DEMOCRATIC,http://elections.cdn.sos.ca.gov//statewide-elections/2016-primary/june-2016-abbrev-candidates.pdf
-"ISLAM, MESBAH",2016,PRIMARY,ASSEMBLY 73,,
+"ISLAM, MESBAH",2016,PRIMARY,ASSEMBLY 73,DEMOCRATIC,http://elections.cdn.sos.ca.gov//statewide-elections/2016-primary/june-2016-write-in-voter-nominated.pdf
 "SMITH, BRIGHAM SAWYER",2014,GENERAL,ASSEMBLY 01,,
 "CAPLES, BRIAN",2014,GENERAL,ASSEMBLY 06,,
 "RATCLIFF, GLEN",2014,GENERAL,ASSEMBLY 54,,
