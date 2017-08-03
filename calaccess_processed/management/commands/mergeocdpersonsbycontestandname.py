@@ -32,6 +32,9 @@ class Command(CalAccessCommand):
                 self.handle_group(group_q)
 
             for group_q in self.group_by_other_name(contest.candidacies):
+                print('Grouped by other_name')
+                print(group_q.count())
+                print('--------------------------')
                 self.handle_group(group_q)
 
         self.success("Done!")
@@ -78,8 +81,10 @@ class Command(CalAccessCommand):
         """
         Return a list of QuerySets for Candidacies with shared other_name.
         """
+        # get the distinct count of person_ids for each other_name
+        # linked to a person who's linked to one of the contest's candidacies
         q = candidacies_q.values('person__other_names__name').annotate(
-            row_count=Count('id'),
+            row_count=Count('person_id', distinct=True),
         ).order_by().filter(row_count__gt=1)
 
         results = []
@@ -138,7 +143,7 @@ class Command(CalAccessCommand):
                     )
                 )
                 for c in group_q.all():
-                    self.log(' - {}'.format(c.person))
+                    self.log(' - {} ({})'.format(c.person, c.person_id))
             # merge
             OCDPersonProxy.objects.merge([c.person for c in group_q.all()])
         # handle multiple parties in the group
