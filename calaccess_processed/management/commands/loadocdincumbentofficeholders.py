@@ -26,7 +26,7 @@ class Command(CalAccessCommand):
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
-        self.header("Load Incumbent Office Holders")
+        self.header("Loading Incumbent Office Holders")
         self.load()
         self.set_end_dates()
         if Candidacy.objects.exists():

@@ -18,6 +18,6 @@ class Command(LoadOCDElectionsBase):
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
-        self.header("Loading Election from scraped propositions")
+        self.header("Loading Elections from scraped propositions")
         self.load_from_proxy(ScrapedPropositionElectionProxy)
         self.success("Done!")

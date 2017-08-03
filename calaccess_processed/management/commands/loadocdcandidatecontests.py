@@ -23,7 +23,7 @@ class Command(CalAccessCommand):
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
-        self.header("Load Candidate Contests")
+        self.header("Loading Candidate Contests")
 
         # Load everything we can from the scrape
         for scraped_election in ScrapedCandidateElectionProxy.objects.all():
