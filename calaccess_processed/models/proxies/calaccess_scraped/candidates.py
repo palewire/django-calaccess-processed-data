@@ -285,7 +285,8 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
             previous_term_unexpired = False
             # Beyond that, there are two different cases depending on when the election was held.
             # Prior to 2012, California held partisan primaries. Since then, the state has held
-            # open "jungle" primaries that set all candidates from the same party against each other.
+            # open "jungle" primaries that set all candidates for the same office against each other,
+            # regardless of their party.
             # In the case of partisan elections, we want to make sure the candidates are separated by party.
             # The one exception to this is superintendent races which have always been non-partisan.
             if scraped_election.is_partisan_primary and self.office_name != 'SUPERINTENDENT OF PUBLIC INSTRUCTION':
