@@ -6,7 +6,6 @@ Load OCD RetentionContest and related models with data scraped from CAL-ACCESS.
 import re
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import RetentionContest
-from opencivicdata.elections.models import BallotMeasureContest
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed.models import (
     OCDPostProxy,
@@ -95,11 +94,11 @@ class Command(CalAccessCommand):
             ocd_election = scraped_prop.election_proxy.get_ocd_election()
             try:
                 # Try getting the contest using scraped_id
-                ocd_contest = ocd_election.ballotmeasurecontests.get(
+                ocd_contest = ocd_election.retentioncontests.get(
                     identifiers__scheme='calaccess_measure_id',
                     identifiers__identifier=scraped_prop.scraped_id,
                 )
-            except BallotMeasureContest.DoesNotExist:
+            except RetentionContest.DoesNotExist:
                 # If not there, create one
                 ocd_contest = self.create_contest(scraped_prop, ocd_election)
                 # Add the options
