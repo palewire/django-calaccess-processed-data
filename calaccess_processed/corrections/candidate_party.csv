@@ -65,18 +65,18 @@ candidate_name,year,election_type,office,party,source
 "PARK, DOO",2010,GENERAL,STATE SENATE 08,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
 "HINKLE, MARK W. A.",2010,SPECIAL,STATE SENATE 15,LIBERTARIAN,http://elections.cdn.sos.ca.gov/special-elections/2010-sd15/gen-official-canvass.pdf
 "HAVIG, MICHAEL",2010,PRIMARY,ASSEMBLY 18,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
-"CAMPBELL, TIMOTHY J. (T.J.)",2010,PRIMARY,ASSEMBLY 22,,
-"MELLANA, PAUL (P. J.)",2010,PRIMARY,ASSEMBLY 50,,
-"SANTIAGO, CYNTHIA",2010,PRIMARY,ASSEMBLY 51,,
-"THARP, DEBORAH",2010,PRIMARY,ASSEMBLY 70,,
-"JOHNSON, NATHAN E.",2010,PRIMARY,CONTROLLER,,
-"ALEXANDER, S. DEACON",2010,PRIMARY,GOVERNOR,,
+"CAMPBELL, TIMOTHY J. (T.J.)",2010,PRIMARY,ASSEMBLY 22,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"MELLANA, PAUL (P. J.)",2010,PRIMARY,ASSEMBLY 50,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"SANTIAGO, CYNTHIA",2010,PRIMARY,ASSEMBLY 51,GREEN PARTY,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"THARP, DEBORAH",2010,PRIMARY,ASSEMBLY 70,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"JOHNSON, NATHAN E.",2010,PRIMARY,CONTROLLER,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"ALEXANDER, S. DEACON",2010,PRIMARY,GOVERNOR,GREEN PARTY,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
 "DAVIS, BERT",2010,PRIMARY,LIEUTENANT GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
 "KING, JIM",2010,PRIMARY,LIEUTENANT GOVERNOR,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
-"MONTGOMERY, G. ALAN",2010,PRIMARY,MEMBER BOARD OF EQUALIZATION 01,,
-"LYNCH, THOMAS DEAN",2010,PRIMARY,STATE SENATE 02,,
-"GILL, LATHE SHELDON",2010,PRIMARY,STATE SENATE 04,,
-"PARK, DOO",2010,PRIMARY,STATE SENATE 08,,
+"MONTGOMERY, G. ALAN",2010,PRIMARY,MEMBER BOARD OF EQUALIZATION 01,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"LYNCH, THOMAS DEAN",2010,PRIMARY,STATE SENATE 02,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"GILL, LATHE SHELDON",2010,PRIMARY,STATE SENATE 04,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"PARK, DOO",2010,PRIMARY,STATE SENATE 08,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
 "NEVENIC, SVETLANA",2010,SPECIAL,STATE SENATE 37,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2010-sd37/final-official-results-sd37-primary.pdf
 "PULLEN-MILES, ROBERT",2009,SPECIAL,ASSEMBLY 51,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2009-ad51/final-official-results-ad51-primary.pdf
 "COFFIN, DAVID",2009,SPECIAL,ASSEMBLY 51,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2009-ad51/final-official-results-ad51-primary.pdf
