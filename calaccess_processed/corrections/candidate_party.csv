@@ -54,8 +54,8 @@ candidate_name,year,election_type,office,party,source
 "AMBROZEWICZ, BOGDAN ""BO"" I.",2012,PRIMARY,STATE SENATE 01,,
 "RINGER, LISA D.",2012,PRIMARY,STATE SENATE 09,,
 "CHAUSER, LEE H.",2012,PRIMARY,STATE SENATE 33,,
-"AMBROZEWICZ, BOGDAN ""BO"" I.",2011,SPECIAL,ASSEMBLY 04,,
-"CHAMNESS, MICHAEL",2011,SPECIAL,STATE SENATE 28,,
+"AMBROZEWICZ, BOGDAN ""BO"" I.",2011,SPECIAL,ASSEMBLY 04,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2011-ad4/primary-official-canvass.pdf
+"CHAMNESS, MICHAEL",2011,SPECIAL,STATE SENATE 28,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2011-sd28/official-canvass.pdf
 "HAVIG, MICHAEL",2010,GENERAL,ASSEMBLY 18,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
 "CAMPBELL, TIMOTHY J. (T.J.)",2010,GENERAL,ASSEMBLY 22,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
 "SANTIAGO, CYNTHIA",2010,GENERAL,ASSEMBLY 51,GREEN,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
@@ -63,8 +63,7 @@ candidate_name,year,election_type,office,party,source
 "KING, JIM",2010,GENERAL,LIEUTENANT GOVERNOR,AMERICAN INDEPENDENT,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
 "GILL, LATHE SHELDON",2010,GENERAL,STATE SENATE 04,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
 "PARK, DOO",2010,GENERAL,STATE SENATE 08,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
-"HINKLE, MARK W. A.",2010,SPECIAL,STATE SENATE 15,,
-"HINKLE, MARK W. A.",2010,SPECIAL,STATE SENATE 15,,
+"HINKLE, MARK W. A.",2010,SPECIAL,STATE SENATE 15,LIBERTARIAN,http://elections.cdn.sos.ca.gov/special-elections/2010-sd15/gen-official-canvass.pdf
 "HAVIG, MICHAEL",2010,PRIMARY,ASSEMBLY 18,,
 "CAMPBELL, TIMOTHY J. (T.J.)",2010,PRIMARY,ASSEMBLY 22,,
 "MELLANA, PAUL (P. J.)",2010,PRIMARY,ASSEMBLY 50,,
@@ -78,10 +77,10 @@ candidate_name,year,election_type,office,party,source
 "LYNCH, THOMAS DEAN",2010,PRIMARY,STATE SENATE 02,,
 "GILL, LATHE SHELDON",2010,PRIMARY,STATE SENATE 04,,
 "PARK, DOO",2010,PRIMARY,STATE SENATE 08,,
-"NEVENIC, SVETLANA",2010,SPECIAL,STATE SENATE 37,,
-"PULLEN-MILES, ROBERT",2009,SPECIAL,ASSEMBLY 51,,
-"COFFIN, DAVID",2009,SPECIAL,ASSEMBLY 51,,
-"EVANS, MERVIN",2009,SPECIAL,STATE SENATE 26,,
+"NEVENIC, SVETLANA",2010,SPECIAL,STATE SENATE 37,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2010-sd37/final-official-results-sd37-primary.pdf
+"PULLEN-MILES, ROBERT",2009,SPECIAL,ASSEMBLY 51,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2009-ad51/final-official-results-ad51-primary.pdf
+"COFFIN, DAVID",2009,SPECIAL,ASSEMBLY 51,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2009-ad51/final-official-results-ad51-primary.pdf
+"EVANS, MERVIN",2009,SPECIAL,STATE SENATE 26,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2009-sd26/final-official-results-sd26-03242009.pdf
 "MARTINEZ, KAREN LOIS",2008,GENERAL,ASSEMBLY 05,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2008-general/sov_complete.pdf
 "LAVERY, PAUL",2008,GENERAL,ASSEMBLY 06,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2008-general/sov_complete.pdf
 "BONSER, JANICE M.",2008,GENERAL,ASSEMBLY 10,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2008-general/sov_complete.pdf
@@ -109,7 +108,7 @@ candidate_name,year,election_type,office,party,source
 "FITZGERALD, JIM",2008,PRIMARY,STATE SENATE 15,,
 "GUERRERO, ARTHUR BRAVO",2008,PRIMARY,STATE SENATE 37,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2008-statewide-direct-primary/complete-sov.pdf
 "PETERS, DAVID W.",2008,PRIMARY,STATE SENATE 37,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2008-statewide-direct-primary/complete-sov.pdf
-"EVANS, MERVIN",2007,SPECIAL,ASSEMBLY 55,,
+"EVANS, MERVIN",2007,SPECIAL,ASSEMBLY 55,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2007-ad55/final_official_canvass_ad55_primary.pdf
 "TROYER, ALBERT",2006,GENERAL,ASSEMBLY 10,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
 "BONSER, JANICE M.",2006,GENERAL,ASSEMBLY 10,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
 "MORRISON, COLIN M.",2006,GENERAL,ASSEMBLY 27,,
