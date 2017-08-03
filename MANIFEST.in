@@ -1,1 +1,3 @@
 include LICENSE
+recursive-include calaccess_processed/sql/ *
+recursive-include calaccess_processed/corrections/ *.csv
