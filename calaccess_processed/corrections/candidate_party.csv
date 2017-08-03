@@ -40,20 +40,20 @@ candidate_name,year,election_type,office,party,source
 "NEVENIC, SVETLANA",2014,PRIMARY,STATE SENATE 28,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
 "KEPHART, GARY R.",2014,PRIMARY,STATE SENATE 36,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
 "NEVENIC, SVETLANA",2013,SPECIAL,STATE SENATE 40,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2013-sd40/primary-official-canvass.pdf
-"LYNCH, THOMAS DEAN",2012,GENERAL,ASSEMBLY 02,,
-"DIAMOND, ARLYNE M.",2012,GENERAL,ASSEMBLY 25,,
-"HERNANDEZ, RUBEN D. ""RJ""",2012,GENERAL,ASSEMBLY 77,,
-"CHAUSER, LEE H.",2012,GENERAL,STATE SENATE 33,,
-"ELIZONDO, PAMELA",2012,PRIMARY,ASSEMBLY 02,,
-"LYNCH, THOMAS DEAN",2012,PRIMARY,ASSEMBLY 02,,
-"DIAMOND, ARLYNE M.",2012,PRIMARY,ASSEMBLY 25,,
-"SUSCAVAGE, KEVIN J.",2012,PRIMARY,ASSEMBLY 39,,
-"BENITEZ, RICARDO",2012,PRIMARY,ASSEMBLY 39,,
-"LECAROS, ADRIANO",2012,PRIMARY,ASSEMBLY 46,,
-"WINKLER-BEACH, THELMA",2012,PRIMARY,ASSEMBLY 47,,
-"AMBROZEWICZ, BOGDAN ""BO"" I.",2012,PRIMARY,STATE SENATE 01,,
-"RINGER, LISA D.",2012,PRIMARY,STATE SENATE 09,,
-"CHAUSER, LEE H.",2012,PRIMARY,STATE SENATE 33,,
+"LYNCH, THOMAS DEAN",2012,GENERAL,ASSEMBLY 02,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2012-general/sov-complete.pdf
+"DIAMOND, ARLYNE M.",2012,GENERAL,ASSEMBLY 25,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2012-general/sov-complete.pdf
+"HERNANDEZ, RUBEN D. ""RJ""",2012,GENERAL,ASSEMBLY 77,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2012-general/sov-complete.pdf
+"CHAUSER, LEE H.",2012,GENERAL,STATE SENATE 33,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2012-general/sov-complete.pdf
+"ELIZONDO, PAMELA",2012,PRIMARY,ASSEMBLY 02,GREEN PARTY,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"LYNCH, THOMAS DEAN",2012,PRIMARY,ASSEMBLY 02,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"DIAMOND, ARLYNE M.",2012,PRIMARY,ASSEMBLY 25,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"SUSCAVAGE, KEVIN J.",2012,PRIMARY,ASSEMBLY 39,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"BENITEZ, RICARDO",2012,PRIMARY,ASSEMBLY 39,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"LECAROS, ADRIANO",2012,PRIMARY,ASSEMBLY 46,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"WINKLER-BEACH, THELMA",2012,PRIMARY,ASSEMBLY 47,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"AMBROZEWICZ, BOGDAN ""BO"" I.",2012,PRIMARY,STATE SENATE 01,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"RINGER, LISA D.",2012,PRIMARY,STATE SENATE 09,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"CHAUSER, LEE H.",2012,PRIMARY,STATE SENATE 33,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
 "AMBROZEWICZ, BOGDAN ""BO"" I.",2011,SPECIAL,ASSEMBLY 04,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2011-ad4/primary-official-canvass.pdf
 "CHAMNESS, MICHAEL",2011,SPECIAL,STATE SENATE 28,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2011-sd28/official-canvass.pdf
 "HAVIG, MICHAEL",2010,GENERAL,ASSEMBLY 18,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
@@ -64,19 +64,19 @@ candidate_name,year,election_type,office,party,source
 "GILL, LATHE SHELDON",2010,GENERAL,STATE SENATE 04,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
 "PARK, DOO",2010,GENERAL,STATE SENATE 08,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
 "HINKLE, MARK W. A.",2010,SPECIAL,STATE SENATE 15,LIBERTARIAN,http://elections.cdn.sos.ca.gov/special-elections/2010-sd15/gen-official-canvass.pdf
-"HAVIG, MICHAEL",2010,PRIMARY,ASSEMBLY 18,,
-"CAMPBELL, TIMOTHY J. (T.J.)",2010,PRIMARY,ASSEMBLY 22,,
-"MELLANA, PAUL (P. J.)",2010,PRIMARY,ASSEMBLY 50,,
-"SANTIAGO, CYNTHIA",2010,PRIMARY,ASSEMBLY 51,,
-"THARP, DEBORAH",2010,PRIMARY,ASSEMBLY 70,,
-"JOHNSON, NATHAN E.",2010,PRIMARY,CONTROLLER,,
-"ALEXANDER, S. DEACON",2010,PRIMARY,GOVERNOR,,
-"DAVIS, BERT",2010,PRIMARY,LIEUTENANT GOVERNOR,,
-"KING, JIM",2010,PRIMARY,LIEUTENANT GOVERNOR,,
-"MONTGOMERY, G. ALAN",2010,PRIMARY,MEMBER BOARD OF EQUALIZATION 01,,
-"LYNCH, THOMAS DEAN",2010,PRIMARY,STATE SENATE 02,,
-"GILL, LATHE SHELDON",2010,PRIMARY,STATE SENATE 04,,
-"PARK, DOO",2010,PRIMARY,STATE SENATE 08,,
+"HAVIG, MICHAEL",2010,PRIMARY,ASSEMBLY 18,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"CAMPBELL, TIMOTHY J. (T.J.)",2010,PRIMARY,ASSEMBLY 22,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"MELLANA, PAUL (P. J.)",2010,PRIMARY,ASSEMBLY 50,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"SANTIAGO, CYNTHIA",2010,PRIMARY,ASSEMBLY 51,GREEN PARTY,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"THARP, DEBORAH",2010,PRIMARY,ASSEMBLY 70,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"JOHNSON, NATHAN E.",2010,PRIMARY,CONTROLLER,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"ALEXANDER, S. DEACON",2010,PRIMARY,GOVERNOR,GREEN PARTY,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"DAVIS, BERT",2010,PRIMARY,LIEUTENANT GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"KING, JIM",2010,PRIMARY,LIEUTENANT GOVERNOR,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"MONTGOMERY, G. ALAN",2010,PRIMARY,MEMBER BOARD OF EQUALIZATION 01,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"LYNCH, THOMAS DEAN",2010,PRIMARY,STATE SENATE 02,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"GILL, LATHE SHELDON",2010,PRIMARY,STATE SENATE 04,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"PARK, DOO",2010,PRIMARY,STATE SENATE 08,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
 "NEVENIC, SVETLANA",2010,SPECIAL,STATE SENATE 37,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2010-sd37/final-official-results-sd37-primary.pdf
 "PULLEN-MILES, ROBERT",2009,SPECIAL,ASSEMBLY 51,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2009-ad51/final-official-results-ad51-primary.pdf
 "COFFIN, DAVID",2009,SPECIAL,ASSEMBLY 51,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2009-ad51/final-official-results-ad51-primary.pdf
@@ -239,62 +239,62 @@ ANGELYNE,2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.g
 "HENDERSON, C. STEPHEN",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
 "ADAM, IRIS",2003,SPECIAL,GOVERNOR,NATURAL LAW,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
 "DOLE, ROBERT ""BUTCH""",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"THRON, DOUG RILEY",2002,GENERAL,ASSEMBLY 01,,
-"BRET, PETE ANTHONY",2002,GENERAL,ASSEMBLY 02,,
-"POSTON, DOUGLAS",2002,GENERAL,ASSEMBLY 09,,
-"MANSKE, FRANK J.",2002,GENERAL,ASSEMBLY 11,,
-"MADEN, CHRISTOPHER R.",2002,GENERAL,ASSEMBLY 13,,
-"HOVINGH, JACK",2002,GENERAL,ASSEMBLY 18,,
-"BELL, RAYMOND M.",2002,GENERAL,ASSEMBLY 21,,
-"WATSON, KENNITA L.",2002,GENERAL,ASSEMBLY 22,,
-"SMITH, E. DENISE",2002,GENERAL,ASSEMBLY 25,,
-"CARTER, CHARLES ""CHUCK""",2002,GENERAL,ASSEMBLY 27,,
-"MARTINEZ, RICHARD",2002,GENERAL,ASSEMBLY 29,,
-"HOULGATE, LAURENCE",2002,GENERAL,ASSEMBLY 33,,
-"LEMBKE, KARL",2002,GENERAL,ASSEMBLY 38,,
-"AYAO, ELY DE LA CRUZ",2002,GENERAL,ASSEMBLY 39,,
-"FRIEDMAN, CONSTANCE J.",2002,GENERAL,ASSEMBLY 40,,
-"WOREN, SANDOR J.",2002,GENERAL,ASSEMBLY 43,,
-"NEW, BOB",2002,GENERAL,ASSEMBLY 44,,
-"CLEMENS, KEITH",2002,GENERAL,ASSEMBLY 47,,
-"HERDEGEN, NOLAYAN O.",2002,GENERAL,ASSEMBLY 48,,
-"WILSON, GUY",2002,GENERAL,ASSEMBLY 55,,
-"MARTINEZ, ADRIAN LINCOLN",2002,GENERAL,ASSEMBLY 60,,
-"SCOTT, G. EDWARD",2002,GENERAL,ASSEMBLY 62,,
-"WALLACE, DORIS LOUISE",2002,GENERAL,ASSEMBLY 63,,
-"SCRIBNER, DOUGLAS JAMES",2002,GENERAL,ASSEMBLY 68,,
-"KANE, JOHN P.",2002,GENERAL,ASSEMBLY 70,,
-"CROSS, BRIAN LEE",2002,GENERAL,ASSEMBLY 72,,
-"VONDRUSKA, ROBERT ANTHONY",2002,GENERAL,ASSEMBLY 73,,
-"CALZADA, KATHLEEN",2002,GENERAL,ASSEMBLY 73,,
-"BAKER, SARAH",2002,GENERAL,ASSEMBLY 76,,
-"MENANNO, MARK",2002,GENERAL,ASSEMBLY 78,,
-"VANCE, ERNEST F.",2002,GENERAL,CONTROLLER,,
-"AGUIRRE, CARLOS",2002,GENERAL,CONTROLLER,,
-"WELLS, LAURA",2002,GENERAL,CONTROLLER,,
-"COPELAND, GARY DAVID",2002,GENERAL,GOVERNOR,,
-"GULKE, REINHOLD",2002,GENERAL,GOVERNOR,,
-"ADAM, IRIS",2002,GENERAL,GOVERNOR,,
-"OGDEN, DALE F.",2002,GENERAL,INSURANCE COMMISSIONER,,
-"KLEIN, STEVEN",2002,GENERAL,INSURANCE COMMISSIONER,,
-"CALDERON, RAUL",2002,GENERAL,INSURANCE COMMISSIONER,,
-"PRZYBYLAK, KALEE",2002,GENERAL,LIEUTENANT GOVERNOR,,
-"HANNOSH, PAUL J.",2002,GENERAL,LIEUTENANT GOVERNOR,,
-"KING, JIM",2002,GENERAL,LIEUTENANT GOVERNOR,,
-"BRIERLY, ELIZABETH C",2002,GENERAL,MEMBER BOARD OF EQUALIZATION 01,,
-"BENDICK, MARK S.",2002,GENERAL,MEMBER BOARD OF EQUALIZATION 01,,
-"GRAHAM, J.R.",2002,GENERAL,MEMBER BOARD OF EQUALIZATION 03,,
-"CHRISTIAN-HEISING, MARY",2002,GENERAL,MEMBER BOARD OF EQUALIZATION 03,,
-"WEISSMAN, KENNETH A.",2002,GENERAL,MEMBER BOARD OF EQUALIZATION 04,,
-"LIGHTFOOT, GAIL K.",2002,GENERAL,SECRETARY OF STATE,,
-"ALLISON, LOUISE M.",2002,GENERAL,SECRETARY OF STATE,,
-"SHARPE-GEISLER, VALLI",2002,GENERAL,SECRETARY OF STATE,,
-"REDFEARN, PEGGY",2002,GENERAL,STATE SENATE 02,,
-"UNDERWOOD, ROBERT H.",2002,GENERAL,STATE SENATE 04,,
-"SWINNEY, CARL M. ""MARTY""",2002,GENERAL,STATE SENATE 24,,
-"DE BAETS, PETER D.",2002,GENERAL,STATE SENATE 28,,
-"SMITHSON, MARIAN V.",2002,GENERAL,TREASURER,,
-"VALENTINE, SYLVIA ESTHER",2002,GENERAL,TREASURER,,
+"THRON, DOUG RILEY",2002,GENERAL,ASSEMBLY 01,GREEN PARTY,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"BRET, PETE ANTHONY",2002,GENERAL,ASSEMBLY 02,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"POSTON, DOUGLAS",2002,GENERAL,ASSEMBLY 09,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"MANSKE, FRANK J.",2002,GENERAL,ASSEMBLY 11,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"MADEN, CHRISTOPHER R.",2002,GENERAL,ASSEMBLY 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"HOVINGH, JACK",2002,GENERAL,ASSEMBLY 18,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"BELL, RAYMOND M.",2002,GENERAL,ASSEMBLY 21,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"WATSON, KENNITA L.",2002,GENERAL,ASSEMBLY 22,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"SMITH, E. DENISE",2002,GENERAL,ASSEMBLY 25,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"CARTER, CHARLES ""CHUCK""",2002,GENERAL,ASSEMBLY 27,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"MARTINEZ, RICHARD",2002,GENERAL,ASSEMBLY 29,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"HOULGATE, LAURENCE",2002,GENERAL,ASSEMBLY 33,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"LEMBKE, KARL",2002,GENERAL,ASSEMBLY 38,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"AYAO, ELY DE LA CRUZ",2002,GENERAL,ASSEMBLY 39,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"FRIEDMAN, CONSTANCE J.",2002,GENERAL,ASSEMBLY 40,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"WOREN, SANDOR J.",2002,GENERAL,ASSEMBLY 43,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"NEW, BOB",2002,GENERAL,ASSEMBLY 44,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"CLEMENS, KEITH",2002,GENERAL,ASSEMBLY 47,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"HERDEGEN, NOLAYAN O.",2002,GENERAL,ASSEMBLY 48,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"WILSON, GUY",2002,GENERAL,ASSEMBLY 55,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"MARTINEZ, ADRIAN LINCOLN",2002,GENERAL,ASSEMBLY 60,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"SCOTT, G. EDWARD",2002,GENERAL,ASSEMBLY 62,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"WALLACE, DORIS LOUISE",2002,GENERAL,ASSEMBLY 63,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"SCRIBNER, DOUGLAS JAMES",2002,GENERAL,ASSEMBLY 68,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"KANE, JOHN P.",2002,GENERAL,ASSEMBLY 70,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"CROSS, BRIAN LEE",2002,GENERAL,ASSEMBLY 72,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"VONDRUSKA, ROBERT ANTHONY",2002,GENERAL,ASSEMBLY 73,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"CALZADA, KATHLEEN",2002,GENERAL,ASSEMBLY 73,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"BAKER, SARAH",2002,GENERAL,ASSEMBLY 76,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"MENANNO, MARK",2002,GENERAL,ASSEMBLY 78,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"VANCE, ERNEST F.",2002,GENERAL,CONTROLLER,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"AGUIRRE, CARLOS",2002,GENERAL,CONTROLLER,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"WELLS, LAURA",2002,GENERAL,CONTROLLER,GREEN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"COPELAND, GARY DAVID",2002,GENERAL,GOVERNOR,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"GULKE, REINHOLD",2002,GENERAL,GOVERNOR,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"ADAM, IRIS",2002,GENERAL,GOVERNOR,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"OGDEN, DALE F.",2002,GENERAL,INSURANCE COMMISSIONER,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"KLEIN, STEVEN",2002,GENERAL,INSURANCE COMMISSIONER,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"CALDERON, RAUL",2002,GENERAL,INSURANCE COMMISSIONER,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"PRZYBYLAK, KALEE",2002,GENERAL,LIEUTENANT GOVERNOR,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"HANNOSH, PAUL J.",2002,GENERAL,LIEUTENANT GOVERNOR,REFORM PARTY,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"KING, JIM",2002,GENERAL,LIEUTENANT GOVERNOR,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"BRIERLY, ELIZABETH C",2002,GENERAL,MEMBER BOARD OF EQUALIZATION 01,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"BENDICK, MARK S.",2002,GENERAL,MEMBER BOARD OF EQUALIZATION 01,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"GRAHAM, J.R.",2002,GENERAL,MEMBER BOARD OF EQUALIZATION 03,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"CHRISTIAN-HEISING, MARY",2002,GENERAL,MEMBER BOARD OF EQUALIZATION 03,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"WEISSMAN, KENNETH A.",2002,GENERAL,MEMBER BOARD OF EQUALIZATION 04,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"LIGHTFOOT, GAIL K.",2002,GENERAL,SECRETARY OF STATE,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"ALLISON, LOUISE M.",2002,GENERAL,SECRETARY OF STATE,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"SHARPE-GEISLER, VALLI",2002,GENERAL,SECRETARY OF STATE,REFORM PARTY,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"REDFEARN, PEGGY",2002,GENERAL,STATE SENATE 02,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"UNDERWOOD, ROBERT H.",2002,GENERAL,STATE SENATE 04,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"SWINNEY, CARL M. ""MARTY""",2002,GENERAL,STATE SENATE 24,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"DE BAETS, PETER D.",2002,GENERAL,STATE SENATE 28,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"SMITHSON, MARIAN V.",2002,GENERAL,TREASURER,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"VALENTINE, SYLVIA ESTHER",2002,GENERAL,TREASURER,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
 "THRON, DOUG RILEY",2002,PRIMARY,ASSEMBLY 01,,
 "BRET, PETE ANTHONY",2002,PRIMARY,ASSEMBLY 02,,
 "POSTON, DOUGLAS",2002,PRIMARY,ASSEMBLY 09,,
