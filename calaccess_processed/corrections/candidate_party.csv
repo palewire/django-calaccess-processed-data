@@ -18,27 +18,27 @@ candidate_name,year,election_type,office,party,source
 "LEAL, MARCO ANTONIO ""TONY""",2016,PRIMARY,ASSEMBLY 62,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2016-primary/110-state-assembly-formatted.pdf
 "PHAM, NAM",2016,PRIMARY,ASSEMBLY 72,DEMOCRATIC,http://elections.cdn.sos.ca.gov//statewide-elections/2016-primary/june-2016-abbrev-candidates.pdf
 "ISLAM, MESBAH",2016,PRIMARY,ASSEMBLY 73,DEMOCRATIC,http://elections.cdn.sos.ca.gov//statewide-elections/2016-primary/june-2016-write-in-voter-nominated.pdf
-"SMITH, BRIGHAM SAWYER",2014,GENERAL,ASSEMBLY 01,,
-"CAPLES, BRIAN",2014,GENERAL,ASSEMBLY 06,,
-"RATCLIFF, GLEN",2014,GENERAL,ASSEMBLY 54,,
-"KEPHART, GARY R.",2014,GENERAL,STATE SENATE 36,,
-"SMITH, BRIGHAM SAWYER",2014,PRIMARY,ASSEMBLY 01,,
-"CAPLES, BRIAN",2014,PRIMARY,ASSEMBLY 06,,
-"KIMACK, JOHN HENRY",2014,PRIMARY,ASSEMBLY 14,,
-"REYNOSO, LUIS",2014,PRIMARY,ASSEMBLY 20,,
+"SMITH, BRIGHAM SAWYER",2014,GENERAL,ASSEMBLY 01,DEMOCRATIC,http://elections.cdn.sos.ca.gov/statewide-elections/2014-general/general-certified-list.pdf
+"CAPLES, BRIAN",2014,GENERAL,ASSEMBLY 06,DEMOCRATIC,http://elections.cdn.sos.ca.gov/statewide-elections/2014-general/general-certified-list.pdf
+"RATCLIFF, GLEN",2014,GENERAL,ASSEMBLY 54,REPUBLICAN,http://elections.cdn.sos.ca.gov/statewide-elections/2014-general/general-certified-list.pdf
+"KEPHART, GARY R.",2014,GENERAL,STATE SENATE 36,DEMOCRATIC,http://elections.cdn.sos.ca.gov/statewide-elections/2014-general/general-certified-list.pdf
+"SMITH, BRIGHAM SAWYER",2014,PRIMARY,ASSEMBLY 01,DEMOCRATIC,http://elections.cdn.sos.ca.gov/statewide-elections/2014-general/general-certified-list.pdf
+"CAPLES, BRIAN",2014,PRIMARY,ASSEMBLY 06,DEMOCRATIC,http://elections.cdn.sos.ca.gov/statewide-elections/2014-general/general-certified-list.pdf
+"KIMACK, JOHN HENRY",2014,PRIMARY,ASSEMBLY 14,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
+"REYNOSO, LUIS",2014,PRIMARY,ASSEMBLY 20,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
 "LAWS, JERRY J.",2014,PRIMARY,ASSEMBLY 33,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
-"SUSCAVAGE, KEVIN J.",2014,PRIMARY,ASSEMBLY 39,,
-"BOYD, MICHAEL B.",2014,PRIMARY,ASSEMBLY 39,,
-"TSAI, NATHANIEL J",2014,PRIMARY,ASSEMBLY 41,,
-"HAZELTON, LINDA",2014,PRIMARY,ASSEMBLY 41,,
-"RATCLIFF, GLEN",2014,PRIMARY,ASSEMBLY 54,,
-"PASTER, MIKE",2014,PRIMARY,ASSEMBLY 75,,
-"WILDSTAR, NICKOLAS",2014,PRIMARY,GOVERNOR,,
+"SUSCAVAGE, KEVIN J.",2014,PRIMARY,ASSEMBLY 39,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
+"BOYD, MICHAEL B.",2014,PRIMARY,ASSEMBLY 39,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
+"TSAI, NATHANIEL J",2014,PRIMARY,ASSEMBLY 41,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
+"HAZELTON, LINDA",2014,PRIMARY,ASSEMBLY 41,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
+"RATCLIFF, GLEN",2014,PRIMARY,ASSEMBLY 54,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
+"PASTER, MIKE",2014,PRIMARY,ASSEMBLY 75,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
+"WILDSTAR, NICKOLAS",2014,PRIMARY,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
 "AGBEDE, AKINYEMI O.",2014,PRIMARY,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
-"JOHNSON, AMOS",2014,PRIMARY,LIEUTENANT GOVERNOR,,
-"REYNOLDS, ALAN S.",2014,PRIMARY,LIEUTENANT GOVERNOR,,
-"NEVENIC, SVETLANA",2014,PRIMARY,STATE SENATE 28,,
-"KEPHART, GARY R.",2014,PRIMARY,STATE SENATE 36,,
+"JOHNSON, AMOS",2014,PRIMARY,LIEUTENANT GOVERNOR,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
+"REYNOLDS, ALAN S.",2014,PRIMARY,LIEUTENANT GOVERNOR,AMERICAN INDEPENDENT,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
+"NEVENIC, SVETLANA",2014,PRIMARY,STATE SENATE 28,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
+"KEPHART, GARY R.",2014,PRIMARY,STATE SENATE 36,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
 "NEVENIC, SVETLANA",2013,SPECIAL,STATE SENATE 40,,
 "LYNCH, THOMAS DEAN",2012,GENERAL,ASSEMBLY 02,,
 "DIAMOND, ARLYNE M.",2012,GENERAL,ASSEMBLY 25,,
