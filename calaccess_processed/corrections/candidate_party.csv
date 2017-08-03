@@ -41,19 +41,19 @@ candidate_name,year,election_type,office,party,source
 "KEPHART, GARY R.",2014,PRIMARY,STATE SENATE 36,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
 "NEVENIC, SVETLANA",2013,SPECIAL,STATE SENATE 40,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2013-sd40/primary-official-canvass.pdf
 "LYNCH, THOMAS DEAN",2012,GENERAL,ASSEMBLY 02,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2012-general/sov-complete.pdf
-"DIAMOND, ARLYNE M.",2012,GENERAL,ASSEMBLY 25,,
-"HERNANDEZ, RUBEN D. ""RJ""",2012,GENERAL,ASSEMBLY 77,,
-"CHAUSER, LEE H.",2012,GENERAL,STATE SENATE 33,,
-"ELIZONDO, PAMELA",2012,PRIMARY,ASSEMBLY 02,,
-"LYNCH, THOMAS DEAN",2012,PRIMARY,ASSEMBLY 02,,
-"DIAMOND, ARLYNE M.",2012,PRIMARY,ASSEMBLY 25,,
-"SUSCAVAGE, KEVIN J.",2012,PRIMARY,ASSEMBLY 39,,
-"BENITEZ, RICARDO",2012,PRIMARY,ASSEMBLY 39,,
-"LECAROS, ADRIANO",2012,PRIMARY,ASSEMBLY 46,,
-"WINKLER-BEACH, THELMA",2012,PRIMARY,ASSEMBLY 47,,
-"AMBROZEWICZ, BOGDAN ""BO"" I.",2012,PRIMARY,STATE SENATE 01,,
-"RINGER, LISA D.",2012,PRIMARY,STATE SENATE 09,,
-"CHAUSER, LEE H.",2012,PRIMARY,STATE SENATE 33,,
+"DIAMOND, ARLYNE M.",2012,GENERAL,ASSEMBLY 25,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2012-general/sov-complete.pdf
+"HERNANDEZ, RUBEN D. ""RJ""",2012,GENERAL,ASSEMBLY 77,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2012-general/sov-complete.pdf
+"CHAUSER, LEE H.",2012,GENERAL,STATE SENATE 33,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2012-general/sov-complete.pdf
+"ELIZONDO, PAMELA",2012,PRIMARY,ASSEMBLY 02,GREEN PARTY,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"LYNCH, THOMAS DEAN",2012,PRIMARY,ASSEMBLY 02,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"DIAMOND, ARLYNE M.",2012,PRIMARY,ASSEMBLY 25,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"SUSCAVAGE, KEVIN J.",2012,PRIMARY,ASSEMBLY 39,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"BENITEZ, RICARDO",2012,PRIMARY,ASSEMBLY 39,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"LECAROS, ADRIANO",2012,PRIMARY,ASSEMBLY 46,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"WINKLER-BEACH, THELMA",2012,PRIMARY,ASSEMBLY 47,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"AMBROZEWICZ, BOGDAN ""BO"" I.",2012,PRIMARY,STATE SENATE 01,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"RINGER, LISA D.",2012,PRIMARY,STATE SENATE 09,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
+"CHAUSER, LEE H.",2012,PRIMARY,STATE SENATE 33,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
 "AMBROZEWICZ, BOGDAN ""BO"" I.",2011,SPECIAL,ASSEMBLY 04,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2011-ad4/primary-official-canvass.pdf
 "CHAMNESS, MICHAEL",2011,SPECIAL,STATE SENATE 28,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2011-sd28/official-canvass.pdf
 "HAVIG, MICHAEL",2010,GENERAL,ASSEMBLY 18,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
@@ -71,8 +71,8 @@ candidate_name,year,election_type,office,party,source
 "THARP, DEBORAH",2010,PRIMARY,ASSEMBLY 70,,
 "JOHNSON, NATHAN E.",2010,PRIMARY,CONTROLLER,,
 "ALEXANDER, S. DEACON",2010,PRIMARY,GOVERNOR,,
-"DAVIS, BERT",2010,PRIMARY,LIEUTENANT GOVERNOR,,
-"KING, JIM",2010,PRIMARY,LIEUTENANT GOVERNOR,,
+"DAVIS, BERT",2010,PRIMARY,LIEUTENANT GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
+"KING, JIM",2010,PRIMARY,LIEUTENANT GOVERNOR,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
 "MONTGOMERY, G. ALAN",2010,PRIMARY,MEMBER BOARD OF EQUALIZATION 01,,
 "LYNCH, THOMAS DEAN",2010,PRIMARY,STATE SENATE 02,,
 "GILL, LATHE SHELDON",2010,PRIMARY,STATE SENATE 04,,
