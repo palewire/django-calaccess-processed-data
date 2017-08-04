@@ -190,32 +190,32 @@ candidate_name,year,election_type,office,party,source
 "CONDIT, TOM",2004,GENERAL,STATE SENATE 09,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2004-general/sov_2004_entire.pdf
 "GOLDMAN, COLIN S.",2004,GENERAL,STATE SENATE 23,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-general/sov_2004_entire.pdf
 "JOHNSON, TIMOTHY",2004,GENERAL,STATE SENATE 35,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-general/sov_2004_entire.pdf
-"TYRONE, RAY",2004,PRIMARY,ASSEMBLY 01,,
-"SCHWENK, TODD W.",2004,PRIMARY,ASSEMBLY 04,,
-"MANFRE, MELISSA",2004,PRIMARY,ASSEMBLY 05,,
-"MORGAN, GALE R.",2004,PRIMARY,ASSEMBLY 09,,
-"GARCIA, GASPAR R.",2004,PRIMARY,ASSEMBLY 09,,
-"SANCHEZ, MOSES ARIEL",2004,PRIMARY,ASSEMBLY 17,,
-"TRAN, KHANH D.",2004,PRIMARY,ASSEMBLY 23,,
-"JANKOWIAK, FRED",2004,PRIMARY,ASSEMBLY 24,,
-"COLLIER, ZANDER Y.",2004,PRIMARY,ASSEMBLY 24,,
-"DAVIS, BRIAN JOSEPH",2004,PRIMARY,ASSEMBLY 38,,
-"AYAO, ELY DE LA CRUZ",2004,PRIMARY,ASSEMBLY 39,,
-"DE BAETS, PETER D.",2004,PRIMARY,ASSEMBLY 47,,
-"ALEXANDER, SEBASTIAN",2004,PRIMARY,ASSEMBLY 48,,
-"BROWN, LAURA G.",2004,PRIMARY,ASSEMBLY 49,,
-"BOIVIE, ETHAN M.",2004,PRIMARY,ASSEMBLY 53,,
-"HAWKINS, WALTER S.",2004,PRIMARY,ASSEMBLY 62,,
-"REIS, GEORGE",2004,PRIMARY,ASSEMBLY 69,,
-"BALDWIN, MARK",2004,PRIMARY,ASSEMBLY 70,,
-"CROSS, BRIAN LEE",2004,PRIMARY,ASSEMBLY 72,,
-"RHODES, DAVID",2004,PRIMARY,STATE SENATE 03,,
-"CONDIT, TOM",2004,PRIMARY,STATE SENATE 09,,
-"DIAZ, ANDREW G. ABE",2004,PRIMARY,STATE SENATE 13,,
-"MEDEIROS, JOSE FRANCIS",2004,PRIMARY,STATE SENATE 13,,
-"GOLDMAN, COLIN S.",2004,PRIMARY,STATE SENATE 23,,
-"JOHNSON, TIMOTHY",2004,PRIMARY,STATE SENATE 35,,
-"BOURKE, KENNETH P.",2004,PRIMARY,STATE SENATE 39,,
+"TYRONE, RAY",2004,PRIMARY,ASSEMBLY 01,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"SCHWENK, TODD W.",2004,PRIMARY,ASSEMBLY 04,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"MANFRE, MELISSA",2004,PRIMARY,ASSEMBLY 05,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"MORGAN, GALE R.",2004,PRIMARY,ASSEMBLY 09,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"GARCIA, GASPAR R.",2004,PRIMARY,ASSEMBLY 09,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"SANCHEZ, MOSES ARIEL",2004,PRIMARY,ASSEMBLY 17,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"TRAN, KHANH D.",2004,PRIMARY,ASSEMBLY 23,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"JANKOWIAK, FRED",2004,PRIMARY,ASSEMBLY 24,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"COLLIER, ZANDER Y.",2004,PRIMARY,ASSEMBLY 24,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"DAVIS, BRIAN JOSEPH",2004,PRIMARY,ASSEMBLY 38,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"AYAO, ELY DE LA CRUZ",2004,PRIMARY,ASSEMBLY 39,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"DE BAETS, PETER D.",2004,PRIMARY,ASSEMBLY 47,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"ALEXANDER, SEBASTIAN",2004,PRIMARY,ASSEMBLY 48,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"BROWN, LAURA G.",2004,PRIMARY,ASSEMBLY 49,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"BOIVIE, ETHAN M.",2004,PRIMARY,ASSEMBLY 53,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"HAWKINS, WALTER S.",2004,PRIMARY,ASSEMBLY 62,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"REIS, GEORGE",2004,PRIMARY,ASSEMBLY 69,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"BALDWIN, MARK",2004,PRIMARY,ASSEMBLY 70,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"CROSS, BRIAN LEE",2004,PRIMARY,ASSEMBLY 72,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"RHODES, DAVID",2004,PRIMARY,STATE SENATE 03,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"CONDIT, TOM",2004,PRIMARY,STATE SENATE 09,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"DIAZ, ANDREW G. ABE",2004,PRIMARY,STATE SENATE 13,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"MEDEIROS, JOSE FRANCIS",2004,PRIMARY,STATE SENATE 13,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"GOLDMAN, COLIN S.",2004,PRIMARY,STATE SENATE 23,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"JOHNSON, TIMOTHY",2004,PRIMARY,STATE SENATE 35,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
+"BOURKE, KENNETH P.",2004,PRIMARY,STATE SENATE 39,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
 "NAVE, PAUL",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
 "CARSON, MICHAEL TODD",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
 "COOK, MARY ""MARY CAREY""",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
