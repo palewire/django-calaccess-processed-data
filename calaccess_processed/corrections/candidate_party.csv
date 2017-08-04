@@ -13,7 +13,7 @@ candidate_name,year,election_type,office,party,source
 "KROPP, ELMER MARK",2016,PRIMARY,ASSEMBLY 04,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2016-general/sov/2016-complete-sov.pdf
 "SOUZA, JACOB R.",2016,PRIMARY,ASSEMBLY 13,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2016-primary/110-state-assembly-formatted.pdf
 "GOLLEHON, ERNIE",2016,PRIMARY,ASSEMBLY 34,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2016-primary/110-state-assembly-formatted.pdf
-"CERVANTES, AARON",2016,PRIMARY,ASSEMBLY 43,AMERICAN INDEPENDENT,http://elections.cdn.sos.ca.gov/sov/2016-primary/110-state-assembly-formatted.pdf
+"CERVANTES, AARON",2016,PRIMARY,ASSEMBLY 43,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2016-primary/110-state-assembly-formatted.pdf
 "RATCLIFF, GLEN",2016,PRIMARY,ASSEMBLY 54,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2016-primary/110-state-assembly-formatted.pdf
 "LEAL, MARCO ANTONIO ""TONY""",2016,PRIMARY,ASSEMBLY 62,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2016-primary/110-state-assembly-formatted.pdf
 "PHAM, NAM",2016,PRIMARY,ASSEMBLY 72,DEMOCRATIC,http://elections.cdn.sos.ca.gov//statewide-elections/2016-primary/june-2016-abbrev-candidates.pdf
@@ -36,7 +36,7 @@ candidate_name,year,election_type,office,party,source
 "WILDSTAR, NICKOLAS",2014,PRIMARY,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
 "AGBEDE, AKINYEMI O.",2014,PRIMARY,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
 "JOHNSON, AMOS",2014,PRIMARY,LIEUTENANT GOVERNOR,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
-"REYNOLDS, ALAN S.",2014,PRIMARY,LIEUTENANT GOVERNOR,AMERICAN INDEPENDENT,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
+"REYNOLDS, ALAN S.",2014,PRIMARY,LIEUTENANT GOVERNOR,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
 "NEVENIC, SVETLANA",2014,PRIMARY,STATE SENATE 28,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
 "KEPHART, GARY R.",2014,PRIMARY,STATE SENATE 36,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2014-primary/pdf/2014-complete-sov.pdf
 "NEVENIC, SVETLANA",2013,SPECIAL,STATE SENATE 40,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2013-sd40/primary-official-canvass.pdf
@@ -58,9 +58,9 @@ candidate_name,year,election_type,office,party,source
 "CHAMNESS, MICHAEL",2011,SPECIAL,STATE SENATE 28,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2011-sd28/official-canvass.pdf
 "HAVIG, MICHAEL",2010,GENERAL,ASSEMBLY 18,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
 "CAMPBELL, TIMOTHY J. (T.J.)",2010,GENERAL,ASSEMBLY 22,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
-"SANTIAGO, CYNTHIA",2010,GENERAL,ASSEMBLY 51,GREEN,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
+"SANTIAGO, CYNTHIA",2010,GENERAL,ASSEMBLY 51,GREEN PARTY,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
 "THARP, DEBORAH",2010,GENERAL,ASSEMBLY 70,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
-"KING, JIM",2010,GENERAL,LIEUTENANT GOVERNOR,AMERICAN INDEPENDENT,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
+"KING, JIM",2010,GENERAL,LIEUTENANT GOVERNOR,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
 "GILL, LATHE SHELDON",2010,GENERAL,STATE SENATE 04,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
 "PARK, DOO",2010,GENERAL,STATE SENATE 08,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
 "HINKLE, MARK W. A.",2010,SPECIAL,STATE SENATE 15,LIBERTARIAN,http://elections.cdn.sos.ca.gov/special-elections/2010-sd15/gen-official-canvass.pdf
@@ -119,9 +119,9 @@ candidate_name,year,election_type,office,party,source
 "CROSS, BRIAN LEE",2006,GENERAL,ASSEMBLY 72,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
 "MEYER, SCOTT",2006,GENERAL,ASSEMBLY 75,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
 "BELITZ, RICHARD G.",2006,GENERAL,ASSEMBLY 77,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
-"CAMPBELL, WARREN MARK",2006,GENERAL,CONTROLLER,AMERICAN INDEPENDENT,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
+"CAMPBELL, WARREN MARK",2006,GENERAL,CONTROLLER,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
 "JORDAN, JANICE",2006,GENERAL,GOVERNOR,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
-"BURDEN, JAY EARL",2006,GENERAL,INSURANCE COMMISSIONER,AMERICAN INDEPENDENT,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
+"BURDEN, JAY EARL",2006,GENERAL,INSURANCE COMMISSIONER,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
 "OGDEN, DALE F.",2006,GENERAL,INSURANCE COMMISSIONER,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
 "CONDIT, TOM",2006,GENERAL,INSURANCE COMMISSIONER,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
 "CAMPBELL, DAVID",2006,GENERAL,MEMBER BOARD OF EQUALIZATION 01,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
@@ -271,7 +271,7 @@ ANGELYNE,2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.g
 "MENANNO, MARK",2002,GENERAL,ASSEMBLY 78,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
 "VANCE, ERNEST F.",2002,GENERAL,CONTROLLER,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
 "AGUIRRE, CARLOS",2002,GENERAL,CONTROLLER,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
-"WELLS, LAURA",2002,GENERAL,CONTROLLER,GREEN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
+"WELLS, LAURA",2002,GENERAL,CONTROLLER,GREEN PARTY,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
 "COPELAND, GARY DAVID",2002,GENERAL,GOVERNOR,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
 "GULKE, REINHOLD",2002,GENERAL,GOVERNOR,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
 "ADAM, IRIS",2002,GENERAL,GOVERNOR,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
@@ -408,7 +408,7 @@ STARCHILD,2000,GENERAL,ASSEMBLY 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/s
 "UDINSKY, JERALD",2000,GENERAL,ASSEMBLY 14,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "BURTON, DANIEL C.",2000,GENERAL,ASSEMBLY 14,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "ARONER, DION LOUISE",2000,GENERAL,ASSEMBLY 14,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
-"LEACH, LYNNE C.",2000,GENERAL,ASSEMBLY 15,REPUBLCIAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
+"LEACH, LYNNE C.",2000,GENERAL,ASSEMBLY 15,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "ARMSTRONG, RICHARD E.",2000,GENERAL,ASSEMBLY 16,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "BOCK, AUDIE E.",2000,GENERAL,ASSEMBLY 16,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "MC CORMICK, TIMOTHY B.",2000,GENERAL,ASSEMBLY 16,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
@@ -650,7 +650,7 @@ STARCHILD,2000,PRIMARY,ASSEMBLY 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/s
 "WERLWAS, MARK",2000,PRIMARY,ASSEMBLY 20,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "DUTRA, JOHN A.",2000,PRIMARY,ASSEMBLY 20,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "SIMITIAN, S. JOSEPH",2000,PRIMARY,ASSEMBLY 21,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
-"PURCELL, GLORIA",2000,PRIMARY,ASSEMBLY 21,GREEN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"PURCELL, GLORIA",2000,PRIMARY,ASSEMBLY 21,GREEN PARTY,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "KAWCZYNSKI, STAN",2000,PRIMARY,ASSEMBLY 22,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "ALBRECHT, DANA W.",2000,PRIMARY,ASSEMBLY 23,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "NEIGHBORS, DAVID J.",2000,PRIMARY,ASSEMBLY 23,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
