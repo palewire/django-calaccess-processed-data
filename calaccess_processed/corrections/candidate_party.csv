@@ -105,13 +105,13 @@ candidate_name,year,election_type,office,party,source
 "NAVARRO, GIL",2008,PRIMARY,ASSEMBLY 62,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2008-statewide-direct-primary/complete-sov.pdf
 "TERRELL, DARYL",2008,PRIMARY,ASSEMBLY 64,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2008-statewide-direct-primary/complete-sov.pdf
 "AMSBERRY, CHRISTIAN A.",2008,PRIMARY,STATE SENATE 07,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2008-statewide-direct-primary/complete-sov.pdf
-"FITZGERALD, JIM",2008,PRIMARY,STATE SENATE 15,,
+"FITZGERALD, JIM",2008,PRIMARY,STATE SENATE 15,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/sov/2008-general/sov_complete.pdf
 "GUERRERO, ARTHUR BRAVO",2008,PRIMARY,STATE SENATE 37,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2008-statewide-direct-primary/complete-sov.pdf
 "PETERS, DAVID W.",2008,PRIMARY,STATE SENATE 37,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2008-statewide-direct-primary/complete-sov.pdf
 "EVANS, MERVIN",2007,SPECIAL,ASSEMBLY 55,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2007-ad55/final_official_canvass_ad55_primary.pdf
 "TROYER, ALBERT",2006,GENERAL,ASSEMBLY 10,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
 "BONSER, JANICE M.",2006,GENERAL,ASSEMBLY 10,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
-"MORRISON, COLIN M.",2006,GENERAL,ASSEMBLY 27,,
+"MORRISON, COLIN M.",2006,GENERAL,ASSEMBLY 27,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
 "VEGA, MARIBEL",2006,GENERAL,ASSEMBLY 32,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
 "AGBABA, MICHAEL M.",2006,GENERAL,ASSEMBLY 43,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
 "SWINNEY, CARL M. ""MARTY""",2006,GENERAL,ASSEMBLY 51,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
@@ -878,15 +878,15 @@ STARCHILD,2000,PRIMARY,ASSEMBLY 13,,
 "WARD, FRITZ R.",2000,PRIMARY,STATE SENATE 31,,
 "CHACON, MICHAEL",2000,PRIMARY,STATE SENATE 33,,
 "VERKAMP, WM. (BILL)",2000,PRIMARY,STATE SENATE 33,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
-"ACKERMAN, RICHARD",2000,PRIMARY,STATE SENATE 33,,
-"ROBERTS, JACK",2000,PRIMARY,STATE SENATE 33,,
-"KATZ, CINDY",2000,PRIMARY,STATE SENATE 35,,
-"STUDIER, PAUL L.",2000,PRIMARY,STATE SENATE 35,,
-"JOHNSON, ROSS",2000,PRIMARY,STATE SENATE 35,,
-"RAY, STEVE",2000,PRIMARY,STATE SENATE 35,,
-"BATTIN, JAMES F.",2000,PRIMARY,STATE SENATE 37,,
-"WATTON, MARK",2000,PRIMARY,STATE SENATE 37,,
-"TELLO, DONNA",2000,PRIMARY,STATE SENATE 37,,
-"ALPERT, DEDE",2000,PRIMARY,STATE SENATE 39,,
+"ACKERMAN, RICHARD",2000,PRIMARY,STATE SENATE 33,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"ROBERTS, JACK",2000,PRIMARY,STATE SENATE 33,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"KATZ, CINDY",2000,PRIMARY,STATE SENATE 35,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"STUDIER, PAUL L.",2000,PRIMARY,STATE SENATE 35,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"JOHNSON, ROSS",2000,PRIMARY,STATE SENATE 35,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"RAY, STEVE",2000,PRIMARY,STATE SENATE 35,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"BATTIN, JAMES F.",2000,PRIMARY,STATE SENATE 37,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"WATTON, MARK",2000,PRIMARY,STATE SENATE 37,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"TELLO, DONNA",2000,PRIMARY,STATE SENATE 37,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"ALPERT, DEDE",2000,PRIMARY,STATE SENATE 39,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "KNOLES, STUART",2000,PRIMARY,STATE SENATE 39,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "NICHOLS, RUSTY",2000,PRIMARY,STATE SENATE 39,LIBERTARIAN, http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
