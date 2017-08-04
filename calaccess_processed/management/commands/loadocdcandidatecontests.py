@@ -65,11 +65,24 @@ class Command(CalAccessCommand):
                             identifier=form501.filer_id,
                         )
 
-                # Fill the party if the candidacy doesn't have it
-                # Get the candidate's party, looking in our correction file for any fixes
-                if not candidacy.party:
-                    candidacy.party = scraped_candidate.get_party()
-                    candidacy.save()
+                # Set candidacy party
+                corrected_party = scraped_candidate.get_party()
+                if corrected_party:
+                    # if not already set
+                    if not candidacy.party:
+                        candidacy.party = corrected_party
+                        candidacy.save()
+                    # or if correction is different
+                    elif candidacy.party.id != corrected_party.id:
+                        if self.verbosity > 2:
+                            msg = ' Resetting {0} party: {1} -> {2}'.format(
+                                candidacy,
+                                candidacy.party,
+                                corrected_party,
+                            )
+                            self.log(msg)
+                        candidacy.party = corrected_party
+                        candidacy.save()
 
                 # always update the source for the candidacy
                 candidacy.sources.update_or_create(
