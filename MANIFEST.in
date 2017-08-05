@@ -1,3 +1,4 @@
 include LICENSE
+include README.md
 recursive-include calaccess_processed/sql/ *
 recursive-include calaccess_processed/corrections/ *.csv
