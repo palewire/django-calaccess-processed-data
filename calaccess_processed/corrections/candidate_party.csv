@@ -221,7 +221,7 @@ candidate_name,year,election_type,office,party,source
 "COOK, MARY ""MARY CAREY""",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
 "GALLAGHER, LEO A.",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
 "PAWLIK, GREGORY J.",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"MC CLAIN, ROBERT H.",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"MCCLAIN, ROBERT H.",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
 "MEDNICK, SCOTT A.",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
 "MARTORANA, GINO",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
 "KESSINGER, D. E.",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
@@ -234,8 +234,8 @@ ANGELYNE,2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.g
 "TRACY, BRIAN S.",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
 "PINEDA, CHARLES",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
 "ARIF, MOHAMMAD",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"MC CARTHY, MIKE P.",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"MC MAHON, DENNIS D.",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"MCCARTHY, MIKE P.",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"MCMAHON, DENNIS D.",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
 "HENDERSON, C. STEPHEN",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
 "ADAM, IRIS",2003,SPECIAL,GOVERNOR,NATURAL LAW,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
 "DOLE, ROBERT ""BUTCH""",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
@@ -329,7 +329,7 @@ ANGELYNE,2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.g
 "CALZADA, KATHLEEN",2002,PRIMARY,ASSEMBLY 73,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
 "BAKER, SARAH",2002,PRIMARY,ASSEMBLY 76,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
 "MENANNO, MARK",2002,PRIMARY,ASSEMBLY 78,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
-"MC INTOSH, KATHLEEN",2002,PRIMARY,ASSEMBLY 78,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
+"MCINTOSH, KATHLEEN",2002,PRIMARY,ASSEMBLY 78,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
 "NEVENIC, SVETLANA",2002,PRIMARY,ASSEMBLY 80,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
 "BLANCO, DAVID DELANO",2002,PRIMARY,CONTROLLER,GREEN PARTY,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
 "VANCE, ERNEST F.",2002,PRIMARY,CONTROLLER,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
@@ -411,7 +411,7 @@ STARCHILD,2000,GENERAL,ASSEMBLY 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/s
 "LEACH, LYNNE C.",2000,GENERAL,ASSEMBLY 15,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "ARMSTRONG, RICHARD E.",2000,GENERAL,ASSEMBLY 16,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "BOCK, AUDIE E.",2000,GENERAL,ASSEMBLY 16,AMERICAN INDEPENDENT PARTY,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
-"MC CORMICK, TIMOTHY B.",2000,GENERAL,ASSEMBLY 16,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
+"MCCORMICK, TIMOTHY B.",2000,GENERAL,ASSEMBLY 16,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "BUSCH, ROY W.",2000,GENERAL,ASSEMBLY 17,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "CORBETT, ELLEN",2000,GENERAL,ASSEMBLY 18,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "MAHMOOD, SYED",2000,GENERAL,ASSEMBLY 18,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
@@ -516,7 +516,7 @@ STARCHILD,2000,GENERAL,ASSEMBLY 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/s
 "CORREA, LOU",2000,GENERAL,ASSEMBLY 69,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "KATZ, BARRY L.",2000,GENERAL,ASSEMBLY 70,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "MILLS, RAYMOND O.",2000,GENERAL,ASSEMBLY 70,REFORM PARTY,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
-"MC KEON, MERRITT LORI",2000,GENERAL,ASSEMBLY 70,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
+"MCKEON, MERRITT LORI",2000,GENERAL,ASSEMBLY 70,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "VONDRUSKA, ROBERT ANTHONY",2000,GENERAL,ASSEMBLY 70,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "CAMPBELL, BILL",2000,GENERAL,ASSEMBLY 71,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "BRYANT, BRENDA JO",2000,GENERAL,ASSEMBLY 71,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
@@ -560,7 +560,7 @@ STARCHILD,2000,GENERAL,ASSEMBLY 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/s
 "LONGWELL, JOHN",2000,GENERAL,STATE SENATE 13,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "VASCONCELLOS, JOHN",2000,GENERAL,STATE SENATE 13,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "WEBSTER, JOHN H.",2000,GENERAL,STATE SENATE 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
-"MC PHERSON, BRUCE",2000,GENERAL,STATE SENATE 15,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
+"MCPHERSON, BRUCE",2000,GENERAL,STATE SENATE 15,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "ROSENKRANZ, DAVID",2000,GENERAL,STATE SENATE 15,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "SACHTJEN, GORDON D.",2000,GENERAL,STATE SENATE 15,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "CHAVEZ, ANSELMO A.",2000,GENERAL,STATE SENATE 15,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
@@ -568,13 +568,13 @@ STARCHILD,2000,GENERAL,ASSEMBLY 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/s
 "LOTT, RICHARD",2000,GENERAL,STATE SENATE 17,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "GIBSON, JOHN R.",2000,GENERAL,STATE SENATE 17,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "WALLACK, DOUGLAS R.",2000,GENERAL,STATE SENATE 17,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
-"MC CLINTOCK, THOMAS",2000,GENERAL,STATE SENATE 19,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
+"MCCLINTOCK, THOMAS",2000,GENERAL,STATE SENATE 19,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "GONZALEZ, DANIEL R.",2000,GENERAL,STATE SENATE 19,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "SCOTT, JACK",2000,GENERAL,STATE SENATE 21,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "NEW, BOB",2000,GENERAL,STATE SENATE 21,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "KUEHL, SHEILA J.",2000,GENERAL,STATE SENATE 23,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "BLACK, CHARLES T.",2000,GENERAL,STATE SENATE 23,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
-"MC CLAIN, CLIFF",2000,GENERAL,STATE SENATE 25,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
+"MCCLAIN, CLIFF",2000,GENERAL,STATE SENATE 25,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "VINCENT, EDWARD",2000,GENERAL,STATE SENATE 25,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "KARNETTE, BETTY",2000,GENERAL,STATE SENATE 27,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "FAEGRE, LELAND THOMAS",2000,GENERAL,STATE SENATE 29,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
@@ -636,7 +636,7 @@ STARCHILD,2000,PRIMARY,ASSEMBLY 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/s
 "ARONER, DION LOUISE",2000,PRIMARY,ASSEMBLY 14,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "LEACH, LYNNE C.",2000,PRIMARY,ASSEMBLY 15,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "ARMSTRONG, RICHARD E.",2000,PRIMARY,ASSEMBLY 16,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
-"MC CORMICK, TIMOTHY B.",2000,PRIMARY,ASSEMBLY 16,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"MCCORMICK, TIMOTHY B.",2000,PRIMARY,ASSEMBLY 16,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "BUSCH, ROY W.",2000,PRIMARY,ASSEMBLY 17,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "STEBBINS, C. JENNET",2000,PRIMARY,ASSEMBLY 17,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "BENIGNO, THOMAS A.",2000,PRIMARY,ASSEMBLY 17,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
@@ -734,7 +734,7 @@ STARCHILD,2000,PRIMARY,ASSEMBLY 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/s
 "OGDEN, DALE F.",2000,PRIMARY,ASSEMBLY 54,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
 "KAHN, SANFORD W.",2000,PRIMARY,ASSEMBLY 54,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "LOWENTHAL, ALAN",2000,PRIMARY,ASSEMBLY 54,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
-"MC DONALD, R. KEITH",2000,PRIMARY,ASSEMBLY 55,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"MCDONALD, R. KEITH",2000,PRIMARY,ASSEMBLY 55,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "LANKSTER, SAUL E.",2000,PRIMARY,ASSEMBLY 55,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "ROBINSON, CARL E.",2000,PRIMARY,ASSEMBLY 55,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "WILSON, GUY",2000,PRIMARY,ASSEMBLY 55,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
@@ -781,7 +781,7 @@ STARCHILD,2000,PRIMARY,ASSEMBLY 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/s
 "CORREA, LOU",2000,PRIMARY,ASSEMBLY 69,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "KATZ, BARRY L.",2000,PRIMARY,ASSEMBLY 70,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "MILLS, RAYMOND O.",2000,PRIMARY,ASSEMBLY 70,REFORM PARTY,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
-"MC KEON, MERRITT LORI",2000,PRIMARY,ASSEMBLY 70,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"MCKEON, MERRITT LORI",2000,PRIMARY,ASSEMBLY 70,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "VONDRUSKA, ROBERT ANTHONY",2000,PRIMARY,ASSEMBLY 70,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "CAMPBELL, BILL",2000,PRIMARY,ASSEMBLY 71,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "BECK, GARY C.",2000,PRIMARY,ASSEMBLY 71,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
@@ -849,7 +849,7 @@ STARCHILD,2000,PRIMARY,ASSEMBLY 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/s
 "VASCONCELLOS, JOHN",2000,PRIMARY,STATE SENATE 13,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "WATSON, KENNITA L.",2000,PRIMARY,STATE SENATE 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "WEBSTER, JOHN H.",2000,PRIMARY,STATE SENATE 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
-"MC PHERSON, BRUCE",2000,PRIMARY,STATE SENATE 15,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"MCPHERSON, BRUCE",2000,PRIMARY,STATE SENATE 15,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "OGNYANOVICH, KATHRINA M.",2000,PRIMARY,STATE SENATE 15,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "ROSENKRANZ, DAVID",2000,PRIMARY,STATE SENATE 15,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "SACHTJEN, GORDON D.",2000,PRIMARY,STATE SENATE 15,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
@@ -858,7 +858,7 @@ STARCHILD,2000,PRIMARY,ASSEMBLY 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/s
 "LOTT, RICHARD",2000,PRIMARY,STATE SENATE 17,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "GIBSON, JOHN R.",2000,PRIMARY,STATE SENATE 17,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "WALLACK, DOUGLAS R.",2000,PRIMARY,STATE SENATE 17,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
-"MC CLINTOCK, THOMAS",2000,PRIMARY,STATE SENATE 19,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"MCCLINTOCK, THOMAS",2000,PRIMARY,STATE SENATE 19,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "GONZALEZ, DANIEL R.",2000,PRIMARY,STATE SENATE 19,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "WILDMAN, SCOTT",2000,PRIMARY,STATE SENATE 21,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "SCOTT, JACK",2000,PRIMARY,STATE SENATE 21,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
@@ -867,7 +867,7 @@ STARCHILD,2000,PRIMARY,ASSEMBLY 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/s
 "KUEHL, SHEILA J.",2000,PRIMARY,STATE SENATE 23,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "BLACK, CHARLES T.",2000,PRIMARY,STATE SENATE 23,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "KNOX, WALLY",2000,PRIMARY,STATE SENATE 23,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
-"MC CLAIN, CLIFF",2000,PRIMARY,STATE SENATE 25,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"MCCLAIN, CLIFF",2000,PRIMARY,STATE SENATE 25,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "VINCENT, EDWARD",2000,PRIMARY,STATE SENATE 25,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "KARNETTE, BETTY",2000,PRIMARY,STATE SENATE 27,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "HERFERT, STEVE",2000,PRIMARY,STATE SENATE 29,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
