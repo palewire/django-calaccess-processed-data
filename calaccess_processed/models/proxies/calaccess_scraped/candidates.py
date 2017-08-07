@@ -9,6 +9,7 @@ import logging
 from calaccess_processed import corrections
 from django.db.models.functions import Concat
 from django.db.models import Value, CharField
+from ..opencivicdata.candidacies import OCDCandidacyProxy
 from ..opencivicdata.posts import OCDPostProxy
 from ..opencivicdata.parties import OCDPartyProxy
 from .candidateelections import ScrapedCandidateElectionProxy
@@ -119,6 +120,16 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
         Return the proxy model for the related election object.
         """
         return ScrapedCandidateElectionProxy.objects.get(id=self.election.id)
+
+    @property
+    def post_proxy(self):
+        """
+        Return the proxy model for the related post object.
+        """
+        post, post_created = OCDPostProxy.objects.get_or_create_by_name(
+            self.office_name
+        )
+        return post
 
     def get_corrected_party(self):
         """
@@ -262,9 +273,6 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
         Returns a tuple (CandidateContest object, created), where created is a boolean
         specifying whether a CandidateContest was created.
         """
-        # Get or create a post
-        post, post_created = OCDPostProxy.objects.get_or_create_by_name(self.office_name)
-
         # Get election data
         scraped_election = self.election_proxy
 
@@ -311,12 +319,12 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
             name=contest_name,
             previous_term_unexpired=previous_term_unexpired,
             party=contest_party,
-            division=post.division,
+            division=self.post_proxy.division,
         )
 
         # if contest was created, add the Post
         if created:
-            contest.posts.create(post=post)
+            contest.posts.create(post=self.post_proxy)
 
         # Always update the source for the contest
         contest.sources.update_or_create(
@@ -326,3 +334,52 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
 
         # Return the contest and whether or not it was created
         return contest, created
+
+    def get_loaded_ocd_candidacy(self):
+        """
+        Get and OCD candidacy previously loaded from the scraped Candidate.
+
+        First, try getting a Candidacy using the election, post and filer_id. Then,
+        try election, post and name (candidate_name, person.name or
+        person__other_name__name).
+        """
+        scraped_election = self.election_proxy
+        ocd_election = scraped_election.get_ocd_election()
+
+        q = OCDCandidacyProxy.objects.filter(
+            contest__election=ocd_election,
+            post=self.post_proxy,
+        )
+
+        if self.scraped_id:
+            try:
+                candidacy = q.get_by_filer_id(self.scraped_id)
+            except OCDCandidacyProxy.MultipleObjectsReturned:
+                # distinguish between special and regular elections that
+                # happen on the same day
+                if scraped_election.is_special:
+                    q = q.filter(
+                        contest__name__icontains=scraped_election.election_type
+                    )
+                else:
+                    q = q.exclude(
+                        contest__name__icontains='SPECIAL'
+                    )
+                candidacy = q.get_by_filer_id(self.scraped_id)
+        else:
+            try:
+                candidacy = q.get_by_name(self.parsed_name['name'])
+            except OCDCandidacyProxy.MultipleObjectsReturned:
+                # distinguish between special and regular elections that
+                # happen on the same day
+                if scraped_election.is_special:
+                    q = q.filter(
+                        contest__name__icontains=scraped_election.election_type
+                    )
+                else:
+                    q = q.exclude(
+                        contest__name__icontains='SPECIAL'
+                    )
+                candidacy = q.get_by_name(self.parsed_name['name'])
+
+        return candidacy
