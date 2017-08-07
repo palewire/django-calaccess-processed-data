@@ -92,7 +92,7 @@ class ProcessedDataVersion(models.Model):
         """
         if not self.zip_size:
             return None
-        return sizeformat(self.clean_zip_size)
+        return sizeformat(self.zip_size)
     pretty_zip_size.short_description = 'processed zip size'
     pretty_zip_size.admin_order_field = 'processed zip size'
 
