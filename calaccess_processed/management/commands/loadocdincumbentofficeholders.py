@@ -44,7 +44,7 @@ class Command(CalAccessCommand):
             )
             if post_created and self.verbosity > 2:
                 self.log(' Created new Post: %s' % post.label)
-            # Get or person
+            # Get or create person
             person, person_created = OCDPersonProxy.objects.get_or_create_from_calaccess(
                 incumbent.parsed_name,
                 candidate_filer_id=incumbent.scraped_id,
