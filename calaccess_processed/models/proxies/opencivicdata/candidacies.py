@@ -254,7 +254,10 @@ class OCDCandidacyProxy(Candidacy):
 
     @property
     def form501_filing_ids(self):
-        return self.extras['form501_filing_ids']
+        try:
+            return self.extras['form501_filing_ids']
+        except KeyError:
+            return []
 
     @property
     def form501s(self):

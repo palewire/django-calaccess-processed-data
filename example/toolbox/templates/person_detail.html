@@ -36,6 +36,7 @@
         <thead>
             <tr>
                 <th>Election</th>
+                <th>Name</th>
                 <th>Post</th>
                 <th>Party</th>
                 <th>Incumbent</th>
@@ -50,6 +51,9 @@
                 <a href="{% url 'election_detail' obj.election.id %}">
                     {{ obj.election }}
                 </a>
+            </td>
+            <td>
+                {{ obj.candidate_name }}
             </td>
             <td>
                 <a href="{% url 'post_detail' obj.post.id %}">
