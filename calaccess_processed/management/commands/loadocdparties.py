@@ -37,7 +37,7 @@ class Command(CalAccessCommand):
         for obj in object_list:
             # Pull out the party name ...
             # ... but treat INDEPENDENT and NON-PARTISAN as NO PARTY PREFERENCE
-            if obj.code_desc in ['INDEPENDENT', 'NON-PARTISAN']:
+            if obj.code_desc in ['INDEPENDENT', 'NON-PARTISAN', 'N/A', 'NON PARTISAN']:
                 party_name = 'NO PARTY PREFERENCE'
             else:
                 party_name = obj.code_desc

@@ -63,7 +63,7 @@ class OCDPartyManager(models.Manager):
             return self.unknown()
 
         # IF we have a code, transform "INDEPENDENT" and "NON-PARTISAN" codes to "NO PARTY PREFERENCE"
-        if party_code in [16007, 16009]:
+        if party_code in [16007, 16009, 0]:
             party_code = 16012
 
         # Try pulling out the party using the lookup code
