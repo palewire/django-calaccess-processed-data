@@ -246,6 +246,9 @@ class OCDPersonProxy(Person):
 
     @property
     def form501s(self):
+        """
+        Returns any linked Form 501s filings.
+        """
         from calaccess_processed.models import OCDCandidacyProxy
         candidacies = OCDCandidacyProxy.objects.filter(person=self)
         form501s = []

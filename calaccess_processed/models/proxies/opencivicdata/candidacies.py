@@ -254,6 +254,9 @@ class OCDCandidacyProxy(Candidacy):
 
     @property
     def form501_filing_ids(self):
+        """
+        Returns any linked Form 501 filing ids.
+        """
         try:
             return self.extras['form501_filing_ids']
         except KeyError:
@@ -261,5 +264,8 @@ class OCDCandidacyProxy(Candidacy):
 
     @property
     def form501s(self):
+        """
+        Returns any linked Form 501 objects.
+        """
         from calaccess_processed.models import Form501Filing
         return Form501Filing.objects.filter(filing_id__in=self.form501_filing_ids)
