@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>{{ object.name }}</h1>
+
+    <table class="table table-sm">
+        <tr>
+            <th>ID</th>
+            <td>{{ object.id }}</td>
+        </tr>
+        <tr>
+            <th>Other names</th>
+            <td>
+                {% for obj in object.other_names.all %}
+                    {{ obj.name }}{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+
+    <h3>OCD Candidacies ({{ object.candidacies.count }})</h3>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Election</th>
+                <th>Name</th>
+                <th>Post</th>
+                <th>Incumbent</th>
+                <th>Status</th>
+                <th>Filer ID</th>
+                <th>Sources</th>
+            </tr>
+        </thead>
+        {% for obj in object.candidacies.all %}
+        <tr>
+            <td>
+                <a href="{% url 'election_detail' obj.election.id %}">
+                    {{ obj.election }}
+                </a>
+            </td>
+            <td>
+                {{ obj.candidate_name }}
+            </td>
+            <td>
+                <a href="{% url 'post_detail' obj.post.id %}">
+                    {{ obj.post.label }}
+                </a>
+            </td>
+            <td>{{ obj.is_incumbent }}</td>
+            <td>{{ obj.registration_status }}</td>
+            <td>
+                <a href="http://cal-access.sos.ca.gov/Campaign/Candidates/Detail.aspx?id={{ obj.filer_id }}">
+                    {{ obj.filer_id }}
+                </a>
+            </td>
+            <td>
+                <ul>
+                    {% for obj in obj.sources.all %}
+                        <a href="{{ obj.url }}">{{ forloop.counter }}{% if not forloop.last %},{% endif %}</a>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

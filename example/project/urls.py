@@ -14,6 +14,8 @@ urlpatterns = (
     url(r'^person/(?P<pk>(.*))/$', views.PersonDetail.as_view(), name="person_detail"),
     url(r'^candidates-no-party/$', views.CandidateNoPartyList.as_view(), name="candidatenoparty_list"),
     url(r'^primaries-no-party/$', views.PrimaryNoPartyList.as_view(), name="primarynoparty_list"),
+    url(r'^parties/$', views.PartyList.as_view(), name="party_list"),
+    url(r'^parties/(?P<pk>(.*))/$', views.PartyDetail.as_view(), name="party_detail"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^static/(?P<path>.*)$', serve, {
         'document_root': settings.STATIC_ROOT,

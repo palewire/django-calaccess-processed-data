@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block content %}
+
+    <h1>Parties ({{ object_list|length }})</h1>
+
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Candidates</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for obj in object_list|dictsort:"name" %}
+        <tr>
+            <td><a href="{% url 'party_detail' obj.id %}">{{ obj }}</a></td>
+            <td>{{ obj.candidacies.count|intcomma }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

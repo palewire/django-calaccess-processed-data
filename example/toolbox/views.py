@@ -49,6 +49,16 @@ class PersonDetail(DetailView):
     template_name = "person_detail.html"
 
 
+class PartyList(ListView):
+    model = OCDPartyProxy
+    template_name = "party_list.html"
+
+
+class PartyDetail(DetailView):
+    model = OCDPartyProxy
+    template_name = "party_detail.html"
+
+
 class CandidateNoPartyList(ListView):
     """
     Lists all the OCD candidates with an unknown party.
