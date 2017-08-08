@@ -4,8 +4,10 @@
 Models for tracking processing of CAL-ACCESS snapshots over time.
 """
 from __future__ import unicode_literals
-from django.db import models
+import textwrap
 from hurry.filesize import size as sizeformat
+from django.apps import apps
+from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed import archive_directory_path
 
@@ -163,3 +165,34 @@ class ProcessedDataFile(models.Model):
         return sizeformat(self.file_size)
     pretty_file_size.short_description = 'processed file size'
     pretty_file_size.admin_order_field = 'processed file size'
+
+    @property
+    def doc(self):
+        """
+        Returns doc string of the model corresponding to the ProcessedDataFile.
+        """
+        if self.model.__doc__.startswith(self.model._meta.object_name):
+            return ''
+        return textwrap.dedent(self.model.__doc__).strip()
+
+    @property
+    def model(self):
+        """
+        Returns the ProcessedDataFile's corresponding database model object.
+        """
+        model_list = [
+            m for m in apps.get_models()
+            if m._meta.object_name == self.file_name
+        ]
+        try:
+            model = model_list.pop()
+        except IndexError:
+            model = None
+        return model
+
+    @property
+    def records_count(self):
+        """
+        Returns the count of records in the models database table.
+        """
+        return self.model.objects.count()
