@@ -31,7 +31,7 @@
         </tr>
     </table>
 
-    <h3>Candidacies ({{ object.candidacies.count }})</h3>
+    <h3>OCD Candidacies ({{ object.candidacies.count }})</h3>
     <table class="table table-sm">
         <thead>
             <tr>
@@ -71,6 +71,56 @@
                     {% endfor %}
                 </ul>
             </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Scraped Candidacies ({{ object.scraped_candidates|length }})</h3>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Election</th>
+                <th>Name</th>
+                <th>Scraped ID</th>
+                <th>Office name</th>
+            </tr>
+        </thead>
+        {% for obj in object.scraped_candidates %}
+        <tr>
+            <td>{{ obj.election }}</td>
+            <td>{{ obj.name }}</td>
+            <td>{{ obj.scraped_id }}</td>
+            <td>{{ obj.office_name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Form 501s ({{ object.form501s|length }})</h3>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Filing ID</th>
+                <th>Committee ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Election year</th>
+                <th>Election type</th>
+                <th>Office</th>
+                <th>District</th>
+                <th>Party</th>
+            </tr>
+        </thead>
+        {% for obj in object.form501s %}
+        <tr>
+            <td>{{ obj.filing_id }}</td>
+            <td>{{ obj.committee_id }}</td>
+            <td>{{ obj.first_name }}</td>
+            <td>{{ obj.last_name }}</td>
+            <td>{{ obj.election_year }}</td>
+            <td>{{ obj.election_type }}</td>
+            <td>{{ obj.office }}</td>
+            <td>{{ obj.district }}</td>
+            <td>{{ obj.party }}</td>
         </tr>
         {% endfor %}
     </table>

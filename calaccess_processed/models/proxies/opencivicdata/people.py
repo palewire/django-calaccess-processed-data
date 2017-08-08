@@ -234,3 +234,23 @@ class OCDPersonProxy(Person):
         Returns the CAL-ACCESS filer_id linked with the object, if any.
         """
         return self.identifiers.get(scheme="calaccess_filer_id")
+
+    @property
+    def scraped_candidates(self):
+        """
+        Returns the scraped candidates linked to this candidacy.
+        """
+        from calaccess_processed.models import ScrapedCandidateProxy
+        filer_ids = [i.identifier for i in self.identifiers.filter(scheme="calaccess_filer_id")]
+        return ScrapedCandidateProxy.objects.filter(scraped_id__in=filer_ids).order_by("-election")
+
+    @property
+    def form501s(self):
+        from calaccess_processed.models import OCDCandidacyProxy
+        candidacies = OCDCandidacyProxy.objects.filter(person=self)
+        form501s = []
+        for c in candidacies:
+            for f in c.form501s:
+                if f not in form501s:
+                    form501s.append(f)
+        return form501s

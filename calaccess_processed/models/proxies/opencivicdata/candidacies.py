@@ -251,3 +251,12 @@ class OCDCandidacyProxy(Candidacy):
         Returns the CAL-ACCESS filer_id linked with the object, if any.
         """
         return self.person.identifiers.filter(scheme="calaccess_filer_id")
+
+    @property
+    def form501_filing_ids(self):
+        return self.extras['form501_filing_ids']
+
+    @property
+    def form501s(self):
+        from calaccess_processed.models import Form501Filing
+        return Form501Filing.objects.filter(filing_id__in=self.form501_filing_ids)
