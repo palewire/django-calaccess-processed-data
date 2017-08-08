@@ -109,7 +109,9 @@ class OCDElectionProxy(Election):
         """
         Returns the primary CAL-ACCESS election type included with this record.
         """
-        return self.name.split(" ")[1]
+        for et in self.extras.get('calaccess_election_type', []):
+            if et in self.name:
+                return et
 
     @property
     def election_types(self):
