@@ -54,8 +54,8 @@ candidate_name,year,election_type,office,party,source
 "AMBROZEWICZ, BOGDAN ""BO"" I.",2012,PRIMARY,STATE SENATE 01,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
 "RINGER, LISA D.",2012,PRIMARY,STATE SENATE 09,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
 "CHAUSER, LEE H.",2012,PRIMARY,STATE SENATE 33,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2012-primary/pdf/2012-complete-sov.pdf
-"AMBROZEWICZ, BOGDAN ""BO"" I.",2011,SPECIAL,ASSEMBLY 04,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2011-ad4/primary-official-canvass.pdf
-"CHAMNESS, MICHAEL",2011,SPECIAL,STATE SENATE 28,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2011-sd28/official-canvass.pdf
+"AMBROZEWICZ, BOGDAN ""BO"" I.",2011,SPECIAL ELECTION,ASSEMBLY 04,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2011-ad4/primary-official-canvass.pdf
+"CHAMNESS, MICHAEL",2011,SPECIAL ELECTION,STATE SENATE 28,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2011-sd28/official-canvass.pdf
 "HAVIG, MICHAEL",2010,GENERAL,ASSEMBLY 18,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
 "CAMPBELL, TIMOTHY J. (T.J.)",2010,GENERAL,ASSEMBLY 22,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
 "SANTIAGO, CYNTHIA",2010,GENERAL,ASSEMBLY 51,GREEN PARTY,http://elections.cdn.sos.ca.gov/sov/2010-general/complete-sov.pdf
@@ -77,10 +77,10 @@ candidate_name,year,election_type,office,party,source
 "LYNCH, THOMAS DEAN",2010,PRIMARY,STATE SENATE 02,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
 "GILL, LATHE SHELDON",2010,PRIMARY,STATE SENATE 04,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
 "PARK, DOO",2010,PRIMARY,STATE SENATE 08,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2010-primary/pdf/2010-complete-sov.pdf
-"NEVENIC, SVETLANA",2010,SPECIAL,STATE SENATE 37,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2010-sd37/final-official-results-sd37-primary.pdf
-"PULLEN-MILES, ROBERT",2009,SPECIAL,ASSEMBLY 51,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2009-ad51/final-official-results-ad51-primary.pdf
-"COFFIN, DAVID",2009,SPECIAL,ASSEMBLY 51,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2009-ad51/final-official-results-ad51-primary.pdf
-"EVANS, MERVIN",2009,SPECIAL,STATE SENATE 26,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2009-sd26/final-official-results-sd26-03242009.pdf
+"NEVENIC, SVETLANA",2010,SPECIAL ELECTION,STATE SENATE 37,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2010-sd37/final-official-results-sd37-primary.pdf
+"PULLEN-MILES, ROBERT",2009,SPECIAL ELECTION,ASSEMBLY 51,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2009-ad51/final-official-results-ad51-primary.pdf
+"COFFIN, DAVID",2009,SPECIAL ELECTION,ASSEMBLY 51,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2009-ad51/final-official-results-ad51-primary.pdf
+"EVANS, MERVIN",2009,SPECIAL ELECTION,STATE SENATE 26,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2009-sd26/final-official-results-sd26-03242009.pdf
 "MARTINEZ, KAREN LOIS",2008,GENERAL,ASSEMBLY 05,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2008-general/sov_complete.pdf
 "LAVERY, PAUL",2008,GENERAL,ASSEMBLY 06,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2008-general/sov_complete.pdf
 "BONSER, JANICE M.",2008,GENERAL,ASSEMBLY 10,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2008-general/sov_complete.pdf
@@ -108,7 +108,7 @@ candidate_name,year,election_type,office,party,source
 "FITZGERALD, JIM",2008,PRIMARY,STATE SENATE 15,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/sov/2008-general/sov_complete.pdf
 "GUERRERO, ARTHUR BRAVO",2008,PRIMARY,STATE SENATE 37,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2008-statewide-direct-primary/complete-sov.pdf
 "PETERS, DAVID W.",2008,PRIMARY,STATE SENATE 37,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2008-statewide-direct-primary/complete-sov.pdf
-"EVANS, MERVIN",2007,SPECIAL,ASSEMBLY 55,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2007-ad55/final_official_canvass_ad55_primary.pdf
+"EVANS, MERVIN",2007,SPECIAL ELECTION,ASSEMBLY 55,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2007-ad55/final_official_canvass_ad55_primary.pdf
 "TROYER, ALBERT",2006,GENERAL,ASSEMBLY 10,PEACE AND FREEDOM,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
 "BONSER, JANICE M.",2006,GENERAL,ASSEMBLY 10,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
 "MORRISON, COLIN M.",2006,GENERAL,ASSEMBLY 27,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2006-general/complete_sov.pdf
@@ -170,7 +170,7 @@ candidate_name,year,election_type,office,party,source
 "LIDDLE, CHERRYL",2006,PRIMARY,STATE SENATE 28,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2006-primary/2006_sov.pdf
 "THOMAS, JESSE",2006,PRIMARY,STATE SENATE 40,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2006-primary/2006_sov.pdf
 "SMITHSON, MARIAN V.",2006,PRIMARY,TREASURER,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2006-primary/2006_sov.pdf
-"WHITEHEAD, PAUL",2005,SPECIAL,ASSEMBLY 53,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2006-primary/2006_sov.pdf
+"WHITEHEAD, PAUL",2005,SPECIAL ELECTION,ASSEMBLY 53,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2006-primary/2006_sov.pdf
 "TYRONE, RAY",2004,GENERAL,ASSEMBLY 01,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2004-general/sov_2004_entire.pdf
 "SCHWENK, TODD W.",2004,GENERAL,ASSEMBLY 04,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2004-general/sov_2004_entire.pdf
 "MANFRE, MELISSA",2004,GENERAL,ASSEMBLY 05,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-general/sov_2004_entire.pdf
@@ -216,29 +216,29 @@ candidate_name,year,election_type,office,party,source
 "GOLDMAN, COLIN S.",2004,PRIMARY,STATE SENATE 23,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
 "JOHNSON, TIMOTHY",2004,PRIMARY,STATE SENATE 35,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
 "BOURKE, KENNETH P.",2004,PRIMARY,STATE SENATE 39,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2004-primary/sov-complete.pdf
-"NAVE, PAUL",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"CARSON, MICHAEL TODD",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"COOK, MARY ""MARY CAREY""",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"GALLAGHER, LEO A.",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"PAWLIK, GREGORY J.",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"MC CLAIN, ROBERT H.",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"MEDNICK, SCOTT A.",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"MARTORANA, GINO",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"KESSINGER, D. E.",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"HERNANDEZ, RALPH A.",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-ALEX - ST. JAMES,2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"MORTENSEN, JOHN S.",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"BOCK, AUDIE E.",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-ANGELYNE,2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"KIMBALL, KELLY P.",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"TRACY, BRIAN S.",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"PINEDA, CHARLES",2003,SPECIAL,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"ARIF, MOHAMMAD",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"MC CARTHY, MIKE P.",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"MC MAHON, DENNIS D.",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"HENDERSON, C. STEPHEN",2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"ADAM, IRIS",2003,SPECIAL,GOVERNOR,NATURAL LAW,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
-"DOLE, ROBERT ""BUTCH""",2003,SPECIAL,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"NAVE, PAUL",2003,SPECIAL ELECTION,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"CARSON, MICHAEL TODD",2003,SPECIAL ELECTION,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"COOK, MARY ""MARY CAREY""",2003,SPECIAL ELECTION,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"GALLAGHER, LEO A.",2003,SPECIAL ELECTION,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"PAWLIK, GREGORY J.",2003,SPECIAL ELECTION,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"MC CLAIN, ROBERT H.",2003,SPECIAL ELECTION,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"MEDNICK, SCOTT A.",2003,SPECIAL ELECTION,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"MARTORANA, GINO",2003,SPECIAL ELECTION,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"KESSINGER, D. E.",2003,SPECIAL ELECTION,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"HERNANDEZ, RALPH A.",2003,SPECIAL ELECTION,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+ALEX - ST. JAMES,2003,SPECIAL ELECTION,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"MORTENSEN, JOHN S.",2003,SPECIAL ELECTION,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"BOCK, AUDIE E.",2003,SPECIAL ELECTION,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+ANGELYNE,2003,SPECIAL ELECTION,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"KIMBALL, KELLY P.",2003,SPECIAL ELECTION,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"TRACY, BRIAN S.",2003,SPECIAL ELECTION,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"PINEDA, CHARLES",2003,SPECIAL ELECTION,GOVERNOR,DEMOCRATIC,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"ARIF, MOHAMMAD",2003,SPECIAL ELECTION,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"MC CARTHY, MIKE P.",2003,SPECIAL ELECTION,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"MC MAHON, DENNIS D.",2003,SPECIAL ELECTION,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"HENDERSON, C. STEPHEN",2003,SPECIAL ELECTION,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"ADAM, IRIS",2003,SPECIAL ELECTION,GOVERNOR,NATURAL LAW,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
+"DOLE, ROBERT ""BUTCH""",2003,SPECIAL ELECTION,GOVERNOR,REPUBLICAN,http://elections.cdn.sos.ca.gov/special-elections/2003-statewide/2003_cert_list.pdf
 "THRON, DOUG RILEY",2002,GENERAL,ASSEMBLY 01,GREEN PARTY,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
 "BRET, PETE ANTHONY",2002,GENERAL,ASSEMBLY 02,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
 "POSTON, DOUGLAS",2002,GENERAL,ASSEMBLY 09,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-general/sov-complete.pdf
@@ -367,13 +367,13 @@ ANGELYNE,2003,SPECIAL,GOVERNOR,NO PARTY PREFERENCE,http://elections.cdn.sos.ca.g
 "DE BAETS, PETER D.",2002,PRIMARY,STATE SENATE 28,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
 "SMITHSON, MARIAN V.",2002,PRIMARY,TREASURER,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
 "VALENTINE, SYLVIA ESTHER",2002,PRIMARY,TREASURER,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
-"GOLDSWORTHY, KIM",2001,SPECIAL,ASSEMBLY 49,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
-"MIRANDA, ROBERT",2001,SPECIAL,ASSEMBLY 49,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
-"HOUSE, VINCENT F.",2001,SPECIAL,STATE SENATE 24,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
-"SWINNEY, CARL M. ""MARTY""",2001,SPECIAL,STATE SENATE 24,LIBERTARIAN,http://cal-access.sos.ca.gov/Campaign/Candidates/list.aspx?view=intention&electNav=39
-"PERKINS, CHARLES E.",2001,SPECIAL,ASSEMBLY 65,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
-"BAGLEY, JIM",2001,SPECIAL,ASSEMBLY 65,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
-"O'BRIEN, DAVID WIILLIAM",2001,SPECIAL,ASSEMBLY 65,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
+"GOLDSWORTHY, KIM",2001,SPECIAL ELECTION,ASSEMBLY 49,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
+"MIRANDA, ROBERT",2001,SPECIAL ELECTION,ASSEMBLY 49,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
+"HOUSE, VINCENT F.",2001,SPECIAL ELECTION,STATE SENATE 24,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
+"SWINNEY, CARL M. ""MARTY""",2001,SPECIAL ELECTION,STATE SENATE 24,LIBERTARIAN,http://cal-access.sos.ca.gov/Campaign/Candidates/list.aspx?view=intention&electNav=39
+"PERKINS, CHARLES E.",2001,SPECIAL ELECTION,ASSEMBLY 65,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
+"BAGLEY, JIM",2001,SPECIAL ELECTION,ASSEMBLY 65,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
+"O'BRIEN, DAVID WIILLIAM",2001,SPECIAL ELECTION,ASSEMBLY 65,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2002-primary/sov-complete.pdf
 "STROM-MARTIN, VIRGINIA",2000,GENERAL,ASSEMBLY 01,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "GILLEO, JOSHUA",2000,GENERAL,ASSEMBLY 01,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "LAMPSON, MIKE",2000,GENERAL,ASSEMBLY 01,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
@@ -590,7 +590,7 @@ STARCHILD,2000,GENERAL,ASSEMBLY 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/s
 "STUDIER, PAUL L.",2000,GENERAL,STATE SENATE 35,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "JOHNSON, ROSS",2000,GENERAL,STATE SENATE 35,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "RAY, STEVE",2000,GENERAL,STATE SENATE 35,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
-"BATTIN, JAMES F.",2000,GENERAL,STATE SENATE 37,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
+"BATTIN JR., JAMES F.",2000,GENERAL,STATE SENATE 37,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "TELLO, DONNA",2000,GENERAL,STATE SENATE 37,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "ALPERT, DEDE",2000,GENERAL,STATE SENATE 39,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
 "KNOLES, STUART",2000,GENERAL,STATE SENATE 39,NATURAL LAW,http://elections.cdn.sos.ca.gov/sov/2000-general/sov-complete.pdf
@@ -884,7 +884,7 @@ STARCHILD,2000,PRIMARY,ASSEMBLY 13,LIBERTARIAN,http://elections.cdn.sos.ca.gov/s
 "STUDIER, PAUL L.",2000,PRIMARY,STATE SENATE 35,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "JOHNSON, ROSS",2000,PRIMARY,STATE SENATE 35,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "RAY, STEVE",2000,PRIMARY,STATE SENATE 35,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
-"BATTIN, JAMES F.",2000,PRIMARY,STATE SENATE 37,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
+"BATTIN JR., JAMES F.",2000,PRIMARY,STATE SENATE 37,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "WATTON, MARK",2000,PRIMARY,STATE SENATE 37,REPUBLICAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "TELLO, DONNA",2000,PRIMARY,STATE SENATE 37,LIBERTARIAN,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
 "ALPERT, DEDE",2000,PRIMARY,STATE SENATE 39,DEMOCRATIC,http://elections.cdn.sos.ca.gov/sov/2000-primary/sov-complete.pdf
