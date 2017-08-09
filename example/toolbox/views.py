@@ -72,7 +72,9 @@ class CandidateNoPartyList(ListView):
 
     def get_queryset(self):
         try:
-            return OCDCandidacyProxy.objects.filter(party=OCDPartyProxy.objects.unknown())
+            return OCDCandidacyProxy.objects.filter(party__in=[
+                OCDPartyProxy.objects.unknown()
+            ])
         except (OCDPartyProxy.DoesNotExist, ProgrammingError):
             return OCDCandidacyProxy.objects.none()
 
@@ -87,6 +89,9 @@ class PrimaryNoPartyList(ListView):
         primary_list = OCDElectionProxy.partisan_primaries.all()
         contest_list = CandidateContest.objects.filter(election__in=primary_list)
         try:
-            return contest_list.filter(party=OCDPartyProxy.objects.unknown())
+            return contest_list.filter(party__in=[
+                OCDPartyProxy.objects.unknown(),
+                OCDPartyProxy.objects.get(name="NO PARTY PREFERENCE")
+            ])
         except OCDPartyProxy.DoesNotExist:
             return CandidateContest.objects.none()
