@@ -129,7 +129,7 @@ class ProcessedDataFile(models.Model):
     records_count = models.IntegerField(
         null=False,
         default=0,
-        verbose_name='clean records count',
+        verbose_name='records count',
         help_text='Count of records in the processed file'
     )
     file_archive = models.FileField(
@@ -189,10 +189,3 @@ class ProcessedDataFile(models.Model):
         except IndexError:
             model = None
         return model
-
-    @property
-    def records_count(self):
-        """
-        Returns the count of records in the models database table.
-        """
-        return self.model.objects.count()
