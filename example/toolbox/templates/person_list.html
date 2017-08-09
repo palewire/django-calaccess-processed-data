@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>People ({{ object_list.count }})</h1>
+
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Sort name</th>
+                <th>First name</th>
+                <th>Last name</th>
+            </tr>
+        </thead>
+        {% for obj in object_list|dictsort:"sort_name" %}
+        <tr>
+            <td><a href="{% url 'person_detail' obj.id %}">{{ obj.sort_name }}</a></td>
+            <td>
+                {{ obj.given_name }}
+            </td>
+            <td>
+                {{ obj.family_name }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

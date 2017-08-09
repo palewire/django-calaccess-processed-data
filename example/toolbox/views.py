@@ -44,6 +44,11 @@ class PostDetail(DetailView):
     template_name = "post_detail.html"
 
 
+class PersonList(ListView):
+    model = OCDPersonProxy
+    template_name = "person_list.html"
+
+
 class PersonDetail(DetailView):
     model = OCDPersonProxy
     template_name = "person_detail.html"
