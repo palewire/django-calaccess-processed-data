@@ -129,7 +129,7 @@ class ProcessedDataFile(models.Model):
     records_count = models.IntegerField(
         null=False,
         default=0,
-        verbose_name='clean records count',
+        verbose_name='records count',
         help_text='Count of records in the processed file'
     )
     file_archive = models.FileField(
