@@ -189,10 +189,3 @@ class ProcessedDataFile(models.Model):
         except IndexError:
             model = None
         return model
-
-    @property
-    def records_count(self):
-        """
-        Returns the count of records in the models database table.
-        """
-        return self.model.objects.count()
