@@ -111,6 +111,8 @@ class ProcessedDataTest(TestCase):
         """
         # Confirm that the count of scraped candidates equals the count loaded
         # into Candidacy with a scraped source
+        # minus one, since Jim Fitzgerald didn't really run in the
+        # Dem primary in 2008
         self.assertEqual(
             ScrapedCandidate.objects.count(),
             Candidacy.objects.filter(
