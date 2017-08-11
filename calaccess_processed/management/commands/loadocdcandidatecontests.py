@@ -5,7 +5,7 @@ Load the OCD CandidateContest and related models with scraped CAL-ACCESS data.
 """
 import datetime
 from calaccess_processed.models import (
-    OCDRunoffProxy,
+    OCDCandidateContestProxy,
     OCDCandidacyProxy,
     ScrapedCandidateProxy,
 )
@@ -29,7 +29,7 @@ class Command(CalAccessCommand):
         # connect runoffs to their previously undecided contests
         if self.verbosity > 2:
             self.log(' Linking runoffs to previous contests')
-        OCDRunoffProxy.objects.set_parents()
+        OCDCandidateContestProxy.objects.set_parents()
 
         self.success("Done!")
 
@@ -84,8 +84,8 @@ class Command(CalAccessCommand):
             # He was on the ballot in the general but records and a phone
             # interview with the candidate show he did not run in any primary.
             if (
-                contest.name == 'STATE SENATE 15 (NO PARTY PREFERENCE)'
-                and contest.election.date == datetime.date(2008, 6, 3)
+                contest.name == 'STATE SENATE 15 (NO PARTY PREFERENCE)' and
+                contest.election.date == datetime.date(2008, 6, 3)
             ):
                 if self.verbosity > 2:
                     self.log("Deleting blacklisted {}".format(contest))

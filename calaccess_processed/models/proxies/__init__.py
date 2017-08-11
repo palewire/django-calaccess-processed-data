@@ -13,14 +13,18 @@ from .calaccess_scraped import (
     ScrapedPropositionElectionProxy
 )
 from .opencivicdata import (
+    OCDCandidateContestProxy,
     OCDCandidacyProxy,
     OCDDivisionProxy,
     OCDElectionProxy,
+    OCDMembershipProxy,
     OCDOrganizationProxy,
+    OCDOrganizationIdentifierProxy,
+    OCDOrganizationNameProxy,
     OCDPartyProxy,
     OCDPersonProxy,
+    OCDPersonNameProxy,
     OCDPostProxy,
-    OCDRunoffProxy,
 )
 
 
@@ -32,12 +36,16 @@ __all__ = (
     'ScrapedIncumbentElectionProxy',
     'ScrapedPropositionProxy',
     'ScrapedPropositionElectionProxy',
+    'OCDCandidateContestProxy',
     'OCDCandidacyProxy',
     'OCDDivisionProxy',
     'OCDElectionProxy',
+    'OCDMembershipProxy',
     'OCDOrganizationProxy',
+    'OCDOrganizationIdentifierProxy',
+    'OCDOrganizationNameProxy',
     'OCDPartyProxy',
     'OCDPersonProxy',
+    'OCDPersonNameProxy',
     'OCDPostProxy',
-    'OCDRunoffProxy',
 )

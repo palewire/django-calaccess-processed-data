@@ -7,7 +7,8 @@ from __future__ import unicode_literals
 from django.db import models
 from django.db.models import Count
 from opencivicdata.merge import merge
-from opencivicdata.core.models import Person
+from opencivicdata.core.models import Person, PersonName
+from .base import OCDProxyModelMixin
 
 
 class OCDPersonManager(models.Manager):
@@ -173,7 +174,7 @@ class OCDPersonManager(models.Manager):
         return keep
 
 
-class OCDPersonProxy(Person):
+class OCDPersonProxy(Person, OCDProxyModelMixin):
     """
     A proxy on the OCD Person model with helper methods.
     """
@@ -257,3 +258,29 @@ class OCDPersonProxy(Person):
                 if f not in form501s:
                     form501s.append(f)
         return form501s
+
+    @property
+    def doc(self):
+        """
+        Returns the preferred description for the proxied model.
+        """
+        return "An individual that has served in a political office."
+
+
+class OCDPersonNameProxy(PersonName, OCDProxyModelMixin):
+    """
+    A proxy on the OCD PersonName model with helper methods.
+    """
+
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True
+
+    @property
+    def doc(self):
+        """
+        Returns the preferred description for the proxied model.
+        """
+        return "Alternate or former names for the person."

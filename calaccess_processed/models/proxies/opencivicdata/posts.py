@@ -10,6 +10,7 @@ from .divisions import OCDDivisionProxy
 from opencivicdata.core.models import Post
 from .organizations import OCDOrganizationProxy
 from ..calaccess_raw.filertofilertype import RawFilerToFilerTypeCdProxy
+from .base import OCDProxyModelMixin
 
 
 class OCDPostManager(models.Manager):
@@ -117,7 +118,7 @@ class OCDPostManager(models.Manager):
             return None
 
 
-class OCDPostProxy(Post):
+class OCDPostProxy(Post, OCDProxyModelMixin):
     """
     A proxy on the OCD Post model with helper methods..
     """
@@ -128,3 +129,11 @@ class OCDPostProxy(Post):
         Make this a proxy model.
         """
         proxy = True
+
+    @property
+    def doc(self):
+        """
+        Returns the preferred description for the proxied model.
+        """
+        return "A position in an organization that exists independently of the \
+person holding it."

@@ -6,6 +6,7 @@ Proxy models for augmenting our source data tables with methods useful for proce
 from __future__ import unicode_literals
 from django.db import models
 from opencivicdata.core.models import Division
+from .base import OCDProxyModelMixin
 
 
 class OCDAssemblyDivisionManager(models.Manager):
@@ -47,7 +48,7 @@ class OCDCaliforniaDivisionManager(models.Manager):
         return self.get_queryset().get(id='ocd-division/country:us/state:ca')
 
 
-class OCDDivisionProxy(Division):
+class OCDDivisionProxy(Division, OCDProxyModelMixin):
     """
     A proxy on the OCD Division model with helper methods.
     """
@@ -60,3 +61,11 @@ class OCDDivisionProxy(Division):
         Make this a proxy model.
         """
         proxy = True
+
+    @property
+    def doc(self):
+        """
+        Returns the preferred description for the proxied model.
+        """
+        return "A political geography such as a county or legislative district, \
+which may have multiple boundaries over its lifetime."

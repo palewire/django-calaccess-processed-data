@@ -12,6 +12,7 @@ from django.db.models import Case, When, Q
 from django.db.models.functions import Cast
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import Candidacy
+from .base import OCDProxyModelMixin
 
 
 class OCDCandidacyQuerySet(models.QuerySet):
@@ -156,7 +157,7 @@ class OCDCandidacyManager(models.Manager):
         return candidacy, candidacy_created
 
 
-class OCDCandidacyProxy(Candidacy):
+class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
     """
     A proxy on the OCD Candidacy model with helper methods.
     """

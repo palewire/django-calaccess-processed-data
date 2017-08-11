@@ -6,9 +6,10 @@ Proxy models for augmenting our source data tables with methods useful for proce
 from __future__ import unicode_literals
 from django.db import models
 from opencivicdata.elections.models import CandidateContest
+from .base import OCDProxyModelMixin
 
 
-class OCDRunoffManager(models.Manager):
+class OCDCandidateContestManager(models.Manager):
     """
     Custom helpers for the OCD CandidateContest model that limit it to runoffs.
     """
@@ -16,7 +17,7 @@ class OCDRunoffManager(models.Manager):
         """
         Filters down to state senate divisions.
         """
-        return super(OCDRunoffManager, self).get_queryset().filter(name__contains='RUNOFF')
+        return super(OCDCandidateContestManager, self).get_queryset().filter(name__contains='RUNOFF')
 
     def set_parents(self):
         """
@@ -29,11 +30,11 @@ class OCDRunoffManager(models.Manager):
             obj.save()
 
 
-class OCDRunoffProxy(CandidateContest):
+class OCDCandidateContestProxy(CandidateContest, OCDProxyModelMixin):
     """
     A proxy on the OCD CandidateContest model with helper methods and limited to runoffs.
     """
-    objects = OCDRunoffManager()
+    objects = OCDCandidateContestManager()
 
     class Meta:
         """

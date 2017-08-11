@@ -5,7 +5,13 @@ Proxy models for augmenting our source data tables with methods useful for proce
 """
 from __future__ import unicode_literals
 from django.db import models
-from opencivicdata.core.models import Organization
+from opencivicdata.core.models import (
+    Membership,
+    Organization,
+    OrganizationIdentifier,
+    OrganizationName,
+)
+from .base import OCDProxyModelMixin
 
 
 class OCDOrganizationManager(models.Manager):
@@ -69,7 +75,7 @@ class OCDOrganizationManager(models.Manager):
         )[0]
 
 
-class OCDOrganizationProxy(Organization):
+class OCDOrganizationProxy(Organization, OCDProxyModelMixin):
     """
     A proxy on the OCD Organization model with helper methods.
     """
@@ -80,3 +86,68 @@ class OCDOrganizationProxy(Organization):
         Make this a proxy model.
         """
         proxy = True
+
+    @property
+    def doc(self):
+        """
+        Returns the preferred description for the proxied model.
+        """
+        return "A group of people, typically in a legislative or rule-making context."
+
+
+class OCDOrganizationIdentifierProxy(OrganizationIdentifier, OCDProxyModelMixin):
+    """
+    A proxy on the OCD OrganizationIdentifier model with helper methods.
+    """
+
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True
+
+    @property
+    def doc(self):
+        """
+        Returns the preferred description for the proxied model.
+        """
+        return "Upstream identifiers of the organization, if any exist."
+
+
+class OCDOrganizationNameProxy(OrganizationName, OCDProxyModelMixin):
+    """
+    A proxy on the OCD OrganizationName model with helper methods.
+    """
+
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True
+
+    @property
+    def doc(self):
+        """
+        Returns the preferred description for the proxied model.
+        """
+        return "Alternate or former names for the organization."
+
+
+class OCDMembershipProxy(Membership, OCDProxyModelMixin):
+    """
+    A proxy on the OCD Membership model with helper methods.
+    """
+
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True
+
+    @property
+    def doc(self):
+        """
+        Returns the preferred description for the proxied model.
+        """
+        return "A relationship between a Person and an Organization, possibly \
+including a Post."

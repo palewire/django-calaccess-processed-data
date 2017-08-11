@@ -9,6 +9,7 @@ from .divisions import OCDDivisionProxy
 from django.utils.text import get_text_list
 from .organizations import OCDOrganizationProxy
 from opencivicdata.elections.models import Election
+from .base import OCDProxyModelMixin
 
 
 class OCDPartisanPrimaryManager(models.Manager):
@@ -54,7 +55,7 @@ class OCDElectionManager(models.Manager):
         return obj
 
 
-class OCDElectionProxy(Election):
+class OCDElectionProxy(Election, OCDProxyModelMixin):
     """
     A proxy for the Election model in opencivicdata app.
     """
