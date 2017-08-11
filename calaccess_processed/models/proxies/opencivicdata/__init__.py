@@ -3,6 +3,7 @@
 """
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
+from .base import OCDProxyModelMixin
 from .candidatecontests import OCDCandidateContestProxy
 from .candidacies import OCDCandidacyProxy
 from .divisions import OCDDivisionProxy
@@ -31,4 +32,5 @@ __all__ = (
     'OCDPersonProxy',
     'OCDPersonNameProxy',
     'OCDPostProxy',
+    'OCDProxyModelMixin',
 )

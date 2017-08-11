@@ -25,6 +25,7 @@ from .opencivicdata import (
     OCDPersonProxy,
     OCDPersonNameProxy,
     OCDPostProxy,
+    OCDProxyModelMixin,
 )
 
 
@@ -48,4 +49,5 @@ __all__ = (
     'OCDPersonProxy',
     'OCDPersonNameProxy',
     'OCDPostProxy',
+    'OCDProxyModelMixin',
 )
