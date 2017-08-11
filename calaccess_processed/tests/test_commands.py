@@ -114,7 +114,7 @@ class ProcessedDataTest(TestCase):
         # minus one, since Jim Fitzgerald didn't really run in the
         # Dem primary in 2008
         self.assertEqual(
-            ScrapedCandidate.objects.count(),
+            ScrapedCandidate.objects.count() - 1,
             Candidacy.objects.filter(
                 sources__url__contains='http://cal-access.sos.ca.gov/Campaign/Candidates/list.aspx?view=certified' # noqa
             ).count(),
