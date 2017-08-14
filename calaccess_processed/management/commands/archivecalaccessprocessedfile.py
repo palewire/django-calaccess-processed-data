@@ -64,6 +64,10 @@ class Command(CalAccessCommand):
                 file_name=self.model_name,
                 records_count=self.model.objects.count(),
             )
+        else:
+            # if not creating, update the records count
+            self.processed_file.records_count = self.model.objects.count()
+            self.processed_file.save()
 
         # Remove previous .CSV files
         self.processed_file.file_archive.delete()
