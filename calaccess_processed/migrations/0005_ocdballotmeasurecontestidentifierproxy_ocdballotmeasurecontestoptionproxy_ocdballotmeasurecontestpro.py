@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
             fields=[
             ],
             options={
-                'indexes': [],
+                # 'indexes': [],
                 'proxy': True,
             },
             bases=('elections.ballotmeasurecontestidentifier', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
             fields=[
             ],
             options={
-                'indexes': [],
+                # 'indexes': [],
                 'proxy': True,
             },
             bases=('elections.ballotmeasurecontestoption', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
@@ -39,7 +39,7 @@ class Migration(migrations.Migration):
             fields=[
             ],
             options={
-                'indexes': [],
+                # 'indexes': [],
                 'proxy': True,
             },
             bases=('elections.ballotmeasurecontest', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
             fields=[
             ],
             options={
-                'indexes': [],
+                # 'indexes': [],
                 'proxy': True,
             },
             bases=('elections.ballotmeasurecontestsource', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
@@ -59,7 +59,7 @@ class Migration(migrations.Migration):
             fields=[
             ],
             options={
-                'indexes': [],
+                # 'indexes': [],
                 'proxy': True,
             },
             bases=('elections.retentioncontestidentifier', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
@@ -69,7 +69,7 @@ class Migration(migrations.Migration):
             fields=[
             ],
             options={
-                'indexes': [],
+                # 'indexes': [],
                 'proxy': True,
             },
             bases=('elections.retentioncontestoption', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
@@ -79,7 +79,7 @@ class Migration(migrations.Migration):
             fields=[
             ],
             options={
-                'indexes': [],
+                # 'indexes': [],
                 'proxy': True,
             },
             bases=('elections.retentioncontest', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
@@ -89,7 +89,7 @@ class Migration(migrations.Migration):
             fields=[
             ],
             options={
-                'indexes': [],
+                # 'indexes': [],
                 'proxy': True,
             },
             bases=('elections.retentioncontestsource', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
