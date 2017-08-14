@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('elections.candidacysource', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('elections.candidatecontestpost', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('elections.candidatecontestsource', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
@@ -50,7 +50,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('elections.electionidentifier', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
@@ -60,7 +60,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'proxy': True,
-                'indexes': [],
+                # 'indexes': [],
             },
             bases=('elections.electionsource', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
