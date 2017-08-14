@@ -5,7 +5,11 @@ Proxy models for augmenting our source data tables with methods useful for proce
 """
 from __future__ import unicode_literals
 from django.db import models
-from opencivicdata.elections.models import CandidateContest
+from opencivicdata.elections.models import (
+    CandidateContest,
+    CandidateContestPost,
+    CandidateContestSource,
+)
 from .base import OCDProxyModelMixin
 
 
@@ -60,3 +64,25 @@ class OCDCandidateContestProxy(CandidateContest, OCDProxyModelMixin):
             ).latest('election__date')
         except CandidateContest.DoesNotExist:
             return None
+
+
+class OCDCandidateContestPostProxy(CandidateContestPost, OCDProxyModelMixin):
+    """
+    A proxy on the OCD CandidateContestPost model.
+    """
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True
+
+
+class OCDCandidateContestSourceProxy(CandidateContestSource, OCDProxyModelMixin):
+    """
+    A proxy on the OCD CandidateContestSource model.
+    """
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True

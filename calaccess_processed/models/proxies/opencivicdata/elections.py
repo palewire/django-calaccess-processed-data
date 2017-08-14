@@ -8,7 +8,11 @@ from django.db import models
 from .divisions import OCDDivisionProxy
 from django.utils.text import get_text_list
 from .organizations import OCDOrganizationProxy
-from opencivicdata.elections.models import Election
+from opencivicdata.elections.models import (
+    Election,
+    ElectionIdentifier,
+    ElectionSource,
+)
 from .base import OCDProxyModelMixin
 
 
@@ -57,7 +61,7 @@ class OCDElectionManager(models.Manager):
 
 class OCDElectionProxy(Election, OCDProxyModelMixin):
     """
-    A proxy for the Election model in opencivicdata app.
+    A proxy on the OCD Election model.
     """
     objects = OCDElectionManager()
     partisan_primaries = OCDPartisanPrimaryManager()
@@ -135,3 +139,25 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
         Returns a prettified list of OCD sources.
         """
         return get_text_list(list(self.sources.all()))
+
+
+class OCDElectionIdentifierProxy(ElectionIdentifier, OCDProxyModelMixin):
+    """
+    A proxy on the OCD ElectionIdentifier model.
+    """
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True
+
+
+class OCDElectionSourceProxy(ElectionSource, OCDProxyModelMixin):
+    """
+    A proxy on the OCD ElectionSource model.
+    """
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True
