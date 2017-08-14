@@ -4,10 +4,24 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from .base import OCDProxyModelMixin
-from .candidatecontests import OCDCandidateContestProxy
-from .candidacies import OCDCandidacyProxy
+from .ballotmeasures import (
+    OCDBallotMeasureContestProxy,
+    OCDBallotMeasureContestIdentifierProxy,
+    OCDBallotMeasureContestOptionProxy,
+    OCDBallotMeasureContestSourceProxy,
+)
+from .candidatecontests import (
+    OCDCandidateContestProxy,
+    OCDCandidateContestPostProxy,
+    OCDCandidateContestSourceProxy,
+)
+from .candidacies import OCDCandidacyProxy, OCDCandidacySourceProxy
 from .divisions import OCDDivisionProxy
-from .elections import OCDElectionProxy
+from .elections import (
+    OCDElectionProxy,
+    OCDElectionIdentifierProxy,
+    OCDElectionSourceProxy,
+)
 from .organizations import (
     OCDMembershipProxy,
     OCDOrganizationProxy,
@@ -17,13 +31,28 @@ from .organizations import (
 from .parties import OCDPartyProxy
 from .people import OCDPersonProxy, OCDPersonNameProxy
 from .posts import OCDPostProxy
+from .retentioncontests import (
+    OCDRetentionContestProxy,
+    OCDRetentionContestIdentifierProxy,
+    OCDRetentionContestOptionProxy,
+    OCDRetentionContestSourceProxy,
+)
 
 
 __all__ = (
+    'OCDBallotMeasureContestProxy',
+    'OCDBallotMeasureContestIdentifierProxy',
+    'OCDBallotMeasureContestOptionProxy',
+    'OCDBallotMeasureContestSourceProxy',
     'OCDCandidateContestProxy',
+    'OCDCandidateContestPostProxy',
+    'OCDCandidateContestSourceProxy',
     'OCDCandidacyProxy',
+    'OCDCandidacySourceProxy',
     'OCDDivisionProxy',
     'OCDElectionProxy',
+    'OCDElectionIdentifierProxy',
+    'OCDElectionSourceProxy',
     'OCDMembershipProxy',
     'OCDOrganizationProxy',
     'OCDOrganizationIdentifierProxy',
@@ -33,4 +62,8 @@ __all__ = (
     'OCDPersonNameProxy',
     'OCDPostProxy',
     'OCDProxyModelMixin',
+    'OCDRetentionContestProxy',
+    'OCDRetentionContestIdentifierProxy',
+    'OCDRetentionContestOptionProxy',
+    'OCDRetentionContestSourceProxy',
 )
