@@ -11,7 +11,7 @@ from django.db.models import IntegerField
 from django.db.models import Case, When, Q
 from django.db.models.functions import Cast
 from opencivicdata.core.models import Membership
-from opencivicdata.elections.models import Candidacy
+from opencivicdata.elections.models import Candidacy, CandidacySource
 from .base import OCDProxyModelMixin
 
 
@@ -270,3 +270,14 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
         """
         from calaccess_processed.models import Form501Filing
         return Form501Filing.objects.filter(filing_id__in=self.form501_filing_ids)
+
+
+class OCDCandidacySourceProxy(CandidacySource, OCDProxyModelMixin):
+    """
+    A proxy on the OCD CandidacySource model.
+    """
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True

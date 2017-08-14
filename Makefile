@@ -17,6 +17,7 @@ shell:
 	python example/manage.py shell
 
 ship:
+	rm -rf build/
 	python setup.py sdist bdist_wheel
 	twine upload dist/* --skip-existing
 

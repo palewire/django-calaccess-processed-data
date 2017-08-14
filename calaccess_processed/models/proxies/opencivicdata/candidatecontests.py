@@ -5,7 +5,11 @@ Proxy models for augmenting our source data tables with methods useful for proce
 """
 from __future__ import unicode_literals
 from django.db import models
-from opencivicdata.elections.models import CandidateContest
+from opencivicdata.elections.models import (
+    CandidateContest,
+    CandidateContestPost,
+    CandidateContestSource,
+)
 from .base import OCDProxyModelMixin
 
 
@@ -13,17 +17,17 @@ class OCDCandidateContestManager(models.Manager):
     """
     Custom helpers for the OCD CandidateContest model that limit it to runoffs.
     """
-    def get_queryset(self):
+    def runoffs(self):
         """
-        Filters down to state senate divisions.
+        Filter down to runoff CandidateContest instances.
         """
-        return super(OCDCandidateContestManager, self).get_queryset().filter(name__contains='RUNOFF')
+        return self.get_queryset().filter(name__contains='RUNOFF')
 
     def set_parents(self):
         """
         Connect and save parent contests for all runoffs.
         """
-        for obj in self.get_queryset().all():
+        for obj in self.runoffs():
             # Carve out for the duplicate 2010 Assembly 43 runoffs until
             # I can figure out what I broke.
             obj.runoff_for_contest = obj.get_parent()
@@ -32,7 +36,7 @@ class OCDCandidateContestManager(models.Manager):
 
 class OCDCandidateContestProxy(CandidateContest, OCDProxyModelMixin):
     """
-    A proxy on the OCD CandidateContest model with helper methods and limited to runoffs.
+    A proxy on the OCD CandidateContest model with helper methods.
     """
     objects = OCDCandidateContestManager()
 
@@ -60,3 +64,25 @@ class OCDCandidateContestProxy(CandidateContest, OCDProxyModelMixin):
             ).latest('election__date')
         except CandidateContest.DoesNotExist:
             return None
+
+
+class OCDCandidateContestPostProxy(CandidateContestPost, OCDProxyModelMixin):
+    """
+    A proxy on the OCD CandidateContestPost model.
+    """
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True
+
+
+class OCDCandidateContestSourceProxy(CandidateContestSource, OCDProxyModelMixin):
+    """
+    A proxy on the OCD CandidateContestSource model.
+    """
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True

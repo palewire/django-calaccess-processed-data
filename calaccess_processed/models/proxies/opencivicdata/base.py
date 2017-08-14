@@ -27,7 +27,7 @@ class OCDProxyModelMixin(object):
         return textwrap.dedent(self.model.__doc__).strip()
 
     @property
-    def klass_group():
+    def klass_group(self):
         """
         Return the model's group.
         """

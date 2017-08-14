@@ -172,7 +172,7 @@ class ProcessedDataFile(models.Model):
         """
         try:
             model = apps.get_model(
-                'calaccess_proccessed',
+                'calaccess_processed',
                 'OCD%sProxy' % self.file_name,
             )
         except LookupError:
