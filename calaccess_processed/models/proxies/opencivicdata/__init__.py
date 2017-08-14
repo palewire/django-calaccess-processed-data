@@ -29,7 +29,11 @@ from .organizations import (
     OCDOrganizationNameProxy,
 )
 from .parties import OCDPartyProxy
-from .people import OCDPersonProxy, OCDPersonNameProxy
+from .people import (
+    OCDPersonProxy,
+    OCDPersonIdentifierProxy,
+    OCDPersonNameProxy,
+)
 from .posts import OCDPostProxy
 from .retentioncontests import (
     OCDRetentionContestProxy,
@@ -59,6 +63,7 @@ __all__ = (
     'OCDOrganizationNameProxy',
     'OCDPartyProxy',
     'OCDPersonProxy',
+    'OCDPersonIdentifierProxy',
     'OCDPersonNameProxy',
     'OCDPostProxy',
     'OCDProxyModelMixin',
