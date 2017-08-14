@@ -4,7 +4,7 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from .base import OCDProxyModelMixin
-from .ballotmeasures import (
+from .ballotmeasurecontests import (
     OCDBallotMeasureContestProxy,
     OCDBallotMeasureContestIdentifierProxy,
     OCDBallotMeasureContestOptionProxy,
