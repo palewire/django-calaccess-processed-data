@@ -18,6 +18,13 @@ class OCDProxyModelMixin(object):
         return self.__class__.__bases__[0]
 
     @property
+    def object_name(self):
+        """
+        Return the model's object name as a string.
+        """
+        return self.model._meta.object_name
+
+    @property
     def doc(self):
         """
         Returns doc string of the model corresponding to the ProcessedDataFile.
