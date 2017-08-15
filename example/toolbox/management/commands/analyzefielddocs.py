@@ -23,11 +23,7 @@ class Command(CalAccessCommand):
             field_count += len(field_list)
             for f in field_list:
                 if not self.has_docs(f):
-                    self.log("Missing: %s.%s" % (
-                            m().__class__.__name__,
-                            f
-                        )
-                    )
+                    self.log("- [ ] {}".format(f))
                     missing_list.append((m, f))
 
         # If everything is done, declare victory
@@ -46,7 +42,7 @@ class Command(CalAccessCommand):
         )
 
     def get_model_list(self):
-        return apps.get_models("opencivicdata")
+        return apps.get_app_config('elections').models.values() + apps.get_app_config('core').models.values()
 
     def has_docs(self, field):
         """
