@@ -263,13 +263,6 @@ class OCDPersonProxy(Person, OCDProxyModelMixin):
                     form501s.append(f)
         return form501s
 
-    @property
-    def doc(self):
-        """
-        Returns the preferred description for the proxied model.
-        """
-        return "An individual that has served in a political office."
-
 
 class OCDPersonIdentifierProxy(PersonIdentifier, OCDProxyModelMixin):
     """
@@ -282,13 +275,6 @@ class OCDPersonIdentifierProxy(PersonIdentifier, OCDProxyModelMixin):
         """
         proxy = True
 
-    @property
-    def doc(self):
-        """
-        Returns the preferred description for the proxied model.
-        """
-        return "Upstream identifiers of the person if any exist."
-
 
 class OCDPersonNameProxy(PersonName, OCDProxyModelMixin):
     """
@@ -300,10 +286,3 @@ class OCDPersonNameProxy(PersonName, OCDProxyModelMixin):
         Make this a proxy model.
         """
         proxy = True
-
-    @property
-    def doc(self):
-        """
-        Returns the preferred description for the proxied model.
-        """
-        return "Alternate or former names for the person."

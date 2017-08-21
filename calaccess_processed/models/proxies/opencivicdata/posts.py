@@ -129,11 +129,3 @@ class OCDPostProxy(Post, OCDProxyModelMixin):
         Make this a proxy model.
         """
         proxy = True
-
-    @property
-    def doc(self):
-        """
-        Returns the preferred description for the proxied model.
-        """
-        return "A position in an organization that exists independently of the \
-person holding it."

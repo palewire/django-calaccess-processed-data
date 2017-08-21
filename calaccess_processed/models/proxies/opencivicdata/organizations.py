@@ -87,13 +87,6 @@ class OCDOrganizationProxy(Organization, OCDProxyModelMixin):
         """
         proxy = True
 
-    @property
-    def doc(self):
-        """
-        Returns the preferred description for the proxied model.
-        """
-        return "A group of people, typically in a legislative or rule-making context."
-
 
 class OCDOrganizationIdentifierProxy(OrganizationIdentifier, OCDProxyModelMixin):
     """
@@ -105,13 +98,6 @@ class OCDOrganizationIdentifierProxy(OrganizationIdentifier, OCDProxyModelMixin)
         Make this a proxy model.
         """
         proxy = True
-
-    @property
-    def doc(self):
-        """
-        Returns the preferred description for the proxied model.
-        """
-        return "Upstream identifiers of the organization, if any exist."
 
 
 class OCDOrganizationNameProxy(OrganizationName, OCDProxyModelMixin):
@@ -125,13 +111,6 @@ class OCDOrganizationNameProxy(OrganizationName, OCDProxyModelMixin):
         """
         proxy = True
 
-    @property
-    def doc(self):
-        """
-        Returns the preferred description for the proxied model.
-        """
-        return "Alternate or former names for the organization."
-
 
 class OCDMembershipProxy(Membership, OCDProxyModelMixin):
     """
@@ -143,11 +122,3 @@ class OCDMembershipProxy(Membership, OCDProxyModelMixin):
         Make this a proxy model.
         """
         proxy = True
-
-    @property
-    def doc(self):
-        """
-        Returns the preferred description for the proxied model.
-        """
-        return "A relationship between a Person and an Organization, possibly \
-including a Post."
