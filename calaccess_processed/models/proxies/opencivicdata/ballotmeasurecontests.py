@@ -72,3 +72,9 @@ class OCDFlatBallotMeasureContestProxy(BallotMeasureContest, OCDProxyModelMixin)
         created=F('created_at'),
         updated=F('updated_at'),
     )
+
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True
