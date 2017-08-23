@@ -169,12 +169,8 @@ class ProcessedDataFile(models.Model):
         elif hasattr(self.model, 'copy_to_expressions'):
             expressions = self.model.copy_to_expressions
             fields = expressions.keys()
-            print(fields)
-            q = self.model.objects.order_by().annotate(**expressions).values(*fields)
         else:
             q = self.model.objects.all()
-
-        print(q.query)
 
         copy_sql = "COPY (%s) TO STDOUT CSV HEADER;" % q.query
 
