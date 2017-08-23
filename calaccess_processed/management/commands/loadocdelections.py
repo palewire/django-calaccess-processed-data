@@ -136,4 +136,4 @@ class Command(LoadOCDElectionsBase):
             call_command('archivecalaccessprocessedfile', f)
             processed_data_file.refresh_from_db()
             processed_data_file.process_finish_datetime = now()
-            processed_data_file.save()            
+            processed_data_file.save()
