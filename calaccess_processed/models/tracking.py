@@ -169,6 +169,7 @@ class ProcessedDataFile(models.Model):
         elif hasattr(self.model, 'copy_to_expressions'):
             expressions = self.model.copy_to_expressions
             fields = expressions.keys()
+            q = self.model.objects.annotate(**expressions)
         else:
             q = self.model.objects.all()
 
