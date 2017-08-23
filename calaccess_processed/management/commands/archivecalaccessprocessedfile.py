@@ -4,10 +4,7 @@
 Export and archive a .csv file for a given model.
 """
 import os
-from django.apps import apps
 from django.core.files import File
-from django.core.management import CommandError
-from django.db import connection
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed.models.tracking import (
     ProcessedDataVersion,
@@ -38,73 +35,55 @@ class Command(CalAccessCommand):
         super(Command, self).handle(*args, **options)
         self.model_name = options['model_name']
 
-        # get the full path for archiving the csv
-        self.csv_path = os.path.join(
-            self.processed_data_dir,
-            '%s.csv' % self.model_name,
-        )
-
-        # get model
-        self.model = self.get_model()
-
-        # and the db table name
-        self.db_table = self.model._meta.db_table
-
         # Log out what we're doing
-        self.log(" Archiving %s.csv" % self.model._meta.object_name)
+        self.log(" Archiving %s.csv" % self.model_name)
 
         # get the current version
         self.version = ProcessedDataVersion.objects.latest('process_start_datetime')
 
         # and the processed file object
+        processed_file = self.get_processed_file(self.model_name)
+
+        # then archive
+        self.archive(processed_file)
+
+    def get_processed_file(self, file_name):
+        """
+        Return a ProcessedFile object.
+        """
+        # get model
         try:
-            self.processed_file = self.version.files.get(file_name=self.model_name)
+            processed_file = self.version.files.get(file_name=file_name)
         except ProcessedDataFile.DoesNotExist:
-            self.processed_file = self.version.files.create(
-                file_name=self.model_name,
-                records_count=self.model.objects.count(),
+            processed_file = self.version.files.create(
+                file_name=file_name,
             )
-        else:
-            # if not creating, update the records count
-            self.processed_file.records_count = self.model.objects.count()
-            self.processed_file.save()
+        finally:
+            # update the records count
+            processed_file.update_records_count()
 
+        return processed_file
+
+    def archive(self, processed_file):
+        """
+        Write the .csv file and upload a copy to the archive.
+        """
         # Remove previous .CSV files
-        self.processed_file.file_archive.delete()
+        processed_file.file_archive.delete()
 
-        # Write out to the temp directory
-        copy_sql = "COPY %s TO STDOUT CSV HEADER;" % self.db_table
-        with open(self.csv_path, 'wb') as stdout:
-            with connection.cursor() as c:
-                c.cursor.copy_expert(copy_sql, stdout)
+        # Export a new one
+        processed_file.copy_to_csv()
 
         # Open up the .CSV file for reading so we can wrap it in the Django File obj
-        with open(self.csv_path, 'rb') as csv_file:
-            # Save the .CSV on the raw data file
-            self.processed_file.file_archive.save(
+        with open(processed_file.csv_path, 'rb') as csv_file:
+            # Save the .CSV on the processed data file
+            processed_file.file_archive.save(
                 '%s.csv' % self.model_name,
                 File(csv_file),
             )
 
         # Save it to the model
-        self.processed_file.file_size = os.path.getsize(self.csv_path)
-        self.processed_file.save()
+        processed_file.file_size = os.path.getsize(processed_file.csv_path)
+        processed_file.save()
 
-    def get_model(self):
-        """
-        Return the model with model_name, or None.
-        """
-        model_list = [
-            m for m in apps.get_models()
-            if m._meta.object_name == self.model_name
-        ]
-
-        if len(model_list) > 1:
-            raise CommandError("Mulitple models named: %s" % self.model_name)
-        else:
-            try:
-                model = model_list.pop()
-            except IndexError:
-                raise CommandError("No model named: %s" % self.model_name)
-
-        return model
+        return

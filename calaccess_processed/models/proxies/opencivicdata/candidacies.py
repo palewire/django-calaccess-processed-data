@@ -7,8 +7,13 @@ from __future__ import unicode_literals
 from django.db import models
 from .people import OCDPersonProxy
 from .elections import OCDElectionProxy
-from django.db.models import IntegerField
-from django.db.models import Case, When, Q
+from django.db.models import (
+    IntegerField,
+    Case,
+    F,
+    Q,
+    When,
+)
 from django.db.models.functions import Cast
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import Candidacy, CandidacySource
@@ -163,6 +168,23 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
     """
     objects = OCDCandidacyManager()
 
+    copy_to_fields = (
+        'id',
+        'candidate_name',
+        'person',
+        'party',
+        'contest',
+        'post',
+        'is_incumbent',
+        'registration_status',
+        'top_ticket_candidacy',
+        'filed_date',
+        'created_at',
+        'updated_at',
+        'extras',
+        'locked_fields',
+    )
+
     class Meta:
         """
         Make this a proxy model.
@@ -281,3 +303,22 @@ class OCDCandidacySourceProxy(CandidacySource, OCDProxyModelMixin):
         Make this a proxy model.
         """
         proxy = True
+
+
+class OCDFlatCandidacyProxy(Candidacy, OCDProxyModelMixin):
+    """
+    A proxy on the OCD Candidacy model for exporting a flattened csv of candidacies.
+    """
+    copy_to_expressions = dict(
+        name=F('candidate_name'),
+        office=F('post__label'),
+        election=F('contest__election__name'),
+        election_date=F('contest__election__date'),
+        incumbent=F('is_incumbent'),
+        reg_status=F('registration_status'),
+        party_name=F('party__name'),
+        ocd_id=F('person__id'),
+        filed=F('filed_date'),
+        created=F('created_at'),
+        updated=F('updated_at'),
+    )

@@ -4,6 +4,7 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
+from django.db.models import F
 from opencivicdata.elections.models import (
     BallotMeasureContest,
     BallotMeasureContestIdentifier,
@@ -55,3 +56,19 @@ class OCDBallotMeasureContestSourceProxy(BallotMeasureContestSource, OCDProxyMod
         Make this a proxy model.
         """
         proxy = True
+
+
+class OCDFlatBallotMeasureContestProxy(BallotMeasureContest, OCDProxyModelMixin):
+    """
+    A proxy on the OCD BallotMeasureContest model for exporting a flattened csv of ballot measures.
+    """
+    copy_to_expressions = dict(
+        measure=F('name'),
+        type=F('classification'),
+        election_name=F('election__name'),
+        election_date=F('election__date'),
+        ocd_id=F('id'),
+        desc=F('description'),
+        created=F('created_at'),
+        updated=F('updated_at'),
+    )

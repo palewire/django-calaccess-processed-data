@@ -9,13 +9,18 @@ from .ballotmeasurecontests import (
     OCDBallotMeasureContestIdentifierProxy,
     OCDBallotMeasureContestOptionProxy,
     OCDBallotMeasureContestSourceProxy,
+    OCDFlatBallotMeasureContestProxy,
 )
 from .candidatecontests import (
     OCDCandidateContestProxy,
     OCDCandidateContestPostProxy,
     OCDCandidateContestSourceProxy,
 )
-from .candidacies import OCDCandidacyProxy, OCDCandidacySourceProxy
+from .candidacies import (
+    OCDCandidacyProxy,
+    OCDCandidacySourceProxy,
+    OCDFlatCandidacyProxy,
+)
 from .divisions import OCDDivisionProxy
 from .elections import (
     OCDElectionProxy,
@@ -40,6 +45,7 @@ from .retentioncontests import (
     OCDRetentionContestIdentifierProxy,
     OCDRetentionContestOptionProxy,
     OCDRetentionContestSourceProxy,
+    OCDFlatRetentionContestProxy,
 )
 
 
@@ -57,6 +63,9 @@ __all__ = (
     'OCDElectionProxy',
     'OCDElectionIdentifierProxy',
     'OCDElectionSourceProxy',
+    'OCDFlatBallotMeasureContestProxy',
+    'OCDFlatCandidacyProxy',
+    'OCDFlatRetentionContestProxy',
     'OCDMembershipProxy',
     'OCDOrganizationProxy',
     'OCDOrganizationIdentifierProxy',

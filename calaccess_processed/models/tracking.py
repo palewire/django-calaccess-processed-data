@@ -4,10 +4,12 @@
 Models for tracking processing of CAL-ACCESS snapshots over time.
 """
 from __future__ import unicode_literals
+import os
 from hurry.filesize import size as sizeformat
 from django.apps import apps
-from django.db import models
+from django.db import connection, models
 from django.utils.encoding import python_2_unicode_compatible
+from calaccess_raw import get_data_directory
 from calaccess_processed import archive_directory_path
 
 
@@ -157,6 +159,21 @@ class ProcessedDataFile(models.Model):
     def __str__(self):
         return self.file_name
 
+    def copy_to_csv(self):
+        """
+        Copy the models objects to a csv_path.
+        """
+        fields = getattr(self.model, 'copy_to_fields', tuple())
+        expressions = getattr(self.model, 'copy_to_expressions', dict())
+
+        q = self.model.objects.values(*fields, **expressions)
+        copy_sql = "COPY (%s) TO STDOUT CSV HEADER;" % q.query
+
+        with open(self.csv_path, 'wb') as stdout:
+            with connection.cursor() as c:
+                c.cursor.copy_expert(copy_sql, stdout)
+        return
+
     def pretty_file_size(self):
         """
         Returns a prettified version (e.g., "725M") of the processed file's size.
@@ -164,6 +181,24 @@ class ProcessedDataFile(models.Model):
         return sizeformat(self.file_size)
     pretty_file_size.short_description = 'processed file size'
     pretty_file_size.admin_order_field = 'processed file size'
+
+    def update_records_count(self):
+        """
+        Update records_count to the current number of records.
+        """
+        self.records_count = self.model.objects.count()
+        self.save()
+
+        return
+
+    @property
+    def csv_path(self):
+        """
+        Return the full path of where the ProcessedFile is locally stored.
+        """
+        return os.path.join(
+            get_data_directory(), 'processed', '%s.csv' % self.file_name
+        )
 
     @property
     def model(self):
