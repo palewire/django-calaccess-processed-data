@@ -4,6 +4,7 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
+from collections import OrderedDict
 from django.db import models
 from .people import OCDPersonProxy
 from .elections import OCDElectionProxy
@@ -309,19 +310,19 @@ class OCDFlatCandidacyProxy(Candidacy, OCDProxyModelMixin):
     """
     A proxy on the OCD Candidacy model for exporting a flattened csv of candidacies.
     """
-    copy_to_expressions = dict(
-        name=F('candidate_name'),
-        office=F('post__label'),
-        election=F('contest__election__name'),
-        election_date=F('contest__election__date'),
-        incumbent=F('is_incumbent'),
-        reg_status=F('registration_status'),
-        party_name=F('party__name'),
-        ocd_id=F('person__id'),
-        filed=F('filed_date'),
-        created=F('created_at'),
-        updated=F('updated_at'),
-    )
+    copy_to_expressions = OrderedDict([
+        ('name', F('candidate_name')),
+        ('office', F('post__label')),
+        ('election', F('contest__election__name')),
+        ('election_date', F('contest__election__date')),
+        ('incumbent', F('is_incumbent')),
+        ('reg_status', F('registration_status')),
+        ('party_name', F('party__name')),
+        ('ocd_id', F('person__id')),
+        ('filed', F('filed_date')),
+        ('created', F('created_at')),
+        ('updated', F('updated_at')),
+    ])
 
     class Meta:
         """

@@ -63,20 +63,6 @@ class Command(CalAccessCommand):
         # then load
         self.load()
 
-        # export flat files
-        call_command(
-            'archivecalaccessprocessedfile',
-            'FlatCandidacy',
-        )
-        call_command(
-            'archivecalaccessprocessedfile',
-            'FlatBallotMeasureContest',
-        )
-        call_command(
-            'archivecalaccessprocessedfile',
-            'FlatRetentionContest',
-        )
-
         # Zip only if django project setting enabled
         if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
             # then zip

@@ -163,10 +163,19 @@ class ProcessedDataFile(models.Model):
         """
         Copy the models objects to a csv_path.
         """
-        fields = getattr(self.model, 'copy_to_fields', tuple())
-        expressions = getattr(self.model, 'copy_to_expressions', dict())
+        if hasattr(self.model, 'copy_to_fields'):
+            fields = self.model.copy_to_fields
+            q = self.model.objects.values(*fields)
+        elif hasattr(self.model, 'copy_to_expressions'):
+            expressions = self.model.copy_to_expressions
+            fields = expressions.keys()
+            print(fields)
+            q = self.model.objects.order_by().annotate(**expressions).values(*fields)
+        else:
+            q = self.model.objects.all()
 
-        q = self.model.objects.values(*fields, **expressions)
+        print(q.query)
+
         copy_sql = "COPY (%s) TO STDOUT CSV HEADER;" % q.query
 
         with open(self.csv_path, 'wb') as stdout:
