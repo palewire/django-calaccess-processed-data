@@ -6,12 +6,93 @@ Custom managers for working with CAL-ACCESS processed data models.
 from __future__ import unicode_literals
 import os
 from django.db import models, connection
+from django.db.models.sql.compiler import SQLCompiler
+from django.db.models.sql.query import Query
 
 
-class ProcessedDataManager(models.Manager):
+class SQLCopyToCompiler(SQLCompiler):
+    """
+    Custom SQL compiler for creating a COPY TO query (postgres backend only).
+    """
+    def setup_query(self):
+        """
+        Extend the default SQLCompiler.setup_query to add re-ordering of items in select.
+        """
+        super(SQLCopyToCompiler, self).setup_query()
+        if self.query.copy_to_fields:
+            old_select = self.select.copy()
+            self.select = []
+            for field in self.query.copy_to_fields:
+                # make sure the field is available
+                resolved_ref = self.query.resolve_ref(field)
+                try:
+                    self.select.append(
+                        [i for i in old_select if i[2] == field][0]
+                    )
+                except IndexError:
+                    # resolve by name
+                    try:
+                        self.select.append(
+                            [i for i in old_select if i[0] == resolved_ref][0]
+                        )
+                    except:
+                        import ipdb; ipdb.set_trace()
+
+    def execute_sql(self, csv_path):
+        """
+        Run the COPY TO query.
+        """ 
+        select_sql = self.as_sql()[0] % self.as_sql()[1]
+        copy_to_sql = "COPY (%s) TO STDOUT CSV HEADER" % select_sql
+
+        with open(csv_path, 'wb') as stdout:
+            with connection.cursor() as c:
+                c.cursor.copy_expert(copy_to_sql, stdout)
+        return
+
+
+class CopyToQuery(Query):
+    """
+    Represents a "copy to" SQL query.
+    """
+    def __init__(self, *args, **kwargs):
+        super(CopyToQuery, self).__init__(*args, **kwargs)
+        self.copy_to_fields = args
+
+    def get_compiler(self, using=None, connection=None):
+        return SQLCopyToCompiler(self, connection, using)
+
+
+class CopyToQuerySet(models.QuerySet):
+    """
+    Subclass of QuerySet that adds _copy_to_csv method.
+    """
+    def copy_to_csv(self, csv_path, *fields):
+        query = self.query.clone(CopyToQuery)
+        query.copy_to_fields = fields
+        query.get_compiler(
+            self.db, connection=connection
+        ).execute_sql(csv_path)
+
+
+class CopyToManager(models.Manager):
+    """
+    Custom manager for adding the copy_to_csv method to models.
+    """
+    def get_queryset(self):
+        return CopyToQuerySet(self.model, using=self._db)
+
+
+class ProcessedDataManager(CopyToManager):
     """
     Utilities for loading raw CAL-ACCESS data into processed data models.
     """
+    def get_queryset(self):
+        """
+        Returns the custom QuerySet for this manager.
+        """
+        return CopyToManager(self.model, using=self._db)
+
     def add_constraints_and_indexes(self):
         """
         Re-create constraints and indexes on the model and its fields.
