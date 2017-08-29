@@ -23,10 +23,40 @@ from .base import OCDProxyModelMixin
 from calaccess_processed.managers import CopyToQuerySet
 
 
+class OCDCandidacyQuerySet(CopyToQuerySet):
+    """
+    Custom QuerySet for the OCD Candidacy model.
+    """
+    def get_by_filer_id(self, filer_id):
+        """
+        Returns a Candidacy object linked to a CALACCESS filer_id, if it exists.
+        """
+        return self.get(
+            person__identifiers__scheme='calaccess_filer_id',
+            person__identifiers__identifier=filer_id,
+        )
+
+    def get_by_name(self, name):
+        """
+        Returns a Candidacy object with the provided name from the CALACCESS database or scrape.
+        """
+        return self.get(
+            Q(candidate_name=name) |
+            Q(person__name=name) |
+            Q(person__other_names__name=name)
+        )
+
+
 class OCDCandidacyManager(models.Manager):
     """
     Manager for custom methods on the OCDCandidacyProxy model.
     """
+    def get_queryset(self):
+        """
+        Returns the custom QuerySet for this manager.
+        """
+        return OCDCandidacyQuerySet(self.model, using=self._db)
+
     def matched_form501_ids(self):
         """
         Return all the Form 501 filing ids matched to a candidacy record.
