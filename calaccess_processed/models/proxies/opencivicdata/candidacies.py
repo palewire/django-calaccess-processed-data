@@ -4,14 +4,15 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
-from collections import OrderedDict
 from django.db import models
 from .people import OCDPersonProxy
 from .elections import OCDElectionProxy
 from django.db.models import (
     IntegerField,
     Case,
+    Count,
     F,
+    Max,
     Q,
     When,
 )
@@ -19,42 +20,13 @@ from django.db.models.functions import Cast
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import Candidacy, CandidacySource
 from .base import OCDProxyModelMixin
-
-
-class OCDCandidacyQuerySet(models.QuerySet):
-    """
-    Custom QuerySet for the OCD Candidacy model.
-    """
-    def get_by_filer_id(self, filer_id):
-        """
-        Returns a Candidacy object linked to a CAL-ACCESS filer_id, if it exists.
-        """
-        return self.get(
-            person__identifiers__scheme='calaccess_filer_id',
-            person__identifiers__identifier=filer_id,
-        )
-
-    def get_by_name(self, name):
-        """
-        Returns a Candidacy object with the provided name from the CAL-ACCESS database or scrape.
-        """
-        return self.get(
-            Q(candidate_name=name) |
-            Q(person__name=name) |
-            Q(person__other_names__name=name)
-        )
+from calaccess_processed.managers import CopyToQuerySet
 
 
 class OCDCandidacyManager(models.Manager):
     """
     Manager for custom methods on the OCDCandidacyProxy model.
     """
-    def get_queryset(self):
-        """
-        Returns the custom QuerySet for this manager.
-        """
-        return OCDCandidacyQuerySet(self.model, using=self._db)
-
     def matched_form501_ids(self):
         """
         Return all the Form 501 filing ids matched to a candidacy record.
@@ -167,7 +139,7 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
     """
     A proxy on the OCD Candidacy model with helper methods.
     """
-    objects = OCDCandidacyManager()
+    objects = OCDCandidacyManager.from_queryset(CopyToQuerySet)()
 
     copy_to_fields = (
         'id',
@@ -299,6 +271,8 @@ class OCDCandidacySourceProxy(CandidacySource, OCDProxyModelMixin):
     """
     A proxy on the OCD CandidacySource model.
     """
+    objects = CopyToQuerySet.as_manager()
+
     class Meta:
         """
         Make this a proxy model.
@@ -306,23 +280,49 @@ class OCDCandidacySourceProxy(CandidacySource, OCDProxyModelMixin):
         proxy = True
 
 
+class OCDFlatCandidacyManager(models.Manager):
+    """
+    Custom manager with query for getting result for flat Candidacy csv.
+    """
+    def get_queryset(self):
+        """
+        Returns the custom QuerySet for this manager.
+        """
+        return super(
+            OCDFlatCandidacyManager, self
+        ).get_queryset().filter(
+            Q(person__identifiers__scheme='calaccess_filer_id') |
+            Q(person__identifiers__isnull=True)
+        ).annotate(
+            name=F('candidate_name'),
+            office=F('post__label'),
+            party_name=F('party__name'),
+            election=F('contest__election__name'),
+            election_date=F('contest__election__date'),
+            ocd_id=F('person__id'),
+            latest_calaccess_filer_id=Max('person__identifiers__identifier'),
+            calaccess_filer_id_count=Count('person__identifiers__identifier'),
+        )
+
+
 class OCDFlatCandidacyProxy(Candidacy, OCDProxyModelMixin):
     """
-    A proxy on the OCD Candidacy model for exporting a flattened csv of candidacies.
+    A custom manager for exporting a flat file of OCD Candidacy records.
     """
-    copy_to_expressions = OrderedDict([
-        ('name', F('candidate_name')),
-        ('office', F('post__label')),
-        ('election', F('contest__election__name')),
-        ('election_date', F('contest__election__date')),
-        ('incumbent', F('is_incumbent')),
-        ('reg_status', F('registration_status')),
-        ('party_name', F('party__name')),
-        ('ocd_id', F('person__id')),
-        ('filed', F('filed_date')),
-        ('created', F('created_at')),
-        ('updated', F('updated_at')),
-    ])
+    objects = OCDFlatCandidacyManager.from_queryset(CopyToQuerySet)()
+
+    copy_to_fields = (
+        'election',
+        'office',
+        'name',
+        'party__name',
+        'is_incumbent',
+        'created_at',
+        'updated_at',
+        'ocd_id',
+        'latest_calaccess_filer_id',
+        'calaccess_filer_id_count',
+    )
 
     class Meta:
         """

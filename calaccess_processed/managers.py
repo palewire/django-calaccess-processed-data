@@ -8,6 +8,7 @@ import os
 from django.db import models, connection
 from django.db.models.sql.compiler import SQLCompiler
 from django.db.models.sql.query import Query
+from psycopg2.sql import Literal
 
 
 class SQLCopyToCompiler(SQLCompiler):
@@ -20,33 +21,36 @@ class SQLCopyToCompiler(SQLCompiler):
         """
         super(SQLCopyToCompiler, self).setup_query()
         if self.query.copy_to_fields:
-            old_select = self.select.copy()
             self.select = []
             for field in self.query.copy_to_fields:
-                # make sure the field is available
-                resolved_ref = self.query.resolve_ref(field)
-                try:
-                    self.select.append(
-                        [i for i in old_select if i[2] == field][0]
-                    )
-                except IndexError:
-                    # resolve by name
-                    try:
-                        self.select.append(
-                            [i for i in old_select if i[0] == resolved_ref][0]
-                        )
-                    except:
-                        import ipdb; ipdb.set_trace()
+                # raises error if field is not available
+                expression = self.query.resolve_ref(field)
+
+                if field in self.query.annotations:
+                    selection = (expression, self.compile(expression), field)
+                else:
+                    selection = (expression, self.compile(expression), None)
+
+                self.select.append(selection)
 
     def execute_sql(self, csv_path):
         """
         Run the COPY TO query.
-        """ 
-        select_sql = self.as_sql()[0] % self.as_sql()[1]
-        copy_to_sql = "COPY (%s) TO STDOUT CSV HEADER" % select_sql
-
+        """
+        # open file for writing
+        # use stdout to avoid file permission issues
         with open(csv_path, 'wb') as stdout:
             with connection.cursor() as c:
+                # compose SELECT query parameters as sql strings
+                params = self.as_sql()[1]
+                adapted_params = tuple(
+                    Literal(p).as_string(c.cursor) for p in params
+                )
+                # compile the SELECT query
+                select_sql = self.as_sql()[0] % adapted_params
+                # then the COPY TO query
+                copy_to_sql = "COPY (%s) TO STDOUT CSV HEADER" % select_sql
+                # then executw
                 c.cursor.copy_expert(copy_to_sql, stdout)
         return
 
@@ -56,10 +60,16 @@ class CopyToQuery(Query):
     Represents a "copy to" SQL query.
     """
     def __init__(self, *args, **kwargs):
+        """
+        Extend inherited __init__ method to include setting copy_to_fields from args.
+        """
         super(CopyToQuery, self).__init__(*args, **kwargs)
         self.copy_to_fields = args
 
     def get_compiler(self, using=None, connection=None):
+        """
+        Return a SQLCopyToCompiler object.
+        """
         return SQLCopyToCompiler(self, connection, using)
 
 
@@ -68,31 +78,26 @@ class CopyToQuerySet(models.QuerySet):
     Subclass of QuerySet that adds _copy_to_csv method.
     """
     def copy_to_csv(self, csv_path, *fields):
+        """
+        Copy current objects in QuerySet to a file at csv_path.
+
+        Use optional fields arguments to specify the names of fields
+        to be copied and their order in the csv file.
+
+        Return a call to .execute_sql() on the compiler of the queryset's query.
+        """
         query = self.query.clone(CopyToQuery)
         query.copy_to_fields = fields
-        query.get_compiler(
+
+        return query.get_compiler(
             self.db, connection=connection
         ).execute_sql(csv_path)
 
 
-class CopyToManager(models.Manager):
-    """
-    Custom manager for adding the copy_to_csv method to models.
-    """
-    def get_queryset(self):
-        return CopyToQuerySet(self.model, using=self._db)
-
-
-class ProcessedDataManager(CopyToManager):
+class ProcessedDataManager(models.Manager):
     """
     Utilities for loading raw CAL-ACCESS data into processed data models.
     """
-    def get_queryset(self):
-        """
-        Returns the custom QuerySet for this manager.
-        """
-        return CopyToManager(self.model, using=self._db)
-
     def add_constraints_and_indexes(self):
         """
         Re-create constraints and indexes on the model and its fields.

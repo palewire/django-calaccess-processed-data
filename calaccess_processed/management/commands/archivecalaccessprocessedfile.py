@@ -72,7 +72,7 @@ class Command(CalAccessCommand):
         processed_file.file_archive.delete()
 
         # Export a new one
-        processed_file.copy_to_csv()
+        processed_file.make_csv_copy()
 
         # Open up the .CSV file for reading so we can wrap it in the Django File obj
         with open(processed_file.csv_path, 'rb') as csv_file:

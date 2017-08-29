@@ -6,7 +6,7 @@ Models for storing general filer and filing data derived from raw CAL-ACCESS dat
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.managers import ProcessedDataManager
+from calaccess_processed.managers import CopyToQuerySet, ProcessedDataManager
 
 
 @python_2_unicode_compatible
@@ -50,7 +50,7 @@ class FilerIDValue(models.Model):
                   "database table and column.",
     )
 
-    objects = ProcessedDataManager()
+    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
@@ -95,7 +95,7 @@ class FilingIDValue(models.Model):
                   "database table and column.",
     )
 
-    objects = ProcessedDataManager()
+    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """

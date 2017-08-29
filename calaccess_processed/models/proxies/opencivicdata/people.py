@@ -13,6 +13,7 @@ from opencivicdata.core.models import (
     PersonName,
 )
 from .base import OCDProxyModelMixin
+from calaccess_processed.managers import CopyToQuerySet
 
 
 class OCDPersonManager(models.Manager):
@@ -182,7 +183,7 @@ class OCDPersonProxy(Person, OCDProxyModelMixin):
     """
     A proxy on the OCD Person model with helper methods.
     """
-    objects = OCDPersonManager()
+    objects = OCDPersonManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
@@ -268,6 +269,7 @@ class OCDPersonIdentifierProxy(PersonIdentifier, OCDProxyModelMixin):
     """
     A proxy on the OCD PersonIdentifier model.
     """
+    objects = CopyToQuerySet.as_manager()
 
     class Meta:
         """
@@ -280,6 +282,7 @@ class OCDPersonNameProxy(PersonName, OCDProxyModelMixin):
     """
     A proxy on the OCD PersonName model with helper methods.
     """
+    objects = CopyToQuerySet.as_manager()
 
     class Meta:
         """

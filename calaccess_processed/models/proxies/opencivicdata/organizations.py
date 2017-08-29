@@ -12,6 +12,7 @@ from opencivicdata.core.models import (
     OrganizationName,
 )
 from .base import OCDProxyModelMixin
+from calaccess_processed.managers import CopyToQuerySet
 
 
 class OCDOrganizationManager(models.Manager):
@@ -79,7 +80,7 @@ class OCDOrganizationProxy(Organization, OCDProxyModelMixin):
     """
     A proxy on the OCD Organization model with helper methods.
     """
-    objects = OCDOrganizationManager()
+    objects = OCDOrganizationManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
@@ -92,6 +93,7 @@ class OCDOrganizationIdentifierProxy(OrganizationIdentifier, OCDProxyModelMixin)
     """
     A proxy on the OCD OrganizationIdentifier model with helper methods.
     """
+    objects = CopyToQuerySet.as_manager()
 
     class Meta:
         """
@@ -104,6 +106,7 @@ class OCDOrganizationNameProxy(OrganizationName, OCDProxyModelMixin):
     """
     A proxy on the OCD OrganizationName model with helper methods.
     """
+    objects = CopyToQuerySet.as_manager()
 
     class Meta:
         """
@@ -116,6 +119,7 @@ class OCDMembershipProxy(Membership, OCDProxyModelMixin):
     """
     A proxy on the OCD Membership model with helper methods.
     """
+    objects = CopyToQuerySet.as_manager()
 
     class Meta:
         """

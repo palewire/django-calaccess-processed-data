@@ -7,6 +7,7 @@ from __future__ import unicode_literals
 from django.db import models
 from opencivicdata.core.models import Division
 from .base import OCDProxyModelMixin
+from calaccess_processed.managers import CopyToQuerySet
 
 
 class OCDAssemblyDivisionManager(models.Manager):
@@ -52,7 +53,7 @@ class OCDDivisionProxy(Division, OCDProxyModelMixin):
     """
     A proxy on the OCD Division model with helper methods.
     """
-    objects = OCDCaliforniaDivisionManager()
+    objects = OCDCaliforniaDivisionManager.from_queryset(CopyToQuerySet)()
     assembly = OCDAssemblyDivisionManager()
     senate = OCDSenateDivisionManager()
 

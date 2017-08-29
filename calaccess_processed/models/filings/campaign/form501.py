@@ -10,7 +10,7 @@ import calaccess_processed
 from django.db import models
 from calaccess_processed import corrections
 from opencivicdata.elections.models import CandidateContest
-from calaccess_processed.managers import ProcessedDataManager
+from calaccess_processed.managers import CopyToQuerySet, ProcessedDataManager
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.models import CalAccessBaseModel
 from calaccess_processed.models.filings import FilingMixin, FilingVersionMixin
@@ -429,7 +429,7 @@ class Form501FilingVersion(FilingVersionMixin, Form501FilingBase):
                   'representing the initial filing (from F501_502_CD.FILING_ID)',
     )
 
-    objects = ProcessedDataManager()
+    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """

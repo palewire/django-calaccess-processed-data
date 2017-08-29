@@ -6,7 +6,7 @@ Models for storing data from Campaign Disclosure Statements (Form 460).
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.managers import ProcessedDataManager
+from calaccess_processed.managers import CopyToQuerySet, ProcessedDataManager
 from calaccess_processed.models.base import CalAccessBaseModel
 from calaccess_processed.models.filings.campaign import CampaignLoanReceivedItemBase
 
@@ -114,7 +114,7 @@ class Form460ScheduleB1Item(Form460ScheduleB1ItemBase):
                   'was reported (from LOAN_CD.FILING_ID)',
     )
 
-    objects = ProcessedDataManager()
+    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
@@ -149,7 +149,7 @@ class Form460ScheduleB1ItemVersion(Form460ScheduleB1ItemBase):
                   'includes the outstanding loan'
     )
 
-    objects = ProcessedDataManager()
+    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
@@ -355,7 +355,7 @@ class Form460ScheduleB2Item(Form460ScheduleB2ItemBase):
                   'was reported (from LOAN_CD.FILING_ID)',
     )
 
-    objects = ProcessedDataManager()
+    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
@@ -390,7 +390,7 @@ class Form460ScheduleB2ItemVersion(Form460ScheduleB2ItemBase):
                   'includes the outstanding loan'
     )
 
-    objects = ProcessedDataManager()
+    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
@@ -497,7 +497,7 @@ class Form460ScheduleB2ItemOld(Form460ScheduleB2ItemBaseOld):
                   'transaction was reported (from LOAN_CD.FILING_ID)',
     )
 
-    objects = ProcessedDataManager()
+    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
@@ -533,7 +533,7 @@ class Form460ScheduleB2ItemVersionOld(Form460ScheduleB2ItemBaseOld):
                   'includes the loan transaction'
     )
 
-    objects = ProcessedDataManager()
+    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """

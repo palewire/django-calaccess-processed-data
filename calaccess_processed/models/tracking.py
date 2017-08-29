@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 import os
 from hurry.filesize import size as sizeformat
 from django.apps import apps
-from django.db import connection, models
+from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_raw import get_data_directory
 from calaccess_processed import archive_directory_path
@@ -159,27 +159,6 @@ class ProcessedDataFile(models.Model):
     def __str__(self):
         return self.file_name
 
-    def copy_to_csv(self):
-        """
-        Copy the models objects to a csv_path.
-        """
-        if hasattr(self.model, 'copy_to_fields'):
-            fields = self.model.copy_to_fields
-            q = self.model.objects.values(*fields)
-        elif hasattr(self.model, 'copy_to_expressions'):
-            expressions = self.model.copy_to_expressions
-            fields = expressions.keys()
-            q = self.model.objects.annotate(**expressions)
-        else:
-            q = self.model.objects.all()
-
-        copy_sql = "COPY (%s) TO STDOUT CSV HEADER;" % q.query
-
-        with open(self.csv_path, 'wb') as stdout:
-            with connection.cursor() as c:
-                c.cursor.copy_expert(copy_sql, stdout)
-        return
-
     def pretty_file_size(self):
         """
         Returns a prettified version (e.g., "725M") of the processed file's size.
@@ -197,10 +176,18 @@ class ProcessedDataFile(models.Model):
 
         return
 
+    def make_csv_copy(self):
+        """
+        Copy model contents to a local csv file.
+        """
+        copy_to_fields = getattr(self.model, 'copy_to_fields', tuple())
+
+        return self.model.objects.copy_to_csv(self.csv_path, *copy_to_fields)
+
     @property
     def csv_path(self):
         """
-        Return the full path of where the ProcessedFile is locally stored.
+        Return the full path where the ProcessedFile is locally stored.
         """
         return os.path.join(
             get_data_directory(), 'processed', '%s.csv' % self.file_name

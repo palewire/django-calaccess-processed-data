@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 from django.db import models
 from .base import Form460FilingBase
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.managers import ProcessedDataManager
+from calaccess_processed.managers import CopyToQuerySet, ProcessedDataManager
 from calaccess_processed.models.filings import (
     FilingMixin,
     FilingVersionMixin,
@@ -52,7 +52,7 @@ class Form460Filing(FilingMixin, Form460FilingBase):
                   'maximum value of CVR_CAMPAIGN_DISCLOSURE_CD.AMEND_ID)',
     )
 
-    objects = ProcessedDataManager()
+    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
@@ -94,7 +94,7 @@ class Form460FilingVersion(FilingVersionMixin, Form460FilingBase):
                   'DISCLOSURE_CD.AMEND_ID)',
     )
 
-    objects = ProcessedDataManager()
+    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
