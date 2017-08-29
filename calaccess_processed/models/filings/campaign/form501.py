@@ -240,7 +240,7 @@ class Form501Filing(FilingMixin, Form501FilingBase):
         help_text='Number of amendments to the Form 501 filing (from '
                   'maximum value of F501_502_CD.AMEND_ID)',
     )
-    objects = Form501FilingManager()
+    objects = Form501FilingManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
@@ -429,7 +429,7 @@ class Form501FilingVersion(FilingVersionMixin, Form501FilingBase):
                   'representing the initial filing (from F501_502_CD.FILING_ID)',
     )
 
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
+    objects = Form501FilingManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
