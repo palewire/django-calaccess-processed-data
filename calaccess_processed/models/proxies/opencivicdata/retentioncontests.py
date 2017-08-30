@@ -4,7 +4,8 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
-# from django.db.models import F
+from django.db import models
+from django.db.models import F, Max, Q
 from opencivicdata.elections.models import (
     RetentionContest,
     RetentionContestIdentifier,
@@ -67,24 +68,49 @@ class OCDRetentionContestSourceProxy(RetentionContestSource, OCDProxyModelMixin)
         proxy = True
 
 
+class OCDFlatRetentionContestManager(models.Manager):
+    """
+    Custom manager for flattening contents of the OCD RetentionContest model.
+    """
+    def get_queryset(self):
+        """
+        Returns the custom QuerySet for this manager.
+        """
+        return super(
+            OCDFlatRetentionContestManager, self
+        ).get_queryset().filter(
+            Q(identifiers__scheme='calaccess_measure_id') |
+            Q(identifiers__isnull=True)
+        ).annotate(
+            office=F('membership__post__label'),
+            person_name=F('membership__person__name'),
+            ocd_person_id=F('membership__person__id'),
+            election_name=F('election__name'),
+            election_date=F('election__date'),
+            ocd_contest_id=F('id'),
+            calaccess_measure_id=Max('identifiers__identifier')
+        )
+
+
 class OCDFlatRetentionContestProxy(RetentionContest, OCDProxyModelMixin):
     """
-    A proxy on the OCD RetentionContest model for exporting a flattened csv of retention contest.
+    A proxy model for flattening the contents of the OCD RetentionContest model.
     """
-    objects = CopyToQuerySet.as_manager()
+    objects = OCDFlatRetentionContestManager.from_queryset(CopyToQuerySet)()
 
-    # copy_to_fields = dict(
-    #     measure=F('name'),
-    #     office=F('membership__post__label'),
-    #     person_name=F('membership__person__name'),
-    #     person_id=F('membership__person__id'),
-    #     election_name=F('election__name'),
-    #     election_date=F('election__date'),
-    #     ocd_id=F('id'),
-    #     desc=F('description'),
-    #     created=F('created_at'),
-    #     updated=F('updated_at'),
-    # )
+    copy_to_fields = (
+        'election_name',
+        'election_date',
+        'name',
+        'office',
+        'person_name',
+        'ocd_person_id',
+        'description',
+        'created_at',
+        'updated_at',
+        'ocd_contest_id',
+        'calaccess_measure_id',
+    )
 
     class Meta:
         """

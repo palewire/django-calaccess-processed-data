@@ -312,7 +312,7 @@ class OCDCandidacySourceProxy(CandidacySource, OCDProxyModelMixin):
 
 class OCDFlatCandidacyManager(models.Manager):
     """
-    Custom manager with query for getting result for flat Candidacy csv.
+    Custom manager for flattening the contents of the OCD Candidacy model.
     """
     def get_queryset(self):
         """
@@ -329,7 +329,7 @@ class OCDFlatCandidacyManager(models.Manager):
             party_name=F('party__name'),
             election=F('contest__election__name'),
             election_date=F('contest__election__date'),
-            ocd_id=F('person__id'),
+            ocd_person_id=F('person__id'),
             latest_calaccess_filer_id=Max('person__identifiers__identifier'),
             calaccess_filer_id_count=Count('person__identifiers__identifier'),
         )
@@ -337,19 +337,20 @@ class OCDFlatCandidacyManager(models.Manager):
 
 class OCDFlatCandidacyProxy(Candidacy, OCDProxyModelMixin):
     """
-    A custom manager for exporting a flat file of OCD Candidacy records.
+    A proxy model for flattening the contents of the OCD Candidacy model.
     """
     objects = OCDFlatCandidacyManager.from_queryset(CopyToQuerySet)()
 
     copy_to_fields = (
         'election',
+        'election_date',
         'office',
         'name',
-        'party__name',
+        'party_name',
         'is_incumbent',
         'created_at',
         'updated_at',
-        'ocd_id',
+        'ocd_person_id',
         'latest_calaccess_filer_id',
         'calaccess_filer_id_count',
     )
