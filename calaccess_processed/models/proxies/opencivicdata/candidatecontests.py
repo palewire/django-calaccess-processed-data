@@ -11,7 +11,7 @@ from opencivicdata.elections.models import (
     CandidateContestSource,
 )
 from .base import OCDProxyModelMixin
-from calaccess_processed.managers import CopyToQuerySet
+from postgres_copy import CopyQuerySet
 
 
 class OCDCandidateContestManager(models.Manager):
@@ -39,7 +39,7 @@ class OCDCandidateContestProxy(CandidateContest, OCDProxyModelMixin):
     """
     A proxy on the OCD CandidateContest model with helper methods.
     """
-    objects = OCDCandidateContestManager.from_queryset(CopyToQuerySet)()
+    objects = OCDCandidateContestManager.from_queryset(CopyQuerySet)()
 
     class Meta:
         """
@@ -71,7 +71,7 @@ class OCDCandidateContestPostProxy(CandidateContestPost, OCDProxyModelMixin):
     """
     A proxy on the OCD CandidateContestPost model.
     """
-    objects = CopyToQuerySet.as_manager()
+    objects = CopyQuerySet.as_manager()
 
     class Meta:
         """
@@ -84,7 +84,7 @@ class OCDCandidateContestSourceProxy(CandidateContestSource, OCDProxyModelMixin)
     """
     A proxy on the OCD CandidateContestSource model.
     """
-    objects = CopyToQuerySet.as_manager()
+    objects = CopyQuerySet.as_manager()
 
     class Meta:
         """

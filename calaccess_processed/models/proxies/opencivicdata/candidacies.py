@@ -20,10 +20,10 @@ from django.db.models.functions import Cast
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import Candidacy, CandidacySource
 from .base import OCDProxyModelMixin
-from calaccess_processed.managers import CopyToQuerySet
+from postgres_copy import CopyQuerySet
 
 
-class OCDCandidacyQuerySet(CopyToQuerySet):
+class OCDCandidacyQuerySet(CopyQuerySet):
     """
     Custom QuerySet for the OCD Candidacy model.
     """
@@ -169,7 +169,7 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
     """
     A proxy on the OCD Candidacy model with helper methods.
     """
-    objects = OCDCandidacyManager.from_queryset(CopyToQuerySet)()
+    objects = OCDCandidacyManager.from_queryset(CopyQuerySet)()
 
     copy_to_fields = (
         'id',
@@ -301,7 +301,7 @@ class OCDCandidacySourceProxy(CandidacySource, OCDProxyModelMixin):
     """
     A proxy on the OCD CandidacySource model.
     """
-    objects = CopyToQuerySet.as_manager()
+    objects = CopyQuerySet.as_manager()
 
     class Meta:
         """
@@ -339,7 +339,7 @@ class OCDFlatCandidacyProxy(Candidacy, OCDProxyModelMixin):
     """
     A proxy model for flattening the contents of the OCD Candidacy model.
     """
-    objects = OCDFlatCandidacyManager.from_queryset(CopyToQuerySet)()
+    objects = OCDFlatCandidacyManager.from_queryset(CopyQuerySet)()
 
     copy_to_fields = (
         'election',

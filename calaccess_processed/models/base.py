@@ -7,6 +7,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.db.models.base import ModelBase
 from django.template.defaultfilters import capfirst
+from calaccess_processed.managers import ProcessedDataManager
 import textwrap
 
 
@@ -44,6 +45,8 @@ class CalAccessBaseModel(models.Model):
     An abstract model with some tricks we'll reuse.
     """
     __metaclass__ = CalAccessMetaClass
+
+    objects = ProcessedDataManager()
 
     def doc(self):
         """

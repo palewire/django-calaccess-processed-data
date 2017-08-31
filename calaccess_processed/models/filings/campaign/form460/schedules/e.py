@@ -6,7 +6,6 @@ Models for storing data from Campaign Disclosure Statements (Form 460).
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.managers import CopyToQuerySet, ProcessedDataManager
 from calaccess_processed.models.base import CalAccessBaseModel
 from calaccess_processed.models.filings.campaign import (
     CampaignExpenditureItemBase,
@@ -67,8 +66,6 @@ class Form460ScheduleESummary(Form460ScheduleESummaryBase):
         help_text='Foreign key referring to the Form 460 on which the summary was reported',
     )
 
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
-
     class Meta:
         """
         Model options.
@@ -94,8 +91,6 @@ class Form460ScheduleESummaryVersion(Form460ScheduleESummaryBase):
         help_text='Foreign key referring to the version of the Form 460 that '
                   'includes the summary'
     )
-
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
@@ -143,8 +138,6 @@ class Form460ScheduleEItem(CampaignExpenditureItemBase):
                   'payment was reported (from EXPN_CD.FILING_ID)',
     )
 
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
-
     class Meta:
         """
         Model options.
@@ -186,8 +179,6 @@ class Form460ScheduleEItemVersion(CampaignExpenditureItemBase):
         help_text='Foreign key referring to the version of the Form 460 that '
                   'includes the payment made'
     )
-
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
@@ -243,8 +234,6 @@ class Form460ScheduleESubItem(CampaignExpenditureSubItemBase):
                   'payment was reported (from EXPN_CD.FILING_ID)',
     )
 
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
-
     class Meta:
         """
         Model options.
@@ -289,8 +278,6 @@ class Form460ScheduleESubItemVersion(CampaignExpenditureSubItemBase):
         help_text='Foreign key referring to the version of the Form 460 that '
                   'includes the payment made'
     )
-
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """

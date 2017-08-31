@@ -10,10 +10,11 @@ import calaccess_processed
 from django.db import models
 from calaccess_processed import corrections
 from opencivicdata.elections.models import CandidateContest
-from calaccess_processed.managers import CopyToQuerySet, ProcessedDataManager
+from calaccess_processed.managers import ProcessedDataManager
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.models import CalAccessBaseModel
 from calaccess_processed.models.filings import FilingMixin, FilingVersionMixin
+from postgres_copy import CopyQuerySet
 
 
 class Form501FilingManager(ProcessedDataManager):
@@ -240,7 +241,7 @@ class Form501Filing(FilingMixin, Form501FilingBase):
         help_text='Number of amendments to the Form 501 filing (from '
                   'maximum value of F501_502_CD.AMEND_ID)',
     )
-    objects = Form501FilingManager.from_queryset(CopyToQuerySet)()
+    objects = Form501FilingManager.from_queryset(CopyQuerySet)()
 
     class Meta:
         """
@@ -429,7 +430,7 @@ class Form501FilingVersion(FilingVersionMixin, Form501FilingBase):
                   'representing the initial filing (from F501_502_CD.FILING_ID)',
     )
 
-    objects = Form501FilingManager.from_queryset(CopyToQuerySet)()
+    objects = Form501FilingManager.from_queryset(CopyQuerySet)()
 
     class Meta:
         """

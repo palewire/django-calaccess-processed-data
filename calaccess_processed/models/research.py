@@ -6,7 +6,6 @@ Models for storing general filer and filing data derived from raw CAL-ACCESS dat
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.managers import CopyToQuerySet, ProcessedDataManager
 
 
 @python_2_unicode_compatible
@@ -50,8 +49,6 @@ class FilerIDValue(models.Model):
                   "database table and column.",
     )
 
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
-
     class Meta:
         """
         Meta model options.
@@ -94,8 +91,6 @@ class FilingIDValue(models.Model):
         help_text="Count of occurences of the filing_id value in the given "
                   "database table and column.",
     )
-
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """

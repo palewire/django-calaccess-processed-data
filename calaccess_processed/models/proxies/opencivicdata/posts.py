@@ -11,7 +11,7 @@ from opencivicdata.core.models import Post
 from .organizations import OCDOrganizationProxy
 from ..calaccess_raw.filertofilertype import RawFilerToFilerTypeCdProxy
 from .base import OCDProxyModelMixin
-from calaccess_processed.managers import CopyToQuerySet
+from postgres_copy import CopyQuerySet
 
 
 class OCDPostManager(models.Manager):
@@ -123,7 +123,7 @@ class OCDPostProxy(Post, OCDProxyModelMixin):
     """
     A proxy on the OCD Post model with helper methods..
     """
-    objects = OCDPostManager.from_queryset(CopyToQuerySet)()
+    objects = OCDPostManager.from_queryset(CopyQuerySet)()
 
     class Meta:
         """

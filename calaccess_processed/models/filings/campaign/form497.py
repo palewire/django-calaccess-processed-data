@@ -8,7 +8,6 @@ More about the filing: http://calaccess.californiacivicdata.org/documentation/ca
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.managers import CopyToQuerySet, ProcessedDataManager
 from calaccess_processed.models.filings import (
     FilingMixin,
     FilingVersionMixin,
@@ -46,8 +45,6 @@ class Form497Filing(FilingMixin, CampaignFinanceFilingBase):
         help_text='Number of amendments to the Schedule 497 filing (from '
                   'maximum value of CVR_CAMPAIGN_DISCLOSURE_CD.AMEND_ID)',
     )
-
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
@@ -87,8 +84,6 @@ class Form497FilingVersion(FilingVersionMixin, CampaignFinanceFilingBase):
                   'representing the initial filing (from CVR_CAMPAIGN_'
                   'DISCLOSURE_CD.AMEND_ID)',
     )
-
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
@@ -284,8 +279,6 @@ class Form497Part1Item(Form497Part1ItemBase):
                   'from S497_CD.FILING_ID)',
     )
 
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
-
     class Meta:
         """
         Model options.
@@ -318,8 +311,6 @@ class Form497Part1ItemVersion(Form497Part1ItemBase):
         help_text='Foreign key referring to the version of the Schedule 497 '
                   'that includes the received contribution'
     )
-
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
@@ -554,8 +545,6 @@ class Form497Part2Item(Form497Part2ItemBase):
                   'from S497_CD.FILING_ID)',
     )
 
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
-
     class Meta:
         """
         Model options.
@@ -588,7 +577,6 @@ class Form497Part2ItemVersion(Form497Part2ItemBase):
         help_text='Foreign key referring to the version of the Schedule 497 '
                   'that includes the given contribution'
     )
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """

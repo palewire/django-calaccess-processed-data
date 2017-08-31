@@ -182,7 +182,7 @@ class ProcessedDataFile(models.Model):
         """
         copy_to_fields = getattr(self.model, 'copy_to_fields', tuple())
 
-        return self.model.objects.copy_to_csv(self.csv_path, *copy_to_fields)
+        return self.model.objects.to_csv(self.csv_path, *copy_to_fields)
 
     @property
     def csv_path(self):

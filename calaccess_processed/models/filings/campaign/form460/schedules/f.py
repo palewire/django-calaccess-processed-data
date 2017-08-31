@@ -6,7 +6,6 @@ Models for storing data from Campaign Disclosure Statements (Form 460).
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.managers import CopyToQuerySet, ProcessedDataManager
 from calaccess_processed.models.base import CalAccessBaseModel
 
 
@@ -256,8 +255,6 @@ class Form460ScheduleFItem(Form460ScheduleFItemBase):
                   'payment was reported (from DEBT_CD.FILING_ID)',
     )
 
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
-
     class Meta:
         """
         Model options.
@@ -290,8 +287,6 @@ class Form460ScheduleFItemVersion(Form460ScheduleFItemBase):
         help_text='Foreign key referring to the version of the Form 460 that '
                   'includes the Schedule F items'
     )
-
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """

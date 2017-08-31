@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 from django.db import models
 from opencivicdata.core.models import Organization
 from calaccess_raw.models import FilerToFilerTypeCd
-from calaccess_processed.managers import CopyToQuerySet
+from postgres_copy import CopyQuerySet
 
 
 class OCDPartyManager(models.Manager):
@@ -81,7 +81,7 @@ class OCDPartyProxy(Organization):
     """
     A proxy on the OCD Organization model with helper methods for interacting with political parties.
     """
-    objects = OCDPartyManager.from_queryset(CopyToQuerySet)()
+    objects = OCDPartyManager.from_queryset(CopyQuerySet)()
 
     class Meta:
         """

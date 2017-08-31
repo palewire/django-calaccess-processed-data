@@ -14,7 +14,7 @@ from opencivicdata.elections.models import (
     ElectionSource,
 )
 from .base import OCDProxyModelMixin
-from calaccess_processed.managers import CopyToQuerySet
+from postgres_copy import CopyQuerySet
 
 
 class OCDPartisanPrimaryManager(models.Manager):
@@ -64,7 +64,7 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
     """
     A proxy on the OCD Election model.
     """
-    objects = OCDElectionManager.from_queryset(CopyToQuerySet)()
+    objects = OCDElectionManager.from_queryset(CopyQuerySet)()
     partisan_primaries = OCDPartisanPrimaryManager()
 
     class Meta:
@@ -146,7 +146,7 @@ class OCDElectionIdentifierProxy(ElectionIdentifier, OCDProxyModelMixin):
     """
     A proxy on the OCD ElectionIdentifier model.
     """
-    objects = CopyToQuerySet.as_manager()
+    objects = CopyQuerySet.as_manager()
 
     class Meta:
         """
@@ -159,7 +159,7 @@ class OCDElectionSourceProxy(ElectionSource, OCDProxyModelMixin):
     """
     A proxy on the OCD ElectionSource model.
     """
-    objects = CopyToQuerySet.as_manager()
+    objects = CopyQuerySet.as_manager()
 
     class Meta:
         """

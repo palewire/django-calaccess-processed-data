@@ -6,7 +6,6 @@ Models for storing data from Campaign Disclosure Statements (Form 460).
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.managers import CopyToQuerySet, ProcessedDataManager
 from calaccess_processed.models.filings.campaign import CampaignLoanMadeItemBase
 
 
@@ -123,8 +122,6 @@ class Form460ScheduleHItem(Form460ScheduleHItemBase):
                   'was reported (from LOAN_CD.FILING_ID)',
     )
 
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
-
     class Meta:
         """
         Model options.
@@ -157,8 +154,6 @@ class Form460ScheduleHItemVersion(Form460ScheduleHItemBase):
         help_text='Foreign key referring to the version of the Form 460 that '
                   'includes the outstanding loan'
     )
-
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """
@@ -257,8 +252,6 @@ class Form460ScheduleH2ItemOld(Form460ScheduleH2ItemBaseOld):
                   'was reported (from LOAN_CD.FILING_ID)',
     )
 
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
-
     class Meta:
         """
         Model options.
@@ -291,8 +284,6 @@ class Form460ScheduleH2ItemVersionOld(Form460ScheduleH2ItemBaseOld):
         help_text='Foreign key referring to the version of the Form 460 that '
                   'includes the outstanding loan'
     )
-
-    objects = ProcessedDataManager.from_queryset(CopyToQuerySet)()
 
     class Meta:
         """

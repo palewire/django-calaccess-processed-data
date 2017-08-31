@@ -13,14 +13,14 @@ from opencivicdata.elections.models import (
     BallotMeasureContestSource,
 )
 from .base import OCDProxyModelMixin
-from calaccess_processed.managers import CopyToQuerySet
+from postgres_copy import CopyQuerySet
 
 
 class OCDBallotMeasureContestProxy(BallotMeasureContest, OCDProxyModelMixin):
     """
     A proxy on the OCD BallotMeasureContest model.
     """
-    objects = CopyToQuerySet.as_manager()
+    objects = CopyQuerySet.as_manager()
 
     class Meta:
         """
@@ -33,7 +33,7 @@ class OCDBallotMeasureContestIdentifierProxy(BallotMeasureContestIdentifier, OCD
     """
     A proxy on the OCD BallotMeasureContestIdentifier model.
     """
-    objects = CopyToQuerySet.as_manager()
+    objects = CopyQuerySet.as_manager()
 
     class Meta:
         """
@@ -46,7 +46,7 @@ class OCDBallotMeasureContestOptionProxy(BallotMeasureContestOption, OCDProxyMod
     """
     A proxy on the OCD BallotMeasureContestOption model.
     """
-    objects = CopyToQuerySet.as_manager()
+    objects = CopyQuerySet.as_manager()
 
     class Meta:
         """
@@ -59,7 +59,7 @@ class OCDBallotMeasureContestSourceProxy(BallotMeasureContestSource, OCDProxyMod
     """
     A proxy on the OCD BallotMeasureContestSource model.
     """
-    objects = CopyToQuerySet.as_manager()
+    objects = CopyQuerySet.as_manager()
 
     class Meta:
         """
@@ -93,7 +93,7 @@ class OCDFlatBallotMeasureContestProxy(BallotMeasureContest, OCDProxyModelMixin)
     """
     A proxy model for flattening the contents of the OCD BallotMeasureContest model.
     """
-    objects = OCDFlatBallotMeasureContestManager.from_queryset(CopyToQuerySet)()
+    objects = OCDFlatBallotMeasureContestManager.from_queryset(CopyQuerySet)()
 
     copy_to_fields = (
         'election_name',
