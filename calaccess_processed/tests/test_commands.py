@@ -6,13 +6,14 @@ Unittests for management commands.
 import os
 import shutil
 import calaccess_processed
+from datetime import date
 from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
 from django.db.models import Count
-from django.utils.timezone import now
-from datetime import date
 from django.test import TestCase, override_settings
+from django.utils.timezone import now
+from email.utils import formatdate
 from calaccess_raw.models import RawDataVersion
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed import corrections
@@ -26,6 +27,7 @@ from opencivicdata.elections.models import (
     CandidateContest,
     RetentionContest,
 )
+import requests_mock
 
 
 class NoProcessedDataTest(TestCase):
@@ -62,12 +64,13 @@ class ProcessedDataTest(TestCase):
     ]
 
     @classmethod
-    def setUpClass(cls):
+    @requests_mock.Mocker()
+    def setUpClass(cls, m):
         """
         Load data for other tests.
         """
         super(ProcessedDataTest, cls).setUpClass()
-        # fake a raw data download
+        # fake a previous raw data download
         download_dir = os.path.join(settings.CALACCESS_DATA_DIR, 'download')
         os.path.exists(download_dir) or os.mkdir(download_dir)
         zip_path = os.path.join(
@@ -75,12 +78,31 @@ class ProcessedDataTest(TestCase):
             'dbwebexport.zip',
         )
         shutil.copy(zip_path, download_dir)
-        RawDataVersion.objects.create(
+        rdv = RawDataVersion.objects.create(
             release_datetime=now(),
+            update_start_datetime=now(),
             download_start_datetime=now(),
             download_finish_datetime=now(),
             expected_size=os.stat(zip_path).st_size,
         )
+        print(formatdate(rdv.release_datetime.timestamp(), usegmt=True))
+        # mock an SoS HEAD response
+        headers = {
+            'Content-Length': str(rdv.expected_size),
+            'Accept-Ranges': 'bytes',
+            'Last-Modified': formatdate(rdv.release_datetime.timestamp(), usegmt=True),
+            'Connection': 'keep-alive',
+            'Date': formatdate(now().timestamp(), usegmt=True),
+            'Content-Type': 'application/zip',
+            'ETag': '2320c8-30619331-c54f7dc0',
+            'Server': 'Apache/2.2.3 (Red Hat)',
+        }
+        m.register_uri(
+            'HEAD',
+            'http://campaignfinance.cdn.sos.ca.gov/dbwebexport.zip',
+            headers=headers,
+        )
+
         call_command("updatecalaccessrawdata", verbosity=3, noinput=True)
         call_command("processcalaccessdata", verbosity=3, noinput=True)
 
