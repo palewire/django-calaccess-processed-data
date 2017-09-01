@@ -86,7 +86,6 @@ class ProcessedDataTest(TestCase):
             download_finish_datetime=now(),
             expected_size=os.stat(zip_path).st_size,
         )
-        print(formatdate(rdv.release_datetime.timestamp(), usegmt=True))
         # mock an SoS HEAD response
         imf_datetime = formatdate(
             time.mktime(rdv.release_datetime.timetuple()),
