@@ -7,6 +7,7 @@ import os
 import shutil
 import calaccess_processed
 from datetime import date
+import time
 from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
@@ -87,12 +88,16 @@ class ProcessedDataTest(TestCase):
         )
         print(formatdate(rdv.release_datetime.timestamp(), usegmt=True))
         # mock an SoS HEAD response
+        imf_datetime = formatdate(
+            time.mktime(rdv.release_datetime.timetuple()),
+            usegmt=True,
+        )
         headers = {
             'Content-Length': str(rdv.expected_size),
             'Accept-Ranges': 'bytes',
-            'Last-Modified': formatdate(rdv.release_datetime.timestamp(), usegmt=True),
+            'Last-Modified': imf_datetime,
             'Connection': 'keep-alive',
-            'Date': formatdate(now().timestamp(), usegmt=True),
+            'Date': imf_datetime,
             'Content-Type': 'application/zip',
             'ETag': '2320c8-30619331-c54f7dc0',
             'Server': 'Apache/2.2.3 (Red Hat)',
