@@ -44,7 +44,7 @@ from the California Secretary of State’s CAL-ACCESS database',
     include_package_data=True,
     zip_safe=False,  # because we're including static files
     install_requires=(
-        'django-calaccess-raw-data==1.6.1rc0',
+        'django-calaccess-raw-data==1.6.1',
         'django-calaccess-scraped-data>=0.1.0',
         'django>=1.10',
         'csvkit>=1.0',
