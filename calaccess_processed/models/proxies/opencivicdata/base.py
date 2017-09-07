@@ -22,8 +22,15 @@ class OCDProxyModelMixin(object):
     def object_name(self):
         """
         Return the model's object name as a string.
+
+        If the model is flat model proxy, include the prefix "Flat". Otherwise,
+        just use the object name of the model that is being proxied.
         """
-        return self.model._meta.object_name
+        if 'Flat' in self._meta.object_name:
+            object_name = 'Flat%s' % self.model._meta.object_name
+        else:
+            object_name = self.model._meta.object_name
+        return object_name
 
     @property
     def doc(self):
