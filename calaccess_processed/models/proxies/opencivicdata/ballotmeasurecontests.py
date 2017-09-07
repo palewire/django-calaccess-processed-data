@@ -85,6 +85,7 @@ class OCDFlatBallotMeasureContestManager(models.Manager):
             election_name=F('election__name'),
             election_date=F('election__date'),
             ocd_contest_id=F('id'),
+            ocd_election_id=F('election_id'),
             calaccess_measure_id=Max('identifiers__identifier')
         )
 
@@ -96,14 +97,15 @@ class OCDFlatBallotMeasureContestProxy(BallotMeasureContest, OCDProxyModelMixin)
     objects = OCDFlatBallotMeasureContestManager.from_queryset(CopyQuerySet)()
 
     copy_to_fields = (
-        'election_name',
-        'election_date',
         'name',
         'classification',
+        'election_name',
+        'election_date',
         'description',
         'created_at',
         'updated_at',
         'ocd_contest_id',
+        'ocd_election_id',
         'calaccess_measure_id',
     )
 

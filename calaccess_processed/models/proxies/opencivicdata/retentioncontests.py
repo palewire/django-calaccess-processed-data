@@ -88,6 +88,9 @@ class OCDFlatRetentionContestManager(models.Manager):
             election_name=F('election__name'),
             election_date=F('election__date'),
             ocd_contest_id=F('id'),
+            ocd_post_id=F('membership__post_id'),
+            ocd_membership_id=F('membership_id'),
+            ocd_election_id=F('election_id'),
             calaccess_measure_id=Max('identifiers__identifier')
         )
 
@@ -99,16 +102,19 @@ class OCDFlatRetentionContestProxy(RetentionContest, OCDProxyModelMixin):
     objects = OCDFlatRetentionContestManager.from_queryset(CopyQuerySet)()
 
     copy_to_fields = (
+        'name',
+        'person_name',
+        'office',
         'election_name',
         'election_date',
-        'name',
-        'office',
-        'person_name',
-        'ocd_person_id',
         'description',
+        'ocd_contest_id',
+        'ocd_person_id',
+        'ocd_post_id',
+        'ocd_membership_id',
+        'ocd_election_id',
         'created_at',
         'updated_at',
-        'ocd_contest_id',
         'calaccess_measure_id',
     )
 

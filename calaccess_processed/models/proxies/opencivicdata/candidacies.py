@@ -327,9 +327,13 @@ class OCDFlatCandidacyManager(models.Manager):
             name=F('candidate_name'),
             office=F('post__label'),
             party_name=F('party__name'),
-            election=F('contest__election__name'),
+            election_name=F('contest__election__name'),
             election_date=F('contest__election__date'),
-            ocd_person_id=F('person__id'),
+            ocd_person_id=F('person_id'),
+            ocd_candidacy_id=F('id'),
+            ocd_election_id=F('contest__election_id'),
+            ocd_post_id=F('post_id'),
+            ocd_contest_id=F('contest_id'),
             latest_calaccess_filer_id=Max('person__identifiers__identifier'),
             calaccess_filer_id_count=Count('person__identifiers__identifier'),
         )
@@ -342,15 +346,19 @@ class OCDFlatCandidacyProxy(Candidacy, OCDProxyModelMixin):
     objects = OCDFlatCandidacyManager.from_queryset(CopyQuerySet)()
 
     copy_to_fields = (
-        'election',
-        'election_date',
-        'office',
         'name',
         'party_name',
+        'election_name',
+        'election_date',
+        'office',
         'is_incumbent',
         'created_at',
         'updated_at',
         'ocd_person_id',
+        'ocd_candidacy_id',
+        'ocd_election_id',
+        'ocd_post_id',
+        'ocd_contest_id',
         'latest_calaccess_filer_id',
         'calaccess_filer_id_count',
     )
