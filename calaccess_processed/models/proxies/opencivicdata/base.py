@@ -12,6 +12,13 @@ class OCDProxyModelMixin(object):
     """
 
     @property
+    def is_flat(self):
+        """
+        Return True if the proxy model is used to flatten relational data models.
+        """
+        return 'Flat' in self._meta.object_name
+
+    @property
     def model(self):
         """
         Returns the model class that is being proxied.
@@ -26,7 +33,7 @@ class OCDProxyModelMixin(object):
         If the model is flat model proxy, include the prefix "Flat". Otherwise,
         just use the object name of the model that is being proxied.
         """
-        if 'Flat' in self._meta.object_name:
+        if self.is_flat:
             object_name = 'Flat%s' % self.model._meta.object_name
         else:
             object_name = self.model._meta.object_name
@@ -52,4 +59,17 @@ class OCDProxyModelMixin(object):
         """
         Return all the fields on the model as a list.
         """
-        return self.model._meta.fields
+        if hasattr(self, 'copy_to_fields'):
+            q = self._meta.model.objects.all().query
+            fields = []
+            for f in self.copy_to_fields:
+                # get the Django models.field instance
+                field = q.resolve_ref(f).field
+                # set the name to alias used (if different)
+                if field.name != f:
+                    field.name = f
+                fields.append(field)
+        else:
+            fields = self._meta.fields
+
+        return fields
