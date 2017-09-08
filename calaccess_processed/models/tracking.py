@@ -180,7 +180,10 @@ class ProcessedDataFile(models.Model):
         """
         Copy model contents to a local csv file.
         """
-        copy_to_fields = getattr(self.model, 'copy_to_fields', tuple())
+        try:
+            copy_to_fields = tuple(i[0] for i in self.model.copy_to_fields)
+        except AttributeError:
+            copy_to_fields = tuple()
 
         return self.model.objects.to_csv(self.csv_path, *copy_to_fields)
 
