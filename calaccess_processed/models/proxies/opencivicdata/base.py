@@ -57,19 +57,62 @@ class OCDProxyModelMixin(object):
 
     def get_field_list(self):
         """
-        Return all the fields on the model as a list.
+        Return all the fields on the model as a tuple.
         """
-        if hasattr(self, 'copy_to_fields'):
-            q = self._meta.model.objects.all().query
-            fields = []
-            for f in self.copy_to_fields:
-                # get the Django models.field instance
-                field = q.resolve_ref(f).field
-                # set the name to alias used (if different)
-                if field.name != f:
-                    field.name = f
-                fields.append(field)
-        else:
+        try:
+            self.copy_to_fields
+        except AttributeError:
             fields = self._meta.fields
+        else:
+            q = self._meta.model.objects.all().query
+            fields_list = []
+            for f in self.copy_to_fields:
+                if len(f) > 1:
+                    field = CopyToField(q, f[0], help_text=f[1])
+                else:
+                    field = CopyToField(q, f[0])
+                fields_list.append(field)
+            fields = tuple(f for f in fields_list)
 
         return fields
+
+
+class CopyToField(object):
+    """
+    Class to hold meta data about a field included in a CopyTo query.
+    """
+    def __init__(self, query, name, **kwargs):
+        """
+        Create a new instance of CopyToField.
+        """
+        self.query = query
+        self.name = name
+        self._help_text = kwargs.get('help_text', None)
+
+    @property
+    def description(self):
+        """
+        Description of the field.
+        """
+        return self.field.description % self.field.__dict__
+
+    @property
+    def field(self):
+        """
+        Django model Field instance.
+        """
+        return self.resolved_ref.field
+
+    @property
+    def help_text(self):
+        """
+        Help text of the field.
+        """
+        return self._help_text or self.field.help_text
+
+    @property
+    def resolved_ref(self):
+        """
+        Col expression resolved from reference.
+        """
+        return self.query.resolve_ref(self.name)
