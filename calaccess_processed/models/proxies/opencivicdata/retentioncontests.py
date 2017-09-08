@@ -102,20 +102,21 @@ class OCDFlatRetentionContestProxy(RetentionContest, OCDProxyModelMixin):
     objects = OCDFlatRetentionContestManager.from_queryset(CopyQuerySet)()
 
     copy_to_fields = (
-        'name',
-        'person_name',
-        'office',
-        'election_name',
-        'election_date',
-        'description',
-        'ocd_contest_id',
-        'ocd_person_id',
-        'ocd_post_id',
-        'ocd_membership_id',
-        'ocd_election_id',
-        'created_at',
-        'updated_at',
-        'calaccess_measure_id',
+        ('name',),
+        ('person_name',),
+        ('office',),
+        ('election_name',),
+        ('election_date',),
+        ('description',),
+        ('ocd_contest_id',),
+        ('ocd_person_id',),
+        ('ocd_post_id',),
+        ('ocd_membership_id',),
+        ('ocd_election_id',),
+        ('created_at',),
+        ('updated_at',),
+        ('calaccess_measure_id', 
+         'Identifier assigned to the ballot measure by CAL-ACCESS'),
     )
 
     class Meta:
