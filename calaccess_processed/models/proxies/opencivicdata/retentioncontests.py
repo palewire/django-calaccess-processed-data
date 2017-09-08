@@ -115,7 +115,7 @@ class OCDFlatRetentionContestProxy(RetentionContest, OCDProxyModelMixin):
         ('ocd_election_id',),
         ('created_at',),
         ('updated_at',),
-        ('calaccess_measure_id', 
+        ('calaccess_measure_id',
          'Identifier assigned to the ballot measure by CAL-ACCESS'),
     )
 

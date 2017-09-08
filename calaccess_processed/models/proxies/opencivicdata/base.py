@@ -92,7 +92,7 @@ class CopyToField(object):
     @property
     def choices(self):
         """
-        Choices of the field
+        Choices of the field.
         """
         return self.field.choices
 

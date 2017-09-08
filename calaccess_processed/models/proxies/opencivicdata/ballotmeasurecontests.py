@@ -106,7 +106,7 @@ class OCDFlatBallotMeasureContestProxy(BallotMeasureContest, OCDProxyModelMixin)
         ('updated_at',),
         ('ocd_contest_id',),
         ('ocd_election_id',),
-        ('calaccess_measure_id', 
+        ('calaccess_measure_id',
          'Identifier assigned to the ballot measure by CAL-ACCESS'),
     )
 
