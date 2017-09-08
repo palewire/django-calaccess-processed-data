@@ -90,6 +90,13 @@ class CopyToField(object):
         self._help_text = kwargs.get('help_text', None)
 
     @property
+    def choices(self):
+        """
+        Choices of the field
+        """
+        return self.field.choices
+
+    @property
     def description(self):
         """
         Description of the field.
