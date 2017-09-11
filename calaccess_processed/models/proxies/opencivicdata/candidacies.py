@@ -19,8 +19,8 @@ from django.db.models import (
 from django.db.models.functions import Cast
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import Candidacy, CandidacySource
-from .base import OCDProxyModelMixin
-from postgres_copy import CopyQuerySet
+from .base import OCDProxyModelMixin, CopyToField
+from postgres_copy import CopyQuerySet, CopyManager
 
 
 class OCDCandidacyQuerySet(CopyQuerySet):
@@ -171,22 +171,22 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
     """
     objects = OCDCandidacyManager.from_queryset(CopyQuerySet)()
 
-    copy_to_fields = (
-        ('id',),
-        ('candidate_name',),
-        ('person',),
-        ('party',),
-        ('contest',),
-        ('post',),
-        ('is_incumbent',),
-        ('registration_status',),
-        ('top_ticket_candidacy',),
-        ('filed_date',),
-        ('created_at',),
-        ('updated_at',),
-        ('extras',),
-        ('locked_fields',),
-    )
+    # copy_to_fields = (
+    #     ('id',),
+    #     ('candidate_name',),
+    #     ('person',),
+    #     ('party',),
+    #     ('contest',),
+    #     ('post',),
+    #     ('is_incumbent',),
+    #     ('registration_status',),
+    #     ('top_ticket_candidacy',),
+    #     ('filed_date',),
+    #     ('created_at',),
+    #     ('updated_at',),
+    #     ('extras',),
+    #     ('locked_fields',),
+    # )
 
     class Meta:
         """
@@ -310,64 +310,62 @@ class OCDCandidacySourceProxy(CandidacySource, OCDProxyModelMixin):
         proxy = True
 
 
-class OCDFlatCandidacyManager(models.Manager):
-    """
-    Custom manager for flattening the contents of the OCD Candidacy model.
-    """
-    def get_queryset(self):
-        """
-        Returns the custom QuerySet for this manager.
-        """
-        return super(
-            OCDFlatCandidacyManager, self
-        ).get_queryset().filter(
-            Q(person__identifiers__scheme='calaccess_filer_id') |
-            Q(person__identifiers__isnull=True)
-        ).annotate(
-            name=F('candidate_name'),
-            office=F('post__label'),
-            party_name=F('party__name'),
-            election_name=F('contest__election__name'),
-            election_date=F('contest__election__date'),
-            ocd_person_id=F('person__id'),
-            ocd_candidacy_id=F('id'),
-            ocd_election_id=F('contest__election'),
-            ocd_post_id=F('post__id'),
-            ocd_contest_id=F('contest'),
-            ocd_party_id=F('party'),
-            latest_calaccess_filer_id=Max('person__identifiers__identifier'),
-            calaccess_filer_id_count=Count('person__identifiers__identifier'),
-        )
-
-
 class OCDFlatCandidacyProxy(Candidacy, OCDProxyModelMixin):
     """
     A proxy model for flattening the contents of the OCD Candidacy model.
     """
-    objects = OCDFlatCandidacyManager.from_queryset(CopyQuerySet)()
+    objects = CopyManager().get_queryset().filter(
+        Q(person__identifiers__scheme='calaccess_filer_id') |
+        Q(person__identifiers__isnull=True)
+    )
 
-    copy_to_fields = (
-        ('name',),
-        ('party_name',
-         'Name of the political party that nominated the candidate or would '
-         'nominate the candidate (as in the case of a partisan primary).',),
-        ('election_name',),
-        ('election_date',),
-        ('office',
-         'Public office for which the candidate is seeking election.',),
-        ('is_incumbent',),
-        ('created_at',),
-        ('updated_at',),
-        ('ocd_person_id',),
-        ('ocd_candidacy_id',),
-        ('ocd_election_id',),
-        ('ocd_post_id',),
-        ('ocd_contest_id',),
-        ('ocd_party_id',),
-        ('latest_calaccess_filer_id',
-         'Most recent filer_id assigned to the person in CAL-ACCESS',),
-        ('calaccess_filer_id_count',
-         'Count of filer_ids assigned to the person in CAL-ACCESS',),
+    name = CopyToField(
+        expression=F('candidate_name'),
+    )
+    party_name = CopyToField(
+        expression=F('party__name'),
+        help_text='Name of the political party that nominated the candidate or '
+                  'would nominate the candidate (as in the case of a partisan '
+                  'primary).'
+    )
+    election_name = CopyToField(
+        expression=F('contest__election__name'),
+    )
+    election_date = CopyToField(
+        expression=F('contest__election__date'),
+    )
+    office = CopyToField(
+        expression=F('post__label'),
+        help_text='Public office for which the candidate is seeking election.'
+    )
+    is_incumbent = CopyToField()
+    created_at = CopyToField()
+    updated_at = CopyToField()
+    ocd_person_id = CopyToField(
+        expression=F('person__id'),
+    )
+    ocd_candidacy_id = CopyToField(
+        expression=F('id'),
+    )
+    ocd_election_id = CopyToField(
+        expression=F('contest__election'),
+    )
+    ocd_post_id = CopyToField(
+        expression=F('post__id'),
+    )
+    ocd_contest_id = CopyToField(
+        expression=F('contest'),
+    )
+    ocd_party_id = CopyToField(
+        expression=F('party'),
+    )
+    latest_calaccess_filer_id = CopyToField(
+        expression=Max('person__identifiers__identifier'),
+        help_text='Most recent filer_id assigned to the person in CAL-ACCESS',
+    )
+    calaccess_filer_id_count = CopyToField(
+        expression=Count('person__identifiers__identifier'),
+        help_text='Count of filer_ids assigned to the person in CAL-ACCESS',
     )
 
     class Meta:

@@ -76,18 +76,24 @@ class OCDProxyModelMixin(object):
 
         return fields
 
+    def get_field_name(self):
+        """
+        Return a tuple containing the names of the fields.
+        """
+
 
 class CopyToField(object):
     """
     Class to hold meta data about a field included in a CopyTo query.
     """
-    def __init__(self, query, name, **kwargs):
+    def __init__(self, *args, **kwargs):
         """
         Create a new instance of CopyToField.
         """
-        self.query = query
-        self.name = name
         self._help_text = kwargs.get('help_text', None)
+        self.expression = kwargs.get('expression', None)
+        self.name = kwargs.get('name', None)
+        self.query = kwargs.get('query', None)
 
     @property
     def choices(self):
