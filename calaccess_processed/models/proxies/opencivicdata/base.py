@@ -36,7 +36,7 @@ class OCDProxyModelMixin(object):
         if self.is_flat:
             object_name = 'Flat%s' % self.model._meta.object_name
         else:
-            object_name = self.model._meta.object_name
+            object_name = self.base_model._meta.object_name
         return object_name
 
     @property
