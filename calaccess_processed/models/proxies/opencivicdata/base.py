@@ -34,7 +34,7 @@ class OCDProxyModelMixin(object):
         just use the object name of the model that is being proxied.
         """
         if self.is_flat:
-            object_name = 'Flat%s' % self.base_model.object_name
+            object_name = 'Flat%s' % self.base_model._meta.object_name
         else:
             object_name = self.base_model._meta.object_name
         return object_name
