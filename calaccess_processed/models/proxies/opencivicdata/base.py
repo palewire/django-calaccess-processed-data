@@ -53,7 +53,11 @@ class OCDProxyModelMixin(object):
         """
         Return the model's group.
         """
-        return "CCDC"
+        if self.is_flat:
+            group = "Flat"
+        else:
+            group = "Relational"
+        return group
 
     def get_field_list(self):
         """
