@@ -124,7 +124,7 @@ class Command(LoadOCDElectionsBase):
 
         # now do flat files
         flat_file_list = [
-            'FlatCandidacy', 'FlatBallotMeasureContest', 'FlatRetentionContest'
+            'Candidates', 'BallotMeasures', 'RecallMeasures'
         ]
         for f in flat_file_list:
             processed_data_file, created = self.processed_version.files.get_or_create(

@@ -134,3 +134,4 @@ class OCDFlatBallotMeasureContestProxy(BallotMeasureContest, OCDProxyModelMixin)
         Make this a proxy model.
         """
         proxy = True
+        verbose_name_plural = 'BallotMeasures'

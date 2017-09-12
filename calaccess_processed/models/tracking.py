@@ -204,16 +204,25 @@ class ProcessedDataFile(models.Model):
         try:
             model = apps.get_model(
                 'calaccess_processed',
-                'OCD%sProxy' % self.file_name,
+                self.file_name,
             )
         except LookupError:
-            model_list = [
-                m for m in apps.get_models()
-                if m._meta.object_name == self.file_name
-            ]
             try:
-                model = model_list.pop()
-            except IndexError:
-                model = None
+                model = apps.get_model(
+                    'calaccess_processed',
+                    'OCD%sProxy' % self.file_name,
+                )
+            except LookupError:
+                # try looking up by plural name
+                model_list = [
+                    m for m in apps.get_models()
+                    if m._meta.verbose_name_plural == self.file_name
+                ]
+                try:
+                    model = model_list.pop()
+                except IndexError:
+                    raise Exception(
+                        'No model with name or plural name %s found.' % self.file_name
+                    )
 
         return model
