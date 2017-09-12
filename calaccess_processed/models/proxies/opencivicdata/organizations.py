@@ -82,6 +82,21 @@ class OCDOrganizationProxy(Organization, OCDProxyModelMixin):
     """
     objects = OCDOrganizationManager.from_queryset(CopyQuerySet)()
 
+    copy_to_fields = (
+        ('id',),
+        ('name',),
+        ('image',),
+        ('parent_id',),
+        ('jurisdiction_id',),
+        ('classification',),
+        ('founding_date',),
+        ('dissolution_date',),
+        ('created_at',),
+        ('updated_at',),
+        ('extras',),
+        ('locked_fields',),
+    )
+
     class Meta:
         """
         Make this a proxy model.
@@ -120,6 +135,23 @@ class OCDMembershipProxy(Membership, OCDProxyModelMixin):
     A proxy on the OCD Membership model with helper methods.
     """
     objects = CopyQuerySet.as_manager()
+
+    copy_to_fields = (
+        ('id',),
+        ('organization_id',),
+        ('person_id',),
+        ('person_name',),
+        ('post_id',),
+        ('on_behalf_of_id',),
+        ('label',),
+        ('role',),
+        ('start_date',),
+        ('end_date',),
+        ('created_at',),
+        ('updated_at',),
+        ('extras',),
+        ('locked_fields',),
+    )
 
     class Meta:
         """

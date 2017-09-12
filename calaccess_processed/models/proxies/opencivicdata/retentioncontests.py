@@ -22,6 +22,21 @@ class OCDRetentionContestProxy(RetentionContest, OCDProxyModelMixin):
     """
     objects = CopyQuerySet.as_manager()
 
+    copy_to_fields = (
+        ('id',),
+        ('name',),
+        ('membership_id',),
+        ('division_id',),
+        ('election_id',),
+        ('description',),
+        ('requirement',),
+        ('runoff_for_contest_id',),
+        ('created_at',),
+        ('updated_at',),
+        ('extras',),
+        ('locked_fields',),
+    )
+
     class Meta:
         """
         Make this a proxy model.

@@ -185,6 +185,25 @@ class OCDPersonProxy(Person, OCDProxyModelMixin):
     """
     objects = OCDPersonManager.from_queryset(CopyQuerySet)()
 
+    copy_to_fields = (
+        ('id',),
+        ('name',),
+        ('sort_name',),
+        ('family_name',),
+        ('given_name',),
+        ('image',),
+        ('gender',),
+        ('summary',),
+        ('national_identity',),
+        ('biography',),
+        ('birth_date',),
+        ('death_date',),
+        ('created_at',),
+        ('updated_at',),
+        ('extras',),
+        ('locked_fields',),
+    )
+
     class Meta:
         """
         Make this a proxy model.

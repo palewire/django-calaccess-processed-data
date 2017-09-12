@@ -67,6 +67,18 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
     objects = OCDElectionManager.from_queryset(CopyQuerySet)()
     partisan_primaries = OCDPartisanPrimaryManager()
 
+    copy_to_fields = (
+        ('id',),
+        ('name',),
+        ('date',),
+        ('division_id',),
+        ('administrative_organization_id',),
+        ('created_at',),
+        ('updated_at',),
+        ('extras',),
+        ('locked_fields',),
+    )
+
     class Meta:
         """
         Make this a proxy model.

@@ -125,6 +125,21 @@ class OCDPostProxy(Post, OCDProxyModelMixin):
     """
     objects = OCDPostManager.from_queryset(CopyQuerySet)()
 
+    copy_to_fields = (
+        ('id',),
+        ('label',),
+        ('role',),
+        ('organization_id',),
+        ('division_id',),
+        ('start_date',),
+        ('end_date',),
+        ('maximum_memberships',),
+        ('created_at',),
+        ('updated_at',),
+        ('extras',),
+        ('locked_fields',),
+    )
+
     class Meta:
         """
         Make this a proxy model.
