@@ -435,10 +435,10 @@ class ProcessedDataTest(TestCase):
             # get count from archived file of the base model
             base_model_name = df.model().base_model._meta.object_name
             base_model_df = processed_version.files.get(
-                file_name='base_model_name'
+                file_name=base_model_name
             )
             base_model_df.file_archive.open()
-            flat_row_count = sum(1 for _ in base_model_df.file_archive) - 1
+            base_row_count = sum(1 for _ in base_model_df.file_archive) - 1
             base_model_df.file_archive.close()
 
             self.assertEqual(
