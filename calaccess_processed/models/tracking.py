@@ -197,6 +197,17 @@ class ProcessedDataFile(models.Model):
         )
 
     @property
+    def is_flat(self):
+        """
+        Return True if the proxy model is used to flatten relational data models.
+        """
+        try:
+            is_flat = self.model().is_flat
+        except AttributeError:
+            is_flat = False
+        return is_flat
+
+    @property
     def model(self):
         """
         Returns the ProcessedDataFile's corresponding database model object.

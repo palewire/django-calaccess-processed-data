@@ -114,7 +114,7 @@ class Command(CalAccessCommand):
             compression = ZIP_STORED
             zf = ZipFile(zip_path, 'w', compression, allowZip64=True)
 
-        # loop over and save files in csv dir
+        # loop over and save files in csv processed data dir
         for f in os.listdir(self.processed_data_dir):
             if self.verbosity > 2:
                 self.log(" Adding %s to zip" % f)

@@ -18,7 +18,10 @@ from email.utils import formatdate
 from calaccess_raw.models import RawDataVersion
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed import corrections
-from calaccess_processed.models import ProcessedDataVersion, ScrapedCandidateProxy
+from calaccess_processed.models import (
+    ProcessedDataVersion,
+    ScrapedCandidateProxy,
+)
 from calaccess_scraped.models import Candidate as ScrapedCandidate
 from calaccess_scraped.models import Proposition as ScrapedProposition
 from opencivicdata.core.models import Person
@@ -275,32 +278,74 @@ class ProcessedDataTest(TestCase):
                 )
             )
 
-    def test_processed_versions(self):
+    def test_processed_version_completed(self):
         """
-        Test processed versions.
+        Test that the processed version was completed.
         """
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-
-        # Confirm that the version finished
         self.assertTrue(processed_version.update_completed)
-        # Confirm that zip file was archived
+
+    def test_processed_version_zip_archived(self):
+        """
+        Test that the processed version zip was archived.
+        """
+        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
         self.assertTrue(processed_version.zip_archive)
-        # Confirm that the size is correct
+
+    def test_processed_version_zip_size(self):
+        """
+        Test that the processed version zip_size is same as zip file's size.
+        """
+        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
         self.assertEqual(
             processed_version.zip_size,
             os.path.getsize(processed_version.zip_archive.path)
         )
 
-        # For each processed data file...
+    def test_processed_file_finished(self):
+        """
+        Test that each processed file was marked finished.
+        """
+        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+
         for df in processed_version.files.all():
-            # Confirm the update completed
             self.assertTrue(df.process_finish_datetime)
-            # Confirm that csv files where archived
+
+    def test_processed_file_archived(self):
+        """
+        Test that each processed file was archived.
+        """
+        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+
+        for df in processed_version.files.all():
             self.assertTrue(df.file_archive)
-            # Confirm the correct file size
+
+    def test_processed_file_size(self):
+        """
+        Test that each processed file_size is the same as file's size.
+        """
+        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+
+        for df in processed_version.files.all():
             self.assertEqual(
                 df.file_size,
                 os.path.getsize(df.file_archive.path)
+            )
+
+    def test_processed_file_records_count(self):
+        """
+        Test that each processed records_count is the same as rows in file.
+        """
+        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+
+        for df in processed_version.files.all():
+            df.file_archive.open()
+            row_count = sum(1 for _ in df.file_archive) - 1
+            df.file_archive.close()
+
+            self.assertEqual(
+                df.records_count,
+                row_count
             )
 
     def test_base_command(self):
@@ -370,3 +415,31 @@ class ProcessedDataTest(TestCase):
         """
         obj = ScrapedCandidateProxy.objects.get(name='WINSTON, ALMA MARIE')
         self.assertEqual(obj.get_party().name, 'REPUBLICAN')
+
+    def test_flat_file_row_counts(self):
+        """
+        Test that count of rows in flat files is same as row count in base model.
+        """
+        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+
+        flat_processed_files = [
+            df for df in processed_version.files.all() if df.is_flat
+        ]
+
+        for df in flat_processed_files:
+            # get count from archived file of flat model
+            df.file_archive.open()
+            flat_row_count = sum(1 for _ in df.file_archive) - 1
+            df.file_archive.close()
+
+            # get count from archived file of the base model
+            base_model_name = df.model().base_model._meta.object_name
+            base_model_df = processed_version.files.get(base_model_name)
+            base_model_df.file_archive.open()
+            flat_row_count = sum(1 for _ in base_model_df.file_archive) - 1
+            base_model_df.file_archive.close()
+
+            self.assertEqual(
+                flat_row_count,
+                base_row_count,
+            )

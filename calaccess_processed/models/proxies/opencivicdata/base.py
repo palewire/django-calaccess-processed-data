@@ -12,18 +12,18 @@ class OCDProxyModelMixin(object):
     """
 
     @property
+    def base_model(self):
+        """
+        Returns the model class that is being proxied.
+        """
+        return self.__class__.__bases__[0]
+
+    @property
     def is_flat(self):
         """
         Return True if the proxy model is used to flatten relational data models.
         """
         return 'Flat' in self._meta.object_name
-
-    @property
-    def model(self):
-        """
-        Returns the model class that is being proxied.
-        """
-        return self.__class__.__bases__[0]
 
     @property
     def object_name(self):
