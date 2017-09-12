@@ -34,7 +34,7 @@ class OCDProxyModelMixin(object):
         just use the object name of the model that is being proxied.
         """
         if self.is_flat:
-            object_name = 'Flat%s' % self.model._meta.object_name
+            object_name = 'Flat%s' % self.base_model.object_name
         else:
             object_name = self.base_model._meta.object_name
         return object_name
@@ -42,11 +42,15 @@ class OCDProxyModelMixin(object):
     @property
     def doc(self):
         """
-        Returns doc string of the model corresponding to the ProcessedDataFile.
+        Doc string of the proxy model, or base_model (if not flat).
         """
-        if self.model.__doc__.startswith(self.model._meta.object_name):
-            return ''
-        return textwrap.dedent(self.model.__doc__).strip()
+        if self.is_flat:
+            doc = textwrap.dedent(self.__doc__).strip()
+        elif self.base_model.__doc__.startswith(self.object_name):
+            doc = ''
+        else:
+            doc = textwrap.dedent(self.base_model.__doc__).strip()
+        return doc
 
     @property
     def klass_group(self):

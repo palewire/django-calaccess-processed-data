@@ -346,7 +346,7 @@ class OCDFlatCandidacyManager(models.Manager):
 
 class OCDFlatCandidacyProxy(Candidacy, OCDProxyModelMixin):
     """
-    A proxy model for flattening the contents of the OCD Candidacy model.
+    Every candidate for a public office recorded in CAL-ACCESS.
     """
     objects = OCDFlatCandidacyManager.from_queryset(CopyQuerySet)()
 

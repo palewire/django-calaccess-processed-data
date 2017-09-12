@@ -112,7 +112,7 @@ class OCDFlatRetentionContestManager(models.Manager):
 
 class OCDFlatRetentionContestProxy(RetentionContest, OCDProxyModelMixin):
     """
-    A proxy model for flattening the contents of the OCD RetentionContest model.
+    Every recall measure recorded in CAL-ACCESS.
     """
     objects = OCDFlatRetentionContestManager.from_queryset(CopyQuerySet)()
 

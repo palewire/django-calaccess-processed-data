@@ -107,7 +107,7 @@ class OCDFlatBallotMeasureContestManager(models.Manager):
 
 class OCDFlatBallotMeasureContestProxy(BallotMeasureContest, OCDProxyModelMixin):
     """
-    A proxy model for flattening the contents of the OCD BallotMeasureContest model.
+    Every ballot measure recorded in CAL-ACCESS.
     """
     objects = OCDFlatBallotMeasureContestManager.from_queryset(CopyQuerySet)()
 
