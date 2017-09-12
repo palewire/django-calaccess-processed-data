@@ -18,7 +18,11 @@ from django.db.models import (
 )
 from django.db.models.functions import Cast
 from opencivicdata.core.models import Membership
-from opencivicdata.elections.models import Candidacy, CandidacySource
+from opencivicdata.elections.models import (
+    Candidacy,
+    CandidateContest,
+    CandidacySource,
+)
 from .base import OCDProxyModelMixin
 from postgres_copy import CopyQuerySet
 
@@ -358,16 +362,16 @@ class OCDFlatCandidacyProxy(Candidacy, OCDProxyModelMixin):
         ('is_incumbent',),
         ('created_at',),
         ('updated_at',),
-        ('ocd_person_id',),
+        ('ocd_person_id', Candidacy._meta.get_field('person').help_text),
         ('ocd_candidacy_id',),
-        ('ocd_election_id',),
-        ('ocd_post_id',),
+        ('ocd_election_id', CandidateContest._meta.get_field('election').help_text),
+        ('ocd_post_id', Candidacy._meta.get_field('post').help_text),
         ('ocd_contest_id',),
-        ('ocd_party_id',),
+        ('ocd_party_id', Candidacy._meta.get_field('party').help_text),
         ('latest_calaccess_filer_id',
-         'Most recent filer_id assigned to the person in CAL-ACCESS',),
+         'Most recent filer_id assigned to the person in CAL-ACCESS.',),
         ('calaccess_filer_id_count',
-         'Count of filer_ids assigned to the person in CAL-ACCESS',),
+         'Count of filer_ids assigned to the person in CAL-ACCESS.',),
     )
 
     class Meta:

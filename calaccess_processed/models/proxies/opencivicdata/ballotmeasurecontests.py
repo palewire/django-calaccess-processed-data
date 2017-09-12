@@ -97,17 +97,21 @@ class OCDFlatBallotMeasureContestProxy(BallotMeasureContest, OCDProxyModelMixin)
     objects = OCDFlatBallotMeasureContestManager.from_queryset(CopyQuerySet)()
 
     copy_to_fields = (
-        ('name',),
+        ('name',
+         'Name of the ballot measure, not necessarily as it appears on the ballot.'),
         ('classification',),
-        ('election_name',),
-        ('election_date',),
+        ('election_name',
+         'Name of the election in which the ballot measure is decided.'),
+        ('election_date',
+         'Date of the election in which the ballot measure is decided.'),
         ('description',),
         ('created_at',),
         ('updated_at',),
         ('ocd_contest_id',),
-        ('ocd_election_id',),
+        ('ocd_election_id',
+         BallotMeasureContest._meta.get_field('election').help_text),
         ('calaccess_measure_id',
-         'Identifier assigned to the ballot measure by CAL-ACCESS'),
+         'Identifier assigned to the ballot measure by CAL-ACCESS.'),
     )
 
     class Meta:
