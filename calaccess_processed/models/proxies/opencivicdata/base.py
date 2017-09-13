@@ -49,7 +49,7 @@ class OCDProxyModelMixin(object):
         """
         if self.is_flat:
             doc = textwrap.dedent(self.__doc__).strip()
-        elif self.base_model.__doc__.startswith(self.object_name):
+        elif self.base_model.__doc__.startswith(self.base_model._meta.object_name):
             doc = ''
         else:
             doc = textwrap.dedent(self.base_model.__doc__).strip()
