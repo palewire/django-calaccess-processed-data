@@ -147,4 +147,4 @@ class OCDFlatRetentionContestProxy(RetentionContest, OCDProxyModelMixin):
         Make this a proxy model.
         """
         proxy = True
-        verbose_name_plural = 'RecallMeasures'
+        verbose_name_plural = 'recall measures'

@@ -5,6 +5,7 @@ Models for tracking processing of CAL-ACCESS snapshots over time.
 """
 from __future__ import unicode_literals
 import os
+import re
 from hurry.filesize import size as sizeformat
 from django.apps import apps
 from django.db import models
@@ -224,10 +225,13 @@ class ProcessedDataFile(models.Model):
                     'OCD%sProxy' % self.file_name,
                 )
             except LookupError:
+                # convert from camel case
+                s1 = re.sub(r'(.)([A-Z][a-z]+)', r'\1 \2', self.file_name)
+                s2 = re.sub(r'([a-z0-9])([A-Z])', r'\1 \2', s1).lower()
                 # try looking up by plural name
                 model_list = [
                     m for m in apps.get_models()
-                    if m._meta.verbose_name_plural == self.file_name
+                    if m._meta.verbose_name_plural == s2
                 ]
                 try:
                     model = model_list.pop()

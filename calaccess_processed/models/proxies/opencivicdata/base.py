@@ -14,30 +14,33 @@ class OCDProxyModelMixin(object):
     @property
     def base_model(self):
         """
-        Returns the model class that is being proxied.
+        The model being proxied.
         """
         return self.__class__.__bases__[0]
 
     @property
     def is_flat(self):
         """
-        Return True if the proxy model is used to flatten relational data models.
+        True if the proxy model is used to flatten relational data models.
         """
         return 'Flat' in self._meta.object_name
 
     @property
-    def object_name(self):
+    def file_name(self):
         """
-        Return the model's object name as a string.
+        The name for the csv to which the model's contents will be dumped.
 
-        If the model is flat model proxy, include the prefix "Flat". Otherwise,
-        just use the object name of the model that is being proxied.
+        If the model is a flat model proxy, return the model's verbose_name_plural
+        in CamelCase. Otherwise, return the object_name of the base_model.
         """
         if self.is_flat:
-            object_name = 'Flat%s' % self.base_model._meta.object_name
+            file_name = ''.join(
+                x for x in str(self._meta.verbose_name_plural).title()
+                if not x.isspace()
+            )
         else:
-            object_name = self.base_model._meta.object_name
-        return object_name
+            file_name = self.base_model._meta.object_name
+        return file_name
 
     @property
     def doc(self):
@@ -55,7 +58,7 @@ class OCDProxyModelMixin(object):
     @property
     def klass_group(self):
         """
-        Return the model's group.
+        The model's group.
         """
         if self.is_flat:
             group = "Flat"
