@@ -4,6 +4,7 @@
 Base class for proxies to OCD models.
 """
 import textwrap
+from django.core.exceptions import FieldDoesNotExist
 
 
 class OCDProxyModelMixin(object):
@@ -132,7 +133,7 @@ class CopyToField(object):
             # return the help_text of the field as defined on the base model, if there
             try:
                 help_text = self.query.model._meta.get_field(self.name).help_text
-            except LookupError:
+            except FieldDoesNotExist:
                 help_text = self.field.help_text
 
         return help_text
