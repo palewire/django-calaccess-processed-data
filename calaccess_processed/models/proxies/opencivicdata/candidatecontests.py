@@ -46,7 +46,7 @@ class OCDCandidateContestProxy(CandidateContest, OCDProxyModelMixin):
         ('name',),
         ('division_id',),
         ('election_id',),
-        ('party',),
+        ('party_id',),
         ('previous_term_unexpired',),
         ('number_elected',),
         ('runoff_for_contest_id',),

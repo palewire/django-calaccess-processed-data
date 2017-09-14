@@ -126,7 +126,16 @@ class CopyToField(object):
         """
         Help text of the field.
         """
-        return self._help_text or self.field.help_text
+        if self._help_text:
+            help_text = self._help_text
+        else:
+            # return the help_text of the field as defined on the base model, if there
+            try:
+                help_text = self.query.model._meta.get_field(self.name).help_text
+            except LookupError:
+                help_text = self.field.help_text
+
+        return help_text
 
     @property
     def resolved_ref(self):
