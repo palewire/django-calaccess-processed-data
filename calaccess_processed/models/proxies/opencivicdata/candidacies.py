@@ -366,7 +366,7 @@ class OCDFlatCandidacyProxy(Candidacy, OCDProxyModelMixin):
         ('ocd_candidacy_id',),
         ('ocd_election_id', CandidateContest._meta.get_field('election').help_text),
         ('ocd_post_id', Candidacy._meta.get_field('post').help_text),
-        ('ocd_contest_id',),
+        ('ocd_contest_id',Candidacy._meta.get_field('contest').help_text),
         ('ocd_party_id', Candidacy._meta.get_field('party').help_text),
         ('latest_calaccess_filer_id',
          'Most recent filer_id assigned to the person in CAL-ACCESS.',),
