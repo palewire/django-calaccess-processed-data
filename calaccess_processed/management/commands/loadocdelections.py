@@ -3,6 +3,7 @@
 """
 Load OCD elections models with data extracted and scraped from CAL-ACCESS.
 """
+import os
 from django.apps import apps
 from django.conf import settings
 from django.utils.timezone import now
@@ -30,6 +31,9 @@ class Command(LoadOCDElectionsBase):
 
         # archive if django project setting enabled
         if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
+            # flush out processed_data_dir first
+            self.flush_files()
+            # then archive
             self.archive()
 
         # Wrap it up
@@ -88,6 +92,17 @@ class Command(LoadOCDElectionsBase):
 
         call_command('mergeocdpersonsbycontestandname', **options)
         self.duration()
+
+    def flush_files(self):
+        """
+        Delete files in processed_data_dir, prior to archiving.
+        """
+        for file_name in os.listdir(self.processed_data_dir):
+            file_path = os.path.join(
+                self.processed_data_dir,
+                file_name,
+            )
+            os.remove(file_path)
 
     def archive(self):
         """
