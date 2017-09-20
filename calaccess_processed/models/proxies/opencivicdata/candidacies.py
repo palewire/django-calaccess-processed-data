@@ -133,7 +133,10 @@ class OCDCandidacyManager(models.Manager):
                         candidacy = None
                     else:
                         # if so, add filer_id to existing candidate
-                        candidacy.person.add_filer_id(candidate_filer_id)
+                        person = candidacy.person
+                        person.refresh_from_db()
+                        person.__class__ = OCDPersonProxy
+                        person.add_filer_id(candidate_filer_id)
 
         # if no matched candidate yet, make a new one
         if not candidacy:

@@ -147,6 +147,16 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
         return get_text_list([template.format(i) for i in self.identifiers.all()])
 
     @property
+    def is_partisan_primary(self):
+        """
+        Returns whether or not this was a primary election held in the partisan era prior to 2012.
+        """
+        if 'PRIMARY' in self.election_types:
+            if self.date.year < 2012:
+                return True
+        return False
+
+    @property
     def source_list(self):
         """
         Returns a prettified list of OCD sources.

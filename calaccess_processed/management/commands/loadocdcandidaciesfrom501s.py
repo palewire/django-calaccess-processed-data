@@ -30,29 +30,41 @@ class Command(CalAccessCommand):
                 raise CommandError(error_message)
         else:
             self.header("Loading additional candidacies from Form 501 filings")
+            self.load()
 
-            for form501 in Form501Filing.objects.without_candidacy():
-                if self.verbosity > 2:
-                    self.log(' Processing Form 501: %s' % form501.filing_id)
+        self.success("Done!")
 
-                # Get a linked contest
-                contest = form501.get_contest()
+    def load(self):
+        """
+        Loop over each Form501Filing and attempt to load into OCD models.
+        """
+        for form501 in Form501Filing.objects.without_candidacy():
+            if self.verbosity > 2:
+                self.log(' Processing Form 501: %s' % form501.filing_id)
+                self.process_form501(form501)
 
-                # If there is no contest, quit.
-                if not contest:
-                    return None
+    def process_form501(self, form501):
+        """
+        Process a Form501Filing and attempt to load its data into OCD models.
+        """
+        # Get a linked contest
+        contest = form501.get_contest()
 
-                candidacy, created = OCDCandidacyProxy.objects.get_or_create_from_calaccess(
-                    contest,
-                    form501.parsed_name,
-                    candidate_filer_id=form501.filer_id
-                )
+        # If there is no contest, skip.
+        if not contest:
+            pass
+        else:
+            candidacy, created = OCDCandidacyProxy.objects.get_or_create_from_calaccess(
+                contest,
+                form501.parsed_name,
+                candidate_filer_id=form501.filer_id
+            )
 
-                if created and self.verbosity > 2:
-                    tmp = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
-                    self.log(tmp.format(candidacy))
+            if created and self.verbosity > 2:
+                tmp = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
+                self.log(tmp.format(candidacy))
 
-                candidacy.link_form501(form501)
-                candidacy.update_from_form501(form501)
+            candidacy.link_form501(form501)
+            candidacy.update_from_form501(form501)
 
-            self.success("Done!")
+        return form501

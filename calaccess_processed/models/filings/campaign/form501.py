@@ -361,7 +361,7 @@ class Form501Filing(FilingMixin, Form501FilingBase):
         """
         from calaccess_processed.models import OCDPostProxy
 
-        # Get election
+        # Get or create an election
         ocd_election = self.ocd_election
         if not ocd_election:
             return None
@@ -381,7 +381,7 @@ class Form501Filing(FilingMixin, Form501FilingBase):
         }
 
         # if looking for a pre-2012 primary, include party
-        if ocd_election.is_partisan_primary():
+        if ocd_election.is_partisan_primary:
             contest_data['party'] = self.get_party()
 
         # Try to get it from the database
