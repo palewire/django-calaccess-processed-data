@@ -29,7 +29,10 @@ class Command(CalAccessCommand):
             else:
                 raise CommandError(error_message)
         else:
-            self.header("Loading additional candidacies from Form 501 filings")
+            count = CandidateContest.objects.count()
+            self.header(
+                "Loading %s additional candidacies from Form 501 filings" % count
+            )
             self.load()
 
         self.success("Done!")
