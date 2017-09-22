@@ -116,7 +116,7 @@ class OCDPersonManager(models.Manager):
                 # assuming the only thing in extras is form501_filing_ids
                 if 'form501_filing_ids' in cand_to_discard.extras:
                     for i in cand_to_discard.extras['form501_filing_ids']:
-                        self.link_form501_to_candidacy(i, cand_to_keep)
+                        cand_to_keep.link_form501(i)
                 cand_to_keep.refresh_from_db()
 
                 if 'form501_filing_ids' in cand_to_keep.extras:
