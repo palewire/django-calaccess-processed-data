@@ -113,7 +113,8 @@ class OCDPersonManager(models.Manager):
 
             # loop over all the other candidacies in the group
             for cand_to_discard in cands.exclude(id=cand_to_keep.id).all():
-                # assuming the only thing in extras is form501_filing_ids
+                # assuming there's nothing else to preserve in extras
+                # besides form501_filing_ids
                 if 'form501_filing_ids' in cand_to_discard.extras:
                     for i in cand_to_discard.extras['form501_filing_ids']:
                         cand_to_keep.link_form501(i)

@@ -4,9 +4,12 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
+from calaccess_processed.models.json_funcs import (
+    JSONArrayLength,
+    JSONExtractPath,
+    MaxFromJSONIntegerArray,
+)
 from django.db import models
-from .people import OCDPersonProxy
-from .elections import OCDElectionProxy
 from django.db.models import (
     IntegerField,
     Case,
@@ -23,8 +26,10 @@ from opencivicdata.elections.models import (
     CandidateContest,
     CandidacySource,
 )
-from .base import OCDProxyModelMixin
 from postgres_copy import CopyQuerySet
+from .base import OCDProxyModelMixin
+from .elections import OCDElectionProxy
+from .people import OCDPersonProxy
 
 
 class OCDCandidacyQuerySet(CopyQuerySet):
@@ -345,6 +350,12 @@ class OCDFlatCandidacyManager(models.Manager):
             ocd_party_id=F('party'),
             latest_calaccess_filer_id=Max('person__identifiers__identifier'),
             calaccess_filer_id_count=Count('person__identifiers__identifier'),
+            latest_form501_filing_id=MaxFromJSONIntegerArray(
+                'extras', 'form501_filing_ids'
+            ),
+            form501_filing_count=JSONArrayLength(
+                JSONExtractPath('extras', 'form501_filing_ids')
+            ),
         )
 
 
@@ -377,6 +388,9 @@ class OCDFlatCandidacyProxy(Candidacy, OCDProxyModelMixin):
          'Most recent filer_id assigned to the person in CAL-ACCESS.',),
         ('calaccess_filer_id_count',
          'Count of filer_ids assigned to the person in CAL-ACCESS.',),
+        ('latest_form501_filing_id', "CAL-ACCESS identifier for the candidate's "
+                                     "most recent Form 501 filing."),
+        ('form501_filing_count', 'Count of Form 501s filed by the candidate.'),
     )
 
     class Meta:
