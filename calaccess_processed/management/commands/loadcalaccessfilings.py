@@ -163,13 +163,10 @@ class Command(CalAccessCommand):
                     'archivecalaccessprocessedfile',
                     m._meta.object_name,
                 )
-            # remove these files from processed_dir
-            # because we don't want them added to zip
-            csv_path = os.path.join(
-                self.processed_data_dir,
-                '%s.csv' % processed_file.file_name,
-            )
-            try:
+                # remove these files from processed_dir
+                # because we don't want them added to zip
+                csv_path = os.path.join(
+                    self.processed_data_dir,
+                    '%s.csv' % processed_file.file_name,
+                )
                 os.remove(csv_path)
-            except FileNotFoundError:
-                pass
