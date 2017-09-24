@@ -26,7 +26,7 @@ class JSONExtractPath(Func):
         """
         Create an instance.
         """
-        super().__init__(expression, key=key)
+        super(JSONExtractPath, self).__init__(expression, key=key)
 
 
 class MaxFromJSONIntegerArray(Func):
@@ -40,4 +40,4 @@ class MaxFromJSONIntegerArray(Func):
         """
         Create an instance.
         """
-        super().__init__(expression, key=key)
+        super(MaxFromJSONIntegerArray, self).__init__(expression, key=key)
