@@ -12,8 +12,8 @@ from opencivicdata.core.models import (
     PersonIdentifier,
     PersonName,
 )
-from .base import OCDProxyModelMixin
 from postgres_copy import CopyQuerySet
+from .base import OCDProxyModelMixin
 
 
 class OCDPersonManager(models.Manager):
@@ -71,6 +71,7 @@ class OCDPersonManager(models.Manager):
 
         Return the merged Person object.
         """
+        from calaccess_processed.models import OCDCandidacyProxy
         # each person will be merged into this one
         keep = persons.pop(0)
 
@@ -110,6 +111,8 @@ class OCDPersonManager(models.Manager):
             # or the one with the most recent filed_date
             else:
                 cand_to_keep = cands.latest('filed_date')
+
+            cand_to_keep.__class__ = OCDCandidacyProxy
 
             # loop over all the other candidacies in the group
             for cand_to_discard in cands.exclude(id=cand_to_keep.id).all():
