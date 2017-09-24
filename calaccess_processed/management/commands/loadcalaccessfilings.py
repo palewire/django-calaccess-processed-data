@@ -169,4 +169,7 @@ class Command(CalAccessCommand):
                 self.processed_data_dir,
                 '%s.csv' % processed_file.file_name,
             )
-            os.remove(csv_path)
+            try:
+                os.remove(csv_path)
+            except FileNotFoundError:
+                pass
