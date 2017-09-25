@@ -213,21 +213,21 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
         """
         return OCDElectionProxy.objects.get(id=self.contest.election_id)
 
-    def link_form501(self, form501):
+    def link_form501(self, form501_id):
         """
-        Link a Form501Filing to a Candidacy, if it isn't already.
+        Link an id of a Form501Filing to a Candidacy, if it isn't already.
         """
         # Check if the attribute is already there
         if 'form501_filing_ids' in self.extras:
             # If it is, check if we already have this id
-            if form501.filing_id not in self.extras['form501_filing_ids']:
+            if form501_id not in self.extras['form501_filing_ids']:
                 # If we don't, append it to the list
-                self.extras['form501_filing_ids'].append(form501.filing_id)
+                self.extras['form501_filing_ids'].append(form501_id)
                 # Save out
                 self.save()
         # If the attribute isn't there, go ahead and add it.
         else:
-            self.extras['form501_filing_ids'] = [form501.filing_id]
+            self.extras['form501_filing_ids'] = [form501_id]
             # Save out
             self.save()
 

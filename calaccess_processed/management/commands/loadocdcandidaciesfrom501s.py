@@ -67,7 +67,7 @@ class Command(CalAccessCommand):
                 tmp = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
                 self.log(tmp.format(candidacy))
 
-            candidacy.link_form501(form501)
+            candidacy.link_form501(form501.filing_id)
             candidacy.update_from_form501(form501)
 
         return form501
