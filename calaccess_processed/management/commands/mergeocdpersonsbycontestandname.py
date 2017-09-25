@@ -4,8 +4,8 @@
 Find and merge OCD Person records that share a name and CandidateContest.
 """
 from django.db.models import Count
-from calaccess_processed.models import OCDPersonProxy
-from opencivicdata.elections.models import CandidateContest
+from calaccess_processed.merge_funcs import merge_persons
+from calaccess_processed.models import OCDCandidateContestProxy
 from calaccess_processed.management.commands import CalAccessCommand
 
 
@@ -24,18 +24,16 @@ class Command(CalAccessCommand):
         self.header("Merging Persons in same Contest with shared name")
 
         # Loop over all CandidateContests
-        for contest in CandidateContest.objects.all():
+        for contest in OCDCandidateContestProxy.objects.all():
+            # handle groups by candidate_name
             for group_q in self.group_by_candidate_name(contest.candidacies):
-                self.handle_group(group_q)
-
+                self.handle_group(group_q, field_name='candidate_name')
+            # handle groups by person_name
             for group_q in self.group_by_person_name(contest.candidacies):
-                self.handle_group(group_q)
-
+                self.handle_group(group_q, field_name='person_name')
+            # handle groups by person_other_name
             for group_q in self.group_by_other_name(contest.candidacies):
-                print('Grouped by other_name')
-                print(group_q.count())
-                print('--------------------------')
-                self.handle_group(group_q)
+                self.handle_group(group_q, field_name='other_name')
 
         self.success("Done!")
 
@@ -126,9 +124,25 @@ class Command(CalAccessCommand):
             person__identifiers__scheme='calaccess_filer_id'
         ).distinct('person__identifiers__identifier').count()
 
-    def handle_group(self, group_q):
+    def log_merged_persons(self, group_q, field_name):
         """
-        Handle group of candidates for merging.
+        Log the persons in group_q who will be merged.
+        """
+        self.log(
+            'Merging {0} persons grouped by {1} in {2}'.format(
+                group_q.count(),
+                field_name,
+                group_q.all()[0].contest,
+            )
+        )
+        for c in group_q.all():
+            self.log(' - {} ({})'.format(c.person, c.person_id))
+
+    def handle_group(self, group_q, field_name=None):
+        """
+        Handle merging of candidates in group_q.
+
+        Optional field_name is a string naming the field used to form the group.
         """
         # if there isn't more than one party and more than one filer_id
         if (
@@ -136,24 +150,19 @@ class Command(CalAccessCommand):
             self.get_group_filer_id_count(group_q) <= 1
         ):
             if self.verbosity > 2:
-                self.log(
-                    'Merging {0} persons in {1}'.format(
-                        group_q.count(),
-                        group_q.all()[0].contest,
-                    )
-                )
-                for c in group_q.all():
-                    self.log(' - {} ({})'.format(c.person, c.person_id))
+                self.log_merged_persons(group_q, field_name)
             # merge
-            OCDPersonProxy.objects.merge([c.person for c in group_q.all()])
+            merge_persons([c.person for c in group_q.all()])
         # handle multiple parties in the group
         elif group_q.distinct('party').count() > 1:
             # for each group with the same party in the group
             for party_group_q in self.group_by_party(group_q):
                 # if there's only one filer_id
                 if self.get_group_filer_id_count(party_group_q) <= 1:
+                    if self.verbosity > 2:
+                        self.log_merged_persons(party_group_q, field_name)
                     # merge the group
-                    OCDPersonProxy.objects.merge(
+                    merge_persons(
                         [c.person for c in party_group_q.all()]
                     )
         return
