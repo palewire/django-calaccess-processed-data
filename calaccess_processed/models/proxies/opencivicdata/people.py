@@ -124,7 +124,7 @@ class OCDPersonManager(models.Manager):
                 cand_to_keep.refresh_from_db()
 
                 if 'form501_filing_ids' in cand_to_keep.extras:
-                    self.update_candidacy_from_form501s(cand_to_keep)
+                    cand_to_keep.update_from_form501()
                 cand_to_keep.refresh_from_db()
 
                 # keep the candidate_name, if not already somewhere else
