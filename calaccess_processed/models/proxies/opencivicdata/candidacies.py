@@ -231,7 +231,7 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
             # Save out
             self.save()
 
-    def update_from_form501(self, form501):
+    def update_from_form501(self):
         """
         Set Candidacy fields using data extracted from linked Form501Filings.
         """

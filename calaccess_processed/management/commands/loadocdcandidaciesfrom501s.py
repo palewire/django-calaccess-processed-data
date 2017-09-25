@@ -68,6 +68,6 @@ class Command(CalAccessCommand):
                 self.log(tmp.format(candidacy))
 
             candidacy.link_form501(form501.filing_id)
-            candidacy.update_from_form501(form501)
+            candidacy.update_from_form501()
 
         return form501

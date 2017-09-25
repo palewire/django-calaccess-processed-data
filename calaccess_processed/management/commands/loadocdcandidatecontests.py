@@ -102,7 +102,7 @@ class Command(CalAccessCommand):
 
             if form501:
                 candidacy.link_form501(form501.filing_id)
-                candidacy.update_from_form501(form501)
+                candidacy.update_from_form501()
 
                 # if the scraped_candidate lacks a filer_id, add the
                 # Form501Filing.filer_id
