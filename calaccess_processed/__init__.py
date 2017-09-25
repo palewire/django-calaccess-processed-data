@@ -65,3 +65,9 @@ def get_expected_election_date(year, election_type):
     day_or_month = (7 - first_weekday) % 7 + 2
 
     return date(year, month, day_or_month)
+
+
+__all__ = (
+    'archive_directory_path',
+    'get_expected_election_date',
+)

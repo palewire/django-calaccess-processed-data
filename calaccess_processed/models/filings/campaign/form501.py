@@ -6,9 +6,9 @@ Models for storing campaign-related entities derived from raw CAL-ACCESS data.
 from __future__ import unicode_literals
 import itertools
 from datetime import date
-import calaccess_processed
 from django.db import models
-from calaccess_processed import corrections
+from django.db.models import Q
+from calaccess_processed import corrections, get_expected_election_date
 from opencivicdata.elections.models import CandidateContest
 from calaccess_processed.managers import ProcessedDataManager
 from django.utils.encoding import python_2_unicode_compatible
@@ -28,7 +28,9 @@ class Form501FilingManager(ProcessedDataManager):
         from calaccess_processed.models import OCDCandidacyProxy
         matched_qs = OCDCandidacyProxy.objects.matched_form501_ids()
         matched_list = [i for i in itertools.chain.from_iterable(matched_qs)]
-        return self.get_queryset().exclude(filing_id__in=matched_list, office__icontains='RETIREMENT')
+        return self.get_queryset().exclude(
+            Q(filing_id__in=matched_list) | Q(office__icontains='RETIREMENT')
+        )
 
 
 class Form501FilingBase(CalAccessBaseModel):
@@ -313,7 +315,9 @@ class Form501Filing(FilingMixin, Form501FilingBase):
             # if it's a future primary, try to calculate the date
             if self.election_year >= date.today().year and self.election_type == 'PRIMARY':
                 try:
-                    dt_obj = calaccess_processed.get_expected_election_date(self.election_year, self.election_type)
+                    dt_obj = get_expected_election_date(
+                        self.election_year, self.election_type
+                    )
                 except:
                     return None
                 return OCDElectionProxy.objects.create_from_calaccess(
