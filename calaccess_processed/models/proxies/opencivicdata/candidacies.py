@@ -257,7 +257,16 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
                 self.registration_status = 'withdrawn'
                 self.save()
 
-        # set party based on latest Form501 where the field is populated
+    def update_party_from_form501(self):
+        """
+        Update party for Candidacy based on latest Form501 where its populated.
+        """
+        from calaccess_processed.models import Form501Filing
+
+        # get all Form501Filing linked to Candidacy
+        filing_ids = self.extras['form501_filing_ids']
+        filings = Form501Filing.objects.filter(filing_id__in=filing_ids)
+
         latest_party = filings.filter(
             party__isnull=False
         ).latest('date_filed').get_party()
