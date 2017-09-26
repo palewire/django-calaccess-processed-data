@@ -249,13 +249,19 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
             self.filed_date = first_filed_date
             self.save()
 
-        # keep going if latest filing says withdrawn
+        # set registration status to "withdrawn" based on statement_type of latest Form501
         latest = filings.latest('date_filed')
         if latest.statement_type == '10003':  # <-- This is the code for withdrawn
             # If the candidacy hasn't been marked that way, update it now
             if self.registration_status != 'withdrawn':
                 self.registration_status = 'withdrawn'
                 self.save()
+
+        # set party based on latest Form501 where the field is populated
+        latest_party = filings.filter(party__isnull=False).latest('date_filed')
+        if latest_party != self.party:
+            self.party = latest_party
+            self.save()
 
     def check_incumbency(self):
         """
