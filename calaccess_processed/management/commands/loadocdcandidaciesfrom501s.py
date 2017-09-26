@@ -29,9 +29,9 @@ class Command(CalAccessCommand):
             else:
                 raise CommandError(error_message)
         else:
-            count = CandidateContest.objects.count()
+            form501_count = Form501Filing.objects.without_candidacy().count()
             self.header(
-                "Loading %s additional candidacies from Form 501 filings" % count
+                "Loading %s additional candidacies from Form 501 filings" % form501_count
             )
             self.load()
 
@@ -69,5 +69,6 @@ class Command(CalAccessCommand):
 
             candidacy.link_form501(form501.filing_id)
             candidacy.update_from_form501()
+            candidacy.update_party_from_form501()
 
         return form501

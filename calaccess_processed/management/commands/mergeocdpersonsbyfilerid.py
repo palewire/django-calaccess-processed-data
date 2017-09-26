@@ -31,26 +31,30 @@ class Command(CalAccessCommand):
             person_count__gt=1,
         ).order_by()
 
-        self.log(
-            "Merging %s Person sets with shared CAL-ACCESS filer_id" % shared_filer_ids_q.count()
-        )
+        if shared_filer_ids_q.count() == 0:
+            self.log("No persons to merge by CAL-ACCESS filer_id")
+        else:
 
-        for group in shared_filer_ids_q.all():
-            persons = [
-                p for p in Person.objects.filter(
-                    identifiers__scheme='calaccess_filer_id',
-                    identifiers__identifier=group['identifier'],
-                ).all()
-            ]
+            self.header(
+                "Merging %s Person sets with shared CAL-ACCESS filer_id" % shared_filer_ids_q.count()
+            )
 
-            if self.verbosity > 2:
-                self.log(
-                    "Merging {0} Persons sharing filer_id {1}".format(
-                        len(persons),
-                        group['identifier'],
+            for group in shared_filer_ids_q.all():
+                persons = [
+                    p for p in Person.objects.filter(
+                        identifiers__scheme='calaccess_filer_id',
+                        identifiers__identifier=group['identifier'],
+                    ).all()
+                ]
+
+                if self.verbosity > 2:
+                    self.log(
+                        "Merging {0} Persons sharing filer_id {1}".format(
+                            len(persons),
+                            group['identifier'],
+                        )
                     )
-                )
 
-            merge_persons(persons)
+                merge_persons(persons)
 
-        self.success("Done!")
+            self.success("Done!")

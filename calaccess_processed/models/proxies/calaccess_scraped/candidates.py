@@ -350,7 +350,6 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
             contest__election=ocd_election,
             post=self.post_proxy,
         )
-
         if self.scraped_id:
             try:
                 candidacy = q.get_by_filer_id(self.scraped_id)

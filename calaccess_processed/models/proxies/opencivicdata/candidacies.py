@@ -49,11 +49,22 @@ class OCDCandidacyQuerySet(CopyQuerySet):
         """
         Returns a Candidacy object with the provided name from the CALACCESS database or scrape.
         """
-        return self.get(
+        q = self.filter(
             Q(candidate_name=name) |
             Q(person__name=name) |
             Q(person__other_names__name=name)
-        )
+        ).distinct()
+
+        if not q.exists():
+            raise OCDCandidacyProxy.DoesNotExist(
+                'OCDCandidacyProxy matching query does not exist'
+            )
+        elif q.count() > 1:
+            raise OCDCandidacyProxy.MultipleObjectsReturned(
+                'get_by_name() returned more than one OCDCandidacyProxy -- it returned %s!' % q.count()
+            )
+        else:
+            return q[0]
 
 
 class OCDCandidacyManager(models.Manager):
