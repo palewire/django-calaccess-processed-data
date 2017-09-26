@@ -32,13 +32,17 @@ class Command(LoadOCDElectionsBase):
         # archive if django project setting enabled
         if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
             # flush out processed_data_dir first
+            if self.verbosity > 2:
+                self.log(' Flushing local copies of OCD processed data files.')
             self.flush_files()
             # then archive
+            if self.verbosity > 2:
+                self.log(' Archiving OCD processed data files.')
             self.archive()
+            self.duration()
 
         # Wrap it up
         self.success('Done!')
-        self.duration()
 
     def load(self):
         """
