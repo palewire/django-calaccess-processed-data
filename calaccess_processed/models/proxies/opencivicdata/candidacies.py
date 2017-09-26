@@ -258,7 +258,10 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
                 self.save()
 
         # set party based on latest Form501 where the field is populated
-        latest_party = filings.filter(party__isnull=False).latest('date_filed')
+        latest_party = filings.filter(
+            party__isnull=False
+        ).latest('date_filed').get_party()
+
         if latest_party != self.party:
             self.party = latest_party
             self.save()
