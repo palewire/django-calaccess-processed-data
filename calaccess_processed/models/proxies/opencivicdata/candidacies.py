@@ -132,11 +132,6 @@ class OCDCandidacyManager(models.Manager):
         if not candidacy:
             try:
                 candidacy = self.model.objects.filter(contest=contest).get_by_name(candidate_name_dict['name'])
-            except self.model.MultipleObjectsReturned:
-                # weird case when someone filed for the same race
-                # with three different filer_ids
-                if candidate_name_dict['sort_name'] == 'MC NEA, DOUGLAS A.':
-                    candidacy = None
             except self.model.DoesNotExist:
                 pass
             else:
@@ -255,7 +250,7 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
         # keep the earliest filed_date
         first_filed_date = filings.earliest('date_filed').date_filed
 
-        # If the filed dates don't match, update them
+        # Update filed_date if not the earliest
         if self.filed_date != first_filed_date:
             self.filed_date = first_filed_date
             self.save()
@@ -267,6 +262,30 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
             if self.registration_status != 'withdrawn':
                 self.registration_status = 'withdrawn'
                 self.save()
+
+    def link_filer_ids_from_form501s(self):
+        """
+        Create PersonIdentifiers for each filer_id from Form501Filings.
+        """
+        from calaccess_processed.models import Form501Filing
+        person = self.person
+        current_filer_ids = [
+            i.identifier for i in person.identifiers.filter(scheme='calaccess_filer_id')
+        ]
+
+        filing_ids = self.extras['form501_filing_ids']
+        missing_filer_ids = [
+            f.filer_id for f in Form501Filing.objects.filter(
+                filing_id__in=filing_ids
+            ).exclude(
+                filer_id__in=current_filer_ids
+            )
+        ]
+        for i in missing_filer_ids:
+            person.identifiers.get_or_create(
+                scheme='calaccess_filer_id',
+                identifier=i,
+            )
 
     def update_party_from_form501(self):
         """

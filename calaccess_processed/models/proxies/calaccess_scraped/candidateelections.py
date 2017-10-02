@@ -51,6 +51,27 @@ class ScrapedCandidateElectionProxy(ElectionProxyMixin, CandidateElection):
         return self.parsed_name['type']
 
     @property
+    def is_recall(self):
+        """
+        This election is held to recall or retain one or more office holders.
+        """
+        return 'RECALL' in self.election_type
+
+    @property
+    def is_regular(self):
+        """
+        This is a regularly scheduled primary or general election.
+        """
+        return self.election_type == 'PRIMARY' or self.election_type == 'GENERAL'
+
+    @property
+    def is_special(self):
+        """
+        This is a special election or runoff outside of the regular election calendar.
+        """
+        return 'SPECIAL' in self.election_type
+
+    @property
     def date(self):
         """
         Use a scraped candidate election name to look up the election date.
