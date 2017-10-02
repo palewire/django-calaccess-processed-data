@@ -84,8 +84,12 @@ class ScrapedCandidateElectionProxy(ElectionProxyMixin, CandidateElection):
                 self.date.year, self.election_type
             )
         except:
-            # If that fails, just give up and return None
-            return None
+            # If that fails, raise exception
+            raise Exception(
+                'Unknown date for %s. Check http://www.sos.ca.gov/elections/ '
+                'and try adding missing date to '
+                'calaccess_processed/special_elections.py' % self
+            )
 
     @property
     def parsed_name(self):
