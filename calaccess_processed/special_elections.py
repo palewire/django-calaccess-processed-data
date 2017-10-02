@@ -11,6 +11,7 @@ Includes a mapping of special election names to dates.
 # * http://elections.cdn.sos.ca.gov/special-elections/pdf/special-elections-history.pdf
 
 names_to_dates = (
+    ('2017 SPECIAL ELECTION (ASSEMBLY 51)', '2017-10-3'),
     ('2016 SPECIAL ELECTION (ASSEMBLY 31)', '2016-4-5'),
     ('2015 SPECIAL RUNOFF (STATE SENATE 07)', '2015-5-19'),
     ('2015 SPECIAL ELECTION (STATE SENATE 07)', '2015-3-17'),
