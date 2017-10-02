@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 import calaccess_processed
 import calaccess_processed.models.filings.base
 import calaccess_processed.models.proxies.calaccess_scraped.candidates
-import calaccess_processed.models.proxies.calaccess_scraped.electionsbase
+import calaccess_processed.models.proxies.calaccess_scraped.base
 from django.db import migrations, models
 import django.db.models.deletion
 
@@ -1763,7 +1763,7 @@ class Migration(migrations.Migration):
                 'proxy': True,
                 # 'indexes': [],
             },
-            bases=(calaccess_processed.models.proxies.calaccess_scraped.electionsbase.ElectionProxyMixin, 'calaccess_scraped.candidateelection'),
+            bases=(calaccess_processed.models.proxies.calaccess_scraped.base.ElectionProxyMixin, 'calaccess_scraped.candidateelection'),
         ),
         migrations.CreateModel(
             name='ScrapedCandidateProxy',
@@ -1773,7 +1773,7 @@ class Migration(migrations.Migration):
                 'proxy': True,
                 # 'indexes': [],
             },
-            bases=('calaccess_scraped.candidate', calaccess_processed.models.proxies.calaccess_scraped.candidates.ScrapedNameMixin),
+            bases=('calaccess_scraped.candidate', calaccess_processed.models.proxies.calaccess_scraped.base.ScrapedNameMixin),
         ),
         migrations.CreateModel(
             name='ScrapedIncumbentElectionProxy',
@@ -1783,7 +1783,7 @@ class Migration(migrations.Migration):
                 'proxy': True,
                 # 'indexes': [],
             },
-            bases=(calaccess_processed.models.proxies.calaccess_scraped.electionsbase.ElectionProxyMixin, 'calaccess_scraped.incumbentelection'),
+            bases=(calaccess_processed.models.proxies.calaccess_scraped.base.ElectionProxyMixin, 'calaccess_scraped.incumbentelection'),
         ),
         migrations.CreateModel(
             name='ScrapedIncumbentProxy',
@@ -1794,7 +1794,7 @@ class Migration(migrations.Migration):
                 'ordering': ['-session'],
                 # 'indexes': [],
             },
-            bases=('calaccess_scraped.incumbent', calaccess_processed.models.proxies.calaccess_scraped.candidates.ScrapedNameMixin),
+            bases=('calaccess_scraped.incumbent', calaccess_processed.models.proxies.calaccess_scraped.base.ScrapedNameMixin),
         ),
         migrations.CreateModel(
             name='ScrapedPropositionElectionProxy',
@@ -1804,7 +1804,7 @@ class Migration(migrations.Migration):
                 'proxy': True,
                 # 'indexes': [],
             },
-            bases=(calaccess_processed.models.proxies.calaccess_scraped.electionsbase.ElectionProxyMixin, 'calaccess_scraped.propositionelection'),
+            bases=(calaccess_processed.models.proxies.calaccess_scraped.base.ElectionProxyMixin, 'calaccess_scraped.propositionelection'),
         ),
         migrations.CreateModel(
             name='ScrapedPropositionProxy',

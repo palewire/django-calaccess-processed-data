@@ -3,14 +3,10 @@
 """
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
-from .candidates import (
-    ScrapedCandidateProxy,
-    ScrapedIncumbentProxy,
-)
-from .candidateelections import (
-    ScrapedCandidateElectionProxy,
-    ScrapedIncumbentElectionProxy,
-)
+from .candidates import ScrapedCandidateProxy
+from .candidateelections import ScrapedCandidateElectionProxy
+from .incumbents import ScrapedIncumbentProxy
+from .incumbentelections import ScrapedIncumbentElectionProxy
 from .propositions import ScrapedPropositionProxy
 from .propositionelections import ScrapedPropositionElectionProxy
 

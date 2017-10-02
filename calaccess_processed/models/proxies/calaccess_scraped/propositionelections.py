@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Proxy models for augmenting our source data tables with methods useful for processing.
+Proxy model for augmenting ScrapedPropositionElection model with methods useful for processing.
 """
 from __future__ import unicode_literals
 import re
 from django.utils import timezone
 from calaccess_scraped.models import PropositionElection
-from .electionsbase import ElectionProxyMixin
+from .base import ElectionProxyMixin
 from ..opencivicdata.elections import OCDElectionProxy
 
 

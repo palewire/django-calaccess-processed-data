@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Proxy models for augmenting our source data tables with methods useful for processing.
+Proxy model for augmenting ScrapedProposition model with methods useful for processing.
 """
 from __future__ import unicode_literals
 from calaccess_scraped.models import Proposition

@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Proxy models for augmenting our source data tables with methods useful for processing.
+Mixins for proxies of models from calaccess_scraped.
 """
 from __future__ import unicode_literals
+import re
 from datetime import date
 from ..opencivicdata.elections import OCDElectionProxy
 
@@ -104,3 +105,76 @@ class ElectionProxyMixin(object):
             ocd_name = '{0} {1}'.format(self.date.year, self.election_type)
 
         return ocd_name
+
+
+class ScrapedNameMixin(object):
+    """
+    Tools for cleaning up scraped candidate names.
+    """
+    @property
+    def corrected_name(self):
+        """
+        Returns the scraped name with any corrections made.
+        """
+        fixes = {
+            # http://www.sos.ca.gov/elections/prior-elections/statewide-election-results/primary-election-march-7-2000/certified-list-candidates/ # noqa
+            'COURTRIGHT DONNA': 'COURTRIGHT, DONNA'
+        }
+        return fixes.get(self.name, self.name)
+
+    @property
+    def parsed_name(self):
+        """
+        Return a dict of formatted Person name field values.
+        """
+        # sort_name is undoctored name from scrape
+        d = {
+            'sort_name': self.name.strip()
+        }
+
+        # parse out these suffixes: JR, SR, II, III
+        suffix_pattern = r'(?:^|\s)((?:[JS]R\.?)|(?:I{2,3}))(?:,|\s|$)'
+        match = re.search(suffix_pattern, d['sort_name'])
+        if match:
+            # replace suffix with a comma
+            # and replace any double commas, strip any trailing
+            d['sort_name'] = d['sort_name'].replace(match.group(), ',').replace(',,', ',')
+            d['sort_name'] = re.sub(r',\s?$', '', d['sort_name']).strip()
+
+        # split once, strip and flip the sort_name to make name
+        split_name = [i.strip() for i in d['sort_name'].split(',', 1)]
+        name_list = list(split_name)
+        name_list.reverse()
+        d['name'] = ' '.join(name_list).strip()
+        d['family_name'] = split_name[0]
+        if len(split_name) > 1:
+            d['given_name'] = split_name[1]
+        if match:
+            # append suffix to end of name and given_name
+            suffix = ' %s' % match.group().replace(',', '').strip()
+            d['name'] += suffix
+            if 'given_name' in d:
+                d['given_name'] += suffix
+
+        return d
+
+    def parse_office_name(self):
+        """
+        Parse string containg the name for an office.
+
+        Expected format is "{TYPE NAME} [{DISTRICT NUMBER}]".
+
+        Return a dict with two keys: type and district.
+        """
+        office_pattern = r'^(?P<type>[A-Z ]+)(?P<district>\d{2})?$'
+        try:
+            parsed = re.match(office_pattern, self.office_name.upper()).groupdict()
+        except AttributeError:
+            parsed = {'type': None, 'district': None}
+        else:
+            parsed['type'] = parsed['type'].strip()
+            try:
+                parsed['district'] = int(parsed['district'])
+            except TypeError:
+                pass
+        return parsed
