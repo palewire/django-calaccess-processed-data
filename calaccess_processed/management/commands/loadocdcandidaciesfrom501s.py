@@ -51,7 +51,7 @@ class Command(CalAccessCommand):
         Process a Form501Filing and attempt to load its data into OCD models.
         """
         # Get a linked contest
-        contest = form501.get_contest()
+        contest = form501.get_or_create_contest()
 
         # If there is no contest, skip.
         if not contest:

@@ -357,11 +357,11 @@ class Form501Filing(FilingMixin, Form501FilingBase):
             return OCDPartyProxy.objects.unknown()
         return OCDPartyProxy.objects.get_by_filer_id(int(self.filer_id), ocd_election.date)
 
-    def get_contest(self):
+    def get_or_create_contest(self):
         """
-        Get CandidateContest by extracting info form Form501Filing.
+        Get or create a CandidateContest by extracting info form Form501Filing.
 
-        Return a CandidateContest or None.
+        Return a CandidateContest or None, if extracted info is insufficient.
         """
         from calaccess_processed.models import OCDPostProxy
 
