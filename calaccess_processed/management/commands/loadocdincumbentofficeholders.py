@@ -8,11 +8,7 @@ from django.db.models.functions import Cast
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import Candidacy, CandidateContest
 from calaccess_processed.management.commands import CalAccessCommand
-from calaccess_processed.models import (
-    OCDPersonProxy,
-    OCDPostProxy,
-    ScrapedIncumbentProxy,
-)
+from calaccess_processed.models import OCDMembershipProxy, ScrapedIncumbentProxy
 
 
 class Command(CalAccessCommand):
@@ -38,31 +34,13 @@ class Command(CalAccessCommand):
         Load OCD Election, Membership and related models with data scraped from CAL-ACCESS website.
         """
         for incumbent in ScrapedIncumbentProxy.objects.all():
-            # Get or create post
-            post, post_created = OCDPostProxy.objects.get_or_create_by_name(
-                incumbent.office_name,
+            membership, created = OCDMembershipProxy.objects.get_or_create_from_calaccess(
+                incumbent
             )
-            if post_created and self.verbosity > 2:
-                self.log(' Created new Post: %s' % post.label)
-            # Get or create person
-            person, person_created = OCDPersonProxy.objects.get_or_create_from_calaccess(
-                incumbent.parsed_name,
-                candidate_filer_id=incumbent.scraped_id,
-            )
-            if person_created and self.verbosity > 2:
-                self.log(' Created new Person: %s' % person.name)
-            # Get or create membership for post and person
-            membership, membership_created = Membership.objects.get_or_create(
-                person=person,
-                post=post,
-                role=post.role,
-                organization=post.organization,
-                person_name=person.name,
-            )
-            if membership_created and self.verbosity > 2:
+            if created and self.verbosity > 2:
                 self.log(' Created new Membership: %s' % membership)
-            # Handle start_date on membership
-            if membership_created or membership.start_date == '':
+            # Handle start_date on membershipbership
+            if created or membership.start_date == '':
                 membership.start_date = incumbent.session
                 membership.save()
             else:

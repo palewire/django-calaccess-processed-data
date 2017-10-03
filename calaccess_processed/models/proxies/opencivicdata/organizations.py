@@ -5,6 +5,7 @@ Proxy models for augmenting our source data tables with methods useful for proce
 """
 from __future__ import unicode_literals
 from django.db import models
+import logging
 from opencivicdata.core.models import (
     Membership,
     Organization,
@@ -13,6 +14,7 @@ from opencivicdata.core.models import (
 )
 from .base import OCDProxyModelMixin
 from postgres_copy import CopyQuerySet
+logger = logging.getLogger(__name__)
 
 
 class OCDOrganizationManager(models.Manager):
@@ -130,11 +132,55 @@ class OCDOrganizationNameProxy(OrganizationName, OCDProxyModelMixin):
         proxy = True
 
 
+class OCDMembershipManager(models.Manager):
+    """
+    Manager for custom methods on the OCDMembershipProxy model.
+    """
+    def get_or_create_from_calaccess(self, incumbent):
+        """
+        Get or create and OCD Membership from a scraped incumbent.
+        """
+        from .people import OCDPersonProxy
+        from .posts import OCDPostProxy
+        # Get or create post
+        post, post_created = OCDPostProxy.objects.get_or_create_by_name(
+            incumbent.office_name,
+        )
+        if post_created:
+            logger.debug(' Created new Post: %s' % post.label)
+        # Get or create person
+        person, person_created = OCDPersonProxy.objects.get_or_create_from_calaccess(
+            incumbent.parsed_name,
+            candidate_filer_id=incumbent.scraped_id,
+        )
+        if person_created:
+            logger.debug(' Created new Person: %s' % person.name)
+        # Get or create membership for post and person
+        membership, membership_created = Membership.objects.get_or_create(
+            person=person,
+            post=post,
+            role=post.role,
+            organization=post.organization,
+        )
+
+        incumbent_name = incumbent.parsed_name['name']
+
+        if membership.person_name != incumbent_name:
+            membership.person_name == incumbent_name
+            membership.save()
+
+        membership.person.add_other_name(
+            incumbent_name, 'From scraped incumbent record'
+        )
+
+        return membership, membership_created
+
+
 class OCDMembershipProxy(Membership, OCDProxyModelMixin):
     """
     A proxy on the OCD Membership model with helper methods.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = OCDMembershipManager.from_queryset(CopyQuerySet)()
 
     copy_to_fields = (
         ('id',),
