@@ -122,7 +122,7 @@ class OCDCandidacyManager(models.Manager):
             else:
                 candidacy_created = False
                 # if provided name not person's current name and not linked to person add it
-                candidacy.person.add_other_name(
+                candidacy.person_proxy.add_other_name(
                     candidate_name_dict['name'],
                     'Matched on CandidateContest and calaccess_filer_id'
                 )
@@ -218,6 +218,40 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
         Returns the proxied OCDElectionProxy linked to this candidacy.
         """
         return OCDElectionProxy.objects.get(id=self.contest.election_id)
+
+    @property
+    def filer_ids(self):
+        """
+        Returns the CAL-ACCESS filer_id linked with the object, if any.
+        """
+        return self.person.identifiers.filter(scheme="calaccess_filer_id")
+
+    @property
+    def form501_filing_ids(self):
+        """
+        Returns any linked Form 501 filing ids.
+        """
+        try:
+            return self.extras['form501_filing_ids']
+        except KeyError:
+            return []
+
+    @property
+    def form501s(self):
+        """
+        Returns any linked Form 501 objects.
+        """
+        from calaccess_processed.models import Form501Filing
+        return Form501Filing.objects.filter(filing_id__in=self.form501_filing_ids)
+
+    @property
+    def person_proxy(self):
+        """
+        Returns an OCDPersonProxy instance linked to the Candidacy.
+        """
+        person = self.person
+        person.__class__ = OCDPersonProxy
+        return person
 
     def link_form501(self, form501_id):
         """
@@ -330,31 +364,6 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
             return True
         else:
             return False
-
-    @property
-    def filer_ids(self):
-        """
-        Returns the CAL-ACCESS filer_id linked with the object, if any.
-        """
-        return self.person.identifiers.filter(scheme="calaccess_filer_id")
-
-    @property
-    def form501_filing_ids(self):
-        """
-        Returns any linked Form 501 filing ids.
-        """
-        try:
-            return self.extras['form501_filing_ids']
-        except KeyError:
-            return []
-
-    @property
-    def form501s(self):
-        """
-        Returns any linked Form 501 objects.
-        """
-        from calaccess_processed.models import Form501Filing
-        return Form501Filing.objects.filter(filing_id__in=self.form501_filing_ids)
 
 
 class OCDCandidacySourceProxy(CandidacySource, OCDProxyModelMixin):

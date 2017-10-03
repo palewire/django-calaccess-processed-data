@@ -31,8 +31,7 @@ def merge_persons(persons):
     ).candidate_name
     if keep.name != latest_candidate_name:
         # move current Person.name into other_names
-        if not keep.other_names.filter(name=keep.name).exists():
-            keep.other_names.create(name=keep.name)
+        keep.add_other_name(keep.name, 'Updated current name in merge')
         keep.name = latest_candidate_name
     keep.save()
 

@@ -13,6 +13,7 @@ from opencivicdata.core.models import (
     OrganizationName,
 )
 from .base import OCDProxyModelMixin
+from .people import OCDPersonProxy
 from postgres_copy import CopyQuerySet
 logger = logging.getLogger(__name__)
 
@@ -156,7 +157,7 @@ class OCDMembershipManager(models.Manager):
         if person_created:
             logger.debug(' Created new Person: %s' % person.name)
         # Get or create membership for post and person
-        membership, membership_created = Membership.objects.get_or_create(
+        membership, membership_created = self.get_queryset().get_or_create(
             person=person,
             post=post,
             role=post.role,
@@ -169,7 +170,7 @@ class OCDMembershipManager(models.Manager):
             membership.person_name == incumbent_name
             membership.save()
 
-        membership.person.add_other_name(
+        membership.person_proxy.add_other_name(
             incumbent_name, 'From scraped incumbent record'
         )
 
@@ -198,6 +199,15 @@ class OCDMembershipProxy(Membership, OCDProxyModelMixin):
         ('extras',),
         ('locked_fields',),
     )
+
+    @property
+    def person_proxy(self):
+        """
+        Returns an OCDPersonProxy instance linked to the Membership.
+        """
+        person = self.person
+        person.__class__ = OCDPersonProxy
+        return person
 
     class Meta:
         """
