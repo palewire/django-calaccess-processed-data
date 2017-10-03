@@ -63,7 +63,9 @@ class Command(CalAccessCommand):
         # Jim Fitzgerald's independent run for Senate 15 in 2008.
         # He was on the ballot in the general but records and a phone
         # interview with the candidate show he did not run in any primary.
-        scraped_candidates = ScrapedCandidateProxy.objects.filter(scraped_id='').exclude(
+        scraped_candidates = ScrapedCandidateProxy.objects.filter(
+            scraped_id=''
+        ).exclude(
             name__contains='FITZGERALD',
             election__name='2008 PRIMARY',
             office_name='STATE SENATE 15'
@@ -88,13 +90,13 @@ class Command(CalAccessCommand):
 
         Returns a candidacy record.
         """
-        # Get contest
-        contest, contest_created = scraped_candidate.get_or_create_contest()
-
         # check if this scraped candidate was previously loaded into OCD
         try:
             candidacy = scraped_candidate.get_loaded_ocd_candidacy()
         except OCDCandidacyProxy.DoesNotExist:
+            # Get contest
+            contest, contest_created = scraped_candidate.get_or_create_contest()
+
             # Create candidacy
             candidacy, candidacy_created = OCDCandidacyProxy.objects.get_or_create_from_calaccess(
                 contest,
@@ -105,6 +107,8 @@ class Command(CalAccessCommand):
             if candidacy_created and self.verbosity > 1:
                 self.log(' Created Candidacy: %s' % candidacy)
         else:
+            # Get contest
+            contest, contest_created = scraped_candidate.get_or_create_contest()
             # check if the candidacy is not part of the correct contest
             if contest != candidacy.contest:
                 old_contest = candidacy.contest

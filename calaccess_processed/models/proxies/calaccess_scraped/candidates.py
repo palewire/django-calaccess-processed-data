@@ -212,7 +212,7 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
         else:
             raise Form501Filing.DoesNotExist()
 
-    def get_or_create_contest(self, party=None):
+    def get_or_create_contest(self):
         """
         Get or create an OCD CandidateContest object.
 
@@ -227,11 +227,11 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
         scraped_election = self.election_proxy
 
         # Get the candidate's party
-        candidate_party = party or self.get_party()
+        candidate_party = self.get_party()
 
-        # Assume all "SPECIAL" candidate elections are for contests where the
-        # previous term of the office was unexpired.
-        if scraped_election.is_special:
+        # Assume all "SPECIAL" and "RECALL" candidate elections are for contests
+        # where the previous term of the office was unexpired.
+        if scraped_election.is_special or scraped_election.is_recall:
             previous_term_unexpired = True
             # We are not setting a contest party here for the reasons laid out in the following ticket:
             # https://github.com/california-civic-data-coalition/django-calaccess-processed-data/issues/70#issuecomment-300836502  # NOQA
@@ -313,10 +313,10 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
 
         # for special elections, filter to contests with unexpired terms
         if scraped_election.is_special or scraped_election.is_recall:
-            q.filter(contest__previous_term_unexpired=True)
+            q = q.filter(contest__previous_term_unexpired=True)
         # for regular elections, filter to contests with expired_terms
         elif scraped_election.is_regular:
-            q.filter(contest__previous_term_unexpired=False)
+            q = q.filter(contest__previous_term_unexpired=False)
         else:
             raise Exception(
                 'Unknown election type for %s.' % scraped_election
