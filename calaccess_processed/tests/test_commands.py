@@ -24,7 +24,7 @@ from calaccess_processed.models import (
 )
 from calaccess_scraped.models import Candidate as ScrapedCandidate
 from calaccess_scraped.models import Proposition as ScrapedProposition
-from opencivicdata.core.models import Person
+from opencivicdata.core.models import Person, Membership
 from opencivicdata.elections.models import (
     BallotMeasureContest,
     Candidacy,
@@ -277,6 +277,18 @@ class ProcessedDataTest(TestCase):
                     latest_candidate_name,
                 )
             )
+
+    def test_memberships(self):
+        """
+        Test if there are duplicate membership records.
+        """
+        # group memberships by post_id and person_id
+        # check if any group has more than one row.
+        q = Membership.objects.values(
+            'post', 'person'
+        ).annotate(row_count=Count('id')).filter(row_count__gt=1)
+
+        self.assertFalse(q.exists())
 
     def test_processed_version_completed(self):
         """
