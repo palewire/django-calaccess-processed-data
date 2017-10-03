@@ -103,8 +103,7 @@ class Command(CalAccessCommand):
                 candidate_filer_id=scraped_candidate.scraped_id or None
             )
             if candidacy_created and self.verbosity > 1:
-                msg = ' Created Candidacy: {0.candidate_name} in {0.post.label}'.format(candidacy)
-                self.log(msg)
+                self.log(' Created Candidacy: %s' % candidacy)
         else:
             # check if the candidacy is not part of the correct contest
             if contest != candidacy.contest:

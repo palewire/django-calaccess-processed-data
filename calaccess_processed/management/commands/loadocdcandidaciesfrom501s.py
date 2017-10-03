@@ -64,8 +64,7 @@ class Command(CalAccessCommand):
             )
 
             if created and self.verbosity > 2:
-                tmp = ' Created new Candidacy: {0.candidate_name} in {0.post.label}'
-                self.log(tmp.format(candidacy))
+                self.log(' Created Candidacy: %s' % candidacy)
 
             candidacy.link_form501(form501.filing_id)
             candidacy.update_from_form501()
