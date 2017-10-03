@@ -81,10 +81,10 @@ class Command(LoadOCDElectionsBase):
         call_command('loadocdretentioncontests', **options)
         self.duration()
 
-        call_command('loadocdincumbentofficeholders', **options)
+        call_command('loadocdcandidaciesfrom501s', **options)
         self.duration()
 
-        call_command('loadocdcandidaciesfrom501s', **options)
+        call_command('loadocdincumbentofficeholders', **options)
         self.duration()
 
         #
