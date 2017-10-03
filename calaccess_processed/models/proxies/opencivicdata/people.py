@@ -113,14 +113,24 @@ class OCDPersonProxy(Person, OCDProxyModelMixin):
 
     def add_other_name(self, name, note):
         """
-        If an alternative name is not available, add it to the metadata.
+        Add name to Person's list of other names along with note.
+
+        If name was previously added to person, append note to existing note.
+
+        Return boolean value indicating if the name was created or not.
         """
         # If the provided name is the default name, just quit.
         if name == self.name:
-            return False
-
-        # If we've made it this far, it's time to add
-        name, created = self.other_names.get_or_create(name=name, note=note)
+            created = False
+        elif self.other_names.filter(name=name).exists():
+            created = False
+            # append the note, if not already there
+            existing_name = self.other_names.get(name=name)
+            if note not in existing_name.note:
+                existing_name.note = '{0}, {1}'.format(existing_name.note, note)
+        else:
+            created = True
+            self.other_names.create(name=name, note=note)
         return created
 
     def add_filer_id(self, filer_id):
