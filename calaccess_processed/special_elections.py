@@ -60,7 +60,7 @@ names_to_dates = (
     ('2001 SPECIAL ELECTION (ASSEMBLY 49)', '2001-5-15'),
     ('2001 SPECIAL RUNOFF (ASSEMBLY 65)', '2001-4-3'),
     ('2001 SPECIAL ELECTION (ASSEMBLY 65)', '2001-2-6'),
-    ('2001 SPECIAL ELECTION (STATE SENATE 24)', '2001-3-26'),
+    ('2001 SPECIAL ELECTION (STATE SENATE 24)', '2001-3-6'),
 )
 
 names_to_dates_dict = dict(t for t in names_to_dates)
