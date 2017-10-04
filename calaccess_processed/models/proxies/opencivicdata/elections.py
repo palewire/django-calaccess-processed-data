@@ -147,6 +147,15 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
         return get_text_list([template.format(i) for i in self.identifiers.all()])
 
     @property
+    def is_gubernatorial_election(self):
+        """
+        This election should include contests for Governor other executive branch offices.
+        """
+        # Governors are elected every four years, and the earliest such election
+        # in CAL-ACCESS was 2002
+        return (self.date.year - 2002) % 4 == 0
+
+    @property
     def is_partisan_primary(self):
         """
         Returns whether or not this was a primary election held in the partisan era prior to 2012.
