@@ -60,6 +60,10 @@ class Command(CalAccessCommand):
             self.processed_version.process_start_datetime = now()
             self.processed_version.save()
 
+        # create subdirectory in processed_data_dir, if missing
+        filings_data_path = os.path.join(self.processed_data_dir, 'filings')
+        os.path.isdir(filings_data_path) or os.makedirs(filings_data_path)
+
         # handle version models first
         version_models = self.get_model_list('version')
         self.load_model_list(version_models)
@@ -163,10 +167,3 @@ class Command(CalAccessCommand):
                     'archivecalaccessprocessedfile',
                     m._meta.object_name,
                 )
-                # remove these files from processed_dir
-                # because we don't want them added to zip
-                csv_path = os.path.join(
-                    self.processed_data_dir,
-                    '%s.csv' % processed_file.file_name,
-                )
-                os.remove(csv_path)

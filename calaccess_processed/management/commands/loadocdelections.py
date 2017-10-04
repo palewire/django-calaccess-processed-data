@@ -23,18 +23,20 @@ class Command(LoadOCDElectionsBase):
         """
         super(Command, self).handle(*args, **options)
 
-        # Get the logger for this version
+        # Get the tracking model instance for this version
         self.processed_version = self.get_or_create_processed_version()[0]
+
+        # create subdirectory in processed_data_dir, if missing
+        filings_data_path = os.path.join(self.processed_data_dir, 'relational')
+        os.path.isdir(filings_data_path) or os.makedirs(filings_data_path)
+        filings_data_path = os.path.join(self.processed_data_dir, 'flat')
+        os.path.isdir(filings_data_path) or os.makedirs(filings_data_path)
 
         # Start off loading all the data
         self.load()
 
         # archive if django project setting enabled
         if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
-            # flush out processed_data_dir first
-            if self.verbosity > 2:
-                self.log(' Flushing local copies of OCD processed data files.')
-            self.flush_files()
             # then archive
             if self.verbosity > 2:
                 self.log(' Archiving OCD processed data files.')
@@ -96,17 +98,6 @@ class Command(LoadOCDElectionsBase):
 
         call_command('mergeocdpersonsbycontestandname', **options)
         self.duration()
-
-    def flush_files(self):
-        """
-        Delete files in processed_data_dir, prior to archiving.
-        """
-        for file_name in os.listdir(self.processed_data_dir):
-            file_path = os.path.join(
-                self.processed_data_dir,
-                file_name,
-            )
-            os.remove(file_path)
 
     def archive(self):
         """

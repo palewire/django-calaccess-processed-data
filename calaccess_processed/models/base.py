@@ -82,7 +82,7 @@ class CalAccessBaseModel(models.Model):
         """
         Return the name of the model's group, as determined by its submodule.
         """
-        return str(self.__class__).split(".")[-2]
+        return str(self.__class__).split(".")[2]
 
     def get_field_list(self):
         """

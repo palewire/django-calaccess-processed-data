@@ -193,9 +193,10 @@ class ProcessedDataFile(models.Model):
         """
         Return the full path where the ProcessedFile is locally stored.
         """
-        return os.path.join(
-            get_data_directory(), 'processed', '%s.csv' % self.file_name
+        file_directory = os.path.join(
+            get_data_directory(), 'processed', self.model().klass_group.lower()
         )
+        return os.path.join(file_directory, '%s.csv' % self.file_name)
 
     @property
     def is_flat(self):

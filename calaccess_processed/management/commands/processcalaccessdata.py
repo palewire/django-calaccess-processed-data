@@ -59,20 +59,39 @@ class Command(CalAccessCommand):
             if self.force_restart:
                 self.processed_version.process_finish_datetime = None
             self.processed_version.save()
+            if self.verbosity > 2:
+                self.log('Flushing local copies of processed data files.')
+            self.flush_data_files()
 
         # then load
         self.load()
 
         # Zip only if django project setting enabled
         if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
-            # then zip
-            self.zip()
+            # then zip flat files
+            flat_file_dir = os.path.join(self.processed_data_dir, 'flat')
+            self.zip(flat_file_dir)
+            # the relational files
+            relational_file_dir = os.path.join(self.processed_data_dir, 'relational')
+            self.zip(relational_file_dir)
 
         # Wrap up the log
         self.processed_version.process_finish_datetime = now()
         self.processed_version.save()
         self.success('Processing complete')
         self.duration()
+
+    def flush_data_files(self):
+        """
+        Delete files in processed_data_dir, prior to archiving.
+        """
+        for dirpath, dirnames, filenames in os.walk(self.processed_data_dir):
+            file_paths = [os.path.join(dirpath, i) for i in filenames]
+            for file_path in file_paths:
+                try:
+                    os.remove(file_path)
+                except FileNotFoundError:
+                    pass
 
     def load(self):
         """
@@ -93,7 +112,7 @@ class Command(CalAccessCommand):
         )
         self.duration()
 
-    def zip(self):
+    def zip(self, directory):
         """
         Zip up all processed data files and archive the zip.
         """
@@ -115,10 +134,10 @@ class Command(CalAccessCommand):
             zf = ZipFile(zip_path, 'w', compression, allowZip64=True)
 
         # loop over and save files in csv processed data dir
-        for f in os.listdir(self.processed_data_dir):
+        for f in os.listdir(directory):
             if self.verbosity > 2:
                 self.log(" Adding %s to zip" % f)
-            csv_path = os.path.join(self.processed_data_dir, f)
+            csv_path = os.path.join(directory, f)
             zf.write(csv_path, f)
 
         # close the zip file
