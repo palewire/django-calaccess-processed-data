@@ -341,7 +341,7 @@ class Form501Filing(FilingMixin, Form501FilingBase):
             '{0.last_name}, {0.first_name} {0.middle_name}'.format(self).strip(),
             self.election_year,
             self.election_type,
-            '{0.office} {0.district}'.format(self).strip(),
+            '{0.office} {0.district}'.format(self).strip().upper(),
         )
         if party:
             return party
