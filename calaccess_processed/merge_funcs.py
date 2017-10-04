@@ -4,7 +4,7 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
-from calaccess_processed.models import OCDCandidacyProxy
+from calaccess_processed.models import OCDCandidacyProxy, OCDPersonProxy
 from django.db.models import Count
 from opencivicdata.merge import merge
 
@@ -15,9 +15,13 @@ def merge_persons(persons):
     """
     # each person will be merged into this one
     keep = persons.pop(0)
+    if keep.__class__ != OCDPersonProxy:
+        keep.__class__ = OCDPersonProxy
 
     # loop over all the rest
     for i in persons:
+        if i.__class__ != OCDPersonProxy:
+            i.__class__ = OCDPersonProxy
         merge(keep, i)
         keep.refresh_from_db()
 
