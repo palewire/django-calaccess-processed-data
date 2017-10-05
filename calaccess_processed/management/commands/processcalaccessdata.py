@@ -90,7 +90,7 @@ class Command(CalAccessCommand):
             for file_path in file_paths:
                 try:
                     os.remove(file_path)
-                except FileNotFoundError:
+                except OSError:
                     pass
 
     def load(self):
