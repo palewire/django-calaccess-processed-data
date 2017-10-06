@@ -5,7 +5,7 @@ Proxy models for augmenting our source data tables with methods useful for proce
 """
 from __future__ import unicode_literals
 import re
-from django.db import models
+from django.db.models import Manager, Q
 from .divisions import OCDDivisionProxy
 from opencivicdata.core.models import Post
 from .organizations import OCDOrganizationProxy
@@ -14,7 +14,7 @@ from .base import OCDProxyModelMixin
 from postgres_copy import CopyQuerySet
 
 
-class OCDPostManager(models.Manager):
+class OCDPostManager(Manager):
     """
     Custom helpers for the OCD Post model.
     """
@@ -119,11 +119,54 @@ class OCDPostManager(models.Manager):
             return None
 
 
+class OCDAssemblyPostManager(Manager):
+    """
+    Custom manager for State Assembly office Posts.
+    """
+    def get_queryset(self):
+        """
+        Filters down to State Assembly posts.
+        """
+        return super(OCDAssemblyPostManager, self).get_queryset().filter(
+            organization__name='California State Assembly',
+        )
+
+
+class OCDExecutivePostManager(Manager):
+    """
+    Custom manager for State Executive Branch office Posts.
+    """
+    def get_queryset(self):
+        """
+        Filters down to State Executive Branch posts.
+        """
+        return super(OCDExecutivePostManager, self).get_queryset().filter(
+            Q(organization__name='California State Executive Branch') |
+            Q(organization__parent__name='California State Executive Branch')
+        )
+
+
+class OCDSenatePostManager(Manager):
+    """
+    Custom manager for State Senate office Posts.
+    """
+    def get_queryset(self):
+        """
+        Filters down to State Senate posts.
+        """
+        return super(OCDSenatePostManager, self).get_queryset().filter(
+            organization__name='California State Senate',
+        )
+
+
 class OCDPostProxy(Post, OCDProxyModelMixin):
     """
     A proxy on the OCD Post model with helper methods..
     """
     objects = OCDPostManager.from_queryset(CopyQuerySet)()
+    assembly = OCDAssemblyPostManager()
+    executive = OCDExecutivePostManager()
+    senate = OCDSenatePostManager()
 
     copy_to_fields = (
         ('id',),
