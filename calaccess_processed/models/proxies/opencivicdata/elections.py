@@ -4,7 +4,7 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
-from django.db.models import Count, Manager, Q
+from django.db.models import Count, Manager
 from django.utils.text import get_text_list
 from opencivicdata.elections.models import (
     Election,
@@ -13,6 +13,7 @@ from opencivicdata.elections.models import (
 )
 from postgres_copy import CopyQuerySet
 from .base import OCDProxyModelMixin
+from .candidatecontests import OCDCandidateContestProxy
 from .divisions import OCDDivisionProxy
 from .organizations import OCDOrganizationProxy
 from .posts import OCDPostProxy
@@ -123,124 +124,39 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
 
         return
 
-    def verify_regular_assembly_contest_count(self):
+    def get_regular_senate_contests_in_wrong_districts(self):
         """
-        Confirm the Election has the correct count of regular Assembly contests.
+        Get a list of regular senate contests in districts that shouldn't be contested.
         """
-        assembly_office_count = OCDPostProxy.assembly.count()
-        contests_q = self.candidatecontests.filter(
-            previous_term_unexpired=False,
-            name__icontains="ASSEMBLY",
-        )
-
-        if "GENERAL" in self.election_types:
-            expected_contest_count = assembly_office_count
-        elif "PRIMARY" in self.election_types:
-            if self.is_partisan_primary:
-                expected_contest_count = 0
-                # should be one contest for every distinct party in each
-                # of the (80) assembly seats
-                contest_counts_by_party = contests_q.order_by().values(
-                    'candidacies__party__name'
-                ).annotate(
-                    contest_count=Count('candidacies__contest', distinct=True)
-                )
-
-                for party in contest_counts_by_party:
-                    expected_contest_count += party['contest_count']
-
-            else:
-                expected_contest_count = assembly_office_count
-        else:
-            expected_contest_count = 0
-
-        assert(expected_contest_count == contests_q.count())
-
-    def verify_regular_exec_contest_count(self):
-        """
-        Confirm the Election has the correct count of regular executive branch offices.
-        """
-        exec_office_count = OCDPostProxy.executive.count()
-        contests_q = self.candidatecontests.filter(
-            Q(posts__post__organization__name='California State Executive Branch') |
-            Q(posts__post__organization__parent__name='California State Executive Branch')
-        ).exclude(previous_term_unexpired=True)
-
         if self.is_gubernatorial_election:
-            if "GENERAL" in self.election_types:
-                expected_contest_count = exec_office_count
-            elif "PRIMARY" in self.election_types:
-                if self.is_partisan_primary:
-                    expected_contest_count = 0
-                    # should be 1 contest for every distinct party in each
-                    # of the executive branch offices (12)
-                    contest_counts_by_party = contests_q.order_by().values(
-                        'candidacies__party__name'
-                    ).annotate(
-                        contest_count=Count('candidacies__contest', distinct=True)
-                    )
-                    for party in contest_counts_by_party:
-                        expected_contest_count += party['contest_count']
-                else:
-                    expected_contest_count = exec_office_count
-            else:
-                expected_contest_count = 0
+            # in gubernatorial elections,
+            # odd-numbered senate districts should not contested
+            contests = [
+                c for c in self.senate_contests.regular()
+                if int(c.division.subid2) % 2 != 0
+            ]
         else:
-            expected_contest_count = 0
+            # in non-gubernatorial elections,
+            # even-numbered senate districts should not be contests
+            contests = [
+                c for c in self.senate_contests.regular()
+                if int(c.division.subid2) % 2 == 0
+            ]
+        return contests
 
-        assert(expected_contest_count == contests_q.count())
-
-    def verify_regular_senate_contest_count(self):
+    @property
+    def assembly_contests(self):
         """
-        Confirm the Election has the correct count of regular Assembly contests.
+        State Assembly CandidateContests occurring in the election.
         """
-        # half of the senates are filled every two years
-        senate_office_count = OCDPostProxy.senate.count() / 2
-        contests_q = self.candidatecontests.filter(
-            previous_term_unexpired=False,
-            name__icontains="SENATE",
-        )
+        return self.candidate_contest_proxies.assembly()
 
-        if "GENERAL" in self.election_types:
-            expected_contest_count = senate_office_count
-        elif "PRIMARY" in self.election_types:
-            if self.is_partisan_primary:
-                expected_contest_count = 0
-                # should be one contest for every distinct party in every
-                # other senate district (20)
-                contest_counts_by_party = contests_q.order_by().values(
-                    'candidacies__party__name'
-                ).annotate(
-                    contest_count=Count('candidacies__contest', distinct=True)
-                )
-                for party in contest_counts_by_party:
-                    expected_contest_count += party['contest_count']
-            else:
-                expected_contest_count = senate_office_count
-        else:
-            expected_contest_count = 0
-
-        assert(expected_contest_count == contests_q.count())
-
-    def verify_regular_senate_contest_districts(self):
+    @property
+    def candidate_contest_proxies(self):
         """
-        Confirm the Election's Senate Contests have the correct districts.
+        A QuerySet of OCDCandidateContestProxy for the election.
         """
-        contests_q = self.candidatecontests.filter(
-            previous_term_unexpired=False,
-            name__icontains="SENATE",
-        )
-
-        if self.is_gubernatorial_election:
-            for contest in contests_q:
-                assert(
-                    int(contest.division.subid2) % 2 == 0
-                )
-        else:
-            for contest in contests_q:
-                assert(
-                    int(contest.division.subid2) % 2 != 0
-                )
+        return OCDCandidateContestProxy.objects.filter(election=self)
 
     @property
     def election_type(self):
@@ -257,6 +173,13 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
         Returns all the CAL-ACCESS election types included with this record.
         """
         return self.extras.get('calaccess_election_type', [])
+
+    @property
+    def executive_contests(self):
+        """
+        State Executive Branch CandidateContests occurring in the election.
+        """
+        return self.candidate_contest_proxies.executive()
 
     @property
     def has_special_contests(self):
@@ -296,6 +219,125 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
             if self.date.year < 2012:
                 return True
         return False
+
+    @property
+    def regular_assembly_contest_count_actual(self):
+        """
+        Actual count of regular State Assembly contests.
+        """
+        return self.assembly_contests.regular().count()
+
+    @property
+    def regular_assembly_contest_count_expected(self):
+        """
+        Expected count of regular State Assembly contests (based on year).
+        """
+        assembly_office_count = OCDPostProxy.assembly.count()
+
+        if "GENERAL" in self.election_types:
+            expected_contest_count = assembly_office_count
+        elif "PRIMARY" in self.election_types:
+            if self.is_partisan_primary:
+                # should be one contest for every distinct party in each
+                # of the (80) assembly seats
+                expected_contest_count = 0
+                contests_q = self.assembly_contests.regular()
+                contest_counts_by_party = contests_q.order_by().values(
+                    'candidacies__party__name'
+                ).annotate(
+                    contest_count=Count('candidacies__contest', distinct=True)
+                )
+                for party in contest_counts_by_party:
+                    expected_contest_count += party['contest_count']
+            else:
+                expected_contest_count = assembly_office_count
+        else:
+            expected_contest_count = 0
+
+        return expected_contest_count
+
+    @property
+    def regular_executive_contest_count_actual(self):
+        """
+        Actual count of regular State Executive Branch contests.
+        """
+        return self.executive_contests.regular().count()
+
+    @property
+    def regular_executive_contest_count_expected(self):
+        """
+        Expected count of regular State Assembly contests (based on year).
+        """
+        exec_office_count = OCDPostProxy.executive.count()
+
+        if self.is_gubernatorial_election:
+            if "GENERAL" in self.election_types:
+                expected_contest_count = exec_office_count
+            elif "PRIMARY" in self.election_types:
+                if self.is_partisan_primary:
+                    # should be 1 contest for every distinct party in each
+                    # of the executive branch offices (12)
+                    expected_contest_count = 0
+                    contests_q = self.executive_contests.regular()
+                    contest_counts_by_party = contests_q.order_by().values(
+                        'candidacies__party__name'
+                    ).annotate(
+                        contest_count=Count('candidacies__contest', distinct=True)
+                    )
+                    for party in contest_counts_by_party:
+                        expected_contest_count += party['contest_count']
+                else:
+                    expected_contest_count = exec_office_count
+            else:
+                expected_contest_count = 0
+        else:
+            expected_contest_count = 0
+
+        return expected_contest_count
+
+    @property
+    def regular_senate_contest_count_actual(self):
+        """
+        Actual count of regular State Senate contests.
+        """
+        return self.senate_contests.regular().count()
+
+    @property
+    def regular_senate_contest_count_expected(self):
+        """
+        Confirm the Election has the correct count of regular Assembly contests.
+        """
+        # half of the senates are filled every two years
+        senate_office_count = int(OCDPostProxy.senate.count() / 2)
+
+        if "GENERAL" in self.election_types:
+            expected_contest_count = senate_office_count
+        elif "PRIMARY" in self.election_types:
+            if self.is_partisan_primary:
+                # should be one contest for every distinct party in every
+                # other senate district (20)
+                expected_contest_count = 0
+                contests_q = self.senate_contests.regular()
+                contest_counts_by_party = contests_q.order_by().values(
+                    'candidacies__party__name'
+                ).annotate(
+                    contest_count=Count('candidacies__contest', distinct=True)
+                )
+                for party in contest_counts_by_party:
+                    expected_contest_count += party['contest_count']
+            else:
+                expected_contest_count = senate_office_count
+        else:
+            expected_contest_count = 0
+
+        return expected_contest_count
+
+    @property
+    def senate_contests(self):
+        """
+        State Senate CandidateContests occurring in the election.
+        """
+        return self.candidate_contest_proxies.senate()
 
     @property
     def source_list(self):

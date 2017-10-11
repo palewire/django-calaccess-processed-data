@@ -4,7 +4,7 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
-from django.db import models
+from django.db.models import Count, Manager
 import logging
 from opencivicdata.core.models import (
     Membership,
@@ -18,7 +18,7 @@ from postgres_copy import CopyQuerySet
 logger = logging.getLogger(__name__)
 
 
-class OCDOrganizationManager(models.Manager):
+class OCDOrganizationManager(Manager):
     """
     Custom helpers for the OCD Organization model.
     """
@@ -133,7 +133,7 @@ class OCDOrganizationNameProxy(OrganizationName, OCDProxyModelMixin):
         proxy = True
 
 
-class OCDMembershipManager(models.Manager):
+class OCDMembershipManager(Manager):
     """
     Manager for custom methods on the OCDMembershipProxy model.
     """
@@ -175,6 +175,16 @@ class OCDMembershipManager(models.Manager):
         )
 
         return membership, membership_created
+
+    def get_duplicates(self):
+        """
+        Return a QuerySet with duplicate Membership instances.
+        """
+        # group memberships by post_id and person_id
+        # check if any group has more than one row.
+        return self.get_queryset().values(
+            'post', 'person'
+        ).annotate(row_count=Count('id')).filter(row_count__gt=1)
 
 
 class OCDMembershipProxy(Membership, OCDProxyModelMixin):

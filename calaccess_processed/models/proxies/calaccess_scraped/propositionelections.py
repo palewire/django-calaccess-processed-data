@@ -8,7 +8,6 @@ import re
 from django.utils import timezone
 from calaccess_scraped.models import PropositionElection
 from .base import ElectionProxyMixin
-from ..opencivicdata.elections import OCDElectionProxy
 
 
 class ScrapedPropositionElectionProxy(ElectionProxyMixin, PropositionElection):
@@ -52,6 +51,7 @@ class ScrapedPropositionElectionProxy(ElectionProxyMixin, PropositionElection):
         """
         Returns an OCD Election object for this record, if it exists.
         """
+        from ..opencivicdata.elections import OCDElectionProxy
         try:
             ocd_election = OCDElectionProxy.objects.get(
                 name=self.ocd_name,

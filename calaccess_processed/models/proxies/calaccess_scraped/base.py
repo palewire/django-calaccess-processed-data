@@ -6,7 +6,6 @@ Mixins for proxies of models from calaccess_scraped.
 from __future__ import unicode_literals
 import re
 from datetime import date
-from ..opencivicdata.elections import OCDElectionProxy
 
 
 class ElectionProxyMixin(object):
@@ -26,6 +25,7 @@ class ElectionProxyMixin(object):
         Returns a tuple (Election object, created), where created is a boolean
         specifying whether a Election was created.
         """
+        from ..opencivicdata.elections import OCDElectionProxy
         scraped_id = getattr(self, 'scraped_id', None)
         # Try getting the OCD election via the proxy's get method
         try:

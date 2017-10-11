@@ -4,7 +4,7 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
-from django.db import models
+from django.db.models import Q
 from opencivicdata.elections.models import (
     CandidateContest,
     CandidateContestPost,
@@ -14,16 +14,10 @@ from .base import OCDProxyModelMixin
 from postgres_copy import CopyQuerySet
 
 
-class OCDCandidateContestManager(models.Manager):
+class OCDCandidateContestQuerySet(CopyQuerySet):
     """
     Custom helpers for the OCD CandidateContest model that limit it to runoffs.
     """
-    def runoffs(self):
-        """
-        Filter down to runoff CandidateContest instances.
-        """
-        return self.get_queryset().filter(name__contains='RUNOFF')
-
     def set_parents(self):
         """
         Connect and save parent contests for all runoffs.
@@ -34,12 +28,51 @@ class OCDCandidateContestManager(models.Manager):
             obj.runoff_for_contest = obj.get_parent()
             obj.save()
 
+    def assembly(self):
+        """
+        Filter to state assembly contests.
+        """
+        return self.filter(division__subtype2='sldl')
+
+    def executive(self):
+        """
+        Filter to executive contests.
+        """
+        return self.filter(
+            Q(posts__post__organization__name='California State Executive Branch') |
+            Q(posts__post__organization__parent__name='California State Executive Branch')
+        )
+
+    def regular(self):
+        """
+        Filter to "regular" contests.
+        """
+        return self.filter(previous_term_unexpired=False)
+
+    def runoffs(self):
+        """
+        Filter down to runoff CandidateContest instances.
+        """
+        return self.filter(name__contains='RUNOFF')
+
+    def senate(self):
+        """
+        Filter to state senate contests.
+        """
+        return self.filter(division__subtype2='sldu')
+
+    def special(self):
+        """
+        Filter to "special" contests.
+        """
+        return self.filter(previous_term_unexpired=True)
+
 
 class OCDCandidateContestProxy(CandidateContest, OCDProxyModelMixin):
     """
     A proxy on the OCD CandidateContest model with helper methods.
     """
-    objects = OCDCandidateContestManager.from_queryset(CopyQuerySet)()
+    objects = OCDCandidateContestQuerySet.as_manager()
 
     copy_to_fields = (
         ('id',),

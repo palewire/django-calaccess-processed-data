@@ -4,8 +4,7 @@
 Check for mistakes in processed data loaded from CAL-ACCESS.
 """
 from calaccess_processed.management.commands import CalAccessCommand
-from calaccess_processed.models import OCDElectionProxy
-from django.utils import timezone
+from calaccess_processed.tests.test_commands import ProcessedDataTest
 
 
 class Command(CalAccessCommand):
@@ -20,21 +19,39 @@ class Command(CalAccessCommand):
         """
         super(Command, self).handle(*args, **options)
 
-        self.check_elections()
+        processed_data_tests = ProcessedDataTest()
 
-    def check_elections(self):
-        """
-        Check counts of contests in elections.
-        """
-        elections = OCDElectionProxy.objects.filter(
-            date__year__lte=timezone.now().year
-        )
-        for election in elections:
-            self.log(' Checking %s' % election)
-            election.verify_regular_exec_contest_count()
-            self.log('  Executive offices verified.')
-            election.verify_regular_senate_contest_count()
-            election.verify_regular_senate_contest_districts()
-            self.log('  State Senate offices verified.')
-            election.verify_regular_assembly_contest_count()
-            self.log('  State Assembly offices verified.')
+        try:
+            processed_data_tests.test_regular_executive_contest_counts()
+        except AssertionError as err:
+            self.failure(err)
+        else:
+            self.log('  State Executive office contests verified.')
+
+        try:
+            processed_data_tests.test_regular_senate_contest_counts()
+        except AssertionError as err:
+            self.failure(err)
+        else:
+            self.log('  State Senate contests verified.')
+
+        try:
+            processed_data_tests.test_regular_senate_contest_districts()
+        except AssertionError as err:
+            self.failure(err)
+        else:
+            self.log('  State Senate districts verified.')
+
+        try:
+            processed_data_tests.test_regular_assembly_contest_counts()
+        except AssertionError as err:
+            self.failure(err)
+        else:
+            self.log('  State Assembly contests verified.')
+
+        try:
+            processed_data_tests.test_for_duplicate_memberships()
+        except AssertionError as err:
+            self.failure(err)
+        else:
+            self.log('  Memberships verified.')
