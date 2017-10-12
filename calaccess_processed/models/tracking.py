@@ -205,7 +205,7 @@ class ProcessedDataFile(models.Model):
         """
         try:
             is_flat = self.model().is_flat
-        except AttributeError:
+        except (AttributeError, TypeError):
             is_flat = False
         return is_flat
 
