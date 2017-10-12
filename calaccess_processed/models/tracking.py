@@ -214,22 +214,25 @@ class ProcessedDataFile(models.Model):
         """
         Returns the ProcessedDataFile's corresponding database model object.
         """
+        # first, try finding a model with a name that matches the file_name.
         try:
             model = apps.get_model(
                 'calaccess_processed',
                 self.file_name,
             )
         except LookupError:
+            # next, try finding a proxy model a name that contains file_name.
             try:
                 model = apps.get_model(
                     'calaccess_processed',
                     'OCD%sProxy' % self.file_name,
                 )
             except LookupError:
-                # convert from camel case
+                # finally, try finding a model with a plural name
+                # matches file_name.
+                # convert file_name from camel case
                 s1 = re.sub(r'(.)([A-Z][a-z]+)', r'\1 \2', self.file_name)
                 s2 = re.sub(r'([a-z0-9])([A-Z])', r'\1 \2', s1).lower()
-                # try looking up by plural name
                 model_list = [
                     m for m in apps.get_models()
                     if m._meta.verbose_name_plural == s2
@@ -237,8 +240,6 @@ class ProcessedDataFile(models.Model):
                 try:
                     model = model_list.pop()
                 except IndexError:
-                    raise Exception(
-                        'No model with name or plural name %s found.' % self.file_name
-                    )
+                    model = None
 
         return model
