@@ -5,11 +5,12 @@ Models for storing general filer and filing data derived from raw CAL-ACCESS dat
 """
 from __future__ import unicode_literals
 from django.db import models
+from calaccess_processed.models import CalAccessBaseModel
 from django.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible
-class FilerIDValue(models.Model):
+class FilerIDValue(CalAccessBaseModel):
     """
     Every unique filer_id in the CAL-ACCESS database.
 
@@ -62,7 +63,7 @@ class FilerIDValue(models.Model):
 
 
 @python_2_unicode_compatible
-class FilingIDValue(models.Model):
+class FilingIDValue(CalAccessBaseModel):
     """
     Every unique filing_id in the CAL-ACCESS database.
 

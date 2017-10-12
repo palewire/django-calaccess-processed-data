@@ -7,6 +7,7 @@ from __future__ import unicode_literals
 from django.db import models
 from opencivicdata.core.models import Organization
 from calaccess_raw.models import FilerToFilerTypeCd
+from .base import OCDProxyModelMixin
 
 
 class OCDPartyManager(models.Manager):
@@ -76,7 +77,7 @@ class OCDPartyManager(models.Manager):
         return self.unknown()
 
 
-class OCDPartyProxy(Organization):
+class OCDPartyProxy(Organization, OCDProxyModelMixin):
     """
     A proxy on the OCD Organization model with helper methods for interacting with political parties.
     """

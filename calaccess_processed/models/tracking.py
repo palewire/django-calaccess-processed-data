@@ -90,6 +90,27 @@ class ProcessedDataVersion(models.Model):
 
         return is_stalled
 
+    @property
+    def models_processed(self):
+        """
+        Dict with model name as key and boolean value indicating if model was processed.
+        """
+        return {
+            m._meta.object_name: self.check_processed_model(m) for m in apps.get_models()
+            if m._meta.app_label == 'calaccess_processed' and
+            'tracking' not in str(m._meta.model)
+        }
+
+    def check_processed_model(self, model):
+        """
+        Return True if model was processed in this version.
+        """
+        try:
+            file_name = model().file_name
+        except AttributeError:
+            file_name = model().klass_name
+        return self.files.filter(file_name=file_name).exists()
+
     def pretty_zip_size(self):
         """
         Returns a prettified version (e.g., "725M") of the zip's size.
