@@ -83,6 +83,7 @@ from .research import (
 from .tracking import (
     ProcessedDataVersion,
     ProcessedDataFile,
+    ProcessedDataZip,
 )
 from .proxies import (
     RawFilerToFilerTypeCdManager,
@@ -202,6 +203,7 @@ __all__ = (
     'FilingIDValue',
     'ProcessedDataVersion',
     'ProcessedDataFile',
+    'ProcessedDataZip',
     'RawFilerToFilerTypeCdManager',
     'ScrapedCandidateProxy',
     'ScrapedCandidateElectionProxy',

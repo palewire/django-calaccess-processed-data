@@ -10,6 +10,7 @@ from django.utils.timezone import now
 from django.core.management import call_command
 from zipfile import ZIP_DEFLATED, ZIP_STORED, ZipFile
 from calaccess_processed.management.commands import CalAccessCommand
+from calaccess_processed.models import ProcessedDataZip
 
 
 class Command(CalAccessCommand):
@@ -148,16 +149,22 @@ class Command(CalAccessCommand):
         Archive the zip.
         """
         zip_name = os.path.basename(zip_path)
-        zip_obj = self.processed_version.zips.get_or_create(
-            zip_archive=zip_name
-        )[0]
+        try:
+            zip_obj = self.processed_version.zips.get(
+                zip_archive__icontains=zip_name.split('.')[0]
+            )
+        except ProcessedDataZip.DoesNotExist:
+            zip_obj = self.processed_version.zips.create()
+        else:
+            if self.verbosity > 2:
+                self.log(" Deleting previous archive of %s" % zip_name)
+            zip_obj.zip_archive.delete()
+
         with open(zip_path, 'rb') as zf:
             # Save the zip on the processed data version
             if self.verbosity > 2:
                 self.log(" Archiving %s" % zip_name)
-            self.processed_version.zip_archive.save(
-                zip_name, File(zf)
-            )
+            zip_obj.zip_archive.save(zip_name, File(zf))
 
         # update the zip size
         if zip_obj.zip_size != os.path.getsize(zip_path):

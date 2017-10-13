@@ -9,6 +9,21 @@ from calaccess_processed import models
 from calaccess_raw.admin.base import BaseAdmin
 
 
+class ProcessedDataZipInline(admin.TabularInline):
+    """
+    Custom inline admin for the ProcessedDataZip model.
+    """
+    model = models.ProcessedDataZip
+    readonly_fields = ('zip_archive', 'created_datetime', 'pretty_zip_size')
+    fields = readonly_fields
+
+    def has_add_permission(self, request):
+        """
+        Disable adding of zips.
+        """
+        return False
+
+
 @admin.register(models.ProcessedDataVersion)
 class ProcessedDataVersionAdmin(BaseAdmin):
     """
@@ -19,10 +34,13 @@ class ProcessedDataVersionAdmin(BaseAdmin):
         "raw_version",
         "process_start_datetime",
         "process_finish_datetime",
-        "pretty_zip_size",
     )
     list_display_links = ('process_start_datetime',)
     list_filter = ("process_finish_datetime",)
+
+    inlines = [
+        ProcessedDataZipInline,
+    ]
 
 
 @admin.register(models.ProcessedDataFile)

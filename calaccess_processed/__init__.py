@@ -13,12 +13,12 @@ def archive_directory_path(instance, filename):
     Returns a path to an archived processed data file or ZIP.
     """
     from calaccess_processed.models.tracking import (
-        ProcessedDataVersion,
+        ProcessedDataZip,
         ProcessedDataFile,
     )
 
-    if isinstance(instance, ProcessedDataVersion):
-        release_datetime = instance.raw_version.release_datetime
+    if isinstance(instance, ProcessedDataZip):
+        release_datetime = instance.version.raw_version.release_datetime
         f_name, f_ext = filename.split('.')
         path = '{fn}_{dt:%Y-%m-%d_%H-%M-%S}.{fx}'.format(
             fn=f_name,
