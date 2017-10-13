@@ -90,17 +90,6 @@ class ProcessedDataVersion(models.Model):
 
         return is_stalled
 
-    @property
-    def models_processed(self):
-        """
-        Dict with model name as key and boolean value indicating if model was processed.
-        """
-        return {
-            m._meta.object_name: self.check_processed_model(m) for m in apps.get_models()
-            if m._meta.app_label == 'calaccess_processed' and
-            'tracking' not in str(m._meta.model)
-        }
-
     def check_processed_model(self, model):
         """
         Return True if model was processed in this version.
