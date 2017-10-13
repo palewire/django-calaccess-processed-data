@@ -66,14 +66,14 @@ class Command(CalAccessCommand):
         # then load
         self.load()
 
-        # Zip only if django project setting enabled
+        # then zip
+        flat_zip_path = self.zip('flat')
+        relational_zip_path = self.zip('relational')
+
+        # then archive
         if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
-            # then zip flat files
-            flat_file_dir = os.path.join(self.processed_data_dir, 'flat')
-            self.zip(flat_file_dir)
-            # the relational files
-            relational_file_dir = os.path.join(self.processed_data_dir, 'relational')
-            self.zip(relational_file_dir)
+            self.archive_zip(flat_zip_path)
+            self.archive_zip(relational_zip_path)
 
         # Wrap up the log
         self.processed_version.process_finish_datetime = now()
@@ -112,19 +112,17 @@ class Command(CalAccessCommand):
         )
         self.duration()
 
-    def zip(self, directory):
+    def zip(self, directory_name):
         """
-        Zip up all processed data files and archive the zip.
+        Zip up files in directory_name (in processed_data_dir).
         """
+        directory = os.path.join(self.processed_data_dir, directory_name)
         if self.verbosity:
-            self.header("Zipping processed files")
-
-        # Remove previous zip file
-        self.processed_version.zip_archive.delete()
-        zip_path = os.path.join(self.data_dir, 'processed.zip')
+            self.log("Zipping files in %s/" % directory)
 
         # enable zipfile compression
         compression = ZIP_DEFLATED
+        zip_path = os.path.join(self.data_dir, '%s.zip' % directory_name)
 
         try:
             zf = ZipFile(zip_path, 'w', compression, allowZip64=True)
@@ -142,17 +140,29 @@ class Command(CalAccessCommand):
 
         # close the zip file
         zf.close()
-        if self.verbosity > 2:
-            self.log(" All files zipped")
 
-        # save the zip size
-        self.processed_version.zip_size = os.path.getsize(zip_path)
+        return zip_path
+
+    def archive_zip(self, zip_path):
+        """
+        Archive the zip.
+        """
+        zip_name = os.path.basename(zip_path)
+        zip_obj = self.processed_version.zips.get_or_create(
+            zip_archive=zip_name
+        )[0]
         with open(zip_path, 'rb') as zf:
             # Save the zip on the processed data version
             if self.verbosity > 2:
-                self.log(" Archiving zip")
+                self.log(" Archiving %s" % zip_name)
             self.processed_version.zip_archive.save(
-                os.path.basename(zip_path), File(zf)
+                zip_name, File(zf)
             )
+
+        # update the zip size
+        if zip_obj.zip_size != os.path.getsize(zip_path):
+            zip_obj.zip_size = os.path.getsize(zip_path)
+            zip_obj.save()
+
         if self.verbosity > 2:
-            self.log(" Zip archived.")
+            self.log(" %s archived." % zip_name)

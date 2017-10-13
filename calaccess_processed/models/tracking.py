@@ -112,6 +112,52 @@ class ProcessedDataVersion(models.Model):
 
 
 @python_2_unicode_compatible
+class ProcessedDataVersionZip(models.Model):
+    """
+    A zip file containing a subset of processed data files for a version.
+    """
+    version = models.ForeignKey(
+        'ProcessedDataVersion',
+        on_delete=models.CASCADE,
+        related_name='zips',
+        verbose_name='processed data version',
+        help_text='Foreign key referencing the processed version of CAL-ACCESS'
+    )
+    zip_archive = models.FileField(
+        max_length=255,
+        upload_to=archive_directory_path,
+        verbose_name='cleaned files zip archive',
+        help_text='An archive zip of processed files'
+    )
+    zip_size = models.BigIntegerField(
+        default=0,
+        verbose_name='zip of size (in bytes)',
+        help_text='The expected size (in bytes) of the zip of processed files'
+    )
+
+    class Meta:
+        """
+        Meta model options.
+        """
+        app_label = 'calaccess_processed'
+        verbose_name = 'TRACKING: CAL-ACCESS processed data version zip'
+        ordering = ('-version', 'zip_archive')
+
+    def __str__(self):
+        return '{0} ({1})'.format(self.zip_archive, self.version)
+
+    def pretty_zip_size(self):
+        """
+        Returns a prettified version (e.g., "725M") of the zip's size.
+        """
+        if not self.zip_size:
+            return None
+        return sizeformat(self.zip_size)
+    pretty_zip_size.short_description = 'processed zip size'
+    pretty_zip_size.admin_order_field = 'processed zip size'
+
+
+@python_2_unicode_compatible
 class ProcessedDataFile(models.Model):
     """
     A data file included in a processed version of CAL-ACCESS.

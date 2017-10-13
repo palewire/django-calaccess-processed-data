@@ -370,22 +370,36 @@ elections:\n{1}'.format(error_count, error_list)
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
         self.assertTrue(processed_version.update_completed)
 
-    def test_processed_version_zip_archived(self):
+    def test_flat_zip_archived(self):
         """
-        Test that the processed version zip was archived.
+        Confirm that a flat zip was archived.
         """
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        self.assertTrue(processed_version.zip_archive)
+        has_flat_zip = processed_version.zips.filter(
+            zip_archive__icontains='flat'
+        ).exists()
+        self.assertTrue(has_flat_zip)
 
-    def test_processed_version_zip_size(self):
+    def test_relational_zip_archived(self):
         """
-        Test that the processed version zip_size is same as zip file's size.
+        Confirm that a relational zip was archived.
         """
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        self.assertEqual(
-            processed_version.zip_size,
-            os.path.getsize(processed_version.zip_archive.path)
-        )
+        has_relational_zip = processed_version.zips.filter(
+            zip_archive__icontains='relational'
+        ).exists()
+        self.assertTrue(has_relational_zip)
+
+    def test_zip_sizes(self):
+        """
+        Confirm that each archived zip's size is the same as the actual file size.
+        """
+        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+        for z in processed_version.zips.all():
+            self.assertEqual(
+                z.zip_size,
+                os.path.getsize(z.zip_archive.path)
+            )
 
     def test_processed_file_finished(self):
         """
