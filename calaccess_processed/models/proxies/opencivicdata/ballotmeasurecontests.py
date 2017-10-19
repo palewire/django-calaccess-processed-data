@@ -107,7 +107,7 @@ class OCDFlatBallotMeasureContestManager(models.Manager):
 
 class OCDFlatBallotMeasureContestProxy(BallotMeasureContest, OCDProxyModelMixin):
     """
-    Every ballot measure recorded in CAL-ACCESS.
+    Every ballot measure.
     """
     objects = OCDFlatBallotMeasureContestManager.from_queryset(CopyQuerySet)()
 

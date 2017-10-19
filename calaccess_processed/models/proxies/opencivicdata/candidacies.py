@@ -418,7 +418,7 @@ class OCDFlatCandidacyManager(models.Manager):
 
 class OCDFlatCandidacyProxy(Candidacy, OCDProxyModelMixin):
     """
-    Every candidate for a public office recorded in CAL-ACCESS.
+    Every candidate for a public office.
     """
     objects = OCDFlatCandidacyManager.from_queryset(CopyQuerySet)()
 

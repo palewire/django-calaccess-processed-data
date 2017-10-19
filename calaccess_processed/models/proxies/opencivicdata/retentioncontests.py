@@ -112,7 +112,7 @@ class OCDFlatRetentionContestManager(models.Manager):
 
 class OCDFlatRetentionContestProxy(RetentionContest, OCDProxyModelMixin):
     """
-    Every recall measure recorded in CAL-ACCESS.
+    Every recall measure.
     """
     objects = OCDFlatRetentionContestManager.from_queryset(CopyQuerySet)()
 
