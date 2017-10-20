@@ -67,7 +67,7 @@ class Command(CalAccessCommand):
         # then load
         # self.load()
 
-        #then verify
+        # then verify
         call_command(
             'verifycalaccessprocesseddata',
             verbosity=self.verbosity,
