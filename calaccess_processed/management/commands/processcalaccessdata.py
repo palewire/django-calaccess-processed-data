@@ -65,7 +65,14 @@ class Command(CalAccessCommand):
             self.flush_data_files()
 
         # then load
-        self.load()
+        # self.load()
+
+        #then verify
+        call_command(
+            'verifycalaccessprocesseddata',
+            verbosity=self.verbosity,
+            no_color=self.no_color,
+        )
 
         # then zip
         flat_zip_path = self.zip('flat')
