@@ -114,6 +114,12 @@ class ProcessedDataTest(TestCase):
         call_command("updatecalaccessrawdata", verbosity=3, noinput=True)
         call_command("processcalaccessdata", verbosity=3, noinput=True)
 
+    def runTest(self):
+        """
+        Added to allow calling test_ methods on instance of this class in py2.
+        """
+        pass
+
     def test_scraped_propositions(self):
         """
         Test the scraped propostions loaded into the database.
