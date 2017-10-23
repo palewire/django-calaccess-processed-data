@@ -17,10 +17,9 @@ from django.utils.timezone import now
 from email.utils import formatdate
 from calaccess_raw.models import RawDataVersion
 from calaccess_processed.management.commands import CalAccessCommand
+from calaccess_processed.management.commands.verifycalaccessprocesseddata import Command as VerifyCmd # noqa
 from calaccess_processed import corrections
 from calaccess_processed.models import (
-    OCDElectionProxy,
-    OCDMembershipProxy,
     ProcessedDataVersion,
     ScrapedCandidateProxy,
 )
@@ -139,19 +138,9 @@ class ProcessedDataTest(TestCase):
 
         Test only prior elections.
         """
-        bad_elections = [
-            e for e in OCDElectionProxy.objects.filter(date__year__lte=now().year)
-            if e.regular_assembly_contest_count_actual != e.regular_assembly_contest_count_expected
-        ]
-        error_count = len(bad_elections)
-        error_list = '\n'.join([
-            '- {0} should have {1}, but has {2}'.format(
-                e, e.regular_assembly_contest_count_expected, e.regular_assembly_contest_count_actual
-            ) for e in bad_elections]
-        )
-        msg = 'Actual and expected counts of assembly contests not equal in {0} \
-elections:\n{1}'.format(error_count, error_list)
-        self.assertEqual(error_count, 0, msg)
+        passed, error_msg = VerifyCmd().test_regular_assembly_contest_counts()
+
+        self.assertTrue(passed, error_msg)
 
     def test_regular_executive_contest_counts(self):
         """
@@ -159,19 +148,9 @@ elections:\n{1}'.format(error_count, error_list)
 
         Test only prior elections.
         """
-        bad_elections = [
-            e for e in OCDElectionProxy.objects.filter(date__year__lte=now().year)
-            if e.regular_executive_contest_count_actual != e.regular_executive_contest_count_expected
-        ]
-        error_count = len(bad_elections)
-        error_list = '\n'.join([
-            '- {0} should have {1}, but has {2}'.format(
-                e, e.regular_executive_contest_count_expected, e.regular_executive_contest_count_actual
-            ) for e in bad_elections]
-        )
-        msg = 'Actual and expected counts of executive contests not equal in {0} \
-elections:\n{1}'.format(error_count, error_list)
-        self.assertEqual(error_count, 0, msg)
+        passed, error_msg = VerifyCmd().test_regular_executive_contest_counts()
+
+        self.assertTrue(passed, error_msg)
 
     def test_regular_senate_contest_counts(self):
         """
@@ -179,51 +158,25 @@ elections:\n{1}'.format(error_count, error_list)
 
         Test only prior elections.
         """
-        bad_elections = [
-            e for e in OCDElectionProxy.objects.filter(date__year__lte=now().year)
-            if e.regular_senate_contest_count_actual != e.regular_senate_contest_count_expected
-        ]
-        error_count = len(bad_elections)
-        error_list = '\n'.join([
-            '- {0} should have {1}, but has {2}'.format(
-                e, e.regular_senate_contest_count_expected, e.regular_senate_contest_count_actual
-            ) for e in bad_elections]
-        )
-        msg = 'Actual and expected counts of senate contests not equal in {0} \
-elections:\n{1}'.format(error_count, error_list)
-        self.assertEqual(error_count, 0, msg)
+        passed, error_msg = VerifyCmd().test_regular_senate_contest_counts()
+
+        self.assertTrue(passed, error_msg)
 
     def test_regular_senate_contest_districts(self):
         """
         Confirm that no elections have senate contests in the wrong districts.
         """
-        bad_elections = {}
-        for e in OCDElectionProxy.objects.all():
-            bad_senate_contests = e.get_regular_senate_contests_in_wrong_districts()
-            if len(bad_senate_contests) > 0:
-                bad_elections[e] = bad_senate_contests
-        error_list = '\n'.join([
-            '- {0} has {1}:\n{2}'.format(
-                k, len(v), '\n'.join([' - %s' % c for c in v])
-            ) for k, v in bad_elections.items()
-        ])
-        msg = '{0} elections with State Senate contests in the wrong districts:\n{1}'.format(
-            len(bad_elections), error_list
-        )
-        self.assertEqual(len(bad_elections), 0, msg)
+        passed, error_msg = VerifyCmd().test_regular_senate_contest_districts()
+
+        self.assertTrue(passed, error_msg)
 
     def test_for_duplicate_memberships(self):
         """
         Confirm there are no duplicate membership records.
         """
-        dupes = OCDMembershipProxy.objects.get_duplicates()
-        error_list = '\n'.join([
-            '- {0} in {1} repeated in {2} rows.'.format(
-                i.person, i.post, i.row_count
-            ) for i in dupes]
-        )
-        msg = '{0} duplicated Memberships:\n{1}'.format(dupes.count(), error_list)
-        self.assertFalse(dupes.exists(), msg)
+        passed, error_msg = VerifyCmd().test_for_duplicate_memberships()
+
+        self.assertTrue(passed, error_msg)
 
     def test_scraped_candidates(self):
         """
