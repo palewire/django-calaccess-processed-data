@@ -108,7 +108,7 @@ class ScrapedCandidateElectionProxy(ElectionProxyMixin, CandidateElection):
             return get_expected_election_date(
                 self.date.year, self.election_type
             )
-        except:
+        except ValueError:
             # If that fails, raise exception
             raise Exception(
                 'Unknown date for %s. Check http://www.sos.ca.gov/elections/ '

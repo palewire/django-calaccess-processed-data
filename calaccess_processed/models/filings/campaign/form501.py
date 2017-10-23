@@ -318,7 +318,7 @@ class Form501Filing(FilingMixin, Form501FilingBase):
                     dt_obj = get_expected_election_date(
                         self.election_year, self.election_type
                     )
-                except:
+                except ValueError:
                     return None
                 return OCDElectionProxy.objects.create_from_calaccess(
                     '{0} {1}'.format(self.election_year, self.election_type),

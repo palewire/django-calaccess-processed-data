@@ -47,7 +47,7 @@ def get_expected_election_date(year, election_type):
     # Rules defined here:
     # https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=ELEC&division=1.&title=&part=&chapter=1.&article= # noqa
     if year % 2 != 0:
-        raise Exception("Regular elections occur in even years.")
+        raise ValueError("Regular elections occur in even years.")
     elif election_type.upper() == 'PRIMARY':
         # Primary elections are in June
         month = 6
@@ -55,7 +55,7 @@ def get_expected_election_date(year, election_type):
         # General elections are in November
         month = 11
     else:
-        raise Exception("election_type must 'PRIMARY' or 'GENERAL'.")
+        raise ValueError("election_type must 'PRIMARY' or 'GENERAL'.")
 
     # get the first weekday
     # zero-indexed starting with monday
