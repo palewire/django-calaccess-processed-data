@@ -55,7 +55,7 @@ class FilerIDValue(CalAccessBaseModel):
         Meta model options.
         """
         app_label = 'calaccess_processed'
-        verbose_name = "RESEARCH: Filer ID value"
+        verbose_name = "Filer ID value"
         unique_together = (('table_name', 'column_name', 'value'),)
 
     def __str__(self):
@@ -98,7 +98,7 @@ class FilingIDValue(CalAccessBaseModel):
         Meta model options.
         """
         app_label = 'calaccess_processed'
-        verbose_name = "RESEARCH: Filing ID value"
+        verbose_name = "Filing ID value"
         unique_together = (('table_name', 'value'),)
 
     def __str__(self):
