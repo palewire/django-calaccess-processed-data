@@ -4,6 +4,7 @@
 Base class for proxies to OCD models.
 """
 import textwrap
+from django.template.defaultfilters import capfirst
 from django.core.exceptions import FieldDoesNotExist
 
 
@@ -48,6 +49,16 @@ class OCDProxyModelMixin(object):
         else:
             file_name = self.base_model._meta.object_name
         return file_name
+
+    @property
+    def display_name(self):
+        """
+        The version of the name for this model we prefer to display on public facing web pages.
+        """
+        if self.is_flat:
+            return capfirst(self.meta.verbose_name_plural)
+        else:
+            return self.file_name
 
     @property
     def doc(self):
