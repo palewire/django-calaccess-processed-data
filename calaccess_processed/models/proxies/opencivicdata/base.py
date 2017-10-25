@@ -20,6 +20,13 @@ class OCDProxyModelMixin(object):
         return self.__class__.__bases__[0]
 
     @property
+    def meta(self):
+        """
+        The model's meta attributes.
+        """
+        return self._meta
+
+    @property
     def is_flat(self):
         """
         True if the proxy model is used to flatten relational data models.
