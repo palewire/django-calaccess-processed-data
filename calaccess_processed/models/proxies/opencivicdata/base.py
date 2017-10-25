@@ -11,7 +11,6 @@ class OCDProxyModelMixin(object):
     """
     Properties and methods shared by all OCD proxy models.
     """
-
     @property
     def base_model(self):
         """
