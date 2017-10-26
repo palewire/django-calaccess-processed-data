@@ -59,7 +59,7 @@ TEMPLATES = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'calaccess_processed',
         'USER': 'postgres',
         'PASSWORD': '',
