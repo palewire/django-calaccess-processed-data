@@ -24,7 +24,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'django.contrib.gis',
     'calaccess_raw',
     'calaccess_scraped',
     'calaccess_processed',
