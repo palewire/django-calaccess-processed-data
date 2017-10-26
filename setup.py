@@ -45,12 +45,12 @@ from the California Secretary of State’s CAL-ACCESS database',
     zip_safe=False,  # because we're including static files
     install_requires=(
         'django-calaccess-raw-data==1.6.2',
-        'django-calaccess-scraped-data>=0.1.0',
+        'django-calaccess-scraped-data==0.1.1',
         'django>=1.10',
         'csvkit>=1.0',
         'beautifulsoup4>=4.3.2',
         'opencivicdata>=2.0',
-        'psycopg2>=2.5.4',
+        'psycopg2>=2.7.3',
     ),
     cmdclass={'test': TestCommand,},
     classifiers=(
