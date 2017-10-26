@@ -33,10 +33,10 @@ class TestCommand(Command):
 
 setup(
     name='django-calaccess-processed-data',
-    version='0.1.0rc46',
+    version='0.1.0',
     license='MIT',
-    description='A Django app to transform and refine campaign finance data \
-from the California Secretary of State’s CAL-ACCESS database',
+    description='A Django app to transform and refine campaign finance data from the California Secretary of State’s \
+CAL-ACCESS database',
     url='http://django-calaccess-campaign-browser.californiacivicdata.org',
     author='California Civic Data Coalition',
     author_email='cacivicdata@gmail.com',
