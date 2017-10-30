@@ -64,13 +64,8 @@ class Command(CalAccessCommand):
         filings_data_path = os.path.join(self.processed_data_dir, 'filings')
         os.path.isdir(filings_data_path) or os.makedirs(filings_data_path)
 
-        # handle version models first
-        version_models = self.get_model_list('version')
-        self.load_model_list(version_models)
-
-        # then filing models
-        filing_models = self.get_model_list('filing')
-        self.load_model_list(filing_models)
+        self.handle_models('version')
+        self.handle_models('filing')
 
         self.success("Done!")
 
@@ -95,7 +90,7 @@ class Command(CalAccessCommand):
                 m for m in non_abstract_models if 'Version' not in str(m)
             ]
         else:
-            raise Exception('model_type must be "version" or "filing".')
+            raise ValueError('model_type must be "version" or "filing".')
 
         # if not forcing a restart, filter out the models already loaded
         if not self.force_restart:
@@ -123,14 +118,6 @@ class Command(CalAccessCommand):
                 m for m in models_to_load
                 if m._meta.object_name not in loaded_models
             ]
-
-        if self.verbosity >= 2:
-            self.log(
-                " Loading {0} {1} models.".format(
-                    len(models_to_load),
-                    model_type,
-                )
-            )
 
         return models_to_load
 
@@ -167,3 +154,15 @@ class Command(CalAccessCommand):
                     'archivecalaccessprocessedfile',
                     m._meta.object_name,
                 )
+
+    def handle_models(self, model_type):
+        """
+        Handle logic for loading models of model_type.
+        """
+        models = self.get_model_list(model_type)
+        if len(models) > 0:
+            if self.verbosity >= 2:
+                self.log(
+                    " Loading {0} {1} models.".format(len(models), model_type)
+                )
+            self.load_model_list(models)
