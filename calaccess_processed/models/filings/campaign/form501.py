@@ -293,7 +293,10 @@ class Form501Filing(FilingMixin, Form501FilingBase):
 
         This is useful when trying to consolidate these forms with scraped data in our OCD models.
         """
-        return '{0.office} {0.district}'.format(self).strip()
+        if self.district:
+            return '{0.office} {0.district}'.format(self).strip()
+        else:
+            return self.office
 
     @property
     def ocd_election(self):
