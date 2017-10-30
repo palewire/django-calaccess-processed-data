@@ -25,9 +25,3 @@ from the California Secretary of State’s `CAL-ACCESS <http://www.sos.ca.gov/pr
    :target: https://coveralls.io/r/california-civic-data-coalition/django-calaccess-processed-data?branch=master
 .. |Documentation Status| image:: https://readthedocs.org/projects/django-calaccess-processed-data/badge/
    :target: http://django-calaccess.californiacivicdata.org
-
-Warning
--------
-
-**This is a work in progress.** Its analysis should be considered as provisional
-until it is further tested and debugged.

@@ -24,7 +24,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'django.contrib.gis',
     'calaccess_raw',
     'calaccess_scraped',
     'calaccess_processed',
@@ -60,7 +59,7 @@ TEMPLATES = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'calaccess_processed',
         'USER': 'postgres',
         'PASSWORD': '',

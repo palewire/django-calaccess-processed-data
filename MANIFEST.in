@@ -1,5 +1,5 @@
 include LICENSE
 include README.rst
-include .github/CONTRIBUTING.md
-recursive-include calaccess_processed/sql/ *
-recursive-include calaccess_processed/corrections/ *.csv
+recursive-include calaccess_processed/fixtures *
+recursive-include calaccess_processed/sql *.sql
+recursive-include calaccess_processed/corrections *.csv

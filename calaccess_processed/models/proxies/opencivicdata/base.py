@@ -4,6 +4,7 @@
 Base class for proxies to OCD models.
 """
 import textwrap
+from django.template.defaultfilters import capfirst
 from django.core.exceptions import FieldDoesNotExist
 
 
@@ -11,13 +12,19 @@ class OCDProxyModelMixin(object):
     """
     Properties and methods shared by all OCD proxy models.
     """
-
     @property
     def base_model(self):
         """
         The model being proxied.
         """
         return self.__class__.__bases__[0]
+
+    @property
+    def meta(self):
+        """
+        The model's meta attributes.
+        """
+        return self._meta
 
     @property
     def is_flat(self):
@@ -42,6 +49,16 @@ class OCDProxyModelMixin(object):
         else:
             file_name = self.base_model._meta.object_name
         return file_name
+
+    @property
+    def display_name(self):
+        """
+        The version of the name for this model we prefer to display on public facing web pages.
+        """
+        if self.is_flat:
+            return capfirst(self.meta.verbose_name_plural)
+        else:
+            return self.file_name
 
     @property
     def doc(self):
