@@ -54,7 +54,7 @@ def dedupe_person_ids(person):
 
     for i in dupe_filer_ids.all():
         # delete all rows with that filer_id
-        person.filter(identifier=i['identifier']).delete()
+        person.identifiers.filter(identifier=i['identifier']).delete()
         # then re-add the one
         person.identifiers.create(
             scheme='calaccess_filer_id',
