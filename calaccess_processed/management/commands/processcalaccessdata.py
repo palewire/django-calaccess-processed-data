@@ -53,7 +53,7 @@ class Command(CalAccessCommand):
             return False
 
         # Otherwise proceed with the standard routine
-        # Firt, start the clock if created (or restart if forcing restart)
+        # First, start the clock if created (or restart if forcing restart)
         if created or self.force_restart:
             self.processed_version.process_start_datetime = now()
             # also reset finish time if forcing re-start
