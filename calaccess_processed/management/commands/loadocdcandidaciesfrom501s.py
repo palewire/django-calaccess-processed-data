@@ -31,7 +31,7 @@ class Command(CalAccessCommand):
         else:
             form501_count = Form501Filing.objects.without_candidacy().count()
             self.header(
-                "Loading %s additional candidacies from Form 501 filings" % form501_count
+                "Processing %s Form 501 filings without candidacies" % form501_count
             )
             self.load()
 
