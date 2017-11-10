@@ -111,11 +111,23 @@ class OCDFilingSourceProxy(FilingSource, OCDProxyModelMixin):
         proxy = True
 
 
+class OCDFilingActionManager(CopyManager):
+    """
+    Manager with custom methods for OCD FilingAction model.
+    """
+    def load_form460_data(self):
+        """
+        Load OCD FilingAction with data extracted from Form460FilingVersion.
+        """
+        logger.info(' Inserting new Filing Actions...')
+        execute_custom_sql('insert_filing_actions_from_form460s')
+
+
 class OCDFilingActionProxy(FilingAction, OCDProxyModelMixin):
     """
     A proxy on the OCD FilingAction model.
     """
-    objects = CopyManager()
+    objects = OCDFilingActionManager()
 
     class Meta:
         """

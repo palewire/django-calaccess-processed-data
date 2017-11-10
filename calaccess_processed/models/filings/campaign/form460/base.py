@@ -12,6 +12,12 @@ class Form460FilingBase(CampaignFinanceFilingBase):
     """
     Base and abstract model for Form 460 filings.
     """
+    statement_type = models.CharField(
+        max_length=50,
+        verbose_name='statement type',
+        help_text='Type of statement, e.g., "Quarterly", "Semi-Annual", Pre-'
+                  'Election (from CVR_CAMPAIGN_DISCLOSURE.STMT_TYPE)',
+    )
     from_date = models.DateField(
         verbose_name='from date',
         db_index=True,

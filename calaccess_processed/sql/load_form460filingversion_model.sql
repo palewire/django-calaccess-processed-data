@@ -3,6 +3,7 @@ INSERT INTO calaccess_processed_form460filingversion (
     amend_id,
     filer_id,
     date_filed,
+    statement_type,
     from_date,
     thru_date,
     filer_lastname,
@@ -33,6 +34,19 @@ SELECT
     cvr."AMEND_ID" AS amend_id,
     x."FILER_ID" AS filer_id,
     cvr."RPT_DATE" AS date_filed,
+    CASE
+        WHEN lower(cvr."STMT_TYPE") = 'PE' THEN 'Pre-Election'
+        WHEN lower(cvr."STMT_TYPE") = 'QS' THEN 'Quarterly'
+        WHEN lower(cvr."STMT_TYPE") = 'QT' THEN 'Quarterly'
+        WHEN lower(cvr."STMT_TYPE") = 'SA' THEN 'Semi-Annual'
+        WHEN lower(cvr."STMT_TYPE") = 'S1' THEN 'Semi-Annual'
+        WHEN lower(cvr."STMT_TYPE") = 'S2' THEN 'Semi-Annual'
+        WHEN lower(cvr."STMT_TYPE") = 'SE' THEN 'Supplemental Pre-elect'
+        WHEN lower(cvr."STMT_TYPE") = 'SY' THEN 'Special Odd-Yr. Campaign'
+        WHEN lower(cvr."STMT_TYPE") = 'TS' THEN 'Termination Statement'
+        WHEN cvr."STMT_TYPE" = '**' THEN 'Amendment'
+        ELSE 'Unknown'
+    END AS statement_type
     cvr."FROM_DATE" AS from_date,
     cvr."THRU_DATE" AS thru_date,
     UPPER(cvr."FILER_NAML") AS filer_lastname,
