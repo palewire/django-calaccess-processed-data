@@ -12,7 +12,7 @@ from postgres_copy import CopyQuerySet
 
 class OCDAssemblyDivisionManager(models.Manager):
     """
-    Custom helpers for the OCD Division model.
+    Custom manager for state assembly OCD Divisions.
     """
     def get_queryset(self):
         """
@@ -26,7 +26,7 @@ class OCDAssemblyDivisionManager(models.Manager):
 
 class OCDSenateDivisionManager(models.Manager):
     """
-    Custom helpers for the OCD Division model.
+    Custom manager for state senate OCD Divisions.
     """
     def get_queryset(self):
         """
@@ -40,13 +40,23 @@ class OCDSenateDivisionManager(models.Manager):
 
 class OCDCaliforniaDivisionManager(models.Manager):
     """
-    Custom helpers for the OCD Division model.
+    Custom manager for OCD Divisions in California.
     """
+    def get_queryset(self):
+        """
+        Filters down to divisions in California.
+        """
+        return super(OCDCaliforniaDivisionManager, self).get_queryset().filter(
+            subid1='ca',
+        )
+
     def california(self):
         """
         Returns state of California division.
         """
-        return self.get_queryset().get(id='ocd-division/country:us/state:ca')
+        return super(OCDCaliforniaDivisionManager, self).get_queryset().get(
+            id='ocd-division/country:us/state:ca'
+        )
 
 
 class OCDDivisionProxy(Division, OCDProxyModelMixin):

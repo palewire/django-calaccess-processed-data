@@ -156,3 +156,9 @@ elections:\n{1}'.format(error_count, error_list)
         msg = '{0} duplicated Memberships:\n{1}'.format(dupes.count(), error_list)
 
         return (not dupes.exists(), msg)
+
+    def test_form460_filings(self):
+        """
+        Confirm that all Form460Filings are loaded.
+        """
+        pass

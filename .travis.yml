@@ -23,6 +23,7 @@ install:
 before_script:
  - cp example/project/settings_local.py.template example/settings_local.py
  - psql -c 'create database calaccess_processed;' -U postgres
+ - psql -U postgres -c "create extension pgcrypto;"
 
 script:
  - flake8 calaccess_processed

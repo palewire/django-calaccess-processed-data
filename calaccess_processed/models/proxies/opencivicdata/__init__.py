@@ -11,6 +11,20 @@ from .ballotmeasurecontests import (
     OCDBallotMeasureContestSourceProxy,
     OCDFlatBallotMeasureContestProxy,
 )
+from .campaign_finance import (
+    OCDCommitteeProxy,
+    OCDCommitteeIdentifierProxy,
+    OCDCommitteeNameProxy,
+    OCDCommitteeSourceProxy,
+    OCDCommitteeTypeProxy,
+    OCDFilingProxy,
+    OCDFilingIdentifierProxy,
+    OCDFilingSourceProxy,
+    OCDFilingActionProxy,
+    OCDFilingActionSummaryAmountProxy,
+    OCDTransactionProxy,
+    OCDTransactionIdentifierProxy,
+)
 from .candidatecontests import (
     OCDCandidateContestProxy,
     OCDCandidateContestPostProxy,
@@ -33,6 +47,7 @@ from .organizations import (
     OCDOrganizationIdentifierProxy,
     OCDOrganizationNameProxy,
 )
+from .jurisdictions import OCDJurisdictionProxy
 from .parties import OCDPartyProxy
 from .people import (
     OCDPersonProxy,
@@ -59,6 +74,18 @@ __all__ = (
     'OCDCandidateContestSourceProxy',
     'OCDCandidacyProxy',
     'OCDCandidacySourceProxy',
+    'OCDCommitteeProxy',
+    'OCDCommitteeIdentifierProxy',
+    'OCDCommitteeNameProxy',
+    'OCDCommitteeSourceProxy',
+    'OCDCommitteeTypeProxy',
+    'OCDFilingProxy',
+    'OCDFilingIdentifierProxy',
+    'OCDFilingSourceProxy',
+    'OCDFilingActionProxy',
+    'OCDFilingActionSummaryAmountProxy',
+    'OCDTransactionProxy',
+    'OCDTransactionIdentifierProxy',
     'OCDDivisionProxy',
     'OCDElectionProxy',
     'OCDElectionIdentifierProxy',
@@ -66,6 +93,7 @@ __all__ = (
     'OCDFlatBallotMeasureContestProxy',
     'OCDFlatCandidacyProxy',
     'OCDFlatRetentionContestProxy',
+    'OCDJurisdictionProxy',
     'OCDMembershipProxy',
     'OCDOrganizationProxy',
     'OCDOrganizationIdentifierProxy',

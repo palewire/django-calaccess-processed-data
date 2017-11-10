@@ -7,6 +7,7 @@ from __future__ import unicode_literals
 import os
 from django.db import connection
 from postgres_copy import CopyManager
+from calaccess_processed.sql import get_custom_sql_path
 
 
 class ProcessedDataManager(CopyManager):
@@ -151,8 +152,4 @@ class ProcessedDataManager(CopyManager):
         """
         Return the path to the .sql file with the model's loading query.
         """
-        return os.path.join(
-            os.path.dirname(__file__),
-            'sql',
-            'load_%s_model.sql' % self.model._meta.model_name,
-        )
+        return get_custom_sql_path(self.model._meta.model_name)
