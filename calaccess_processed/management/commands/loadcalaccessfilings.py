@@ -78,6 +78,7 @@ class Command(CalAccessCommand):
         non_abstract_models = [
             m for m in apps.get_app_config('calaccess_processed').get_models()
             if not m._meta.abstract and
+            not m._meta.proxy and
             'filings' in str(m)
         ]
 
