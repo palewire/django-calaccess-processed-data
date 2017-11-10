@@ -30,7 +30,7 @@ def get_custom_sql_str(file_path):
 
 def compose_custom_sql(sql_str, **kwargs):
     """
-    Return the string of custom SQL in file_path.
+    Return a psycopg2.sql Composable.
     """
     placeholder_identifer_map = {
         k: sql.Identifier(v) for k, v in kwargs.items()
