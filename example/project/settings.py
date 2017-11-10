@@ -1,4 +1,5 @@
 import os
+import sys
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'r269$heh9at2cot+5l$*$4&xzwsfbbg0&&^prr+e&oh)_4-+ga'
 DEBUG = True
@@ -30,6 +31,7 @@ INSTALLED_APPS = (
     'toolbox',
     'opencivicdata.core.apps.BaseConfig',
     'opencivicdata.elections.apps.BaseConfig',
+    'opencivicdata.campaign_finance.apps.BaseConfig',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -74,6 +76,34 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 STATIC_URL = '/static/'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+        },
+    },
+    'loggers': {
+        'calaccess_raw.management': {
+            'handlers': ['console',],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'calaccess_scraped.management': {
+            'handlers': ['console',],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'calaccess_processed': {
+            'handlers': ['console',],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
 
 try:
     from .settings_local import *
