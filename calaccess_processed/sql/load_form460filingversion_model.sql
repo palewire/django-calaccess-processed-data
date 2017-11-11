@@ -46,7 +46,7 @@ SELECT
         WHEN lower(cvr."STMT_TYPE") = 'TS' THEN 'Termination Statement'
         WHEN cvr."STMT_TYPE" = '**' THEN 'Amendment'
         ELSE 'Unknown'
-    END AS statement_type
+    END AS statement_type,
     cvr."FROM_DATE" AS from_date,
     cvr."THRU_DATE" AS thru_date,
     UPPER(cvr."FILER_NAML") AS filer_lastname,
