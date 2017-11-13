@@ -64,19 +64,24 @@ def log_row_count(row_count, operation):
     logger.info(string)
 
 
-def execute_custom_sql(file_name, **kwargs):
+def execute_custom_sql(file_name, params=None, identifiers=None):
     """
-    Execute custom sql in file_name with params (if provided).
+    Execute custom sql.
+
+    Args:
+        file_name (str): Name of .sql file.
+        params (dict): Keys are placeholders in sql and value is parameter.
+        identifier (dict): Keys are placeholders in sql and value is identifier (e.
 
     Log the number of rows and operation performed.
     """
     file_path = get_custom_sql_path(file_name)
     sql_str = get_custom_sql_str(file_path)
     operation = extract_operation_from_sql(sql_str)
-    if kwargs:
-        prepared_sql = compose_custom_sql(sql_str, **kwargs)
+    if identifiers:
+        composed_sql = compose_custom_sql(sql_str, **identifiers)
     else:
-        prepared_sql = sql_str
+        composed_sql = sql_str
     with connection.cursor() as cursor:
-        cursor.execute(prepared_sql)
+        cursor.execute(composed_sql, params)
         log_row_count(cursor.rowcount, operation)

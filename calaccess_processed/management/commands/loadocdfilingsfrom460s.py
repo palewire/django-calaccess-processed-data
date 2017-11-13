@@ -13,6 +13,7 @@ from calaccess_processed.models import (
     OCDFilingProxy,
     OCDFilingIdentifierProxy,
     OCDFilingActionProxy,
+    OCDFilingActionSummaryAmountProxy,
 )
 
 
@@ -41,5 +42,6 @@ class Command(CalAccessCommand):
         OCDFilingIdentifierProxy.objects.load_form460_data()
 
         OCDFilingActionProxy.objects.load_form460_data()
+        OCDFilingActionSummaryAmountProxy.objects.load_form460_data()
 
         self.success("Done!")
