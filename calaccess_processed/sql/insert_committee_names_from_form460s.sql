@@ -21,4 +21,9 @@ FROM (
     GROUP BY 1, 2
 ) f460
 JOIN opencivicdata_committeeidentifier ci
-ON ci.identifier::int = f460.filer_id;
+ON ci.identifier::int = f460.filer_id
+-- filter out ocd-committee-id/name combos already inserted
+LEFT JOIN opencivicdata_committeename cn
+ON ci.committee_id = cn.committee_id
+AND f460.filer_lastname = cn.name
+WHERE cn.committee_id IS NULL;
