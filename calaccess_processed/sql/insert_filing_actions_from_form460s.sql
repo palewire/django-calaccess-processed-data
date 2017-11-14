@@ -26,7 +26,7 @@ SELECT
     f460v.amend_id = latest.amend_id as is_current,
     now() as created_at,
     now() as updated_at,
-    ('{"amend_id":' || f460v.amend_id || '}')::json as extras,
+    ('{"amend_id":' || f460v.amend_id || '}')::jsonb as extras,
     ARRAY[]::char[] as locked_fields
 FROM calaccess_processed_form460filingversion f460v
 -- get the filing_id

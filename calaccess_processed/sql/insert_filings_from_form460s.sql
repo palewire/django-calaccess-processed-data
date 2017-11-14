@@ -22,7 +22,7 @@ SELECT
     now() as updated_at,
     -- temporarily store the filer_id in the extras field
     -- this is removed in remove_calaccess_filer_ids_from_committees.sql
-    ('{"calaccess_filing_id":' || f460.filing_id || '}')::json as extras,
+    ('{"calaccess_filing_id":' || f460.filing_id || '}')::jsonb as extras,
     ARRAY[]::char[] as locked_fields
 FROM calaccess_processed_form460filing f460
 JOIN opencivicdata_committeeidentifier ci
