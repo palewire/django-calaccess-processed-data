@@ -120,7 +120,7 @@ class Command(CalAccessCommand):
         )
         self.duration()
 
-        calaccess_processed(
+        call_command(
             'loadocdfilingsfrom460s',
             verbosity=self.verbosity,
             no_color=self.no_color,
