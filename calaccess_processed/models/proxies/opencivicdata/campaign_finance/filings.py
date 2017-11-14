@@ -6,6 +6,7 @@ Proxy models for OCD Filing related models..
 from __future__ import unicode_literals
 import logging
 from calaccess_processed.models import (
+    Form460Filing,
     Form460FilingVersion,
     Form460ScheduleASummaryVersion,
     Form460ScheduleCSummaryVersion,
@@ -21,6 +22,7 @@ from opencivicdata.campaign_finance.models import (
     TransactionIdentifier,
 )
 from postgres_copy import CopyManager
+from psycopg2 import sql
 from ..base import OCDProxyModelMixin
 logger = logging.getLogger(__name__)
 
@@ -29,39 +31,57 @@ class OCDFilingManager(CopyManager):
     """
     Manager with custom methods for OCD Filing model.
     """
+    def _update_filings_from_form460_field(self, target_column, source_column):
+        """
+        Update target_column on OCD Filing with value from source_column.
+        """
+        target_field = Filing._meta.get_field(target_column)
+        logger.info(' ...%s...' % target_field.verbose_name)
+        source_table_identifier = sql.Identifier(
+            Form460Filing._meta.db_table
+        )
+        source_column_identifier = sql.Identifier(
+            Form460Filing._meta.get_field(source_column).column
+        )
+        target_column_identifier = sql.Identifier(
+            Filing._meta.get_field(target_column).column
+        )
+        execute_custom_sql(
+            'update_filings_from_formfiling_table',
+            composables={
+                'source_table': source_table_identifier,
+                'source_column': source_column_identifier,
+                'target_column': target_column_identifier,
+            },
+        )
+
+    def _update_filings_filer_id(self, model):
+        """
+        Update filer_id on OCD Filings.
+        """
+        processed_data_table_identifier = sql.Identifier(
+            model._meta.db_table
+        )
+        logger.info(' ...filer id...')
+        execute_custom_sql(
+            'update_filings_filer_id',
+            composables={
+                'processed_data_table': processed_data_table_identifier,
+            },
+        )
+
     def load_form460_data(self):
         """
         Load OCD Filing with data extracted from Form460Filing.
         """
         logger.info(' Updating existing Filings...')
-        logger.info(' ...coverage_start_date...')
-
-        execute_custom_sql(
-            'update_filings_from_form460s',
-            identifiers={
-                'to_update': 'coverage_start_date',
-                'source_table': 'calaccess_processed_form460filing',
-                'source_column': 'from_date',
-            }
+        self._update_filings_from_form460_field(
+            'coverage_start_date', 'from_date',
         )
-        logger.info(' ...coverage_end_date...')
-        execute_custom_sql(
-            'update_filings_from_form460s',
-            identifiers={
-                'to_update': 'coverage_start_date',
-                'source_table': 'calaccess_processed_form460filing',
-                'source_column': 'from_date',
-            }
+        self._update_filings_from_form460_field(
+            'coverage_end_date', 'thru_date',
         )
-        logger.info(' ...filer_id...')
-        execute_custom_sql(
-            'update_filings_from_form460s',
-            identifiers={
-                'to_update': 'coverage_start_date',
-                'source_table': 'calaccess_processed_form460filing',
-                'source_column': 'from_date',
-            }
-        )
+        self._update_filings_filer_id(Form460Filing)
 
         logger.info(' Inserting new Filings...')
         execute_custom_sql('insert_filings_from_form460s')
@@ -164,6 +184,7 @@ class OCDFilingActionSummaryAmountManager(CopyManager):
             if f.__class__.__name__ == 'IntegerField' and
             f.name[-3:] != '_id'
         ]
+        table_composable = sql.Identifier(Form460FilingVersion._meta.db_table)
         for f in sum_fields:
             label_words = [w.capitalize() for w in f.name.split('_')]
             label = ' '.join(label_words)
@@ -171,9 +192,9 @@ class OCDFilingActionSummaryAmountManager(CopyManager):
             execute_custom_sql(
                 'insert_filing_action_summary_amounts',
                 params={'label': label},
-                identifiers={
-                    'source_table': Form460FilingVersion._meta.db_table,
-                    'source_column': f.column,
+                composables={
+                    'source_table': table_composable,
+                    'source_column': sql.Identifier(f.column),
                 }
             )
 
@@ -181,15 +202,20 @@ class OCDFilingActionSummaryAmountManager(CopyManager):
         """
         Load OCD FilingActionSummaryAmount with from a schedule summary field.
         """
-        field = model._meta.get_field(field_name)
+        source_table_identifier = sql.Identifier(model._meta.db_table)
+        source_column_identifier = sql.Identifier(
+            model._meta.get_field(field_name).column
+        )
+
         logger.info(' ...%s...' % label)
+
         execute_custom_sql(
-            'insert_filing_action_summary_amounts',
+            'insert_filing_action_summary_amount_from_schedules',
             params={'label': label},
-            identifiers={
-                'source_table': model._meta.db_table,
-                'source_column': field.column,
-            }
+            composables={
+                'source_table': source_table_identifier,
+                'source_column': source_column_identifier,
+            },
         )
 
     def load_form460_data(self):
@@ -200,29 +226,29 @@ class OCDFilingActionSummaryAmountManager(CopyManager):
         logger.info(' ...from Form 460 Summary Sheet...')
         self._load_form460_summary_sheet_data()
 
-        # logger.info(' ...from Form 460 Schedule A Summary...')
-        # self._load_from_form460_schedule_summary_field(
-        #     Form460ScheduleASummaryVersion,
-        #     'Itemized Monetary Contributions',
-        #     'itemized_contributions',
-        # )
-        # self._load_from_form460_schedule_summary_field(
-        #     Form460ScheduleASummaryVersion,
-        #     'Unitemized Monetary Contributions',
-        #     'unitemized_contributions',
-        # )
+        logger.info(' ...from Form 460 Schedule A Summary...')
+        self._load_from_form460_schedule_summary_field(
+            Form460ScheduleASummaryVersion,
+            'Itemized Monetary Contributions',
+            'itemized_contributions',
+        )
+        self._load_from_form460_schedule_summary_field(
+            Form460ScheduleASummaryVersion,
+            'Unitemized Monetary Contributions',
+            'unitemized_contributions',
+        )
 
-        # logger.info(' ...from Form 460 Schedule C Summary...')
-        # self._load_from_form460_schedule_summary_field(
-        #     Form460ScheduleCSummaryVersion,
-        #     'Itemized Non-monetary Contributions',
-        #     'itemized_contributions',
-        # )
-        # self._load_from_form460_schedule_summary_field(
-        #     Form460ScheduleCSummaryVersion,
-        #     'Unitemized Non-monetary Contributions',
-        #     'unitemized_contributions',
-        # )
+        logger.info(' ...from Form 460 Schedule C Summary...')
+        self._load_from_form460_schedule_summary_field(
+            Form460ScheduleCSummaryVersion,
+            'Itemized Non-monetary Contributions',
+            'itemized_contributions',
+        )
+        self._load_from_form460_schedule_summary_field(
+            Form460ScheduleCSummaryVersion,
+            'Unitemized Non-monetary Contributions',
+            'unitemized_contributions',
+        )
 
 
 class OCDFilingActionSummaryAmountProxy(FilingActionSummaryAmount, OCDProxyModelMixin):
