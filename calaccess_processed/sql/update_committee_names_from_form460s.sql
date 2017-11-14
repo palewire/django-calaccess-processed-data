@@ -1,6 +1,8 @@
 -- Updating name field on any existing Committee from Form460Filing
 UPDATE opencivicdata_committee
-SET name = f460.filer_lastname
+SET 
+    name = f460.filer_lastname,
+    updated_at = now()
 FROM opencivicdata_committee c
 JOIN opencivicdata_committeeidentifier ci
 ON c.id = ci.committee_id

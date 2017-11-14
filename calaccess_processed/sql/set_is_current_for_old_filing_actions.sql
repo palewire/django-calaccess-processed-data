@@ -1,6 +1,7 @@
 -- Setting is_current to false for older Filing Actions
 UPDATE opencivicdata_filingaction
-    SET is_current = false
+    SET is_current = false,
+    updated_at = now()
 FROM opencivicdata_filingaction fa
 -- get latest amend_id for each filing
 LEFT JOIN (

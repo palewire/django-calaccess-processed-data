@@ -1,6 +1,8 @@
 -- Updating target field on any existing Filing from source table and column
 UPDATE opencivicdata_filing
-SET {target_column} = {source_table}.{source_column}
+SET 
+    {target_column} = {source_table}.{source_column},
+    updated_at = now()
 FROM opencivicdata_filing f
 -- join to FilingIdentifier to get calaccess_filing_id 
 JOIN opencivicdata_filingidentifier fi

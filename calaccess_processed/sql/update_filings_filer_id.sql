@@ -1,6 +1,8 @@
 -- Update filer_id on OCD Filing
 UPDATE opencivicdata_filing
-SET filer_id = ci.committee_id
+SET 
+    filer_id = ci.committee_id,
+    updated_at = now()
 FROM opencivicdata_filing f
 -- join to FilingIdentifier to get calaccess_filing_id 
 JOIN opencivicdata_filingidentifier fi
