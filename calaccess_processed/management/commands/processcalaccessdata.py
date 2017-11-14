@@ -120,6 +120,13 @@ class Command(CalAccessCommand):
         )
         self.duration()
 
+        calaccess_processed(
+            'loadocdfilingsfrom460s',
+            verbosity=self.verbosity,
+            no_color=self.no_color,
+        )
+        self.duration()
+
     def zip(self, directory_name):
         """
         Zip up files in directory_name (in processed_data_dir).
