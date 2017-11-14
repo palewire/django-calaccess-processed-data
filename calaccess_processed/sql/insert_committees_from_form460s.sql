@@ -10,7 +10,7 @@ INSERT INTO opencivicdata_committee (
     locked_fields
 )
 SELECT 
-    'ocd-campaign-finance-committee/' || gen_random_uuid() as id,
+    'ocd-campaign-finance-committee/' || gen_random_uuid()::varchar as id,
     f460.filer_lastname as name,
     '' as image,
     types.id as committee_type_id,

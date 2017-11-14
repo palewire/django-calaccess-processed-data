@@ -14,7 +14,7 @@ INSERT INTO opencivicdata_filingaction (
     locked_fields
 )
 SELECT 
-    'campaign-finance-filing-action/' || gen_random_uuid() as id,
+    'campaign-finance-filing-action/' || gen_random_uuid()::varchar as id,
     fi.filing_id as filing_id,
     CASE 
         WHEN f460v.amend_id = 0 THEN ARRAY['initial']
