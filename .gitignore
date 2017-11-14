@@ -31,5 +31,6 @@ example/test-data/processed.zip
 example/test-data/flat.zip
 example/test-data/relational.zip
 example/test-data/.media
+example/test-data/*.zip
 .python-version
 *_****-**-**_**-**-**.zip
