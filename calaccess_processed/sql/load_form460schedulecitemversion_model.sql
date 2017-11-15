@@ -96,7 +96,13 @@ SELECT
         WHEN 'X' THEN true
         ELSE false 
     END AS intermediary_is_self_employed,
-    rcpt."AMOUNT" AS fair_market_value,
+    -- make sure all "returned" contributions are negative
+    CASE
+        WHEN rcpt."AMOUNT" > 0 AND UPPER(rcpt."TRAN_TYPE") = 'R' 
+            THEN 0 - rcpt."AMOUNT"
+        ELSE
+            rcpt."AMOUNT"
+    END AS fair_market_value,
     rcpt."CTRIB_DSCR" AS contribution_description,
     rcpt."CUM_YTD" AS cumulative_ytd_amount,
     rcpt."CUM_OTH" AS cumulative_election_amount
