@@ -11,7 +11,7 @@ import time
 from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
-from django.db.models import Count
+from django.db import connection, models
 from django.test import TestCase, override_settings
 from django.utils.timezone import now
 from email.utils import formatdate
@@ -74,6 +74,10 @@ class ProcessedDataTest(TestCase):
         Load data for other tests.
         """
         super(ProcessedDataTest, cls).setUpClass()
+        # install pgcrypto extension in test db
+        with connection.cursor() as cursor:
+            cursor.execute('CREATE EXTENSION IF NOT EXISTS pgcrypto;')
+
         # fake a previous raw data download
         download_dir = os.path.join(settings.CALACCESS_DATA_DIR, 'download')
         os.path.exists(download_dir) or os.mkdir(download_dir)
@@ -204,7 +208,7 @@ class ProcessedDataTest(TestCase):
             person_id_groups_q = contest.candidacies.values(
                 'person_id',
             ).annotate(
-                row_count=Count('id'),
+                row_count=models.Count('id'),
             ).order_by().filter(row_count__gt=1)
 
             self.assertTrue(
@@ -220,7 +224,7 @@ class ProcessedDataTest(TestCase):
             ).values(
                 'person__identifiers__identifier'
             ).annotate(
-                row_count=Count('id'),
+                row_count=models.Count('id'),
             ).order_by().filter(row_count__gt=1)
 
             self.assertTrue(
@@ -235,7 +239,7 @@ class ProcessedDataTest(TestCase):
             candidate_name_groups_q = contest.candidacies.values(
                 'candidate_name',
             ).annotate(
-                row_count=Count('id'),
+                row_count=models.Count('id'),
             ).order_by().filter(row_count__gt=1)
 
             # loop over each group of multiple candidacies sharing the same candidate_name
@@ -273,7 +277,7 @@ class ProcessedDataTest(TestCase):
             person_name_groups_q = contest.candidacies.values(
                 'person__name',
             ).annotate(
-                row_count=Count('id'),
+                row_count=models.Count('id'),
             ).order_by().filter(row_count__gt=1)
 
             # loop over each group of multiple candidacies sharing the same candidate_name
