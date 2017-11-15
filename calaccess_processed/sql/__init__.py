@@ -79,5 +79,11 @@ def execute_custom_sql(file_name, params=None, composables=None):
     else:
         composed_sql = sql_str
     with connection.cursor() as cursor:
+        cursor.execute('select version();')
+        print(cursor.fetchone())
+
+        cursor.execute("select pg_get_functiondef(to_regproc('gen_random_uuid'));")
+        print(cursor.fetchone())
+
         cursor.execute(composed_sql, params)
         log_row_count(cursor.rowcount, operation)
