@@ -12,7 +12,7 @@ INSERT INTO opencivicdata_filing (
     locked_fields
 )
 SELECT
-    'ocd-campaign-finance-filing/' || gen_random_uuid()::varchar as id, 
+    'ocd-campaign-finance-filing/' || gen_random_uuid() as id, 
     'Form 460' as classification,
     f460.from_date as coverage_start_date,
     f460.thru_date as coverage_end_date,
