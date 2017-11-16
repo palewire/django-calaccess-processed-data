@@ -7,7 +7,8 @@ admin.autodiscover()
 
 
 urlpatterns = (
-    url(r'^$', views.election_list, name="election_list"),
+    url(r'^$', views.index, name="index"),
+    url(r'^election/$', views.election_list, name="election_list"),
     url(r'^election/(?P<id>(.*))/$', views.election_detail, name="election_detail"),
     url(r'^candidatecontest/(?P<id>(.*))/$', views.candidatecontest_detail, name="candidatecontest_detail"),
     url(r'^post/(?P<pk>(.*))/$', views.PostDetail.as_view(), name="post_detail"),
@@ -17,6 +18,8 @@ urlpatterns = (
     url(r'^primaries-no-party/$', views.PrimaryNoPartyList.as_view(), name="primarynoparty_list"),
     url(r'^parties/$', views.PartyList.as_view(), name="party_list"),
     url(r'^parties/(?P<pk>(.*))/$', views.PartyDetail.as_view(), name="party_detail"),
+    url(r'^committees/$', views.CommitteeList.as_view(), name="committee_list"),
+    url(r'^committees/(?P<pk>(.*))/$', views.CommitteeDetail.as_view(), name="committee_detail"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^static/(?P<path>.*)$', serve, {
         'document_root': settings.STATIC_ROOT,

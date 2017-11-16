@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Processed data</h1>
+
+    <table class="table table-sm">
+        <tr>
+            <td>
+                <a href="{% url 'election_list' %}">Elections</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{% url 'person_list' %}">People</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{% url 'party_list' %}">Parties</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="{% url 'committee_list' %}">Committees</a>
+            </td>
+        </tr>
+    </table>
+
+{% endblock %}

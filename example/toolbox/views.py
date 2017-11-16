@@ -6,11 +6,15 @@ from calaccess_processed.models import (
     OCDCandidacyProxy,
     OCDPostProxy,
     OCDPersonProxy,
-    OCDPartyProxy
+    OCDPartyProxy,
+    OCDCommitteeProxy
 )
 from opencivicdata.elections.models import CandidateContest
 from django.views.generic import DetailView, ListView
 
+
+def index(request):
+    return render(request, "index.html")
 
 
 def election_list(request):
@@ -95,3 +99,13 @@ class PrimaryNoPartyList(ListView):
             ])
         except OCDPartyProxy.DoesNotExist:
             return CandidateContest.objects.none()
+
+
+class CommitteeList(ListView):
+    model = OCDCommitteeProxy
+    template_name = "committee_list.html"
+
+
+class CommitteeDetail(DetailView):
+    model = OCDCommitteeProxy
+    template_name = "committee_detail.html"

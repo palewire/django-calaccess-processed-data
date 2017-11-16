@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Committees ({{ object_list.count }})</h1>
+
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        {% for obj in object_list %}
+        <tr>
+            <td><a href="{% url 'committee_detail' obj.id %}">{{ obj|truncatechars:75 }}</a></td>
+            <td>{{ obj.committee_type }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
