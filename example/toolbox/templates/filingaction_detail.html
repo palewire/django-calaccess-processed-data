@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block content %}
+<h1>{{ object.date}}: {{ object.filing }}</h1>
+<table class="table table-sm">
+    <tr>
+        <th>ID</th>
+        <td>{{ object.id }}</a></td>
+    </tr>
+    <tr>
+        <th>Filing</th>
+        <td><a href="{% url 'filing_detail' object.filing.id %}">{{ object.filing }}</a></td>
+    </tr>
+    <tr>
+        <th>Classifications</th>
+        <td>{% for c in object.classification %}{{ c }}{% if not forloop.last%}, {% endif %}{% endfor %}</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>{{ object.description }}</td>
+    </tr>
+    <tr>
+        <th>Agents</th>
+        <td>{% for a in object.agents.all %}{{ a }}{% if not forloop.last%}, {% endif %}{% endfor %}</td>
+    </tr>
+    <tr>
+        <th>Supersedes prior versions</th>
+        <td>{{ object.supersedes_prior_versions }}</td>
+    </tr>
+    <tr>
+        <th>Current</th>
+        <td>{{ object.is_current }}</td>
+    </tr>
+</table>
+<h3>Summary totals</h3>
+<table class="table table-sm table-bordered">
+<tr>
+    <th>Label</th>
+    <th class="text-right">Amount</th>
+</tr>
+{% for sum in object.summary_amounts.all %}
+    <tr>
+        <td>{{ sum.label }}</td>
+        <td class="text-right">${{ sum.amount_value|floatformat:0|intcomma }}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}

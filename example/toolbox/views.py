@@ -8,7 +8,8 @@ from calaccess_processed.models import (
     OCDPersonProxy,
     OCDPartyProxy,
     OCDCommitteeProxy,
-    OCDFilingProxy
+    OCDFilingProxy,
+    OCDFilingActionProxy
 )
 from opencivicdata.elections.models import CandidateContest
 from django.views.generic import DetailView, ListView
@@ -115,3 +116,8 @@ class CommitteeDetail(DetailView):
 class FilingDetail(DetailView):
     model = OCDFilingProxy
     template_name = "filing_detail.html"
+
+
+class FilingActionDetail(DetailView):
+    model = OCDFilingActionProxy
+    template_name = "filingaction_detail.html"

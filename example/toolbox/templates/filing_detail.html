@@ -53,7 +53,7 @@
         <table class="table table-sm">
             <tr>
                 <th>ID</th>
-                <td>{{ obj.id }}</td>
+                <td><a href="{% url 'filingaction_detail' obj.id %}">{{ obj.id }}</a></td>
             </tr>
             <tr>
                 <th>Classifications</th>
@@ -74,6 +74,10 @@
             <tr>
                 <th>Current</th>
                 <td>{{ obj.is_current }}</td>
+            </tr>
+            <tr>
+                <th>Transactions</th>
+                <td>{{ obj.transactions.count }}</td>
             </tr>
         </table>
         <h5>Summary totals</h5>

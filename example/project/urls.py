@@ -21,6 +21,7 @@ urlpatterns = (
     url(r'^committees/$', views.CommitteeList.as_view(), name="committee_list"),
     url(r'^committees/(?P<pk>(.*))/$', views.CommitteeDetail.as_view(), name="committee_detail"),
     url(r'^filings/(?P<pk>(.*))/$', views.FilingDetail.as_view(), name="filing_detail"),
+    url(r'^filing-actions/(?P<pk>(.*))/$', views.FilingActionDetail.as_view(), name="filingaction_detail"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^static/(?P<path>.*)$', serve, {
         'document_root': settings.STATIC_ROOT,
