@@ -98,4 +98,40 @@
         {% endfor %}
     </table>
 
+    <h3>Filings ({{ object.filings.count }})</h3>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Classification</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Recipient</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        {% for obj in object.filings.all %}
+        <tr>
+            <td>
+                <a href="{% url 'filing_detail' obj.id %}">{{ obj.id }}</a>
+            </td>
+            <td>
+                {{ obj.classification }}
+            </td>
+            <td>
+                {{ obj.coverage_start_date|date:"Y-m-d" }}
+            </td>
+            <td>
+                {{ obj.coverage_end_date|date:"Y-m-d" }}
+            </td>
+            <td>
+                {{ obj.recipient }}
+            </td>
+            <td>
+                {{ obj.actions.count }}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
 {% endblock %}

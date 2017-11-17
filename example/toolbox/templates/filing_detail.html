@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block content %}
+    <h1>{{ object.classification }}: {{ object }}</h1>
+
+    <table class="table table-sm">
+        <tr>
+            <th>ID</th>
+            <td>{{ object.id }}</td>
+        </tr>
+        <tr>
+            <th>Filer</th>
+            <td><a href="{% url 'committee_detail' object.filer.id %}">{{ object.filer }}</a></td>
+        </tr>
+        <tr>
+            <th>Classification</th>
+            <td>{{ object.classification }}</td>
+        </tr>
+        <tr>
+            <th>Start</th>
+            <td>{{ object.coverage_start_date }}</td>
+        </tr>
+        <tr>
+            <th>End</th>
+            <td>{{ object.coverage_end_date }}</td>
+        </tr>
+        <tr>
+            <th>Recipient</th>
+            <td>{{ object.recipient }}</td>
+        </tr>
+        <tr>
+            <th>Identifiers</th>
+            <td>
+                {% for obj in object.identifiers.all %}
+                    {{ obj }}{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+        <tr>
+            <th>Sources</th>
+            <td>
+                {% for obj in object.sources.all %}
+                    <a href="{{ obj.url }}">{{ forloop.counter }}</a>{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+
+    <h3>Actions ({{ object.actions.count }})</h3>
+    {% for obj in object.actions.all %}
+        <h4>{{ obj.date }}</h4>
+        <table class="table table-sm">
+            <tr>
+                <th>ID</th>
+                <td>{{ obj.id }}</td>
+            </tr>
+            <tr>
+                <th>Classifications</th>
+                <td>{% for c in obj.classification %}{{ c }}{% if not forloop.last%}, {% endif %}{% endfor %}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ obj.description }}</td>
+            </tr>
+            <tr>
+                <th>Agents</th>
+                <td>{% for a in obj.agents.all %}{{ a }}{% if not forloop.last%}, {% endif %}{% endfor %}</td>
+            </tr>
+            <tr>
+                <th>Supersedes prior versions</th>
+                <td>{{ obj.supersedes_prior_versions }}</td>
+            </tr>
+            <tr>
+                <th>Current</th>
+                <td>{{ obj.is_current }}</td>
+            </tr>
+        </table>
+        <h5>Summary totals</h5>
+        <table class="table table-sm table-bordered">
+        <tr>
+            <th>Label</th>
+            <th class="text-right">Amount</th>
+        </tr>
+        {% for sum in obj.summary_amounts.all %}
+            <tr>
+                <td>{{ sum.label }}</td>
+                <td class="text-right">${{ sum.amount_value|floatformat:0|intcomma }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        <hr>
+    {% endfor %}
+
+{% endblock %}
