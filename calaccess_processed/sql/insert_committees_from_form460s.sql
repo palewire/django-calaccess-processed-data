@@ -18,7 +18,7 @@ SELECT
     now() as updated_at,
     -- temporarily store the filer_id in the extras field
     -- this is removed in remove_calaccess_filer_ids_from_committees.sql
-    ('{"calaccess_filer_id":' || f460.filer_id || '}')::jsonb as extras,
+    jsonb_build_object('calaccess_filer_id', f460.filer_id) as extras,
     ARRAY[]::char[] as locked_fields
 FROM calaccess_processed_form460filing f460
 -- get the most recent filing of each filer
