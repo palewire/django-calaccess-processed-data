@@ -139,7 +139,7 @@ class Command(CalAccessCommand):
             if self.verbosity > 2:
                 self.log(" Truncating %s" % m._meta.db_table)
             with connection.cursor() as c:
-                c.execute('TRUNCATE TABLE "%s" CASCADE' % (m._meta.db_table))
+                c.execute('TRUNCATE TABLE "%s" RESTART IDENTITY CASCADE' % (m._meta.db_table))
             # load the processed model
             if self.verbosity > 2:
                 self.log(" Loading %s" % m._meta.db_table)
