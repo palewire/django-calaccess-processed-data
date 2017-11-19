@@ -507,3 +507,19 @@ class ProcessedDataTest(TestCase):
                 flat_row_count,
                 base_row_count,
             )
+
+    def test_form460_filings_count(self):
+        """
+        Confirm count of Form460Filing is equal to OCD Filing count.
+        """
+        passed, error_msg = VerifyCmd().test_form460_filings_count()
+
+        self.assertTrue(passed, error_msg)
+
+    def test_form460_filing_actions_count(self):
+        """
+        Confirm count of Form460FilingVersion is equal to OCD FilingAction count.
+        """
+        passed, error_msg = VerifyCmd().test_form460_filing_actions_count()
+
+        self.assertTrue(passed, error_msg)
