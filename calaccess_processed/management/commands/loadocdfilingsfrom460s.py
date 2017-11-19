@@ -14,6 +14,7 @@ from calaccess_processed.models import (
     OCDFilingIdentifierProxy,
     OCDFilingActionProxy,
     OCDFilingActionSummaryAmountProxy,
+    OCDTransactionProxy,
 )
 
 
@@ -35,13 +36,23 @@ class Command(CalAccessCommand):
             OCDCommitteeTypeProxy.objects.seed()
 
         OCDCommitteeProxy.objects.load_form460_data()
+        self.duration()
         OCDCommitteeIdentifierProxy.objects.load_form460_data()
+        self.duration()
         OCDCommitteeNameProxy.objects.load_form460_data()
+        self.duration()
 
         OCDFilingProxy.objects.load_form460_data()
+        self.duration()
         OCDFilingIdentifierProxy.objects.load_form460_data()
+        self.duration()
 
         OCDFilingActionProxy.objects.load_form460_data()
+        self.duration()
         OCDFilingActionSummaryAmountProxy.objects.load_form460_data()
+        self.duration()
+
+        OCDTransactionProxy.objects.load_form460_data()
+        self.duration()
 
         self.success("Done!")
