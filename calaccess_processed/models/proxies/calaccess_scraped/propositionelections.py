@@ -14,7 +14,7 @@ class ScrapedPropositionElectionProxy(ElectionProxyMixin, PropositionElection):
     """
     A proxy for the PropositionElection model in calaccess_scraped.
     """
-    NAME_PATTERN = re.compile(r'^(?P<date>^[A-Z]+\s\d{1,2},\s\d{4})\s(?P<type>.+)$')
+    NAME_PATTERN = re.compile(r'^(?P<date>^[A-Z]+\s\d{1,2},\s\d{4}),?\s(?P<type>.+)$')
 
     class Meta:
         """
