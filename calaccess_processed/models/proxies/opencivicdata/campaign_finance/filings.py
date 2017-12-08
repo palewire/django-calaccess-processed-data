@@ -104,6 +104,32 @@ class OCDFilingProxy(Filing, OCDProxyModelMixin):
         """
         proxy = True
 
+    @property
+    def current_action(self):
+        return self.actions.get(is_current=True)
+
+    @property
+    def calaccess_filing_id(self):
+        return self.identifiers.get(scheme="calaccess_filing_id")
+
+    @property
+    def calaccess_amend_id(self):
+        return self.current_action.extras['amend_id']
+
+    @property
+    def calaccess_filing_url(self):
+        url_template = "http://cal-access.sos.ca.gov/PDFGen/pdfgen.prg?filingid={}&amendid={}"
+        return url_template.format(self.calaccess_filing_id.identifier, self.current_action.extras['amend_id'])
+
+    @property
+    def calaccess_filer_id(self):
+        return self.filer.identifiers.get(scheme="calaccess_filer_id")
+
+    @property
+    def calaccess_filer_url(self):
+        url_template = "http://cal-access.sos.ca.gov/Campaign/Committees/Detail.aspx?id={}"
+        return url_template.format(self.calaccess_filer_id.identifier)
+
 
 class OCDFilingIdentifierManager(CopyManager):
     """

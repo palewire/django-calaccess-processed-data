@@ -45,6 +45,18 @@
                 {% endfor %}
             </td>
         </tr>
+        <tr>
+            <th>CAL-ACCESS Filing ID</th>
+            <td>{{ object.calaccess_filing_id.identifier }}</td>
+        </tr>
+        <tr>
+            <th>CAL-ACCESS Amend ID</th>
+            <td>{{ object.calaccess_amend_id }}</td>
+        </tr>
+        <tr>
+            <th>CAL-ACCESS URL</th>
+            <td>{{ object.calaccess_filing_url|urlize }}</td>
+        </tr>
     </table>
 
     <h3>Actions ({{ object.actions.count }})</h3>

@@ -48,6 +48,14 @@
                 {% endfor %}
             </td>
         </tr>
+        <tr>
+            <th>CAL-ACCESS Filer ID</th>
+            <td><a href="{{ object.calaccess_filer_url }}">{{ object.calaccess_filer_id.identifier }}</a></td>
+        </tr>
+        <tr>
+            <th>CAL-ACCESS URL</th>
+            <td>{{ object.calaccess_filer_url|urlize }}</td>
+        </tr>
     </table>
 
     <h3>Committee statuses ({{ object.statuses.count }})</h3>
@@ -103,6 +111,7 @@
         <thead>
             <tr>
                 <th>ID</th>
+                <th>CAL-ACCESS ID</th>
                 <th>Classification</th>
                 <th>Start</th>
                 <th>End</th>
@@ -110,10 +119,13 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        {% for obj in object.filings.all %}
+        {% for obj in object.filing_proxies.all %}
         <tr>
             <td>
                 <a href="{% url 'filing_detail' obj.id %}">{{ obj.id }}</a>
+            </td>
+            <td>
+                <a href="{{ obj.calaccess_filing_url }}">{{ obj.calaccess_filing_id.identifier }}</a>
             </td>
             <td>
                 {{ obj.classification }}

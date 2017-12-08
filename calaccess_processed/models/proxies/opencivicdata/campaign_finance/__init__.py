@@ -8,7 +8,7 @@ from .committees import (
     OCDCommitteeIdentifierProxy,
     OCDCommitteeNameProxy,
     OCDCommitteeSourceProxy,
-    OCDCommitteeTypeProxy,
+    OCDCommitteeTypeProxy
 )
 from .filings import (
     OCDFilingProxy,
@@ -17,7 +17,7 @@ from .filings import (
     OCDFilingActionProxy,
     OCDFilingActionSummaryAmountProxy,
     OCDTransactionProxy,
-    OCDTransactionIdentifierProxy,
+    OCDTransactionIdentifierProxy
 )
 
 __all__ = (

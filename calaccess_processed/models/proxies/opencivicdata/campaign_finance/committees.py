@@ -39,6 +39,23 @@ class OCDCommitteeProxy(Committee, OCDProxyModelMixin):
     """
     objects = OCDCommitteeManager()
 
+    @property
+    def calaccess_filer_id(self):
+        return self.identifiers.get(scheme="calaccess_filer_id")
+
+    @property
+    def calaccess_filer_url(self):
+        url_template = "http://cal-access.sos.ca.gov/Campaign/Committees/Detail.aspx?id={}"
+        return url_template.format(self.calaccess_filer_id.identifier)
+
+    @property
+    def filing_proxies(self):
+        """
+        A QuerySet of OCDCandidateContestProxy for the election.
+        """
+        from .filings import OCDFilingProxy
+        return OCDFilingProxy.objects.filter(filer=self)
+
     class Meta:
         """
         Make this a proxy model.
@@ -134,10 +151,7 @@ class OCDCommitteeTypeManager(CopyManager):
             name='Candidate',
             jurisdiction=OCDJurisdictionProxy.objects.california(),
         )[0]
-        self.get_queryset().get_or_create(
-            name='Ballot Measure',
-            jurisdiction=OCDJurisdictionProxy.objects.california(),
-        )[0]
+        self.get_
 
 
 class OCDCommitteeTypeProxy(CommitteeType, OCDProxyModelMixin):
