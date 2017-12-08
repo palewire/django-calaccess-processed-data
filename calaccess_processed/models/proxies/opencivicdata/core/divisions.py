@@ -6,7 +6,7 @@ Proxy models for augmenting our source data tables with methods useful for proce
 from __future__ import unicode_literals
 from django.db import models
 from opencivicdata.core.models import Division
-from .base import OCDProxyModelMixin
+from ..base import OCDProxyModelMixin
 from postgres_copy import CopyQuerySet
 
 

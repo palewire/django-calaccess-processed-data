@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 from django.db import models
 from opencivicdata.core.models import Organization
 from calaccess_raw.models import FilerToFilerTypeCd
-from .base import OCDProxyModelMixin
+from ..base import OCDProxyModelMixin
 
 
 class OCDPartyManager(models.Manager):

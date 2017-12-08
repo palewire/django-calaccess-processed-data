@@ -4,13 +4,6 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from .base import OCDProxyModelMixin
-from .ballotmeasurecontests import (
-    OCDBallotMeasureContestProxy,
-    OCDBallotMeasureContestIdentifierProxy,
-    OCDBallotMeasureContestOptionProxy,
-    OCDBallotMeasureContestSourceProxy,
-    OCDFlatBallotMeasureContestProxy,
-)
 from .campaign_finance import (
     OCDCommitteeProxy,
     OCDCommitteeIdentifierProxy,
@@ -23,44 +16,41 @@ from .campaign_finance import (
     OCDFilingActionProxy,
     OCDFilingActionSummaryAmountProxy,
     OCDTransactionProxy,
-    OCDTransactionIdentifierProxy,
+    OCDTransactionIdentifierProxy
 )
-from .candidatecontests import (
-    OCDCandidateContestProxy,
-    OCDCandidateContestPostProxy,
-    OCDCandidateContestSourceProxy,
-)
-from .candidacies import (
-    OCDCandidacyProxy,
-    OCDCandidacySourceProxy,
-    OCDFlatCandidacyProxy,
-)
-from .divisions import OCDDivisionProxy
-from .elections import (
-    OCDElectionProxy,
-    OCDElectionIdentifierProxy,
-    OCDElectionSourceProxy,
-)
-from .organizations import (
+from .core import (
+    OCDDivisionProxy,
     OCDMembershipProxy,
     OCDOrganizationProxy,
     OCDOrganizationIdentifierProxy,
     OCDOrganizationNameProxy,
-)
-from .jurisdictions import OCDJurisdictionProxy
-from .parties import OCDPartyProxy
-from .people import (
+    OCDJurisdictionProxy,
     OCDPersonProxy,
     OCDPersonIdentifierProxy,
     OCDPersonNameProxy,
+    OCDPostProxy
 )
-from .posts import OCDPostProxy
-from .retentioncontests import (
+from .elections import (
+    OCDBallotMeasureContestProxy,
+    OCDBallotMeasureContestIdentifierProxy,
+    OCDBallotMeasureContestOptionProxy,
+    OCDBallotMeasureContestSourceProxy,
+    OCDFlatBallotMeasureContestProxy,
+    OCDCandidateContestProxy,
+    OCDCandidateContestPostProxy,
+    OCDCandidateContestSourceProxy,
+    OCDCandidacyProxy,
+    OCDCandidacySourceProxy,
+    OCDFlatCandidacyProxy,
+    OCDElectionProxy,
+    OCDElectionIdentifierProxy,
+    OCDElectionSourceProxy,
+    OCDPartyProxy,
     OCDRetentionContestProxy,
     OCDRetentionContestIdentifierProxy,
     OCDRetentionContestOptionProxy,
     OCDRetentionContestSourceProxy,
-    OCDFlatRetentionContestProxy,
+    OCDFlatRetentionContestProxy
 )
 
 

@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 from opencivicdata.core.models import Jurisdiction
 from postgres_copy import CopyManager
 from .divisions import OCDDivisionProxy
-from .base import OCDProxyModelMixin
+from ..base import OCDProxyModelMixin
 
 
 class OCDJurisdictionManager(CopyManager):

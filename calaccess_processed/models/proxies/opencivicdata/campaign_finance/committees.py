@@ -15,7 +15,7 @@ from opencivicdata.campaign_finance.models import (
 )
 from postgres_copy import CopyManager
 from ..base import OCDProxyModelMixin
-from ..jurisdictions import OCDJurisdictionProxy
+from ..core.jurisdictions import OCDJurisdictionProxy
 logger = logging.getLogger(__name__)
 
 

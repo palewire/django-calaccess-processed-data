@@ -11,7 +11,7 @@ from opencivicdata.core.models import (
     PersonName,
 )
 from postgres_copy import CopyQuerySet
-from .base import OCDProxyModelMixin
+from ..base import OCDProxyModelMixin
 
 
 class OCDPersonManager(models.Manager):

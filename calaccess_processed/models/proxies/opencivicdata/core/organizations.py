@@ -12,7 +12,7 @@ from opencivicdata.core.models import (
     OrganizationIdentifier,
     OrganizationName,
 )
-from .base import OCDProxyModelMixin
+from ..base import OCDProxyModelMixin
 from .people import OCDPersonProxy
 from postgres_copy import CopyQuerySet
 logger = logging.getLogger(__name__)

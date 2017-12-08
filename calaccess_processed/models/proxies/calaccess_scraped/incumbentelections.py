@@ -8,7 +8,7 @@ from calaccess_scraped.models import IncumbentElection
 from django.db.models import Manager
 from postgres_copy import CopyQuerySet
 from .base import ElectionProxyMixin
-from ..opencivicdata.elections import OCDElectionProxy
+from calaccess_processed.models.proxies.opencivicdata import OCDElectionProxy
 
 
 class ScrapedIncumbentElectionManager(Manager):

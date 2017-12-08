@@ -7,29 +7,29 @@ from __future__ import unicode_literals
 from django.db import models
 from django.db.models import F, Max, Q
 from opencivicdata.elections.models import (
-    RetentionContest,
-    RetentionContestIdentifier,
-    RetentionContestOption,
-    RetentionContestSource,
+    BallotMeasureContest,
+    BallotMeasureContestIdentifier,
+    BallotMeasureContestOption,
+    BallotMeasureContestSource,
 )
-from .base import OCDProxyModelMixin
+from ..base import OCDProxyModelMixin
 from postgres_copy import CopyQuerySet
 
 
-class OCDRetentionContestProxy(RetentionContest, OCDProxyModelMixin):
+class OCDBallotMeasureContestProxy(BallotMeasureContest, OCDProxyModelMixin):
     """
-    A proxy on the OCD RetentionContest model.
+    A proxy on the OCD BallotMeasureContest model.
     """
     objects = CopyQuerySet.as_manager()
 
     copy_to_fields = (
         ('id',),
         ('name',),
-        ('membership_id',),
         ('division_id',),
         ('election_id',),
         ('description',),
         ('requirement',),
+        ('classification',),
         ('runoff_for_contest_id',),
         ('created_at',),
         ('updated_at',),
@@ -44,22 +44,9 @@ class OCDRetentionContestProxy(RetentionContest, OCDProxyModelMixin):
         proxy = True
 
 
-class OCDRetentionContestIdentifierProxy(RetentionContestIdentifier, OCDProxyModelMixin):
+class OCDBallotMeasureContestIdentifierProxy(BallotMeasureContestIdentifier, OCDProxyModelMixin):
     """
-    A proxy on the OCD RetentionContestIdentifier model.
-    """
-    objects = CopyQuerySet.as_manager()
-
-    class Meta:
-        """
-        Make this a proxy model.
-        """
-        proxy = True
-
-
-class OCDRetentionContestOptionProxy(RetentionContestOption, OCDProxyModelMixin):
-    """
-    A proxy on the OCD RetentionContestOption model.
+    A proxy on the OCD BallotMeasureContestIdentifier model.
     """
     objects = CopyQuerySet.as_manager()
 
@@ -70,9 +57,9 @@ class OCDRetentionContestOptionProxy(RetentionContestOption, OCDProxyModelMixin)
         proxy = True
 
 
-class OCDRetentionContestSourceProxy(RetentionContestSource, OCDProxyModelMixin):
+class OCDBallotMeasureContestOptionProxy(BallotMeasureContestOption, OCDProxyModelMixin):
     """
-    A proxy on the OCD RetentionContestSource model.
+    A proxy on the OCD BallotMeasureContestOption model.
     """
     objects = CopyQuerySet.as_manager()
 
@@ -83,61 +70,61 @@ class OCDRetentionContestSourceProxy(RetentionContestSource, OCDProxyModelMixin)
         proxy = True
 
 
-class OCDFlatRetentionContestManager(models.Manager):
+class OCDBallotMeasureContestSourceProxy(BallotMeasureContestSource, OCDProxyModelMixin):
     """
-    Custom manager for flattening contents of the OCD RetentionContest model.
+    A proxy on the OCD BallotMeasureContestSource model.
+    """
+    objects = CopyQuerySet.as_manager()
+
+    class Meta:
+        """
+        Make this a proxy model.
+        """
+        proxy = True
+
+
+class OCDFlatBallotMeasureContestManager(models.Manager):
+    """
+    Custom manager for flattening contents of the OCD BallotMeasureContest model.
     """
     def get_queryset(self):
         """
         Returns the custom QuerySet for this manager.
         """
         return super(
-            OCDFlatRetentionContestManager, self
+            OCDFlatBallotMeasureContestManager, self
         ).get_queryset().filter(
             Q(identifiers__scheme='calaccess_measure_id') |
             Q(identifiers__isnull=True)
         ).annotate(
-            office=F('membership__post__label'),
-            office_holder=F('membership__person__name'),
-            ocd_person_id=F('membership__person__id'),
             election_name=F('election__name'),
             election_date=F('election__date'),
             ocd_contest_id=F('id'),
-            ocd_post_id=F('membership__post_id'),
-            ocd_membership_id=F('membership_id'),
             ocd_election_id=F('election_id'),
             calaccess_measure_id=Max('identifiers__identifier')
         )
 
 
-class OCDFlatRetentionContestProxy(RetentionContest, OCDProxyModelMixin):
+class OCDFlatBallotMeasureContestProxy(BallotMeasureContest, OCDProxyModelMixin):
     """
-    Every recall measure.
+    Every ballot measure.
     """
-    objects = OCDFlatRetentionContestManager.from_queryset(CopyQuerySet)()
+    objects = OCDFlatBallotMeasureContestManager.from_queryset(CopyQuerySet)()
 
     copy_to_fields = (
-        ('name',),
-        ('office_holder',
-         'Name of the office holder.'),
-        ('office',
-         'Office held.'),
+        ('name',
+         'Name of the ballot measure, not necessarily as it appears on the ballot.'),
+        ('classification',),
         ('election_name',
          'Name of the election in which the ballot measure is decided.'),
         ('election_date',
          'Date of the election in which the ballot measure is decided.'),
         ('description',),
-        ('ocd_contest_id',),
-        ('ocd_person_id',
-         'Reference to the Person that is the office holder.'),
-        ('ocd_post_id',
-         'Reference to the Post that is the office.'),
-        ('ocd_membership_id',
-         RetentionContest._meta.get_field('membership').help_text),
-        ('ocd_election_id',
-         RetentionContest._meta.get_field('election').help_text),
         ('created_at',),
         ('updated_at',),
+        ('ocd_contest_id',),
+        ('ocd_election_id',
+         BallotMeasureContest._meta.get_field('election').help_text),
         ('calaccess_measure_id',
          'Identifier assigned to the ballot measure by CAL-ACCESS.'),
     )
@@ -147,4 +134,4 @@ class OCDFlatRetentionContestProxy(RetentionContest, OCDProxyModelMixin):
         Make this a proxy model.
         """
         proxy = True
-        verbose_name_plural = 'recall measures'
+        verbose_name_plural = 'ballot measures'

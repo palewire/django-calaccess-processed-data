@@ -9,8 +9,8 @@ from django.db.models import Manager, Q
 from .divisions import OCDDivisionProxy
 from opencivicdata.core.models import Post
 from .organizations import OCDOrganizationProxy
-from ..calaccess_raw.filertofilertype import RawFilerToFilerTypeCdProxy
-from .base import OCDProxyModelMixin
+from calaccess_processed.models.proxies.calaccess_raw.filertofilertype import RawFilerToFilerTypeCdProxy
+from ..base import OCDProxyModelMixin
 from postgres_copy import CopyQuerySet
 
 

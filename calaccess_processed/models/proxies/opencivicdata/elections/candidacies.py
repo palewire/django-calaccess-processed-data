@@ -27,9 +27,9 @@ from opencivicdata.elections.models import (
     CandidacySource,
 )
 from postgres_copy import CopyQuerySet
-from .base import OCDProxyModelMixin
-from .elections import OCDElectionProxy
-from .people import OCDPersonProxy
+from ..base import OCDProxyModelMixin
+from .election import OCDElectionProxy
+from ..core.people import OCDPersonProxy
 
 
 class OCDCandidacyQuerySet(CopyQuerySet):

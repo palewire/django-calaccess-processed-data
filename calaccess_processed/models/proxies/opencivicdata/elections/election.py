@@ -12,11 +12,11 @@ from opencivicdata.elections.models import (
     ElectionSource,
 )
 from postgres_copy import CopyQuerySet
-from .base import OCDProxyModelMixin
+from ..base import OCDProxyModelMixin
 from .candidatecontests import OCDCandidateContestProxy
-from .divisions import OCDDivisionProxy
-from .organizations import OCDOrganizationProxy
-from .posts import OCDPostProxy
+from ..core.divisions import OCDDivisionProxy
+from ..core.organizations import OCDOrganizationProxy
+from ..core.posts import OCDPostProxy
 
 
 class OCDPartisanPrimaryManager(Manager):

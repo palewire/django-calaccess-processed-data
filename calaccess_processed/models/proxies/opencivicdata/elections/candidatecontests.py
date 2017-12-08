@@ -10,7 +10,7 @@ from opencivicdata.elections.models import (
     CandidateContestPost,
     CandidateContestSource,
 )
-from .base import OCDProxyModelMixin
+from ..base import OCDProxyModelMixin
 from postgres_copy import CopyQuerySet
 
 
