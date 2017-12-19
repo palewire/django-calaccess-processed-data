@@ -103,7 +103,6 @@ class ElectionProxyMixin(object):
         # Otherwise return the format: "{YEAR} {ELECTION_TYPE}"
         else:
             ocd_name = '{0} {1}'.format(self.date.year, self.election_type)
-
         return ocd_name
 
 
