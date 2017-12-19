@@ -7,7 +7,7 @@
     <table class="table table-sm">
         <tr>
             <th>Filer ID</th>
-            <td>{{ object.filer_id }}</td>
+            <td><a href="http://cal-access.sos.ca.gov/Campaign/Candidates/Detail.aspx?id={{ object.filer_id }}">{{ object.filer_id }}</a></td>
         </tr>
         <tr>
             <th>Sort name</th>
@@ -45,7 +45,7 @@
                 <th>Sources</th>
             </tr>
         </thead>
-        {% for obj in object.candidacies.all %}
+        {% for obj in candidate_list %}
         <tr>
             <td>
                 <a href="{% url 'election_detail' obj.election.id %}">
@@ -64,9 +64,9 @@
             <td>{{ obj.is_incumbent }}</td>
             <td>{{ obj.registration_status }}</td>
             <td>
-                <a href="http://cal-access.sos.ca.gov/Campaign/Candidates/Detail.aspx?id={{ obj.filer_id }}">
-                    {{ obj.filer_id }}
-                </a>
+                {% for i in obj.filer_ids %}
+                    <a href="http://cal-access.sos.ca.gov/Campaign/Candidates/Detail.aspx?id={{ i }}">{{ i }}</a>
+                {% if not forloop.last %},{% endif %}{% endfor %}
             </td>
             <td>
                 <ul>

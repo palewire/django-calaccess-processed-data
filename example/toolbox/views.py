@@ -37,12 +37,14 @@ def election_detail(request, id):
     return render(request, template, context)
 
 
-def candidatecontest_detail(request, id):
-    obj = CandidateContest.objects.get(id=id)
-    candidate_list = OCDCandidacyProxy.objects.filter(contest=obj)
-    context = dict(object=obj, candidate_list=candidate_list)
-    template = "candidatecontest_detail.html"
-    return render(request, template, context)
+class CandidateContestDetail(DetailView):
+    model = CandidateContest
+    template_name = 'candidatecontest_detail.html'
+
+    def get_context_data(self, object=None):
+        context = super(CandidateContestDetail, self).get_context_data()
+        context['candidate_list'] = OCDCandidacyProxy.objects.filter(contest=context['object'])
+        return context
 
 
 class PostDetail(DetailView):
@@ -58,6 +60,11 @@ class PersonList(ListView):
 class PersonDetail(DetailView):
     model = OCDPersonProxy
     template_name = "person_detail.html"
+
+    def get_context_data(self, object=None):
+        context = super(PersonDetail, self).get_context_data()
+        context['candidate_list'] = OCDCandidacyProxy.objects.filter(person=context['object'])
+        return context
 
 
 class PartyList(ListView):

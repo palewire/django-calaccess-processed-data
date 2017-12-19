@@ -37,7 +37,7 @@
                 <th>Party</th>
                 <th>Incumbent</th>
                 <th>Status</th>
-                <th>Filer ID</th>
+                <th>Filer IDs</th>
                 <th>Sources</th>
             </tr>
         </thead>
@@ -52,9 +52,9 @@
             <td>{{ obj.is_incumbent }}</td>
             <td>{{ obj.registration_status }}</td>
             <td>
-                <a href="http://cal-access.sos.ca.gov/Campaign/Candidates/Detail.aspx?id={{ obj.filer_id }}">
-                    {{ obj.filer_id }}
-                </a>
+                {% for i in obj.filer_ids %}
+                    <a href="http://cal-access.sos.ca.gov/Campaign/Candidates/Detail.aspx?id={{ i }}">{{ i }}</a>
+                {% if not forloop.last %},{% endif %}{% endfor %}
             </td>
             <td>
                 <ul>
