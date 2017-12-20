@@ -157,7 +157,10 @@ class OCDCommitteeTypeManager(CopyManager):
             name='Candidate',
             jurisdiction=OCDJurisdictionProxy.objects.california(),
         )[0]
-        self.get_
+        self.get_queryset().get_or_create(
+            name='Ballot Measure',
+            jurisdiction=OCDJurisdictionProxy.objects.california(),
+        )[0]
 
 
 class OCDCommitteeTypeProxy(CommitteeType, OCDProxyModelMixin):
