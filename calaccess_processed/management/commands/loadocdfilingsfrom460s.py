@@ -58,10 +58,19 @@ class Command(CalAccessCommand):
         """
         Loads the provided model.
         """
+        # Print out what we're doing
         self.log('  Loading {}'.format(model.__name__))
+
+        # Count how many records are in the table now
         before = model.objects.count()
+
+        # Run the update routine
         model.objects.load_form460_data()
+
+        # Count how many records are in the table afterward
         after = model.objects.count()
+
+        # Report the change
         self.log('   {:,} added'.format(after-before))
 
     def load(self, *args, **kwargs):
@@ -70,6 +79,7 @@ class Command(CalAccessCommand):
         """
         self.header('Loading data extracted from Form 460 filings')
 
+        # Only load committee types if we haven't already
         if not models.OCDCommitteeTypeProxy.objects.exists():
             self.log(' Creating committee types')
             models.OCDCommitteeTypeProxy.objects.seed()
