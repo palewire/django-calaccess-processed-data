@@ -41,10 +41,16 @@ class OCDCommitteeProxy(Committee, OCDProxyModelMixin):
 
     @property
     def calaccess_filer_id(self):
+        """
+        Returns the committee's CAL-ACCESS filer id.
+        """
         return self.identifiers.get(scheme="calaccess_filer_id")
 
     @property
     def calaccess_filer_url(self):
+        """
+        Returns the URL of the committee's detail page on the CAL-ACCESS website.
+        """
         url_template = "http://cal-access.sos.ca.gov/Campaign/Committees/Detail.aspx?id={}"
         return url_template.format(self.calaccess_filer_id.identifier)
 
