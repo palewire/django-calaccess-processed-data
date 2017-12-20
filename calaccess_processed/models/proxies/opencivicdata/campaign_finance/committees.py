@@ -106,7 +106,6 @@ class OCDCommitteeNameManager(CopyManager):
         """
         Load OCD CommitteeName with data extracted from Form460Filing.
         """
-        logger.info(' Inserting new Committee Names...')
         execute_custom_sql('insert_committee_names_from_form460s')
         logger.info(' Deleting current names from Committee Names...')
         execute_custom_sql('delete_current_names_from_committee_names')
@@ -147,8 +146,6 @@ class OCDCommitteeTypeManager(CopyManager):
         """
         Returns the recipient CommitteeType.
         """
-        logger.info(' Creating Committee Types...')
-
         self.get_queryset().get_or_create(
             name='Recipient',
             jurisdiction=OCDJurisdictionProxy.objects.california(),
