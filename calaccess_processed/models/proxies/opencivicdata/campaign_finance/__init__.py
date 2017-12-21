@@ -15,7 +15,9 @@ from .filings import (
     OCDFilingIdentifierProxy,
     OCDFilingSourceProxy,
     OCDFilingActionProxy,
-    OCDFilingActionSummaryAmountProxy,
+    OCDFilingActionSummaryAmountProxy
+)
+from .transactions import (
     OCDTransactionProxy,
     OCDTransactionIdentifierProxy
 )
