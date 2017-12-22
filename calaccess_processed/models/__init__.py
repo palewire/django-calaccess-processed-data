@@ -76,10 +76,6 @@ from .filings import (
     Form501Filing,
     Form501FilingVersion,
 )
-from .research import (
-    FilerIDValue,
-    FilingIDValue,
-)
 from .tracking import (
     ProcessedDataVersion,
     ProcessedDataFile,
@@ -212,8 +208,6 @@ __all__ = (
     "Form501FilingBase",
     "Form501Filing",
     "Form501FilingVersion",
-    'FilerIDValue',
-    'FilingIDValue',
     'ProcessedDataVersion',
     'ProcessedDataFile',
     'ProcessedDataZip',

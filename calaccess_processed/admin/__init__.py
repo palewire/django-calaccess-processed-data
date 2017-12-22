@@ -4,11 +4,11 @@
 Import all of the admins from submodules and thread them together.
 """
 from calaccess_raw.admin.base import BaseAdmin
-from calaccess_processed.admin.filings.campaign.form501 import (
+from .filings.campaign.form501 import (
     Form501FilingAdmin,
     Form501FilingVersionAdmin,
 )
-from calaccess_processed.admin.filings.campaign.form460 import (
+from .filings.campaign.form460 import (
     Form460FilingAdmin,
     Form460FilingVersionAdmin,
     Form460ScheduleAItemAdmin,
@@ -38,7 +38,7 @@ from calaccess_processed.admin.filings.campaign.form460 import (
     Form460ScheduleIItemAdmin,
     Form460ScheduleIItemVersionAdmin,
 )
-from calaccess_processed.admin.filings.campaign.form497 import (
+from .filings.campaign.form497 import (
     Form497FilingAdmin,
     Form497FilingVersionAdmin,
     Form497Part1ItemAdmin,
@@ -46,10 +46,7 @@ from calaccess_processed.admin.filings.campaign.form497 import (
     Form497Part2ItemAdmin,
     Form497Part2ItemVersionAdmin,
 )
-from calaccess_processed.admin.common import (
-    FilerIDValueAdmin,
-)
-from calaccess_processed.admin.tracking import (
+from .tracking import (
     ProcessedDataVersionAdmin,
     ProcessedDataFileAdmin,
 )
@@ -92,7 +89,6 @@ __all__ = (
     'Form497Part1ItemVersionAdmin',
     'Form497Part2ItemAdmin',
     'Form497Part2ItemVersionAdmin',
-    'FilerIDValueAdmin',
     'ProcessedDataVersionAdmin',
     'ProcessedDataFileAdmin',
 )
