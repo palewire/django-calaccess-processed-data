@@ -111,4 +111,4 @@ class Command(CalAccessCommand):
         # Transactions
         #
 
-        self.load_model(models.OCDTransactionProxy)
+        # self.load_model(models.OCDTransactionProxy)
