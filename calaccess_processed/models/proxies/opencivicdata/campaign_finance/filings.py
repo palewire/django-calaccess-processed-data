@@ -11,7 +11,6 @@ from calaccess_processed.models import (
     Form460ScheduleASummaryVersion,
     Form460ScheduleCSummaryVersion
 )
-from calaccess_processed.sql import execute_custom_sql
 from opencivicdata.campaign_finance.models import (
     Filing,
     FilingAction,
@@ -22,6 +21,7 @@ from opencivicdata.campaign_finance.models import (
 from postgres_copy import CopyManager
 from psycopg2 import sql
 from ..base import OCDProxyModelMixin
+from calaccess_processed.sql import execute_custom_sql
 logger = logging.getLogger(__name__)
 
 
@@ -34,7 +34,6 @@ class OCDFilingManager(CopyManager):
         Update target_column on OCD Filing with value from source_column.
         """
         target_field = Filing._meta.get_field(target_column)
-        logger.info(' ...%s...' % target_field.verbose_name)
         source_table_identifier = sql.Identifier(
             Form460Filing._meta.db_table
         )
@@ -45,7 +44,7 @@ class OCDFilingManager(CopyManager):
             Filing._meta.get_field(target_column).column
         )
         execute_custom_sql(
-            'update_filings_from_formfiling_table',
+            'opencivicdata/campaign_finance/filings/update_filings_from_formfiling_table',
             composables={
                 'source_table': source_table_identifier,
                 'source_column': source_column_identifier,
@@ -60,9 +59,8 @@ class OCDFilingManager(CopyManager):
         processed_data_table_identifier = sql.Identifier(
             model._meta.db_table
         )
-        logger.info(' ...filer id...')
         execute_custom_sql(
-            'update_filings_filer_id',
+            'opencivicdata/campaign_finance/filings/update_filings_filer_id',
             composables={
                 'processed_data_table': processed_data_table_identifier,
             },
@@ -72,7 +70,7 @@ class OCDFilingManager(CopyManager):
         """
         Load OCD Filing with data extracted from Form460Filing.
         """
-        logger.info(' Updating existing Filings...')
+        # Updating existing Filings...
         self._update_filings_from_form460_field(
             'coverage_start_date', 'from_date',
         )
@@ -81,8 +79,8 @@ class OCDFilingManager(CopyManager):
         )
         self._update_filings_filer_id(Form460Filing)
 
-        logger.info(' Inserting new Filings...')
-        execute_custom_sql('insert_filings_from_form460s')
+        # Inserting new Filings...
+        execute_custom_sql('opencivicdata/campaign_finance/filings/insert_filings_from_form460s')
 
 
 class OCDFilingProxy(Filing, OCDProxyModelMixin):
@@ -153,12 +151,10 @@ class OCDFilingIdentifierManager(CopyManager):
         """
         Load OCD FilingIdentifier with data extracted from Form460Filing.
         """
-        logger.info(' Inserting new Filing Identifiers...')
-        execute_custom_sql('insert_filing_ids_from_form460s')
-        logger.info(
-            ' Removing "calaccess_filing_id" from extras field on Filing...'
-        )
-        execute_custom_sql('remove_calaccess_filing_ids_from_filings')
+        # Inserting new Filing Identifiers...
+        execute_custom_sql('opencivicdata/campaign_finance/filings/insert_filing_ids_from_form460s')
+        #  Removing "calaccess_filing_id" from extras field on Filing...
+        execute_custom_sql('opencivicdata/campaign_finance/filings/remove_calaccess_filing_ids_from_filings')
 
 
 class OCDFilingIdentifierProxy(FilingIdentifier, OCDProxyModelMixin):
@@ -195,14 +191,14 @@ class OCDFilingActionManager(CopyManager):
         """
         Load OCD FilingAction with data extracted from Form460FilingVersion.
         """
-        logger.info(' Inserting new Filing Actions...')
-        execute_custom_sql('insert_filing_actions_from_form460s')
+        # Inserting new Filing Actions...
+        execute_custom_sql('opencivicdata/campaign_finance/filings/insert_filing_actions_from_form460s')
 
-        logger.info(' Setting is_current false on actions of amended Filings...')
-        execute_custom_sql('set_is_current_for_old_filing_actions')
+        # Setting is_current false on actions of amended Filings...
+        execute_custom_sql('opencivicdata/campaign_finance/filings/set_is_current_for_old_filing_actions')
 
-        logger.info(' Setting is_current true on latest Filing Actions...')
-        execute_custom_sql('set_is_current_for_new_filing_actions')
+        # Setting is_current true on latest Filing Actions...
+        execute_custom_sql('opencivicdata/campaign_finance/filings/set_is_current_for_new_filing_actions')
 
 
 class OCDFilingActionProxy(FilingAction, OCDProxyModelMixin):
@@ -235,9 +231,8 @@ class OCDFilingActionSummaryAmountManager(CopyManager):
         for f in sum_fields:
             label_words = [w.capitalize() for w in f.name.split('_')]
             label = ' '.join(label_words)
-            logger.info(' ...%s...' % label)
             execute_custom_sql(
-                'insert_filing_action_summary_amounts',
+                'opencivicdata/campaign_finance/filings/insert_filing_action_summary_amounts',
                 params={'label': label},
                 composables={
                     'source_table': table_composable,
@@ -253,11 +248,8 @@ class OCDFilingActionSummaryAmountManager(CopyManager):
         source_column_identifier = sql.Identifier(
             model._meta.get_field(field_name).column
         )
-
-        logger.info(' ...%s...' % label)
-
         execute_custom_sql(
-            'insert_filing_action_summary_amount_from_schedules',
+            'opencivicdata/campaign_finance/filings/insert_filing_action_summary_amount_from_schedules',
             params={'label': label},
             composables={
                 'source_table': source_table_identifier,
@@ -269,11 +261,11 @@ class OCDFilingActionSummaryAmountManager(CopyManager):
         """
         Load OCD FilingActionSummaryAmount with data from all Form460 related models.
         """
-        logger.info(' Inserting new Filing Action Summary Amounts...')
-        logger.info(' ...from Form 460 Summary Sheet...')
+        # Inserting new Filing Action Summary Amounts...
+        # ...from Form 460 Summary Sheet...
         self._load_form460_summary_sheet_data()
 
-        logger.info(' ...from Form 460 Schedule A Summary...')
+        # ...from Form 460 Schedule A Summary...
         self._load_from_form460_schedule_summary_field(
             Form460ScheduleASummaryVersion,
             'Itemized Monetary Contributions',
@@ -285,7 +277,7 @@ class OCDFilingActionSummaryAmountManager(CopyManager):
             'unitemized_contributions',
         )
 
-        logger.info(' ...from Form 460 Schedule C Summary...')
+        # ...from Form 460 Schedule C Summary...
         self._load_from_form460_schedule_summary_field(
             Form460ScheduleCSummaryVersion,
             'Itemized Non-monetary Contributions',

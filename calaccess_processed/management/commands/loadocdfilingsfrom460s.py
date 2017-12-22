@@ -93,19 +93,19 @@ class Command(CalAccessCommand):
         self.load_model(models.OCDCommitteeIdentifierProxy)
         self.load_model(models.OCDCommitteeNameProxy)
 
-        # #
-        # # Filings
-        # #
         #
-        # self.load_model(models.OCDFilingProxy)
-        # self.load_model(models.OCDFilingIdentifierProxy)
+        # Filings
         #
-        # #
-        # # Filing actions
-        # #
+
+        self.load_model(models.OCDFilingProxy)
+        self.load_model(models.OCDFilingIdentifierProxy)
+
         #
-        # self.load_model(models.OCDFilingActionProxy)
-        # self.load_model(models.OCDFilingActionSummaryAmountProxy)
+        # Filing actions
+        #
+
+        self.load_model(models.OCDFilingActionProxy)
+        self.load_model(models.OCDFilingActionSummaryAmountProxy)
 
         #
         # Transactions
