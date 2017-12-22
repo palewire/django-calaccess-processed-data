@@ -24,7 +24,6 @@ def get_custom_sql_str(file_path):
     """
     with open(file_path, 'r') as f:
         sql_str = f.read()
-
     return sql_str
 
 
@@ -45,7 +44,6 @@ def extract_operation_from_sql(sql_str):
         operation = '%sed' % past_tense.lower()
     else:
         operation = 'affected'
-
     return operation
 
 

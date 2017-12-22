@@ -40,11 +40,11 @@ class Command(CalAccessCommand):
         """
         self.header('Flushing OCD data extracted from Form 460 filings')
         model_list = [
-            models.OCDTransactionProxy,
-            models.OCDFilingActionSummaryAmountProxy,
-            models.OCDFilingActionProxy,
-            models.OCDFilingProxy,
-            models.OCDFilingIdentifierProxy,
+            # models.OCDTransactionProxy,
+            # models.OCDFilingActionSummaryAmountProxy,
+            # models.OCDFilingActionProxy,
+            # models.OCDFilingProxy,
+            # models.OCDFilingIdentifierProxy,
             models.OCDCommitteeProxy,
             models.OCDCommitteeIdentifierProxy,
             models.OCDCommitteeNameProxy,
@@ -93,22 +93,23 @@ class Command(CalAccessCommand):
         self.load_model(models.OCDCommitteeIdentifierProxy)
         self.load_model(models.OCDCommitteeNameProxy)
 
+        # #
+        # # Filings
+        # #
         #
-        # Filings
+        # self.load_model(models.OCDFilingProxy)
+        # self.load_model(models.OCDFilingIdentifierProxy)
         #
-
-        self.load_model(models.OCDFilingProxy)
-        self.load_model(models.OCDFilingIdentifierProxy)
-
+        # #
+        # # Filing actions
+        # #
         #
-        # Filing actions
-        #
-
-        self.load_model(models.OCDFilingActionProxy)
-        self.load_model(models.OCDFilingActionSummaryAmountProxy)
+        # self.load_model(models.OCDFilingActionProxy)
+        # self.load_model(models.OCDFilingActionSummaryAmountProxy)
 
         #
         # Transactions
         #
+
 
         # self.load_model(models.OCDTransactionProxy)

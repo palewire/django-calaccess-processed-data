@@ -5,7 +5,6 @@ Proxy models for OCD Filing related models..
 """
 from __future__ import unicode_literals
 import logging
-from calaccess_processed.sql import execute_custom_sql
 from opencivicdata.campaign_finance.models import (
     Committee,
     CommitteeType,
@@ -16,6 +15,7 @@ from opencivicdata.campaign_finance.models import (
 from postgres_copy import CopyManager
 from ..base import OCDProxyModelMixin
 from ..core.jurisdictions import OCDJurisdictionProxy
+from calaccess_processed.sql import execute_custom_sql
 logger = logging.getLogger(__name__)
 
 
@@ -27,10 +27,10 @@ class OCDCommitteeManager(CopyManager):
         """
         Load OCD Committee with data extracted from Form460Filing.
         """
-        logger.info(' Updating name of existing Committees...')
-        execute_custom_sql('update_committee_names_from_form460s')
-        logger.info(' Inserting new Committees...')
-        execute_custom_sql('insert_committees_from_form460s')
+        # Updating name of existing committees..
+        execute_custom_sql('opencivicdata/campaign_finance/committees/update_committee_names_from_form460s')
+        # ... and inserting new committees.
+        execute_custom_sql('opencivicdata/campaign_finance/committees/insert_committees_from_form460s')
 
 
 class OCDCommitteeProxy(Committee, OCDProxyModelMixin):
@@ -77,12 +77,10 @@ class OCDCommitteeIdentifierManager(CopyManager):
         """
         Load OCD CommitteeIdentifier with data extracted from Form460Filing.
         """
-        logger.info(' Inserting new Committee Identifiers...')
-        execute_custom_sql('insert_committee_ids_from_form460s')
-        logger.info(
-            ' Removing "calaccess_filer_id" from extras field on Committee...'
-        )
-        execute_custom_sql('remove_calaccess_filer_ids_from_committees')
+        #  Insert new committee identifiers.
+        execute_custom_sql('opencivicdata/campaign_finance/committees/insert_committee_ids_from_form460s')
+        # Removing "calaccess_filer_id" from extras field on Committee.
+        execute_custom_sql('opencivicdata/campaign_finance/committees/remove_calaccess_filer_ids_from_committees')
 
 
 class OCDCommitteeIdentifierProxy(CommitteeIdentifier, OCDProxyModelMixin):
@@ -106,9 +104,10 @@ class OCDCommitteeNameManager(CopyManager):
         """
         Load OCD CommitteeName with data extracted from Form460Filing.
         """
-        execute_custom_sql('insert_committee_names_from_form460s')
-        logger.info(' Deleting current names from Committee Names...')
-        execute_custom_sql('delete_current_names_from_committee_names')
+        # Insert new committee names
+        execute_custom_sql('opencivicdata/campaign_finance/committees/insert_committee_names_from_form460s')
+        # Delete current names from extra list of committee names.
+        execute_custom_sql('opencivicdata/campaign_finance/committees/delete_current_names_from_committee_names')
 
 
 class OCDCommitteeNameProxy(CommitteeName, OCDProxyModelMixin):
@@ -141,23 +140,18 @@ class OCDCommitteeTypeManager(CopyManager):
     """
     Manager with custom methods for OCD CommitteeType model.
     """
-
     def seed(self):
         """
-        Returns the recipient CommitteeType.
+        Seeds the default data for this model.
         """
-        self.get_queryset().get_or_create(
-            name='Recipient',
-            jurisdiction=OCDJurisdictionProxy.objects.california(),
-        )[0]
-        self.get_queryset().get_or_create(
-            name='Candidate',
-            jurisdiction=OCDJurisdictionProxy.objects.california(),
-        )[0]
-        self.get_queryset().get_or_create(
-            name='Ballot Measure',
-            jurisdiction=OCDJurisdictionProxy.objects.california(),
-        )[0]
+        # Prep data
+        qs = self.get_queryset()
+        jurisdiction = OCDJurisdictionProxy.objects.california()
+
+        # Fire away
+        qs.get_or_create(name='Recipient', jurisdiction=jurisdiction)
+        qs.get_or_create(name='Candidate', jurisdiction=jurisdiction)
+        qs.get_or_create(name='Ballot Measure', jurisdiction=jurisdiction)
 
 
 class OCDCommitteeTypeProxy(CommitteeType, OCDProxyModelMixin):
