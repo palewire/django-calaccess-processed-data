@@ -152,5 +152,5 @@ class ProcessedDataManager(CopyManager):
         """
         Return the path to the .sql file with the model's loading query.
         """
-        file_name = 'load_%s_model' % self.model._meta.model_name
+        file_name = 'filings/load_%s_model' % self.model._meta.model_name
         return get_custom_sql_path(file_name)

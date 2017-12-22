@@ -6,9 +6,9 @@ Load and archive the CAL-ACCESS Filing and FilingVersion models.
 import os
 from django.apps import apps
 from django.conf import settings
-from django.core.management import call_command
 from django.db import connection
 from django.utils.timezone import now
+from django.core.management import call_command
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed.models.tracking import ProcessedDataFile
 

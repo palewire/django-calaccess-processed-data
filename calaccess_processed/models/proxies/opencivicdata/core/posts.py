@@ -7,11 +7,11 @@ from __future__ import unicode_literals
 import re
 from django.db.models import Manager, Q
 from .divisions import OCDDivisionProxy
+from ..base import OCDProxyModelMixin
+from postgres_copy import CopyQuerySet
 from opencivicdata.core.models import Post
 from .organizations import OCDOrganizationProxy
 from calaccess_processed.models.proxies.calaccess_raw.filertofilertype import RawFilerToFilerTypeCdProxy
-from ..base import OCDProxyModelMixin
-from postgres_copy import CopyQuerySet
 
 
 class OCDPostManager(Manager):
