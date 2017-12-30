@@ -3,6 +3,7 @@
 """
 Import all of the managers from submodules and thread them together.
 """
+from .calaccess_raw import RawFilerToFilerTypeCdManager
 from .opencivicdata import (
     OCDCommitteeManager,
     OCDCommitteeIdentifierManager,
@@ -19,6 +20,7 @@ from .filings import FilingsManager
 
 
 __all__ = (
+    "RawFilerToFilerTypeCdManager",
     "OCDCommitteeManager",
     "OCDCommitteeIdentifierManager",
     "OCDCommitteeNameManager",
