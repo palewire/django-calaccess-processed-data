@@ -3,8 +3,24 @@
 """
 Filing-related models, managers and mixins.
 """
-from time import sleep
 import requests
+from time import sleep
+from calaccess_processed.managers import FilingsManager
+from calaccess_processed.models.base import CalAccessBaseModel
+
+
+class FilingBaseModel(CalAccessBaseModel):
+    """
+    Base model for all the filings models.
+    """
+    objects = FilingsManager()
+
+    class Meta:
+        """
+        Meta model options.
+        """
+        abstract = True
+        app_label = 'calaccess_processed'
 
 
 class FilingMixin(object):
@@ -29,9 +45,7 @@ class FilingMixin(object):
         Pause for half a second before making the request.
         """
         sleep(0.5)
-
         r = requests.head(self.pdf_url)
-
         return r.status_code == 200
 
 
@@ -57,7 +71,5 @@ class FilingVersionMixin(object):
         Pause for half a second before making the request.
         """
         sleep(0.5)
-
         r = requests.head(self.pdf_url)
-
         return r.status_code == 200

@@ -33,7 +33,6 @@ class OCDFilingManager(CopyManager):
         """
         Update target_column on OCD Filing with value from source_column.
         """
-        target_field = Filing._meta.get_field(target_column)
         source_table_identifier = sql.Identifier(
             Form460Filing._meta.db_table
         )

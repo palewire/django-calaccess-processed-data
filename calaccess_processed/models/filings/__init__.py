@@ -3,7 +3,7 @@
 """
 Submodule for all filing-related models, managers and mixins.
 """
-from .base import FilingMixin, FilingVersionMixin
+from .base import FilingBaseModel, FilingMixin, FilingVersionMixin
 from .campaign import (
     CampaignContributionBase,
     CampaignExpenditureItemBase,
@@ -76,6 +76,7 @@ from .campaign import (
 )
 
 __all__ = (
+    "FilingBaseModel",
     "FilingMixin",
     "FilingVersionMixin",
     "CampaignContributionBase",

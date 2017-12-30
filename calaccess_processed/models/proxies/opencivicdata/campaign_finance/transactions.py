@@ -19,11 +19,11 @@ from opencivicdata.campaign_finance.models import (
 from postgres_copy import CopyManager
 from psycopg2 import sql
 from ..base import OCDProxyModelMixin
-from calaccess_processed.managers import ProcessedDataManager
+from calaccess_processed.managers import ConstraintsManager
 logger = logging.getLogger(__name__)
 
 
-class OCDTransactionManager(ProcessedDataManager):
+class OCDTransactionManager(ConstraintsManager):
     """
     Manager with custom methods for OCD Transaction model.
     """

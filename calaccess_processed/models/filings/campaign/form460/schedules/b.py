@@ -6,7 +6,7 @@ Models for storing data from Campaign Disclosure Statements (Form 460).
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.models.base import CalAccessBaseModel
+from calaccess_processed.models.filings.base import FilingBaseModel
 from calaccess_processed.models.filings.campaign import CampaignLoanReceivedItemBase
 
 
@@ -168,7 +168,7 @@ class Form460ScheduleB1ItemVersion(Form460ScheduleB1ItemBase):
         )
 
 
-class Form460ScheduleB2ItemBase(CalAccessBaseModel):
+class Form460ScheduleB2ItemBase(FilingBaseModel):
     """
     Abstract base model for items reported on Schedule B, Part 2, of Form 460.
 

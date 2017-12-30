@@ -5,10 +5,10 @@ Abstract base models for campaign finance-related filings and transactions.
 """
 from __future__ import unicode_literals
 from django.db import models
-from calaccess_processed.models.base import CalAccessBaseModel
+from calaccess_processed.models.filings.base import FilingBaseModel
 
 
-class CampaignFinanceFilingBase(CalAccessBaseModel):
+class CampaignFinanceFilingBase(FilingBaseModel):
     """
     Base and abstract model for campaign finance-related filings.
     """

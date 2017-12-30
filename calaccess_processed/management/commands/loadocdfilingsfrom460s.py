@@ -41,10 +41,10 @@ class Command(CalAccessCommand):
         self.header('Flushing OCD data extracted from Form 460 filings')
         model_list = [
             # models.OCDTransactionProxy,
-            # models.OCDFilingActionSummaryAmountProxy,
-            # models.OCDFilingActionProxy,
-            # models.OCDFilingProxy,
-            # models.OCDFilingIdentifierProxy,
+            models.OCDFilingActionSummaryAmountProxy,
+            models.OCDFilingActionProxy,
+            models.OCDFilingProxy,
+            models.OCDFilingIdentifierProxy,
             models.OCDCommitteeProxy,
             models.OCDCommitteeIdentifierProxy,
             models.OCDCommitteeNameProxy,
@@ -71,7 +71,7 @@ class Command(CalAccessCommand):
         after = model.objects.count()
 
         # Report the change
-        self.log('   {:,} added'.format(after-before))
+        self.log('   {:,} added'.format(after - before))
 
     def load(self, *args, **kwargs):
         """
@@ -97,19 +97,18 @@ class Command(CalAccessCommand):
         # Filings
         #
 
-        self.load_model(models.OCDFilingProxy)
-        self.load_model(models.OCDFilingIdentifierProxy)
+        # self.load_model(models.OCDFilingProxy)
+        # self.load_model(models.OCDFilingIdentifierProxy)
 
         #
         # Filing actions
         #
 
-        self.load_model(models.OCDFilingActionProxy)
-        self.load_model(models.OCDFilingActionSummaryAmountProxy)
+        # self.load_model(models.OCDFilingActionProxy)
+        # self.load_model(models.OCDFilingActionSummaryAmountProxy)
 
         #
         # Transactions
         #
-
 
         # self.load_model(models.OCDTransactionProxy)

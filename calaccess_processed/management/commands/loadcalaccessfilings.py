@@ -143,7 +143,7 @@ class Command(CalAccessCommand):
             # load the processed model
             if self.verbosity > 2:
                 self.log(" Loading %s" % m._meta.db_table)
-            m.objects.load_raw_data()
+            m.objects.load()
 
             processed_file.records_count = m.objects.count()
             processed_file.process_finish_datetime = now()

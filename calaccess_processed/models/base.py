@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.db.models.base import ModelBase
 from django.template.defaultfilters import capfirst
-from calaccess_processed.managers import ProcessedDataManager
+from calaccess_processed.managers import ConstraintsManager
 import textwrap
 
 
@@ -46,7 +46,7 @@ class CalAccessBaseModel(models.Model):
     """
     __metaclass__ = CalAccessMetaClass
 
-    objects = ProcessedDataManager()
+    objects = ConstraintsManager()
 
     def doc(self):
         """

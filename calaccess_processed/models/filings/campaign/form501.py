@@ -10,14 +10,14 @@ from django.db import models
 from django.db.models import Q
 from calaccess_processed import corrections, get_expected_election_date
 from opencivicdata.elections.models import CandidateContest
-from calaccess_processed.managers import ProcessedDataManager
+from calaccess_processed.managers import FilingsManager
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.models import CalAccessBaseModel
+from calaccess_processed.models.filings.base import FilingBaseModel
 from calaccess_processed.models.filings import FilingMixin, FilingVersionMixin
 from postgres_copy import CopyQuerySet
 
 
-class Form501FilingManager(ProcessedDataManager):
+class Form501FilingManager(FilingsManager):
     """
     A custom manager for Form 501 filings.
     """
@@ -33,7 +33,7 @@ class Form501FilingManager(ProcessedDataManager):
         )
 
 
-class Form501FilingBase(CalAccessBaseModel):
+class Form501FilingBase(FilingBaseModel):
     """
     Base and abstract model for Form 501 filings.
     """

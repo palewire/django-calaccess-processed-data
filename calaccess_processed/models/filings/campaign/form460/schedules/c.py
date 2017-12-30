@@ -6,7 +6,7 @@ Models for storing data from Campaign Disclosure Statements (Form 460).
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.models.base import CalAccessBaseModel
+from calaccess_processed.models.filings.base import FilingBaseModel
 from calaccess_processed.models.filings.campaign import CampaignContributionBase
 
 
@@ -14,7 +14,7 @@ from calaccess_processed.models.filings.campaign import CampaignContributionBase
 # Summaries
 #
 
-class Form460ScheduleCSummaryBase(CalAccessBaseModel):
+class Form460ScheduleCSummaryBase(FilingBaseModel):
     """
     Abstract base model with summary data from Schedule C attachments to Form 460 filings.
 
