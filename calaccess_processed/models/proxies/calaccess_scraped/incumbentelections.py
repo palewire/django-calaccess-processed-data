@@ -4,33 +4,15 @@
 Proxy model for augmenting ScrapedIncumbentElection model with methods useful for processing.
 """
 from __future__ import unicode_literals
-from calaccess_scraped.models import IncumbentElection
-from django.db.models import Manager
-from postgres_copy import CopyQuerySet
+
+# Models
 from .base import ElectionProxyMixin
-from calaccess_processed.models.proxies.opencivicdata import OCDElectionProxy
+from ..opencivicdata import OCDElectionProxy
+from calaccess_scraped.models import IncumbentElection
 
-
-class ScrapedIncumbentElectionManager(Manager):
-    """
-    Manager with custom queryset and methods on the ScrapedIncumbentElectionProxy model.
-    """
-    def get_queryset(self):
-        """
-        Override the default manager to exclude blacklisted elections.
-        """
-        # http://www.sos.ca.gov/elections/prior-elections/special-elections/
-        blacklisted_elections = (
-            '2017-10-2',
-            '2015-11-30',
-            '2015-9-28',
-            '2014-9-29',
-            '2014-3-17',
-            '2001-3-6',
-        )
-        return super(
-            ScrapedIncumbentElectionManager, self
-        ).get_queryset().exclude(date__in=blacklisted_elections)
+# Managers
+from postgres_copy import CopyQuerySet
+from calaccess_processed.managers import ScrapedIncumbentElectionManager
 
 
 class ScrapedIncumbentElectionProxy(ElectionProxyMixin, IncumbentElection):
