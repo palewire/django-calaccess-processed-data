@@ -8,6 +8,7 @@ import re
 import logging
 from psycopg2 import sql
 from django.db import connection
+from django.template.defaultfilters import pluralize
 logger = logging.getLogger(__name__)
 
 
@@ -18,22 +19,6 @@ def get_custom_sql_path(file_name):
     return os.path.join(os.path.dirname(__file__), '%s.sql' % file_name)
 
 
-def get_custom_sql_str(file_path):
-    """
-    Return the custom sql_str in file_path.
-    """
-    with open(file_path, 'r') as f:
-        sql_str = f.read()
-    return sql_str
-
-
-def compose_custom_sql(sql_str, **kwargs):
-    """
-    Return a psycopg2.sql Composable.
-    """
-    return sql.SQL(sql_str).format(**kwargs)
-
-
 def extract_operation_from_sql(sql_str):
     """
     Return the operation (as a string) declared in the SQL string.
@@ -41,21 +26,9 @@ def extract_operation_from_sql(sql_str):
     match = re.search(r'^([A-z]+)', sql_str, re.M)
     if match:
         past_tense = re.sub(r'E$', '', match.group())
-        operation = '%sed' % past_tense.lower()
+        return '%sed' % past_tense.lower()
     else:
-        operation = 'affected'
-    return operation
-
-
-def log_row_count(row_count, operation):
-    """
-    Log the number of rows and the operation performed.
-    """
-    if row_count == 1:
-        string = ' %s row %s.' % (row_count, operation)
-    else:
-        string = ' %s rows %s.' % (row_count, operation)
-    logger.info(string)
+        return 'affected'
 
 
 def execute_custom_sql(file_name, params=None, composables=None):
@@ -69,13 +42,29 @@ def execute_custom_sql(file_name, params=None, composables=None):
 
     Log the number of rows and operation performed.
     """
+    # Get the path to the SQL file
     file_path = get_custom_sql_path(file_name)
-    sql_str = get_custom_sql_str(file_path)
-    operation = extract_operation_from_sql(sql_str)
+    logger.debug("Executing {}".format(file_path))
+
+    # Read in the SQL
+    sql_str = open(file_path, 'r').read()
+
+    # Compile it with any composable variables that need to be mixed in.
     if composables:
-        composed_sql = compose_custom_sql(sql_str, **composables)
+        composed_sql = sql.SQL(sql_str).format(**composables)
     else:
         composed_sql = sql_str
+
+    # Open a database connection
     with connection.cursor() as cursor:
+        # Run the SQL
         cursor.execute(composed_sql, params)
-        log_row_count(cursor.rowcount, operation)
+
+        # Log the result
+        operation = extract_operation_from_sql(sql_str)
+        row_count = cursor.rowcount
+        logger.debug('{} {} {}'.format(
+            row_count,
+            "row" + pluralize(row_count),
+            operation
+        ))
