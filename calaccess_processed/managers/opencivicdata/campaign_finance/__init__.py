@@ -3,19 +3,19 @@
 """
 Import all of the managers from submodules and thread them together.
 """
-from .opencivicdata import (
+from .committees import (
     OCDCommitteeManager,
     OCDCommitteeIdentifierManager,
     OCDCommitteeNameManager,
-    OCDCommitteeTypeManager,
+    OCDCommitteeTypeManager
+)
+from .filings import (
     OCDFilingManager,
     OCDFilingIdentifierManager,
     OCDFilingActionManager,
-    OCDFilingActionSummaryAmountManager,
-    OCDTransactionManager
+    OCDFilingActionSummaryAmountManager
 )
-from .constraints import ConstraintsManager
-from .filings import FilingsManager
+from .transactions import OCDTransactionManager
 
 
 __all__ = (
@@ -27,7 +27,5 @@ __all__ = (
     "OCDFilingIdentifierManager",
     "OCDFilingActionManager",
     "OCDFilingActionSummaryAmountManager",
-    "OCDTransactionManager",
-    'ConstraintsManager',
-    'FilingsManager'
+    "OCDTransactionManager"
 )

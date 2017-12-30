@@ -7,7 +7,6 @@ from __future__ import unicode_literals
 import logging
 from django.db import connection
 from postgres_copy import CopyManager
-from django.db.utils import ProgrammingError
 logger = logging.getLogger(__name__)
 
 
@@ -19,7 +18,7 @@ class ConstraintsManager(CopyManager):
         """
         Edits the schema without throwing errors.
 
-        This allows for the add and drop methods to be run frequently and without fear. 
+        This allows for the add and drop methods to be run frequently and without fear.
         """
         try:
             getattr(schema_editor, method_name)(*args)

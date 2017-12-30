@@ -3,7 +3,7 @@
 """
 Import all of the managers from submodules and thread them together.
 """
-from .opencivicdata import (
+from .campaign_finance import (
     OCDCommitteeManager,
     OCDCommitteeIdentifierManager,
     OCDCommitteeNameManager,
@@ -14,9 +14,6 @@ from .opencivicdata import (
     OCDFilingActionSummaryAmountManager,
     OCDTransactionManager
 )
-from .constraints import ConstraintsManager
-from .filings import FilingsManager
-
 
 __all__ = (
     "OCDCommitteeManager",
@@ -27,7 +24,5 @@ __all__ = (
     "OCDFilingIdentifierManager",
     "OCDFilingActionManager",
     "OCDFilingActionSummaryAmountManager",
-    "OCDTransactionManager",
-    'ConstraintsManager',
-    'FilingsManager'
+    "OCDTransactionManager"
 )
