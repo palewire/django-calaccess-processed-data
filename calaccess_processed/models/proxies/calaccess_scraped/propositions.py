@@ -5,34 +5,11 @@ Proxy model for augmenting ScrapedProposition model with methods useful for proc
 """
 from __future__ import unicode_literals
 from calaccess_scraped.models import Proposition
-from django.db import models
 from .propositionelections import ScrapedPropositionElectionProxy
-
-
-class ScrapedBallotMeasureManager(models.Manager):
-    """
-    Custom manager that filters ScrapedProposition model to ballot measures.
-    """
-    def get_queryset(self):
-        """
-        Filter to ballot measures.
-        """
-        return super(
-            ScrapedBallotMeasureManager, self
-        ).get_queryset().exclude(name__icontains='RECALL')
-
-
-class ScrapedRecallMeasureManager(models.Manager):
-    """
-    Custom manager that filters ScrapedProposition model to recall measures.
-    """
-    def get_queryset(self):
-        """
-        Filter to recall measures.
-        """
-        return super(
-            ScrapedRecallMeasureManager, self
-        ).get_queryset().filter(name__icontains='RECALL')
+from calaccess_processed.managers import (
+    ScrapedBallotMeasureManager,
+    ScrapedRecallMeasureManager
+)
 
 
 class ScrapedPropositionProxy(Proposition):

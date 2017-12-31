@@ -26,3 +26,29 @@ class ScrapedIncumbentElectionManager(models.Manager):
             '2001-3-6'
         )
         return qs.exclude(date__in=blacklisted_elections)
+
+
+class ScrapedBallotMeasureManager(models.Manager):
+    """
+    Custom manager that filters ScrapedProposition model to ballot measures.
+    """
+    def get_queryset(self):
+        """
+        Filter to ballot measures.
+        """
+        return super(
+            ScrapedBallotMeasureManager, self
+        ).get_queryset().exclude(name__icontains='RECALL')
+
+
+class ScrapedRecallMeasureManager(models.Manager):
+    """
+    Custom manager that filters ScrapedProposition model to recall measures.
+    """
+    def get_queryset(self):
+        """
+        Filter to recall measures.
+        """
+        return super(
+            ScrapedRecallMeasureManager, self
+        ).get_queryset().filter(name__icontains='RECALL')

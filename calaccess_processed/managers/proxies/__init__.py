@@ -4,7 +4,11 @@
 Import all of the managers from submodules and thread them together.
 """
 from .calaccess_raw import RawFilerToFilerTypeCdManager
-from .calaccess_scraped import ScrapedIncumbentElectionManager
+from .calaccess_scraped import (
+    ScrapedIncumbentElectionManager,
+    ScrapedBallotMeasureManager,
+    ScrapedRecallMeasureManager,
+)
 from .opencivicdata import (
     OCDCommitteeManager,
     OCDCommitteeIdentifierManager,
@@ -38,6 +42,8 @@ from .opencivicdata import (
 __all__ = (
     "RawFilerToFilerTypeCdManager",
     "ScrapedIncumbentElectionManager",
+    "ScrapedBallotMeasureManager",
+    "ScrapedRecallMeasureManager",
     "OCDCommitteeManager",
     "OCDCommitteeIdentifierManager",
     "OCDCommitteeNameManager",

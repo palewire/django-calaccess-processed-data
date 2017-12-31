@@ -4,33 +4,15 @@
 Models for storing campaign-related entities derived from raw CAL-ACCESS data.
 """
 from __future__ import unicode_literals
-import itertools
 from datetime import date
 from django.db import models
-from django.db.models import Q
 from calaccess_processed import corrections, get_expected_election_date
 from opencivicdata.elections.models import CandidateContest
-from calaccess_processed.managers import FilingsManager
 from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed.models.filings.base import FilingBaseModel
 from calaccess_processed.models.filings import FilingMixin, FilingVersionMixin
 from postgres_copy import CopyQuerySet
-
-
-class Form501FilingManager(FilingsManager):
-    """
-    A custom manager for Form 501 filings.
-    """
-    def without_candidacy(self):
-        """
-        Returns Form 501 filings that do not have an OCD Candidacy yet.
-        """
-        from calaccess_processed.models import OCDCandidacyProxy
-        matched_qs = OCDCandidacyProxy.objects.matched_form501_ids()
-        matched_list = [i for i in itertools.chain.from_iterable(matched_qs)]
-        return self.get_queryset().exclude(
-            Q(filing_id__in=matched_list) | Q(office__icontains='RETIREMENT')
-        )
+from calaccess_processed.managers import Form501FilingManager
 
 
 class Form501FilingBase(FilingBaseModel):

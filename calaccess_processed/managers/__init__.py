@@ -11,6 +11,8 @@ from .flatfiles import (
 from .proxies import (
     RawFilerToFilerTypeCdManager,
     ScrapedIncumbentElectionManager,
+    ScrapedBallotMeasureManager,
+    ScrapedRecallMeasureManager,
     OCDCommitteeManager,
     OCDCommitteeIdentifierManager,
     OCDCommitteeNameManager,
@@ -39,7 +41,10 @@ from .proxies import (
     OCDPartyManager
 )
 from .constraints import ConstraintsManager
-from .filings import FilingsManager
+from .filings import (
+    FilingsManager,
+    Form501FilingManager
+)
 
 
 __all__ = (
@@ -48,6 +53,8 @@ __all__ = (
     "OCDFlatRetentionContestManager",
     "RawFilerToFilerTypeCdManager",
     "ScrapedIncumbentElectionManager",
+    "ScrapedBallotMeasureManager",
+    "ScrapedRecallMeasureManager",
     "OCDCommitteeManager",
     "OCDCommitteeIdentifierManager",
     "OCDCommitteeNameManager",
@@ -75,5 +82,6 @@ __all__ = (
     "OCDElectionManager",
     "OCDPartyManager",
     'ConstraintsManager',
-    'FilingsManager'
+    'FilingsManager',
+    'Form501FilingManager'
 )
