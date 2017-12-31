@@ -225,7 +225,7 @@ class Form501Filing(FilingMixin, Form501FilingBase):
         help_text='Number of amendments to the Form 501 filing (from '
                   'maximum value of F501_502_CD.AMEND_ID)',
     )
-    objects = Form501FilingManager.from_queryset(CopyQuerySet)()
+    objects = Form501FilingManager()
 
     class Meta:
         """

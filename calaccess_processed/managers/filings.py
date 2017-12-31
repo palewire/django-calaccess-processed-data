@@ -23,7 +23,7 @@ class FilingsManager(BulkLoadSQLManager, CopyManager):
         """
         Return string of raw sql for loading the model.
         """
-        return open(self.custom_sql_path, 'r').read()
+        return open(self.sql_path, 'r').read()
 
     @property
     def sql_path(self):
