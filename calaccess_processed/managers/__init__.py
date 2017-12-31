@@ -14,7 +14,13 @@ from .opencivicdata import (
     OCDFilingIdentifierManager,
     OCDFilingActionManager,
     OCDFilingActionSummaryAmountManager,
-    OCDTransactionManager
+    OCDTransactionManager,
+    OCDAssemblyDivisionManager,
+    OCDSenateDivisionManager,
+    OCDCaliforniaDivisionManager,
+    OCDJurisdictionManager,
+    OCDOrganizationManager,
+    OCDMembershipManager
 )
 from .constraints import ConstraintsManager
 from .filings import FilingsManager
@@ -32,6 +38,12 @@ __all__ = (
     "OCDFilingActionManager",
     "OCDFilingActionSummaryAmountManager",
     "OCDTransactionManager",
+    "OCDAssemblyDivisionManager",
+    "OCDSenateDivisionManager",
+    "OCDCaliforniaDivisionManager",
+    "OCDJurisdictionManager",
+    "OCDOrganizationManager",
+    "OCDMembershipManager",
     'ConstraintsManager',
     'FilingsManager'
 )

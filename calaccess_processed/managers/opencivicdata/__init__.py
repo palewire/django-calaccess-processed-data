@@ -14,6 +14,15 @@ from .campaign_finance import (
     OCDFilingActionSummaryAmountManager,
     OCDTransactionManager
 )
+from .core import (
+    OCDAssemblyDivisionManager,
+    OCDSenateDivisionManager,
+    OCDCaliforniaDivisionManager,
+    OCDJurisdictionManager,
+    OCDOrganizationManager,
+    OCDMembershipManager
+)
+
 
 __all__ = (
     "OCDCommitteeManager",
@@ -24,5 +33,11 @@ __all__ = (
     "OCDFilingIdentifierManager",
     "OCDFilingActionManager",
     "OCDFilingActionSummaryAmountManager",
-    "OCDTransactionManager"
+    "OCDTransactionManager",
+    "OCDAssemblyDivisionManager",
+    "OCDSenateDivisionManager",
+    "OCDCaliforniaDivisionManager",
+    "OCDJurisdictionManager",
+    "OCDOrganizationManager",
+    "OCDMembershipManager"
 )

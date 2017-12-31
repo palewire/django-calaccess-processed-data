@@ -15,9 +15,7 @@ class ScrapedIncumbentElectionManager(models.Manager):
         """
         Override the default manager to exclude blacklisted elections.
         """
-        qs = super(
-            ScrapedIncumbentElectionManager, self
-        ).get_queryset()
+        qs = super(ScrapedIncumbentElectionManager, self).get_queryset()
         # http://www.sos.ca.gov/elections/prior-elections/special-elections/
         blacklisted_elections = (
             '2017-10-2',
@@ -25,6 +23,6 @@ class ScrapedIncumbentElectionManager(models.Manager):
             '2015-9-28',
             '2014-9-29',
             '2014-3-17',
-            '2001-3-6',
+            '2001-3-6'
         )
         return qs.exclude(date__in=blacklisted_elections)

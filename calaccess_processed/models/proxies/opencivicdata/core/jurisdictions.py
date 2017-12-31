@@ -4,25 +4,13 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
-from opencivicdata.core.models import Jurisdiction
-from postgres_copy import CopyManager
-from .divisions import OCDDivisionProxy
+
+# Models
 from ..base import OCDProxyModelMixin
+from opencivicdata.core.models import Jurisdiction
 
-
-class OCDJurisdictionManager(CopyManager):
-    """
-    Custom helpers for the OCD Jurisdiction model.
-    """
-    def california(self):
-        """
-        Returns California State Government jurisdiction.
-        """
-        return self.get_queryset().get_or_create(
-            name='California',
-            classification='government',
-            division=OCDDivisionProxy.objects.california(),
-        )[0]
+# Managers
+from calaccess_processed.managers import OCDJurisdictionManager
 
 
 class OCDJurisdictionProxy(Jurisdiction, OCDProxyModelMixin):
