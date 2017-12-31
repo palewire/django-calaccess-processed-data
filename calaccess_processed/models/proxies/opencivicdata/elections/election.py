@@ -4,62 +4,25 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
-from django.db.models import Count, Manager
 from django.utils.text import get_text_list
+
+# Models
+from django.db.models import Count
 from opencivicdata.elections.models import (
     Election,
     ElectionIdentifier,
     ElectionSource,
 )
-from postgres_copy import CopyQuerySet
 from ..base import OCDProxyModelMixin
-from .candidatecontests import OCDCandidateContestProxy
-from ..core.divisions import OCDDivisionProxy
-from ..core.organizations import OCDOrganizationProxy
 from ..core.posts import OCDPostProxy
+from .candidatecontests import OCDCandidateContestProxy
 
-
-class OCDPartisanPrimaryManager(Manager):
-    """
-    Custom manager for limiting OCD elections querysets to partisan primaries.
-    """
-    def get_queryset(self):
-        """
-        Returns whether or not this was a primary election held in the partisan era prior to 2012.
-        """
-        return super(OCDPartisanPrimaryManager, self).get_queryset().filter(
-            date__year__lt=2012,
-            name__icontains='PRIMARY'
-        )
-
-
-class OCDElectionManager(Manager):
-    """
-    Custom helpers for the OCD Election model.
-    """
-    def create_from_calaccess(self, name, dt, election_id=None, election_type=None):
-        """
-        Create an OCD Election object.
-        """
-        # Create the object
-        obj = self.get_queryset().create(
-            name=name,
-            date=dt,
-            administrative_organization=OCDOrganizationProxy.objects.elections_division(),
-            division=OCDDivisionProxy.objects.california(),
-        )
-
-        # And add the identifier so we can find it in the future
-        if election_id:
-            obj.identifiers.create(scheme='calaccess_election_id', identifier=election_id)
-
-        # Add the election type so we can pull it out later if we want it.
-        if election_type:
-            obj.extras['calaccess_election_type'] = [election_type]
-            obj.save()
-
-        # Pass it back
-        return obj
+# Managers
+from postgres_copy import CopyQuerySet
+from calaccess_processed.managers import (
+    OCDPartisanPrimaryManager,
+    OCDElectionManager
+)
 
 
 class OCDElectionProxy(Election, OCDProxyModelMixin):

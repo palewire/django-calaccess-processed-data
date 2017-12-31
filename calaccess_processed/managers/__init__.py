@@ -24,7 +24,13 @@ from .opencivicdata import (
     OCDPostManager,
     OCDAssemblyPostManager,
     OCDExecutivePostManager,
-    OCDSenatePostManager
+    OCDSenatePostManager,
+    OCDCandidacyQuerySet,
+    OCDCandidacyManager,
+    OCDCandidateContestQuerySet,
+    OCDPartisanPrimaryManager,
+    OCDElectionManager,
+    OCDPartyManager
 )
 from .constraints import ConstraintsManager
 from .filings import FilingsManager
@@ -52,6 +58,12 @@ __all__ = (
     "OCDAssemblyPostManager",
     "OCDExecutivePostManager",
     "OCDSenatePostManager",
+    "OCDCandidacyQuerySet",
+    "OCDCandidacyManager",
+    "OCDCandidateContestQuerySet",
+    "OCDPartisanPrimaryManager",
+    "OCDElectionManager",
+    "OCDPartyManager",
     'ConstraintsManager',
     'FilingsManager'
 )

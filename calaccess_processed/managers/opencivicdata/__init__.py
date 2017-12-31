@@ -26,6 +26,14 @@ from .core import (
     OCDExecutivePostManager,
     OCDSenatePostManager
 )
+from .elections import (
+    OCDCandidacyQuerySet,
+    OCDCandidacyManager,
+    OCDCandidateContestQuerySet,
+    OCDPartisanPrimaryManager,
+    OCDElectionManager,
+    OCDPartyManager
+)
 
 
 __all__ = (
@@ -47,5 +55,11 @@ __all__ = (
     "OCDPostManager",
     "OCDAssemblyPostManager",
     "OCDExecutivePostManager",
-    "OCDSenatePostManager"
+    "OCDSenatePostManager",
+    "OCDCandidacyQuerySet",
+    "OCDCandidacyManager",
+    "OCDCandidateContestQuerySet",
+    "OCDPartisanPrimaryManager",
+    "OCDElectionManager",
+    "OCDPartyManager"
 )
