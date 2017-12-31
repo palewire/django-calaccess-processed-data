@@ -13,6 +13,7 @@ from .organizations import (
     OCDOrganizationManager,
     OCDMembershipManager
 )
+from .people import OCDPersonManager
 
 
 __all__ = (
@@ -21,5 +22,6 @@ __all__ = (
     "OCDCaliforniaDivisionManager",
     "OCDJurisdictionManager",
     "OCDOrganizationManager",
-    "OCDMembershipManager"
+    "OCDMembershipManager",
+    "OCDPersonManager",
 )
