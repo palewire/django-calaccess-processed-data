@@ -4,6 +4,7 @@
 Import all of the managers from submodules and thread them together.
 """
 from .campaign_finance import (
+    BaseOCDBulkLoadSQLManager,
     OCDCommitteeManager,
     OCDCommitteeIdentifierManager,
     OCDCommitteeNameManager,
@@ -38,6 +39,7 @@ from .elections import (
 
 
 __all__ = (
+    "BaseOCDBulkLoadSQLManager",
     "OCDCommitteeManager",
     "OCDCommitteeIdentifierManager",
     "OCDCommitteeNameManager",

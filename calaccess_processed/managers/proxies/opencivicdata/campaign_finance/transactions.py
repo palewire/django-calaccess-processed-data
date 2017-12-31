@@ -7,15 +7,15 @@ from __future__ import unicode_literals
 import logging
 from psycopg2 import sql
 from calaccess_processed.sql import execute_custom_sql
-from calaccess_processed.managers.constraints import ConstraintsManager
+from .base import BaseOCDBulkLoadSQLManager
 logger = logging.getLogger(__name__)
 
 
-class OCDTransactionManager(ConstraintsManager):
+class OCDTransactionManager(BaseOCDBulkLoadSQLManager):
     """
     Manager with custom methods for OCD Transaction model.
     """
-    def load_form460_data(self):
+    def execute(self):
         """
         Load OCD Transactions with data from all Form460 related models.
         """
@@ -25,9 +25,6 @@ class OCDTransactionManager(ConstraintsManager):
             Form460ScheduleCItem,
             Form460ScheduleCItemVersion
         )
-
-        # Dropping constraints/indexes
-        self.drop_constraints_and_indexes()
 
         # ...from Form 460 Schedule A Items...
         # ...for current filings...
@@ -48,9 +45,6 @@ class OCDTransactionManager(ConstraintsManager):
         self.insert_contribution_items(
             Form460ScheduleCItemVersion, 'fair_market_value', True
         )
-
-        # Restoring constraints/indexes
-        self.add_constraints_and_indexes()
 
     def insert_contribution_items(self, model, amount_field_name, is_in_kind):
         """

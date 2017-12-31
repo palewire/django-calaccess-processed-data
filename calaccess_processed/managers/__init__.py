@@ -13,6 +13,7 @@ from .proxies import (
     ScrapedIncumbentElectionManager,
     ScrapedBallotMeasureManager,
     ScrapedRecallMeasureManager,
+    BaseOCDBulkLoadSQLManager,
     OCDCommitteeManager,
     OCDCommitteeIdentifierManager,
     OCDCommitteeNameManager,
@@ -40,7 +41,7 @@ from .proxies import (
     OCDElectionManager,
     OCDPartyManager
 )
-from .constraints import ConstraintsManager
+from .bulkloadsql import BulkLoadSQLManager
 from .filings import (
     FilingsManager,
     Form501FilingManager
@@ -55,6 +56,7 @@ __all__ = (
     "ScrapedIncumbentElectionManager",
     "ScrapedBallotMeasureManager",
     "ScrapedRecallMeasureManager",
+    "BaseOCDBulkLoadSQLManager",
     "OCDCommitteeManager",
     "OCDCommitteeIdentifierManager",
     "OCDCommitteeNameManager",
@@ -81,7 +83,7 @@ __all__ = (
     "OCDPartisanPrimaryManager",
     "OCDElectionManager",
     "OCDPartyManager",
-    'ConstraintsManager',
+    'BulkLoadSQLManager',
     'FilingsManager',
     'Form501FilingManager'
 )

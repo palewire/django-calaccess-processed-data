@@ -4,45 +4,39 @@
 Custom manager for loading raw data in to "filings" models.
 """
 from __future__ import unicode_literals
+import os
 import logging
 import itertools
 from django.apps import apps
 from django.db.models import Q
-from django.db import connection
-from .constraints import ConstraintsManager
-from calaccess_processed.sql import get_custom_sql_path
+from .bulkloadsql import BulkLoadSQLManager
 logger = logging.getLogger(__name__)
 
 
-class FilingsManager(ConstraintsManager):
+class FilingsManager(BulkLoadSQLManager):
     """
     Utilities for more quickly loading bulk data.
     """
-    def load(self):
-        """
-        Load the model by executing its raw sql load query.
-
-        Temporarily drops any constraints or indexes on the model.
-        """
-        self.drop_constraints_and_indexes()
-        with connection.cursor() as c:
-            c.execute(self.custom_sql)
-        self.add_constraints_and_indexes()
-
     @property
-    def custom_sql(self):
+    def sql(self):
         """
         Return string of raw sql for loading the model.
         """
         return open(self.custom_sql_path, 'r').read()
 
     @property
-    def custom_sql_path(self):
+    def sql_path(self):
         """
         Return the path to the .sql file with the model's loading query.
         """
         file_name = 'filings/load_%s_model' % self.model._meta.model_name
-        return get_custom_sql_path(file_name)
+        return self.get_sql_path(file_name)
+
+    def get_sql_path(self, file_name):
+        """
+        Return the full path with extenstion to file_name.
+        """
+        return os.path.join(apps.get_app("calaccess_processed").sql_directory_path, '%s.sql' % file_name)
 
 
 class Form501FilingManager(FilingsManager):

@@ -65,7 +65,7 @@ class Command(CalAccessCommand):
         before = model.objects.count()
 
         # Run the update routine
-        model.objects.load_form460_data()
+        model.objects.load()
 
         # Count how many records are in the table afterward
         after = model.objects.count()
@@ -82,7 +82,7 @@ class Command(CalAccessCommand):
         # Only load committee types if we haven't already
         if not models.OCDCommitteeTypeProxy.objects.exists():
             self.log(' Creating committee types')
-            models.OCDCommitteeTypeProxy.objects.seed()
+            self.load_model(models.OCDCommitteeTypeProxy)
 
         #
         # Committees

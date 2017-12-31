@@ -6,12 +6,11 @@ Proxy models for OCD Filing related managers.
 from __future__ import unicode_literals
 import logging
 from psycopg2 import sql
-from postgres_copy import CopyManager
-from calaccess_processed.sql import execute_custom_sql
+from .base import BaseOCDBulkLoadSQLManager
 logger = logging.getLogger(__name__)
 
 
-class OCDFilingManager(CopyManager):
+class OCDFilingManager(BaseOCDBulkLoadSQLManager):
     """
     Manager with custom methods for OCD Filing model.
     """
@@ -21,16 +20,10 @@ class OCDFilingManager(CopyManager):
         """
         from calaccess_processed.models import Form460Filing, Filing
 
-        source_table_identifier = sql.Identifier(
-            Form460Filing._meta.db_table
-        )
-        source_column_identifier = sql.Identifier(
-            Form460Filing._meta.get_field(source_column).column
-        )
-        target_column_identifier = sql.Identifier(
-            Filing._meta.get_field(target_column).column
-        )
-        execute_custom_sql(
+        source_table_identifier = sql.Identifier(Form460Filing._meta.db_table)
+        source_column_identifier = sql.Identifier(Form460Filing._meta.get_field(source_column).column)
+        target_column_identifier = sql.Identifier(Filing._meta.get_field(target_column).column)
+        self.execute_custom_sql(
             'opencivicdata/campaign_finance/filings/update_filings_from_formfiling_table',
             composables={
                 'source_table': source_table_identifier,
@@ -43,17 +36,15 @@ class OCDFilingManager(CopyManager):
         """
         Update filer_id on OCD Filings.
         """
-        processed_data_table_identifier = sql.Identifier(
-            model._meta.db_table
-        )
-        execute_custom_sql(
+        processed_data_table_identifier = sql.Identifier(model._meta.db_table)
+        self.execute_custom_sql(
             'opencivicdata/campaign_finance/filings/update_filings_filer_id',
             composables={
                 'processed_data_table': processed_data_table_identifier,
             },
         )
 
-    def load_form460_data(self):
+    def load(self):
         """
         Load OCD Filing with data extracted from Form460Filing.
         """
@@ -65,42 +56,42 @@ class OCDFilingManager(CopyManager):
         self._update_filings_filer_id(Form460Filing)
 
         # Inserting new Filings...
-        execute_custom_sql('opencivicdata/campaign_finance/filings/insert_filings_from_form460s')
+        self.execute_custom_sql('opencivicdata/campaign_finance/filings/insert_filings_from_form460s')
 
 
-class OCDFilingIdentifierManager(CopyManager):
+class OCDFilingIdentifierManager(BaseOCDBulkLoadSQLManager):
     """
     Manager with custom methods for OCD FilingIdentifier model.
     """
-    def load_form460_data(self):
+    def load(self):
         """
         Load OCD FilingIdentifier with data extracted from Form460Filing.
         """
         # Inserting new Filing Identifiers...
-        execute_custom_sql('opencivicdata/campaign_finance/filings/insert_filing_ids_from_form460s')
-        #  Removing "calaccess_filing_id" from extras field on Filing...
-        execute_custom_sql('opencivicdata/campaign_finance/filings/remove_calaccess_filing_ids_from_filings')
+        self.execute_custom_sql('opencivicdata/campaign_finance/filings/insert_filing_ids_from_form460s')
+        # Removing "calaccess_filing_id" from extras field on Filing...
+        self.execute_custom_sql('opencivicdata/campaign_finance/filings/remove_calaccess_filing_ids_from_filings')
 
 
-class OCDFilingActionManager(CopyManager):
+class OCDFilingActionManager(BaseOCDBulkLoadSQLManager):
     """
     Manager with custom methods for OCD FilingAction model.
     """
-    def load_form460_data(self):
+    def load(self):
         """
         Load OCD FilingAction with data extracted from Form460FilingVersion.
         """
         # Inserting new Filing Actions...
-        execute_custom_sql('opencivicdata/campaign_finance/filings/insert_filing_actions_from_form460s')
+        self.execute_custom_sql('opencivicdata/campaign_finance/filings/insert_filing_actions_from_form460s')
 
         # Setting is_current false on actions of amended Filings...
-        execute_custom_sql('opencivicdata/campaign_finance/filings/set_is_current_for_old_filing_actions')
+        self.execute_custom_sql('opencivicdata/campaign_finance/filings/set_is_current_for_old_filing_actions')
 
         # Setting is_current true on latest Filing Actions...
-        execute_custom_sql('opencivicdata/campaign_finance/filings/set_is_current_for_new_filing_actions')
+        self.execute_custom_sql('opencivicdata/campaign_finance/filings/set_is_current_for_new_filing_actions')
 
 
-class OCDFilingActionSummaryAmountManager(CopyManager):
+class OCDFilingActionSummaryAmountManager(BaseOCDBulkLoadSQLManager):
     """
     Manager with custom methods for OCD FilingActionSummaryAmount model.
     """
@@ -119,7 +110,7 @@ class OCDFilingActionSummaryAmountManager(CopyManager):
         for f in sum_fields:
             label_words = [w.capitalize() for w in f.name.split('_')]
             label = ' '.join(label_words)
-            execute_custom_sql(
+            self.execute_custom_sql(
                 'opencivicdata/campaign_finance/filings/insert_filing_action_summary_amounts',
                 params={'label': label},
                 composables={
@@ -133,10 +124,8 @@ class OCDFilingActionSummaryAmountManager(CopyManager):
         Load OCD FilingActionSummaryAmount with from a schedule summary field.
         """
         source_table_identifier = sql.Identifier(model._meta.db_table)
-        source_column_identifier = sql.Identifier(
-            model._meta.get_field(field_name).column
-        )
-        execute_custom_sql(
+        source_column_identifier = sql.Identifier(model._meta.get_field(field_name).column)
+        self.execute_custom_sql(
             'opencivicdata/campaign_finance/filings/insert_filing_action_summary_amount_from_schedules',
             params={'label': label},
             composables={
@@ -145,7 +134,7 @@ class OCDFilingActionSummaryAmountManager(CopyManager):
             },
         )
 
-    def load_form460_data(self):
+    def load(self):
         """
         Load OCD FilingActionSummaryAmount with data from all Form460 related models.
         """

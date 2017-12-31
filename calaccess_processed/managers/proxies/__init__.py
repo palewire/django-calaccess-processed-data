@@ -10,6 +10,7 @@ from .calaccess_scraped import (
     ScrapedRecallMeasureManager,
 )
 from .opencivicdata import (
+    BaseOCDBulkLoadSQLManager,
     OCDCommitteeManager,
     OCDCommitteeIdentifierManager,
     OCDCommitteeNameManager,
@@ -44,6 +45,7 @@ __all__ = (
     "ScrapedIncumbentElectionManager",
     "ScrapedBallotMeasureManager",
     "ScrapedRecallMeasureManager",
+    "BaseOCDBulkLoadSQLManager",
     "OCDCommitteeManager",
     "OCDCommitteeIdentifierManager",
     "OCDCommitteeNameManager",
