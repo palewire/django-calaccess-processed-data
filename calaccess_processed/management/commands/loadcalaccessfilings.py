@@ -75,21 +75,12 @@ class Command(CalAccessCommand):
 
         model_type must be "version" of "filing".
         """
-        non_abstract_models = [
-            m for m in apps.get_app_config('calaccess_processed').get_models()
-            if not m._meta.abstract and
-            not m._meta.proxy and
-            'filings' in str(m)
-        ]
+        model_list = apps.get_app_config('calaccess_processed').get_filing_models()
 
         if model_type == 'version':
-            models_to_load = [
-                m for m in non_abstract_models if 'Version' in str(m)
-            ]
+            models_to_load = [m for m in model_list if 'Version' in str(m)]
         elif model_type == 'filing':
-            models_to_load = [
-                m for m in non_abstract_models if 'Version' not in str(m)
-            ]
+            models_to_load = [m for m in model_list if 'Version' not in str(m)]
         else:
             raise ValueError('model_type must be "version" or "filing".')
 

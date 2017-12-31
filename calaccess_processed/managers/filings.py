@@ -5,12 +5,18 @@ Custom manager for loading raw data in to "filings" models.
 """
 from __future__ import unicode_literals
 import os
-import logging
 import itertools
+
+# Django tricks
 from django.apps import apps
 from django.db.models import Q
+
+# Managers
 from postgres_copy import CopyManager
 from .bulkloadsql import BulkLoadSQLManager
+
+# Logging
+import logging
 logger = logging.getLogger(__name__)
 
 
@@ -49,6 +55,7 @@ class Form501FilingManager(FilingsManager):
         Returns Form 501 filings that do not have an OCD Candidacy yet.
         """
         OCDCandidacyProxy = apps.get_model("calaccess_processed", "OCDCandidacyProxy")
+        
         matched_qs = OCDCandidacyProxy.objects.matched_form501_ids()
         matched_list = [i for i in itertools.chain.from_iterable(matched_qs)]
         return self.get_queryset().exclude(
