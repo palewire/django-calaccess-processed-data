@@ -76,6 +76,11 @@ from .filings import (
     Form501Filing,
     Form501FilingVersion,
 )
+from .flatfiles import (
+    OCDFlatBallotMeasureContestProxy,
+    OCDFlatCandidacyProxy,
+    OCDFlatRetentionContestProxy
+)
 from .tracking import (
     ProcessedDataVersion,
     ProcessedDataFile,
@@ -114,9 +119,6 @@ from .proxies import (
     OCDElectionProxy,
     OCDElectionIdentifierProxy,
     OCDElectionSourceProxy,
-    OCDFlatBallotMeasureContestProxy,
-    OCDFlatCandidacyProxy,
-    OCDFlatRetentionContestProxy,
     OCDJurisdictionProxy,
     OCDMembershipProxy,
     OCDOrganizationProxy,

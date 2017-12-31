@@ -35,13 +35,11 @@ from .elections import (
     OCDBallotMeasureContestIdentifierProxy,
     OCDBallotMeasureContestOptionProxy,
     OCDBallotMeasureContestSourceProxy,
-    OCDFlatBallotMeasureContestProxy,
     OCDCandidateContestProxy,
     OCDCandidateContestPostProxy,
     OCDCandidateContestSourceProxy,
     OCDCandidacyProxy,
     OCDCandidacySourceProxy,
-    OCDFlatCandidacyProxy,
     OCDElectionProxy,
     OCDElectionIdentifierProxy,
     OCDElectionSourceProxy,
@@ -50,7 +48,6 @@ from .elections import (
     OCDRetentionContestIdentifierProxy,
     OCDRetentionContestOptionProxy,
     OCDRetentionContestSourceProxy,
-    OCDFlatRetentionContestProxy
 )
 
 

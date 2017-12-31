@@ -4,18 +4,9 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
-from calaccess_processed.models.json_funcs import (
-    JSONArrayLength,
-    JSONExtractPath,
-    MaxFromJSONIntegerArray,
-)
-from django.db import models
 from django.db.models import (
     IntegerField,
     Case,
-    Count,
-    F,
-    Max,
     Q,
     When,
 )
@@ -23,7 +14,6 @@ from django.db.models.functions import Cast
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import (
     Candidacy,
-    CandidateContest,
     CandidacySource,
 )
 from postgres_copy import CopyQuerySet
@@ -227,82 +217,3 @@ class OCDCandidacySourceProxy(CandidacySource, OCDProxyModelMixin):
         Make this a proxy model.
         """
         proxy = True
-
-
-class OCDFlatCandidacyManager(models.Manager):
-    """
-    Custom manager for flattening the contents of the OCD Candidacy model.
-    """
-    def get_queryset(self):
-        """
-        Returns the custom QuerySet for this manager.
-        """
-        return super(
-            OCDFlatCandidacyManager, self
-        ).get_queryset().filter(
-            Q(person__identifiers__scheme='calaccess_filer_id') |
-            Q(person__identifiers__isnull=True)
-        ).annotate(
-            name=F('candidate_name'),
-            office=F('post__label'),
-            party_name=F('party__name'),
-            election_name=F('contest__election__name'),
-            election_date=F('contest__election__date'),
-            special_election=F('contest__previous_term_unexpired'),
-            ocd_person_id=F('person__id'),
-            ocd_candidacy_id=F('id'),
-            ocd_election_id=F('contest__election'),
-            ocd_post_id=F('post__id'),
-            ocd_contest_id=F('contest'),
-            ocd_party_id=F('party'),
-            latest_calaccess_filer_id=Max('person__identifiers__identifier'),
-            calaccess_filer_id_count=Count('person__identifiers__identifier'),
-            latest_form501_filing_id=MaxFromJSONIntegerArray(
-                'extras', 'form501_filing_ids'
-            ),
-            form501_filing_count=JSONArrayLength(
-                JSONExtractPath('extras', 'form501_filing_ids')
-            ),
-        )
-
-
-class OCDFlatCandidacyProxy(Candidacy, OCDProxyModelMixin):
-    """
-    Every candidate for a public office.
-    """
-    objects = OCDFlatCandidacyManager.from_queryset(CopyQuerySet)()
-
-    copy_to_fields = (
-        ('name',),
-        ('party_name',
-         'Name of the political party that nominated the candidate or would '
-         'nominate the candidate (as in the case of a partisan primary).',),
-        ('election_name',),
-        ('election_date',),
-        ('office',
-         'Public office for which the candidate is seeking election.',),
-        ('is_incumbent',),
-        ('special_election', CandidateContest._meta.get_field('previous_term_unexpired').help_text),
-        ('created_at',),
-        ('updated_at',),
-        ('ocd_person_id', Candidacy._meta.get_field('person').help_text),
-        ('ocd_candidacy_id',),
-        ('ocd_election_id', CandidateContest._meta.get_field('election').help_text),
-        ('ocd_post_id', Candidacy._meta.get_field('post').help_text),
-        ('ocd_contest_id', Candidacy._meta.get_field('contest').help_text),
-        ('ocd_party_id', Candidacy._meta.get_field('party').help_text),
-        ('latest_calaccess_filer_id',
-         'Most recent filer_id assigned to the person in CAL-ACCESS.',),
-        ('calaccess_filer_id_count',
-         'Count of filer_ids assigned to the person in CAL-ACCESS.',),
-        ('latest_form501_filing_id', "CAL-ACCESS identifier for the candidate's "
-                                     "most recent Form 501 filing."),
-        ('form501_filing_count', 'Count of Form 501s filed by the candidate.'),
-    )
-
-    class Meta:
-        """
-        Make this a proxy model.
-        """
-        proxy = True
-        verbose_name_plural = 'candidates'
