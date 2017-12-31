@@ -22,7 +22,10 @@ class BaseOCDBulkLoadSQLManager(BulkLoadSQLManager):
         """
         Return the full path with extenstion to file_name.
         """
-        return os.path.join(apps.get_app("calaccess_processed").sql_directory_path, '%s.sql' % file_name)
+        return os.path.join(
+            apps.get_app("calaccess_processed").sql_directory_path,
+            '%s.sql' % file_name
+        )
 
     def extract_operation_from_sql(self, sql_str):
         """

@@ -4,11 +4,18 @@
 Base models for tables from the CAL-ACCESS database.
 """
 from __future__ import unicode_literals
+
+# Models
 from django.db import models
 from django.db.models.base import ModelBase
-from django.template.defaultfilters import capfirst
+
+# Managers
+from postgres_copy import CopyQuerySet
 from calaccess_processed.managers import BulkLoadSQLManager
+
+# Text
 import textwrap
+from django.template.defaultfilters import capfirst
 
 
 class CalAccessMetaClass(ModelBase):
@@ -45,7 +52,7 @@ class CalAccessBaseModel(models.Model):
     An abstract model with some tricks we'll reuse.
     """
     __metaclass__ = CalAccessMetaClass
-    objects = BulkLoadSQLManager()
+    objects = BulkLoadSQLManager.from_queryset(CopyQuerySet)()
 
     def doc(self):
         """

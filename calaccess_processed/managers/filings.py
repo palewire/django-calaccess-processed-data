@@ -9,11 +9,12 @@ import logging
 import itertools
 from django.apps import apps
 from django.db.models import Q
+from postgres_copy import CopyManager
 from .bulkloadsql import BulkLoadSQLManager
 logger = logging.getLogger(__name__)
 
 
-class FilingsManager(BulkLoadSQLManager):
+class FilingsManager(BulkLoadSQLManager, CopyManager):
     """
     Utilities for more quickly loading bulk data.
     """

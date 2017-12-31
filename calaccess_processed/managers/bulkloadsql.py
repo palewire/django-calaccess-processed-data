@@ -5,12 +5,12 @@ Utilities for more quickly loading bulk data.
 """
 from __future__ import unicode_literals
 import logging
+from django.db import models
 from django.db import connection
-from postgres_copy import CopyManager
 logger = logging.getLogger(__name__)
 
 
-class BulkLoadSQLManager(CopyManager):
+class BulkLoadSQLManager(models.Manager):
     """
     Utilities for more quickly loading bulk data into a model with custom SQL.
     """
