@@ -43,7 +43,7 @@ class FilingsManager(BulkLoadSQLManager, CopyManager):
         """
         Return the full path with extenstion to file_name.
         """
-        return os.path.join(apps.get_app("calaccess_processed").sql_directory_path, '%s.sql' % file_name)
+        return os.path.join(apps.get_app_config("calaccess_processed").sql_directory_path, '%s.sql' % file_name)
 
 
 class Form501FilingManager(FilingsManager):
@@ -55,7 +55,7 @@ class Form501FilingManager(FilingsManager):
         Returns Form 501 filings that do not have an OCD Candidacy yet.
         """
         OCDCandidacyProxy = apps.get_model("calaccess_processed", "OCDCandidacyProxy")
-        
+
         matched_qs = OCDCandidacyProxy.objects.matched_form501_ids()
         matched_list = [i for i in itertools.chain.from_iterable(matched_qs)]
         return self.get_queryset().exclude(

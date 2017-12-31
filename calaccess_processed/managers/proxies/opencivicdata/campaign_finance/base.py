@@ -33,7 +33,7 @@ class BaseOCDBulkLoadSQLManager(BulkLoadSQLManager, CopyManager):
         Return the full path with extenstion to file_name.
         """
         return os.path.join(
-            apps.get_app("calaccess_processed").sql_directory_path,
+            apps.get_app_config("calaccess_processed").sql_directory_path,
             '%s.sql' % file_name
         )
 

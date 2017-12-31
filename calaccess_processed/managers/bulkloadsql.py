@@ -114,7 +114,7 @@ class BulkLoadSQLManager(models.Manager):
                 args = (self.model, field, field_copy)
                 self.edit_schema(schema_editor, 'alter_field', args)
 
-    def restore_contrainsts(self):
+    def restore_constraints(self):
         """
         Restore constraints on the model and its fields.
         """
