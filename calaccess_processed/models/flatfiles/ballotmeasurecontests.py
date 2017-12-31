@@ -4,7 +4,7 @@
 Proxy models for generating flatfiles that combine multiple table into a simplified file.
 """
 from __future__ import unicode_literals
-from ..proxies.base import OCDProxyModelMixin
+from ..proxies import OCDProxyModelMixin
 from opencivicdata.elections.models import BallotMeasureContest
 from postgres_copy import CopyQuerySet
 from calaccess_processed.managers import OCDFlatBallotMeasureContestManager

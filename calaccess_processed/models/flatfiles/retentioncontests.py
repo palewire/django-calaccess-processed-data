@@ -6,8 +6,8 @@ Proxy models for generating flatfiles that combine multiple table into a simplif
 from __future__ import unicode_literals
 
 # Models
-from ..proxies.base import OCDProxyModelMixin
-from opencivicdata.elections import RetentionContest
+from ..proxies import OCDProxyModelMixin
+from opencivicdata.elections.models import RetentionContest
 
 # Managers
 from postgres_copy import CopyQuerySet

@@ -8,7 +8,7 @@ from opencivicdata.elections.models import (
     Candidacy,
     CandidateContest
 )
-from ..proxies.base import OCDProxyModelMixin
+from ..proxies import OCDProxyModelMixin
 from postgres_copy import CopyQuerySet
 from calaccess_processed.managers import OCDFlatCandidacyManager
 
