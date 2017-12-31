@@ -3,18 +3,28 @@
 """
 Base proxy model for OCD campaign_finance related managers.
 """
+from __future__ import unicode_literals
+from django.apps import apps
+
+# Database
+from psycopg2 import sql
+from django.db import connection
+
+# Managers
+from postgres_copy import CopyManager
+from calaccess_processed.managers.bulkloadsql import BulkLoadSQLManager
+
+# Text
 import re
 import os
-import logging
-from psycopg2 import sql
-from django.apps import apps
-from django.db import connection
 from django.template.defaultfilters import pluralize
-from calaccess_processed.managers.bulkloadsql import BulkLoadSQLManager
+
+# Logging
+import logging
 logger = logging.getLogger(__name__)
 
 
-class BaseOCDBulkLoadSQLManager(BulkLoadSQLManager):
+class BaseOCDBulkLoadSQLManager(BulkLoadSQLManager, CopyManager):
     """
     Base proxy model for OCD campaign_finance related managers.
     """
