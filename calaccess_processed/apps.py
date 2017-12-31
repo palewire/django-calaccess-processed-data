@@ -3,6 +3,7 @@
 """
 Basic configuration for the application.
 """
+from __future__ import unicode_literals
 import os
 from django.apps import AppConfig
 

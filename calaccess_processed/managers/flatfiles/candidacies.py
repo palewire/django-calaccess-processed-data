@@ -4,18 +4,14 @@
 Managers for generating flatfiles that combine multiple table into a simplified file.
 """
 from __future__ import unicode_literals
-from calaccess_processed.models.json_funcs import (
+from calaccess_processed.postgres import (
     JSONArrayLength,
     JSONExtractPath,
     MaxFromJSONIntegerArray,
 )
 from django.db import models
-from django.db.models import (
-    Count,
-    F,
-    Max,
-    Q,
-)
+from django.db.models import F, Q
+from django.db.models import Count, Max
 
 
 class OCDFlatCandidacyManager(models.Manager):
@@ -47,7 +43,8 @@ class OCDFlatCandidacyManager(models.Manager):
             latest_calaccess_filer_id=Max('person__identifiers__identifier'),
             calaccess_filer_id_count=Count('person__identifiers__identifier'),
             latest_form501_filing_id=MaxFromJSONIntegerArray(
-                'extras', 'form501_filing_ids'
+                'extras',
+                'form501_filing_ids'
             ),
             form501_filing_count=JSONArrayLength(
                 JSONExtractPath('extras', 'form501_filing_ids')
