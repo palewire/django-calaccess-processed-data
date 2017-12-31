@@ -20,7 +20,11 @@ from .core import (
     OCDCaliforniaDivisionManager,
     OCDJurisdictionManager,
     OCDOrganizationManager,
-    OCDMembershipManager
+    OCDMembershipManager,
+    OCDPostManager,
+    OCDAssemblyPostManager,
+    OCDExecutivePostManager,
+    OCDSenatePostManager
 )
 
 
@@ -39,5 +43,9 @@ __all__ = (
     "OCDCaliforniaDivisionManager",
     "OCDJurisdictionManager",
     "OCDOrganizationManager",
-    "OCDMembershipManager"
+    "OCDMembershipManager",
+    "OCDPostManager",
+    "OCDAssemblyPostManager",
+    "OCDExecutivePostManager",
+    "OCDSenatePostManager"
 )

@@ -14,6 +14,12 @@ from .organizations import (
     OCDMembershipManager
 )
 from .people import OCDPersonManager
+from .posts import (
+    OCDPostManager,
+    OCDAssemblyPostManager,
+    OCDExecutivePostManager,
+    OCDSenatePostManager
+)
 
 
 __all__ = (
@@ -24,4 +30,8 @@ __all__ = (
     "OCDOrganizationManager",
     "OCDMembershipManager",
     "OCDPersonManager",
+    "OCDPostManager",
+    "OCDAssemblyPostManager",
+    "OCDExecutivePostManager",
+    "OCDSenatePostManager"
 )
