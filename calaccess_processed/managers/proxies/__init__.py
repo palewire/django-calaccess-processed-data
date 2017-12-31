@@ -3,9 +3,9 @@
 """
 Import all of the managers from submodules and thread them together.
 """
-from .proxies import (
-    RawFilerToFilerTypeCdManager,
-    ScrapedIncumbentElectionManager,
+from .calaccess_raw import RawFilerToFilerTypeCdManager
+from .calaccess_scraped import ScrapedIncumbentElectionManager
+from .opencivicdata import (
     OCDCommitteeManager,
     OCDCommitteeIdentifierManager,
     OCDCommitteeNameManager,
@@ -33,8 +33,6 @@ from .proxies import (
     OCDElectionManager,
     OCDPartyManager
 )
-from .constraints import ConstraintsManager
-from .filings import FilingsManager
 
 
 __all__ = (
@@ -65,7 +63,5 @@ __all__ = (
     "OCDCandidateContestQuerySet",
     "OCDPartisanPrimaryManager",
     "OCDElectionManager",
-    "OCDPartyManager",
-    'ConstraintsManager',
-    'FilingsManager'
+    "OCDPartyManager"
 )
