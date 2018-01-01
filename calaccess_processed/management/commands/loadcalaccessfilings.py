@@ -67,8 +67,6 @@ class Command(CalAccessCommand):
         self.handle_models('version')
         self.handle_models('filing')
 
-        self.success("Done!")
-
     def get_model_list(self, model_type):
         """
         Return a list of models of the specified type to be loaded.

@@ -60,7 +60,7 @@ class BaseOCDBulkLoadSQLManager(BulkLoadSQLManager, CopyManager):
         Log the number of rows and operation performed.
         """
         # Get the path to the SQL file
-        file_path = self.get_custom_sql_path(file_name)
+        file_path = self.get_sql_path(file_name)
         logger.debug("Executing {}".format(file_path))
 
         # Read in the SQL
