@@ -3,14 +3,23 @@
 """
 Load data into processed CAL-ACCESS models, archive processed files and ZIP.
 """
+# Files
 import os
-from django.conf import settings
 from django.core.files import File
-from django.utils.timezone import now
-from django.core.management import call_command
 from zipfile import ZIP_DEFLATED, ZIP_STORED, ZipFile
+
+# Commands
+from django.core.management import call_command
+from django.core.management.base import CommandError
 from calaccess_processed.management.commands import CalAccessCommand
+
+# Models
 from calaccess_processed.models import ProcessedDataZip
+from calaccess_scraped.models import PropositionElection
+
+# Misc
+from django.conf import settings
+from django.utils.timezone import now
 
 
 class Command(CalAccessCommand):
@@ -36,6 +45,10 @@ class Command(CalAccessCommand):
         """
         Make it happen.
         """
+        # Throw an error if the scraper hasn't been run.
+        if not PropositionElection.objects.exists():
+            raise CommandError("Sorry. You must first run 'scrapecalaccess' from the calaccess_scraped app.")
+
         # Set options
         super(Command, self).handle(*args, **options)
         self.force_restart = options.get("restart")
@@ -111,21 +124,16 @@ class Command(CalAccessCommand):
             no_color=self.no_color,
             force_restart=self.force_restart
         )
-        self.duration()
-
         call_command(
             'loadocdelections',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
-        self.duration()
-
         call_command(
             'loadocdfilingsfrom460s',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
-        self.duration()
 
     def zip(self, directory_name):
         """
