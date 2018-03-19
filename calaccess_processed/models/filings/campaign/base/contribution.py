@@ -39,10 +39,12 @@ class CampaignContributionBase(CalAccessBaseModel):
         ('R', 'Returned (Negative Amount?)'),
         ('T', 'Third Party Repayment'),
         ('X', 'Transfer'),
+        ('', 'Unknown'),
+        ('INC16168', 'INC16168'),
     )
     transaction_type = models.CharField(
         verbose_name='transaction type',
-        max_length=1,
+        max_length=255,
         choices=TRANSACTION_TYPE_CHOICES,
         help_text='Type of transaction (from RCPT_CD.TRAN_TYPE)',
     )

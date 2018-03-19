@@ -33,13 +33,13 @@ INSERT INTO calaccess_processed_form460scheduleaitemversion (
     cumulative_ytd_amount,
     cumulative_election_amount
 )
-SELECT 
+SELECT
     filing_version.id AS filing_version_id,
     rcpt."LINE_ITEM" AS line_item,
     rcpt."RCPT_DATE" AS date_received,
     rcpt."DATE_THRU" AS date_received_thru,
     UPPER(rcpt."TRAN_TYPE") AS transaction_type,
-    rcpt."TRAN_ID" AS transaction_id,
+    COALESCE(rcpt."TRAN_ID", '') AS transaction_id,
     rcpt."MEMO_REFNO" AS memo_reference_number,
     CASE rcpt."ENTITY_CD"
         WHEN '0' THEN ''
@@ -71,7 +71,7 @@ SELECT
     CASE UPPER(rcpt."CTRIB_SELF")
         WHEN 'Y' THEN true
         WHEN 'X' THEN true
-        ELSE false 
+        ELSE false
     END AS contributor_is_self_employed,
     CASE UPPER(rcpt."INTR_CMTEID")
         WHEN 'NONE' THEN ''
@@ -92,7 +92,7 @@ SELECT
     CASE UPPER(rcpt."INTR_SELF")
         WHEN 'Y' THEN true
         WHEN 'X' THEN true
-        ELSE false 
+        ELSE false
     END AS intermediary_is_self_employed,
     rcpt."AMOUNT" AS amount,
     rcpt."CUM_YTD" AS cumulative_ytd_amount,
