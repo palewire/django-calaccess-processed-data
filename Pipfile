@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django-calaccess-raw-data = "==1.6.2"
+django-calaccess-scraped-data = "==0.1.2"
+opencivicdata = {git = "https://github.com/california-civic-data-coalition/python-opencivicdata.git", editable = true, ref = "HEAD"}
+Django = "==1.11.8"
+pytz = "*"
+django-postgres-copy = "==2.0.3"
+"psycopg2" = "*"
+"flake8" = "*"
+"flake8-docstrings" = "*"
+coverage = "*"
+python-coveralls = "*"
+requests-mock = "*"
+twine = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.5"
