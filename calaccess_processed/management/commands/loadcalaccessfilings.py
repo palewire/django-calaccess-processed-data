@@ -67,6 +67,16 @@ class Command(CalAccessCommand):
         self.handle_models('version')
         self.handle_models('filing')
 
+    def handle_models(self, model_type):
+        """
+        Handle logic for loading models of model_type.
+        """
+        model_list = self.get_model_list(model_type)
+        if len(model_list) > 0:
+            if self.verbosity >= 2:
+                self.log(" Loading {} {} models.".format(len(model_list), model_type))
+            self.load_model_list(model_list)
+
     def get_model_list(self, model_type):
         """
         Return a list of models of the specified type to be loaded.
@@ -144,15 +154,3 @@ class Command(CalAccessCommand):
                     'archivecalaccessprocessedfile',
                     m._meta.object_name,
                 )
-
-    def handle_models(self, model_type):
-        """
-        Handle logic for loading models of model_type.
-        """
-        models = self.get_model_list(model_type)
-        if len(models) > 0:
-            if self.verbosity >= 2:
-                self.log(
-                    " Loading {0} {1} models.".format(len(models), model_type)
-                )
-            self.load_model_list(models)

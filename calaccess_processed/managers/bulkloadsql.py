@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 import logging
 from django.db import models
 from django.db import connection
-from postgres_copy import ConstraintQuerySet
+from postgres_copy.managers import ConstraintQuerySet
 logger = logging.getLogger(__name__)
 
 
