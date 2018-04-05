@@ -6,7 +6,6 @@ Proxy models for OCD Transaction related managers.
 from __future__ import unicode_literals
 import logging
 from psycopg2 import sql
-from calaccess_processed.sql import execute_custom_sql
 from .base import BaseOCDBulkLoadSQLManager
 logger = logging.getLogger(__name__)
 
@@ -62,7 +61,7 @@ class OCDTransactionManager(BaseOCDBulkLoadSQLManager):
         source_amount_field = model._meta.get_field(amount_field_name)
         source_amount_column = sql.Identifier(source_amount_field.column)
 
-        execute_custom_sql(
+        self.execute_custom_sql(
             "opencivicdata/campaign_finance/transactions/" + query_name,
             params={'is_in_kind': is_in_kind},
             composables={
