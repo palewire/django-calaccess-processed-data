@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ebb9d8b11e65b1c08c5c8e74383b494947c86ea4d9073a67a0ed8f0e725f3859"
+            "sha256": "1403d8363d562aa5ee298c91a6228d2ffd9aa40f64a47e10c9c7e424517fce73"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -155,11 +155,11 @@
         },
         "django-postgres-copy": {
             "hashes": [
-                "sha256:08ceb1c3f0a84f17b5a52f6f47cb229aa42c1add092aef8b3eba768fbb043543",
-                "sha256:201670a53bbfc4916b8ced58e81ac6c87ab79ba4622b6af63649b77c6b080ae0"
+                "sha256:43b753f654aead49feedc65386848be15250650d38cc5872ed917ccb0751bd3c",
+                "sha256:60401d23da4ab270aa2d627619a9d4b10600853e9bd41899ac439d90c7daf76a"
             ],
             "index": "pypi",
-            "version": "==2.0.3"
+            "version": "==2.3.2"
         },
         "et-xmlfile": {
             "hashes": [
@@ -239,7 +239,7 @@
         "opencivicdata": {
             "editable": true,
             "git": "https://github.com/california-civic-data-coalition/python-opencivicdata.git",
-            "ref": "campfin_draft_jg"
+            "ref": "e8eb7bcef7a0d61ab8d13c660258a1febe34582d"
         },
         "openpyxl": {
             "hashes": [
