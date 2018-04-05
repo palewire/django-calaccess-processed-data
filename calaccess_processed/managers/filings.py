@@ -12,7 +12,6 @@ from django.apps import apps
 from django.db.models import Q
 
 # Managers
-from postgres_copy import CopyManager
 from .bulkloadsql import BulkLoadSQLManager
 
 # Logging
@@ -20,7 +19,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class FilingsManager(BulkLoadSQLManager, CopyManager):
+class FilingsManager(BulkLoadSQLManager):
     """
     Utilities for more quickly loading bulk data.
     """

@@ -11,10 +11,16 @@ from postgres_copy.managers import ConstraintQuerySet
 logger = logging.getLogger(__name__)
 
 
-class BulkLoadSQLQuerySet(ConstraintQuerySet):
+class BulkLoadSQLManager(models.Manager):
     """
     Utilities for more quickly loading bulk data into a model with custom SQL.
     """
+    def get_queryset(self):
+        """
+        A custom queryset with extra options.
+        """
+        return ConstraintQuerySet(self.model, using=self._db)
+
     def load(self):
         """
         Load the model by executing its corresponding raw SQL query.
@@ -22,15 +28,15 @@ class BulkLoadSQLQuerySet(ConstraintQuerySet):
         Temporarily drops any constraints or indexes on the model.
         """
         # Drop constraints and indexes to speed loading
-        self.drop_constraints()
-        self.drop_indexes()
+        self.get_queryset().drop_constraints()
+        self.get_queryset().drop_indexes()
 
         # Run the actual loader SQL
         self.execute()
 
         # Restore the constraints and index that were dropped
-        self.restore_constraints()
-        self.restore_indexes()
+        self.get_queryset().restore_constraints()
+        self.get_queryset().restore_indexes()
 
     def execute(self):
         """
@@ -38,6 +44,3 @@ class BulkLoadSQLQuerySet(ConstraintQuerySet):
         """
         with connection.cursor() as c:
             c.execute(self.sql)
-
-
-BulkLoadSQLManager = models.Manager.from_queryset(BulkLoadSQLQuerySet)

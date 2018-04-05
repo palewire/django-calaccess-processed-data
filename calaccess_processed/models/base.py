@@ -10,7 +10,6 @@ from django.db import models
 from django.db.models.base import ModelBase
 
 # Managers
-from postgres_copy import CopyQuerySet
 from calaccess_processed.managers import BulkLoadSQLManager
 
 # Text
@@ -52,7 +51,7 @@ class CalAccessBaseModel(models.Model):
     An abstract model with some tricks we'll reuse.
     """
     __metaclass__ = CalAccessMetaClass
-    objects = BulkLoadSQLManager.from_queryset(CopyQuerySet)()
+    objects = BulkLoadSQLManager()
 
     def doc(self):
         """
