@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 import calaccess_processed
-import calaccess_processed.models.filings.base
+import calaccess_processed_filings.models.base
 import calaccess_processed.models.proxies.calaccess_scraped.base
 import calaccess_processed.models.proxies.opencivicdata.base
 import django.contrib.postgres.operations
@@ -87,7 +87,7 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'Form 460 (Campaign Disclosure) filing',
             },
-            bases=(calaccess_processed.models.filings.base.FilingMixin, models.Model),
+            bases=(calaccess_processed_filings.models.base.FilingMixin, models.Model),
         ),
         migrations.CreateModel(
             name='Form460FilingVersion',
@@ -125,7 +125,7 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'Form 460 (Campaign Disclosure) filing version',
             },
-            bases=(calaccess_processed.models.filings.base.FilingVersionMixin, models.Model),
+            bases=(calaccess_processed_filings.models.base.FilingVersionMixin, models.Model),
         ),
         migrations.CreateModel(
             name='Form460ScheduleAItem',
@@ -1406,7 +1406,7 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'Form 497 (Late Contribution) filing',
             },
-            bases=(calaccess_processed.models.filings.base.FilingMixin, models.Model),
+            bases=(calaccess_processed_filings.models.base.FilingMixin, models.Model),
         ),
         migrations.CreateModel(
             name='Form497FilingVersion',
@@ -1423,7 +1423,7 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'Form 497 (Late Contribution) filing version',
             },
-            bases=(calaccess_processed.models.filings.base.FilingVersionMixin, models.Model),
+            bases=(calaccess_processed_filings.models.base.FilingVersionMixin, models.Model),
         ),
         migrations.CreateModel(
             name='Form497Part1Item',
@@ -1597,7 +1597,7 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'Form 501 (Candidate Intention) filing',
             },
-            bases=(calaccess_processed.models.filings.base.FilingMixin, models.Model),
+            bases=(calaccess_processed_filings.models.base.FilingMixin, models.Model),
         ),
         migrations.CreateModel(
             name='Form501FilingVersion',
@@ -1636,7 +1636,7 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'Form 501 (Candidate Intention) filing version',
             },
-            bases=(calaccess_processed.models.filings.base.FilingVersionMixin, models.Model),
+            bases=(calaccess_processed_filings.models.base.FilingVersionMixin, models.Model),
         ),
         migrations.CreateModel(
             name='ProcessedDataFile',
