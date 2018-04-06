@@ -3,7 +3,7 @@
 """
 Load the OCD Election model from the scraped PropositionElection model.
 """
-from calaccess_processed.management.commands import LoadOCDElectionsBase
+from . import LoadOCDElectionsBase
 from calaccess_processed.models import ScrapedPropositionElectionProxy
 
 

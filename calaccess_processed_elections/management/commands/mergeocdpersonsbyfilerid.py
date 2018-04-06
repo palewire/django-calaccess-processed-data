@@ -5,8 +5,8 @@ Find and merge OCD Person records that share the same CAL-ACCESS filer_id.
 """
 from django.db.models import Count
 from calaccess_processed.merge_funcs import merge_persons
-from calaccess_processed.management.commands import CalAccessCommand
 from opencivicdata.core.models import Person, PersonIdentifier
+from calaccess_processed.management.commands import CalAccessCommand
 
 
 class Command(CalAccessCommand):

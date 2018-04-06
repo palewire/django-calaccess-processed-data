@@ -32,6 +32,8 @@ before_script:
 
 script:
  - flake8 calaccess_processed
+ - flake8 calaccess_processed_elections
+ - flake8 calaccess_processed_filings
  - coverage run example/manage.py test calaccess_processed
 
 after_success:

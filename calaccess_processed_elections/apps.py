@@ -8,7 +8,7 @@ import os
 from django.apps import AppConfig
 
 
-class CalAccessProcessedFilingsConfig(AppConfig):
+class CalAccessProcessedElectionsConfig(AppConfig):
     """
     Application configuration.
     """

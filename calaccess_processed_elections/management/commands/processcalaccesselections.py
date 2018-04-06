@@ -8,7 +8,7 @@ from django.apps import apps
 from django.conf import settings
 from django.utils.timezone import now
 from django.core.management import call_command
-from calaccess_processed.management.commands import LoadOCDElectionsBase
+from . import LoadOCDElectionsBase
 
 
 class Command(LoadOCDElectionsBase):

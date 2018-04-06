@@ -7,7 +7,7 @@ from calaccess_processed.models import (
     ScrapedIncumbentElectionProxy,
     ScrapedCandidateElectionProxy,
 )
-from calaccess_processed.management.commands import LoadOCDElectionsBase
+from calaccess_processed_elections.management.commands import LoadOCDElectionsBase
 
 
 class Command(LoadOCDElectionsBase):

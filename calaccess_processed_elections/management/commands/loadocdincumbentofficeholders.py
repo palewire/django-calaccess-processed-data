@@ -6,8 +6,8 @@ Load the OCD Membership model with data from the scraped Incumbent model.
 from django.db.models import IntegerField
 from django.db.models.functions import Cast
 from opencivicdata.core.models import Membership
-from opencivicdata.elections.models import Candidacy, CandidateContest
 from calaccess_processed.management.commands import CalAccessCommand
+from opencivicdata.elections.models import Candidacy, CandidateContest
 from calaccess_processed.models import OCDMembershipProxy, ScrapedIncumbentProxy
 
 

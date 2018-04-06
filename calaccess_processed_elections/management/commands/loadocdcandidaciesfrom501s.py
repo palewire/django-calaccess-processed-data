@@ -6,8 +6,9 @@ Load the OCD Candidacy model with data extracted from the Form501Filing model.
 from __future__ import unicode_literals
 from django.core.management.base import CommandError
 from opencivicdata.elections.models import CandidateContest
+from calaccess_processed_filings.models import Form501Filing
+from calaccess_processed_elections.proxies import OCDCandidacyProxy
 from calaccess_processed.management.commands import CalAccessCommand
-from calaccess_processed.models import Form501Filing, OCDCandidacyProxy
 
 
 class Command(CalAccessCommand):
