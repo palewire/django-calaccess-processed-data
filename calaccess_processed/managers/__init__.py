@@ -42,10 +42,6 @@ from .proxies import (
     OCDPartyManager
 )
 from .bulkloadsql import BulkLoadSQLManager
-from .filings import (
-    FilingsManager,
-    Form501FilingManager
-)
 
 
 __all__ = (
@@ -83,7 +79,5 @@ __all__ = (
     "OCDPartisanPrimaryManager",
     "OCDElectionManager",
     "OCDPartyManager",
-    'BulkLoadSQLManager',
-    'FilingsManager',
-    'Form501FilingManager'
+    'BulkLoadSQLManager'
 )

@@ -24,10 +24,3 @@ class CalAccessProcessedConfig(AppConfig):
         model_list = self.get_models()
         model_list = [m for m in model_list if not m._meta.abstract]
         return [m for m in model_list if not m._meta.proxy]
-
-    def get_filing_models(self):
-        """
-        Returns models from the "filings" group that mirror the structure of CAL-ACCESS forms.
-        """
-        model_list = self.get_concrete_models()
-        return [m for m in model_list if 'filings' in str(m)]

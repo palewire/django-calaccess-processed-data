@@ -5,14 +5,17 @@ Models for storing campaign-related entities derived from raw CAL-ACCESS data.
 """
 from __future__ import unicode_literals
 from datetime import date
-from django.db import models
-from calaccess_processed import corrections, get_expected_election_date
-from opencivicdata.elections.models import CandidateContest
 from django.utils.encoding import python_2_unicode_compatible
+from calaccess_processed import corrections, get_expected_election_date
+
+# Managers
+from calaccess_processed_filings.managers import Form501FilingManager
+
+# Models
+from django.db import models
+from opencivicdata.elections.models import CandidateContest
 from calaccess_processed_filings.models.base import FilingBaseModel
 from calaccess_processed_filings.models import FilingMixin, FilingVersionMixin
-from postgres_copy import CopyQuerySet
-from calaccess_processed.managers import Form501FilingManager
 
 
 class Form501FilingBase(FilingBaseModel):
@@ -418,8 +421,7 @@ class Form501FilingVersion(FilingVersionMixin, Form501FilingBase):
         help_text='Identifies the version of the Form 501 filing, with 0 '
                   'representing the initial filing (from F501_502_CD.FILING_ID)',
     )
-
-    objects = Form501FilingManager.from_queryset(CopyQuerySet)()
+    objects = Form501FilingManager()
 
     class Meta:
         """
