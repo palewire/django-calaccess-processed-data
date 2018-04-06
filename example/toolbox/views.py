@@ -2,14 +2,16 @@ from django.db import ProgrammingError
 from django.shortcuts import render
 from collections import defaultdict
 from calaccess_processed.models import (
-    OCDElectionProxy,
-    OCDCandidacyProxy,
     OCDPostProxy,
     OCDPersonProxy,
-    OCDPartyProxy,
     OCDCommitteeProxy,
     OCDFilingProxy,
     OCDFilingActionProxy
+)
+from calaccess_processed_elections.proxies import (
+    OCDElectionProxy,
+    OCDCandidacyProxy,
+    OCDPartyProxy
 )
 from opencivicdata.elections.models import CandidateContest
 from django.views.generic import DetailView, ListView

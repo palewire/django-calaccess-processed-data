@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 
 # Models
 from .base import ElectionProxyMixin
-from ..opencivicdata import OCDElectionProxy
+from calaccess_processed_elections.proxies import OCDElectionProxy
 from calaccess_scraped.models import IncumbentElection
 
 # Managers

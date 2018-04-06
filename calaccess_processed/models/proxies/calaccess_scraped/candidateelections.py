@@ -9,7 +9,7 @@ from datetime import date
 from django.utils import timezone
 from .base import ElectionProxyMixin
 from .incumbentelections import ScrapedIncumbentElectionProxy
-from ..opencivicdata.elections import OCDElectionProxy
+from calaccess_processed_elections.proxies import OCDElectionProxy
 from calaccess_processed import get_expected_election_date, special_elections
 from calaccess_scraped.models import CandidateElection
 

@@ -12,9 +12,9 @@ from django.db.models import Value, CharField
 from opencivicdata.elections.models import CandidateContest
 from .base import ScrapedNameMixin
 from .candidateelections import ScrapedCandidateElectionProxy
-from ..opencivicdata.elections.candidacies import OCDCandidacyProxy
 from ..opencivicdata.core.posts import OCDPostProxy
-from ..opencivicdata.elections.parties import OCDPartyProxy
+from calaccess_processed_elections.proxies import OCDPartyProxy
+from calaccess_processed_elections.proxies import OCDCandidacyProxy
 logger = logging.getLogger(__name__)
 
 

@@ -17,10 +17,10 @@ from opencivicdata.elections.models import (
     CandidacySource,
 )
 from postgres_copy import CopyQuerySet
-from ..base import OCDProxyModelMixin
 from .election import OCDElectionProxy
-from ..core.people import OCDPersonProxy
 from calaccess_processed.managers import OCDCandidacyManager
+from calaccess_processed.models.proxies.opencivicdata.base import OCDProxyModelMixin
+from calaccess_processed.models.proxies.opencivicdata.core.people import OCDPersonProxy
 
 
 class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):

@@ -28,6 +28,7 @@ INSTALLED_APPS = (
     'calaccess_raw',
     'calaccess_scraped',
     'calaccess_processed',
+    'calaccess_processed_elections',
     'calaccess_processed_filings',
     'toolbox',
     'opencivicdata.core.apps.BaseConfig',
