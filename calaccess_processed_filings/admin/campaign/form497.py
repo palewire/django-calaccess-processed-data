@@ -5,7 +5,7 @@ Admins for Schedule 497, the late contribution report.
 """
 from __future__ import unicode_literals
 from django.contrib import admin
-from calaccess_processed import models
+from calaccess_processed_filings import models
 from calaccess_raw.admin.base import BaseAdmin
 
 

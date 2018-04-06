@@ -9,8 +9,8 @@ from django.db import models
 from calaccess_processed import corrections, get_expected_election_date
 from opencivicdata.elections.models import CandidateContest
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.models.filings.base import FilingBaseModel
-from calaccess_processed.models.filings import FilingMixin, FilingVersionMixin
+from calaccess_processed_filings.models.base import FilingBaseModel
+from calaccess_processed_filings.models import FilingMixin, FilingVersionMixin
 from postgres_copy import CopyQuerySet
 from calaccess_processed.managers import Form501FilingManager
 

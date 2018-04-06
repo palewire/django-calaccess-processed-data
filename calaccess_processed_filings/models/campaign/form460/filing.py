@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 from django.db import models
 from .base import Form460FilingBase
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.models.filings import (
+from calaccess_processed_filings.models import (
     FilingMixin,
     FilingVersionMixin,
 )

@@ -5,7 +5,7 @@ Models for storing data from Campaign Disclosure Statements (Form 460).
 """
 from __future__ import unicode_literals
 from django.db import models
-from calaccess_processed.models.filings.campaign import CampaignFinanceFilingBase
+from calaccess_processed_filings.models.campaign import CampaignFinanceFilingBase
 
 
 class Form460FilingBase(CampaignFinanceFilingBase):

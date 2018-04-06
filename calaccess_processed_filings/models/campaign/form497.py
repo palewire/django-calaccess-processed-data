@@ -8,12 +8,12 @@ More about the filing: http://calaccess.californiacivicdata.org/documentation/ca
 from __future__ import unicode_literals
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed.models.filings import (
+from calaccess_processed_filings.models import (
     FilingMixin,
     FilingVersionMixin,
 )
-from calaccess_processed.models.filings.base import FilingBaseModel
-from calaccess_processed.models.filings.campaign import CampaignFinanceFilingBase
+from calaccess_processed_filings.models.base import FilingBaseModel
+from calaccess_processed_filings.models.campaign import CampaignFinanceFilingBase
 
 
 @python_2_unicode_compatible
