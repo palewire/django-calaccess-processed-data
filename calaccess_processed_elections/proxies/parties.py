@@ -5,7 +5,7 @@ Proxy models for augmenting our source data tables with methods useful for proce
 """
 from __future__ import unicode_literals
 from opencivicdata.core.models import Organization
-from calaccess_processed.managers import OCDPartyManager
+from calaccess_processed_elections.managers import OCDPartyManager
 from calaccess_processed.models.proxies.opencivicdata.base import OCDProxyModelMixin
 
 

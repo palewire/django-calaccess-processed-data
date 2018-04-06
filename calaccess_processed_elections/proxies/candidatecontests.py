@@ -15,7 +15,7 @@ from calaccess_processed.models.proxies.opencivicdata.base import OCDProxyModelM
 
 # Managers
 from postgres_copy import CopyQuerySet
-from calaccess_processed.managers import OCDCandidateContestQuerySet
+from calaccess_processed_elections.managers import OCDCandidateContestQuerySet
 
 
 class OCDCandidateContestProxy(CandidateContest, OCDProxyModelMixin):

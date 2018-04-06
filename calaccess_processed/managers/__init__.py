@@ -33,13 +33,7 @@ from .proxies import (
     OCDPostManager,
     OCDAssemblyPostManager,
     OCDExecutivePostManager,
-    OCDSenatePostManager,
-    OCDCandidacyQuerySet,
-    OCDCandidacyManager,
-    OCDCandidateContestQuerySet,
-    OCDPartisanPrimaryManager,
-    OCDElectionManager,
-    OCDPartyManager
+    OCDSenatePostManager
 )
 from .bulkloadsql import BulkLoadSQLManager
 
@@ -73,11 +67,5 @@ __all__ = (
     "OCDAssemblyPostManager",
     "OCDExecutivePostManager",
     "OCDSenatePostManager",
-    "OCDCandidacyQuerySet",
-    "OCDCandidacyManager",
-    "OCDCandidateContestQuerySet",
-    "OCDPartisanPrimaryManager",
-    "OCDElectionManager",
-    "OCDPartyManager",
     'BulkLoadSQLManager'
 )

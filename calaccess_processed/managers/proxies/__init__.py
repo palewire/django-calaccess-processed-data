@@ -30,13 +30,7 @@ from .opencivicdata import (
     OCDPostManager,
     OCDAssemblyPostManager,
     OCDExecutivePostManager,
-    OCDSenatePostManager,
-    OCDCandidacyQuerySet,
-    OCDCandidacyManager,
-    OCDCandidateContestQuerySet,
-    OCDPartisanPrimaryManager,
-    OCDElectionManager,
-    OCDPartyManager
+    OCDSenatePostManager
 )
 
 
@@ -65,11 +59,5 @@ __all__ = (
     "OCDPostManager",
     "OCDAssemblyPostManager",
     "OCDExecutivePostManager",
-    "OCDSenatePostManager",
-    "OCDCandidacyQuerySet",
-    "OCDCandidacyManager",
-    "OCDCandidateContestQuerySet",
-    "OCDPartisanPrimaryManager",
-    "OCDElectionManager",
-    "OCDPartyManager"
+    "OCDSenatePostManager"
 )
