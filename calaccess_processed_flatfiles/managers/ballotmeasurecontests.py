@@ -4,11 +4,11 @@
 Managers for generating flatfiles that combine multiple table into a simplified file.
 """
 from __future__ import unicode_literals
-from django.db import models
 from django.db.models import Q, F, Max
+from calaccess_processed.managers import BulkLoadSQLManager
 
 
-class OCDFlatBallotMeasureContestManager(models.Manager):
+class OCDFlatBallotMeasureContestManager(BulkLoadSQLManager):
     """
     Custom manager for flattening contents of the OCD BallotMeasureContest model.
     """

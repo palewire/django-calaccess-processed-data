@@ -6,19 +6,18 @@ Proxy models for generating flatfiles that combine multiple table into a simplif
 from __future__ import unicode_literals
 
 # Models
-from ..proxies import OCDProxyModelMixin
+from calaccess_processed.models import OCDProxyModelMixin
 from opencivicdata.elections.models import RetentionContest
 
 # Managers
-from postgres_copy import CopyQuerySet
-from calaccess_processed.managers import OCDFlatRetentionContestManager
+from calaccess_processed_flatfiles.managers import OCDFlatRetentionContestManager
 
 
 class OCDFlatRetentionContestProxy(RetentionContest, OCDProxyModelMixin):
     """
     Every recall measure.
     """
-    objects = OCDFlatRetentionContestManager.from_queryset(CopyQuerySet)()
+    objects = OCDFlatRetentionContestManager()
 
     copy_to_fields = (
         ('name',),

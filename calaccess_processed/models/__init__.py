@@ -4,11 +4,6 @@
 Import all of the models from submodules and thread them together.
 """
 from .base import CalAccessMetaClass, CalAccessBaseModel
-from .flatfiles import (
-    OCDFlatBallotMeasureContestProxy,
-    OCDFlatCandidacyProxy,
-    OCDFlatRetentionContestProxy
-)
 from .tracking import (
     ProcessedDataVersion,
     ProcessedDataFile,
@@ -74,9 +69,6 @@ __all__ = (
     'OCDTransactionProxy',
     'OCDTransactionIdentifierProxy',
     'OCDDivisionProxy',
-    'OCDFlatBallotMeasureContestProxy',
-    'OCDFlatCandidacyProxy',
-    'OCDFlatRetentionContestProxy',
     'OCDJurisdictionProxy',
     'OCDMembershipProxy',
     'OCDOrganizationProxy',

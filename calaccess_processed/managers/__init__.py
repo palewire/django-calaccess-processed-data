@@ -3,11 +3,6 @@
 """
 Import all of the managers from submodules and thread them together.
 """
-from .flatfiles import (
-    OCDFlatBallotMeasureContestManager,
-    OCDFlatCandidacyManager,
-    OCDFlatRetentionContestManager
-)
 from .proxies import (
     RawFilerToFilerTypeCdManager,
     ScrapedIncumbentElectionManager,
@@ -39,9 +34,6 @@ from .bulkloadsql import BulkLoadSQLManager
 
 
 __all__ = (
-    "OCDFlatBallotMeasureContestManager",
-    "OCDFlatCandidacyManager",
-    "OCDFlatRetentionContestManager",
     "RawFilerToFilerTypeCdManager",
     "ScrapedIncumbentElectionManager",
     "ScrapedBallotMeasureManager",

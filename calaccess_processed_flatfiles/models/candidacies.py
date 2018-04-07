@@ -8,16 +8,15 @@ from opencivicdata.elections.models import (
     Candidacy,
     CandidateContest
 )
-from ..proxies import OCDProxyModelMixin
-from postgres_copy import CopyQuerySet
-from calaccess_processed.managers import OCDFlatCandidacyManager
+from calaccess_processed.models import OCDProxyModelMixin
+from calaccess_processed_flatfiles.managers import OCDFlatCandidacyManager
 
 
 class OCDFlatCandidacyProxy(Candidacy, OCDProxyModelMixin):
     """
     Every candidate for a public office.
     """
-    objects = OCDFlatCandidacyManager.from_queryset(CopyQuerySet)()
+    objects = OCDFlatCandidacyManager()
 
     copy_to_fields = (
         ('name',),

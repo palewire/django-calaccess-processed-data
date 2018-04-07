@@ -9,12 +9,12 @@ from calaccess_processed.postgres import (
     JSONExtractPath,
     MaxFromJSONIntegerArray,
 )
-from django.db import models
 from django.db.models import F, Q
 from django.db.models import Count, Max
+from calaccess_processed.managers import BulkLoadSQLManager
 
 
-class OCDFlatCandidacyManager(models.Manager):
+class OCDFlatCandidacyManager(BulkLoadSQLManager):
     """
     Custom manager for flattening the contents of the OCD Candidacy model.
     """
