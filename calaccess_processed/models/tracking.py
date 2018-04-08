@@ -6,12 +6,16 @@ Models for tracking processing of CAL-ACCESS snapshots over time.
 from __future__ import unicode_literals
 import os
 import re
-from hurry.filesize import size as sizeformat
 from django.apps import apps
-from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from hurry.filesize import size as sizeformat
+
+# Paths
 from calaccess_raw import get_data_directory
 from calaccess_processed import archive_directory_path
+
+# Models
+from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 
 
 @python_2_unicode_compatible
