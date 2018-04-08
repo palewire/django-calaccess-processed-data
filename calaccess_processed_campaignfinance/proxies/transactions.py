@@ -4,14 +4,16 @@
 Proxy models for OCD Filing related models..
 """
 from __future__ import unicode_literals
-import logging
 from opencivicdata.campaign_finance.models import (
     Transaction,
     TransactionIdentifier
 )
+from calaccess_processed.proxies import OCDProxyModelMixin
 from postgres_copy import CopyManager
-from ..base import OCDProxyModelMixin
-from calaccess_processed.managers import OCDTransactionManager
+from calaccess_processed_campaignfinance.managers import OCDTransactionManager
+
+# Logging
+import logging
 logger = logging.getLogger(__name__)
 
 

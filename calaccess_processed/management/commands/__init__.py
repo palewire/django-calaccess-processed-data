@@ -6,14 +6,21 @@ Base classes for custom management commands.
 from __future__ import unicode_literals
 import os
 import re
-import logging
 from django.utils import timezone
 from django.utils.termcolors import colorize
 from calaccess_raw import get_data_directory
-from calaccess_raw.models import RawDataVersion
+
+# Commands
 from django.core.management.base import BaseCommand
 from django.core.management import CommandError, call_command
-from calaccess_processed.models import ProcessedDataVersion, OCDDivisionProxy
+
+# Models
+from calaccess_raw.models import RawDataVersion
+from calaccess_processed.models import ProcessedDataVersion
+from calaccess_processed.proxies import OCDDivisionProxy
+
+# Logging
+import logging
 logger = logging.getLogger(__name__)
 
 

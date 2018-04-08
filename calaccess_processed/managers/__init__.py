@@ -3,21 +3,13 @@
 """
 Import all of the managers from submodules and thread them together.
 """
-from .proxies import (
-    RawFilerToFilerTypeCdManager,
+from .calaccess_raw import RawFilerToFilerTypeCdManager
+from .calaccess_scraped import (
     ScrapedIncumbentElectionManager,
     ScrapedBallotMeasureManager,
-    ScrapedRecallMeasureManager,
-    BaseOCDBulkLoadSQLManager,
-    OCDCommitteeManager,
-    OCDCommitteeIdentifierManager,
-    OCDCommitteeNameManager,
-    OCDCommitteeTypeManager,
-    OCDFilingManager,
-    OCDFilingIdentifierManager,
-    OCDFilingActionManager,
-    OCDFilingActionSummaryAmountManager,
-    OCDTransactionManager,
+    ScrapedRecallMeasureManager
+)
+from .opencivicdata import (
     OCDAssemblyDivisionManager,
     OCDSenateDivisionManager,
     OCDCaliforniaDivisionManager,
@@ -38,16 +30,6 @@ __all__ = (
     "ScrapedIncumbentElectionManager",
     "ScrapedBallotMeasureManager",
     "ScrapedRecallMeasureManager",
-    "BaseOCDBulkLoadSQLManager",
-    "OCDCommitteeManager",
-    "OCDCommitteeIdentifierManager",
-    "OCDCommitteeNameManager",
-    "OCDCommitteeTypeManager",
-    "OCDFilingManager",
-    "OCDFilingIdentifierManager",
-    "OCDFilingActionManager",
-    "OCDFilingActionSummaryAmountManager",
-    "OCDTransactionManager",
     "OCDAssemblyDivisionManager",
     "OCDSenateDivisionManager",
     "OCDCaliforniaDivisionManager",

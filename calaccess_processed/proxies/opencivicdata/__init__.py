@@ -4,20 +4,6 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from .base import OCDProxyModelMixin
-from .campaign_finance import (
-    OCDCommitteeProxy,
-    OCDCommitteeIdentifierProxy,
-    OCDCommitteeNameProxy,
-    OCDCommitteeSourceProxy,
-    OCDCommitteeTypeProxy,
-    OCDFilingProxy,
-    OCDFilingIdentifierProxy,
-    OCDFilingSourceProxy,
-    OCDFilingActionProxy,
-    OCDFilingActionSummaryAmountProxy,
-    OCDTransactionProxy,
-    OCDTransactionIdentifierProxy
-)
 from .core import (
     OCDDivisionProxy,
     OCDMembershipProxy,
@@ -33,18 +19,6 @@ from .core import (
 
 
 __all__ = (
-    'OCDCommitteeProxy',
-    'OCDCommitteeIdentifierProxy',
-    'OCDCommitteeNameProxy',
-    'OCDCommitteeSourceProxy',
-    'OCDCommitteeTypeProxy',
-    'OCDFilingProxy',
-    'OCDFilingIdentifierProxy',
-    'OCDFilingSourceProxy',
-    'OCDFilingActionProxy',
-    'OCDFilingActionSummaryAmountProxy',
-    'OCDTransactionProxy',
-    'OCDTransactionIdentifierProxy',
     'OCDDivisionProxy',
     'OCDFlatBallotMeasureContestProxy',
     'OCDFlatCandidacyProxy',

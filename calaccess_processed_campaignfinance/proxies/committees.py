@@ -4,7 +4,6 @@
 Proxy models for OCD Filing related models..
 """
 from __future__ import unicode_literals
-import logging
 from opencivicdata.campaign_finance.models import (
     Committee,
     CommitteeType,
@@ -12,14 +11,17 @@ from opencivicdata.campaign_finance.models import (
     CommitteeName,
     CommitteeSource,
 )
-from calaccess_processed.managers import (
+from calaccess_processed.proxies import OCDProxyModelMixin
+from calaccess_processed_campaignfinance.managers import (
     OCDCommitteeManager,
     OCDCommitteeIdentifierManager,
     OCDCommitteeNameManager,
     OCDCommitteeTypeManager
 )
 from postgres_copy import CopyManager
-from ..base import OCDProxyModelMixin
+
+# Logging
+import logging
 logger = logging.getLogger(__name__)
 
 

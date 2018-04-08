@@ -7,11 +7,13 @@ from __future__ import unicode_literals
 import re
 from datetime import date
 from django.utils import timezone
+from calaccess_processed_elections import get_expected_election_date, special_elections
+
+# Models
 from .base import ElectionProxyMixin
+from calaccess_scraped.models import CandidateElection
 from .incumbentelections import ScrapedIncumbentElectionProxy
 from calaccess_processed_elections.proxies import OCDElectionProxy
-from calaccess_processed import get_expected_election_date, special_elections
-from calaccess_scraped.models import CandidateElection
 
 
 class ScrapedCandidateElectionProxy(ElectionProxyMixin, CandidateElection):

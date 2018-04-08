@@ -4,17 +4,20 @@
 Proxy model for augmenting ScrapedCandidate model with methods useful for processing.
 """
 from __future__ import unicode_literals
-import logging
-from calaccess_processed import corrections
-from calaccess_scraped.models import Candidate
 from django.db.models.functions import Concat
 from django.db.models import Value, CharField
-from opencivicdata.elections.models import CandidateContest
+from calaccess_processed_elections import corrections
+
+# Models
 from .base import ScrapedNameMixin
-from .candidateelections import ScrapedCandidateElectionProxy
+from calaccess_scraped.models import Candidate
 from ..opencivicdata.core.posts import OCDPostProxy
-from calaccess_processed_elections.proxies import OCDPartyProxy
-from calaccess_processed_elections.proxies import OCDCandidacyProxy
+from opencivicdata.elections.models import CandidateContest
+from .candidateelections import ScrapedCandidateElectionProxy
+from calaccess_processed_elections.proxies import OCDPartyProxy, OCDCandidacyProxy
+
+# Logging
+import logging
 logger = logging.getLogger(__name__)
 
 
