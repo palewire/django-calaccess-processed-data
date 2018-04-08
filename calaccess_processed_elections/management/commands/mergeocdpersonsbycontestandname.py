@@ -4,7 +4,7 @@
 Find and merge OCD Person records that share a name and CandidateContest.
 """
 from django.db.models import Count
-from calaccess_processed.merge_funcs import merge_persons
+from calaccess_processed_elections.merge import merge_persons
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed_elections.proxies import OCDCandidateContestProxy
 
