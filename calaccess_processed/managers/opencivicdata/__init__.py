@@ -3,14 +3,18 @@
 """
 Import all of the managers from submodules and thread them together.
 """
-from .core import (
+from .divisions import (
     OCDAssemblyDivisionManager,
     OCDSenateDivisionManager,
-    OCDCaliforniaDivisionManager,
-    OCDJurisdictionManager,
+    OCDCaliforniaDivisionManager
+)
+from .jurisdictions import OCDJurisdictionManager
+from .organizations import (
     OCDOrganizationManager,
-    OCDMembershipManager,
-    OCDPersonManager,
+    OCDMembershipManager
+)
+from .people import OCDPersonManager
+from .posts import (
     OCDPostManager,
     OCDAssemblyPostManager,
     OCDExecutivePostManager,
