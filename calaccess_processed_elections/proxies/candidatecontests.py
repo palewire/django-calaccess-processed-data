@@ -4,25 +4,21 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
-
-# Models
 from opencivicdata.elections.models import (
     CandidateContest,
     CandidateContestPost,
-    CandidateContestSource,
+    CandidateContestSource
 )
-from calaccess_processed.models.proxies.opencivicdata.base import OCDProxyModelMixin
-
-# Managers
-from postgres_copy import CopyQuerySet
-from calaccess_processed_elections.managers import OCDCandidateContestQuerySet
+from calaccess_processed.proxies import OCDProxyModelMixin
+from calaccess_processed.managers import BulkLoadSQLManager
+from calaccess_processed_elections.managers import OCDCandidateContestManager
 
 
 class OCDCandidateContestProxy(CandidateContest, OCDProxyModelMixin):
     """
     A proxy on the OCD CandidateContest model with helper methods.
     """
-    objects = OCDCandidateContestQuerySet.as_manager()
+    objects = OCDCandidateContestManager()
 
     copy_to_fields = (
         ('id',),
@@ -69,7 +65,7 @@ class OCDCandidateContestPostProxy(CandidateContestPost, OCDProxyModelMixin):
     """
     A proxy on the OCD CandidateContestPost model.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     class Meta:
         """
@@ -82,7 +78,7 @@ class OCDCandidateContestSourceProxy(CandidateContestSource, OCDProxyModelMixin)
     """
     A proxy on the OCD CandidateContestSource model.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     class Meta:
         """

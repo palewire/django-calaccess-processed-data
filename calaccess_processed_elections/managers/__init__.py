@@ -7,7 +7,10 @@ from .candidacies import (
     OCDCandidacyQuerySet,
     OCDCandidacyManager
 )
-from .candidatecontests import OCDCandidateContestQuerySet
+from .candidatecontests import (
+    OCDCandidateContestQuerySet,
+    OCDCandidateContestManager
+)
 from .elections import (
     OCDPartisanPrimaryManager,
     OCDElectionManager
@@ -19,6 +22,7 @@ __all__ = (
     "OCDCandidacyQuerySet",
     "OCDCandidacyManager",
     "OCDCandidateContestQuerySet",
+    "OCDCandidateContestManager",
     "OCDPartisanPrimaryManager",
     "OCDElectionManager",
     "OCDPartyManager"

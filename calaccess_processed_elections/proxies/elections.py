@@ -11,14 +11,13 @@ from django.db.models import Count
 from opencivicdata.elections.models import (
     Election,
     ElectionIdentifier,
-    ElectionSource,
+    ElectionSource
 )
-from calaccess_processed.models.proxies.opencivicdata.base import OCDProxyModelMixin
-from calaccess_processed.models.proxies.opencivicdata.core.posts import OCDPostProxy
+from calaccess_processed.proxies import OCDPostProxy, OCDProxyModelMixin
 from .candidatecontests import OCDCandidateContestProxy
 
 # Managers
-from postgres_copy import CopyQuerySet
+from calaccess_processed.managers import BulkLoadSQLManager
 from calaccess_processed_elections.managers import (
     OCDPartisanPrimaryManager,
     OCDElectionManager
@@ -29,7 +28,7 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
     """
     A proxy on the OCD Election model.
     """
-    objects = OCDElectionManager.from_queryset(CopyQuerySet)()
+    objects = OCDElectionManager()
     partisan_primaries = OCDPartisanPrimaryManager()
 
     copy_to_fields = (
@@ -314,7 +313,7 @@ class OCDElectionIdentifierProxy(ElectionIdentifier, OCDProxyModelMixin):
     """
     A proxy on the OCD ElectionIdentifier model.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     class Meta:
         """
@@ -327,7 +326,7 @@ class OCDElectionSourceProxy(ElectionSource, OCDProxyModelMixin):
     """
     A proxy on the OCD ElectionSource model.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     class Meta:
         """

@@ -4,11 +4,11 @@
 Custom manager for the OCD Organization model.
 """
 from __future__ import unicode_literals
-from django.db import models
 from calaccess_raw.models import FilerToFilerTypeCd
+from calaccess_processed.managers import BulkLoadSQLManager
 
 
-class OCDPartyManager(models.Manager):
+class OCDPartyManager(BulkLoadSQLManager):
     """
     Limited the OCD Organization model to politics parties.
     """

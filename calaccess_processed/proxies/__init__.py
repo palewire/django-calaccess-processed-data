@@ -3,16 +3,8 @@
 """
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
-from .calaccess_raw import RawFilerToFilerTypeCdManager
-from .calaccess_scraped import (
-    ScrapedCandidateProxy,
-    ScrapedIncumbentProxy,
-    ScrapedCandidateElectionProxy,
-    ScrapedIncumbentElectionProxy,
-    ScrapedPropositionProxy,
-    ScrapedPropositionElectionProxy
-)
 from .opencivicdata import (
+    OCDProxyModelMixin,
     OCDCommitteeProxy,
     OCDCommitteeIdentifierProxy,
     OCDCommitteeNameProxy,
@@ -34,8 +26,16 @@ from .opencivicdata import (
     OCDPersonProxy,
     OCDPersonIdentifierProxy,
     OCDPersonNameProxy,
-    OCDPostProxy,
-    OCDProxyModelMixin
+    OCDPostProxy
+)
+from .calaccess_raw import RawFilerToFilerTypeCdManager
+from .calaccess_scraped import (
+    ScrapedCandidateProxy,
+    ScrapedIncumbentProxy,
+    ScrapedCandidateElectionProxy,
+    ScrapedIncumbentElectionProxy,
+    ScrapedPropositionProxy,
+    ScrapedPropositionElectionProxy
 )
 
 

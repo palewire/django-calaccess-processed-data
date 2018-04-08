@@ -4,30 +4,33 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
+from django.db.models.functions import Cast
+
+# Models
 from django.db.models import (
     IntegerField,
     Case,
     Q,
-    When,
+    When
 )
-from django.db.models.functions import Cast
+from .elections import OCDElectionProxy
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import (
     Candidacy,
-    CandidacySource,
+    CandidacySource
 )
-from postgres_copy import CopyQuerySet
-from .election import OCDElectionProxy
+from calaccess_processed.proxies import OCDProxyModelMixin, OCDPersonProxy
+
+# Managers
+from calaccess_processed.managers import BulkLoadSQLManager
 from calaccess_processed_elections.managers import OCDCandidacyManager
-from calaccess_processed.models.proxies.opencivicdata.base import OCDProxyModelMixin
-from calaccess_processed.models.proxies.opencivicdata.core.people import OCDPersonProxy
 
 
 class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
     """
     A proxy on the OCD Candidacy model with helper methods.
     """
-    objects = OCDCandidacyManager.from_queryset(CopyQuerySet)()
+    objects = OCDCandidacyManager()
 
     copy_to_fields = (
         ('id',),
@@ -210,7 +213,7 @@ class OCDCandidacySourceProxy(CandidacySource, OCDProxyModelMixin):
     """
     A proxy on the OCD CandidacySource model.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     class Meta:
         """

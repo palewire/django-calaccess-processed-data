@@ -18,7 +18,7 @@ from .candidacies import (
     OCDCandidacyProxy,
     OCDCandidacySourceProxy,
 )
-from .election import (
+from .elections import (
     OCDElectionProxy,
     OCDElectionIdentifierProxy,
     OCDElectionSourceProxy

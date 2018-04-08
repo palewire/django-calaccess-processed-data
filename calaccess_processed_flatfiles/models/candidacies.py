@@ -8,7 +8,7 @@ from opencivicdata.elections.models import (
     Candidacy,
     CandidateContest
 )
-from calaccess_processed.models import OCDProxyModelMixin
+from calaccess_processed.proxies import OCDProxyModelMixin
 from calaccess_processed_flatfiles.managers import OCDFlatCandidacyManager
 
 

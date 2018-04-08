@@ -5,22 +5,15 @@ Utilities for more quickly loading bulk data.
 """
 from __future__ import unicode_literals
 import logging
-from django.db import models
 from django.db import connection
-from postgres_copy.managers import ConstraintQuerySet
+from postgres_copy.managers import CopyManager
 logger = logging.getLogger(__name__)
 
 
-class BulkLoadSQLManager(models.Manager):
+class BulkLoadSQLManager(CopyManager):
     """
     Utilities for more quickly loading bulk data into a model with custom SQL.
     """
-    def get_queryset(self):
-        """
-        A custom queryset with extra options.
-        """
-        return ConstraintQuerySet(self.model, using=self._db)
-
     def load(self):
         """
         Load the model by executing its corresponding raw SQL query.
