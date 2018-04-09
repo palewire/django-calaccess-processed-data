@@ -30,6 +30,16 @@ from .retentioncontests import (
     OCDRetentionContestOptionProxy,
     OCDRetentionContestSourceProxy
 )
+from .calaccess_scraped import (
+    ScrapedElectionProxyMixin,
+    ScrapedNameMixin,
+    ScrapedCandidateProxy,
+    ScrapedIncumbentProxy,
+    ScrapedCandidateElectionProxy,
+    ScrapedIncumbentElectionProxy,
+    ScrapedPropositionProxy,
+    ScrapedPropositionElectionProxy
+)
 
 
 __all__ = (
@@ -50,4 +60,12 @@ __all__ = (
     "OCDRetentionContestIdentifierProxy",
     "OCDRetentionContestOptionProxy",
     "OCDRetentionContestSourceProxy",
+    "ScrapedElectionProxyMixin",
+    "ScrapedNameMixin",
+    'ScrapedCandidateProxy',
+    'ScrapedCandidateElectionProxy',
+    'ScrapedIncumbentProxy',
+    'ScrapedIncumbentElectionProxy',
+    'ScrapedPropositionProxy',
+    'ScrapedPropositionElectionProxy',
 )

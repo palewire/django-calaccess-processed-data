@@ -8,7 +8,7 @@ import re
 from datetime import date
 
 
-class ElectionProxyMixin(object):
+class ScrapedElectionProxyMixin(object):
     """
     Mixin with properties and methods shared by all scraped Election proxy models.
     """

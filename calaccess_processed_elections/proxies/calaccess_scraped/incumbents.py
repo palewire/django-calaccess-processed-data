@@ -4,8 +4,8 @@
 Proxy model for augmenting ScrapedIncumbent model with methods useful for processing.
 """
 from __future__ import unicode_literals
-from calaccess_scraped.models import Incumbent
 from .base import ScrapedNameMixin
+from calaccess_scraped.models import Incumbent
 
 
 class ScrapedIncumbentProxy(Incumbent, ScrapedNameMixin):

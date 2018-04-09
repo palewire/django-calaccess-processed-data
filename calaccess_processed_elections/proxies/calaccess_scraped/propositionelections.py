@@ -6,11 +6,12 @@ Proxy model for augmenting ScrapedPropositionElection model with methods useful 
 from __future__ import unicode_literals
 import re
 from django.utils import timezone
+from .base import ScrapedElectionProxyMixin
 from calaccess_scraped.models import PropositionElection
-from .base import ElectionProxyMixin
+from calaccess_processed_elections.proxies import OCDElectionProxy
 
 
-class ScrapedPropositionElectionProxy(ElectionProxyMixin, PropositionElection):
+class ScrapedPropositionElectionProxy(ScrapedElectionProxyMixin, PropositionElection):
     """
     A proxy for the PropositionElection model in calaccess_scraped.
     """
@@ -51,7 +52,6 @@ class ScrapedPropositionElectionProxy(ElectionProxyMixin, PropositionElection):
         """
         Returns an OCD Election object for this record, if it exists.
         """
-        from ..opencivicdata.elections import OCDElectionProxy
         try:
             ocd_election = OCDElectionProxy.objects.get(
                 name=self.ocd_name,

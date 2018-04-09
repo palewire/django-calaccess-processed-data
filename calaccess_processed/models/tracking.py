@@ -219,8 +219,6 @@ class ProcessedDataFile(models.Model):
         self.records_count = self.model.objects.count()
         self.save()
 
-        return
-
     def make_csv_copy(self):
         """
         Copy model contents to a local csv file.
@@ -229,7 +227,6 @@ class ProcessedDataFile(models.Model):
             copy_to_fields = tuple(i[0] for i in self.model.copy_to_fields)
         except AttributeError:
             copy_to_fields = tuple()
-
         return self.model.objects.to_csv(self.csv_path, *copy_to_fields)
 
     @property
@@ -238,7 +235,9 @@ class ProcessedDataFile(models.Model):
         Return the full path where the ProcessedFile is locally stored.
         """
         file_directory = os.path.join(
-            get_data_directory(), 'processed', self.model().klass_group.lower()
+            get_data_directory(),
+            'processed',
+            self.model().klass_group.lower()
         )
         return os.path.join(file_directory, '%s.csv' % self.file_name)
 
@@ -252,38 +251,3 @@ class ProcessedDataFile(models.Model):
         except (AttributeError, TypeError):
             is_flat = False
         return is_flat
-
-    @property
-    def model(self):
-        """
-        Returns the ProcessedDataFile's corresponding database model object.
-        """
-        # first, try finding a model with a name that matches the file_name.
-        try:
-            model = apps.get_model(
-                'calaccess_processed',
-                self.file_name,
-            )
-        except LookupError:
-            # next, try finding a proxy model a name that contains file_name.
-            try:
-                model = apps.get_model(
-                    'calaccess_processed',
-                    'OCD%sProxy' % self.file_name,
-                )
-            except LookupError:
-                # finally, try finding a model with a plural name
-                # matches file_name.
-                # convert file_name from camel case
-                s1 = re.sub(r'(.)([A-Z][a-z]+)', r'\1 \2', self.file_name)
-                s2 = re.sub(r'([a-z0-9])([A-Z])', r'\1 \2', s1).lower()
-                model_list = [
-                    m for m in apps.get_models()
-                    if m._meta.verbose_name_plural == s2
-                ]
-                try:
-                    model = model_list.pop()
-                except IndexError:
-                    model = None
-
-        return model

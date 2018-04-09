@@ -17,24 +17,10 @@ from .opencivicdata import (
     OCDPostProxy
 )
 from .calaccess_raw import RawFilerToFilerTypeCdManager
-from .calaccess_scraped import (
-    ScrapedCandidateProxy,
-    ScrapedIncumbentProxy,
-    ScrapedCandidateElectionProxy,
-    ScrapedIncumbentElectionProxy,
-    ScrapedPropositionProxy,
-    ScrapedPropositionElectionProxy
-)
 
 
 __all__ = (
     'RawFilerToFilerTypeCdManager',
-    'ScrapedCandidateProxy',
-    'ScrapedCandidateElectionProxy',
-    'ScrapedIncumbentProxy',
-    'ScrapedIncumbentElectionProxy',
-    'ScrapedPropositionProxy',
-    'ScrapedPropositionElectionProxy',
     'OCDDivisionProxy',
     'OCDJurisdictionProxy',
     'OCDMembershipProxy',

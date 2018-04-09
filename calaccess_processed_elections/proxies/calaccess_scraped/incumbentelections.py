@@ -6,7 +6,7 @@ Proxy model for augmenting ScrapedIncumbentElection model with methods useful fo
 from __future__ import unicode_literals
 
 # Models
-from .base import ElectionProxyMixin
+from .base import ScrapedElectionProxyMixin
 from calaccess_processed_elections.proxies import OCDElectionProxy
 from calaccess_scraped.models import IncumbentElection
 
@@ -15,7 +15,7 @@ from postgres_copy import CopyQuerySet
 from calaccess_processed.managers import ScrapedIncumbentElectionManager
 
 
-class ScrapedIncumbentElectionProxy(ElectionProxyMixin, IncumbentElection):
+class ScrapedIncumbentElectionProxy(ScrapedElectionProxyMixin, IncumbentElection):
     """
     A proxy for the IncumbentElection model in calaccess_scraped.
     """

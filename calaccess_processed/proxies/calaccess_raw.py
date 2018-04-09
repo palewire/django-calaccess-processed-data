@@ -3,7 +3,7 @@
 """
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
-from __future__ import unicode_literals
+from __future__ import unicode_literals, absolute_import
 from calaccess_raw.models import FilerToFilerTypeCd
 from calaccess_processed.managers import RawFilerToFilerTypeCdManager
 
