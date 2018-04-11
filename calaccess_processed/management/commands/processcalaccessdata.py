@@ -125,7 +125,7 @@ class Command(CalAccessCommand):
             force_restart=self.force_restart
         )
         call_command(
-            'loadocdelections',
+            'processcalaccesselections',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
