@@ -4,87 +4,16 @@
 Import all of the models from submodules and thread them together.
 """
 from .base import CalAccessMetaClass, CalAccessBaseModel
-from .flatfiles import (
-    OCDFlatBallotMeasureContestProxy,
-    OCDFlatCandidacyProxy,
-    OCDFlatRetentionContestProxy
-)
 from .tracking import (
     ProcessedDataVersion,
     ProcessedDataFile,
     ProcessedDataZip,
 )
-from .proxies import (
-    RawFilerToFilerTypeCdManager,
-    ScrapedCandidateProxy,
-    ScrapedCandidateElectionProxy,
-    ScrapedIncumbentProxy,
-    ScrapedIncumbentElectionProxy,
-    ScrapedPropositionProxy,
-    ScrapedPropositionElectionProxy,
-    OCDCommitteeProxy,
-    OCDCommitteeIdentifierProxy,
-    OCDCommitteeNameProxy,
-    OCDCommitteeSourceProxy,
-    OCDCommitteeTypeProxy,
-    OCDFilingProxy,
-    OCDFilingIdentifierProxy,
-    OCDFilingSourceProxy,
-    OCDFilingActionProxy,
-    OCDFilingActionSummaryAmountProxy,
-    OCDTransactionProxy,
-    OCDTransactionIdentifierProxy,
-    OCDDivisionProxy,
-    OCDJurisdictionProxy,
-    OCDMembershipProxy,
-    OCDOrganizationProxy,
-    OCDOrganizationIdentifierProxy,
-    OCDOrganizationNameProxy,
-    OCDPersonProxy,
-    OCDPersonIdentifierProxy,
-    OCDPersonNameProxy,
-    OCDPostProxy,
-    OCDProxyModelMixin
-)
-
 
 __all__ = (
     'CalAccessMetaClass',
     'CalAccessBaseModel',
     'ProcessedDataVersion',
     'ProcessedDataFile',
-    'ProcessedDataZip',
-    'RawFilerToFilerTypeCdManager',
-    'ScrapedCandidateProxy',
-    'ScrapedCandidateElectionProxy',
-    'ScrapedIncumbentProxy',
-    'ScrapedIncumbentElectionProxy',
-    'ScrapedPropositionProxy',
-    'ScrapedPropositionElectionProxy',
-    'OCDCommitteeProxy',
-    'OCDCommitteeIdentifierProxy',
-    'OCDCommitteeNameProxy',
-    'OCDCommitteeSourceProxy',
-    'OCDCommitteeTypeProxy',
-    'OCDFilingProxy',
-    'OCDFilingIdentifierProxy',
-    'OCDFilingSourceProxy',
-    'OCDFilingActionProxy',
-    'OCDFilingActionSummaryAmountProxy',
-    'OCDTransactionProxy',
-    'OCDTransactionIdentifierProxy',
-    'OCDDivisionProxy',
-    'OCDFlatBallotMeasureContestProxy',
-    'OCDFlatCandidacyProxy',
-    'OCDFlatRetentionContestProxy',
-    'OCDJurisdictionProxy',
-    'OCDMembershipProxy',
-    'OCDOrganizationProxy',
-    'OCDOrganizationIdentifierProxy',
-    'OCDOrganizationNameProxy',
-    'OCDPersonProxy',
-    'OCDPersonIdentifierProxy',
-    'OCDPersonNameProxy',
-    'OCDPostProxy',
-    'OCDProxyModelMixin'
+    'ProcessedDataZip'
 )

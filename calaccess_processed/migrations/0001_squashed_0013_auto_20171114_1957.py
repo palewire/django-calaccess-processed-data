@@ -4,8 +4,8 @@ from __future__ import unicode_literals
 
 import calaccess_processed
 import calaccess_processed_filings.models.base
-import calaccess_processed.models.proxies.calaccess_scraped.base
-import calaccess_processed.models.proxies.opencivicdata.base
+import calaccess_processed.proxies.calaccess_scraped.base
+import calaccess_processed.proxies.opencivicdata.base
 import django.contrib.postgres.operations
 from django.db import migrations, models
 import django.db.models.deletion
@@ -1758,7 +1758,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=(calaccess_processed.models.proxies.calaccess_scraped.base.ElectionProxyMixin, 'calaccess_scraped.candidateelection'),
+            bases=(calaccess_processed.proxies.calaccess_scraped.base.ElectionProxyMixin, 'calaccess_scraped.candidateelection'),
         ),
         migrations.CreateModel(
             name='ScrapedCandidateProxy',
@@ -1767,7 +1767,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('calaccess_scraped.candidate', calaccess_processed.models.proxies.calaccess_scraped.base.ScrapedNameMixin),
+            bases=('calaccess_scraped.candidate', calaccess_processed.proxies.calaccess_scraped.base.ScrapedNameMixin),
         ),
         migrations.CreateModel(
             name='ScrapedIncumbentElectionProxy',
@@ -1776,7 +1776,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=(calaccess_processed.models.proxies.calaccess_scraped.base.ElectionProxyMixin, 'calaccess_scraped.incumbentelection'),
+            bases=(calaccess_processed.proxies.calaccess_scraped.base.ElectionProxyMixin, 'calaccess_scraped.incumbentelection'),
         ),
         migrations.CreateModel(
             name='ScrapedIncumbentProxy',
@@ -1786,7 +1786,7 @@ class Migration(migrations.Migration):
                 'ordering': ['-session'],
                 'proxy': True,
             },
-            bases=('calaccess_scraped.incumbent', calaccess_processed.models.proxies.calaccess_scraped.base.ScrapedNameMixin),
+            bases=('calaccess_scraped.incumbent', calaccess_processed.proxies.calaccess_scraped.base.ScrapedNameMixin),
         ),
         migrations.CreateModel(
             name='ScrapedPropositionElectionProxy',
@@ -1795,7 +1795,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=(calaccess_processed.models.proxies.calaccess_scraped.base.ElectionProxyMixin, 'calaccess_scraped.propositionelection'),
+            bases=(calaccess_processed.proxies.calaccess_scraped.base.ElectionProxyMixin, 'calaccess_scraped.propositionelection'),
         ),
         migrations.CreateModel(
             name='ScrapedPropositionProxy',
@@ -2054,7 +2054,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.candidatecontest', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.candidatecontest', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDMembershipProxy',
@@ -2063,7 +2063,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('core.membership', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('core.membership', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDOrganizationIdentifierProxy',
@@ -2072,7 +2072,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('core.organizationidentifier', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('core.organizationidentifier', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDOrganizationNameProxy',
@@ -2081,7 +2081,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('core.organizationname', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('core.organizationname', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDPersonNameProxy',
@@ -2090,7 +2090,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('core.personname', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('core.personname', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDCandidacySourceProxy',
@@ -2099,7 +2099,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.candidacysource', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.candidacysource', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDCandidateContestPostProxy',
@@ -2108,7 +2108,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.candidatecontestpost', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.candidatecontestpost', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDCandidateContestSourceProxy',
@@ -2117,7 +2117,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.candidatecontestsource', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.candidatecontestsource', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDElectionIdentifierProxy',
@@ -2126,7 +2126,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.electionidentifier', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.electionidentifier', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDElectionSourceProxy',
@@ -2135,7 +2135,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.electionsource', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.electionsource', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDBallotMeasureContestIdentifierProxy',
@@ -2144,7 +2144,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.ballotmeasurecontestidentifier', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.ballotmeasurecontestidentifier', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDBallotMeasureContestOptionProxy',
@@ -2153,7 +2153,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.ballotmeasurecontestoption', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.ballotmeasurecontestoption', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDBallotMeasureContestProxy',
@@ -2162,7 +2162,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.ballotmeasurecontest', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.ballotmeasurecontest', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDBallotMeasureContestSourceProxy',
@@ -2171,7 +2171,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.ballotmeasurecontestsource', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.ballotmeasurecontestsource', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDRetentionContestIdentifierProxy',
@@ -2180,7 +2180,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.retentioncontestidentifier', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.retentioncontestidentifier', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDRetentionContestOptionProxy',
@@ -2189,7 +2189,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.retentioncontestoption', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.retentioncontestoption', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDRetentionContestProxy',
@@ -2198,7 +2198,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.retentioncontest', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.retentioncontest', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDRetentionContestSourceProxy',
@@ -2207,7 +2207,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.retentioncontestsource', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.retentioncontestsource', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDPersonIdentifierProxy',
@@ -2216,7 +2216,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('core.personidentifier', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('core.personidentifier', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDFlatBallotMeasureContestProxy',
@@ -2225,7 +2225,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.ballotmeasurecontest', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.ballotmeasurecontest', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDFlatCandidacyProxy',
@@ -2234,7 +2234,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.candidacy', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.candidacy', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDFlatRetentionContestProxy',
@@ -2243,7 +2243,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('elections.retentioncontest', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('elections.retentioncontest', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         django.contrib.postgres.operations.CreateExtension(
             name='intarray',
@@ -2309,7 +2309,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('campaign_finance.committeeidentifier', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('campaign_finance.committeeidentifier', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDCommitteeNameProxy',
@@ -2318,7 +2318,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('campaign_finance.committeename', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('campaign_finance.committeename', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDCommitteeProxy',
@@ -2327,7 +2327,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('campaign_finance.committee', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('campaign_finance.committee', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDCommitteeSourceProxy',
@@ -2336,7 +2336,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('campaign_finance.committeesource', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('campaign_finance.committeesource', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDCommitteeTypeProxy',
@@ -2345,7 +2345,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('campaign_finance.committeetype', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('campaign_finance.committeetype', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDFilingActionProxy',
@@ -2354,7 +2354,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('campaign_finance.filingaction', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('campaign_finance.filingaction', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDFilingActionSummaryAmountProxy',
@@ -2363,7 +2363,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('campaign_finance.filingactionsummaryamount', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('campaign_finance.filingactionsummaryamount', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDFilingIdentifierProxy',
@@ -2372,7 +2372,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('campaign_finance.filingidentifier', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('campaign_finance.filingidentifier', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDFilingProxy',
@@ -2381,7 +2381,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('campaign_finance.filing', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('campaign_finance.filing', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDFilingSourceProxy',
@@ -2390,7 +2390,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('campaign_finance.filingsource', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('campaign_finance.filingsource', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDJurisdictionProxy',
@@ -2399,7 +2399,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('core.jurisdiction', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('core.jurisdiction', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDTransactionIdentifierProxy',
@@ -2408,7 +2408,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('campaign_finance.transactionidentifier', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('campaign_finance.transactionidentifier', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.CreateModel(
             name='OCDTransactionProxy',
@@ -2417,7 +2417,7 @@ class Migration(migrations.Migration):
             options={
                 'proxy': True,
             },
-            bases=('campaign_finance.transaction', calaccess_processed.models.proxies.opencivicdata.base.OCDProxyModelMixin),
+            bases=('campaign_finance.transaction', calaccess_processed.proxies.opencivicdata.base.OCDProxyModelMixin),
         ),
         migrations.AddField(
             model_name='form460filing',

@@ -8,17 +8,17 @@ from opencivicdata.elections.models import (
     RetentionContest,
     RetentionContestIdentifier,
     RetentionContestOption,
-    RetentionContestSource,
+    RetentionContestSource
 )
-from postgres_copy import CopyQuerySet
-from calaccess_processed.models.proxies.opencivicdata.base import OCDProxyModelMixin
+from calaccess_processed.managers import BulkLoadSQLManager
+from calaccess_processed.proxies import OCDProxyModelMixin
 
 
 class OCDRetentionContestProxy(RetentionContest, OCDProxyModelMixin):
     """
     A proxy on the OCD RetentionContest model.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     copy_to_fields = (
         ('id',),
@@ -46,7 +46,7 @@ class OCDRetentionContestIdentifierProxy(RetentionContestIdentifier, OCDProxyMod
     """
     A proxy on the OCD RetentionContestIdentifier model.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     class Meta:
         """
@@ -59,7 +59,7 @@ class OCDRetentionContestOptionProxy(RetentionContestOption, OCDProxyModelMixin)
     """
     A proxy on the OCD RetentionContestOption model.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     class Meta:
         """
@@ -72,7 +72,7 @@ class OCDRetentionContestSourceProxy(RetentionContestSource, OCDProxyModelMixin)
     """
     A proxy on the OCD RetentionContestSource model.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     class Meta:
         """

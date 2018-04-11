@@ -5,6 +5,7 @@ Custom managers for the OCD CandidateContest models.
 """
 from __future__ import unicode_literals
 from django.db.models import Q
+from django.db import models
 from postgres_copy import CopyQuerySet
 
 
@@ -60,3 +61,6 @@ class OCDCandidateContestQuerySet(CopyQuerySet):
         Filter to "special" contests.
         """
         return self.filter(previous_term_unexpired=True)
+
+
+OCDCandidateContestManager = models.Manager.from_queryset(OCDCandidateContestQuerySet)

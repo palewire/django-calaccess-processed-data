@@ -18,7 +18,7 @@ from .candidacies import (
     OCDCandidacyProxy,
     OCDCandidacySourceProxy,
 )
-from .election import (
+from .elections import (
     OCDElectionProxy,
     OCDElectionIdentifierProxy,
     OCDElectionSourceProxy
@@ -29,6 +29,16 @@ from .retentioncontests import (
     OCDRetentionContestIdentifierProxy,
     OCDRetentionContestOptionProxy,
     OCDRetentionContestSourceProxy
+)
+from .calaccess_scraped import (
+    ScrapedElectionProxyMixin,
+    ScrapedNameMixin,
+    ScrapedCandidateProxy,
+    ScrapedIncumbentProxy,
+    ScrapedCandidateElectionProxy,
+    ScrapedIncumbentElectionProxy,
+    ScrapedPropositionProxy,
+    ScrapedPropositionElectionProxy
 )
 
 
@@ -50,4 +60,12 @@ __all__ = (
     "OCDRetentionContestIdentifierProxy",
     "OCDRetentionContestOptionProxy",
     "OCDRetentionContestSourceProxy",
+    "ScrapedElectionProxyMixin",
+    "ScrapedNameMixin",
+    'ScrapedCandidateProxy',
+    'ScrapedCandidateElectionProxy',
+    'ScrapedIncumbentProxy',
+    'ScrapedIncumbentElectionProxy',
+    'ScrapedPropositionProxy',
+    'ScrapedPropositionElectionProxy',
 )

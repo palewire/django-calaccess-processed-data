@@ -10,15 +10,15 @@ from opencivicdata.elections.models import (
     BallotMeasureContestOption,
     BallotMeasureContestSource,
 )
-from postgres_copy import CopyQuerySet
-from calaccess_processed.models.proxies.opencivicdata.base import OCDProxyModelMixin
+from calaccess_processed.proxies import OCDProxyModelMixin
+from calaccess_processed.managers import BulkLoadSQLManager
 
 
 class OCDBallotMeasureContestProxy(BallotMeasureContest, OCDProxyModelMixin):
     """
     A proxy on the OCD BallotMeasureContest model.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     copy_to_fields = (
         ('id',),
@@ -46,7 +46,7 @@ class OCDBallotMeasureContestIdentifierProxy(BallotMeasureContestIdentifier, OCD
     """
     A proxy on the OCD BallotMeasureContestIdentifier model.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     class Meta:
         """
@@ -59,7 +59,7 @@ class OCDBallotMeasureContestOptionProxy(BallotMeasureContestOption, OCDProxyMod
     """
     A proxy on the OCD BallotMeasureContestOption model.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     class Meta:
         """
@@ -72,7 +72,7 @@ class OCDBallotMeasureContestSourceProxy(BallotMeasureContestSource, OCDProxyMod
     """
     A proxy on the OCD BallotMeasureContestSource model.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     class Meta:
         """

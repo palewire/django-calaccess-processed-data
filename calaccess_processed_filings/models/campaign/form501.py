@@ -6,7 +6,7 @@ Models for storing campaign-related entities derived from raw CAL-ACCESS data.
 from __future__ import unicode_literals
 from datetime import date
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed import corrections, get_expected_election_date
+from calaccess_processed_elections import corrections, get_expected_election_date
 
 # Managers
 from calaccess_processed_filings.managers import Form501FilingManager

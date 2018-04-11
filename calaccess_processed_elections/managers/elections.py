@@ -4,11 +4,11 @@
 Custom managers for the OCD Election model.
 """
 from __future__ import unicode_literals
-from django.db import models
 from django.apps import apps
+from calaccess_processed.managers import BulkLoadSQLManager
 
 
-class OCDPartisanPrimaryManager(models.Manager):
+class OCDPartisanPrimaryManager(BulkLoadSQLManager):
     """
     Custom manager for limiting OCD elections querysets to partisan primaries.
     """
@@ -22,7 +22,7 @@ class OCDPartisanPrimaryManager(models.Manager):
         )
 
 
-class OCDElectionManager(models.Manager):
+class OCDElectionManager(BulkLoadSQLManager):
     """
     Custom helpers for the OCD Election model.
     """

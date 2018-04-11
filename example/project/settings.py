@@ -30,6 +30,8 @@ INSTALLED_APPS = (
     'calaccess_processed',
     'calaccess_processed_elections',
     'calaccess_processed_filings',
+    'calaccess_processed_flatfiles',
+    'calaccess_processed_campaignfinance',
     'toolbox',
     'opencivicdata.core.apps.BaseConfig',
     'opencivicdata.elections.apps.BaseConfig',
