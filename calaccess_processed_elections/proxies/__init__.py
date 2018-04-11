@@ -3,33 +3,37 @@
 """
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
-from .ballotmeasurecontests import (
+from .opencivicdata import (
+    OCDProxyModelMixin,
     OCDBallotMeasureContestProxy,
     OCDBallotMeasureContestIdentifierProxy,
     OCDBallotMeasureContestOptionProxy,
-    OCDBallotMeasureContestSourceProxy
-)
-from .candidatecontests import (
+    OCDBallotMeasureContestSourceProxy,
     OCDCandidateContestProxy,
     OCDCandidateContestPostProxy,
-    OCDCandidateContestSourceProxy
-)
-from .candidacies import (
+    OCDCandidateContestSourceProxy,
     OCDCandidacyProxy,
     OCDCandidacySourceProxy,
-)
-from .elections import (
     OCDElectionProxy,
     OCDElectionIdentifierProxy,
-    OCDElectionSourceProxy
-)
-from .parties import OCDPartyProxy
-from .retentioncontests import (
+    OCDElectionSourceProxy,
+    OCDPartyProxy,
     OCDRetentionContestProxy,
     OCDRetentionContestIdentifierProxy,
     OCDRetentionContestOptionProxy,
-    OCDRetentionContestSourceProxy
+    OCDRetentionContestSourceProxy,
+    OCDDivisionProxy,
+    OCDMembershipProxy,
+    OCDJurisdictionProxy,
+    OCDOrganizationProxy,
+    OCDOrganizationIdentifierProxy,
+    OCDOrganizationNameProxy,
+    OCDPersonProxy,
+    OCDPersonIdentifierProxy,
+    OCDPersonNameProxy,
+    OCDPostProxy
 )
+from .calaccess_raw import RawFilerToFilerTypeCdManager
 from .calaccess_scraped import (
     ScrapedElectionProxyMixin,
     ScrapedNameMixin,
@@ -43,6 +47,7 @@ from .calaccess_scraped import (
 
 
 __all__ = (
+    "OCDProxyModelMixin",
     "OCDBallotMeasureContestProxy",
     "OCDBallotMeasureContestIdentifierProxy",
     "OCDBallotMeasureContestOptionProxy",
@@ -60,6 +65,21 @@ __all__ = (
     "OCDRetentionContestIdentifierProxy",
     "OCDRetentionContestOptionProxy",
     "OCDRetentionContestSourceProxy",
+    'OCDDivisionProxy',
+    'OCDFlatBallotMeasureContestProxy',
+    'OCDFlatCandidacyProxy',
+    'OCDFlatRetentionContestProxy',
+    'OCDJurisdictionProxy',
+    'OCDMembershipProxy',
+    'OCDOrganizationProxy',
+    'OCDOrganizationIdentifierProxy',
+    'OCDOrganizationNameProxy',
+    'OCDPersonProxy',
+    'OCDPersonIdentifierProxy',
+    'OCDPersonNameProxy',
+    'OCDPostProxy',
+    'OCDProxyModelMixin',
+    "RawFilerToFilerTypeCdManager",
     "ScrapedElectionProxyMixin",
     "ScrapedNameMixin",
     'ScrapedCandidateProxy',
