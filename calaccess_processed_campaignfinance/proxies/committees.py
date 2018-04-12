@@ -13,12 +13,12 @@ from opencivicdata.campaign_finance.models import (
 )
 from calaccess_processed.proxies import OCDProxyModelMixin
 from calaccess_processed_campaignfinance.managers import (
+    CampaignFinanceBulkLoadSQLManager,
     OCDCommitteeManager,
     OCDCommitteeIdentifierManager,
     OCDCommitteeNameManager,
     OCDCommitteeTypeManager
 )
-from postgres_copy import CopyManager
 
 # Logging
 import logging
@@ -91,7 +91,7 @@ class OCDCommitteeSourceProxy(CommitteeSource, OCDProxyModelMixin):
     """
     Proxy of the OCD CommitteeSource model.
     """
-    objects = CopyManager()
+    objects = CampaignFinanceBulkLoadSQLManager()
 
     class Meta:
         """

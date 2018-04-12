@@ -4,10 +4,10 @@
 Custom managers for the Division model.
 """
 from __future__ import unicode_literals
-from django.db import models
+from calaccess_processed.managers import BulkLoadSQLManager
 
 
-class OCDAssemblyDivisionManager(models.Manager):
+class OCDAssemblyDivisionManager(BulkLoadSQLManager):
     """
     Custom manager for state assembly OCD Divisions.
     """
@@ -19,7 +19,7 @@ class OCDAssemblyDivisionManager(models.Manager):
         return qs.filter(subid1='ca', subtype2='sldl')
 
 
-class OCDSenateDivisionManager(models.Manager):
+class OCDSenateDivisionManager(BulkLoadSQLManager):
     """
     Custom manager for state senate OCD Divisions.
     """
@@ -31,7 +31,7 @@ class OCDSenateDivisionManager(models.Manager):
         return qs.filter(subid1='ca', subtype2='sldu')
 
 
-class OCDCaliforniaDivisionManager(models.Manager):
+class OCDCaliforniaDivisionManager(BulkLoadSQLManager):
     """
     Custom manager for OCD Divisions in California.
     """

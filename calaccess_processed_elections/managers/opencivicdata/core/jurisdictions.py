@@ -5,10 +5,10 @@ Custom manager for the Jurisdiction model.
 """
 from __future__ import unicode_literals
 from django.apps import apps
-from postgres_copy import CopyManager
+from calaccess_processed.managers import BulkLoadSQLManager
 
 
-class OCDJurisdictionManager(CopyManager):
+class OCDJurisdictionManager(BulkLoadSQLManager):
     """
     Custom helpers for the OCD Jurisdiction model.
     """

@@ -9,8 +9,7 @@ from opencivicdata.campaign_finance.models import (
     TransactionIdentifier
 )
 from calaccess_processed.proxies import OCDProxyModelMixin
-from postgres_copy import CopyManager
-from calaccess_processed_campaignfinance.managers import OCDTransactionManager
+from calaccess_processed_campaignfinance.managers import OCDTransactionManager. CampaignFinanceBulkLoadSQLManager
 
 # Logging
 import logging
@@ -34,7 +33,7 @@ class OCDTransactionIdentifierProxy(TransactionIdentifier, OCDProxyModelMixin):
     """
     A proxy on the OCD TransactionIdentifier model.
     """
-    objects = CopyManager()
+    objects = CampaignFinanceBulkLoadSQLManager()
 
     class Meta:
         """

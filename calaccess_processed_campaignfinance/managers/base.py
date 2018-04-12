@@ -11,7 +11,6 @@ from psycopg2 import sql
 from django.db import connection
 
 # Managers
-from postgres_copy import CopyManager
 from calaccess_processed.managers import BulkLoadSQLManager
 
 # Text
@@ -24,7 +23,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class BaseOCDBulkLoadSQLManager(BulkLoadSQLManager, CopyManager):
+class CampaignFinanceBulkLoadSQLManager(BulkLoadSQLManager):
     """
     Base proxy model for OCD campaign_finance related managers.
     """
@@ -33,7 +32,7 @@ class BaseOCDBulkLoadSQLManager(BulkLoadSQLManager, CopyManager):
         Return the full path with extenstion to file_name.
         """
         return os.path.join(
-            apps.get_app_config("calaccess_processed").sql_directory_path,
+            apps.get_app_config("calaccess_processed_campaignfinance").sql_directory_path,
             '%s.sql' % file_name
         )
 

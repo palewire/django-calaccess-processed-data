@@ -5,11 +5,11 @@ Proxy models for OCD Committee related managers.
 """
 from __future__ import unicode_literals
 import logging
-from .base import BaseOCDBulkLoadSQLManager
+from .base import CampaignFinanceBulkLoadSQLManager
 logger = logging.getLogger(__name__)
 
 
-class OCDCommitteeManager(BaseOCDBulkLoadSQLManager):
+class OCDCommitteeManager(CampaignFinanceBulkLoadSQLManager):
     """
     Manager with custom methods for OCD Committee model.
     """
@@ -23,7 +23,7 @@ class OCDCommitteeManager(BaseOCDBulkLoadSQLManager):
         self.execute_custom_sql('opencivicdata/campaign_finance/committees/insert_committees_from_form460s')
 
 
-class OCDCommitteeIdentifierManager(BaseOCDBulkLoadSQLManager):
+class OCDCommitteeIdentifierManager(CampaignFinanceBulkLoadSQLManager):
     """
     Manager with custom methods for OCD CommitteeIdentifier model.
     """
@@ -37,7 +37,7 @@ class OCDCommitteeIdentifierManager(BaseOCDBulkLoadSQLManager):
         self.execute_custom_sql('opencivicdata/campaign_finance/committees/remove_calaccess_filer_ids_from_committees')
 
 
-class OCDCommitteeNameManager(BaseOCDBulkLoadSQLManager):
+class OCDCommitteeNameManager(CampaignFinanceBulkLoadSQLManager):
     """
     Manager with custom methods for OCD CommitteeName model.
     """
@@ -51,7 +51,7 @@ class OCDCommitteeNameManager(BaseOCDBulkLoadSQLManager):
         self.execute_custom_sql('opencivicdata/campaign_finance/committees/delete_current_names_from_committee_names')
 
 
-class OCDCommitteeTypeManager(BaseOCDBulkLoadSQLManager):
+class OCDCommitteeTypeManager(CampaignFinanceBulkLoadSQLManager):
     """
     Manager with custom methods for OCD CommitteeType model.
     """

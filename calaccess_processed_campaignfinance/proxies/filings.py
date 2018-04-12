@@ -12,8 +12,8 @@ from opencivicdata.campaign_finance.models import (
     FilingSource
 )
 from calaccess_processed.proxies import OCDProxyModelMixin
-from postgres_copy import CopyManager
 from calaccess_processed_campaignfinance.managers import (
+    CampaignFinanceBulkLoadSQLManager,
     OCDFilingManager,
     OCDFilingIdentifierManager,
     OCDFilingActionManager,
@@ -102,7 +102,7 @@ class OCDFilingSourceProxy(FilingSource, OCDProxyModelMixin):
     """
     A proxy on the OCD FilingSource model.
     """
-    objects = CopyManager()
+    objects = CampaignFinanceBulkLoadSQLManager()
 
     class Meta:
         """

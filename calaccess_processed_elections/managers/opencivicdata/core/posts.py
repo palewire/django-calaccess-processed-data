@@ -6,10 +6,11 @@ Custom managers for the OCD Post model.
 from __future__ import unicode_literals
 import re
 from django.apps import apps
-from django.db.models import Manager, Q
+from django.db.models import Q
+from calaccess_processed.managers import BulkLoadSQLManager
 
 
-class OCDPostManager(Manager):
+class OCDPostManager(BulkLoadSQLManager):
     """
     Custom helpers for the OCD Post model.
     """
@@ -119,7 +120,7 @@ class OCDPostManager(Manager):
             return None
 
 
-class OCDAssemblyPostManager(Manager):
+class OCDAssemblyPostManager(BulkLoadSQLManager):
     """
     Custom manager for State Assembly office Posts.
     """
@@ -132,7 +133,7 @@ class OCDAssemblyPostManager(Manager):
         )
 
 
-class OCDExecutivePostManager(Manager):
+class OCDExecutivePostManager(BulkLoadSQLManager):
     """
     Custom manager for State Executive Branch office Posts.
     """
@@ -146,7 +147,7 @@ class OCDExecutivePostManager(Manager):
         )
 
 
-class OCDSenatePostManager(Manager):
+class OCDSenatePostManager(BulkLoadSQLManager):
     """
     Custom manager for State Senate office Posts.
     """

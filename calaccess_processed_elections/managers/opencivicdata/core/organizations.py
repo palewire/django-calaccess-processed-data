@@ -4,13 +4,16 @@
 Custom manager for OCD organization models.
 """
 from __future__ import unicode_literals
-import logging
 from django.apps import apps
-from django.db.models import Count, Manager
+from django.db.models import Count
+from calaccess_processed.managers import BulkLoadSQLManager
+
+# Logging
+import logging
 logger = logging.getLogger(__name__)
 
 
-class OCDOrganizationManager(Manager):
+class OCDOrganizationManager(BulkLoadSQLManager):
     """
     Custom helpers for the OCD Organization model.
     """
@@ -71,7 +74,7 @@ class OCDOrganizationManager(Manager):
         )[0]
 
 
-class OCDMembershipManager(Manager):
+class OCDMembershipManager(BulkLoadSQLManager):
     """
     Manager for custom methods on the OCDMembershipProxy model.
     """

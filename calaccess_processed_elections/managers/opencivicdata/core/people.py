@@ -4,10 +4,10 @@
 Custom manager for the OCD Person model.
 """
 from __future__ import unicode_literals
-from django.db import models
+from calaccess_processed.managers import BulkLoadSQLManager
 
 
-class OCDPersonManager(models.Manager):
+class OCDPersonManager(BulkLoadSQLManager):
     """
     A custom manager for working with the OCD Person model.
     """

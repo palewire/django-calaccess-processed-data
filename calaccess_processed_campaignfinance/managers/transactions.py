@@ -6,11 +6,11 @@ Proxy models for OCD Transaction related managers.
 from __future__ import unicode_literals
 import logging
 from psycopg2 import sql
-from .base import BaseOCDBulkLoadSQLManager
+from .base import CampaignFinanceBulkLoadSQLManager
 logger = logging.getLogger(__name__)
 
 
-class OCDTransactionManager(BaseOCDBulkLoadSQLManager):
+class OCDTransactionManager(CampaignFinanceBulkLoadSQLManager):
     """
     Manager with custom methods for OCD Transaction model.
     """

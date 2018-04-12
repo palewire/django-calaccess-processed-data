@@ -6,11 +6,11 @@ Proxy models for OCD Filing related managers.
 from __future__ import unicode_literals
 import logging
 from psycopg2 import sql
-from .base import BaseOCDBulkLoadSQLManager
+from .base import CampaignFinanceBulkLoadSQLManager
 logger = logging.getLogger(__name__)
 
 
-class OCDFilingManager(BaseOCDBulkLoadSQLManager):
+class OCDFilingManager(CampaignFinanceBulkLoadSQLManager):
     """
     Manager with custom methods for OCD Filing model.
     """
@@ -59,7 +59,7 @@ class OCDFilingManager(BaseOCDBulkLoadSQLManager):
         self.execute_custom_sql('opencivicdata/campaign_finance/filings/insert_filings_from_form460s')
 
 
-class OCDFilingIdentifierManager(BaseOCDBulkLoadSQLManager):
+class OCDFilingIdentifierManager(CampaignFinanceBulkLoadSQLManager):
     """
     Manager with custom methods for OCD FilingIdentifier model.
     """
@@ -73,7 +73,7 @@ class OCDFilingIdentifierManager(BaseOCDBulkLoadSQLManager):
         self.execute_custom_sql('opencivicdata/campaign_finance/filings/remove_calaccess_filing_ids_from_filings')
 
 
-class OCDFilingActionManager(BaseOCDBulkLoadSQLManager):
+class OCDFilingActionManager(CampaignFinanceBulkLoadSQLManager):
     """
     Manager with custom methods for OCD FilingAction model.
     """
@@ -91,7 +91,7 @@ class OCDFilingActionManager(BaseOCDBulkLoadSQLManager):
         self.execute_custom_sql('opencivicdata/campaign_finance/filings/set_is_current_for_new_filing_actions')
 
 
-class OCDFilingActionSummaryAmountManager(BaseOCDBulkLoadSQLManager):
+class OCDFilingActionSummaryAmountManager(CampaignFinanceBulkLoadSQLManager):
     """
     Manager with custom methods for OCD FilingActionSummaryAmount model.
     """
