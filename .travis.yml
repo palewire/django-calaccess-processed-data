@@ -31,11 +31,7 @@ before_script:
  - psql -c 'CREATE DATABASE calaccess_processed;' -U postgres
 
 script:
- - flake8 calaccess_processed
- - flake8 calaccess_processed_campaignfinance
- - flake8 calaccess_processed_elections
- - flake8 calaccess_processed_filings
- - flake8 calaccess_processed_flatfiles
+ - make flake8
  - coverage run example/manage.py test calaccess_processed
 
 after_success:

@@ -4,7 +4,6 @@
 Base proxy model for OCD campaign_finance related managers.
 """
 from __future__ import unicode_literals
-from django.apps import apps
 
 # Database
 from psycopg2 import sql
@@ -15,7 +14,6 @@ from calaccess_processed.managers import BulkLoadSQLManager
 
 # Text
 import re
-import os
 from django.template.defaultfilters import pluralize
 
 # Logging

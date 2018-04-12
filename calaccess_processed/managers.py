@@ -4,13 +4,10 @@
 Utilities for more quickly loading bulk data.
 """
 from __future__ import unicode_literals
-
-# Database stuff
-from django.db import connection
-from postgres_copy.managers import CopyManager
-
-# Logging
+import os
 import logging
+from django.apps import apps
+from postgres_copy.managers import CopyManager
 logger = logging.getLogger(__name__)
 
 

@@ -4,12 +4,12 @@
 Custom manager for loading raw data in to "filings" models.
 """
 from __future__ import unicode_literals
-import os
 import itertools
 
 # Django tricks
 from django.apps import apps
 from django.db.models import Q
+from django.db import connection
 
 # Managers
 from calaccess_processed.managers import BulkLoadSQLManager

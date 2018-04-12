@@ -31,3 +31,10 @@ test:
 	flake8 calaccess_processed
 	coverage run example/manage.py test calaccess_processed
 	coverage report -m
+
+flake8:
+	flake8 calaccess_processed
+	flake8 calaccess_processed_campaignfinance
+	flake8 calaccess_processed_elections --exclude=calaccess_processed_elections/migrations/*
+	flake8 calaccess_processed_filings --exclude=calaccess_processed_filings/migrations/*
+	flake8 calaccess_processed_flatfiles --exclude=calaccess_processed_campaignfinance/migrations/*

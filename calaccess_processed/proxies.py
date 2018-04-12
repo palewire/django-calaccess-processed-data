@@ -6,7 +6,6 @@ Base class for proxies to OCD models.
 import textwrap
 from .fields import CopyToField
 from django.template.defaultfilters import capfirst
-from django.core.exceptions import FieldDoesNotExist
 
 
 class OCDProxyModelMixin(object):

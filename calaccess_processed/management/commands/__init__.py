@@ -12,12 +12,11 @@ from calaccess_raw import get_data_directory
 
 # Commands
 from django.core.management.base import BaseCommand
-from django.core.management import CommandError, call_command
+from django.core.management import CommandError
 
 # Models
 from calaccess_raw.models import RawDataVersion
 from calaccess_processed.models import ProcessedDataVersion
-from calaccess_processed_elections.proxies import OCDDivisionProxy
 
 # Logging
 import logging

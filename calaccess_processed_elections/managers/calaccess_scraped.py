@@ -4,7 +4,6 @@
 Custom managers for models from the calaccess_scraped app.
 """
 from __future__ import unicode_literals
-from django.db import models
 from calaccess_processed.managers import BulkLoadSQLManager
 
 

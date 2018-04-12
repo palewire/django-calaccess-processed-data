@@ -3,8 +3,8 @@
 """
 General utilities for the application.
 """
-default_app_config = 'calaccess_processed_elections.apps.CalAccessProcessedElectionsConfig'
 from datetime import date
+default_app_config = 'calaccess_processed_elections.apps.CalAccessProcessedElectionsConfig'
 
 
 def get_expected_election_date(year, election_type):
@@ -37,6 +37,7 @@ def get_expected_election_date(year, election_type):
     day_or_month = (7 - first_weekday) % 7 + 2
 
     return date(year, month, day_or_month)
+
 
 __all__ = (
     "get_expected_election_date"
