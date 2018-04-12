@@ -23,8 +23,9 @@ class FilingsManager(BulkLoadSQLManager):
     """
     Utilities for more quickly loading bulk data.
     """
-    @property
-    def sql(self):
+    app_name = "calaccess_processed_filings"
+
+    def get_sql(self):
         """
         Return string of raw sql for loading the model.
         """
@@ -38,11 +39,23 @@ class FilingsManager(BulkLoadSQLManager):
         file_name = 'load_%s_model' % self.model._meta.model_name
         return self.get_sql_path(file_name)
 
-    def get_sql_path(self, file_name):
+    def load(self):
         """
-        Return the full path with extenstion to file_name.
+        Load the model by executing its corresponding raw SQL query.
+
+        Temporarily drops any constraints or indexes on the model.
         """
-        return os.path.join(apps.get_app_config("calaccess_processed_filings").sql_directory_path, '%s.sql' % file_name)
+        # Drop constraints and indexes to speed loading
+        self.get_queryset().drop_constraints()
+        self.get_queryset().drop_indexes()
+
+        # Run the actual loader SQL
+        with connection.cursor() as c:
+            c.execute(self.get_sql())
+
+        # Restore the constraints and index that were dropped
+        self.get_queryset().restore_constraints()
+        self.get_queryset().restore_indexes()
 
 
 class Form501FilingManager(FilingsManager):

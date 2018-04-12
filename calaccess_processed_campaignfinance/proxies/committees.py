@@ -13,7 +13,7 @@ from opencivicdata.campaign_finance.models import (
 )
 from calaccess_processed.proxies import OCDProxyModelMixin
 from calaccess_processed_campaignfinance.managers import (
-    CampaignFinanceBulkLoadSQLManager,
+    CampaignFinanceManager,
     OCDCommitteeManager,
     OCDCommitteeIdentifierManager,
     OCDCommitteeNameManager,
@@ -91,7 +91,7 @@ class OCDCommitteeSourceProxy(CommitteeSource, OCDProxyModelMixin):
     """
     Proxy of the OCD CommitteeSource model.
     """
-    objects = CampaignFinanceBulkLoadSQLManager()
+    objects = CampaignFinanceManager()
 
     class Meta:
         """

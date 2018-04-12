@@ -4,11 +4,11 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
-from django.db import models
 from django.apps import apps
+from calaccess_processed.managers import BulkLoadSQLManager
 
 
-class RawFilerToFilerTypeCdManager(models.Manager):
+class RawFilerToFilerTypeCdManager(BulkLoadSQLManager):
     """
     Custom helpers for the calaccess_raw FilerToFilerTypeCd model.
     """

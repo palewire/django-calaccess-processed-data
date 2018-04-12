@@ -23,20 +23,20 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-class CampaignFinanceBulkLoadSQLManager(BulkLoadSQLManager):
+class CampaignFinanceManager(BulkLoadSQLManager):
     """
     Base proxy model for OCD campaign_finance related managers.
     """
-    def get_sql_path(self, file_name):
-        """
-        Return the full path with extenstion to file_name.
-        """
-        return os.path.join(
-            apps.get_app_config("calaccess_processed_campaignfinance").sql_directory_path,
-            '%s.sql' % file_name
-        )
+    app_name = "calaccess_processed_campaignfinance"
 
-    def extract_operation_from_sql(self, sql_str):
+    def get_sql(self, file_name):
+        """
+        Return string of raw sql for loading the model.
+        """
+        sql_path = self.get_sql_path(file_name)
+        return open(sql_path, 'r').read()
+
+    def _extract_operation_from_sql(self, sql_str):
         """
         Return the operation (as a string) declared in the SQL string.
         """
@@ -59,28 +59,25 @@ class CampaignFinanceBulkLoadSQLManager(BulkLoadSQLManager):
         Log the number of rows and operation performed.
         """
         # Get the path to the SQL file
-        file_path = self.get_sql_path(file_name)
-        logger.debug("Executing {}".format(file_path))
+        raw_sql = self.get_sql(file_name)
 
-        # Read in the SQL
-        sql_str = open(file_path, 'r').read()
-
-        # Compile it with any composable variables that need to be mixed in.
+        # Compile with any composable variables
         if composables:
-            composed_sql = sql.SQL(sql_str).format(**composables)
+            composed_sql = sql.SQL(raw_sql).format(**composables)
         else:
-            composed_sql = sql_str
+            composed_sql = raw_sql
 
         # Open a database connection
         with connection.cursor() as cursor:
             # Run the SQL
             cursor.execute(composed_sql, params)
-
-            # Log the result
-            operation = self.extract_operation_from_sql(sql_str)
+            # Get the row row_count
             row_count = cursor.rowcount
-            logger.debug('{} {} {}'.format(
-                row_count,
-                "row" + pluralize(row_count),
-                operation
-            ))
+
+        # Log the result
+        operation = self._extract_operation_from_sql(raw_sql)
+        logger.debug('{} {} {}'.format(
+            row_count,
+            "row" + pluralize(row_count),
+            operation
+        ))

@@ -18,26 +18,17 @@ class BulkLoadSQLManager(CopyManager):
     """
     Utilities for more quickly loading bulk data into a model with custom SQL.
     """
-    def load(self):
-        """
-        Load the model by executing its corresponding raw SQL query.
+    app_name = "calaccess_processed"
 
-        Temporarily drops any constraints or indexes on the model.
+    def get_sql(self):
         """
-        # Drop constraints and indexes to speed loading
-        self.get_queryset().drop_constraints()
-        self.get_queryset().drop_indexes()
-
-        # Run the actual loader SQL
-        self.execute()
-
-        # Restore the constraints and index that were dropped
-        self.get_queryset().restore_constraints()
-        self.get_queryset().restore_indexes()
-
-    def execute(self):
+        Return string of raw sql for loading the model.
         """
-        Run the loader command.
+        raise NotImplementedError
+
+    def get_sql_path(self, file_name):
         """
-        with connection.cursor() as c:
-            c.execute(self.sql)
+        Return the full path with extenstion to file_name.
+        """
+        sql_path = apps.get_app_config(self.app_name).sql_directory_path
+        return os.path.join(sql_path, '%s.sql' % file_name)
