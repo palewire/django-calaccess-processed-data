@@ -8,7 +8,7 @@ from django.db.models.functions import Cast
 from opencivicdata.core.models import Membership
 from calaccess_processed.management.commands import CalAccessCommand
 from opencivicdata.elections.models import Candidacy, CandidateContest
-from calaccess_processed.models import OCDMembershipProxy, ScrapedIncumbentProxy
+from calaccess_processed_elections.proxies import OCDMembershipProxy, ScrapedIncumbentProxy
 
 
 class Command(CalAccessCommand):

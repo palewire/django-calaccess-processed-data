@@ -3,10 +3,10 @@
 """
 Load the OCD CandidateContest and related models with scraped CAL-ACCESS data.
 """
-from calaccess_processed.models import ScrapedCandidateProxy
 from calaccess_processed_elections.proxies import (
     OCDCandidateContestProxy,
-    OCDCandidacyProxy
+    OCDCandidacyProxy,
+    ScrapedCandidateProxy
 )
 from calaccess_processed.management.commands import CalAccessCommand
 

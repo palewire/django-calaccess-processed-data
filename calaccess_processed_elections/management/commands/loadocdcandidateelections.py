@@ -3,7 +3,7 @@
 """
 Load the OCD Election model with data from the scraped CandidateElection model.
 """
-from calaccess_processed.models import (
+from calaccess_processed_elections.proxies import (
     ScrapedIncumbentElectionProxy,
     ScrapedCandidateElectionProxy,
 )

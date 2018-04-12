@@ -6,7 +6,7 @@ Base classes for custom management commands.
 from __future__ import unicode_literals
 import logging
 from django.core.management import call_command
-from calaccess_processed.models import OCDDivisionProxy
+from calaccess_processed_elections.proxies import OCDDivisionProxy
 from calaccess_processed.management.commands import CalAccessCommand
 logger = logging.getLogger(__name__)
 

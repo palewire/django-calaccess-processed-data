@@ -5,7 +5,7 @@ Load OCD BallotMeasureContest and related models with scraped CAL-ACCESS data.
 """
 from opencivicdata.elections.models import BallotMeasureContest
 from calaccess_processed.management.commands import CalAccessCommand
-from calaccess_processed.models import ScrapedPropositionProxy, OCDDivisionProxy
+from calaccess_processed_elections.proxies import ScrapedPropositionProxy, OCDDivisionProxy
 
 
 class Command(CalAccessCommand):

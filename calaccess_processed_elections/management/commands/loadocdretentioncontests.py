@@ -7,7 +7,7 @@ import re
 from opencivicdata.core.models import Membership
 from opencivicdata.elections.models import RetentionContest
 from calaccess_processed.management.commands import CalAccessCommand
-from calaccess_processed.models import (
+from calaccess_processed_elections.proxies import (
     OCDPostProxy,
     OCDPersonProxy,
     ScrapedCandidateProxy,

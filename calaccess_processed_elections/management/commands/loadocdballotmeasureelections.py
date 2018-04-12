@@ -4,7 +4,7 @@
 Load the OCD Election model from the scraped PropositionElection model.
 """
 from . import LoadOCDElectionsBase
-from calaccess_processed.models import ScrapedPropositionElectionProxy
+from calaccess_processed_elections.proxies import ScrapedPropositionElectionProxy
 
 
 class Command(LoadOCDElectionsBase):
