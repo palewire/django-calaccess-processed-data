@@ -77,13 +77,17 @@ class Command(CalAccessCommand):
                 self.log(" Loading {} {} models.".format(len(model_list), model_type))
             self.load_model_list(model_list)
 
+            # archive if django project setting enabled
+            if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
+                self.archive_model_list(model_list)
+
     def get_model_list(self, model_type):
         """
         Return a list of models of the specified type to be loaded.
 
         model_type must be "version" of "filing".
         """
-        model_list = apps.get_app_config('calaccess_processed_filings').get_filing_models()
+        model_list = apps.get_app_config('calaccess_processed_filings').get_archived_models()
 
         if model_type == 'version':
             models_to_load = [m for m in model_list if 'Version' in str(m)]
@@ -127,6 +131,7 @@ class Command(CalAccessCommand):
         """
         # iterate over all of filing models
         for m in model_list:
+
             # set up the ProcessedDataFile instance
             processed_file, created = ProcessedDataFile.objects.get_or_create(
                 version=self.processed_version,
@@ -134,11 +139,13 @@ class Command(CalAccessCommand):
             )
             processed_file.process_start_datetime = now()
             processed_file.save()
+
             # flush the processed model
             if self.verbosity > 2:
                 self.log(" Truncating %s" % m._meta.db_table)
             with connection.cursor() as c:
                 c.execute('TRUNCATE TABLE "%s" RESTART IDENTITY CASCADE' % (m._meta.db_table))
+
             # load the processed model
             if self.verbosity > 2:
                 self.log(" Loading %s" % m._meta.db_table)
@@ -148,9 +155,9 @@ class Command(CalAccessCommand):
             processed_file.process_finish_datetime = now()
             processed_file.save()
 
-            # archive if django project setting enabled
-            if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
-                call_command(
-                    'archivecalaccessprocessedfile',
-                    m._meta.object_name,
-                )
+    def archive_model_list(self, model_list):
+        """
+        Iterate over the given list of models, archiving each one.
+        """
+        for m in model_list:
+            call_command('archivecalaccessprocessedfile', m._meta.object_name)

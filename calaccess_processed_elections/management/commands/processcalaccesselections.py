@@ -39,7 +39,6 @@ class Command(LoadOCDElectionsBase):
             if self.verbosity > 2:
                 self.log(' Archiving OCD processed data files.')
             self.archive()
-            self.duration()
 
         # Wrap it up
         self.success('Done!')
@@ -101,21 +100,9 @@ class Command(LoadOCDElectionsBase):
         """
         Save a csv file for each loaded OCD model.
         """
-        core_models = [
-            m for m in apps.get_app_config('core').get_models()
-            if not m._meta.abstract and
-            m.objects.count() > 0
-        ]
+        models_to_archive = apps.get_app_config("calaccess_processed_elections").get_archived_models()
 
-        elections_models = [
-            m for m in apps.get_app_config('elections').get_models()
-            if not m._meta.abstract and
-            m.objects.count() > 0
-        ]
-
-        models_to_load = core_models + elections_models
-
-        for m in models_to_load:
+        for m in models_to_archive:
             processed_data_file, created = self.processed_version.files.get_or_create(
                 file_name=m._meta.object_name,
             )
@@ -132,7 +119,9 @@ class Command(LoadOCDElectionsBase):
 
         # now do flat files
         flat_file_list = [
-            'Candidates', 'BallotMeasures', 'RecallMeasures'
+            'Candidates',
+            'BallotMeasures',
+            'RecallMeasures'
         ]
         for f in flat_file_list:
             processed_data_file, created = self.processed_version.files.get_or_create(
