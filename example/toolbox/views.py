@@ -1,16 +1,14 @@
 from django.db import ProgrammingError
 from django.shortcuts import render
 from collections import defaultdict
-from calaccess_processed.proxies import (
-    OCDPostProxy,
-    OCDPersonProxy
-)
 from calaccess_processed_campaignfinance.proxies import (
     OCDCommitteeProxy,
     OCDFilingProxy,
     OCDFilingActionProxy
 )
 from calaccess_processed_elections.proxies import (
+    OCDPostProxy,
+    OCDPersonProxy,
     OCDElectionProxy,
     OCDCandidacyProxy,
     OCDPartyProxy

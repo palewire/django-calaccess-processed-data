@@ -6,7 +6,7 @@ Proxy model for augmenting ScrapedProposition model with methods useful for proc
 from __future__ import unicode_literals
 from calaccess_scraped.models import Proposition
 from .propositionelections import ScrapedPropositionElectionProxy
-from calaccess_processed.managers import (
+from calaccess_processed_elections.managers import (
     ScrapedBallotMeasureManager,
     ScrapedRecallMeasureManager
 )

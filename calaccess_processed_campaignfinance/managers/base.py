@@ -12,7 +12,7 @@ from django.db import connection
 
 # Managers
 from postgres_copy import CopyManager
-from calaccess_processed.managers.bulkloadsql import BulkLoadSQLManager
+from calaccess_processed.managers import BulkLoadSQLManager
 
 # Text
 import re

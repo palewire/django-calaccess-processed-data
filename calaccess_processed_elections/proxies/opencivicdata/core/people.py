@@ -15,7 +15,7 @@ from ..base import OCDProxyModelMixin
 
 # Managers
 from postgres_copy import CopyQuerySet
-from calaccess_processed.managers import OCDPersonManager
+from calaccess_processed_elections.managers import OCDPersonManager
 
 
 class OCDPersonProxy(Person, OCDProxyModelMixin):

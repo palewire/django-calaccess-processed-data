@@ -4,24 +4,31 @@
 Import all of the managers from submodules and thread them together.
 """
 from .calaccess_raw import RawFilerToFilerTypeCdManager
-from .calaccess_processed_elections.managers.calaccess_scraped import (
+from .calaccess_scraped import (
     ScrapedIncumbentElectionManager,
     ScrapedBallotMeasureManager,
     ScrapedRecallMeasureManager
 )
-from .candidacies import (
+from .opencivicdata import (
     OCDCandidacyQuerySet,
-    OCDCandidacyManager
-)
-from .candidatecontests import (
+    OCDCandidacyManager,
     OCDCandidateContestQuerySet,
-    OCDCandidateContestManager
-)
-from .elections import (
+    OCDCandidateContestManager,
     OCDPartisanPrimaryManager,
-    OCDElectionManager
+    OCDElectionManager,
+    OCDPartyManager,
+    OCDAssemblyDivisionManager,
+    OCDSenateDivisionManager,
+    OCDCaliforniaDivisionManager,
+    OCDJurisdictionManager,
+    OCDOrganizationManager,
+    OCDMembershipManager,
+    OCDPersonManager,
+    OCDPostManager,
+    OCDAssemblyPostManager,
+    OCDExecutivePostManager,
+    OCDSenatePostManager
 )
-from .parties import OCDPartyManager
 
 
 __all__ = (
@@ -35,5 +42,16 @@ __all__ = (
     "OCDCandidateContestManager",
     "OCDPartisanPrimaryManager",
     "OCDElectionManager",
-    "OCDPartyManager"
+    "OCDPartyManager",
+    "OCDAssemblyDivisionManager",
+    "OCDSenateDivisionManager",
+    "OCDCaliforniaDivisionManager",
+    "OCDJurisdictionManager",
+    "OCDOrganizationManager",
+    "OCDMembershipManager",
+    "OCDPersonManager",
+    "OCDPostManager",
+    "OCDAssemblyPostManager",
+    "OCDExecutivePostManager",
+    "OCDSenatePostManager"
 )

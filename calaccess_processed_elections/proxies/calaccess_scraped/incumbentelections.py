@@ -12,7 +12,7 @@ from calaccess_scraped.models import IncumbentElection
 
 # Managers
 from postgres_copy import CopyQuerySet
-from calaccess_processed.managers import ScrapedIncumbentElectionManager
+from calaccess_processed_elections.managers import ScrapedIncumbentElectionManager
 
 
 class ScrapedIncumbentElectionProxy(ScrapedElectionProxyMixin, IncumbentElection):

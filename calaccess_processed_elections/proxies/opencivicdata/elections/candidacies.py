@@ -19,7 +19,8 @@ from opencivicdata.elections.models import (
     Candidacy,
     CandidacySource
 )
-from calaccess_processed.proxies import OCDProxyModelMixin, OCDPersonProxy
+from ..base import OCDProxyModelMixin
+from ..core.people import OCDPersonProxy
 
 # Managers
 from calaccess_processed.managers import BulkLoadSQLManager

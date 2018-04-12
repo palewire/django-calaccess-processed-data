@@ -11,7 +11,7 @@ from opencivicdata.core.models import Division
 
 # Managers
 from postgres_copy import CopyQuerySet
-from calaccess_processed.managers import (
+from calaccess_processed_elections.managers import (
     OCDAssemblyDivisionManager,
     OCDSenateDivisionManager,
     OCDCaliforniaDivisionManager

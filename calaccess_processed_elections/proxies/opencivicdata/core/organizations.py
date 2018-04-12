@@ -17,7 +17,7 @@ from ..base import OCDProxyModelMixin
 
 # Managers
 from postgres_copy import CopyQuerySet
-from calaccess_processed.managers import (
+from calaccess_processed_elections.managers import (
     OCDOrganizationManager,
     OCDMembershipManager
 )

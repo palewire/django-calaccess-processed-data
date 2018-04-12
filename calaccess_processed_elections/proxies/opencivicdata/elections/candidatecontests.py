@@ -9,7 +9,7 @@ from opencivicdata.elections.models import (
     CandidateContestPost,
     CandidateContestSource
 )
-from calaccess_processed.proxies import OCDProxyModelMixin
+from ..base import OCDProxyModelMixin
 from calaccess_processed.managers import BulkLoadSQLManager
 from calaccess_processed_elections.managers import OCDCandidateContestManager
 

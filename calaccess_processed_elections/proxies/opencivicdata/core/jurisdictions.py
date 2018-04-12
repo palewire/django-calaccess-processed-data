@@ -10,7 +10,7 @@ from ..base import OCDProxyModelMixin
 from opencivicdata.core.models import Jurisdiction
 
 # Managers
-from calaccess_processed.managers import OCDJurisdictionManager
+from calaccess_processed_elections.managers import OCDJurisdictionManager
 
 
 class OCDJurisdictionProxy(Jurisdiction, OCDProxyModelMixin):

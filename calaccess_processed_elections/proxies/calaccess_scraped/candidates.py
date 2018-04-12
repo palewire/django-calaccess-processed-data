@@ -12,11 +12,11 @@ from calaccess_processed_elections import corrections
 from .base import ScrapedNameMixin
 from .candidateelections import ScrapedCandidateElectionProxy
 from calaccess_scraped.models import Candidate
-from calaccess_processed.proxies import OCDPostProxy
 from opencivicdata.elections.models import CandidateContest
 from calaccess_processed_elections.proxies import (
     OCDPartyProxy,
-    OCDCandidacyProxy
+    OCDCandidacyProxy,
+    OCDPostProxy
 )
 
 # Logging
