@@ -15,11 +15,8 @@ from django.db.models import (
 )
 from .elections import OCDElectionProxy
 from opencivicdata.core.models import Membership
-from opencivicdata.elections.models import (
-    Candidacy,
-    CandidacySource
-)
-from ..base import OCDProxyModelMixin
+from opencivicdata.elections.models import Candidacy, CandidacySource
+from calaccess_processed.proxies import OCDProxyModelMixin
 from ..core.people import OCDPersonProxy
 
 # Managers

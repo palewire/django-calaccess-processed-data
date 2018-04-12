@@ -11,7 +11,7 @@ from opencivicdata.core.models import (
     PersonIdentifier,
     PersonName,
 )
-from ..base import OCDProxyModelMixin
+from calaccess_processed.proxies import OCDProxyModelMixin
 
 # Managers
 from postgres_copy import CopyQuerySet

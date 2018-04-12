@@ -10,7 +10,7 @@ from opencivicdata.elections.models import (
     BallotMeasureContestOption,
     BallotMeasureContestSource,
 )
-from ..base import OCDProxyModelMixin
+from calaccess_processed.proxies import OCDProxyModelMixin
 from calaccess_processed.managers import BulkLoadSQLManager
 
 

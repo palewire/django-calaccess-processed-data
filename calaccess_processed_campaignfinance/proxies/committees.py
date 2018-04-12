@@ -11,7 +11,7 @@ from opencivicdata.campaign_finance.models import (
     CommitteeName,
     CommitteeSource,
 )
-from calaccess_processed_elections.proxies import OCDProxyModelMixin
+from calaccess_processed.proxies import OCDProxyModelMixin
 from calaccess_processed_campaignfinance.managers import (
     OCDCommitteeManager,
     OCDCommitteeIdentifierManager,

@@ -13,7 +13,7 @@ from opencivicdata.core.models import (
     OrganizationName,
 )
 from .people import OCDPersonProxy
-from ..base import OCDProxyModelMixin
+from calaccess_processed.proxies import OCDProxyModelMixin
 
 # Managers
 from postgres_copy import CopyQuerySet

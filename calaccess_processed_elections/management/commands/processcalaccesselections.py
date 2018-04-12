@@ -29,8 +29,6 @@ class Command(LoadOCDElectionsBase):
         # create subdirectory in processed_data_dir, if missing
         filings_data_path = os.path.join(self.processed_data_dir, 'relational')
         os.path.isdir(filings_data_path) or os.makedirs(filings_data_path)
-        filings_data_path = os.path.join(self.processed_data_dir, 'flat')
-        os.path.isdir(filings_data_path) or os.makedirs(filings_data_path)
 
         # Start off loading all the data
         self.load()

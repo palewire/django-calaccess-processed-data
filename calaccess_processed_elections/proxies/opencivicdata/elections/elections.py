@@ -13,7 +13,7 @@ from opencivicdata.elections.models import (
     ElectionIdentifier,
     ElectionSource
 )
-from ..base import OCDProxyModelMixin
+from calaccess_processed.proxies import OCDProxyModelMixin
 from ..core.posts import OCDPostProxy
 from .candidatecontests import OCDCandidateContestProxy
 

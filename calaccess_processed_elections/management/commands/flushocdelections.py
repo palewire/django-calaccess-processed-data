@@ -8,7 +8,7 @@ from opencivicdata.core.models import (
     Membership,
     Organization,
     Person,
-    Post,
+    Post
 )
 from opencivicdata.elections.models import (
     Candidacy,

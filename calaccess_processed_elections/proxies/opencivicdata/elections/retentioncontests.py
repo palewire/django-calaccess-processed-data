@@ -11,7 +11,7 @@ from opencivicdata.elections.models import (
     RetentionContestSource
 )
 from calaccess_processed.managers import BulkLoadSQLManager
-from ..base import OCDProxyModelMixin
+from calaccess_processed.proxies import OCDProxyModelMixin
 
 
 class OCDRetentionContestProxy(RetentionContest, OCDProxyModelMixin):

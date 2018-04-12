@@ -4,7 +4,6 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from .opencivicdata import (
-    OCDProxyModelMixin,
     OCDBallotMeasureContestProxy,
     OCDBallotMeasureContestIdentifierProxy,
     OCDBallotMeasureContestOptionProxy,
@@ -47,7 +46,6 @@ from .calaccess_scraped import (
 
 
 __all__ = (
-    "OCDProxyModelMixin",
     "OCDBallotMeasureContestProxy",
     "OCDBallotMeasureContestIdentifierProxy",
     "OCDBallotMeasureContestOptionProxy",

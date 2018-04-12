@@ -8,7 +8,7 @@ from opencivicdata.campaign_finance.models import (
     Transaction,
     TransactionIdentifier
 )
-from calaccess_processed_elections.proxies import OCDProxyModelMixin
+from calaccess_processed.proxies import OCDProxyModelMixin
 from postgres_copy import CopyManager
 from calaccess_processed_campaignfinance.managers import OCDTransactionManager
 

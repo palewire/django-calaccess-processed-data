@@ -6,7 +6,7 @@ Proxy models for augmenting our source data tables with methods useful for proce
 from __future__ import unicode_literals
 
 # Models
-from ..base import OCDProxyModelMixin
+from calaccess_processed.proxies import OCDProxyModelMixin
 from opencivicdata.core.models import Division
 
 # Managers

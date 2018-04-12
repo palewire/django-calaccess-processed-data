@@ -5,7 +5,7 @@ Proxy models for generating flatfiles that combine multiple table into a simplif
 """
 from __future__ import unicode_literals
 from opencivicdata.elections.models import RetentionContest
-from calaccess_processed_elections.proxies import OCDProxyModelMixin
+from calaccess_processed.proxies import OCDProxyModelMixin
 from calaccess_processed_flatfiles.managers import OCDFlatRetentionContestManager
 
 
