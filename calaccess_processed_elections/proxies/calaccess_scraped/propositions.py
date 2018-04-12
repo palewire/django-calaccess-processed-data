@@ -23,6 +23,7 @@ class ScrapedPropositionProxy(Proposition):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
     @property

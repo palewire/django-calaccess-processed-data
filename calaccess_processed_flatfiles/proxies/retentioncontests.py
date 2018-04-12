@@ -45,5 +45,6 @@ class OCDFlatRetentionContestProxy(RetentionContest, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_flatfiles"
         proxy = True
         verbose_name_plural = 'recall measures'

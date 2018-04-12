@@ -35,6 +35,7 @@ class OCDFilingProxy(Filing, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_campaignfinance"
         proxy = True
 
     @property
@@ -95,6 +96,7 @@ class OCDFilingIdentifierProxy(FilingIdentifier, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_campaignfinance"
         proxy = True
 
 
@@ -108,6 +110,7 @@ class OCDFilingSourceProxy(FilingSource, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_campaignfinance"
         proxy = True
 
 
@@ -121,6 +124,7 @@ class OCDFilingActionProxy(FilingAction, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_campaignfinance"
         proxy = True
 
 
@@ -134,4 +138,5 @@ class OCDFilingActionSummaryAmountProxy(FilingActionSummaryAmount, OCDProxyModel
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_campaignfinance"
         proxy = True

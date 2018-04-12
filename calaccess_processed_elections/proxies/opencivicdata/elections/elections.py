@@ -48,6 +48,7 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
     def add_election_type(self, election_type):
@@ -320,6 +321,7 @@ class OCDElectionIdentifierProxy(ElectionIdentifier, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
 
@@ -333,4 +335,5 @@ class OCDElectionSourceProxy(ElectionSource, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True

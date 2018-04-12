@@ -27,6 +27,7 @@ class OCDTransactionProxy(Transaction, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_campaignfinance"
         proxy = True
 
 
@@ -40,4 +41,5 @@ class OCDTransactionIdentifierProxy(TransactionIdentifier, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_campaignfinance"
         proxy = True

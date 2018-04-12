@@ -37,5 +37,6 @@ class OCDFlatBallotMeasureContestProxy(BallotMeasureContest, OCDProxyModelMixin)
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_flatfiles"
         proxy = True
         verbose_name_plural = 'ballot measures'

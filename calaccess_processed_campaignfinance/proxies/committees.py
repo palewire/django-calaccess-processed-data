@@ -58,6 +58,7 @@ class OCDCommitteeProxy(Committee, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_campaignfinance"
         proxy = True
 
 
@@ -71,6 +72,7 @@ class OCDCommitteeIdentifierProxy(CommitteeIdentifier, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_campaignfinance"
         proxy = True
 
 
@@ -84,6 +86,7 @@ class OCDCommitteeNameProxy(CommitteeName, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_campaignfinance"
         proxy = True
 
 
@@ -97,6 +100,7 @@ class OCDCommitteeSourceProxy(CommitteeSource, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_campaignfinance"
         proxy = True
 
 
@@ -110,4 +114,5 @@ class OCDCommitteeTypeProxy(CommitteeType, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_campaignfinance"
         proxy = True

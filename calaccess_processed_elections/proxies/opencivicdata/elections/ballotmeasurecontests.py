@@ -39,6 +39,7 @@ class OCDBallotMeasureContestProxy(BallotMeasureContest, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
 
@@ -52,6 +53,7 @@ class OCDBallotMeasureContestIdentifierProxy(BallotMeasureContestIdentifier, OCD
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
 
@@ -65,6 +67,7 @@ class OCDBallotMeasureContestOptionProxy(BallotMeasureContestOption, OCDProxyMod
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
 
@@ -78,4 +81,5 @@ class OCDBallotMeasureContestSourceProxy(BallotMeasureContestSource, OCDProxyMod
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True

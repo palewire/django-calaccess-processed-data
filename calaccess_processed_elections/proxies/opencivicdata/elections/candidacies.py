@@ -51,6 +51,7 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
     @property
@@ -217,4 +218,5 @@ class OCDCandidacySourceProxy(CandidacySource, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True

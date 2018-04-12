@@ -39,6 +39,7 @@ class OCDCandidateContestProxy(CandidateContest, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
     def get_parent(self):
@@ -71,6 +72,7 @@ class OCDCandidateContestPostProxy(CandidateContestPost, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
 
@@ -84,4 +86,5 @@ class OCDCandidateContestSourceProxy(CandidateContestSource, OCDProxyModelMixin)
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True

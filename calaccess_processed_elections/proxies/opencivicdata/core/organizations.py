@@ -52,6 +52,7 @@ class OCDOrganizationProxy(Organization, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
 
@@ -65,6 +66,7 @@ class OCDOrganizationIdentifierProxy(OrganizationIdentifier, OCDProxyModelMixin)
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
 
@@ -78,6 +80,7 @@ class OCDOrganizationNameProxy(OrganizationName, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
 
@@ -117,4 +120,5 @@ class OCDMembershipProxy(Membership, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True

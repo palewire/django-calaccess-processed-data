@@ -43,6 +43,7 @@ class OCDPersonProxy(Person, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
     def update_name(self):
@@ -139,6 +140,7 @@ class OCDPersonIdentifierProxy(PersonIdentifier, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
 
@@ -152,4 +154,5 @@ class OCDPersonNameProxy(PersonName, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True

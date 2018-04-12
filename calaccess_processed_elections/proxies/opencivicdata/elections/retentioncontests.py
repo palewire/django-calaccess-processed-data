@@ -39,6 +39,7 @@ class OCDRetentionContestProxy(RetentionContest, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
 
@@ -52,6 +53,7 @@ class OCDRetentionContestIdentifierProxy(RetentionContestIdentifier, OCDProxyMod
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
 
@@ -65,6 +67,7 @@ class OCDRetentionContestOptionProxy(RetentionContestOption, OCDProxyModelMixin)
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
 
 
@@ -78,4 +81,5 @@ class OCDRetentionContestSourceProxy(RetentionContestSource, OCDProxyModelMixin)
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True

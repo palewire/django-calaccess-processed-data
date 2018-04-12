@@ -18,4 +18,5 @@ class RawFilerToFilerTypeCdProxy(FilerToFilerTypeCd):
         """
         Make this a proxy model.
         """
+        app_label = "calaccess_processed_elections"
         proxy = True
