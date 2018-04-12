@@ -10,7 +10,6 @@ from calaccess_processed.proxies import OCDProxyModelMixin
 from opencivicdata.core.models import Post
 
 # Managers
-from postgres_copy import CopyQuerySet
 from calaccess_processed_elections.managers import (
     OCDPostManager,
     OCDAssemblyPostManager,
@@ -23,7 +22,7 @@ class OCDPostProxy(Post, OCDProxyModelMixin):
     """
     A proxy on the OCD Post model with helper methods..
     """
-    objects = OCDPostManager.from_queryset(CopyQuerySet)()
+    objects = OCDPostManager()
     assembly = OCDAssemblyPostManager()
     executive = OCDExecutivePostManager()
     senate = OCDSenatePostManager()

@@ -7,11 +7,10 @@ from __future__ import unicode_literals
 
 # Models
 from .base import ScrapedElectionProxyMixin
-from calaccess_processed_elections.proxies import OCDElectionProxy
 from calaccess_scraped.models import IncumbentElection
+from calaccess_processed_elections.proxies import OCDElectionProxy
 
 # Managers
-from postgres_copy import CopyQuerySet
 from calaccess_processed_elections.managers import ScrapedIncumbentElectionManager
 
 
@@ -19,7 +18,7 @@ class ScrapedIncumbentElectionProxy(ScrapedElectionProxyMixin, IncumbentElection
     """
     A proxy for the IncumbentElection model in calaccess_scraped.
     """
-    objects = ScrapedIncumbentElectionManager.from_queryset(CopyQuerySet)()
+    objects = ScrapedIncumbentElectionManager()
 
     class Meta:
         """

@@ -10,7 +10,6 @@ from calaccess_processed.proxies import OCDProxyModelMixin
 from opencivicdata.core.models import Division
 
 # Managers
-from postgres_copy import CopyQuerySet
 from calaccess_processed_elections.managers import (
     OCDAssemblyDivisionManager,
     OCDSenateDivisionManager,
@@ -22,7 +21,7 @@ class OCDDivisionProxy(Division, OCDProxyModelMixin):
     """
     A proxy on the OCD Division model with helper methods.
     """
-    objects = OCDCaliforniaDivisionManager.from_queryset(CopyQuerySet)()
+    objects = OCDCaliforniaDivisionManager()
     assembly = OCDAssemblyDivisionManager()
     senate = OCDSenateDivisionManager()
 

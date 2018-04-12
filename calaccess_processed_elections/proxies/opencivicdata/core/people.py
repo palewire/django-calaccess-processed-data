@@ -6,15 +6,11 @@ Proxy models for augmenting our source data tables with methods useful for proce
 from __future__ import unicode_literals
 
 # Models
-from opencivicdata.core.models import (
-    Person,
-    PersonIdentifier,
-    PersonName,
-)
 from calaccess_processed.proxies import OCDProxyModelMixin
+from opencivicdata.core.models import Person, PersonIdentifier, PersonName
 
 # Managers
-from postgres_copy import CopyQuerySet
+from calaccess_processed.managers import BulkLoadSQLManager
 from calaccess_processed_elections.managers import OCDPersonManager
 
 
@@ -22,7 +18,7 @@ class OCDPersonProxy(Person, OCDProxyModelMixin):
     """
     A proxy on the OCD Person model with helper methods.
     """
-    objects = OCDPersonManager.from_queryset(CopyQuerySet)()
+    objects = OCDPersonManager()
 
     copy_to_fields = (
         ('id',),
@@ -137,7 +133,7 @@ class OCDPersonIdentifierProxy(PersonIdentifier, OCDProxyModelMixin):
     """
     A proxy on the OCD PersonIdentifier model.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     class Meta:
         """
@@ -150,7 +146,7 @@ class OCDPersonNameProxy(PersonName, OCDProxyModelMixin):
     """
     A proxy on the OCD PersonName model with helper methods.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     class Meta:
         """

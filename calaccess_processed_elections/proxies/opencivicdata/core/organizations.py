@@ -16,7 +16,7 @@ from .people import OCDPersonProxy
 from calaccess_processed.proxies import OCDProxyModelMixin
 
 # Managers
-from postgres_copy import CopyQuerySet
+from calaccess_processed.managers import BulkLoadSQLManager
 from calaccess_processed_elections.managers import (
     OCDOrganizationManager,
     OCDMembershipManager
@@ -31,7 +31,7 @@ class OCDOrganizationProxy(Organization, OCDProxyModelMixin):
     """
     A proxy on the OCD Organization model with helper methods.
     """
-    objects = OCDOrganizationManager.from_queryset(CopyQuerySet)()
+    objects = OCDOrganizationManager()
 
     copy_to_fields = (
         ('id',),
@@ -59,7 +59,7 @@ class OCDOrganizationIdentifierProxy(OrganizationIdentifier, OCDProxyModelMixin)
     """
     A proxy on the OCD OrganizationIdentifier model with helper methods.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     class Meta:
         """
@@ -72,7 +72,7 @@ class OCDOrganizationNameProxy(OrganizationName, OCDProxyModelMixin):
     """
     A proxy on the OCD OrganizationName model with helper methods.
     """
-    objects = CopyQuerySet.as_manager()
+    objects = BulkLoadSQLManager()
 
     class Meta:
         """
@@ -85,7 +85,7 @@ class OCDMembershipProxy(Membership, OCDProxyModelMixin):
     """
     A proxy on the OCD Membership model with helper methods.
     """
-    objects = OCDMembershipManager.from_queryset(CopyQuerySet)()
+    objects = OCDMembershipManager()
 
     copy_to_fields = (
         ('id',),
