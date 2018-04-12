@@ -90,6 +90,7 @@ class Form460ScheduleB1ItemBase(CampaignLoanReceivedItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         abstract = True
 
 
@@ -117,6 +118,7 @@ class Form460ScheduleB1Item(Form460ScheduleB1ItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing',
             'line_item',
@@ -150,6 +152,7 @@ class Form460ScheduleB1ItemVersion(Form460ScheduleB1ItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing_version',
             'line_item',
@@ -327,6 +330,7 @@ class Form460ScheduleB2ItemBase(FilingBaseModel):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         abstract = True
 
 
@@ -354,6 +358,7 @@ class Form460ScheduleB2Item(Form460ScheduleB2ItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing',
             'line_item',
@@ -387,6 +392,7 @@ class Form460ScheduleB2ItemVersion(Form460ScheduleB2ItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing_version',
             'line_item',
@@ -463,6 +469,7 @@ class Form460ScheduleB2ItemBaseOld(CampaignLoanReceivedItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         abstract = True
 
 
@@ -492,6 +499,7 @@ class Form460ScheduleB2ItemOld(Form460ScheduleB2ItemBaseOld):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing',
             'line_item',
@@ -526,6 +534,7 @@ class Form460ScheduleB2ItemVersionOld(Form460ScheduleB2ItemBaseOld):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing_version',
             'line_item',

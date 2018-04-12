@@ -202,6 +202,7 @@ class Form501FilingBase(FilingBaseModel):
         Model options.
         """
         abstract = True
+        app_label = 'calaccess_processed_filings'
 
 
 @python_2_unicode_compatible
@@ -232,6 +233,7 @@ class Form501Filing(Form501FilingBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         index_together = ((
             'filing_id',
             'amendment_count',
@@ -425,6 +427,7 @@ class Form501FilingVersion(Form501FilingBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing',
             'amend_id',

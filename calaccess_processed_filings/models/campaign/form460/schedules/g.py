@@ -56,6 +56,7 @@ class Form460ScheduleGItemBase(CampaignExpenditureSubItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         abstract = True
 
 
@@ -83,6 +84,7 @@ class Form460ScheduleGItem(Form460ScheduleGItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing',
             'line_item',
@@ -116,6 +118,7 @@ class Form460ScheduleGItemVersion(Form460ScheduleGItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing_version',
             'line_item',

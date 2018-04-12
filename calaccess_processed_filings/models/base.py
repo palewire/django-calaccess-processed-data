@@ -20,7 +20,7 @@ class FilingBaseModel(CalAccessBaseModel):
         Meta model options.
         """
         abstract = True
-        app_label = 'calaccess_processed'
+        app_label = 'calaccess_processed_filings'
 
     @property
     def pdf_url(self):

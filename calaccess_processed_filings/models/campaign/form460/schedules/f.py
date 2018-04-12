@@ -232,6 +232,7 @@ class Form460ScheduleFItemBase(FilingBaseModel):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         abstract = True
 
 
@@ -259,6 +260,7 @@ class Form460ScheduleFItem(Form460ScheduleFItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing',
             'line_item',
@@ -292,6 +294,7 @@ class Form460ScheduleFItemVersion(Form460ScheduleFItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing_version',
             'line_item',

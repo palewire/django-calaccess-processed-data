@@ -47,6 +47,7 @@ class Form497Filing(CampaignFinanceFilingBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         index_together = ((
             'filing_id',
             'amendment_count',
@@ -86,6 +87,7 @@ class Form497FilingVersion(CampaignFinanceFilingBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing',
             'amend_id',

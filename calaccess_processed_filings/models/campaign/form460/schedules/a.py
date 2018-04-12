@@ -41,6 +41,7 @@ Page, Column A, Line 1.)",
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         abstract = True
 
 
@@ -62,6 +63,7 @@ class Form460ScheduleASummary(Form460ScheduleASummaryBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         verbose_name = "Form 460 (Campaign Disclosure) Schedule A summary"
         verbose_name_plural = "Form 460 (Campaign Disclosure) Schedule A summaries"
 
@@ -88,6 +90,7 @@ class Form460ScheduleASummaryVersion(Form460ScheduleASummaryBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         verbose_name = "Form 460 (Campaign Disclosure) Schedule A summary version"
 
     def __str__(self):
@@ -120,6 +123,7 @@ class Form460ScheduleAItemBase(CampaignContributionBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         abstract = True
 
 
@@ -150,6 +154,7 @@ class Form460ScheduleAItem(Form460ScheduleAItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing',
             'line_item',
@@ -183,6 +188,7 @@ class Form460ScheduleAItemVersion(Form460ScheduleAItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing_version',
             'line_item',

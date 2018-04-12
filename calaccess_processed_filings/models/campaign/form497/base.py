@@ -62,4 +62,5 @@ class Form497ItemBase(FilingBaseModel):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         abstract = True

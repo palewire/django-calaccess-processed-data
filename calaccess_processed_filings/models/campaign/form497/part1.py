@@ -109,6 +109,7 @@ class Form497Part1ItemBase(Form497ItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         abstract = True
 
 
@@ -136,6 +137,7 @@ class Form497Part1Item(Form497Part1ItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing',
             'line_item',
@@ -169,6 +171,7 @@ class Form497Part1ItemVersion(Form497Part1ItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing_version',
             'line_item',

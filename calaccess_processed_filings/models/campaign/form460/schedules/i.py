@@ -36,6 +36,7 @@ class Form460ScheduleIItemBase(CampaignContributionBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         abstract = True
 
 
@@ -68,6 +69,7 @@ class Form460ScheduleIItem(Form460ScheduleIItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing',
             'line_item',
@@ -104,6 +106,7 @@ class Form460ScheduleIItemVersion(Form460ScheduleIItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing_version',
             'line_item',

@@ -99,6 +99,7 @@ class Form460ScheduleHItemBase(CampaignLoanMadeItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         abstract = True
 
 
@@ -126,6 +127,7 @@ class Form460ScheduleHItem(Form460ScheduleHItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing',
             'line_item',
@@ -159,6 +161,7 @@ class Form460ScheduleHItemVersion(Form460ScheduleHItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing_version',
             'line_item',
@@ -228,6 +231,7 @@ class Form460ScheduleH2ItemBaseOld(CampaignLoanMadeItemBase):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         abstract = True
 
 
@@ -256,6 +260,7 @@ class Form460ScheduleH2ItemOld(Form460ScheduleH2ItemBaseOld):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing',
             'line_item',
@@ -289,6 +294,7 @@ class Form460ScheduleH2ItemVersionOld(Form460ScheduleH2ItemBaseOld):
         """
         Model options.
         """
+        app_label = 'calaccess_processed_filings'
         unique_together = ((
             'filing_version',
             'line_item',
