@@ -15,7 +15,6 @@ from calaccess_processed_filings.managers import Form501FilingManager
 from django.db import models
 from opencivicdata.elections.models import CandidateContest
 from calaccess_processed_filings.models.base import FilingBaseModel
-from calaccess_processed_filings.models import FilingMixin, FilingVersionMixin
 
 
 class Form501FilingBase(FilingBaseModel):
@@ -26,8 +25,7 @@ class Form501FilingBase(FilingBaseModel):
         verbose_name='from date',
         null=True,
         db_index=True,
-        help_text="Date when the Form 501 filing was filed (from F501_502_CD"
-                  ".RPT_DATE)",
+        help_text="Date when the Form 501 filing was filed (from F501_502_CD.RPT_DATE)",
     )
     statement_type = models.CharField(
         max_length=62,
@@ -207,7 +205,7 @@ class Form501FilingBase(FilingBaseModel):
 
 
 @python_2_unicode_compatible
-class Form501Filing(FilingMixin, Form501FilingBase):
+class Form501Filing(Form501FilingBase):
     """
     The most recent version of each Form 501 filing by a candidate.
 
@@ -399,7 +397,7 @@ class Form501Filing(FilingMixin, Form501FilingBase):
 
 
 @python_2_unicode_compatible
-class Form501FilingVersion(FilingVersionMixin, Form501FilingBase):
+class Form501FilingVersion(Form501FilingBase):
     """
     Every version of each Form 501 (Candidate Intention Statement) filing by candidates.
 

@@ -9,7 +9,7 @@ from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed_filings.models.base import FilingBaseModel
 from calaccess_processed_filings.models.campaign import (
     CampaignExpenditureItemBase,
-    CampaignExpenditureSubItemBase,
+    CampaignExpenditureSubItemBase
 )
 
 #

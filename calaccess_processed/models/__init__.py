@@ -7,7 +7,7 @@ from .base import CalAccessMetaClass, CalAccessBaseModel
 from .tracking import (
     ProcessedDataVersion,
     ProcessedDataFile,
-    ProcessedDataZip,
+    ProcessedDataZip
 )
 
 __all__ = (

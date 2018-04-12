@@ -7,14 +7,10 @@ from __future__ import unicode_literals
 from django.db import models
 from .base import Form460FilingBase
 from django.utils.encoding import python_2_unicode_compatible
-from calaccess_processed_filings.models import (
-    FilingMixin,
-    FilingVersionMixin,
-)
 
 
 @python_2_unicode_compatible
-class Form460Filing(FilingMixin, Form460FilingBase):
+class Form460Filing(Form460FilingBase):
     """
     The most recent version of each Form 460 filing by recipient committees.
 
@@ -66,7 +62,7 @@ class Form460Filing(FilingMixin, Form460FilingBase):
 
 
 @python_2_unicode_compatible
-class Form460FilingVersion(FilingVersionMixin, Form460FilingBase):
+class Form460FilingVersion(Form460FilingBase):
     """
     Every version of each Form 460 (Campaign Disclosure Statement) filing by recipient committees.
 
