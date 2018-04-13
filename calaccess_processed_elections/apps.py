@@ -18,7 +18,7 @@ class CalAccessProcessedElectionsConfig(AppConfig):
     # Where SQL files are stored in this application
     sql_directory_path = os.path.join(os.path.dirname(__file__), 'sql')
 
-    def get_archived_models(self):
+    def get_ocd_models(self):
         """
         Returns a list of the models that should be saved in our archive.
         """
@@ -37,3 +37,10 @@ class CalAccessProcessedElectionsConfig(AppConfig):
 
         # Return what's left
         return ocd_model_list
+
+    def get_proxies(self):
+        """
+        Returns a list of all the proxy models in this app.
+        """
+        from calaccess_processed_elections import proxies
+        return [getattr(proxies, name) for name in proxies.__all__]

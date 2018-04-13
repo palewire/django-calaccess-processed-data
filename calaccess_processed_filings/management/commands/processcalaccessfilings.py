@@ -87,7 +87,7 @@ class Command(CalAccessCommand):
 
         model_type must be "version" of "filing".
         """
-        model_list = apps.get_app_config('calaccess_processed_filings').get_archived_models()
+        model_list = apps.get_app_config('calaccess_processed_filings').get_filing_models()
 
         if model_type == 'version':
             models_to_load = [m for m in model_list if 'Version' in str(m)]
@@ -160,4 +160,4 @@ class Command(CalAccessCommand):
         Iterate over the given list of models, archiving each one.
         """
         for m in model_list:
-            call_command('archivecalaccessprocessedfile', m._meta.object_name)
+            call_command('archivecalaccessfilingsfile', m._meta.object_name)

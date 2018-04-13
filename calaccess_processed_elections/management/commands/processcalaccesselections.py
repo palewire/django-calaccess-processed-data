@@ -100,37 +100,14 @@ class Command(LoadOCDElectionsBase):
         """
         Save a csv file for each loaded OCD model.
         """
-        models_to_archive = apps.get_app_config("calaccess_processed_elections").get_archived_models()
+        models_to_archive = apps.get_app_config("calaccess_processed_elections").get_ocd_models()
 
         for m in models_to_archive:
-            processed_data_file, created = self.processed_version.files.get_or_create(
-                file_name=m._meta.object_name,
-            )
-            processed_data_file.process_start_datetime = now()
-            processed_data_file.save()
+            obj, created = self.processed_version.files.get_or_create(file_name=m._meta.object_name)
+            obj.process_start_datetime = now()
+            obj.save()
 
-            call_command(
-                'archivecalaccessprocessedfile',
-                m._meta.object_name,
-            )
-            processed_data_file.refresh_from_db()
-            processed_data_file.process_finish_datetime = now()
-            processed_data_file.save()
-
-        # now do flat files
-        flat_file_list = [
-            'Candidates',
-            'BallotMeasures',
-            'RecallMeasures'
-        ]
-        for f in flat_file_list:
-            processed_data_file, created = self.processed_version.files.get_or_create(
-                file_name=f,
-            )
-            processed_data_file.process_start_datetime = now()
-            processed_data_file.save()
-
-            call_command('archivecalaccessprocessedfile', f)
-            processed_data_file.refresh_from_db()
-            processed_data_file.process_finish_datetime = now()
-            processed_data_file.save()
+            call_command('archivecalaccesselectionsfile', m._meta.object_name)
+            obj.refresh_from_db()
+            obj.process_finish_datetime = now()
+            obj.save()

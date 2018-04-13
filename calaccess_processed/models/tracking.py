@@ -10,7 +10,6 @@ from django.apps import apps
 from hurry.filesize import size as sizeformat
 
 # Paths
-from calaccess_raw import get_data_directory
 from calaccess_processed import archive_directory_path
 
 # Models
@@ -212,35 +211,6 @@ class ProcessedDataFile(models.Model):
     pretty_file_size.short_description = 'processed file size'
     pretty_file_size.admin_order_field = 'processed file size'
 
-    def update_records_count(self):
-        """
-        Update records_count to the current number of records.
-        """
-        self.records_count = self.model.objects.count()
-        self.save()
-
-    def make_csv_copy(self):
-        """
-        Copy model contents to a local csv file.
-        """
-        try:
-            copy_to_fields = tuple(i[0] for i in self.model.copy_to_fields)
-        except AttributeError:
-            copy_to_fields = tuple()
-        return self.model.objects.to_csv(self.csv_path, *copy_to_fields)
-
-    @property
-    def csv_path(self):
-        """
-        Return the full path where the ProcessedFile is locally stored.
-        """
-        file_directory = os.path.join(
-            get_data_directory(),
-            'processed',
-            self.model().klass_group.lower()
-        )
-        return os.path.join(file_directory, '%s.csv' % self.file_name)
-
     @property
     def is_flat(self):
         """
@@ -252,37 +222,75 @@ class ProcessedDataFile(models.Model):
             is_flat = False
         return is_flat
 
-    @property
-    def model(self):
-        """
-        Returns the ProcessedDataFile's corresponding database model object.
-        """
-        # first, try finding a model with a name that matches the file_name.
-        try:
-            model = apps.get_model(
-                'calaccess_processed',
-                self.file_name
-            )
-        except LookupError:
-            # next, try finding a proxy model a name that contains file_name.
-            try:
-                model = apps.get_model(
-                    'calaccess_processed',
-                    'OCD%sProxy' % self.file_name
-                )
-            except LookupError:
-                # finally, try finding a model with a plural name
-                # matches file_name.
-                # convert file_name from camel case
-                s1 = re.sub(r'(.)([A-Z][a-z]+)', r'\1 \2', self.file_name)
-                s2 = re.sub(r'([a-z0-9])([A-Z])', r'\1 \2', s1).lower()
-                model_list = [
-                    m for m in apps.get_models()
-                    if m._meta.verbose_name_plural == s2
-                ]
-                try:
-                    model = model_list.pop()
-                except IndexError:
-                    model = None
+    # @property
+    # def model(self):
+    #     """
+    #     Returns the ProcessedDataFile's corresponding database model object.
+    #     """
+    #     # First, look for it as a concrete model.
+    #     filings_models = dict(
+    #         (m.__name__, m)
+    #         for m in app.get_app_config("calaccess_processed_filings").get_archived_models()
+    #     )
+    #     try:
+    #         return filings_models[self.file_name]
+    #     except KeyError:
+    #         pass
+    #
+    #     # Second, look for it as an election proxy.
+    #     election_proxies = dict(
+    #         (m.__name__, m)
+    #         for m in app.get_app_config("calaccess_processed_elections").get_proxies()
+    #     )
+    #     try:
+    #         proxy_name = 'OCD{}Proxy'.format(self.file_name)
+    #         return election_proxies[proxy_name]
+    #     except KeyError:
+    #         pass
+    #
+    #     # Third, look for it as an election model
+    #     election_models = dict(
+    #         (m.__name__, m)
+    #         for m in app.get_app_config("calaccess_processed_elections").get_archived_models()
+    #     )
+    #     try:
+    #         return election_models[self.file_name]
+    #     except KeyError:
+    #         pass
+    #
+    #     # Fourth, look it for it as a flatfile
+    #     # TK TK TK TK
+    #
+    #     # If we can't find a match, return None
+    #     return None
 
-        return model
+
+        # # first, try finding a model with a name that matches the file_name.
+        # try:
+        #     model = apps.get_model(
+        #         'calaccess_processed',
+        #         self.file_name
+        #     )
+        # except LookupError:
+        #     # next, try finding a proxy model a name that contains file_name.
+        #     try:
+        #         model = apps.get_model(
+        #             'calaccess_processed',
+        #             'OCD%sProxy' % self.file_name
+        #         )
+        #     except LookupError:
+        #         # finally, try finding a model with a plural name
+        #         # matches file_name.
+        #         # convert file_name from camel case
+        #         s1 = re.sub(r'(.)([A-Z][a-z]+)', r'\1 \2', self.file_name)
+        #         s2 = re.sub(r'([a-z0-9])([A-Z])', r'\1 \2', s1).lower()
+        #         model_list = [
+        #             m for m in apps.get_models()
+        #             if m._meta.verbose_name_plural == s2
+        #         ]
+        #         try:
+        #             model = model_list.pop()
+        #         except IndexError:
+        #             model = None
+        #
+        # return model
