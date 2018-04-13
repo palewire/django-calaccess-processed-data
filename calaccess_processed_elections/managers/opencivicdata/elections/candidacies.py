@@ -34,9 +34,7 @@ class OCDCandidacyQuerySet(CopyQuerySet):
         ).distinct()
 
         if not q.exists():
-            raise self.model.DoesNotExist(
-                'OCDCandidacyProxy matching query does not exist'
-            )
+            raise self.model.DoesNotExist('OCDCandidacyProxy matching query does not exist')
         elif q.count() > 1:
             raise self.model.MultipleObjectsReturned(
                 'get_by_name() returned more than one OCDCandidacyProxy -- it returned %s!' % q.count()
