@@ -100,7 +100,7 @@ class Command(LoadOCDElectionsBase):
         """
         Save a csv file for each loaded OCD model.
         """
-        models_to_archive = apps.get_app_config("calaccess_processed_elections").get_ocd_models()
+        models_to_archive = apps.get_app_config("calaccess_processed_elections").get_ocd_models_list()
 
         for m in models_to_archive:
             obj, created = self.processed_version.files.get_or_create(file_name=m._meta.object_name)

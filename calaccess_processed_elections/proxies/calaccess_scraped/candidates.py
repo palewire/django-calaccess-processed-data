@@ -68,7 +68,7 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
         """
         Returns the party we believe the candidate was associated with in this election.
         """
-        from calaccess_processed.models import Form501Filing
+        from calaccess_processed_filings.models import Form501Filing
 
         # First, if the candidate is running for this office, it is by definition non-partisan
         if self.office_name == 'SUPERINTENDENT OF PUBLIC INSTRUCTION':
@@ -128,7 +128,7 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
 
         Return a Form501Filing QuerySet.
         """
-        from calaccess_processed.models import Form501Filing
+        from calaccess_processed_filings.models import Form501Filing
 
         election_data = self.election_proxy.parsed_name
         office_data = self.parse_office_name()
@@ -154,7 +154,7 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
 
         Returns a Form501Filing QuerySet.
         """
-        from calaccess_processed.models import Form501Filing
+        from calaccess_processed_filings.models import Form501Filing
 
         election_data = self.election_proxy.parsed_name
         office_data = self.parse_office_name()
@@ -209,7 +209,7 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
 
         Return a tuple with Form501Filing QuerySet and str describing match criteria.
         """
-        from calaccess_processed.models import Form501Filing
+        from calaccess_processed_filings.models import Form501Filing
 
         if self.match_form501s_by_scraped_id().exists():
             return (self.match_form501s_by_scraped_id(), 'scraped_id')

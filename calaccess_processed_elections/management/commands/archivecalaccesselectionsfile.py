@@ -10,6 +10,5 @@ from calaccess_processed.management.commands._archivecalaccessprocessedfile impo
 class Command(BaseCommand):
 
     def get_model(self, processed_file):
-        model_list = apps.get_app_config("calaccess_processed_filings").get_archived_models()
-        model_dict = dict((m.__name__, m) for m in model_list)
+        model_dict = apps.get_app_config("calaccess_processed_elections").get_ocd_models_dict()
         return model_dict[processed_file.file_name]

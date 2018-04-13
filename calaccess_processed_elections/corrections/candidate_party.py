@@ -14,10 +14,10 @@ def candidate_party(candidate_name, year, election_type, office):
 
     Returns None if no correction is found.
     """
-    from calaccess_processed.models.proxies import OCDPartyProxy
+    from calaccess_processed_elections.proxies import OCDPartyProxy
 
     # Get the path to our corrections file
-    app = apps.get_app_config("calaccess_processed")
+    app = apps.get_app_config("calaccess_processed_elections")
     module_dir = os.path.abspath(os.path.dirname(app.module.__file__))
     corrections_path = os.path.join(module_dir, 'corrections', "candidate_party.csv")
 
