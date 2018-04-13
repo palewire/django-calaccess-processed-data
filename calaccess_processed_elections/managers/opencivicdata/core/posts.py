@@ -39,8 +39,7 @@ class OCDPostManager(BulkLoadSQLManager):
         """
         Get a Post object with an office string.
         """
-        OCDDivisionProxy = apps.get_model("calaccess_processed", "OCDDivisionProxy")
-        OCDOrganizationProxy = apps.get_model("calaccess_processed", "OCDOrganizationProxy")
+        from calaccess_processed_elections.proxies import OCDDivisionProxy, OCDOrganizationProxy
 
         parsed_office = self.parse_office_name(office_name)
 
@@ -94,8 +93,7 @@ class OCDPostManager(BulkLoadSQLManager):
 
         Return Post object or None if not found.
         """
-        RawFilerToFilerTypeCdProxy = apps.get_model("calaccess_processed", "RawFilerToFilerTypeCdProxy")
-        OCDDivisionProxy = apps.get_model("calaccess_processed", "OCDDivisionProxy")
+        from calaccess_processed_elections.proxies import RawFilerToFilerTypeCdProxy, OCDDivisionProxy
 
         # Try to get it using office_name
         try:

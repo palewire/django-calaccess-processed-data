@@ -3,8 +3,9 @@
 """
 Load the OCD Election model from the scraped PropositionElection model.
 """
-from . import LoadOCDElectionsBase
+from __future__ import unicode_literals
 from calaccess_processed_elections.proxies import ScrapedPropositionElectionProxy
+from calaccess_processed_elections.management.commands import LoadOCDElectionsBase
 
 
 class Command(LoadOCDElectionsBase):
