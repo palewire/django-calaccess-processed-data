@@ -20,21 +20,27 @@ class CalAccessProcessedElectionsConfig(AppConfig):
     sql_directory_path = os.path.join(os.path.dirname(__file__), 'sql')
 
     def get_ocd_models_list(self):
-        return list(self.get_ocd_models_dict().keys())
+        return list(self.get_ocd_models_map().keys())
 
-    def get_ocd_models_dict(self):
+    def get_ocd_proxy_lookup(self):
+        # Convert the keys to strings
+        return dict((k.__name__, v) for k, v in self.get_ocd_models_map().items())
+
+    def get_ocd_models_map(self):
         """
         Returns a list of the models that should be saved in our archive.
         """
         from . import proxies
         ocd_core = apps.get_app_config('core')
         ocd_elections = apps.get_app_config('elections')
+
+        # Create a dict mapping the models to proxies
         return collections.OrderedDict({
             ocd_core.get_model('Division'): proxies.OCDDivisionProxy,
             ocd_core.get_model('Organization'): proxies.OCDOrganizationProxy,
             ocd_core.get_model('OrganizationIdentifier'): proxies.OCDOrganizationIdentifierProxy,
             ocd_core.get_model('OrganizationName'): proxies.OCDOrganizationNameProxy,
-            ocd_core.get_model('Jurisdiction'): proxiesOCDJurisdictionProxy,
+            ocd_core.get_model('Jurisdiction'): proxies.OCDJurisdictionProxy,
             ocd_core.get_model('Post'): proxies.OCDPostProxy,
             ocd_core.get_model('Person'): proxies.OCDPersonProxy,
             ocd_core.get_model('PersonIdentifier'): proxies.OCDPersonIdentifierProxy,
