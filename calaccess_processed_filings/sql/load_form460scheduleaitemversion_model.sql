@@ -38,15 +38,8 @@ SELECT
     rcpt."LINE_ITEM" AS line_item,
     rcpt."RCPT_DATE" AS date_received,
     rcpt."DATE_THRU" AS date_received_thru,
-    CASE
-        WHEN UPPER(rcpt."TRAN_TYPE") = 'F' THEN 'Forgiven Loan'
-        WHEN UPPER(rcpt."TRAN_TYPE") = 'I' THEN 'Intermediary'
-        WHEN UPPER(rcpt."TRAN_TYPE") = 'R' THEN 'Returned'
-        WHEN UPPER(rcpt."TRAN_TYPE") = 'T' THEN 'Third Party Repayment'
-        WHEN UPPER(rcpt."TRAN_TYPE") = 'X' THEN 'Transfer'
-        ELSE ''
-    END AS transaction_type,
-    rcpt."TRAN_ID" AS transaction_id,
+    UPPER(rcpt."TRAN_TYPE") AS transaction_type,
+    COALESCE(rcpt."TRAN_ID", '') AS transaction_id,
     rcpt."MEMO_REFNO" AS memo_reference_number,
     CASE rcpt."ENTITY_CD"
         WHEN '0' THEN ''

@@ -33,9 +33,19 @@ class CampaignContributionBase(FilingBaseModel):
         help_text='End date for late contributions received over a range of '
                   'days (from RCPT_CD.DATE_THRU)',
     )
+    TRANSACTION_TYPE_CHOICES = (
+        ('F', 'Forgiven Loan'),
+        ('I', 'Intermediary'),
+        ('R', 'Returned (Negative Amount?)'),
+        ('T', 'Third Party Repayment'),
+        ('X', 'Transfer'),
+        ('', 'Unknown'),
+        ('INC16168', 'INC16168'),
+    )
     transaction_type = models.CharField(
         verbose_name='transaction type',
-        max_length=50,
+        max_length=255,
+        choices=TRANSACTION_TYPE_CHOICES,
         help_text='Type of transaction (from RCPT_CD.TRAN_TYPE)',
     )
     transaction_id = models.CharField(
