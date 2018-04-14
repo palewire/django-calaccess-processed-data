@@ -10,5 +10,5 @@ from calaccess_processed.management.commands._archivecalaccessprocessedfile impo
 class Command(BaseCommand):
 
     def get_model(self, processed_file):
-        model_dict = apps.get_app_config("calaccess_processed_elections").get_ocd_proxy_lookup()
+        model_dict = apps.get_app_config("calaccess_processed_flatfiles").get_flat_proxy_lookup()
         return model_dict[processed_file.file_name]

@@ -4,9 +4,9 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
-from calaccess_processed.models import OCDCandidacyProxy, OCDPersonProxy
 from django.db.models import Count
 from opencivicdata.merge import merge
+from .proxies import OCDCandidacyProxy, OCDPersonProxy
 
 
 def merge_persons(persons):

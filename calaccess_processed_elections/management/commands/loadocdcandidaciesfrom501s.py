@@ -25,18 +25,14 @@ class Command(CalAccessCommand):
 
         if not CandidateContest.objects.exists():
             error_message = 'No contests currently loaded (run loadocdcandidatecontests).'
-            if self._called_from_command_line:
-                self.failure(error_message)
-            else:
-                raise CommandError(error_message)
+            self.log(error_message)
         else:
             form501_count = Form501Filing.objects.without_candidacy().count()
             self.header(
                 "Processing %s Form 501 filings without candidacies" % form501_count
             )
             self.load()
-
-        self.success("Done!")
+            self.success("Done!")
 
     def load(self):
         """

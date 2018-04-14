@@ -4,10 +4,10 @@
 Proxy models for augmenting our source data tables with methods useful for processing.
 """
 from __future__ import unicode_literals
-from django.db import models
 from django.db.models import Q
 from django.apps import apps
 from postgres_copy import CopyQuerySet
+from calaccess_processed.managers import BulkLoadSQLManager
 
 
 class OCDCandidacyQuerySet(CopyQuerySet):
@@ -34,9 +34,7 @@ class OCDCandidacyQuerySet(CopyQuerySet):
         ).distinct()
 
         if not q.exists():
-            raise self.model.DoesNotExist(
-                'OCDCandidacyProxy matching query does not exist'
-            )
+            raise self.model.DoesNotExist('OCDCandidacyProxy matching query does not exist')
         elif q.count() > 1:
             raise self.model.MultipleObjectsReturned(
                 'get_by_name() returned more than one OCDCandidacyProxy -- it returned %s!' % q.count()
@@ -45,7 +43,7 @@ class OCDCandidacyQuerySet(CopyQuerySet):
             return q[0]
 
 
-class OCDCandidacyManager(models.Manager):
+class OCDCandidacyManager(BulkLoadSQLManager):
     """
     Manager for custom methods on the OCDCandidacyProxy model.
     """
