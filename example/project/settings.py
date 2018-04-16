@@ -29,7 +29,7 @@ INSTALLED_APPS = (
     'calaccess_scraped',
     'calaccess_processed',
     # 'calaccess_processed_elections',
-    # 'calaccess_processed_filings',
+    'calaccess_processed_filings',
     # 'calaccess_processed_flatfiles',
     # 'calaccess_processed_campaignfinance',
     'toolbox',
