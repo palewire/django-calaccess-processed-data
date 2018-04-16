@@ -8,6 +8,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('calaccess_processed', '__first__'),
         ('calaccess_processed', '0014_pgcrypto'),
     ]
 
@@ -17,9 +18,6 @@ class Migration(migrations.Migration):
         ),
         migrations.DeleteModel(
             name='FilingIDValue',
-        ),
-        migrations.DeleteModel(
-            name='Form460Filing',
         ),
         migrations.AlterUniqueTogether(
             name='form460filingversion',
@@ -317,9 +315,6 @@ class Migration(migrations.Migration):
             model_name='form460scheduleiitemversion',
             name='filing_version',
         ),
-        migrations.DeleteModel(
-            name='Form497Filing',
-        ),
         migrations.AlterUniqueTogether(
             name='form497filingversion',
             unique_together=set([]),
@@ -371,9 +366,6 @@ class Migration(migrations.Migration):
         migrations.RemoveField(
             model_name='form497part2itemversion',
             name='filing_version',
-        ),
-        migrations.DeleteModel(
-            name='Form501Filing',
         ),
         migrations.AlterUniqueTogether(
             name='form501filingversion',
@@ -611,5 +603,14 @@ class Migration(migrations.Migration):
         ),
         migrations.DeleteModel(
             name='Form501FilingVersion',
+        ),
+        migrations.DeleteModel(
+            name='Form501Filing',
+        ),
+        migrations.DeleteModel(
+            name='Form497Filing',
+        ),
+        migrations.DeleteModel(
+            name='Form460Filing',
         ),
     ]
