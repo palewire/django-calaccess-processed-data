@@ -13,10 +13,10 @@ from calaccess_processed_elections.proxies import (
     OCDElectionProxy,
     OCDMembershipProxy
 )
-from calaccess_processed_campaignfinance.proxies import (
-    OCDFilingProxy,
-    OCDFilingActionProxy
-)
+# from calaccess_processed_campaignfinance.proxies import (
+#     OCDFilingProxy,
+#     OCDFilingActionProxy
+# )
 
 
 class Command(CalAccessCommand):
@@ -61,17 +61,17 @@ class Command(CalAccessCommand):
         else:
             self.failure(mems_msg)
 
-        form460_filings_ok, mems_msg = self.test_form460_filings_count()
-        if mems_ok:
-            self.success('  Form 460 filings verified')
-        else:
-            self.failure(mems_msg)
+        # form460_filings_ok, mems_msg = self.test_form460_filings_count()
+        # if mems_ok:
+        #     self.success('  Form 460 filings verified')
+        # else:
+        #     self.failure(mems_msg)
 
-        form460_filing_actions_ok, mems_msg = self.test_form460_filing_actions_count()
-        if mems_ok:
-            self.success('  Form 460 filing actions verified')
-        else:
-            self.failure(mems_msg)
+        # form460_filing_actions_ok, mems_msg = self.test_form460_filing_actions_count()
+        # if mems_ok:
+        #     self.success('  Form 460 filing actions verified')
+        # else:
+        #     self.failure(mems_msg)
 
     def test_regular_assembly_contest_counts(self):
         """
