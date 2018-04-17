@@ -5,7 +5,6 @@ Proxy models for augmenting our source data tables with methods useful for proce
 """
 from __future__ import unicode_literals
 from django.db.models import Q
-from django.apps import apps
 from postgres_copy import CopyQuerySet
 from calaccess_processed.managers import BulkLoadSQLManager
 
@@ -87,8 +86,7 @@ class OCDCandidacyManager(BulkLoadSQLManager):
         Returns a tuple (Candidacy object, created), where created is a boolean
         specifying whether a Candidacy was created.
         """
-        OCDPersonProxy = apps.get_model("calaccess_processed", "OCDPersonProxy")
-        OCDCandidacyProxy = apps.get_model("calaccess_processed", "OCDCandidacyProxy")
+        from calaccess_processed_elections.proxies import OCDPersonProxy, OCDCandidacyProxy
 
         candidacy = None
 

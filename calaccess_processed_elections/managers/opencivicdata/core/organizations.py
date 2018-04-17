@@ -4,7 +4,6 @@
 Custom manager for OCD organization models.
 """
 from __future__ import unicode_literals
-from django.apps import apps
 from django.db.models import Count
 from calaccess_processed.managers import BulkLoadSQLManager
 
@@ -82,8 +81,7 @@ class OCDMembershipManager(BulkLoadSQLManager):
         """
         Get or create and OCD Membership from a scraped incumbent.
         """
-        OCDPersonProxy = apps.get_model("calaccess_processed", "OCDPersonProxy")
-        OCDPostProxy = apps.get_model("calaccess_processed", "OCDPostProxy")
+        from calaccess_processed_elections.proxies import OCDPersonProxy, OCDPostProxy
 
         # Get or create post
         post, post_created = OCDPostProxy.objects.get_or_create_by_name(incumbent.office_name)
