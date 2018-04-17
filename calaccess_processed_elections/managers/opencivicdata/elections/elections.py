@@ -4,7 +4,6 @@
 Custom managers for the OCD Election model.
 """
 from __future__ import unicode_literals
-from django.apps import apps
 from calaccess_processed.managers import BulkLoadSQLManager
 
 
@@ -30,8 +29,7 @@ class OCDElectionManager(BulkLoadSQLManager):
         """
         Create an OCD Election object.
         """
-        OCDOrganizationProxy = apps.get_model("calaccess_processed", "OCDOrganizationProxy")
-        OCDDivisionProxy = apps.get_model("calaccess_processed", "OCDDivisionProxy")
+        from calaccess_processed_elections.proxies import OCDOrganizationProxy, OCDDivisionProxy
 
         # Create the object
         obj = self.get_queryset().create(

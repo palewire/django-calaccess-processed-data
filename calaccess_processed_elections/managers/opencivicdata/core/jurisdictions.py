@@ -4,7 +4,6 @@
 Custom manager for the Jurisdiction model.
 """
 from __future__ import unicode_literals
-from django.apps import apps
 from calaccess_processed.managers import BulkLoadSQLManager
 
 
@@ -16,7 +15,7 @@ class OCDJurisdictionManager(BulkLoadSQLManager):
         """
         Returns California State Government jurisdiction.
         """
-        OCDDivisionProxy = apps.get_model("calaccess_processed", "OCDDivisionProxy")
+        from calaccess_processed_elections.proxies import OCDDivisionProxy
         qs = self.get_queryset()
         division = OCDDivisionProxy.objects.california()
         return qs.get_or_create(name='California', classification='government', division=division)[0]
