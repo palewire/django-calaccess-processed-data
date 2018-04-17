@@ -53,16 +53,6 @@ class CorrectionsTest(TestCase):
     """
     Test our corrections.
     """
-    fixtures = [
-        'divisions.json',
-        'candidate_election.json',
-        'candidate.json',
-        'incumbent_election.json',
-        'incumbent.json',
-        'proposition_election.json',
-        'proposition.json'
-    ]
-
     def test_correction(self):
         """
         Test that we can retrieve a correction directly.
@@ -75,14 +65,6 @@ class CorrectionsTest(TestCase):
             "GOVERNOR"
         )
         self.assertEqual(correx.name, "REPUBLICAN")
-
-    def test_correction_assignment_by_proxy(self):
-        """
-        Test that a correction is properly being applied when parties are retrieved.
-        """
-        from calaccess_processed_elections.proxies import ScrapedCandidateProxy
-        obj = ScrapedCandidateProxy.objects.get(name='WINSTON, ALMA MARIE')
-        self.assertEqual(obj.get_party().name, 'REPUBLICAN')
 
 
 class ScrapedCandidatElectioneNameParsingTest(TestCase):
