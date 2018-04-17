@@ -4,17 +4,26 @@
 Unittests for management commands.
 """
 import os
-# import shutil
-# import calaccess_processed
+import shutil
+import requests_mock
+
+# Time utilities
 # from datetime import date
-# import time
+import time
+from email.utils import formatdate
+from django.utils.timezone import now
+
+# import calaccess_processed
+#
+
+# Django utilities
 from django.conf import settings
 from django.core.management import call_command
+from django.test import TestCase, override_settings
 from django.core.management.base import CommandError
 # from django.db import connection, models
-from django.test import TestCase, override_settings
-# from django.utils.timezone import now
-# from email.utils import formatdate
+#
+#
 # from calaccess_raw.models import RawDataVersion
 # from calaccess_processed.management.commands import CalAccessCommand
 # from calaccess_processed.management.commands.verifycalaccessprocesseddata import Command as VerifyCmd
@@ -29,8 +38,6 @@ from django.test import TestCase, override_settings
 #     Candidacy,
 #     CandidateContest,
 # )
-# import requests_mock
-
 
 class NoProcessedDataTest(TestCase):
     """
@@ -64,56 +71,53 @@ class ProcessedDataTest(TestCase):
         'proposition_election.json',
         'proposition.json',
     ]
-    #
-    # @classmethod
-    # @requests_mock.Mocker()
-    # def setUpClass(cls, m):
-    #     """
-    #     Load data for other tests.
-    #     """
-    #     super(ProcessedDataTest, cls).setUpClass()
-    #     # install pgcrypto extension in test db
-    #     with connection.cursor() as cursor:
-    #         cursor.execute('CREATE EXTENSION IF NOT EXISTS pgcrypto;')
-    #
-    #     # fake a previous raw data download
-    #     download_dir = os.path.join(settings.CALACCESS_DATA_DIR, 'download')
-    #     os.path.exists(download_dir) or os.mkdir(download_dir)
-    #     zip_path = os.path.join(
-    #         settings.CALACCESS_DATA_DIR,
-    #         'dbwebexport.zip',
-    #     )
-    #     shutil.copy(zip_path, download_dir)
-    #     rdv = RawDataVersion.objects.create(
-    #         release_datetime=now(),
-    #         update_start_datetime=now(),
-    #         download_start_datetime=now(),
-    #         download_finish_datetime=now(),
-    #         expected_size=os.stat(zip_path).st_size,
-    #     )
-    #     # mock an SoS HEAD response
-    #     imf_datetime = formatdate(
-    #         time.mktime(rdv.release_datetime.timetuple()),
-    #         usegmt=True,
-    #     )
-    #     headers = {
-    #         'Content-Length': str(rdv.expected_size),
-    #         'Accept-Ranges': 'bytes',
-    #         'Last-Modified': imf_datetime,
-    #         'Connection': 'keep-alive',
-    #         'Date': imf_datetime,
-    #         'Content-Type': 'application/zip',
-    #         'ETag': '2320c8-30619331-c54f7dc0',
-    #         'Server': 'Apache/2.2.3 (Red Hat)',
-    #     }
-    #     m.register_uri(
-    #         'HEAD',
-    #         'http://campaignfinance.cdn.sos.ca.gov/dbwebexport.zip',
-    #         headers=headers,
-    #     )
-    #
-    #     call_command("updatecalaccessrawdata", verbosity=3, noinput=True)
-    #     call_command("processcalaccessdata", verbosity=3, noinput=True)
+
+    @classmethod
+    @requests_mock.Mocker()
+    def setUpClass(cls, m):
+        """
+        Load data for other tests.
+        """
+        super(ProcessedDataTest, cls).setUpClass()
+
+        # fake a previous raw data download
+        download_dir = os.path.join(settings.CALACCESS_DATA_DIR, 'download')
+        os.path.exists(download_dir) or os.mkdir(download_dir)
+        zip_path = os.path.join(
+            settings.CALACCESS_DATA_DIR,
+            'dbwebexport.zip',
+        )
+        shutil.copy(zip_path, download_dir)
+        rdv = RawDataVersion.objects.create(
+            release_datetime=now(),
+            update_start_datetime=now(),
+            download_start_datetime=now(),
+            download_finish_datetime=now(),
+            expected_size=os.stat(zip_path).st_size,
+        )
+        # mock an SoS HEAD response
+        imf_datetime = formatdate(
+            time.mktime(rdv.release_datetime.timetuple()),
+            usegmt=True,
+        )
+        headers = {
+            'Content-Length': str(rdv.expected_size),
+            'Accept-Ranges': 'bytes',
+            'Last-Modified': imf_datetime,
+            'Connection': 'keep-alive',
+            'Date': imf_datetime,
+            'Content-Type': 'application/zip',
+            'ETag': '2320c8-30619331-c54f7dc0',
+            'Server': 'Apache/2.2.3 (Red Hat)',
+        }
+        m.register_uri(
+            'HEAD',
+            'http://campaignfinance.cdn.sos.ca.gov/dbwebexport.zip',
+            headers=headers,
+        )
+
+        call_command("updatecalaccessrawdata", verbosity=3, noinput=True)
+        call_command("processcalaccessdata", verbosity=3, noinput=True)
     #
     # def runTest(self):
     #     """
