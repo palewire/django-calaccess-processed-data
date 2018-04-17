@@ -30,10 +30,7 @@ class CalAccessBaseModelTests(TestCase):
         """
         Confirm db_table property equals '{app_label}_{model_name}' string.
         """
-        db_table_name = '{app_label}_{model_name}'.format(
-            **Form460Filing()._meta.__dict__
-        )
-        self.assertEqual(Form460Filing().db_table, db_table_name)
+        self.assertEqual(Form460Filing().db_table, 'calaccess_processed_filings_form460filing')
 
     def test_klass(self):
         """
