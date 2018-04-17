@@ -351,7 +351,7 @@ class Form501Filing(Form501FilingBase):
 
         Return a CandidateContest or None, if extracted info is insufficient.
         """
-        from calaccess_processed.models import OCDPostProxy
+        from calaccess_processed_elections.proxies import OCDPostProxy
 
         # Get or create an election
         ocd_election = self.ocd_election
