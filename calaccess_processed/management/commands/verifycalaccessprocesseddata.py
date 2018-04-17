@@ -5,10 +5,10 @@ Check for mistakes in processed data loaded from CAL-ACCESS.
 """
 from django.utils.timezone import now
 from calaccess_processed.management.commands import CalAccessCommand
-from calaccess_processed_filings.models import (
-    Form460Filing,
-    Form460FilingVersion,
-)
+# from calaccess_processed_filings.models import (
+#     Form460Filing,
+#     Form460FilingVersion,
+# )
 from calaccess_processed_elections.proxies import (
     OCDElectionProxy,
     OCDMembershipProxy
@@ -180,30 +180,30 @@ elections:\n{1}'.format(error_count, error_list)
 
         return (not dupes.exists(), msg)
 
-    def test_form460_filings_count(self):
-        """
-        Confirm count of Form460Filing is equal to OCD Filing count.
-        """
-        processed_f460_count = Form460Filing.objects.count()
-        ocd_filings_count = OCDFilingProxy.objects.filter(
-            classification='Form 460',
-        ).count()
-
-        msg = 'Form460Filing count is {0}, but Filing count is {1}.'.format(
-            processed_f460_count, ocd_filings_count
-        )
-        return(processed_f460_count == ocd_filings_count, msg)
-
-    def test_form460_filing_actions_count(self):
-        """
-        Confirm count of Form460FilingVersion is equal to OCD FilingAction count.
-        """
-        processed_f460_version_count = Form460FilingVersion.objects.count()
-        ocd_filing_actions_count = OCDFilingActionProxy.objects.filter(
-            filing__classification='Form 460',
-        ).count()
-
-        msg = 'Form460FilingVersion count is {0}, but FilingAction count is {1}.'.format(
-            processed_f460_version_count, ocd_filing_actions_count
-        )
-        return(processed_f460_version_count == ocd_filing_actions_count, msg)
+    # def test_form460_filings_count(self):
+    #     """
+    #     Confirm count of Form460Filing is equal to OCD Filing count.
+    #     """
+    #     processed_f460_count = Form460Filing.objects.count()
+    #     ocd_filings_count = OCDFilingProxy.objects.filter(
+    #         classification='Form 460',
+    #     ).count()
+    #
+    #     msg = 'Form460Filing count is {0}, but Filing count is {1}.'.format(
+    #         processed_f460_count, ocd_filings_count
+    #     )
+    #     return(processed_f460_count == ocd_filings_count, msg)
+    #
+    # def test_form460_filing_actions_count(self):
+    #     """
+    #     Confirm count of Form460FilingVersion is equal to OCD FilingAction count.
+    #     """
+    #     processed_f460_version_count = Form460FilingVersion.objects.count()
+    #     ocd_filing_actions_count = OCDFilingActionProxy.objects.filter(
+    #         filing__classification='Form 460',
+    #     ).count()
+    #
+    #     msg = 'Form460FilingVersion count is {0}, but FilingAction count is {1}.'.format(
+    #         processed_f460_version_count, ocd_filing_actions_count
+    #     )
+    #     return(processed_f460_version_count == ocd_filing_actions_count, msg)
