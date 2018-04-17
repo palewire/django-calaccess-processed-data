@@ -31,11 +31,11 @@ INSTALLED_APPS = (
     'calaccess_processed_elections',
     'calaccess_processed_filings',
     'calaccess_processed_flatfiles',
-    #'calaccess_processed_campaignfinance',
-    'toolbox',
+    # 'calaccess_processed_campaignfinance',
+    # 'toolbox',
     'opencivicdata.core.apps.BaseConfig',
     'opencivicdata.elections.apps.BaseConfig',
-    #'opencivicdata.campaign_finance.apps.BaseConfig',
+    # 'opencivicdata.campaign_finance.apps.BaseConfig',
 )
 
 MIDDLEWARE_CLASSES = (

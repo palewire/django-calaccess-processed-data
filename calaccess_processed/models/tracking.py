@@ -23,7 +23,8 @@ class ProcessedDataVersion(models.Model):
         'calaccess_raw.RawDataVersion',
         related_name='processed_version',
         verbose_name='raw data version',
-        help_text='Foreign key referencing the raw data version processed'
+        help_text='Foreign key referencing the raw data version processed',
+        on_delete=models.CASCADE
     )
     process_start_datetime = models.DateTimeField(
         null=True,
