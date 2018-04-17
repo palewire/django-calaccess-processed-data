@@ -4,7 +4,7 @@
 Unittests for management commands.
 """
 from unittest import TestCase
-from calaccess_processed.models import ScrapedCandidateElectionProxy
+from calaccess_processed_elections.proxies import ScrapedCandidateElectionProxy
 
 
 class ScrapedCandidatElectioneNameParsing(TestCase):

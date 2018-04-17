@@ -290,7 +290,7 @@ class Form501Filing(Form501FilingBase):
 
         Return None if none found.
         """
-        from calaccess_processed.models import OCDElectionProxy
+        from calaccess_processed_elections.proxies import OCDElectionProxy
 
         if not self.election_year or not self.election_type:
             return None
@@ -322,7 +322,7 @@ class Form501Filing(Form501FilingBase):
 
         Return Party object or None.
         """
-        from calaccess_processed.models import OCDPartyProxy
+        from calaccess_processed_elections.proxies import OCDPartyProxy
 
         # first try the corrections
         party = corrections.candidate_party(

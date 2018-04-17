@@ -5,7 +5,7 @@ Unittests for CalAccess base model methods.
 """
 from unittest import TestCase
 from django.db.models.base import ModelBase
-from calaccess_processed.models import Form460Filing
+from calaccess_processed_filings.models import Form460Filing
 
 
 class CalAccessBaseModelTests(TestCase):

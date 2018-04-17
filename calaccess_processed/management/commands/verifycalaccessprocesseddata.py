@@ -5,13 +5,17 @@ Check for mistakes in processed data loaded from CAL-ACCESS.
 """
 from django.utils.timezone import now
 from calaccess_processed.management.commands import CalAccessCommand
-from calaccess_processed.models import (
+from calaccess_processed_filings.models import (
     Form460Filing,
     Form460FilingVersion,
+)
+from calaccess_processed_elections.proxies (
     OCDElectionProxy,
-    OCDMembershipProxy,
+    OCDMembershipProxy
+)
+from calaccess_processed_campaignfinance.proxies import (
     OCDFilingProxy,
-    OCDFilingActionProxy,
+    OCDFilingActionProxy
 )
 
 

@@ -18,7 +18,7 @@ class OCDFilingManager(CampaignFinanceManager):
         """
         Update target_column on OCD Filing with value from source_column.
         """
-        from calaccess_processed.models import Form460Filing, Filing
+        from calaccess_processed_filings.models import Form460Filing, Filing
 
         source_table_identifier = sql.Identifier(Form460Filing._meta.db_table)
         source_column_identifier = sql.Identifier(Form460Filing._meta.get_field(source_column).column)
@@ -48,7 +48,7 @@ class OCDFilingManager(CampaignFinanceManager):
         """
         Load OCD Filing with data extracted from Form460Filing.
         """
-        from calaccess_processed.models import Form460Filing
+        from calaccess_processed_filings.models import Form460Filing
 
         # Updating existing Filings...
         self._update_filings_from_form460_field('coverage_start_date', 'from_date')
@@ -99,7 +99,7 @@ class OCDFilingActionSummaryAmountManager(CampaignFinanceManager):
         """
         Load OCD FilingActionSummaryAmount with data extracted from Form460FilingVersion.
         """
-        from calaccess_processed.models import Form460FilingVersion
+        from calaccess_processed_filings.models import Form460FilingVersion
 
         sum_fields = [
             f for f in Form460FilingVersion._meta.get_fields()
@@ -138,7 +138,7 @@ class OCDFilingActionSummaryAmountManager(CampaignFinanceManager):
         """
         Load OCD FilingActionSummaryAmount with data from all Form460 related models.
         """
-        from calaccess_processed.models import Form460ScheduleASummaryVersion, Form460ScheduleCSummaryVersion
+        from calaccess_processed_filings.models import Form460ScheduleASummaryVersion, Form460ScheduleCSummaryVersion
 
         # Inserting new Filing Action Summary Amounts...
         # ...from Form 460 Summary Sheet...

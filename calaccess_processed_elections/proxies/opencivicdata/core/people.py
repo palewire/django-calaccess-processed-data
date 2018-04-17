@@ -111,7 +111,7 @@ class OCDPersonProxy(Person, OCDProxyModelMixin):
         """
         Returns the scraped candidates linked to this candidacy.
         """
-        from calaccess_processed.models import ScrapedCandidateProxy
+        from calaccess_processed_elections.proxies import ScrapedCandidateProxy
         filer_ids = [i.identifier for i in self.identifiers.filter(scheme="calaccess_filer_id")]
         return ScrapedCandidateProxy.objects.filter(scraped_id__in=filer_ids).order_by("-election")
 
@@ -120,7 +120,7 @@ class OCDPersonProxy(Person, OCDProxyModelMixin):
         """
         Returns any linked Form 501s filings.
         """
-        from calaccess_processed.models import OCDCandidacyProxy
+        from calaccess_processed_elections.proxies import OCDCandidacyProxy
         candidacies = OCDCandidacyProxy.objects.filter(person=self)
         form501s = []
         for c in candidacies:

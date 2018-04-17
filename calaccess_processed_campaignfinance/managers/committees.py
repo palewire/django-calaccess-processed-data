@@ -59,7 +59,7 @@ class OCDCommitteeTypeManager(CampaignFinanceManager):
         """
         Seeds the default data for this model.
         """
-        from calaccess_processed.models import OCDJurisdictionProxy
+        from calaccess_processed_elections.proxies import OCDJurisdictionProxy
 
         # Prep data
         qs = self.get_queryset()

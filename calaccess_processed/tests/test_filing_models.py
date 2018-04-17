@@ -5,7 +5,7 @@ Unittests Filing and FilingVersion models.
 """
 from django.test import TestCase
 import requests_mock
-from calaccess_processed.models import Form460Filing
+from calaccess_processed_filings.models import Form460Filing
 
 
 class Form460FilingTest(TestCase):

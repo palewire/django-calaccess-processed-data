@@ -18,7 +18,7 @@ class OCDTransactionManager(CampaignFinanceManager):
         """
         Load OCD Transactions with data from all Form460 related models.
         """
-        from calaccess_processed.models import (
+        from calaccess_processed_filings.models import (
             Form460ScheduleAItem,
             Form460ScheduleAItemVersion,
             Form460ScheduleCItem,

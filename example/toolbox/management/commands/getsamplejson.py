@@ -112,7 +112,7 @@ class Command(BaseCommand):
         print('.. code:: javascript\n')
         print(self.encoder.encode(full_candidate_contest))
         print('--------------------------------------------------------')
-        
+
         # RetentionContest
         retention_contest = RetentionContest.objects.get(
             name='2003 RECALL QUESTION',
@@ -146,7 +146,7 @@ class Command(BaseCommand):
         print('.. code:: javascript\n')
         print(self.encoder.encode(full_candidacy))
         print('--------------------------------------------------------')
-        
+
         # Party
         party = Party.objects.get(name='DEMOCRATIC')
         full_party = self.prep_dict(party.__dict__).copy()
@@ -212,7 +212,7 @@ class Command(BaseCommand):
         """
         Remove unwanted items from given object.
         """
-        cp_dict = obj_dict.copy() 
+        cp_dict = obj_dict.copy()
         for k in obj_dict:
             if re.match(r'^_.+$', k) or '_ptr_' in k:
                 del cp_dict[k]

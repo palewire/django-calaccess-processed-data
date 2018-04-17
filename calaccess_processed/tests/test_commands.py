@@ -19,10 +19,8 @@ from calaccess_raw.models import RawDataVersion
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed.management.commands.verifycalaccessprocesseddata import Command as VerifyCmd # noqa
 from calaccess_processed import corrections
-from calaccess_processed.models import (
-    ProcessedDataVersion,
-    ScrapedCandidateProxy,
-)
+from calaccess_processed.models import ProcessedDataVersion
+from calaccess_processed_elections.proxies import ScrapedCandidateProxy
 from calaccess_scraped.models import Candidate as ScrapedCandidate
 from calaccess_scraped.models import Proposition as ScrapedProposition
 from opencivicdata.core.models import Person
