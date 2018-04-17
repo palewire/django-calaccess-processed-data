@@ -53,7 +53,7 @@ class NoProcessedDataTest(TestCase):
         Confirm process command will not run without data.
         """
         with self.assertRaises(CommandError):
-            call_command("processcalaccessdata", verbosity=3, noinput=True)
+            call_command("processcalaccessdata", verbosity=3)
 
 
 @override_settings(CALACCESS_DATA_DIR=os.path.join(settings.BASE_DIR, 'test-data'))
@@ -117,8 +117,8 @@ class ProcessedDataTest(TestCase):
             headers=headers,
         )
 
-        call_command("updatecalaccessrawdata", verbosity=3, noinput=True)
-        call_command("processcalaccessdata", verbosity=3, noinput=True)
+        call_command("updatecalaccessrawdata", verbosity=3)
+        call_command("processcalaccessdata", verbosity=3)
 
     def runTest(self):
         """
