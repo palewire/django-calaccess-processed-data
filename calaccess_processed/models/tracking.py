@@ -4,9 +4,6 @@
 Models for tracking processing of CAL-ACCESS snapshots over time.
 """
 from __future__ import unicode_literals
-import os
-import re
-from django.apps import apps
 from hurry.filesize import size as sizeformat
 
 # Paths

@@ -9,7 +9,7 @@ from calaccess_processed_filings.models import (
     Form460Filing,
     Form460FilingVersion,
 )
-from calaccess_processed_elections.proxies (
+from calaccess_processed_elections.proxies import (
     OCDElectionProxy,
     OCDMembershipProxy
 )
