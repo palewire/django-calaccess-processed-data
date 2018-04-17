@@ -27,11 +27,12 @@ class FilingBaseModel(CalAccessBaseModel):
         """
         Returns the url for pdf of the most recent version of the CAL-ACCESS filing.
         """
-        return 'http://cal-access.sos.ca.gov/PDFGen/pdfgen.prg?filingid={}&amendid={}'.format(
-            self.filing_id,
-            # If it's a Filing, it will have an amendment count. If it's a Version it will have an amend_id.
-            getattr(self, 'amendment_count', getattr('self', 'amend_id'))
-        )
+        # If it's a Filing, it will have an amendment count. If it's a Version it will have an amend_id.
+        try:
+            amendid = getattr(self, 'amendment_count')
+        except AttributeError:
+            amendid = getattr(self, 'amend_id')
+        return 'http://cal-access.sos.ca.gov/PDFGen/pdfgen.prg?filingid={}&amendid={}'.format(self.filing_id, amendid)
 
     @property
     def has_pdf(self):
