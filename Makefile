@@ -3,7 +3,6 @@
 
 bootstrap:
 	createdb calaccess_processed -U postgres
-	psql -c 'CREATE EXTENSION IF NOT EXISTS pgcrypto;' -U postgres
 	python example/manage.py migrate
 	python example/manage.py runserver
 
