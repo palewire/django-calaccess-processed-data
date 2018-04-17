@@ -32,7 +32,7 @@ from .opencivicdata import (
     OCDPersonNameProxy,
     OCDPostProxy
 )
-from .calaccess_raw import RawFilerToFilerTypeCdManager
+from .calaccess_raw import RawFilerToFilerTypeCdProxy
 from .calaccess_scraped import (
     ScrapedElectionProxyMixin,
     ScrapedNameMixin,
@@ -74,7 +74,7 @@ __all__ = (
     'OCDPersonNameProxy',
     'OCDPostProxy',
     'OCDProxyModelMixin',
-    "RawFilerToFilerTypeCdManager",
+    "RawFilerToFilerTypeCdProxy",
     "ScrapedElectionProxyMixin",
     "ScrapedNameMixin",
     'ScrapedCandidateProxy',
