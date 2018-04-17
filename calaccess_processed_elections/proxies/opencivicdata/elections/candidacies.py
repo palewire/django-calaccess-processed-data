@@ -83,7 +83,7 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
         """
         Returns any linked Form 501 objects.
         """
-        from calaccess_processed.models import Form501Filing
+        from calaccess_processed_filings.models import Form501Filing
         return Form501Filing.objects.filter(filing_id__in=self.form501_filing_ids)
 
     @property
@@ -117,7 +117,7 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
         """
         Set Candidacy fields using data extracted from linked Form501Filings.
         """
-        from calaccess_processed.models import Form501Filing
+        from calaccess_processed_filings.models import Form501Filing
 
         # get all Form501Filing linked to Candidacy
         filing_ids = self.extras['form501_filing_ids']
@@ -143,7 +143,7 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
         """
         Create PersonIdentifiers for each filer_id from Form501Filings.
         """
-        from calaccess_processed.models import Form501Filing
+        from calaccess_processed_filings.models import Form501Filing
         person = self.person
         current_filer_ids = [
             i.identifier for i in person.identifiers.filter(scheme='calaccess_filer_id')
@@ -167,7 +167,7 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
         """
         Update party for Candidacy based on latest Form501 where its populated.
         """
-        from calaccess_processed.models import Form501Filing
+        from calaccess_processed_filings.models import Form501Filing
 
         # get all Form501Filing linked to Candidacy
         filing_ids = self.extras['form501_filing_ids']

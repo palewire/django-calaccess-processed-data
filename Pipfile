@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django-calaccess-raw-data = "==1.6.2"
+django-calaccess-raw-data = "==1.6.3"
 django-calaccess-scraped-data = "==0.1.2"
 opencivicdata = {git = "https://github.com/california-civic-data-coalition/python-opencivicdata.git", editable = true, ref = "campfin_draft_jg"}
 Django = "==1.11.8"

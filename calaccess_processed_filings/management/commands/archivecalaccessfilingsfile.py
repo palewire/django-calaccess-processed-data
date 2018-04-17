@@ -10,6 +10,6 @@ from calaccess_processed.management.commands._archivecalaccessprocessedfile impo
 class Command(BaseCommand):
 
     def get_model(self, processed_file):
-        model_list = apps.get_app_config("calaccess_processed_filings").get_archived_models()
+        model_list = apps.get_app_config("calaccess_processed_filings").get_filing_models()
         model_dict = dict((m.__name__, m) for m in model_list)
         return model_dict[processed_file.file_name]
