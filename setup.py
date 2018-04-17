@@ -45,7 +45,7 @@ CAL-ACCESS database',
     zip_safe=False,  # because we're including static files
     install_requires=(
         'django-calaccess-raw-data==1.7.0',
-        'django-calaccess-scraped-data==0.1.1',
+        'django-calaccess-scraped-data==0.2.0',
         'django>=1.11',
         'csvkit>=1.0',
         'beautifulsoup4>=4.3.2',
