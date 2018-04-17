@@ -125,6 +125,19 @@ class ProcessedDataTest(TestCase):
             BallotMeasureContest.objects.count(),
         )
 
+    def test_correction(self):
+        """
+        Test that we can retrieve a correction directly.
+        """
+        from calaccess_processed_elections import corrections
+        correx = corrections.candidate_party(
+            "WINSTON, ALMA MARIE",
+            "2014",
+            "PRIMARY",
+            "GOVERNOR"
+        )
+        self.assertEqual(correx.name, "REPUBLICAN")
+
     def test_correction_assignment_by_proxy(self):
         """
         Test that a correction is properly being applied when parties are retrieved.

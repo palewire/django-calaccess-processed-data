@@ -49,24 +49,6 @@ class ElectionDatesTest(TestCase):
         )
 
 
-class CorrectionsTest(TestCase):
-    """
-    Test our corrections.
-    """
-    def test_correction(self):
-        """
-        Test that we can retrieve a correction directly.
-        """
-        from calaccess_processed_elections import corrections
-        correx = corrections.candidate_party(
-            "WINSTON, ALMA MARIE",
-            "2014",
-            "PRIMARY",
-            "GOVERNOR"
-        )
-        self.assertEqual(correx.name, "REPUBLICAN")
-
-
 class ScrapedCandidatElectioneNameParsingTest(TestCase):
     """
     Test how candidate names are parsed from scraped data.
