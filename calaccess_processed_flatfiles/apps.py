@@ -36,7 +36,7 @@ class CalAccessProcessedFlatfilesConfig(AppConfig):
         """
         from . import proxies
         return collections.OrderedDict({
-             'Candidates': proxies.OCDFlatCandidacyProxy,
-             'BallotMeasures': proxies.OCDFlatBallotMeasureContestProxy,
-             'RecallMeasures': proxies.OCDFlatRetentionContestProxy
+            'Candidates': proxies.OCDFlatCandidacyProxy,
+            'BallotMeasures': proxies.OCDFlatBallotMeasureContestProxy,
+            'RecallMeasures': proxies.OCDFlatRetentionContestProxy
         })

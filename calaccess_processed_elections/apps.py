@@ -20,9 +20,15 @@ class CalAccessProcessedElectionsConfig(AppConfig):
     sql_directory_path = os.path.join(os.path.dirname(__file__), 'sql')
 
     def get_ocd_models_list(self):
+        """
+        Returns a list of all the OCD models proxied by this app.
+        """
         return list(self.get_ocd_models_map().keys())
 
     def get_ocd_proxy_lookup(self):
+        """
+        Returns a dictionary with the names of data models mapped to proxies.
+        """
         # Convert the keys to strings
         return dict((k.__name__, v) for k, v in self.get_ocd_models_map().items())
 

@@ -5,7 +5,6 @@ Custom managers for the OCD Post model.
 """
 from __future__ import unicode_literals
 import re
-from django.apps import apps
 from django.db.models import Q
 from calaccess_processed.managers import BulkLoadSQLManager
 
