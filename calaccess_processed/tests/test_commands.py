@@ -26,16 +26,19 @@ from django.core.management.base import CommandError
 
 # Models
 from calaccess_raw.models import RawDataVersion
+from opencivicdata.elections.models import BallotMeasureContest
+# from calaccess_scraped.models import Candidate as ScrapedCandidate
+from calaccess_scraped.models import Proposition as ScrapedProposition
 # from calaccess_processed.management.commands import CalAccessCommand
 # from calaccess_processed.management.commands.verifycalaccessprocesseddata import Command as VerifyCmd
 # from calaccess_processed import corrections
 # from calaccess_processed.models import ProcessedDataVersion
 # from calaccess_processed_elections.proxies import ScrapedCandidateProxy
-# from calaccess_scraped.models import Candidate as ScrapedCandidate
-# from calaccess_scraped.models import Proposition as ScrapedProposition
+#
+#
 # from opencivicdata.core.models import Person
-# from opencivicdata.elections.models import (
-#     BallotMeasureContest,
+#  import (
+#     ,
 #     Candidacy,
 #     CandidateContest,
 # )
@@ -53,12 +56,8 @@ class NoProcessedDataTest(TestCase):
             call_command("processcalaccessdata", verbosity=3, noinput=True)
 
 
-@override_settings(
-    CALACCESS_DATA_DIR=os.path.join(settings.BASE_DIR, 'test-data')
-)
-@override_settings(
-    MEDIA_ROOT=os.path.join(settings.BASE_DIR, 'test-data', ".media")
-)
+@override_settings(CALACCESS_DATA_DIR=os.path.join(settings.BASE_DIR, 'test-data'))
+@override_settings(MEDIA_ROOT=os.path.join(settings.BASE_DIR, 'test-data', ".media"))
 @override_settings(CALACCESS_STORE_ARCHIVE=True)
 class ProcessedDataTest(TestCase):
     """
@@ -120,25 +119,25 @@ class ProcessedDataTest(TestCase):
 
         call_command("updatecalaccessrawdata", verbosity=3, noinput=True)
         call_command("processcalaccessdata", verbosity=3, noinput=True)
-    #
-    # def runTest(self):
-    #     """
-    #     Added to allow calling test_ methods on instance of this class in py2.
-    #     """
-    #     pass
-    #
-    # def test_scraped_propositions(self):
-    #     """
-    #     Test the scraped propostions loaded into the database.
-    #     """
-    #     # Confirm count of scraped propositions with a name that doesn't
-    #     # include "RECALL" equals the count of loaded BallotMeasureContest.
-    #     self.assertEqual(
-    #         ScrapedProposition.objects.exclude(
-    #             name__icontains='RECALL'
-    #         ).count(),
-    #         BallotMeasureContest.objects.count(),
-    #     )
+
+    def runTest(self):
+        """
+        Added to allow calling test_ methods on instance of this class in py2.
+        """
+        pass
+
+    def test_scraped_propositions(self):
+        """
+        Test the scraped propostions loaded into the database.
+        """
+        # Confirm count of scraped propositions with a name that doesn't
+        # include "RECALL" equals the count of loaded BallotMeasureContest.
+        self.assertEqual(
+            ScrapedProposition.objects.exclude(
+                name__icontains='RECALL'
+            ).count(),
+            BallotMeasureContest.objects.count(),
+        )
     #
     # def test_regular_assembly_contest_counts(self):
     #     """

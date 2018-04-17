@@ -130,7 +130,7 @@ class Command(CalAccessCommand):
             no_color=self.no_color,
         )
         call_command(
-            'loadocdfilingsfrom460s',
+            'processcalaccessflatfiles',
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
