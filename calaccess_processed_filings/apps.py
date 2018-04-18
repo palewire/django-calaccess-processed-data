@@ -17,6 +17,12 @@ class CalAccessProcessedFilingsConfig(AppConfig):
     # Where SQL files are stored in this application
     sql_directory_path = os.path.join(os.path.dirname(__file__), 'sql')
 
+    def get_filing_model_lookup(self):
+        """
+        Returns a dictionary with the names mapped to models.
+        """
+        return dict((m.__name__, m) for m in self.get_filing_models())
+
     def get_filing_models(self):
         """
         Returns models from the "filings" group that mirror the structure of CAL-ACCESS forms.

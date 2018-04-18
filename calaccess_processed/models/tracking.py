@@ -4,6 +4,7 @@
 Models for tracking processing of CAL-ACCESS snapshots over time.
 """
 from __future__ import unicode_literals
+from django.apps import apps
 from hurry.filesize import size as sizeformat
 
 # Paths
@@ -219,3 +220,11 @@ class ProcessedDataFile(models.Model):
         except (AttributeError, TypeError):
             is_flat = False
         return is_flat
+
+    @property
+    def model(self):
+        """
+        Returns the model associated with this record.
+        """
+        lookup = apps.get_app_config("calaccess_processed").get_processed_file_lookup()
+        return lookup[self.file_name]
