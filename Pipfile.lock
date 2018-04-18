@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c599997cbf8a6d362a86c6fbead1a43686112fffdab3d1f2ac2d28d86c71969b"
+            "sha256": "2aad9d0c5876a2bc3db30ca0e0a918239ae096ceb8f805df8d8245a610546c6b"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -147,11 +147,11 @@
         },
         "django-calaccess-scraped-data": {
             "hashes": [
-                "sha256:3334c93dfc3a9df0a8167cf73bfd6cb74da1d94089db506dd7d582f39bc6412e",
-                "sha256:e3a8c233b398b7fd4a189407438288e9c66e09ed5fae92363c323465776669cd"
+                "sha256:88cd1f73c820c86f49572ebced2ca214bd9232fedca25a38275567903dc09f4b",
+                "sha256:c2fc8a35b809c4c44e7bd4a45109486480968b3299955c0d60d83d2269a3a52c"
             ],
             "index": "pypi",
-            "version": "==0.1.2"
+            "version": "==0.2.0"
         },
         "django-postgres-copy": {
             "hashes": [
