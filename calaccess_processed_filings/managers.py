@@ -28,7 +28,10 @@ class FilingsManager(BulkLoadSQLManager):
         """
         Return string of raw sql for loading the model.
         """
-        return open(self.sql_path, 'r').read()
+        fp = open(self.sql_path, 'r')
+        sql = fp.read()
+        fp.close()
+        return sql
 
     @property
     def sql_path(self):
