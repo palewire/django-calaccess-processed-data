@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2aad9d0c5876a2bc3db30ca0e0a918239ae096ceb8f805df8d8245a610546c6b"
+            "sha256": "acf1948d12f874df50f5dc53cc5d572e5e8867b72aeaf01c5fd79054939c939a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -240,7 +240,7 @@
         "opencivicdata": {
             "editable": true,
             "git": "https://github.com/california-civic-data-coalition/python-opencivicdata.git",
-            "ref": "e8eb7bcef7a0d61ab8d13c660258a1febe34582d"
+            "ref": "1679a4e5df381c777c3e6c53d7c056321662e99a"
         },
         "openpyxl": {
             "hashes": [
