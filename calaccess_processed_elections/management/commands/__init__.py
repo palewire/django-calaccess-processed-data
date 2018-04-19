@@ -33,13 +33,20 @@ class LoadOCDElectionsBase(CalAccessCommand):
         """
         Load OCD Election from scraped proxy model.
         """
+        # Loop through all elections in the proxy
         for scraped_election in proxy.objects.all():
+
+            # Log each one as we go
+            logger.debug("Loading from {}".format(scraped_election))
+
             # Get or create an election record
             ocd_election, ocd_created = scraped_election.get_or_create_ocd_election()
 
-            # Log it out
-            if self.verbosity > 1 and ocd_created:
-                self.log(' Created new Election: {}'.format(ocd_election))
+            # If we made a new one, log it out
+            if ocd_created:
+                logger.debug("Created {}".format(ocd_election))
+                if self.verbosity > 1:
+                    self.log(' Created new Election: {}'.format(ocd_election))
 
             # Whether Election is new or not, update EventSource
             ocd_election.sources.update_or_create(
