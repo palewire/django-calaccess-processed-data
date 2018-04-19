@@ -1,7 +1,6 @@
 include LICENSE
 include README.rst
 recursive-include calaccess_processed/fixtures *
-recursive-include calaccess_processed/sql *.sql
 recursive-include calaccess_processed_elections/corrections *.csv
 recursive-include calaccess_processed_campaignfinance/sql *.sql
 recursive-include calaccess_processed_filings/sql *.sql
