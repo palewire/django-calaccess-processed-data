@@ -141,7 +141,7 @@ class ScrapedCandidateElectionProxy(ScrapedElectionProxyMixin, CandidateElection
         # A special carveout for a 2018 election we know is a recall but the site has wrong.
         # http://www.sos.ca.gov/elections/upcoming-elections/2018-recall-sd29/
         if self.name == '2018 SPECIAL ELECTION (STATE SENATE 29)':
-            parsed_name['type'] = "SPECIAL RUNOFF"
+            parsed_name['type'] = "SPECIAL RECALL"
 
         if parsed_name['office']:
             parsed_name['office'] = parsed_name['office'].strip()
