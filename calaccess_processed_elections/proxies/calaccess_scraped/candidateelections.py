@@ -108,9 +108,7 @@ class ScrapedCandidateElectionProxy(ScrapedElectionProxyMixin, CandidateElection
 
         # If that doesn't work either, try parsing the election date from the name
         try:
-            return get_expected_election_date(
-                self.date.year, self.election_type
-            )
+            return get_expected_election_date(self.date.year, self.election_type)
         except ValueError:
             # If that fails, raise exception
             raise Exception(
@@ -139,6 +137,12 @@ class ScrapedCandidateElectionProxy(ScrapedElectionProxyMixin, CandidateElection
         # Clean up the contents
         parsed_name['year'] = int(parsed_name['year'])
         parsed_name['type'] = parsed_name['type'].strip()
+
+        # A special carveout for a 2018 election we know is a recall but the site has wrong.
+        # http://www.sos.ca.gov/elections/upcoming-elections/2018-recall-sd29/
+        if self.name == '2018 SPECIAL ELECTION (STATE SENATE 29)':
+            return "SPECIAL RUNOFF"
+
         if parsed_name['office']:
             parsed_name['office'] = parsed_name['office'].strip()
         if parsed_name['district']:
