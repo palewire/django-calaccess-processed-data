@@ -73,7 +73,6 @@ __all__ = (
     'OCDPersonIdentifierProxy',
     'OCDPersonNameProxy',
     'OCDPostProxy',
-    'OCDProxyModelMixin',
     "RawFilerToFilerTypeCdProxy",
     "ScrapedElectionProxyMixin",
     "ScrapedNameMixin",
