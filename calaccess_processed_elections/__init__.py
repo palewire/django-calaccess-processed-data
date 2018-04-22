@@ -3,8 +3,10 @@
 """
 General utilities for the application.
 """
+import logging
 from datetime import date
 default_app_config = 'calaccess_processed_elections.apps.CalAccessProcessedElectionsConfig'
+logger = logging.getLogger(__name__)
 
 
 def get_expected_election_date(year, election_type):
@@ -18,6 +20,7 @@ def get_expected_election_date(year, election_type):
     """
     # Rules defined here:
     # https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?lawCode=ELEC&division=1.&title=&part=&chapter=1.&article= # noqa
+    logger.debug("Getting expected election date for {} {}".format(year, election_type))
     if year % 2 != 0:
         raise ValueError("Regular elections occur in even years.")
     elif election_type.upper() == 'PRIMARY':
