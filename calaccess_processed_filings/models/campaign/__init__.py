@@ -12,6 +12,10 @@ from .base import (
     CampaignLoanReceivedItemBase,
     CampaignLoanMadeItemBase,
 )
+from .form496 import (
+    Form496Filing,
+    Form496FilingVersion
+)
 from .form497 import (
     Form497Filing,
     Form497FilingVersion,
@@ -89,6 +93,8 @@ __all__ = (
     "CampaignLoanItemBase",
     "CampaignLoanReceivedItemBase",
     "CampaignLoanMadeItemBase",
+    "Form496Filing",
+    "Form496FilingVersion"
     "Form497Filing",
     "Form497FilingVersion",
     "Form497ItemBase",
