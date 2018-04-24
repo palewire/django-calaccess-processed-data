@@ -11,6 +11,9 @@ Includes a mapping of special election names to dates.
 # * http://elections.cdn.sos.ca.gov/special-elections/pdf/special-elections-history.pdf
 
 names_to_dates = (
+    ('2018 SPECIAL RUNOFF (ASSEMBLY 39)', '2018-06-05'),
+    ('2018 SPECIAL RUNOFF (ASSEMBLY 45)', '2018-06-05'),
+    ('2018 SPECIAL ELECTION (STATE SENATE 32)', '2018-06-05'),
     # http://www.sos.ca.gov/elections/upcoming-elections/2018-recall-sd29/
     ('2018 SPECIAL ELECTION (STATE SENATE 29)', '2018-06-05'),
     ('2018 SPECIAL ELECTION (ASSEMBLY 54)', '2018-04-03'),
