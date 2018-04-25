@@ -41,6 +41,45 @@ class Form496FilingVersionAdmin(BaseAdmin):
     )
 
 
+@admin.register(models.Form496Part1Item)
+class Form496Part1ItemAdmin(BaseAdmin):
+    """
+    Custom admin for the Form496Part1Item model.
+    """
+    list_display = (
+        'filing',
+        "candidate_title",
+        "candidate_lastname",
+        "candidate_firstname",
+        "candidate_name_suffix",
+        "candidate_office_code",
+        "ballot_measure_name",
+        "ballot_measure_number",
+        "ballot_measure_jurisdiction",
+        "support_opposition_code"
+    )
+
+
+@admin.register(models.Form496Part1ItemVersion)
+class Form496Part1ItemVersionAdmin(BaseAdmin):
+    """
+    Custom admin for the Form496Part1ItemVersion model.
+    """
+    list_display = (
+        'filing_version',
+        "candidate_title",
+        "candidate_lastname",
+        "candidate_firstname",
+        "candidate_name_suffix",
+        "candidate_office_code",
+        "ballot_measure_name",
+        "ballot_measure_number",
+        "ballot_measure_jurisdiction",
+        "support_opposition_code"
+    )
+
+
+
 @admin.register(models.Form496Part2Item)
 class Form496Part2ItemAdmin(BaseAdmin):
     """

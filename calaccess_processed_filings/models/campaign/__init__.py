@@ -15,6 +15,8 @@ from .base import (
 from .form496 import (
     Form496Filing,
     Form496FilingVersion,
+    Form496Part1Item,
+    Form496Part1ItemVersion,
     Form496Part2Item,
     Form496Part2ItemVersion
 )
@@ -97,6 +99,8 @@ __all__ = (
     "CampaignLoanMadeItemBase",
     "Form496Filing",
     "Form496FilingVersion",
+    "Form496Part1Item",
+    "Form496Part1ItemVersion",
     "Form496Part2Item",
     "Form496Part2ItemVersion",
     "Form497Filing",
