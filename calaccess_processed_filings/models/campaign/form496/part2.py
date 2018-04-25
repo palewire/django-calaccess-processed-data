@@ -64,7 +64,6 @@ class Form496Part2ItemBase(FilingBaseModel):
                   '(from S496_CD.MEMO_REFNO)',
     )
 
-
     class Meta:
         """
         Model options.

@@ -79,7 +79,6 @@ class Form496Part1ItemVersionAdmin(BaseAdmin):
     )
 
 
-
 @admin.register(models.Form496Part2Item)
 class Form496Part2ItemAdmin(BaseAdmin):
     """
