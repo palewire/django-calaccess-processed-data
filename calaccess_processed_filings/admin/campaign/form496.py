@@ -39,3 +39,31 @@ class Form496FilingVersionAdmin(BaseAdmin):
         'date_filed',
         'election_date',
     )
+
+
+@admin.register(models.Form496Part2Item)
+class Form496Part2ItemAdmin(BaseAdmin):
+    """
+    Custom admin for the Form496Part2Item model.
+    """
+    list_display = (
+        'filing',
+        "line_item",
+        "expense_date",
+        "amount",
+        "transaction_id",
+    )
+
+
+@admin.register(models.Form496Part2ItemVersion)
+class Form496Part2ItemVersionAdmin(BaseAdmin):
+    """
+    Custom admin for the Form496Part2ItemVersion model.
+    """
+    list_display = (
+        'filing_version',
+        "line_item",
+        "expense_date",
+        "amount",
+        "transaction_id",
+    )
