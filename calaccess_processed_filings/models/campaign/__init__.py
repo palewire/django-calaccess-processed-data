@@ -18,7 +18,9 @@ from .form496 import (
     Form496Part1Item,
     Form496Part1ItemVersion,
     Form496Part2Item,
-    Form496Part2ItemVersion
+    Form496Part2ItemVersion,
+    Form496Part3Item,
+    Form496Part3ItemVersion
 )
 from .form497 import (
     Form497Filing,
@@ -103,6 +105,8 @@ __all__ = (
     "Form496Part1ItemVersion",
     "Form496Part2Item",
     "Form496Part2ItemVersion",
+    "Form496Part3Item",
+    "Form496Part3ItemVersion"
     "Form497Filing",
     "Form497FilingVersion",
     "Form497ItemBase",

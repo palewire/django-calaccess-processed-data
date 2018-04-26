@@ -12,6 +12,10 @@ from .part2 import (
     Form496Part2Item,
     Form496Part2ItemVersion
 )
+from .part3 import (
+    Form496Part3Item,
+    Form496Part3ItemVersion
+)
 
 __all__ = (
     "Form496Filing",
