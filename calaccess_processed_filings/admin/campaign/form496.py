@@ -105,3 +105,37 @@ class Form496Part2ItemVersionAdmin(BaseAdmin):
         "amount",
         "transaction_id",
     )
+
+
+@admin.register(models.Form496Part3Item)
+class Form496Part3ItemAdmin(BaseAdmin):
+    """
+    Custom admin for the Form496Part3Item model.
+    """
+    list_display = (
+        'filing',
+        'line_item',
+        'date_received',
+        'amount',
+        'transaction_id',
+        'contributor_code',
+        'contributor_lastname',
+        'contributor_firstname',
+    )
+
+
+@admin.register(models.Form496Part3ItemVersion)
+class Form496Part3ItemVersionAdmin(BaseAdmin):
+    """
+    Custom admin for the Form496Part3ItemVersion model.
+    """
+    list_display = (
+        'filing_version',
+        'line_item',
+        'date_received',
+        'amount',
+        'transaction_id',
+        'contributor_code',
+        'contributor_lastname',
+        'contributor_firstname',
+    )
