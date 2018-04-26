@@ -4,6 +4,7 @@ INSERT INTO calaccess_processed_filings_form496part1itemversion (
     candidate_lastname,
     candidate_firstname,
     candidate_name_suffix,
+    candidate_id,
     candidate_office_code,
     ballot_measure_name,
     ballot_measure_number,
@@ -16,6 +17,11 @@ SELECT
     UPPER(cvr."CAND_NAML") AS candidate_lastname,
     UPPER(cvr."CAND_NAMF") AS candidate_firstname,
     UPPER(cvr."CAND_NAMS") AS candidate_namesuffix,
+    -- replace '#', '`' and '.' with empty string
+    -- and trim leading/trailing whitespace
+    TRIM(
+        REPLACE(REPLACE(REPLACE(cvr."CAND_ID", '#', ''), '`', ''), '.', '')
+    ) AS candidate_id,
     UPPER(cvr."OFFICE_CD") AS candidate_office_code,
     UPPER(cvr."BAL_NAME") AS ballot_measure_name,
     UPPER(cvr."BAL_NUM") AS ballot_measure_number,
