@@ -106,7 +106,7 @@ __all__ = (
     "Form496Part2Item",
     "Form496Part2ItemVersion",
     "Form496Part3Item",
-    "Form496Part3ItemVersion"
+    "Form496Part3ItemVersion",
     "Form497Filing",
     "Form497FilingVersion",
     "Form497ItemBase",
