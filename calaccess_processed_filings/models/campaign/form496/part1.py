@@ -41,14 +41,14 @@ class Form496Part1ItemBase(FilingBaseModel):
         blank=True,
         help_text='Name suffix of the candidate (from CVR_CAMPAIGN_DISCLOSURE_CD.CAND_NAMS)',
     )
-    # candidate_id = models.CharField(
-    #     verbose_name='candidate id',
-    #     max_length=9,
-    #     blank=True,
-    #     help_text='Identifies the candidate to whom the contribution is '
-    #               'connected (from S497_CD.CAND_ID). This can be translated '
-    #               'to the filer_id by joining to FILER_XREF_CD.',
-    # )
+    candidate_id = models.CharField(
+        verbose_name='candidate id',
+        max_length=9,
+        blank=True,
+        help_text='Identifies the candidate to whom the contribution is '
+                  'connected (from S497_CD.CAND_ID). This can be translated '
+                  'to the filer_id by joining to FILER_XREF_CD.',
+    )
     candidate_office_code = models.CharField(
         verbose_name='candidate office code',
         max_length=3,
