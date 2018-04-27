@@ -39,3 +39,39 @@ class Form461FilingVersionAdmin(BaseAdmin):
         'date_filed',
         'election_date',
     )
+
+
+@admin.register(models.Form461Part5Item)
+class Form461Part5ItemAdmin(BaseAdmin):
+    """
+    Custom admin for the Form461Part5Item model.
+    """
+    list_display = (
+        'filing',
+        'line_item',
+        'expense_date',
+        'payee_code',
+        'payee_lastname',
+        'payee_firstname',
+        'amount',
+        'cumulative_ytd_amount',
+        'transaction_id',
+    )
+
+
+@admin.register(models.Form461Part5ItemVersion)
+class Form461Part5ItemVersionAdmin(BaseAdmin):
+    """
+    Custom admin for the Form461Part5ItemVersion model.
+    """
+    list_display = (
+        'filing_version',
+        'line_item',
+        'expense_date',
+        'payee_code',
+        'payee_lastname',
+        'payee_firstname',
+        'amount',
+        'cumulative_ytd_amount',
+        'transaction_id',
+    )
