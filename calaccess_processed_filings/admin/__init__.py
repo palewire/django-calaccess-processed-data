@@ -38,6 +38,10 @@ from .campaign.form460 import (
     Form460ScheduleIItemAdmin,
     Form460ScheduleIItemVersionAdmin,
 )
+from .campaign.form461 import (
+    Form461FilingAdmin,
+    Form461FilingVersionAdmin
+)
 from .campaign.form496 import (
     Form496FilingAdmin,
     Form496FilingVersionAdmin,
@@ -90,6 +94,8 @@ __all__ = (
     'Form460ScheduleH2ItemVersionOldAdmin',
     'Form460ScheduleIItemAdmin',
     'Form460ScheduleIItemVersionAdmin',
+    "Form461FilingAdmin",
+    "Form461FilingVersionAdmin",
     "Form496FilingAdmin",
     "Form496FilingVersionAdmin",
     "Form496Part1ItemAdmin",

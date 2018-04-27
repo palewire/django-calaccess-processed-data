@@ -83,7 +83,7 @@ class Form460FilingVersion(Form460FilingBase):
     amend_id = models.IntegerField(
         verbose_name='amendment id',
         null=False,
-        help_text='Identifies the version of the Form 497 filing, with 0 '
+        help_text='Identifies the version of the Form 460 filing, with 0 '
                   'representing the initial filing (from CVR_CAMPAIGN_'
                   'DISCLOSURE_CD.AMEND_ID)',
     )

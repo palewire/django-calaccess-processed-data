@@ -84,6 +84,10 @@ from .form460 import (
     Form460ScheduleIItem,
     Form460ScheduleIItemVersion
 )
+from .form461 import (
+    Form461Filing,
+    Form461FilingVersion
+)
 from .form501 import (
     Form501FilingBase,
     Form501Filing,
@@ -165,6 +169,8 @@ __all__ = (
     "Form460ScheduleIItemBase",
     "Form460ScheduleIItem",
     "Form460ScheduleIItemVersion",
+    "Form461Filing",
+    "Form461FilingVersion",
     "Form501FilingBase",
     "Form501Filing",
     "Form501FilingVersion",
