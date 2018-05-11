@@ -89,7 +89,7 @@ class Form460FilingBase(CampaignFinanceFilingBase):
         null=True,
         help_text="Total expenditures made (from line 11, column A)",
     )
-    begin_cash_balance = models.IntegerField(
+    beginning_cash_balance = models.IntegerField(
         verbose_name='begin cash balance',
         null=True,
         help_text="Beginning cash balance (from line 12), which is equal to "
