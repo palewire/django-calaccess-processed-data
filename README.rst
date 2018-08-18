@@ -1,8 +1,4 @@
-django-calaccess-processed-data
-===============================
-
-A Django app to transform and refine campaign finance data
-from the California Secretary of State’s `CAL-ACCESS <http://www.sos.ca.gov/prd/cal-access/>`__ database
+A Django app to transform and refine campaign-finance data from the California Secretary of State’s `CAL-ACCESS <http://www.sos.ca.gov/prd/cal-access/>`__ database
 
 |Build Status| |PyPI version| |Coverage Status| |Documentation Status|
 
