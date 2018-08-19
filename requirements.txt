@@ -1,5 +1,5 @@
 # The app
-django-calaccess-raw-data==2.0.0
+django-calaccess-raw-data==2.0.3
 django-calaccess-scraped-data==1.0.0
 -e git+https://github.com/california-civic-data-coalition/python-opencivicdata.git@HEAD#egg=opencivicdata
 Django==2.1.*
