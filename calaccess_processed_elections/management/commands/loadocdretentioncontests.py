@@ -39,7 +39,8 @@ class Command(CalAccessCommand):
         """
         if scraped_prop.name == '2003 RECALL QUESTION':
             # look up most recently scraped record for Gov. Gray Davis
-            incumbent = ScrapedCandidateProxy.objects.filter(name='DAVIS, GRAY',
+            incumbent = ScrapedCandidateProxy.objects.filter(
+                name='DAVIS, GRAY',
                 office_name__contains='GOVERNOR',
             ).latest('created')
         else:
