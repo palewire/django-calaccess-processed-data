@@ -118,12 +118,12 @@ class Command(CalAccessCommand):
         """
         Load all of the processed models.
         """
-        call_command(
-            'processcalaccessfilings',
-            verbosity=self.verbosity,
-            no_color=self.no_color,
-            force_restart=self.force_restart
-        )
+        # call_command(
+        #     'processcalaccessfilings',
+        #     verbosity=self.verbosity,
+        #     no_color=self.no_color,
+        #     force_restart=self.force_restart
+        # )
         call_command(
             'processcalaccesselections',
             verbosity=self.verbosity,
