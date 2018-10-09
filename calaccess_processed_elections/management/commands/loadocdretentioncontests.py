@@ -39,18 +39,18 @@ class Command(CalAccessCommand):
         """
         if scraped_prop.name == '2003 RECALL QUESTION':
             # look up most recently scraped record for Gov. Gray Davis
-            incumbent = ScrapedCandidateProxy.objects.filter(
-                name='DAVIS, GRAY',
-                office_name='GOVERNOR',
+            incumbent = ScrapedCandidateProxy.objects.filter(name='DAVIS, GRAY',
+                office_name__contains='GOVERNOR',
             ).latest('created')
         else:
             # extract the office name from the prop name
-            office = scraped_prop.name.split(' - ')[2].replace('DISTRICT ', '')
+            office = [p.strip().replace("DISTRICT ", "") for p in scraped_prop.name.split("-") if 'DISTRICT' in p][0]
+            session = re.search('\d{4}', scraped_prop.election.name).group()
             try:
                 # look up the most recent scraped incumbent in the office
                 incumbent = ScrapedIncumbentProxy.objects.filter(
                     office_name__contains=office,
-                    session__lt=re.search('\d{4}', scraped_prop.election.name).group()
+                    session__lt=session
                 )[0]
             except IndexError:
                 raise Exception("Unknown Incumbent in %s." % scraped_prop.name)
