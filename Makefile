@@ -9,7 +9,7 @@ ship:
 	twine upload dist/* --skip-existing
 
 test:
-	coverage run manage.py test calaccess_processed
+	coverage run example/manage.py test calaccess_processed
 	coverage report -m
 
 flake8:
