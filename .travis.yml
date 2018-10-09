@@ -27,12 +27,11 @@ install:
  - pip install -q Django==$DJANGO_VERSION
 
 before_script:
- - cp example/project/settings_local.py.template example/settings_local.py
- - psql -c 'CREATE DATABASE calaccess_processed;' -U postgres
+ - make settings
 
 script:
  - make flake8
- - coverage run example/manage.py test calaccess_processed
+ - make test
 
 after_success:
  - coveralls

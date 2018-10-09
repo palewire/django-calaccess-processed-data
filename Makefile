@@ -1,25 +1,7 @@
-
-.PHONY: bootstrap docs rs runserver shell sh test
-
-bootstrap:
-	createdb calaccess_processed -U postgres
-	python example/manage.py migrate
-	python example/manage.py runserver
+.PHONY: docs ship test flake8 settings
 
 docs:
 	cd docs && make livehtml
-
-rs:
-	python example/manage.py runserver
-
-runserver:
-	python example/manage.py runserver
-
-sh:
-	python example/manage.py shell
-
-shell:
-	python example/manage.py shell
 
 ship:
 	rm -rf build/
@@ -27,7 +9,7 @@ ship:
 	twine upload dist/* --skip-existing
 
 test:
-	coverage run example/manage.py test calaccess_processed
+	coverage manage.py test calaccess_processed
 	coverage report -m
 
 flake8:
@@ -36,3 +18,6 @@ flake8:
 	flake8 calaccess_processed_elections
 	flake8 calaccess_processed_filings --exclude=calaccess_processed_filings/migrations/*
 	flake8 calaccess_processed_flatfiles
+
+settings:
+	cp example/project/settings_local.py.template example/settings_local.py
