@@ -101,7 +101,7 @@ class ProcessedDataTest(TestCase):
         }
         m.register_uri(
             'HEAD',
-            'http://campaignfinance.cdn.sos.ca.gov/dbwebexport.zip',
+            'https://campaignfinance.cdn.sos.ca.gov/dbwebexport.zip',
             headers=headers,
         )
 
