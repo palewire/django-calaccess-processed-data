@@ -103,8 +103,7 @@ class OCDFilingActionSummaryAmountManager(CampaignFinanceManager):
 
         sum_fields = [
             f for f in Form460FilingVersion._meta.get_fields()
-            if f.__class__.__name__ == 'IntegerField' and
-            f.name[-3:] != '_id'
+            if f.__class__.__name__ == 'IntegerField' and f.name[-3:] != '_id'
         ]
         table_composable = sql.Identifier(Form460FilingVersion._meta.db_table)
         for f in sum_fields:
