@@ -9,12 +9,12 @@ A Django app to transform and refine campaign-finance data from the California S
 -  Packaging:
    `pypi.python.org/pypi/django-calaccess-processed-data <https://pypi.python.org/pypi/django-calaccess-processed-data>`__
 -  Testing:
-   `travis-ci.org/california-civic-data-coalition/django-calaccess-processed-data <https://travis-ci.org/california-civic-data-coalition/django-calaccess-processed-data>`__
+   `github.com/california-civic-data-coalition/django-calaccess-processed-data/actions <https://github.com/california-civic-data-coalition/django-calaccess-processed-data/actions/workflows/test.yaml>`__
 -  Coverage:
    `coveralls.io/r/california-civic-data-coalition/django-calaccess-processed-data <https://coveralls.io/r/california-civic-data-coalition/django-calaccess-processed-data>`__
 
-.. |Build Status| image:: https://travis-ci.org/california-civic-data-coalition/django-calaccess-processed-data.svg?branch=master
-   :target: https://travis-ci.org/california-civic-data-coalition/django-calaccess-processed-data
+.. |Build Status| image:: https://github.com/california-civic-data-coalition/django-calaccess-processed-data/actions/workflows/test.yaml/badge.svg
+   :target: https://github.com/california-civic-data-coalition/django-calaccess-processed-data/actions/workflows/test.yaml
 .. |PyPI version| image:: https://badge.fury.io/py/django-calaccess-processed-data.svg
    :target: http://badge.fury.io/py/django-calaccess-processed-data
 .. |Coverage Status| image:: https://coveralls.io/repos/california-civic-data-coalition/django-calaccess-processed-data/badge.svg?branch=master
