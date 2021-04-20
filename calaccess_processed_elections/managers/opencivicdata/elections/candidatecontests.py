@@ -34,8 +34,8 @@ class OCDCandidateContestQuerySet(CopyQuerySet):
         Filter to executive contests.
         """
         return self.filter(
-            Q(posts__post__organization__name='California State Executive Branch') |
-            Q(posts__post__organization__parent__name='California State Executive Branch')
+            Q(posts__post__organization__name='California State Executive Branch')
+            | Q(posts__post__organization__parent__name='California State Executive Branch')
         )
 
     def regular(self):

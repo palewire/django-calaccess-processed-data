@@ -19,8 +19,8 @@ class OCDFlatRetentionContestManager(BulkLoadSQLManager):
         return super(
             OCDFlatRetentionContestManager, self
         ).get_queryset().filter(
-            Q(identifiers__scheme='calaccess_measure_id') |
-            Q(identifiers__isnull=True)
+            Q(identifiers__scheme='calaccess_measure_id')
+            | Q(identifiers__isnull=True)
         ).annotate(
             office=F('membership__post__label'),
             office_holder=F('membership__person__name'),

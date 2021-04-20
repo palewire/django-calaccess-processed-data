@@ -20,8 +20,8 @@ class OCDFlatBallotMeasureContestManager(BulkLoadSQLManager):
             OCDFlatBallotMeasureContestManager, self
         ).get_queryset()
         return qs.filter(
-            Q(identifiers__scheme='calaccess_measure_id') |
-            Q(identifiers__isnull=True)
+            Q(identifiers__scheme='calaccess_measure_id')
+            | Q(identifiers__isnull=True)
         ).annotate(
             election_name=F('election__name'),
             election_date=F('election__date'),

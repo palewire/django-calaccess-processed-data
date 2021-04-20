@@ -25,8 +25,8 @@ class OCDFlatCandidacyManager(BulkLoadSQLManager):
         return super(
             OCDFlatCandidacyManager, self
         ).get_queryset().filter(
-            Q(person__identifiers__scheme='calaccess_filer_id') |
-            Q(person__identifiers__isnull=True)
+            Q(person__identifiers__scheme='calaccess_filer_id')
+            | Q(person__identifiers__isnull=True)
         ).annotate(
             name=F('candidate_name'),
             office=F('post__label'),

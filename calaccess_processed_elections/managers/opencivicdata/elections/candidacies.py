@@ -27,9 +27,9 @@ class OCDCandidacyQuerySet(CopyQuerySet):
         Returns a Candidacy object with the provided name from the CALACCESS database or scrape.
         """
         q = self.filter(
-            Q(candidate_name=name) |
-            Q(person__name=name) |
-            Q(person__other_names__name=name)
+            Q(candidate_name=name)
+            | Q(person__name=name)
+            | Q(person__other_names__name=name)
         ).distinct()
 
         if not q.exists():
