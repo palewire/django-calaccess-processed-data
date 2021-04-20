@@ -4,12 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django-calaccess-raw-data = "==2.0.3"
+django-calaccess-raw-data = "==2.0.6"
 django-calaccess-scraped-data = "==1.0.0"
 opencivicdata = {git = "https://github.com/california-civic-data-coalition/python-opencivicdata.git", editable = true, ref = "1679a4e5df381c777c3e6c53d7c056321662e99a"}
 Django = "==2.1.*"
 pytz = "*"
 "psycopg2-binary" = "*"
+twine = "*"
 
 [dev-packages]
 "flake8" = "*"
@@ -20,4 +21,4 @@ requests-mock = "*"
 twine = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3.8"
