@@ -146,8 +146,8 @@ class Command(CalAccessCommand):
         """
         # if there isn't more than one party and more than one filer_id
         if (
-            group_q.distinct('party').exclude(party__isnull=True).count() <= 1 and
-            self.get_group_filer_id_count(group_q) <= 1
+            group_q.distinct('party').exclude(party__isnull=True).count() <= 1
+            and self.get_group_filer_id_count(group_q) <= 1
         ):
             if self.verbosity > 2:
                 self.log_merged_persons(group_q, field_name)

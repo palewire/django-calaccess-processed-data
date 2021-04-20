@@ -30,10 +30,10 @@ def candidate_party(candidate_name, year, election_type, office):
     # Filter down to the ones that match
     matches = [
         d['party'] for d in corrections if (
-            d['candidate_name'] == candidate_name and
-            str(d['year']) == str(year) and
-            d['election_type'] == election_type and
-            d['office'] == office
+            d['candidate_name'] == candidate_name
+            and str(d['year']) == str(year)
+            and d['election_type'] == election_type
+            and d['office'] == office
         )
     ]
 

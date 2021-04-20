@@ -139,8 +139,8 @@ class OCDExecutivePostManager(BulkLoadSQLManager):
         Filters down to State Executive Branch posts.
         """
         return super(OCDExecutivePostManager, self).get_queryset().filter(
-            Q(organization__name='California State Executive Branch') |
-            Q(organization__parent__name='California State Executive Branch')
+            Q(organization__name='California State Executive Branch')
+            | Q(organization__parent__name='California State Executive Branch')
         )
 
 

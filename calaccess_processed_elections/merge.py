@@ -100,9 +100,9 @@ def dedupe_person_candidacies(person):
 
             # keep the candidate_name, if not already somewhere else
             if (
-                cand_to_discard.candidate_name != cand_to_keep.candidate_name and
-                cand_to_discard.candidate_name != cand_to_keep.person.name and
-                not cand_to_keep.person.other_names.filter(
+                cand_to_discard.candidate_name != cand_to_keep.candidate_name
+                and cand_to_discard.candidate_name != cand_to_keep.person.name
+                and not cand_to_keep.person.other_names.filter(
                     name=cand_to_discard.candidate_name
                 ).exists()
             ):

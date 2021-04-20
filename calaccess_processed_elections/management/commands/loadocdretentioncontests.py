@@ -46,7 +46,7 @@ class Command(CalAccessCommand):
         else:
             # extract the office name from the prop name
             office = [p.strip().replace("DISTRICT ", "") for p in scraped_prop.name.split("-") if 'DISTRICT' in p][0]
-            session = re.search('\d{4}', scraped_prop.election.name).group()
+            session = re.search(r'\d{4}', scraped_prop.election.name).group()
             try:
                 # look up the most recent scraped incumbent in the office
                 incumbent = ScrapedIncumbentProxy.objects.filter(

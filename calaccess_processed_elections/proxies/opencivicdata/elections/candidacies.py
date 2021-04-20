@@ -199,8 +199,8 @@ class OCDCandidacyProxy(Candidacy, OCDProxyModelMixin):
                 IntegerField(),
             )
         ).filter(
-            Q(end_year__gt=self.election.date.year) |
-            Q(end_date='')
+            Q(end_year__gt=self.election.date.year)
+            | Q(end_date='')
         )
         if incumbent_q.exists():
             return True
