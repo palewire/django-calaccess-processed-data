@@ -5,19 +5,19 @@ docs:
 
 ship:
 	rm -rf build/
-	python setup.py sdist bdist_wheel
-	twine upload dist/* --skip-existing
+	pipenv run python setup.py sdist bdist_wheel
+	pipenv run twine upload dist/* --skip-existing
 
 test:
-	coverage run example/manage.py test calaccess_processed
-	coverage report -m
+	pipenv run coverage run example/manage.py test calaccess_processed
+	pipenv run coverage report -m
 
 flake8:
-	flake8 calaccess_processed --exclude=calaccess_processed/migrations/*
-	flake8 calaccess_processed_campaignfinance
-	flake8 calaccess_processed_elections
-	flake8 calaccess_processed_filings --exclude=calaccess_processed_filings/migrations/*
-	flake8 calaccess_processed_flatfiles
+	pipenv run flake8 calaccess_processed --exclude=calaccess_processed/migrations/*
+	pipenv run flake8 calaccess_processed_campaignfinance
+	pipenv run flake8 calaccess_processed_elections
+	pipenv run flake8 calaccess_processed_filings --exclude=calaccess_processed_filings/migrations/*
+	pipenv run flake8 calaccess_processed_flatfiles
 
 settings:
 	cp example/project/settings_local.py.template example/settings_local.py
