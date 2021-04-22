@@ -12,10 +12,8 @@ from calaccess_processed import archive_directory_path
 
 # Models
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 
 
-@python_2_unicode_compatible
 class ProcessedDataVersion(models.Model):
     """
     A version of CAL-ACCESS processed data.
@@ -91,7 +89,6 @@ class ProcessedDataVersion(models.Model):
         return self.files.filter(file_name=file_name).exists()
 
 
-@python_2_unicode_compatible
 class ProcessedDataZip(models.Model):
     """
     A zip file containing a subset of processed data files for a version.
@@ -143,7 +140,6 @@ class ProcessedDataZip(models.Model):
     pretty_zip_size.admin_order_field = 'processed zip size'
 
 
-@python_2_unicode_compatible
 class ProcessedDataFile(models.Model):
     """
     A data file included in a processed version of CAL-ACCESS.

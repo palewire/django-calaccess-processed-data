@@ -5,10 +5,8 @@ Models for storing data from Schedule 497, the Late Contribution Reports.
 
 More about the filing: http://calaccess.californiacivicdata.org/documentation/calaccess-forms/f497/
 """
-from __future__ import unicode_literals
 from django.db import models
 from .base import Form497ItemBase
-from django.utils.encoding import python_2_unicode_compatible
 
 
 class Form497Part2ItemBase(Form497ItemBase):
@@ -202,7 +200,6 @@ class Form497Part2ItemBase(Form497ItemBase):
         abstract = True
 
 
-@python_2_unicode_compatible
 class Form497Part2Item(Form497Part2ItemBase):
     """
     Late contributions made by campaign filers.
@@ -238,7 +235,6 @@ class Form497Part2Item(Form497Part2ItemBase):
         return '%s-%s' % (self.filing, self.line_item)
 
 
-@python_2_unicode_compatible
 class Form497Part2ItemVersion(Form497Part2ItemBase):
     """
     Every version of each late contribution made by a campaign filer.

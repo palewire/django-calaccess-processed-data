@@ -3,9 +3,7 @@
 """
 Models for storing data from Campaign Disclosure Statements (Form 460).
 """
-from __future__ import unicode_literals
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed_filings.models.campaign import CampaignContributionBase
 
 
@@ -40,7 +38,6 @@ class Form460ScheduleIItemBase(CampaignContributionBase):
         abstract = True
 
 
-@python_2_unicode_compatible
 class Form460ScheduleIItem(Form460ScheduleIItemBase):
     """
     Miscellaneous cash increases to the coffers of campaign filers.
@@ -80,7 +77,6 @@ class Form460ScheduleIItem(Form460ScheduleIItemBase):
         return '%s-%s' % (self.filing, self.line_item)
 
 
-@python_2_unicode_compatible
 class Form460ScheduleIItemVersion(Form460ScheduleIItemBase):
     """
     Every version of each miscellaneous cash increase for a campaign filer.

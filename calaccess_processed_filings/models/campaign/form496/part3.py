@@ -5,9 +5,7 @@ Models for storing Part 3 data from Schedule 496, the Late Independent Expenditu
 
 More about the filing: https://calaccess.californiacivicdata.org/documentation/calaccess-forms/f496/
 """
-from __future__ import unicode_literals
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed_filings.models.campaign import CampaignContributionBase
 
 
@@ -42,7 +40,6 @@ class Form496Part3ItemBase(CampaignContributionBase):
         abstract = True
 
 
-@python_2_unicode_compatible
 class Form496Part3Item(Form496Part3ItemBase):
     """
     Monetary contributions of greater than $100 from the Form 496's Part 3.
@@ -71,7 +68,6 @@ class Form496Part3Item(Form496Part3ItemBase):
         return '%s-%s' % (self.filing, self.line_item)
 
 
-@python_2_unicode_compatible
 class Form496Part3ItemVersion(Form496Part3ItemBase):
     """
     Every version of monetary contributions of greater than $100 from the Form 496's Part 3.

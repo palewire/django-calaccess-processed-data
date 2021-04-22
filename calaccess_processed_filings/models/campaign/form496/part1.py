@@ -5,10 +5,8 @@ Models for storing Part 1 data from Schedule 497, the Late Independent Expenditu
 
 More about the filing: https://calaccess.californiacivicdata.org/documentation/calaccess-forms/f496/
 """
-from __future__ import unicode_literals
 from django.db import models
 from calaccess_processed_filings.models.base import FilingBaseModel
-from django.utils.encoding import python_2_unicode_compatible
 
 
 class Form496Part1ItemBase(FilingBaseModel):
@@ -97,7 +95,6 @@ class Form496Part1ItemBase(FilingBaseModel):
         abstract = True
 
 
-@python_2_unicode_compatible
 class Form496Part1Item(Form496Part1ItemBase):
     """
     Late independent expenditures made by campaign filers.
@@ -123,7 +120,6 @@ class Form496Part1Item(Form496Part1ItemBase):
         return str(self.filing)
 
 
-@python_2_unicode_compatible
 class Form496Part1ItemVersion(Form496Part1ItemBase):
     """
     Every version of each late independent expenditures made by campaign filers.

@@ -3,9 +3,7 @@
 """
 Models for storing campaign-related entities derived from raw CAL-ACCESS data.
 """
-from __future__ import unicode_literals
 from datetime import date
-from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed_elections import corrections, get_expected_election_date
 
 # Managers
@@ -205,7 +203,6 @@ class Form501FilingBase(FilingBaseModel):
         app_label = 'calaccess_processed_filings'
 
 
-@python_2_unicode_compatible
 class Form501Filing(Form501FilingBase):
     """
     The most recent version of each Form 501 filing by a candidate.
@@ -398,7 +395,6 @@ class Form501Filing(Form501FilingBase):
                 return None
 
 
-@python_2_unicode_compatible
 class Form501FilingVersion(Form501FilingBase):
     """
     Every version of each Form 501 (Candidate Intention Statement) filing by candidates.

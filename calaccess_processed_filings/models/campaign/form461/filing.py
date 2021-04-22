@@ -3,9 +3,7 @@
 """
 Models for storing data from Campaign Disclosure Statements (Form 461).
 """
-from __future__ import unicode_literals
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed_filings.models.campaign import CampaignFinanceFilingBase
 
 
@@ -45,7 +43,6 @@ class Form461FilingBase(CampaignFinanceFilingBase):
         return str(self.filing_id)
 
 
-@python_2_unicode_compatible
 class Form461Filing(Form461FilingBase):
     """
     The most recent version of each Form 461 filing by independent expenditure or major donor committees.
@@ -80,7 +77,6 @@ class Form461Filing(Form461FilingBase):
         return str(self.filing_id)
 
 
-@python_2_unicode_compatible
 class Form461FilingVersion(Form461FilingBase):
     """
     Every version of each Form 461 filing by independent expenditure or major donor committees.

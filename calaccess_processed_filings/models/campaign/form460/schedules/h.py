@@ -3,9 +3,7 @@
 """
 Models for storing data from Campaign Disclosure Statements (Form 460).
 """
-from __future__ import unicode_literals
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed_filings.models.campaign import CampaignLoanMadeItemBase
 
 
@@ -103,7 +101,6 @@ class Form460ScheduleHItemBase(CampaignLoanMadeItemBase):
         abstract = True
 
 
-@python_2_unicode_compatible
 class Form460ScheduleHItem(Form460ScheduleHItemBase):
     """
     Loans made by campaign filers to other recipients.
@@ -138,7 +135,6 @@ class Form460ScheduleHItem(Form460ScheduleHItemBase):
         return '%s-%s' % (self.filing, self.line_item)
 
 
-@python_2_unicode_compatible
 class Form460ScheduleHItemVersion(Form460ScheduleHItemBase):
     """
     Every version of each loan made by a campaign filer another recipient.
@@ -235,7 +231,6 @@ class Form460ScheduleH2ItemBaseOld(CampaignLoanMadeItemBase):
         abstract = True
 
 
-@python_2_unicode_compatible
 class Form460ScheduleH2ItemOld(Form460ScheduleH2ItemBaseOld):
     """
     Repayments on loans/forgiven loans made by campaign filers circa 2001.
@@ -271,7 +266,6 @@ class Form460ScheduleH2ItemOld(Form460ScheduleH2ItemBaseOld):
         return '%s-%s' % (self.filing, self.line_item)
 
 
-@python_2_unicode_compatible
 class Form460ScheduleH2ItemVersionOld(Form460ScheduleH2ItemBaseOld):
     """
     Every version of each repayment/forgiveness of a loan by a campaign filer circa 2001.

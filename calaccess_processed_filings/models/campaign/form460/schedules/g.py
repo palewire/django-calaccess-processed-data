@@ -3,9 +3,7 @@
 """
 Models for storing data from Campaign Disclosure Statements (Form 460).
 """
-from __future__ import unicode_literals
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed_filings.models.campaign import CampaignExpenditureSubItemBase
 
 
@@ -60,7 +58,6 @@ class Form460ScheduleGItemBase(CampaignExpenditureSubItemBase):
         abstract = True
 
 
-@python_2_unicode_compatible
 class Form460ScheduleGItem(Form460ScheduleGItemBase):
     """
     Payments made by on behalf of campaign filers.
@@ -95,7 +92,6 @@ class Form460ScheduleGItem(Form460ScheduleGItemBase):
         return '%s-%s' % (self.filing, self.line_item)
 
 
-@python_2_unicode_compatible
 class Form460ScheduleGItemVersion(Form460ScheduleGItemBase):
     """
     Every version of each payment made on behalf of a campaign filer.

@@ -5,7 +5,6 @@ Models for storing data from Schedule 497, the Late Contribution Reports.
 
 More about the filing: http://calaccess.californiacivicdata.org/documentation/calaccess-forms/f497/
 """
-from __future__ import unicode_literals
 from django.db import models
 from calaccess_processed_filings.models.base import FilingBaseModel
 

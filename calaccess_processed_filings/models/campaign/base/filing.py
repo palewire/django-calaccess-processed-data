@@ -3,7 +3,6 @@
 """
 Abstract base models for campaign finance-related filings and transactions.
 """
-from __future__ import unicode_literals
 from django.db import models
 from calaccess_processed_filings.models.base import FilingBaseModel
 

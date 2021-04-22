@@ -3,13 +3,10 @@
 """
 Models for storing data from Campaign Disclosure Statements (Form 460).
 """
-from __future__ import unicode_literals
 from django.db import models
 from .base import Form460FilingBase
-from django.utils.encoding import python_2_unicode_compatible
 
 
-@python_2_unicode_compatible
 class Form460Filing(Form460FilingBase):
     """
     The most recent version of each Form 460 filing by recipient committees.
@@ -62,7 +59,6 @@ class Form460Filing(Form460FilingBase):
         return str(self.filing_id)
 
 
-@python_2_unicode_compatible
 class Form460FilingVersion(Form460FilingBase):
     """
     Every version of each Form 460 (Campaign Disclosure Statement) filing by recipient committees.

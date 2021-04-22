@@ -3,13 +3,10 @@
 """
 Models for storing data from Campaign Disclosure Statements (Form 461) Part 5 schedules.
 """
-from __future__ import unicode_literals
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed_filings.models.campaign import CampaignExpenditureItemBase
 
 
-@python_2_unicode_compatible
 class Form461Part5Item(CampaignExpenditureItemBase):
     """
     Payments made by Form 461 filers.
@@ -38,7 +35,6 @@ class Form461Part5Item(CampaignExpenditureItemBase):
         return '%s-%s' % (self.filing, self.line_item)
 
 
-@python_2_unicode_compatible
 class Form461Part5ItemVersion(CampaignExpenditureItemBase):
     """
     Every version of each payment made by a Form 461 filing.

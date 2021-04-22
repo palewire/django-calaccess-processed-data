@@ -5,15 +5,11 @@ Models for storing data from Schedule 497, the Late Contribution Reports.
 
 More about the filing: http://calaccess.californiacivicdata.org/documentation/calaccess-forms/f497/
 """
-from __future__ import unicode_literals
-
 # Models
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed_filings.models.campaign import CampaignFinanceFilingBase
 
 
-@python_2_unicode_compatible
 class Form497Filing(CampaignFinanceFilingBase):
     """
     The most recent version of each Schedule 497 filing by campaign filers.
@@ -58,7 +54,6 @@ class Form497Filing(CampaignFinanceFilingBase):
         return str(self.filing_id)
 
 
-@python_2_unicode_compatible
 class Form497FilingVersion(CampaignFinanceFilingBase):
     """
     Every version of each Schedule 497 filing by a campaign filer.

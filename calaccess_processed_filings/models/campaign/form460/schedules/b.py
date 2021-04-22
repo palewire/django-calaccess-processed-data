@@ -3,9 +3,7 @@
 """
 Models for storing data from Campaign Disclosure Statements (Form 460).
 """
-from __future__ import unicode_literals
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed_filings.models.base import FilingBaseModel
 from calaccess_processed_filings.models.campaign import CampaignLoanReceivedItemBase
 
@@ -94,7 +92,6 @@ class Form460ScheduleB1ItemBase(CampaignLoanReceivedItemBase):
         abstract = True
 
 
-@python_2_unicode_compatible
 class Form460ScheduleB1Item(Form460ScheduleB1ItemBase):
     """
     Loans received and loan payments by campaign filers.
@@ -129,7 +126,6 @@ class Form460ScheduleB1Item(Form460ScheduleB1ItemBase):
         return '%s-%s' % (self.filing, self.line_item)
 
 
-@python_2_unicode_compatible
 class Form460ScheduleB1ItemVersion(Form460ScheduleB1ItemBase):
     """
     Every version of each loan received or loan payment made by a campaign filer.
@@ -334,7 +330,6 @@ class Form460ScheduleB2ItemBase(FilingBaseModel):
         abstract = True
 
 
-@python_2_unicode_compatible
 class Form460ScheduleB2Item(Form460ScheduleB2ItemBase):
     """
     Guarantees of loans and lines of credit received by campaign filers.
@@ -369,7 +364,6 @@ class Form460ScheduleB2Item(Form460ScheduleB2ItemBase):
         return '%s-%s' % (self.filing, self.line_item)
 
 
-@python_2_unicode_compatible
 class Form460ScheduleB2ItemVersion(Form460ScheduleB2ItemBase):
     """
     Every version of each guarantee of a loan/line of credit to a campaign filer.
@@ -473,7 +467,6 @@ class Form460ScheduleB2ItemBaseOld(CampaignLoanReceivedItemBase):
         abstract = True
 
 
-@python_2_unicode_compatible
 class Form460ScheduleB2ItemOld(Form460ScheduleB2ItemBaseOld):
     """
     Repayments on loans/forgiven loans received by campaign filers circa 2001.
@@ -510,7 +503,6 @@ class Form460ScheduleB2ItemOld(Form460ScheduleB2ItemBaseOld):
         return '%s-%s' % (self.filing, self.line_item)
 
 
-@python_2_unicode_compatible
 class Form460ScheduleB2ItemVersionOld(Form460ScheduleB2ItemBaseOld):
     """
     Every version of each repayment/forgiveness of a loan to a campaign filer circa 2001.

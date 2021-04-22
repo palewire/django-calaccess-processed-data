@@ -3,9 +3,7 @@
 """
 Models for storing data from Campaign Disclosure Statements (Form 460).
 """
-from __future__ import unicode_literals
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from calaccess_processed_filings.models.base import FilingBaseModel
 
 
@@ -236,7 +234,6 @@ class Form460ScheduleFItemBase(FilingBaseModel):
         abstract = True
 
 
-@python_2_unicode_compatible
 class Form460ScheduleFItem(Form460ScheduleFItemBase):
     """
     Accrued expenses of campaign filers.
@@ -271,7 +268,6 @@ class Form460ScheduleFItem(Form460ScheduleFItemBase):
         return '%s-%s' % (self.filing, self.line_item)
 
 
-@python_2_unicode_compatible
 class Form460ScheduleFItemVersion(Form460ScheduleFItemBase):
     """
     Every version of each accrued expense of a campaign filer.
