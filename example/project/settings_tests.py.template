@@ -4,7 +4,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'calaccess_processed',
-        'USER': 'test,
+        'USER': 'test',
         'PASSWORD': 'test',
         'HOST': 'localhost',
         'PORT': '5432'
