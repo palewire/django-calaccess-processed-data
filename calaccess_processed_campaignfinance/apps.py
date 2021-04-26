@@ -14,5 +14,6 @@ class CalAccessProcessedCampaignFinanceConfig(AppConfig):
     """
     name = 'calaccess_processed_campaignfinance'
     verbose_name = "CAL-ACCESS processed data: Campaign finance"
+    DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
     # Where SQL files are stored in this application
     sql_directory_path = os.path.join(os.path.dirname(__file__), 'sql')

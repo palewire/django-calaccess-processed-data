@@ -14,6 +14,7 @@ class CalAccessProcessedConfig(AppConfig):
     """
     name = 'calaccess_processed'
     verbose_name = "CAL-ACCESS processed data"
+    DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
     # Where SQL files are stored in this application
     sql_directory_path = os.path.join(os.path.dirname(__file__), 'sql')
 
