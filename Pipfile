@@ -10,7 +10,6 @@ opencivicdata = {git = "https://github.com/california-civic-data-coalition/pytho
 Django = ">=3.2.*"
 pytz = "*"
 "psycopg2-binary" = "*"
-twine = "*"
 
 [dev-packages]
 "flake8" = "*"
