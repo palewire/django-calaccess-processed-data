@@ -65,7 +65,7 @@ class ProcessedDataTest(TransactionTestCase):
 #    @requests_mock.Mocker()
 #    def setUpTestData(cls, m):
     @requests_mock.Mocker()
-    def test_data(self, m)
+    def test_data(self, m):
         """
         Load data for other tests.
         """
