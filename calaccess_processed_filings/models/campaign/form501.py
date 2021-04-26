@@ -165,7 +165,7 @@ class Form501FilingBase(FilingBaseModel):
         null=True,
         help_text='Year in which the election is held (from F501_502_CD.YR_OF_ELEC)',
     )
-    accepted_limit = models.NullBooleanField(
+    accepted_limit = models.BooleanField(
         null=True,
         help_text='Indicates if either the "I accept the voluntary expenditure '
                   'ceiling" or "I do not accept the voluntary expenditure" '
