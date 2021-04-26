@@ -41,6 +41,7 @@ class NoProcessedDataTest(TestCase):
         Confirm process command will not run without data.
         """
         with self.assertRaises(CommandError):
+            call_command("loadcalaccessscrapeddata", verbosity=3)
             call_command("processcalaccessdata", verbosity=3)
 
 
