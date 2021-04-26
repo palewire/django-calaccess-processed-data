@@ -36,6 +36,6 @@ jobs:
 
       - name: Test
         run: |
-          cp example/project/settings_tests.py.template example/settings_local.py
+          cp example/project/settings_tests.py.template example/project/settings_local.py
           make flake8
           make test
