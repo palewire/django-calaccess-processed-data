@@ -1,0 +1,14 @@
+import os
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'calaccess_processed',
+        'USER': 'test,
+        'PASSWORD': 'test',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    },
+}
+
+CALACCESS_STORE_ARCHIVE = False

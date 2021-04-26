@@ -16,11 +16,16 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Set up PostgreSQL
-        uses: harmon758/postgresql-action@v1
+      - name: Install GIS packages
+        run: sudo apt-get install binutils libproj-dev gdal-bin
+
+      - name: Set up PostGIS
+        uses: huaxk/postgis-action@v1
         with:
           postgresql version: '11'
-          postgresql: calaccess_processed
+          postgresql db: calaccess_processed
+          postgresql user: test
+          postgresql password: test
 
       - name: Install
         run: |
@@ -31,6 +36,6 @@ jobs:
 
       - name: Test
         run: |
-          make settings
+          cp example/project/settings_tests.py.template example/settings_local.py
           make flake8
           make test
