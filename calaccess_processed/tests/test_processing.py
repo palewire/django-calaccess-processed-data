@@ -15,7 +15,7 @@ from django.utils.timezone import now
 # Django bits
 from django.conf import settings
 from django.core.management import call_command
-from django.test import TestCase, override_settings
+from django.test import TestCase, override_settings, TransactionTestCase
 from django.core.management.base import CommandError
 
 # Models
@@ -47,7 +47,7 @@ class NoProcessedDataTest(TestCase):
 @override_settings(CALACCESS_DATA_DIR=os.path.join(settings.BASE_DIR, 'test-data'))
 @override_settings(MEDIA_ROOT=os.path.join(settings.BASE_DIR, 'test-data', ".media"))
 @override_settings(CALACCESS_STORE_ARCHIVE=True)
-class ProcessedDataTest(TestCase):
+class ProcessedDataTest(TransactionTestCase):
     """
     Run and test management commands.
     """
