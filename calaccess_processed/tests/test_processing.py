@@ -61,9 +61,11 @@ class ProcessedDataTest(TransactionTestCase):
         'proposition.json',
     ]
 
-    @classmethod
+#    @classmethod
+#    @requests_mock.Mocker()
+#    def setUpTestData(cls, m):
     @requests_mock.Mocker()
-    def setUpTestData(cls, m):
+    def test_data(self, m)
         """
         Load data for other tests.
         """
@@ -107,10 +109,10 @@ class ProcessedDataTest(TransactionTestCase):
         call_command("loadcalaccessscrapeddata", verbosity=3)
         call_command("processcalaccessdata", verbosity=3)
 
-    def test_scraped_propositions(self):
-        """
-        Test the scraped propostions loaded into the database.
-        """
+#    def test_scraped_propositions(self):
+#        """
+#        Test the scraped propostions loaded into the database.
+#        """
         # Confirm count of scraped propositions with a name that doesn't
         # include "RECALL" equals the count of loaded BallotMeasureContest.
         self.assertEqual(
@@ -118,10 +120,10 @@ class ProcessedDataTest(TransactionTestCase):
             BallotMeasureContest.objects.count(),
         )
 
-    def test_correction(self):
-        """
-        Test that we can retrieve a correction directly.
-        """
+#    def test_correction(self):
+#        """
+#        Test that we can retrieve a correction directly.
+#        """
         from calaccess_processed_elections import corrections
         correx = corrections.candidate_party(
             "WINSTON, ALMA MARIE",
@@ -131,248 +133,248 @@ class ProcessedDataTest(TransactionTestCase):
         )
         self.assertEqual(correx.name, "REPUBLICAN")
 
-    def test_correction_assignment_by_proxy(self):
-        """
-        Test that a correction is properly being applied when parties are retrieved.
-        """
-        from calaccess_processed_elections.proxies import ScrapedCandidateProxy
-        obj = ScrapedCandidateProxy.objects.get(name='WINSTON, ALMA MARIE')
-        self.assertEqual(obj.get_party().name, 'REPUBLICAN')
+#    def test_correction_assignment_by_proxy(self):
+#        """
+#        Test that a correction is properly being applied when parties are retrieved.
+#        """
+#        from calaccess_processed_elections.proxies import ScrapedCandidateProxy
+#        obj = ScrapedCandidateProxy.objects.get(name='WINSTON, ALMA MARIE')
+#        self.assertEqual(obj.get_party().name, 'REPUBLICAN')
 
-    def test_processed_version_completed(self):
-        """
-        Test that the processed version was completed.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        self.assertTrue(processed_version.update_completed)
+#    def test_processed_version_completed(self):
+#        """
+#        Test that the processed version was completed.
+#        """
+#        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+#        self.assertTrue(processed_version.update_completed)
 
-    def test_flat_zip_archived(self):
-        """
-        Confirm that a flat zip was archived.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        has_flat_zip = processed_version.zips.filter(zip_archive__icontains='flat').exists()
-        self.assertTrue(has_flat_zip)
+#    def test_flat_zip_archived(self):
+#        """
+#        Confirm that a flat zip was archived.
+#        """
+#        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+#        has_flat_zip = processed_version.zips.filter(zip_archive__icontains='flat').exists()
+#        self.assertTrue(has_flat_zip)
 
-    def test_relational_zip_archived(self):
-        """
-        Confirm that a relational zip was archived.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        has_relational_zip = processed_version.zips.filter(zip_archive__icontains='relational').exists()
-        self.assertTrue(has_relational_zip)
+#    def test_relational_zip_archived(self):
+#        """
+#        Confirm that a relational zip was archived.
+#        """
+#        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+#        has_relational_zip = processed_version.zips.filter(zip_archive__icontains='relational').exists()
+#        self.assertTrue(has_relational_zip)
 
-    def test_zip_sizes(self):
-        """
-        Confirm that each archived zip's size is the same as the actual file size.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        for z in processed_version.zips.all():
-            self.assertEqual(z.zip_size, os.path.getsize(z.zip_archive.path))
+#    def test_zip_sizes(self):
+#        """
+#        Confirm that each archived zip's size is the same as the actual file size.
+#        """
+#        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+#        for z in processed_version.zips.all():
+#            self.assertEqual(z.zip_size, os.path.getsize(z.zip_archive.path))
 
-    def test_processed_file_finished(self):
-        """
-        Test that each processed file was marked finished.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        for df in processed_version.files.all():
-            self.assertTrue(df.process_finish_datetime)
+#    def test_processed_file_finished(self):
+#        """
+#        Test that each processed file was marked finished.
+#        """
+#        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+#        for df in processed_version.files.all():
+#            self.assertTrue(df.process_finish_datetime)
 
-    def test_processed_file_archived(self):
-        """
-        Test that each processed file was archived.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        for df in processed_version.files.all():
-            self.assertTrue(df.file_archive)
+#    def test_processed_file_archived(self):
+#        """
+#        Test that each processed file was archived.
+#        """
+#        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+#        for df in processed_version.files.all():
+#            self.assertTrue(df.file_archive)
 
-    def test_processed_file_size(self):
-        """
-        Test that each processed file_size is the same as file's size.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        for df in processed_version.files.all():
-            self.assertEqual(df.file_size, os.path.getsize(df.file_archive.path))
+#    def test_processed_file_size(self):
+#        """
+#        Test that each processed file_size is the same as file's size.
+#        """
+#        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+#        for df in processed_version.files.all():
+#            self.assertEqual(df.file_size, os.path.getsize(df.file_archive.path))
 
-    def test_processed_file_records_count(self):
-        """
-        Test that each processed records_count is the same as rows in file.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        for df in processed_version.files.all():
-            df.file_archive.open()
-            row_count = sum(1 for _ in df.file_archive) - 1
-            df.file_archive.close()
-            self.assertEqual(df.records_count, row_count)
+#    def test_processed_file_records_count(self):
+#        """
+#        Test that each processed records_count is the same as rows in file.
+#        """
+#        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+#        for df in processed_version.files.all():
+#            df.file_archive.open()
+#            row_count = sum(1 for _ in df.file_archive) - 1
+#            df.file_archive.close()
+#            self.assertEqual(df.records_count, row_count)
 
-    def test_flat_file_row_counts(self):
-        """
-        Test that count of rows in flat files is same as row count in base model.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
+#    def test_flat_file_row_counts(self):
+#        """
+#        Test that count of rows in flat files is same as row count in base model.
+#        """
+#        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
 
-        flat_processed_files = [df for df in processed_version.files.all() if df.is_flat]
+#        flat_processed_files = [df for df in processed_version.files.all() if df.is_flat]
 
-        for df in flat_processed_files:
-            # get count from archived file of flat model
-            df.file_archive.open()
-            flat_row_count = sum(1 for _ in df.file_archive) - 1
-            df.file_archive.close()
+#        for df in flat_processed_files:
+#            # get count from archived file of flat model
+#            df.file_archive.open()
+#            flat_row_count = sum(1 for _ in df.file_archive) - 1
+#            df.file_archive.close()
 
-            # get count from archived file of the base model
-            base_model_name = df.model().base_model._meta.object_name
-            base_model_df = processed_version.files.get(
-                file_name=base_model_name
-            )
-            base_model_df.file_archive.open()
-            base_row_count = sum(1 for _ in base_model_df.file_archive) - 1
-            base_model_df.file_archive.close()
+#            # get count from archived file of the base model
+#            base_model_name = df.model().base_model._meta.object_name
+#            base_model_df = processed_version.files.get(
+#                file_name=base_model_name
+#            )
+#            base_model_df.file_archive.open()
+#            base_row_count = sum(1 for _ in base_model_df.file_archive) - 1
+#            base_model_df.file_archive.close()
 
-            self.assertEqual(flat_row_count, base_row_count)
+#            self.assertEqual(flat_row_count, base_row_count)
 
-    def test_scraped_candidates(self):
-        """
-        Test the scraped candidates loaded into the database.
-        """
-        # Confirm that the count of scraped candidates equals the count loaded
-        # into Candidacy with a scraped source
-        # minus one, since Jim Fitzgerald didn't really run in the
-        # Dem primary in 2008
-        self.assertEqual(
-            ScrapedCandidate.objects.count() - 1,
-            Candidacy.objects.filter(
-                sources__url__contains='http://cal-access.sos.ca.gov/Campaign/Candidates/list.aspx?view=certified' # noqa
-            ).count(),
-        )
-        # For each CandidateContest...
-        for contest in CandidateContest.objects.all():
-            # Confirm there isn't more than one incumbent
-            self.assertTrue(
-                contest.candidacies.filter(is_incumbent=True).count() <= 1,
-                msg="Multiple incumbents in {}!".format(contest),
-            )
+#    def test_scraped_candidates(self):
+#        """
+#        Test the scraped candidates loaded into the database.
+#        """
+#        # Confirm that the count of scraped candidates equals the count loaded
+#        # into Candidacy with a scraped source
+#        # minus one, since Jim Fitzgerald didn't really run in the
+#        # Dem primary in 2008
+#        self.assertEqual(
+#            ScrapedCandidate.objects.count() - 1,
+#            Candidacy.objects.filter(
+#                sources__url__contains='http://cal-access.sos.ca.gov/Campaign/Candidates/list.aspx?view=certified' # noqa
+#            ).count(),
+#        )
+#        # For each CandidateContest...
+#        for contest in CandidateContest.objects.all():
+#            # Confirm there isn't more than one incumbent
+#            self.assertTrue(
+#                contest.candidacies.filter(is_incumbent=True).count() <= 1,
+#                msg="Multiple incumbents in {}!".format(contest),
+#            )
 
-            # Confirm there aren't multiple Candidacies with the same person_id
-            person_id_groups_q = contest.candidacies.values(
-                'person_id',
-            ).annotate(
-                row_count=models.Count('id'),
-            ).order_by().filter(row_count__gt=1)
+#            # Confirm there aren't multiple Candidacies with the same person_id
+#            person_id_groups_q = contest.candidacies.values(
+#                'person_id',
+#            ).annotate(
+#                row_count=models.Count('id'),
+#            ).order_by().filter(row_count__gt=1)
 
-            self.assertTrue(
-                person_id_groups_q.count() == 0,
-                msg="Multiple candidacies with same person_id in {}!".format(
-                    contest
-                ),
-            )
+#            self.assertTrue(
+#                person_id_groups_q.count() == 0,
+#                msg="Multiple candidacies with same person_id in {}!".format(
+#                    contest
+#                ),
+#            )
 
-            # Confirm there aren't multiple Candidacies with the same filer_id
-            filer_id_groups_q = contest.candidacies.filter(
-                person__identifiers__scheme='calaccess_filer_id'
-            ).values(
-                'person__identifiers__identifier'
-            ).annotate(
-                row_count=models.Count('id'),
-            ).order_by().filter(row_count__gt=1)
+#            # Confirm there aren't multiple Candidacies with the same filer_id
+#            filer_id_groups_q = contest.candidacies.filter(
+#                person__identifiers__scheme='calaccess_filer_id'
+#            ).values(
+#                'person__identifiers__identifier'
+#            ).annotate(
+#                row_count=models.Count('id'),
+#            ).order_by().filter(row_count__gt=1)
 
-            self.assertTrue(
-                filer_id_groups_q.count() == 0,
-                msg="Multiple candidacies with same filer_id in {}!".format(
-                    contest
-                ),
-            )
+#            self.assertTrue(
+#                filer_id_groups_q.count() == 0,
+#                msg="Multiple candidacies with same filer_id in {}!".format(
+#                    contest
+#                ),
+#            )
 
-            # Confirm there aren't multiple Candidacies with the same candidate_name
-            # unless party_id is different or person's filer_id is different
-            candidate_name_groups_q = contest.candidacies.values(
-                'candidate_name',
-            ).annotate(
-                row_count=models.Count('id'),
-            ).order_by().filter(row_count__gt=1)
+#            # Confirm there aren't multiple Candidacies with the same candidate_name
+#            # unless party_id is different or person's filer_id is different
+#            candidate_name_groups_q = contest.candidacies.values(
+#                'candidate_name',
+#            ).annotate(
+#                row_count=models.Count('id'),
+#            ).order_by().filter(row_count__gt=1)
 
-            # loop over each group of multiple candidacies sharing the same candidate_name
-            for group in candidate_name_groups_q.all():
-                candidacies_q = contest.candidacies.filter(
-                    candidate_name=group['candidate_name'],
-                )
+#            # loop over each group of multiple candidacies sharing the same candidate_name
+#            for group in candidate_name_groups_q.all():
+#                candidacies_q = contest.candidacies.filter(
+#                    candidate_name=group['candidate_name'],
+#                )
 
-                filer_id_party_groups_q = candidacies_q.filter(
-                    person__identifiers__scheme='calaccess_filer_id'
-                ).order_by(
-                    'person__identifiers__identifier',
-                    'party',
-                ).values(
-                    'person__identifiers__identifier',
-                    'party',
-                ).distinct()
+#                filer_id_party_groups_q = candidacies_q.filter(
+#                    person__identifiers__scheme='calaccess_filer_id'
+#                ).order_by(
+#                    'person__identifiers__identifier',
+#                    'party',
+#                ).values(
+#                    'person__identifiers__identifier',
+#                    'party',
+#                ).distinct()
 
-                # confirm that count of candidacies equals count of
-                # distinct filer_id/party groups
-                self.assertEqual(
-                    candidacies_q.count(),
-                    filer_id_party_groups_q.count(),
-                    msg='{0} candidacies in {1} with candidate_name "{2}" have {3} '
-                        'distinct filer_id/party combos!'.format(
-                        candidacies_q.count(),
-                        contest,
-                        group['candidate_name'],
-                        filer_id_party_groups_q.count(),
-                    ),
-                )
+#                # confirm that count of candidacies equals count of
+#                # distinct filer_id/party groups
+#                self.assertEqual(
+#                    candidacies_q.count(),
+#                    filer_id_party_groups_q.count(),
+#                    msg='{0} candidacies in {1} with candidate_name "{2}" have {3} '
+#                        'distinct filer_id/party combos!'.format(
+#                        candidacies_q.count(),
+#                        contest,
+#                        group['candidate_name'],
+#                        filer_id_party_groups_q.count(),
+#                    ),
+#                )
 
-            # Confirm there aren't multiple Candidacies with the same person.name
-            # unless party_id is different or person's filer_id is different
-            person_name_groups_q = contest.candidacies.values(
-                'person__name',
-            ).annotate(
-                row_count=models.Count('id'),
-            ).order_by().filter(row_count__gt=1)
+#            # Confirm there aren't multiple Candidacies with the same person.name
+#            # unless party_id is different or person's filer_id is different
+#            person_name_groups_q = contest.candidacies.values(
+#                'person__name',
+#            ).annotate(
+#                row_count=models.Count('id'),
+#            ).order_by().filter(row_count__gt=1)
 
-            # loop over each group of multiple candidacies sharing the same candidate_name
-            for group in person_name_groups_q.all():
-                candidacies_q = contest.candidacies.filter(
-                    person__name=group['person__name'],
-                )
+#            # loop over each group of multiple candidacies sharing the same candidate_name
+#            for group in person_name_groups_q.all():
+#                candidacies_q = contest.candidacies.filter(
+#                    person__name=group['person__name'],
+#                )
 
-                filer_id_party_groups_q = candidacies_q.filter(
-                    person__identifiers__scheme='calaccess_filer_id'
-                ).order_by(
-                    'person__identifiers__identifier',
-                    'party',
-                ).values(
-                    'person__identifiers__identifier',
-                    'party',
-                ).distinct()
+#                filer_id_party_groups_q = candidacies_q.filter(
+#                    person__identifiers__scheme='calaccess_filer_id'
+#                ).order_by(
+#                    'person__identifiers__identifier',
+#                    'party',
+#                ).values(
+#                    'person__identifiers__identifier',
+#                    'party',
+#                ).distinct()
 
-                # confirm that count of candidacies equals count of
-                # distinct filer_id/party groups
-                self.assertEqual(
-                    candidacies_q.count(),
-                    filer_id_party_groups_q.count(),
-                    msg='{0} candidacies in {1} with person__name "{2}" have {3} '
-                        'distinct filer_id/party combos!'.format(
-                        candidacies_q.count(),
-                        contest,
-                        group['person__name'],
-                        filer_id_party_groups_q.count(),
-                    ),
-                )
+#                # confirm that count of candidacies equals count of
+#                # distinct filer_id/party groups
+#                self.assertEqual(
+#                    candidacies_q.count(),
+#                    filer_id_party_groups_q.count(),
+#                    msg='{0} candidacies in {1} with person__name "{2}" have {3} '
+#                        'distinct filer_id/party combos!'.format(
+#                        candidacies_q.count(),
+#                        contest,
+#                        group['person__name'],
+#                        filer_id_party_groups_q.count(),
+#                    ),
+#                )
 
-        # For each Person...
-        for person in Person.objects.all():
-            # Confirm name is same as most recent candidate_name
-            latest_candidate_name = person.candidacies.latest(
-                'contest__election__date'
-            ).candidate_name
+#        # For each Person...
+#        for person in Person.objects.all():
+#            # Confirm name is same as most recent candidate_name
+#            latest_candidate_name = person.candidacies.latest(
+#                'contest__election__date'
+#            ).candidate_name
 
-            self.assertEqual(
-                person.name,
-                latest_candidate_name,
-                msg='Person.name "{0}" doesn\'t match latest candidate_name "{1}!'.format(
-                    person.name,
-                    latest_candidate_name,
-                )
-            )
+#            self.assertEqual(
+#                person.name,
+#                latest_candidate_name,
+#                msg='Person.name "{0}" doesn\'t match latest candidate_name "{1}!'.format(
+#                    person.name,
+#                    latest_candidate_name,
+#                )
+#            )
 
     # def test_form460_filings_count(self):
     #     """
