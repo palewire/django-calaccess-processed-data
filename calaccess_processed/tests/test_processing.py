@@ -63,12 +63,10 @@ class ProcessedDataTest(TransactionTestCase):
 
     @classmethod
     @requests_mock.Mocker()
-    def setUpClass(cls, m):
+    def setUpTestData(cls, m):
         """
         Load data for other tests.
         """
-        super(ProcessedDataTest, cls).setUpClass()
-
         # fake a previous raw data download
         download_dir = os.path.join(settings.CALACCESS_DATA_DIR, 'download')
         os.path.exists(download_dir) or os.mkdir(download_dir)
@@ -108,12 +106,6 @@ class ProcessedDataTest(TransactionTestCase):
         call_command("updatecalaccessrawdata", verbosity=3, noinput=True)
         call_command("loadcalaccessscrapeddata", verbosity=3)
         call_command("processcalaccessdata", verbosity=3)
-
-    def runTest(self):
-        """
-        Added to allow calling test_ methods on instance of this class in py2.
-        """
-        pass
 
     def test_scraped_propositions(self):
         """
