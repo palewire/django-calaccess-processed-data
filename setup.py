@@ -1,7 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
 from setuptools import setup, find_packages
 from distutils.core import Command
+
+def read(fname):
+    with open(os.path.join(os.path.dirname(__file__), fname)) as f:
+        return f.read()
 
 
 class TestCommand(Command):
@@ -33,10 +38,11 @@ class TestCommand(Command):
 
 setup(
     name='django-calaccess-processed-data',
-    version='0.3.0',
+    version='0.3.1',
     license='MIT',
     description='A Django app to transform and refine campaign finance data from the California Secretary of State’s \
 CAL-ACCESS database',
+    long_description=read('README.rst'),
     url='http://django-calaccess.californiacivicdata.org',
     author='California Civic Data Coalition',
     author_email='b@palewi.re',
