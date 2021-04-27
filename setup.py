@@ -45,11 +45,10 @@ CAL-ACCESS database',
     zip_safe=False,  # because we're including static files
     install_requires=(
         'django-calaccess-raw-data==3.0.1',
-        'django-calaccess-scraped-data==2.0.0',
-        'django>=1.11.*',
+        'django-calaccess-scraped-data==3.0.1',
+        'django>=3.2.*',
         'csvkit>=1.0',
-        'opencivicdata>=2.0',
-        'psycopg2>=2.7.3',
+        'opencivicdata @ git+ssh://git@github.com/california-civic-data-coalition/python-opencivicdata@90706f92a2705ea53707bcba096abd0f920dfb8f#egg=opencivicdata',
     ),
     cmdclass={'test': TestCommand,},
     classifiers=(

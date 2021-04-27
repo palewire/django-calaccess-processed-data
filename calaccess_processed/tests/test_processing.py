@@ -104,14 +104,12 @@ class ProcessedDataTest(TransactionTestCase):
         )
 
         call_command("updatecalaccessrawdata", verbosity=3, noinput=True)
-        # call_command("loadcalaccessscrapeddata", verbosity=3)
         call_command("processcalaccessdata", verbosity=3)
 
-#    def test_scraped_propositions(self):
-#        """
-#        Test the scraped propostions loaded into the database.
-#        """
     def test_everything(self):
+        """
+        Test the scraped propostions loaded into the database.
+        """
         # Confirm count of scraped propositions with a name that doesn't
         # include "RECALL" equals the count of loaded BallotMeasureContest.
         self.assertEqual(
@@ -120,9 +118,9 @@ class ProcessedDataTest(TransactionTestCase):
         )
 
 #    def test_correction(self):
-#        """
-#        Test that we can retrieve a correction directly.
-#        """
+        """
+        Test that we can retrieve a correction directly.
+        """
         from calaccess_processed_elections import corrections
         correx = corrections.candidate_party(
             "WINSTON, ALMA MARIE",
@@ -133,72 +131,72 @@ class ProcessedDataTest(TransactionTestCase):
         self.assertEqual(correx.name, "REPUBLICAN")
 
 #    def test_correction_assignment_by_proxy(self):
-#        """
-#        Test that a correction is properly being applied when parties are retrieved.
-#        """
+        """
+        Test that a correction is properly being applied when parties are retrieved.
+        """
         from calaccess_processed_elections.proxies import ScrapedCandidateProxy
         obj = ScrapedCandidateProxy.objects.get(name='WINSTON, ALMA MARIE')
         self.assertEqual(obj.get_party().name, 'REPUBLICAN')
 
 #    def test_processed_version_completed(self):
-#        """
-#        Test that the processed version was completed.
-#        """
+        """
+        Test that the processed version was completed.
+        """
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
         self.assertTrue(processed_version.update_completed)
 
 #    def test_flat_zip_archived(self):
-#        """
-#        Confirm that a flat zip was archived.
-#        """
+        """
+        Confirm that a flat zip was archived.
+        """
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
         has_flat_zip = processed_version.zips.filter(zip_archive__icontains='flat').exists()
         self.assertTrue(has_flat_zip)
 
 #    def test_relational_zip_archived(self):
-#        """
-#        Confirm that a relational zip was archived.
-#        """
+        """
+        Confirm that a relational zip was archived.
+        """
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
         has_relational_zip = processed_version.zips.filter(zip_archive__icontains='relational').exists()
         self.assertTrue(has_relational_zip)
 
 #    def test_zip_sizes(self):
-#        """
-#        Confirm that each archived zip's size is the same as the actual file size.
-#        """
+        """
+        Confirm that each archived zip's size is the same as the actual file size.
+        """
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
         for z in processed_version.zips.all():
             self.assertEqual(z.zip_size, os.path.getsize(z.zip_archive.path))
 
 #    def test_processed_file_finished(self):
-#        """
-#        Test that each processed file was marked finished.
-#        """
+        """
+        Test that each processed file was marked finished.
+        """
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
         for df in processed_version.files.all():
             self.assertTrue(df.process_finish_datetime)
 
 #    def test_processed_file_archived(self):
-#        """
-#        Test that each processed file was archived.
-#        """
+        """
+        Test that each processed file was archived.
+        """
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
         for df in processed_version.files.all():
             self.assertTrue(df.file_archive)
 
 #    def test_processed_file_size(self):
-#        """
-#        Test that each processed file_size is the same as file's size.
-#        """
+        """
+        Test that each processed file_size is the same as file's size.
+        """
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
         for df in processed_version.files.all():
             self.assertEqual(df.file_size, os.path.getsize(df.file_archive.path))
 
 #    def test_processed_file_records_count(self):
-#        """
-#        Test that each processed records_count is the same as rows in file.
-#        """
+        """
+        Test that each processed records_count is the same as rows in file.
+        """
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
         for df in processed_version.files.all():
             df.file_archive.open()
@@ -207,9 +205,9 @@ class ProcessedDataTest(TransactionTestCase):
             self.assertEqual(df.records_count, row_count)
 
 #    def test_flat_file_row_counts(self):
-#        """
-#        Test that count of rows in flat files is same as row count in base model.
-#        """
+        """
+        Test that count of rows in flat files is same as row count in base model.
+        """
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
 
         flat_processed_files = [df for df in processed_version.files.all() if df.is_flat]
@@ -232,9 +230,9 @@ class ProcessedDataTest(TransactionTestCase):
             self.assertEqual(flat_row_count, base_row_count)
 
 #    def test_scraped_candidates(self):
-#        """
-#        Test the scraped candidates loaded into the database.
-#        """
+        """
+        Test the scraped candidates loaded into the database.
+        """
         # Confirm that the count of scraped candidates equals the count loaded
         # into Candidacy with a scraped source
         # minus one, since Jim Fitzgerald didn't really run in the
