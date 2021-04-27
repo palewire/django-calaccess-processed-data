@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 django-calaccess-raw-data = "==3.0.1"
 django-calaccess-scraped-data = "==3.0.1"
-opencivicdata = {git = "https://github.com/california-civic-data-coalition/python-opencivicdata.git", editable = true, ref = "90706f92a2705ea53707bcba096abd0f920dfb8f"}
+opencivicdata = {git = "https://github.com/california-civic-data-coalition/python-opencivicdata.git", editable = true, ref = "7ab286179255a9d6067b2f3ff2c64ad8f82e2d9a"}
 Django = ">=3.2.*"
 pytz = "*"
 "psycopg2-binary" = "*"

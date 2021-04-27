@@ -48,7 +48,7 @@ CAL-ACCESS database',
         'django-calaccess-scraped-data==3.0.1',
         'django>=3.2.*',
         'csvkit>=1.0',
-        'opencivicdata @ git+ssh://git@github.com/california-civic-data-coalition/python-opencivicdata@90706f92a2705ea53707bcba096abd0f920dfb8f#egg=opencivicdata',
+        'opencivicdata @ git+ssh://git@github.com/california-civic-data-coalition/python-opencivicdata@7ab286179255a9d6067b2f3ff2c64ad8f82e2d9a#egg=opencivicdata',
     ),
     cmdclass={'test': TestCommand,},
     classifiers=(
