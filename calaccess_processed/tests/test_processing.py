@@ -61,11 +61,9 @@ class ProcessedDataTest(TransactionTestCase):
         'proposition.json',
     ]
 
-#    @classmethod
-#    @requests_mock.Mocker()
-#    def setUpTestData(cls, m):
+    @classmethod
     @requests_mock.Mocker()
-    def test_data(self, m):
+    def setUpTestData(cls, m):
         """
         Load data for other tests.
         """
