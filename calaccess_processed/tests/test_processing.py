@@ -107,11 +107,11 @@ class ProcessedDataTest(TransactionTestCase):
         # call_command("loadcalaccessscrapeddata", verbosity=3)
         call_command("processcalaccessdata", verbosity=3)
 
-    def test_everything(self):
 #    def test_scraped_propositions(self):
 #        """
 #        Test the scraped propostions loaded into the database.
 #        """
+    def test_everything(self):
         # Confirm count of scraped propositions with a name that doesn't
         # include "RECALL" equals the count of loaded BallotMeasureContest.
         self.assertEqual(
