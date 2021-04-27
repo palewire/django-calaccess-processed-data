@@ -24,7 +24,7 @@ from calaccess_raw.models import RawDataVersion
 from calaccess_processed.models import ProcessedDataVersion
 from calaccess_scraped.models import Candidate as ScrapedCandidate
 from calaccess_scraped.models import Proposition as ScrapedProposition
-from opencivicdata.core.models import Person
+# from opencivicdata.core.models import Person
 from opencivicdata.elections.models import (
     BallotMeasureContest,
     Candidacy,
