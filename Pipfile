@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django-calaccess-raw-data = "==3.0.1"
+django-calaccess-raw-data = "==3.1.0"
 django-calaccess-scraped-data = "==3.1.0"
 ccdc-opencivicdata = "==0.0.1"
 Django = ">=3.2.*"
