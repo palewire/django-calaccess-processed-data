@@ -38,7 +38,7 @@ class TestCommand(Command):
 
 setup(
     name='django-calaccess-processed-data',
-    version='0.3.2',
+    version='0.3.3',
     license='MIT',
     description='A Django app to transform and refine campaign finance data from the California Secretary of State’s \
 CAL-ACCESS database',
@@ -54,11 +54,8 @@ CAL-ACCESS database',
         'django-calaccess-scraped-data==3.1.0',
         'django>=3.2.*',
         'csvkit>=1.0',
-        'opencivicdata-source',
+        'ccdc-opencivicdata',
     ),
-    dependency_links=[
-        'git+ssh://git@github.com/california-civic-data-coalition/python-opencivicdata@7ab286179255a9d6067b2f3ff2c64ad8f82e2d9a#egg=opencivicdata-source'
-    ],
     cmdclass={'test': TestCommand,},
     classifiers=(
         'Development Status :: 5 - Production/Stable',
