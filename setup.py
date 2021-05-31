@@ -38,7 +38,7 @@ class TestCommand(Command):
 
 setup(
     name='django-calaccess-processed-data',
-    version='0.3.4',
+    version='0.3.5',
     license='MIT',
     description='A Django app to transform and refine campaign finance data from the California Secretary of State’s \
 CAL-ACCESS database',
@@ -53,7 +53,6 @@ CAL-ACCESS database',
         'django-calaccess-raw-data==3.1.0',
         'django-calaccess-scraped-data==3.1.0',
         'django>=3.2.*',
-        'csvkit>=1.0',
         'ccdc-opencivicdata==0.0.1',
     ),
     cmdclass={'test': TestCommand,},
