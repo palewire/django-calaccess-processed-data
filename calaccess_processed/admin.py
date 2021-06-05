@@ -17,7 +17,7 @@ class ProcessedDataZipInline(admin.TabularInline):
     readonly_fields = ('zip_archive', 'created_datetime', 'pretty_zip_size')
     fields = readonly_fields
 
-    def has_add_permission(self, request):
+    def has_add_permission(self, request, obj=None):
         """
         Disable adding of zips.
         """
