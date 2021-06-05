@@ -50,7 +50,7 @@ CAL-ACCESS database',
     include_package_data=True,
     zip_safe=False,  # because we're including static files
     install_requires=(
-        'django-calaccess-raw-data==3.1.0',
+        'django-calaccess-raw-data==3.1.1',
         'django-calaccess-scraped-data==3.1.0',
         'django>=3.2.*',
         'ccdc-opencivicdata==0.0.1',

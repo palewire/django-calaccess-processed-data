@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: [3.9]
+        python: [3.7, 3.8, 3.9]
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v2
@@ -48,7 +48,7 @@ jobs:
 
       - id: sync-pipfile
         name: Sync pipfile
-        run: pipenv sync --dev
+        run: pipenv sync --dev --python ${{ matrix.python }}
         shell: bash
 
       - name: Test
