@@ -3,7 +3,6 @@
 """
 Proxy models for generating flatfiles that combine multiple table into a simplified file.
 """
-from __future__ import unicode_literals
 from opencivicdata.elections.models import BallotMeasureContest
 from calaccess_processed.proxies import OCDProxyModelMixin
 from calaccess_processed_flatfiles.managers import OCDFlatBallotMeasureContestManager
