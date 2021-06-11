@@ -1,1 +1,5 @@
-from .proxies import *
+from . import proxies
+
+__all__ = (
+    'proxies',
+)

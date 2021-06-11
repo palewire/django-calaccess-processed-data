@@ -15,9 +15,9 @@ test:
 flake8:
 	pipenv run flake8 calaccess_processed --exclude=calaccess_processed/migrations/*
 	pipenv run flake8 calaccess_processed_campaignfinance
-	pipenv run flake8 calaccess_processed_elections
+	pipenv run flake8 calaccess_processed_elections --exclude=calaccess_processed_elections/migrations/*
 	pipenv run flake8 calaccess_processed_filings --exclude=calaccess_processed_filings/migrations/*
-	pipenv run flake8 calaccess_processed_flatfiles
+	pipenv run flake8 calaccess_processed_flatfiles --exclude=calaccess_processed_flatfiles/migrations/*
 
 settings:
 	cp example/project/settings_local.py.template example/settings_local.py
