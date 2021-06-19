@@ -130,6 +130,15 @@ LOGGING = {
     },
 }
 
+IA_STORAGE_ACCESS_KEY = os.getenv('IA_STORAGE_ACCESS_KEY')
+IA_STORAGE_SECRET_KEY = os.getenv('IA_STORAGE_SECRET_KEY')
+IA_STORAGE_COLLECTION = 'test_collection'
+IA_STORAGE_CONTRIBUTOR = 'palewire'
+IA_STORAGE_CREATOR = "palewire"
+IA_STORAGE_PUBLISHER = 'california-civic-data-coalition/django-calaccess-processed-data'
+IA_STORAGE_MEDIATYPE = "data"
+IA_STORAGE_SUBJECT = ['test']
+
 try:
     from .settings_local import *
 except ImportError:
