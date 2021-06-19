@@ -3,15 +3,12 @@
 """
 Models for tracking processing of CAL-ACCESS snapshots over time.
 """
-from __future__ import unicode_literals
 from django.apps import apps
 from hurry.filesize import size as sizeformat
 
-# Paths
-from calaccess_processed import archive_directory_path
-
 # Models
 from django.db import models
+from ia_storage.fields import InternetArchiveFileField
 
 
 class ProcessedDataVersion(models.Model):
@@ -100,9 +97,8 @@ class ProcessedDataZip(models.Model):
         verbose_name='processed data version',
         help_text='Foreign key referencing the processed version of CAL-ACCESS'
     )
-    zip_archive = models.FileField(
+    zip_archive = InternetArchiveFileField(
         max_length=255,
-        upload_to=archive_directory_path,
         verbose_name='zip archive',
         help_text='An archived zip of processed files'
     )
@@ -172,10 +168,9 @@ class ProcessedDataFile(models.Model):
         verbose_name='records count',
         help_text='Count of records in the processed file'
     )
-    file_archive = models.FileField(
+    file_archive = InternetArchiveFileField(
         blank=True,
         max_length=255,
-        upload_to=archive_directory_path,
         verbose_name='archive of processed file',
         help_text='An archive of the processed file'
     )

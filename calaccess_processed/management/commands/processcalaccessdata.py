@@ -5,6 +5,7 @@ Load data into processed CAL-ACCESS models, archive processed files and ZIP.
 """
 # Files
 import os
+import time
 from django.core.files import File
 from zipfile import ZIP_DEFLATED, ZIP_STORED, ZipFile
 
@@ -177,16 +178,19 @@ class Command(CalAccessCommand):
             )
         except ProcessedDataZip.DoesNotExist:
             zip_obj = self.processed_version.zips.create()
-        else:
-            if self.verbosity > 2:
-                self.log(" Deleting previous archive of %s" % zip_name)
-            zip_obj.zip_archive.delete()
+
+        # Concoct the Internet Archive identifier
+        identifier = "ccdc-processed-data-{dt:%Y-%m-%d_%H-%M-%S}".format(
+            dt=self.processed_version.raw_version.release_datetime
+        )
 
         with open(zip_path, 'rb') as zf:
             # Save the zip on the processed data version
             if self.verbosity > 2:
                 self.log(" Archiving %s" % zip_name)
-            zip_obj.zip_archive.save(zip_name, File(zf))
+            zip_obj.zip_archive.save(identifier, File(zf))
+
+        time.sleep(0.5)
 
         # update the zip size
         if zip_obj.zip_size != os.path.getsize(zip_path):

@@ -46,7 +46,7 @@ class NoProcessedDataTest(TestCase):
 
 @override_settings(CALACCESS_DATA_DIR=os.path.join(settings.BASE_DIR, 'test-data'))
 @override_settings(MEDIA_ROOT=os.path.join(settings.BASE_DIR, 'test-data', ".media"))
-@override_settings(CALACCESS_STORE_ARCHIVE=True)
+@override_settings(CALACCESS_STORE_ARCHIVE=False)
 class ProcessedDataTest(TransactionTestCase):
     """
     Run and test management commands.
@@ -145,30 +145,6 @@ class ProcessedDataTest(TransactionTestCase):
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
         self.assertTrue(processed_version.update_completed)
 
-#    def test_flat_zip_archived(self):
-        """
-        Confirm that a flat zip was archived.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        has_flat_zip = processed_version.zips.filter(zip_archive__icontains='flat').exists()
-        self.assertTrue(has_flat_zip)
-
-#    def test_relational_zip_archived(self):
-        """
-        Confirm that a relational zip was archived.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        has_relational_zip = processed_version.zips.filter(zip_archive__icontains='relational').exists()
-        self.assertTrue(has_relational_zip)
-
-#    def test_zip_sizes(self):
-        """
-        Confirm that each archived zip's size is the same as the actual file size.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        for z in processed_version.zips.all():
-            self.assertEqual(z.zip_size, os.path.getsize(z.zip_archive.path))
-
 #    def test_processed_file_finished(self):
         """
         Test that each processed file was marked finished.
@@ -176,58 +152,6 @@ class ProcessedDataTest(TransactionTestCase):
         processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
         for df in processed_version.files.all():
             self.assertTrue(df.process_finish_datetime)
-
-#    def test_processed_file_archived(self):
-        """
-        Test that each processed file was archived.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        for df in processed_version.files.all():
-            self.assertTrue(df.file_archive)
-
-#    def test_processed_file_size(self):
-        """
-        Test that each processed file_size is the same as file's size.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        for df in processed_version.files.all():
-            self.assertEqual(df.file_size, os.path.getsize(df.file_archive.path))
-
-#    def test_processed_file_records_count(self):
-        """
-        Test that each processed records_count is the same as rows in file.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        for df in processed_version.files.all():
-            df.file_archive.open()
-            row_count = sum(1 for _ in df.file_archive) - 1
-            df.file_archive.close()
-            self.assertEqual(df.records_count, row_count)
-
-#    def test_flat_file_row_counts(self):
-        """
-        Test that count of rows in flat files is same as row count in base model.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-
-        flat_processed_files = [df for df in processed_version.files.all() if df.is_flat]
-
-        for df in flat_processed_files:
-            # get count from archived file of flat model
-            df.file_archive.open()
-            flat_row_count = sum(1 for _ in df.file_archive) - 1
-            df.file_archive.close()
-
-            # get count from archived file of the base model
-            base_model_name = df.model().base_model._meta.object_name
-            base_model_df = processed_version.files.get(
-                file_name=base_model_name
-            )
-            base_model_df.file_archive.open()
-            base_row_count = sum(1 for _ in base_model_df.file_archive) - 1
-            base_model_df.file_archive.close()
-
-            self.assertEqual(flat_row_count, base_row_count)
 
 #    def test_scraped_candidates(self):
         """

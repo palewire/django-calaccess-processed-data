@@ -4,6 +4,7 @@
 Export and archive a .csv file for a given model.
 """
 import os
+import time
 from django.core.files import File
 from calaccess_raw import get_data_directory
 from calaccess_processed.management.commands import CalAccessCommand
@@ -59,9 +60,6 @@ class Command(CalAccessCommand):
         # Save it
         processed_file.save()
 
-        # Remove previous .CSV files
-        processed_file.file_archive.delete()
-
         # Figure out the path where we will save the file
         csv_dir = os.path.join(
             get_data_directory(),
@@ -79,10 +77,18 @@ class Command(CalAccessCommand):
             copy_to_fields = tuple()
         data_model.objects.to_csv(csv_path, *copy_to_fields)
 
+        # Concoct the Internet Archive identifier
+        identifier = "ccdc-processed-data-{dt:%Y-%m-%d_%H-%M-%S}".format(
+            dt=version.raw_version.release_datetime
+        )
+
         # Open up the .CSV file for reading so we can wrap it in the Django File obj
         with open(csv_path, 'rb') as csv_file:
             # Save the .CSV on the processed data file
-            processed_file.file_archive.save(csv_name, File(csv_file))
+            processed_file.file_archive.save(identifier, File(csv_file))
+
+        # Sleep
+        time.sleep(0.5)
 
         # Save it to the model
         processed_file.file_size = os.path.getsize(csv_path)
