@@ -88,12 +88,12 @@ class Command(CalAccessCommand):
             no_color=self.no_color,
         )
 
-        # then zip
-        flat_zip_path = self.zip('flat')
-        relational_zip_path = self.zip('relational')
-
-        # then archive
         if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
+            # then zip
+            flat_zip_path = self.zip('flat')
+            relational_zip_path = self.zip('relational')
+
+            # then archive
             self.archive_zip(flat_zip_path)
             self.archive_zip(relational_zip_path)
 
