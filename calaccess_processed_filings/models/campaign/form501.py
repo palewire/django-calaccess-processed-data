@@ -393,6 +393,11 @@ class Form501Filing(Form501FilingBase):
             # Otherwise give up
             else:
                 return None
+        except CandidateContest.MultipleObjectsReturned:
+            # In this case, there is likely a primary and a runoff on the same day
+            # and the code is unable to specify between them.
+            # I don't yet have a solution to this problem so we are going to give up
+            return None
 
 
 class Form501FilingVersion(Form501FilingBase):
