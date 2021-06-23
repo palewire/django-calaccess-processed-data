@@ -44,6 +44,8 @@ class Command(CalAccessCommand):
         scraped_candidates = ScrapedCandidateProxy.objects.exclude(scraped_id='')
 
         for scraped_candidate in scraped_candidates:
+            if self.verbosity > 2:
+                self.log(f" Loading scraped candidate: {scraped_candidate}")
             candidacy = self.load_scraped_candidate(scraped_candidate)
 
             form501s = scraped_candidate.match_form501s_by_scraped_id()
@@ -59,6 +61,10 @@ class Command(CalAccessCommand):
     def load_candidates_without_filer_ids(self):
         """
         Load scraped candidates that were collected without a filer_id.
+
+        These are the candidates on the state pages that are text only.
+
+        They tend to be the least significant candidates, since they typically have never created a committee.
         """
         # Jim Fitzgerald's independent run for Senate 15 in 2008.
         # He was on the ballot in the general but records and a phone
@@ -72,6 +78,8 @@ class Command(CalAccessCommand):
         )
 
         for scraped_candidate in scraped_candidates:
+            if self.verbosity > 2:
+                self.log(f" Loading scraped candidate: {scraped_candidate}")
             candidacy = self.load_scraped_candidate(scraped_candidate)
 
             form501s = scraped_candidate.match_form501s_by_name()
