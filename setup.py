@@ -39,7 +39,7 @@ class TestCommand(Command):
 
 setup(
     name='django-calaccess-processed-data',
-    version='0.4.2',
+    version='0.4.3',
     license='MIT',
     description='A Django app to transform and refine campaign finance data from the California Secretary of State’s \
 CAL-ACCESS database',
@@ -51,7 +51,7 @@ CAL-ACCESS database',
     include_package_data=True,
     zip_safe=False,  # because we're including static files
     install_requires=(
-        'django-calaccess-raw-data==4.0.0',
+        'django-calaccess-raw-data==4.0.*',
         'django-calaccess-scraped-data==3.1.0',
         'django>=3.2.*',
         'ccdc-opencivicdata==0.0.1',
