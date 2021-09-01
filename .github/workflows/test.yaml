@@ -14,11 +14,6 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python }}
-
       - name: Install GIS packages
         run: sudo apt-get install binutils libproj-dev gdal-bin
 
@@ -30,26 +25,10 @@ jobs:
           postgresql user: test
           postgresql password: test
 
-      - id: install-pipenv
-        name: Install pipenv
-        run: |
-          python -m pip install --upgrade --no-cache-dir pip
-          python -m pip install --no-cache-dir pipenv
-        shell: bash
-
-      - id: cache-pipenv
-        name: Cache pipenv
-        uses: actions/cache@v2
+      - name: Install Python, pipenv and Pipfile packages
+        uses: palewire/install-python-pipenv-pipfile@v1
         with:
-          path: ~/.local/share/virtualenvs
-          key: ${{ runner.os }}-pipenv-${{ hashFiles('Pipfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pipenv-
-
-      - id: sync-pipfile
-        name: Sync pipfile
-        run: pipenv sync --dev --python ${{ matrix.python }}
-        shell: bash
+          python-version: 3.8
 
       - name: Test
         run: |
