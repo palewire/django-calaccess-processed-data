@@ -18,7 +18,7 @@ jobs:
         run: sudo apt-get install binutils libproj-dev gdal-bin
 
       - name: Install Python, pipenv and Pipfile packages
-        uses: palewire/install-python-pipenv-pipfile@v1
+        uses: palewire/install-python-pipenv-pipfile@v2
         with:
           python-version: ${{ matrix.python }}
 
