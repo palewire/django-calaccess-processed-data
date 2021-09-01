@@ -85,10 +85,16 @@ class Command(CalAccessCommand):
         # Open up the .CSV file for reading so we can wrap it in the Django File obj
         with open(csv_path, 'rb') as csv_file:
             # Save the .CSV on the processed data file
-            processed_file.file_archive.save(identifier, File(csv_file))
+            try:
+                processed_file.file_archive.save(identifier, File(csv_file))
+            except FileExistsError:
+                # If the file already exists on IA, quit now
+                logger.debug("File already exists")
+                return
 
-        # Sleep
-        time.sleep(0.5)
+        # Celebrate and relax
+        logger.debug("Upload complete. Pausing for 3 seconds.")
+        time.sleep(3)
 
         # Save it to the model
         processed_file.file_size = os.path.getsize(csv_path)
