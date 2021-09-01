@@ -17,6 +17,11 @@ jobs:
       - name: Install GIS packages
         run: sudo apt-get install binutils libproj-dev gdal-bin
 
+      - name: Install Python, pipenv and Pipfile packages
+        uses: palewire/install-python-pipenv-pipfile@v1
+        with:
+          python-version: ${{ matrix.python }}
+
       - name: Set up PostGIS
         uses: huaxk/postgis-action@v1
         with:
@@ -24,11 +29,6 @@ jobs:
           postgresql db: calaccess_processed
           postgresql user: test
           postgresql password: test
-
-      - name: Install Python, pipenv and Pipfile packages
-        uses: palewire/install-python-pipenv-pipfile@v1
-        with:
-          python-version: ${{ matrix.python }}
 
       - name: Test
         run: |
