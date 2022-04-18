@@ -51,8 +51,8 @@ jobs:
         with:
           postgresql version: '11'
           postgresql db: calaccess_processed
-          postgresql user: postgres
-          postgresql password: postgres
+          postgresql user: test
+          postgresql password: test
 
       - id: pipenv-install
         name: Install Python dependencies
