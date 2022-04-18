@@ -17,6 +17,8 @@ django-internetarchive-storage = "*"
 coverage = "*"
 requests-mock = "*"
 twine = "*"
+pre-commit = "*"
+setuptools-scm = "*"
 
 [requires]
 python_version = "3.9"
