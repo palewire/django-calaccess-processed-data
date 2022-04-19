@@ -20,7 +20,7 @@ jobs:
       - uses: harmon758/postgresql-action@v1
         with:
           postgresql version: '11'
-          postgresql db: calaccess_raw
+          postgresql db: calaccess_processed
           postgresql user: postgres
           postgresql password: postgres
 
@@ -70,6 +70,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: django-calaccess-raw-data
+          name: django-calaccess-processed-data
           path: example/data/
           if-no-files-found: error

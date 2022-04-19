@@ -5,8 +5,6 @@ Load data into processed CAL-ACCESS models, archive processed files and ZIP.
 """
 # Files
 import os
-import time
-from django.core.files import File
 from zipfile import ZIP_DEFLATED, ZIP_STORED, ZipFile
 
 # Commands
@@ -15,7 +13,6 @@ from django.core.management.base import CommandError
 from calaccess_processed.management.commands import CalAccessCommand
 
 # Models
-from calaccess_processed.models import ProcessedDataZip
 from calaccess_scraped.models import PropositionElection
 
 # Misc
@@ -90,12 +87,8 @@ class Command(CalAccessCommand):
 
         if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
             # then zip
-            flat_zip_path = self.zip('flat')
-            relational_zip_path = self.zip('relational')
-
-            # then archive
-            self.archive_zip(flat_zip_path)
-            self.archive_zip(relational_zip_path)
+            self.zip('flat')
+            self.zip('relational')
 
         # Wrap up the log
         self.processed_version.process_finish_datetime = now()
@@ -166,36 +159,3 @@ class Command(CalAccessCommand):
         zf.close()
 
         return zip_path
-
-    def archive_zip(self, zip_path):
-        """
-        Archive the zip.
-        """
-        zip_name = os.path.basename(zip_path)
-        try:
-            zip_obj = self.processed_version.zips.get(
-                zip_archive__icontains=zip_name.split('.')[0]
-            )
-        except ProcessedDataZip.DoesNotExist:
-            zip_obj = self.processed_version.zips.create()
-
-        # Concoct the Internet Archive identifier
-        identifier = "ccdc-processed-data-{dt:%Y-%m-%d_%H-%M-%S}".format(
-            dt=self.processed_version.raw_version.release_datetime
-        )
-
-        with open(zip_path, 'rb') as zf:
-            # Save the zip on the processed data version
-            if self.verbosity > 2:
-                self.log(" Archiving %s" % zip_name)
-            zip_obj.zip_archive.save(identifier, File(zf))
-
-        time.sleep(0.5)
-
-        # update the zip size
-        if zip_obj.zip_size != os.path.getsize(zip_path):
-            zip_obj.zip_size = os.path.getsize(zip_path)
-            zip_obj.save()
-
-        if self.verbosity > 2:
-            self.log(" %s archived." % zip_name)
