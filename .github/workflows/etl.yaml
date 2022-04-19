@@ -39,6 +39,10 @@ jobs:
         name: Install Python dependencies
         run: pipenv install --dev --python `which python`
 
+      - name: Set Django settings
+        run: cp example/project/settings_actions.py.template example/project/settings_local.py
+        shell: bash
+
       - name: Migrate database
         run: pipenv run python -W ignore example/manage.py migrate;
         shell: bash
