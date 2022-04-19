@@ -94,3 +94,10 @@ jobs:
           name: processed-data
           path: example/data/processed
           if-no-files-found: error
+
+      - name: Upload files to biglocalnews.org
+        uses: biglocalnews/upload-files@v1
+        with:
+          api-key: ${{ secrets.BLN_API_TOKEN }}
+          project-id: ${{ secrets.BLN_PROJECT_ID }}
+          path: example/data/
