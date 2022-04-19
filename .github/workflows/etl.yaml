@@ -62,7 +62,7 @@ jobs:
           PGPASSWORD: postgres
 
       - name: Process raw data
-        run: pipenv run python -W ignore example/manage.py processcalaccessdata --verbosity=3
+        run: pipenv run python -W ignore example/manage.py processcalaccessdata --verbosity=3;
         shell: bash
         env:
           PGPASSWORD: postgres
