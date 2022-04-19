@@ -1,0 +1,71 @@
+name: Extract, transform and load
+on:
+  workflow_dispatch:
+
+jobs:
+  etl:
+    name: "ETL"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Maximize build space
+        uses: easimon/maximize-build-space@master
+        with:
+          root-reserve-mb: 35000
+          swap-size-mb: 1024
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
+
+      - uses: harmon758/postgresql-action@v1
+        with:
+          postgresql version: '11'
+          postgresql db: calaccess_raw
+          postgresql user: postgres
+          postgresql password: postgres
+
+      - name: Checkout the repo
+        uses: actions/checkout@v2
+
+      - name: Install pipenv
+        run: pipx install pipenv
+
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+          cache: 'pipenv'
+
+      - id: pipenv-install
+        name: Install Python dependencies
+        run: pipenv install --dev --python `which python`
+
+      - name: Migrate database
+        run: pipenv run python -W ignore example/manage.py migrate;
+        shell: bash
+        env:
+          PGPASSWORD: postgres
+
+      - name: Load raw data
+        run: pipenv run python -W ignore example/manage.py updatecalaccessrawdata --keep-files --noinput --verbosity=3;
+        shell: bash
+        env:
+          PGPASSWORD: postgres
+
+      - name: Load scraped data
+        run: pipenv run python -W ignore example/manage.py loadcalaccessscrapeddata --verbosity=3;
+        shell: bash
+        env:
+          PGPASSWORD: postgres
+
+      - name: Process raw data
+        run: pipenv run python -W ignore example/manage.py processcalaccessdata --verbosity=3
+        shell: bash
+        env:
+          PGPASSWORD: postgres
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: django-calaccess-raw-data
+          path: example/data/
+          if-no-files-found: error
