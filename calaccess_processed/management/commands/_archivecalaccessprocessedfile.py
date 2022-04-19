@@ -5,7 +5,6 @@ Export and archive a .csv file for a given model.
 """
 import os
 import logging
-from django.core.files import File
 from calaccess_raw import get_data_directory
 from calaccess_processed.management.commands import CalAccessCommand
 from calaccess_processed.models.tracking import ProcessedDataVersion, ProcessedDataFile
