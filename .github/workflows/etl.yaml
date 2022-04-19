@@ -70,6 +70,27 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: django-calaccess-processed-data
-          path: example/data/
+          name: source
+          path: example/data/download
+          if-no-files-found: error
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: logs
+          path: example/data/log
+          if-no-files-found: error
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: raw-data
+          path: example/data/csv
+          if-no-files-found: error
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: processed-data
+          path: example/data/processed
           if-no-files-found: error
