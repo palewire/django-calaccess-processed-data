@@ -5,7 +5,6 @@ Load data into processed CAL-ACCESS models, archive processed files and ZIP.
 """
 # Files
 import os
-from django.core.files import File
 from zipfile import ZIP_DEFLATED, ZIP_STORED, ZipFile
 
 # Commands
@@ -14,7 +13,6 @@ from django.core.management.base import CommandError
 from calaccess_processed.management.commands import CalAccessCommand
 
 # Models
-from calaccess_processed.models import ProcessedDataZip
 from calaccess_scraped.models import PropositionElection
 
 # Misc
@@ -89,8 +87,8 @@ class Command(CalAccessCommand):
 
         if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
             # then zip
-            flat_zip_path = self.zip('flat')
-            relational_zip_path = self.zip('relational')
+            self.zip('flat')
+            self.zip('relational')
 
         # Wrap up the log
         self.processed_version.process_finish_datetime = now()
