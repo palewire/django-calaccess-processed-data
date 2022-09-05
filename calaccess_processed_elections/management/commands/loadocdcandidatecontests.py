@@ -114,6 +114,15 @@ class Command(CalAccessCommand):
             )
             if candidacy_created and self.verbosity > 1:
                 self.log(' Created Candidacy: %s' % candidacy)
+        except OCDCandidacyProxy.MultipleObjectsReturned:
+            # Get contest
+            contest, contest_created = scraped_candidate.get_or_create_contest()
+            # Add that to what we use to filter, but do a stricter name filter
+            candidacy_list = OCDCandidacyProxy.objects.filter(
+                candidate_name=scraped_candidate.parsed_name['name']
+            ).filter(contest=contest)
+            assert len(candidacy_list) == 1
+            candidacy = candidacy_list[0]
         else:
             # Get contest
             contest, contest_created = scraped_candidate.get_or_create_contest()
