@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 django-calaccess-raw-data = "==4.1.*"
 django-calaccess-scraped-data = "==3.1.0"
-ccdc-opencivicdata = "==0.0.1"
+ccdc-opencivicdata = "==0.0.2"
 Django = "==3.2.*"
 pytz = "*"
 "psycopg2-binary" = "*"
