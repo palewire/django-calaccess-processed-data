@@ -98,7 +98,7 @@ class ProcessedDataTest(TransactionTestCase):
         )
 
         call_command("updatecalaccessrawdata", verbosity=3, noinput=True)
-        call_command("loadcalaccessscrapeddata", verbosity=3, noinput=True)
+        call_command("loadcalaccessscrapeddata")
         call_command("processcalaccessdata", verbosity=3)
 
     def test_everything(self):
