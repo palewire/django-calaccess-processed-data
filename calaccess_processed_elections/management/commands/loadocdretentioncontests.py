@@ -37,7 +37,13 @@ class Command(CalAccessCommand):
 
         Return a RetentionContest object.
         """
-        if scraped_prop.name == '2003 RECALL QUESTION':
+        if scraped_prop.scraped_id == '1438975':
+            # look up most recently scraped record for Gov. Gavin Newsom
+            incumbent = ScrapedCandidateProxy.objects.filter(
+                name='NEWSOM, GAVIN',
+                office_name__contains='GOVERNOR',
+            ).latest('created')
+        elif scraped_prop.name == '2003 RECALL QUESTION':
             # look up most recently scraped record for Gov. Gray Davis
             incumbent = ScrapedCandidateProxy.objects.filter(
                 name='DAVIS, GRAY',

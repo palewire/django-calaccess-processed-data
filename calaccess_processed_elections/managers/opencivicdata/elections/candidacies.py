@@ -17,10 +17,18 @@ class OCDCandidacyQuerySet(CopyQuerySet):
         """
         Returns a Candidacy object linked to a CALACCESS filer_id, if it exists.
         """
-        return self.get(
-            person__identifiers__scheme='calaccess_filer_id',
-            person__identifiers__identifier=filer_id,
-        )
+        try:
+            return self.get(
+                person__identifiers__scheme='calaccess_filer_id',
+                person__identifiers__identifier=filer_id,
+            )
+        except self.model.MultipleObjectsReturned:
+            # In some rare cases, like Brian Osorio's 2022 State Senate campaign,
+            # there are duplicate 501 filings
+            return self.filter(
+                person__identifiers__scheme='calaccess_filer_id',
+                person__identifiers__identifier=filer_id,
+            )[0]
 
     def get_by_name(self, name):
         """

@@ -11,6 +11,14 @@ Includes a mapping of special election names to dates.
 # * http://elections.cdn.sos.ca.gov/special-elections/pdf/special-elections-history.pdf
 
 names_to_dates = (
+    ('2022 SPECIAL ELECTION (ASSEMBLY 49)', '2022-02-15'),
+    ('2022 SPECIAL ELECTION (ASSEMBLY 17)', '2022-02-15'),
+    ('2022 SPECIAL ELECTION (ASSEMBLY 11)', '2022-04-05'),
+    ('2022 SPECIAL ELECTION (ASSEMBLY 80)', '2022-04-05'),
+    ('2022 SPECIAL ELECTION (ASSEMBLY 62)', '2022-04-05'),
+    ('2021 SPECIAL ELECTION (ASSEMBLY 54)', '2021-05-18'),
+    ('2021 SPECIAL ELECTION (ASSEMBLY 18)', '2021-06-29'),
+    ('2021 SPECIAL ELECTION (GOVERNOR)', '2021-09-14'),
     ('2021 SPECIAL ELECTION (ASSEMBLY 79)', '2020-04-15'),
     ('2021 SPECIAL ELECTION (STATE SENATE 30)', '2020-04-15'),
     ('2020 SPECIAL RUNOFF (STATE SENATE 28)', '2020-05-12'),

@@ -84,6 +84,8 @@ class Command(CalAccessCommand):
         # the election of the contest happens after the start year
         # but before the end year, if it exists, mark as incumbent
         for member in Membership.objects.all():
+            if not member.start_date:
+                continue
             candidacies_q = member.person.candidacies.filter(
                 contest__election__date__year__gt=int(member.start_date),
                 post=member.post,

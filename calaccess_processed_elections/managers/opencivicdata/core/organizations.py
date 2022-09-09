@@ -97,12 +97,22 @@ class OCDMembershipManager(BulkLoadSQLManager):
             logger.debug(' Created new Person: %s' % person.name)
 
         # Get or create membership for post and person
-        membership, membership_created = self.get_queryset().get_or_create(
-            person=person,
-            post=post,
-            role=post.role,
-            organization=post.organization,
-        )
+        try:
+            membership, membership_created = self.get_queryset().get_or_create(
+                person=person,
+                post=post,
+                role=post.role,
+                organization=post.organization,
+            )
+        except self.model.MultipleObjectsReturned:
+            membership_list = self.get_queryset().filter(
+                person=person,
+                post=post,
+                role=post.role,
+                organization=post.organization,
+            )
+            membership = membership_list[0]
+            membership_created = False
 
         incumbent_name = incumbent.parsed_name['name']
         if membership.person_name != incumbent_name:

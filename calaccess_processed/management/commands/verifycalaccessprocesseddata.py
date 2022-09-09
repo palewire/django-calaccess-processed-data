@@ -173,7 +173,7 @@ elections:\n{1}'.format(error_count, error_list)
         dupes = OCDMembershipProxy.objects.get_duplicates()
         error_list = '\n'.join([
             '- {0} in {1} repeated in {2} rows.'.format(
-                i.person, i.post, i.row_count
+                i['person'], i['post'], i['row_count']
             ) for i in dupes]
         )
         msg = '{0} duplicated Memberships:\n{1}'.format(dupes.count(), error_list)
