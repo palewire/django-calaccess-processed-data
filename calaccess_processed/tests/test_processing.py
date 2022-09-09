@@ -53,12 +53,6 @@ class ProcessedDataTest(TransactionTestCase):
     """
     fixtures = [
         'divisions.json',
-        'candidate_election.json',
-        'candidate.json',
-        'incumbent_election.json',
-        'incumbent.json',
-        'proposition_election.json',
-        'proposition.json',
     ]
 
     @classmethod
@@ -104,6 +98,7 @@ class ProcessedDataTest(TransactionTestCase):
         )
 
         call_command("updatecalaccessrawdata", verbosity=3, noinput=True)
+        call_command("loadcalaccessscrapeddata", verbosity=3, noinput=True)
         call_command("processcalaccessdata", verbosity=3)
 
     def test_everything(self):
