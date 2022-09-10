@@ -1,10 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Basic configuration for the application.
-"""
-from __future__ import unicode_literals
+"""Basic configuration for the application."""
 import os
+
 from django.apps import AppConfig
 
 

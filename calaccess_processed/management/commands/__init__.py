@@ -1,9 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Base classes for custom management commands.
-"""
-from __future__ import unicode_literals
+"""Base classes for custom management commands."""
 import os
 import re
 from django.utils import timezone
@@ -13,10 +8,6 @@ from calaccess_raw import get_data_directory
 # Commands
 from django.core.management.base import BaseCommand
 from django.core.management import CommandError
-
-# Models
-from calaccess_raw.models import RawDataVersion
-from calaccess_processed.models import ProcessedDataVersion
 
 # Logging
 import logging
@@ -51,35 +42,6 @@ class CalAccessCommand(BaseCommand):
         if not os.path.exists(self.processed_data_dir):
             # make the processed data director
             os.makedirs(self.processed_data_dir)
-
-    def get_or_create_processed_version(self):
-        """
-        Get or create the current processed version.
-
-        Return a tuple (ProcessedDataVersion object, created), where
-        created is a boolean specifying whether a version was created.
-        """
-        # get the latest raw data version
-        try:
-            latest_raw_version = RawDataVersion.objects.latest(
-                'release_datetime',
-            )
-        except RawDataVersion.DoesNotExist:
-            raise CommandError(
-                'No raw CAL-ACCESS data loaded (run `python manage.py '
-                'updatecalaccessrawdata`).'
-            )
-
-        # check if latest raw version update completed
-        if latest_raw_version.update_stalled:
-            msg_tmp = 'Update to raw version released at %s did not complete'
-            raise CommandError(
-                msg_tmp % latest_raw_version.release_datetime.ctime()
-            )
-
-        return ProcessedDataVersion.objects.get_or_create(
-            raw_version=latest_raw_version,
-        )
 
     def header(self, string):
         """

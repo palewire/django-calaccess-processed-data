@@ -1,21 +1,10 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Custom manager for loading raw data in to "filings" models.
-"""
-from __future__ import unicode_literals
+"""Custom manager for loading raw data in to "filings" models."""
 import itertools
 
-# Django tricks
 from django.db.models import Q
 from django.db import connection
 
-# Managers
 from calaccess_processed.managers import BulkLoadSQLManager
-
-# Logging
-import logging
-logger = logging.getLogger(__name__)
 
 
 class FilingsManager(BulkLoadSQLManager):
@@ -28,9 +17,8 @@ class FilingsManager(BulkLoadSQLManager):
         """
         Return string of raw sql for loading the model.
         """
-        fp = open(self.sql_path, 'r')
-        sql = fp.read()
-        fp.close()
+        with open(self.sql_path, 'r') as fp:
+            sql = fp.read()
         return sql
 
     @property
@@ -38,7 +26,7 @@ class FilingsManager(BulkLoadSQLManager):
         """
         Return the path to the .sql file with the model's loading query.
         """
-        file_name = 'load_%s_model' % self.model._meta.model_name
+        file_name = f'load_self.model._meta.model_name_model'
         return self.get_sql_path(file_name)
 
     def load(self):

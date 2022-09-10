@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import os
 from setuptools import setup, find_packages
 from distutils.core import Command
@@ -92,7 +90,7 @@ CAL-ACCESS database',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Framework :: Django',
-        'Framework :: Django :: 3.2',
+        'Framework :: Django :: 4',
         'License :: OSI Approved :: MIT License',
     ),
     setup_requires=["setuptools_scm"],

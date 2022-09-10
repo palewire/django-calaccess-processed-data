@@ -1,9 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Abstract base models for campaign finance-related filings and transactions.
-"""
+"""Abstract base models for campaign finance-related filings and transactions."""
 from django.db import models
+
 from calaccess_processed_filings.models.base import FilingBaseModel
 
 

@@ -1,10 +1,8 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Filing-related models, managers and mixins.
-"""
-import requests
+"""Filing-related models, managers and mixins."""
 from time import sleep
+
+import requests
+
 from calaccess_processed.models import CalAccessBaseModel
 from calaccess_processed_filings.managers import FilingsManager
 

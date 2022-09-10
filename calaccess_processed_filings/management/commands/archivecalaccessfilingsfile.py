@@ -1,9 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Export and archive a .csv file for a given model.
-"""
+"""Export and archive a .csv file for a given model."""
 from django.apps import apps
+
 from calaccess_processed.management.commands._archivecalaccessprocessedfile import Command as BaseCommand
 
 

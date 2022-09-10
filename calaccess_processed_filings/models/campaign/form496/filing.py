@@ -1,14 +1,9 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Models for storing data from Schedule 496, the Late Independent Expenditure Report.
+"""Models for storing data from Schedule 496, the Late Independent Expenditure Report.
 
 More about the filing: https://calaccess.californiacivicdata.org/documentation/calaccess-forms/f496/
 """
-from __future__ import unicode_literals
-
-# Models
 from django.db import models
+
 from calaccess_processed_filings.models.campaign import CampaignFinanceFilingBase
 
 
@@ -92,4 +87,4 @@ class Form496FilingVersion(CampaignFinanceFilingBase):
         verbose_name = "Form 496 (Late Independent Expenditure) filing version"
 
     def __str__(self):
-        return '%s-%s' % (self.filing, self.amend_id)
+        return f'{self.filing}-{self.amend_id}'

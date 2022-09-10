@@ -1,15 +1,10 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Export and archive a .csv file for a given model.
-"""
+"""Export and archive a .csv file for a given model."""
 import os
-import logging
-from calaccess_raw import get_data_directory
-from calaccess_processed.management.commands import CalAccessCommand
-from calaccess_processed.models.tracking import ProcessedDataVersion, ProcessedDataFile
 
-logger = logging.getLogger(__name__)
+from django.apps import apps
+from calaccess_raw import get_data_directory
+
+from calaccess_processed.management.commands import CalAccessCommand
 
 
 class Command(CalAccessCommand):
@@ -43,23 +38,9 @@ class Command(CalAccessCommand):
         # Log out what we're doing ...
         self.log(" Archiving %s.csv" % self.model_name)
 
-        # ... get the current version ...
-        version = ProcessedDataVersion.objects.latest('process_start_datetime')
-
-        # ... and the processed file object ...
-        try:
-            processed_file = version.files.get(file_name=self.model_name)
-        except ProcessedDataFile.DoesNotExist:
-            processed_file = version.files.create(file_name=self.model_name)
-
         # Get the data obj that is paired with the processed_file obj
-        data_model = self.get_model(processed_file)
-
-        # Update the records count
-        processed_file.records_count = data_model.objects.count()
-
-        # Save it
-        processed_file.save()
+        lookup = apps.get_app_config("calaccess_processed").get_processed_file_lookup()
+        data_model = lookup[self.model_name]
 
         # Figure out the path where we will save the file
         csv_dir = os.path.join(
@@ -68,7 +49,7 @@ class Command(CalAccessCommand):
             data_model().klass_group.lower()
         )
         os.path.exists(csv_dir) or os.mkdir(csv_dir)
-        csv_name = '{}.csv'.format(processed_file.file_name)
+        csv_name = f'{self.model_name}.csv'
         csv_path = os.path.join(csv_dir, csv_name)
 
         # Export a new one

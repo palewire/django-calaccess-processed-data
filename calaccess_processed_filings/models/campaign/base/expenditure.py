@@ -1,15 +1,11 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Abstract base models for campaign finance-related filings and transactions.
-"""
+"""Abstract base models for campaign finance-related filings and transactions."""
 from django.db import models
+
 from calaccess_processed_filings.models.base import FilingBaseModel
 
 
 class CampaignExpenditureItemBase(FilingBaseModel):
-    """
-    Abstract base model for payments made by or on behalf of campaign filers.
+    """Abstract base model for payments made by or on behalf of campaign filers.
 
     These transactions are itemized on Schedules D, E and G of Form 460 filings
     and stored in the EXPN_CD table.
@@ -399,8 +395,7 @@ class CampaignExpenditureItemBase(FilingBaseModel):
 
 
 class CampaignExpenditureSubItemBase(CampaignExpenditureItemBase):
-    """
-    Abstract base model for sub-items of campaign expenditures.
+    """Abstract base model for sub-items of campaign expenditures.
 
     A sub-item is a transaction where the amount is lumped into another
     "parent" payment reported elsewhere on the filing.
