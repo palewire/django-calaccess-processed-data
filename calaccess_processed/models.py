@@ -10,7 +10,7 @@ from django.db import models
 from django.db.models.base import ModelBase
 
 # Managers
-from ..managers import BulkLoadSQLManager
+from .managers import BulkLoadSQLManager
 
 # Text
 import textwrap

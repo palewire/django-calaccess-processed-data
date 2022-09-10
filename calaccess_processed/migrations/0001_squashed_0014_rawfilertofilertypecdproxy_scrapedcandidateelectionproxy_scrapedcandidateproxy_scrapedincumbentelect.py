@@ -1678,7 +1678,7 @@ class Migration(migrations.Migration):
                 ('process_finish_datetime', models.DateTimeField(help_text='Date and time when the processing of the CAL-ACCESS version finished', null=True, verbose_name='date and time update finished')),
                 ('zip_archive', models.FileField(blank=True, help_text='An archive zip of processed files', max_length=255, upload_to=calaccess_processed.archive_directory_path, verbose_name='cleaned files zip archive')),
                 ('zip_size', models.BigIntegerField(help_text='The expected size (in bytes) of the zip of processed files', null=True, verbose_name='zip of size (in bytes)')),
-                ('raw_version', models.OneToOneField(help_text='Foreign key referencing the raw data version processed', on_delete=django.db.models.deletion.CASCADE, related_name='processed_version', to='calaccess_raw.RawDataVersion', verbose_name='raw data version')),
+                # ('raw_version', models.OneToOneField(help_text='Foreign key referencing the raw data version processed', on_delete=django.db.models.deletion.CASCADE, related_name='processed_version', to='calaccess_raw.RawDataVersion', verbose_name='raw data version')),
             ],
             options={
                 'get_latest_by': 'process_start_datetime',

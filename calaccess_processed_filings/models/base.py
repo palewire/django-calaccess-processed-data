@@ -5,7 +5,7 @@ Filing-related models, managers and mixins.
 """
 import requests
 from time import sleep
-from calaccess_processed.models.base import CalAccessBaseModel
+from calaccess_processed.models import CalAccessBaseModel
 from calaccess_processed_filings.managers import FilingsManager
 
 
