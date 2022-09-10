@@ -15,13 +15,6 @@ class ProcessedDataVersion(models.Model):
     """
     A version of CAL-ACCESS processed data.
     """
-    raw_version = models.OneToOneField(
-        'calaccess_raw.RawDataVersion',
-        related_name='processed_version',
-        verbose_name='raw data version',
-        help_text='Foreign key referencing the raw data version processed',
-        on_delete=models.CASCADE
-    )
     process_start_datetime = models.DateTimeField(
         null=True,
         verbose_name='date and time processing started',
@@ -43,9 +36,6 @@ class ProcessedDataVersion(models.Model):
         verbose_name = 'TRACKING: CAL-ACCESS processed data version'
         ordering = ('-process_start_datetime',)
         get_latest_by = 'process_start_datetime'
-
-    def __str__(self):
-        return str(self.raw_version.release_datetime)
 
     @property
     def update_completed(self):
