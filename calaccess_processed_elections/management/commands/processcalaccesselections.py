@@ -54,15 +54,12 @@ class Command(LoadOCDElectionsBase):
         call_command('loadocdparties', **options)
         self.duration()
 
-#        #
-#        # Load elections
-#        #
+        #
+        # Load elections
+        #
 
-#        call_command('loadocdballotmeasureelections', **options)
-#        self.duration()
-
-#        call_command('loadocdcandidateelections', **options)
-#        self.duration()
+        call_command('loadocdelections', **options)
+        self.duration()
 
 #        #
 #        # Load contests and candidates

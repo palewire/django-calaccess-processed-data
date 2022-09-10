@@ -29,7 +29,7 @@ class LoadOCDElectionsBase(CalAccessCommand):
         for scraped_election in proxy.objects.all():
 
             # Log each one as we go
-            if self.verbosity > 1
+            if self.verbosity > 1:
                 self.log(f"Loading from {scraped_election}")
 
             # Get or create an election record

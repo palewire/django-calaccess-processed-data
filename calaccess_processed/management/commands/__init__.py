@@ -9,10 +9,6 @@ from calaccess_raw import get_data_directory
 from django.core.management.base import BaseCommand
 from django.core.management import CommandError
 
-# Logging
-import logging
-logger = logging.getLogger(__name__)
-
 
 class CalAccessCommand(BaseCommand):
     """
@@ -47,7 +43,6 @@ class CalAccessCommand(BaseCommand):
         """
         Writes out a string to stdout formatted to look like a header.
         """
-        logger.debug(string)
         if not getattr(self, 'no_color', None):
             string = colorize(string, fg="cyan", opts=("bold",))
         self.stdout.write(string)
@@ -56,7 +51,6 @@ class CalAccessCommand(BaseCommand):
         """
         Writes out a string to stdout formatted to look like a standard line.
         """
-        logger.debug(string)
         if not getattr(self, 'no_color', None):
             string = colorize("%s" % string, fg="white")
         self.stdout.write(string)
@@ -65,7 +59,6 @@ class CalAccessCommand(BaseCommand):
         """
         Writes out a string to stdout formatted green to communicate success.
         """
-        logger.debug(string)
         if not getattr(self, 'no_color', None):
             string = colorize(string, fg="green")
         self.stdout.write(string)
@@ -74,7 +67,6 @@ class CalAccessCommand(BaseCommand):
         """
         Writes string to stdout formatted yellow to communicate a warning.
         """
-        logger.warning(string)
         if not getattr(self, 'no_color', None):
             string = colorize(string, fg="yellow")
         self.stdout.write(string)
@@ -83,7 +75,6 @@ class CalAccessCommand(BaseCommand):
         """
         Writes string to stdout formatted red to communicate failure.
         """
-        logger.error(string)
         if not getattr(self, 'no_color', None):
             string = colorize(string, fg="red")
         self.stdout.write(string)
@@ -94,7 +85,6 @@ class CalAccessCommand(BaseCommand):
         """
         duration = timezone.now() - self.start_datetime
         self.stdout.write('Duration: {}'.format(str(duration)))
-        logger.debug('Duration: {}'.format(str(duration)))
 
     def __str__(self):
         return re.sub(r'(.+\.)*', '', self.__class__.__module__)
