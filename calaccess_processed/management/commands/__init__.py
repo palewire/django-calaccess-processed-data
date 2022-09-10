@@ -1,13 +1,11 @@
 """Base classes for custom management commands."""
 import os
 import re
+
 from django.utils import timezone
 from django.utils.termcolors import colorize
-from calaccess_raw import get_data_directory
-
-# Commands
 from django.core.management.base import BaseCommand
-from django.core.management import CommandError
+from calaccess_raw import get_data_directory
 
 
 class CalAccessCommand(BaseCommand):

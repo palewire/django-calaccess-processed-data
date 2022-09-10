@@ -2,6 +2,7 @@
 import os
 
 from django.core.management import call_command
+from django.core.management.base import CommandError
 
 from calaccess_scraped.models import PropositionElection
 from calaccess_processed.management.commands import CalAccessCommand
@@ -37,23 +38,23 @@ class Command(CalAccessCommand):
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
-#        call_command(
-#            'processcalaccesselections',
-#            verbosity=self.verbosity,
-#            no_color=self.no_color,
-#        )
-#        call_command(
-#            'processcalaccessflatfiles',
-#            verbosity=self.verbosity,
-#            no_color=self.no_color,
-#        )
+        call_command(
+            'processcalaccesselections',
+            verbosity=self.verbosity,
+            no_color=self.no_color,
+        )
+        call_command(
+            'processcalaccessflatfiles',
+            verbosity=self.verbosity,
+            no_color=self.no_color,
+        )
 
-#        # then verify
-#        call_command(
-#            'verifycalaccessprocesseddata',
-#            verbosity=self.verbosity,
-#            no_color=self.no_color,
-#        )
+        # then verify
+        call_command(
+            'verifycalaccessprocesseddata',
+            verbosity=self.verbosity,
+            no_color=self.no_color,
+        )
 
         self.success('Processing complete')
         self.duration()

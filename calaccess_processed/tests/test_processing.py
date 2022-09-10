@@ -20,8 +20,6 @@ from django.core.management.base import CommandError
 
 # Models
 from django.db import models
-from calaccess_raw.models import RawDataVersion
-from calaccess_processed.models import ProcessedDataVersion
 from calaccess_scraped.models import Candidate as ScrapedCandidate
 from calaccess_scraped.models import Proposition as ScrapedProposition
 # from opencivicdata.core.models import Person
@@ -46,7 +44,6 @@ class NoProcessedDataTest(TestCase):
 
 @override_settings(CALACCESS_DATA_DIR=os.path.join(settings.BASE_DIR, 'test-data'))
 @override_settings(MEDIA_ROOT=os.path.join(settings.BASE_DIR, 'test-data', ".media"))
-@override_settings(CALACCESS_STORE_ARCHIVE=False)
 class ProcessedDataTest(TransactionTestCase):
     """
     Run and test management commands.
@@ -69,20 +66,13 @@ class ProcessedDataTest(TransactionTestCase):
             'dbwebexport.zip',
         )
         shutil.copy(zip_path, download_dir)
-        rdv = RawDataVersion.objects.create(
-            release_datetime=now(),
-            update_start_datetime=now(),
-            download_start_datetime=now(),
-            download_finish_datetime=now(),
-            expected_size=os.stat(zip_path).st_size,
-        )
         # mock an SoS HEAD response
         imf_datetime = formatdate(
-            time.mktime(rdv.release_datetime.timetuple()),
+            time.mktime(now().timetuple()),
             usegmt=True,
         )
         headers = {
-            'Content-Length': str(rdv.expected_size),
+            'Content-Length': str(os.stat(zip_path).st_size),
             'Accept-Ranges': 'bytes',
             'Last-Modified': imf_datetime,
             'Connection': 'keep-alive',
@@ -129,19 +119,6 @@ class ProcessedDataTest(TransactionTestCase):
         from calaccess_processed_elections.proxies import ScrapedCandidateProxy
         obj = ScrapedCandidateProxy.objects.get(name='WINSTON, ALMA MARIE')
         self.assertEqual(obj.get_party().name, 'REPUBLICAN')
-
-        """
-        Test that the processed version was completed.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        self.assertTrue(processed_version.update_completed)
-
-        """
-        Test that each processed file was marked finished.
-        """
-        processed_version = ProcessedDataVersion.objects.latest('process_start_datetime')
-        for df in processed_version.files.all():
-            self.assertTrue(df.process_finish_datetime)
 
         """
         Test the scraped candidates loaded into the database.

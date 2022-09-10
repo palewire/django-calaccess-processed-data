@@ -2,9 +2,7 @@
 import os
 
 from django.apps import apps
-from django.conf import settings
 from django.db import connection
-from django.utils.timezone import now
 from django.core.management import call_command
 
 from calaccess_processed.management.commands import CalAccessCommand
@@ -35,10 +33,9 @@ class Command(CalAccessCommand):
                 self.log(f" Loading {len(model_list)} {model_type} models.")
             self.load_model_list(model_list)
 
-            # archive if django project setting enabled
-            if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
-                for m in model_list:
-                    call_command('archivecalaccessfilingsfile', m._meta.object_name)
+            # archive
+            for m in model_list:
+                call_command('archivecalaccessfilingsfile', m._meta.object_name)
 
     def get_model_list(self, model_type):
         """Return a list of models of the specified type to be loaded.

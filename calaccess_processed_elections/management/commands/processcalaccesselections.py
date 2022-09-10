@@ -2,8 +2,6 @@
 import os
 
 from django.apps import apps
-from django.conf import settings
-from django.utils.timezone import now
 from django.core.management import call_command
 
 from . import LoadOCDElectionsBase
@@ -28,14 +26,12 @@ class Command(LoadOCDElectionsBase):
         # Start off loading all the data
         self.load()
 
-        # archive if django project setting enabled
-        if getattr(settings, 'CALACCESS_STORE_ARCHIVE', False):
-            # then archive
-            if self.verbosity > 2:
-                self.log(' Archiving OCD processed data files.')
-            models_to_archive = apps.get_app_config("calaccess_processed_elections").get_ocd_models_list()
-            for m in models_to_archive:
-                call_command('archivecalaccesselectionsfile', m._meta.object_name)
+        # archive
+        if self.verbosity > 2:
+            self.log(' Archiving OCD processed data files.')
+        models_to_archive = apps.get_app_config("calaccess_processed_elections").get_ocd_models_list()
+        for m in models_to_archive:
+            call_command('archivecalaccesselectionsfile', m._meta.object_name)
 
         # Wrap it up
         self.success('Done!')
