@@ -27,7 +27,7 @@ class FilingsManager(BulkLoadSQLManager):
         """
         Return the path to the .sql file with the model's loading query.
         """
-        file_name = f"load_{self.model._meta.model_name}"
+        file_name = f"load_{self.model._meta.model_name}_model"
         return self.get_sql_path(file_name)
 
     def load(self):
