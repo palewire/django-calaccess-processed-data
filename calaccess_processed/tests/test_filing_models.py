@@ -12,7 +12,8 @@ class Form460FilingTest(TestCase):
     """
     Test for Form460Filing model.
     """
-    fixtures = ['form460filing.json', 'form460filingversion.json']
+
+    fixtures = ["form460filing.json", "form460filingversion.json"]
 
     def test_filing_has_pdf(self):
         """
@@ -20,7 +21,7 @@ class Form460FilingTest(TestCase):
         """
         filing = Form460Filing.objects.all()[0]
         with requests_mock.Mocker() as m:
-            m.register_uri('HEAD', filing.pdf_url)
+            m.register_uri("HEAD", filing.pdf_url)
             self.assertIs(filing.has_pdf, True)
 
     def test_filing_version_has_pdf(self):
@@ -29,5 +30,5 @@ class Form460FilingTest(TestCase):
         """
         filing_version = Form460Filing.objects.all()[0].versions.all()[0]
         with requests_mock.Mocker() as m:
-            m.register_uri('HEAD', filing_version.pdf_url)
+            m.register_uri("HEAD", filing_version.pdf_url)
             self.assertIs(filing_version.has_pdf, True)

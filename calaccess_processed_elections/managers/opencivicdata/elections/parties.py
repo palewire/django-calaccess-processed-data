@@ -12,17 +12,20 @@ class OCDPartyManager(BulkLoadSQLManager):
     """
     Limited the OCD Organization model to politics parties.
     """
+
     def get_queryset(self):
         """
         Override the default manager to limit the results to political parties.
         """
-        return super(OCDPartyManager, self).get_queryset().filter(classification='party')
+        return (
+            super(OCDPartyManager, self).get_queryset().filter(classification="party")
+        )
 
     def unknown(self):
         """
         Returns the UNKNOWN party.
         """
-        return self.get_queryset().get(name='UNKNOWN')
+        return self.get_queryset().get(name="UNKNOWN")
 
     def get_by_name(self, name):
         """
@@ -53,10 +56,14 @@ class OCDPartyManager(BulkLoadSQLManager):
         """
         # Try to see if the record exists in the raw data with a party code
         try:
-            party_code = FilerToFilerTypeCd.objects.filter(
-                filer_id=filer_id,
-                effect_dt__lte=election_date,
-            ).latest('effect_dt').party_cd
+            party_code = (
+                FilerToFilerTypeCd.objects.filter(
+                    filer_id=filer_id,
+                    effect_dt__lte=election_date,
+                )
+                .latest("effect_dt")
+                .party_cd
+            )
         except FilerToFilerTypeCd.DoesNotExist:
             # If it doesn't hit just quit now
             return self.unknown()

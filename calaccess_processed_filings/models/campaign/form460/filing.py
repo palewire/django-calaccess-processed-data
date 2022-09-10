@@ -29,30 +29,34 @@ class Form460Filing(Form460FilingBase):
     recent version of each Form 460 filing. All versions of the filings can be
     found in Form460FilingVersion.
     """
+
     filing_id = models.IntegerField(
-        verbose_name='filing id',
+        verbose_name="filing id",
         primary_key=True,
         null=False,
-        help_text='Unique identification number for the Form 460 filing ('
-                  'from CVR_CAMPAIGN_DISCLOSURE_CD.FILING_ID)',
+        help_text="Unique identification number for the Form 460 filing ("
+        "from CVR_CAMPAIGN_DISCLOSURE_CD.FILING_ID)",
     )
     amendment_count = models.IntegerField(
-        verbose_name='Count amendments',
+        verbose_name="Count amendments",
         db_index=True,
         null=False,
-        help_text='Number of amendments to the Form 460 filing (from '
-                  'maximum value of CVR_CAMPAIGN_DISCLOSURE_CD.AMEND_ID)',
+        help_text="Number of amendments to the Form 460 filing (from "
+        "maximum value of CVR_CAMPAIGN_DISCLOSURE_CD.AMEND_ID)",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        index_together = ((
-            'filing_id',
-            'amendment_count',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        index_together = (
+            (
+                "filing_id",
+                "amendment_count",
+            ),
+        )
         verbose_name = "Form 460 (Campaign Disclosure) filing"
 
     def __str__(self):
@@ -67,37 +71,43 @@ class Form460FilingVersion(Form460FilingBase):
     version of each Form 460 filing. For the most recent version of each filing,
     see Form460Filing.
     """
+
     filing = models.ForeignKey(
-        'Form460Filing',
-        related_name='versions',
+        "Form460Filing",
+        related_name="versions",
         db_constraint=False,
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Unique identification number for the Form 460 filing ('
-                  'from CVR_CAMPAIGN_DISCLOSURE_CD.FILING_ID)',
+        help_text="Unique identification number for the Form 460 filing ("
+        "from CVR_CAMPAIGN_DISCLOSURE_CD.FILING_ID)",
     )
     amend_id = models.IntegerField(
-        verbose_name='amendment id',
+        verbose_name="amendment id",
         null=False,
-        help_text='Identifies the version of the Form 460 filing, with 0 '
-                  'representing the initial filing (from CVR_CAMPAIGN_'
-                  'DISCLOSURE_CD.AMEND_ID)',
+        help_text="Identifies the version of the Form 460 filing, with 0 "
+        "representing the initial filing (from CVR_CAMPAIGN_"
+        "DISCLOSURE_CD.AMEND_ID)",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        unique_together = ((
-            'filing',
-            'amend_id',
-        ),)
-        index_together = ((
-            'filing',
-            'amend_id',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        unique_together = (
+            (
+                "filing",
+                "amend_id",
+            ),
+        )
+        index_together = (
+            (
+                "filing",
+                "amend_id",
+            ),
+        )
         verbose_name = "Form 460 (Campaign Disclosure) filing version"
 
     def __str__(self):
-        return '%s-%s' % (self.filing, self.amend_id)
+        return "%s-%s" % (self.filing, self.amend_id)

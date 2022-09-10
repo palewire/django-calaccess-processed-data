@@ -3,4 +3,6 @@
 """
 General utilities for the application.
 """
-default_app_config = 'calaccess_processed_flatfiles.apps.CalAccessProcessedFlatfilesConfig'
+default_app_config = (
+    "calaccess_processed_flatfiles.apps.CalAccessProcessedFlatfilesConfig"
+)

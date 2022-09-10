@@ -16,25 +16,27 @@ class Form460ScheduleIItemBase(CampaignContributionBase):
     transaction that increases the cash position of the filer, but is not a
     monetary contribution, loan, or loan repayment.
     """
+
     amount = models.DecimalField(
-        verbose_name='amount',
+        verbose_name="amount",
         decimal_places=2,
         max_digits=14,
         help_text="Amount of cash increase from the contributor in the period "
-                  "covered by the filing (from RCPT_CD.AMOUNT)"
+        "covered by the filing (from RCPT_CD.AMOUNT)",
     )
     receipt_description = models.CharField(
-        verbose_name='receipt description',
+        verbose_name="receipt description",
         max_length=90,
         blank=True,
-        help_text="Description of the cash increase (from RCPT_CD.CTRIB_DSCR)"
+        help_text="Description of the cash increase (from RCPT_CD.CTRIB_DSCR)",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
+
+        app_label = "calaccess_processed_filings"
         abstract = True
 
 
@@ -51,30 +53,34 @@ class Form460ScheduleIItem(Form460ScheduleIItemBase):
 
     Derived from RCPT_CD records where FORM_TYPE is 'I'.
     """
+
     filing = models.ForeignKey(
-        'Form460Filing',
-        related_name='schedule_i_items',
+        "Form460Filing",
+        related_name="schedule_i_items",
         null=True,
         on_delete=models.SET_NULL,
         db_constraint=False,
-        help_text='Foreign key referring to the Form 460 on which the '
-                  'miscellaneous cash increase was report (from RCPT_CD.'
-                  'FILING_ID)',
+        help_text="Foreign key referring to the Form 460 on which the "
+        "miscellaneous cash increase was report (from RCPT_CD."
+        "FILING_ID)",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        unique_together = ((
-            'filing',
-            'line_item',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        unique_together = (
+            (
+                "filing",
+                "line_item",
+            ),
+        )
         verbose_name = "Form 460 (Campaign Disclosure) Schedule I item"
 
     def __str__(self):
-        return '%s-%s' % (self.filing, self.line_item)
+        return "%s-%s" % (self.filing, self.line_item)
 
 
 class Form460ScheduleIItemVersion(Form460ScheduleIItemBase):
@@ -89,33 +95,39 @@ class Form460ScheduleIItemVersion(Form460ScheduleIItemBase):
 
     Derived from RCPT_CD records where FORM_TYPE is 'I'.
     """
+
     filing_version = models.ForeignKey(
-        'Form460FilingVersion',
-        related_name='schedule_i_items',
+        "Form460FilingVersion",
+        related_name="schedule_i_items",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the version of the Form 460 that '
-                  'includes the miscellaneous cash increase'
+        help_text="Foreign key referring to the version of the Form 460 that "
+        "includes the miscellaneous cash increase",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        unique_together = ((
-            'filing_version',
-            'line_item',
-        ),)
-        index_together = ((
-            'filing_version',
-            'line_item',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        unique_together = (
+            (
+                "filing_version",
+                "line_item",
+            ),
+        )
+        index_together = (
+            (
+                "filing_version",
+                "line_item",
+            ),
+        )
         verbose_name = "Form 460 (Campaign Disclosure) Schedule I item version"
 
     def __str__(self):
-        return '%s-%s-%s' % (
+        return "%s-%s-%s" % (
             self.filing_version.filing_id,
             self.filing_version.amend_id,
-            self.line_item
+            self.line_item,
         )

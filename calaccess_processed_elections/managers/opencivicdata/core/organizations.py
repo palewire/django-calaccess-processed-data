@@ -9,6 +9,7 @@ from calaccess_processed.managers import BulkLoadSQLManager
 
 # Logging
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -16,13 +17,14 @@ class OCDOrganizationManager(BulkLoadSQLManager):
     """
     Custom helpers for the OCD Organization model.
     """
+
     def senate(self):
         """
         Returns state senate organization.
         """
         return self.get_queryset().get_or_create(
-            name='California State Senate',
-            classification='upper',
+            name="California State Senate",
+            classification="upper",
         )[0]
 
     def assembly(self):
@@ -30,8 +32,8 @@ class OCDOrganizationManager(BulkLoadSQLManager):
         Returns state assembly organization.
         """
         return self.get_queryset().get_or_create(
-            name='California State Assembly',
-            classification='lower',
+            name="California State Assembly",
+            classification="lower",
         )[0]
 
     def executive_branch(self):
@@ -39,8 +41,8 @@ class OCDOrganizationManager(BulkLoadSQLManager):
         Returns executive branch organization.
         """
         return self.get_queryset().get_or_create(
-            name='California State Executive Branch',
-            classification='executive',
+            name="California State Executive Branch",
+            classification="executive",
         )[0]
 
     def secretary_of_state(self):
@@ -48,8 +50,8 @@ class OCDOrganizationManager(BulkLoadSQLManager):
         Returns secretary of state organization.
         """
         return self.get_queryset().get_or_create(
-            name='California Secretary of State',
-            classification='executive',
+            name="California Secretary of State",
+            classification="executive",
             parent=self.executive_branch(),
         )[0]
 
@@ -58,8 +60,8 @@ class OCDOrganizationManager(BulkLoadSQLManager):
         Returns the elections division of the secretary of state organization.
         """
         return self.get_queryset().get_or_create(
-            name='Elections Division',
-            classification='executive',
+            name="Elections Division",
+            classification="executive",
             parent=self.secretary_of_state(),
         )[0]
 
@@ -68,7 +70,7 @@ class OCDOrganizationManager(BulkLoadSQLManager):
         Returns board of equalization organization.
         """
         return self.get_queryset().get_or_create(
-            name='State Board of Equalization',
+            name="State Board of Equalization",
             parent=self.executive_branch(),
         )[0]
 
@@ -77,6 +79,7 @@ class OCDMembershipManager(BulkLoadSQLManager):
     """
     Manager for custom methods on the OCDMembershipProxy model.
     """
+
     def get_or_create_from_calaccess(self, incumbent):
         """
         Get or create and OCD Membership from a scraped incumbent.
@@ -84,9 +87,11 @@ class OCDMembershipManager(BulkLoadSQLManager):
         from calaccess_processed_elections.proxies import OCDPersonProxy, OCDPostProxy
 
         # Get or create post
-        post, post_created = OCDPostProxy.objects.get_or_create_by_name(incumbent.office_name)
+        post, post_created = OCDPostProxy.objects.get_or_create_by_name(
+            incumbent.office_name
+        )
         if post_created:
-            logger.debug(' Created new Post: %s' % post.label)
+            logger.debug(" Created new Post: %s" % post.label)
 
         # Get or create person
         person, person_created = OCDPersonProxy.objects.get_or_create_from_calaccess(
@@ -94,7 +99,7 @@ class OCDMembershipManager(BulkLoadSQLManager):
             candidate_filer_id=incumbent.scraped_id,
         )
         if person_created:
-            logger.debug(' Created new Person: %s' % person.name)
+            logger.debug(" Created new Person: %s" % person.name)
 
         # Get or create membership for post and person
         try:
@@ -114,12 +119,12 @@ class OCDMembershipManager(BulkLoadSQLManager):
             membership = membership_list[0]
             membership_created = False
 
-        incumbent_name = incumbent.parsed_name['name']
+        incumbent_name = incumbent.parsed_name["name"]
         if membership.person_name != incumbent_name:
             membership.person_name == incumbent_name
             membership.save()
         membership.person_proxy.add_other_name(
-            incumbent_name, 'From scraped incumbent record'
+            incumbent_name, "From scraped incumbent record"
         )
 
         return membership, membership_created
@@ -130,6 +135,9 @@ class OCDMembershipManager(BulkLoadSQLManager):
         """
         # group memberships by post_id and person_id
         # check if any group has more than one row.
-        return self.get_queryset().values(
-            'post', 'person'
-        ).annotate(row_count=Count('id')).filter(row_count__gt=1)
+        return (
+            self.get_queryset()
+            .values("post", "person")
+            .annotate(row_count=Count("id"))
+            .filter(row_count__gt=1)
+        )

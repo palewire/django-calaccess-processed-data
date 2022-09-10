@@ -12,24 +12,26 @@ from calaccess_processed_filings.models.campaign import CampaignContributionBase
 # Summaries
 #
 
+
 class Form460ScheduleASummaryBase(FilingBaseModel):
     """
     Abstract base model with summary data from Schedule A attachments to Form 460 filings.
 
     Includes totals for itemized versus unitemized contributions.
     """
+
     itemized_contributions = models.FloatField(
-        verbose_name='itemized contributions',
+        verbose_name="itemized contributions",
         null=True,
         help_text="Amount received this period - contributions of $100 or more. (Include all Schedule A subtotals.)",
     )
     unitemized_contributions = models.FloatField(
-        verbose_name='unitemized contributions',
+        verbose_name="unitemized contributions",
         null=True,
         help_text="Amount received this period - unitemized contributions of less than $100",
     )
     total_contributions = models.FloatField(
-        verbose_name='total contributions',
+        verbose_name="total contributions",
         null=True,
         help_text="Total monetary contributions received this period. (Add Lines 1 and 2. Enter here and on summary \
 Page, Column A, Line 1.)",
@@ -39,7 +41,8 @@ Page, Column A, Line 1.)",
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
+
+        app_label = "calaccess_processed_filings"
         abstract = True
 
 
@@ -49,24 +52,26 @@ class Form460ScheduleASummary(Form460ScheduleASummaryBase):
 
     Includes totals for itemized versus unitemized contributions.
     """
+
     filing = models.ForeignKey(
-        'Form460Filing',
-        related_name='schedule_a_summaries',
+        "Form460Filing",
+        related_name="schedule_a_summaries",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the Form 460 on which the summary was reported',
+        help_text="Foreign key referring to the Form 460 on which the summary was reported",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
+
+        app_label = "calaccess_processed_filings"
         verbose_name = "Form 460 (Campaign Disclosure) Schedule A summary"
         verbose_name_plural = "Form 460 (Campaign Disclosure) Schedule A summaries"
 
     def __str__(self):
-        return '%s' % (self.filing)
+        return "%s" % (self.filing)
 
 
 class Form460ScheduleASummaryVersion(Form460ScheduleASummaryBase):
@@ -75,24 +80,26 @@ class Form460ScheduleASummaryVersion(Form460ScheduleASummaryBase):
 
     Includes totals for itemized versus unitemized contributions.
     """
+
     filing_version = models.ForeignKey(
-        'Form460FilingVersion',
-        related_name='schedule_a_summaries',
+        "Form460FilingVersion",
+        related_name="schedule_a_summaries",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the version of the Form 460 that '
-                  'includes the summary'
+        help_text="Foreign key referring to the version of the Form 460 that "
+        "includes the summary",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
+
+        app_label = "calaccess_processed_filings"
         verbose_name = "Form 460 (Campaign Disclosure) Schedule A summary version"
 
     def __str__(self):
-        return '%s-%s' % (
+        return "%s-%s" % (
             self.filing_version.filing_id,
             self.filing_version.amend_id,
         )
@@ -102,6 +109,7 @@ class Form460ScheduleASummaryVersion(Form460ScheduleASummaryBase):
 # Items
 #
 
+
 class Form460ScheduleAItemBase(CampaignContributionBase):
     """
     Abstract base model for items reported on Schedule A of Form 460 filings.
@@ -109,19 +117,21 @@ class Form460ScheduleAItemBase(CampaignContributionBase):
     On Schedule A, campaign filers are required to itemize monetary
     contributions received during the period covered by the filing.
     """
+
     amount = models.DecimalField(
-        verbose_name='amount',
+        verbose_name="amount",
         decimal_places=2,
         max_digits=14,
         help_text="Amount received from the contributor in the period covered "
-                  "by the filing (from RCPT_CD.AMOUNT)"
+        "by the filing (from RCPT_CD.AMOUNT)",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
+
+        app_label = "calaccess_processed_filings"
         abstract = True
 
 
@@ -138,28 +148,32 @@ class Form460ScheduleAItem(Form460ScheduleAItemBase):
 
     Derived from RCPT_CD records where FORM_TYPE is 'A' or 'A-1'.
     """
+
     filing = models.ForeignKey(
-        'Form460Filing',
-        related_name='schedule_a_items',
+        "Form460Filing",
+        related_name="schedule_a_items",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the Form 460 on which the monetary'
-                  ' contribution was reported (from RCPT_CD.FILING_ID)',
+        help_text="Foreign key referring to the Form 460 on which the monetary"
+        " contribution was reported (from RCPT_CD.FILING_ID)",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        unique_together = ((
-            'filing',
-            'line_item',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        unique_together = (
+            (
+                "filing",
+                "line_item",
+            ),
+        )
         verbose_name = "Form 460 (Campaign Disclosure) Schedule A item"
 
     def __str__(self):
-        return '%s-%s' % (self.filing, self.line_item)
+        return "%s-%s" % (self.filing, self.line_item)
 
 
 class Form460ScheduleAItemVersion(Form460ScheduleAItemBase):
@@ -171,33 +185,39 @@ class Form460ScheduleAItemVersion(Form460ScheduleAItemBase):
 
     Derived from RCPT_CD records where FORM_TYPE is 'A' or 'A-1'.
     """
+
     filing_version = models.ForeignKey(
-        'Form460FilingVersion',
-        related_name='schedule_a_items',
+        "Form460FilingVersion",
+        related_name="schedule_a_items",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the version of the Form 460 that '
-                  'includes the received contribution'
+        help_text="Foreign key referring to the version of the Form 460 that "
+        "includes the received contribution",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        unique_together = ((
-            'filing_version',
-            'line_item',
-        ),)
-        index_together = ((
-            'filing_version',
-            'line_item',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        unique_together = (
+            (
+                "filing_version",
+                "line_item",
+            ),
+        )
+        index_together = (
+            (
+                "filing_version",
+                "line_item",
+            ),
+        )
         verbose_name = "Form 460 (Campaign Disclosure) Schedule A item version"
 
     def __str__(self):
-        return '%s-%s-%s' % (
+        return "%s-%s-%s" % (
             self.filing_version.filing_id,
             self.filing_version.amend_id,
-            self.line_item
+            self.line_item,
         )

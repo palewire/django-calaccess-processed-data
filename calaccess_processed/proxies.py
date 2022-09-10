@@ -12,6 +12,7 @@ class OCDProxyModelMixin(object):
     """
     Properties and methods shared by all OCD proxy models.
     """
+
     @property
     def base_model(self):
         """
@@ -31,7 +32,7 @@ class OCDProxyModelMixin(object):
         """
         True if the proxy model is used to flatten relational data models.
         """
-        return 'Flat' in self._meta.object_name
+        return "Flat" in self._meta.object_name
 
     @property
     def file_name(self):
@@ -42,8 +43,9 @@ class OCDProxyModelMixin(object):
         in CamelCase. Otherwise, return the object_name of the base_model.
         """
         if self.is_flat:
-            file_name = ''.join(
-                x for x in str(self._meta.verbose_name_plural).title()
+            file_name = "".join(
+                x
+                for x in str(self._meta.verbose_name_plural).title()
                 if not x.isspace()
             )
         else:
@@ -68,7 +70,7 @@ class OCDProxyModelMixin(object):
         if self.is_flat:
             doc = textwrap.dedent(self.__doc__).strip()
         elif self.base_model.__doc__.startswith(self.base_model._meta.object_name):
-            doc = ''
+            doc = ""
         else:
             doc = textwrap.dedent(self.base_model.__doc__).strip()
         return doc

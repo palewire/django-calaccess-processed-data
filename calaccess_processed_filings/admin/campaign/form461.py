@@ -14,14 +14,15 @@ class Form461FilingAdmin(BaseAdmin):
     """
     Custom admin for the Form461Filing model.
     """
+
     list_display = (
-        'filing_id',
-        'amendment_count',
-        'filer_id',
-        'filer_lastname',
-        'filer_firstname',
-        'date_filed',
-        'election_date',
+        "filing_id",
+        "amendment_count",
+        "filer_id",
+        "filer_lastname",
+        "filer_firstname",
+        "date_filed",
+        "election_date",
     )
 
 
@@ -30,14 +31,15 @@ class Form461FilingVersionAdmin(BaseAdmin):
     """
     Custom admin for the Form461FilingVersion model.
     """
+
     list_display = (
-        'filing',
-        'amend_id',
-        'filer_id',
-        'filer_lastname',
-        'filer_firstname',
-        'date_filed',
-        'election_date',
+        "filing",
+        "amend_id",
+        "filer_id",
+        "filer_lastname",
+        "filer_firstname",
+        "date_filed",
+        "election_date",
     )
 
 
@@ -46,16 +48,17 @@ class Form461Part5ItemAdmin(BaseAdmin):
     """
     Custom admin for the Form461Part5Item model.
     """
+
     list_display = (
-        'filing',
-        'line_item',
-        'expense_date',
-        'payee_code',
-        'payee_lastname',
-        'payee_firstname',
-        'amount',
-        'cumulative_ytd_amount',
-        'transaction_id',
+        "filing",
+        "line_item",
+        "expense_date",
+        "payee_code",
+        "payee_lastname",
+        "payee_firstname",
+        "amount",
+        "cumulative_ytd_amount",
+        "transaction_id",
     )
 
 
@@ -64,14 +67,15 @@ class Form461Part5ItemVersionAdmin(BaseAdmin):
     """
     Custom admin for the Form461Part5ItemVersion model.
     """
+
     list_display = (
-        'filing_version',
-        'line_item',
-        'expense_date',
-        'payee_code',
-        'payee_lastname',
-        'payee_firstname',
-        'amount',
-        'cumulative_ytd_amount',
-        'transaction_id',
+        "filing_version",
+        "line_item",
+        "expense_date",
+        "payee_code",
+        "payee_lastname",
+        "payee_firstname",
+        "amount",
+        "cumulative_ytd_amount",
+        "transaction_id",
     )

@@ -11,16 +11,19 @@ class OCDPersonManager(BulkLoadSQLManager):
     """
     A custom manager for working with the OCD Person model.
     """
+
     def get_by_filer_id(self, filer_id):
         """
         Returns a Person object linked to a CAL-ACCESS filer_id, if it exists.
         """
         return self.get_queryset().get(
-            identifiers__scheme='calaccess_filer_id',
+            identifiers__scheme="calaccess_filer_id",
             identifiers__identifier=filer_id,
         )
 
-    def get_or_create_from_calaccess(self, candidate_name_dict, candidate_filer_id=None):
+    def get_or_create_from_calaccess(
+        self, candidate_name_dict, candidate_filer_id=None
+    ):
         """
         Create a Person object using data from the CAL-ACCESS database and scrape.
 
@@ -42,7 +45,9 @@ class OCDPersonManager(BulkLoadSQLManager):
                 pass
             else:
                 # If we find a match, make sure it has this name variation logged
-                person.add_other_name(candidate_name_dict['name'], 'Matched on calaccess_filer_id')
+                person.add_other_name(
+                    candidate_name_dict["name"], "Matched on calaccess_filer_id"
+                )
                 # Then pass it out.
                 return person, False
 

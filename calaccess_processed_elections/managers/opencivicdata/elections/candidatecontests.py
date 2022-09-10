@@ -13,6 +13,7 @@ class OCDCandidateContestQuerySet(CopyQuerySet):
     """
     Custom helpers for the OCD CandidateContest model that limit it to runoffs.
     """
+
     def set_parents(self):
         """
         Connect and save parent contests for all runoffs.
@@ -27,15 +28,17 @@ class OCDCandidateContestQuerySet(CopyQuerySet):
         """
         Filter to state assembly contests.
         """
-        return self.filter(division__subtype2='sldl')
+        return self.filter(division__subtype2="sldl")
 
     def executive(self):
         """
         Filter to executive contests.
         """
         return self.filter(
-            Q(posts__post__organization__name='California State Executive Branch')
-            | Q(posts__post__organization__parent__name='California State Executive Branch')
+            Q(posts__post__organization__name="California State Executive Branch")
+            | Q(
+                posts__post__organization__parent__name="California State Executive Branch"
+            )
         )
 
     def regular(self):
@@ -48,13 +51,13 @@ class OCDCandidateContestQuerySet(CopyQuerySet):
         """
         Filter down to runoff CandidateContest instances.
         """
-        return self.filter(name__contains='RUNOFF')
+        return self.filter(name__contains="RUNOFF")
 
     def senate(self):
         """
         Filter to state senate contests.
         """
-        return self.filter(division__subtype2='sldu')
+        return self.filter(division__subtype2="sldu")
 
     def special(self):
         """

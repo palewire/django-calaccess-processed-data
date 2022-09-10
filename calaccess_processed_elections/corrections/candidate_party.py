@@ -19,27 +19,29 @@ def candidate_party(candidate_name, year, election_type, office):
     # Get the path to our corrections file
     app = apps.get_app_config("calaccess_processed_elections")
     module_dir = os.path.abspath(os.path.dirname(app.module.__file__))
-    corrections_path = os.path.join(module_dir, 'corrections', "candidate_party.csv")
+    corrections_path = os.path.join(module_dir, "corrections", "candidate_party.csv")
 
     # Open up the corrections
-    with open(corrections_path, 'r') as f:
+    with open(corrections_path, "r") as f:
         corrections = csv.DictReader(f)
         # Filter down to the ones we've corrected
-        corrections = [d for d in corrections if d['party']]
+        corrections = [d for d in corrections if d["party"]]
 
     # Filter down to the ones that match
     matches = [
-        d['party'] for d in corrections if (
-            d['candidate_name'] == candidate_name
-            and str(d['year']) == str(year)
-            and d['election_type'] == election_type
-            and d['office'] == office
+        d["party"]
+        for d in corrections
+        if (
+            d["candidate_name"] == candidate_name
+            and str(d["year"]) == str(year)
+            and d["election_type"] == election_type
+            and d["office"] == office
         )
     ]
 
     # If there's more than one result throw an error
     if len(matches) > 1:
-        raise Exception('More than one correction found.')
+        raise Exception("More than one correction found.")
     # If there's no match return None
     elif len(matches) == 0:
         return None

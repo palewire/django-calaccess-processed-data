@@ -6,19 +6,16 @@ Import all of the managers from submodules and thread them together.
 from .divisions import (
     OCDAssemblyDivisionManager,
     OCDSenateDivisionManager,
-    OCDCaliforniaDivisionManager
+    OCDCaliforniaDivisionManager,
 )
 from .jurisdictions import OCDJurisdictionManager
-from .organizations import (
-    OCDOrganizationManager,
-    OCDMembershipManager
-)
+from .organizations import OCDOrganizationManager, OCDMembershipManager
 from .people import OCDPersonManager
 from .posts import (
     OCDPostManager,
     OCDAssemblyPostManager,
     OCDExecutivePostManager,
-    OCDSenatePostManager
+    OCDSenatePostManager,
 )
 
 
@@ -33,5 +30,5 @@ __all__ = (
     "OCDPostManager",
     "OCDAssemblyPostManager",
     "OCDExecutivePostManager",
-    "OCDSenatePostManager"
+    "OCDSenatePostManager",
 )

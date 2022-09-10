@@ -13,12 +13,12 @@ from .propositionelections import ScrapedPropositionElectionProxy
 
 
 __all__ = (
-    'ScrapedElectionProxyMixin',
-    'ScrapedNameMixin',
-    'ScrapedCandidateProxy',
-    'ScrapedCandidateElectionProxy',
-    'ScrapedIncumbentProxy',
-    'ScrapedIncumbentElectionProxy',
-    'ScrapedPropositionProxy',
-    'ScrapedPropositionElectionProxy',
+    "ScrapedElectionProxyMixin",
+    "ScrapedNameMixin",
+    "ScrapedCandidateProxy",
+    "ScrapedCandidateElectionProxy",
+    "ScrapedIncumbentProxy",
+    "ScrapedIncumbentElectionProxy",
+    "ScrapedPropositionProxy",
+    "ScrapedPropositionElectionProxy",
 )

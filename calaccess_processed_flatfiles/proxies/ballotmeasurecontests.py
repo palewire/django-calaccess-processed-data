@@ -12,25 +12,39 @@ class OCDFlatBallotMeasureContestProxy(BallotMeasureContest, OCDProxyModelMixin)
     """
     Every ballot measure.
     """
+
     objects = OCDFlatBallotMeasureContestManager()
 
     copy_to_fields = (
-        ('name', 'Name of the ballot measure, not necessarily as it appears on the ballot.'),
-        ('classification',),
-        ('election_name', 'Name of the election in which the ballot measure is decided.'),
-        ('election_date', 'Date of the election in which the ballot measure is decided.'),
-        ('description',),
-        ('created_at',),
-        ('updated_at',),
-        ('ocd_contest_id',),
-        ('ocd_election_id', BallotMeasureContest._meta.get_field('election').help_text),
-        ('calaccess_measure_id', 'Identifier assigned to the ballot measure by CAL-ACCESS.'),
+        (
+            "name",
+            "Name of the ballot measure, not necessarily as it appears on the ballot.",
+        ),
+        ("classification",),
+        (
+            "election_name",
+            "Name of the election in which the ballot measure is decided.",
+        ),
+        (
+            "election_date",
+            "Date of the election in which the ballot measure is decided.",
+        ),
+        ("description",),
+        ("created_at",),
+        ("updated_at",),
+        ("ocd_contest_id",),
+        ("ocd_election_id", BallotMeasureContest._meta.get_field("election").help_text),
+        (
+            "calaccess_measure_id",
+            "Identifier assigned to the ballot measure by CAL-ACCESS.",
+        ),
     )
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_flatfiles"
         proxy = True
-        verbose_name_plural = 'ballot measures'
+        verbose_name_plural = "ballot measures"

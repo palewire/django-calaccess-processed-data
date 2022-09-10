@@ -18,6 +18,7 @@ from django.template.defaultfilters import pluralize
 
 # Logging
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -25,6 +26,7 @@ class CampaignFinanceManager(BulkLoadSQLManager):
     """
     Base proxy model for OCD campaign_finance related managers.
     """
+
     app_name = "calaccess_processed_campaignfinance"
 
     def get_sql(self, file_name):
@@ -32,18 +34,18 @@ class CampaignFinanceManager(BulkLoadSQLManager):
         Return string of raw sql for loading the model.
         """
         sql_path = self.get_sql_path(file_name)
-        return open(sql_path, 'r').read()
+        return open(sql_path, "r").read()
 
     def _extract_operation_from_sql(self, sql_str):
         """
         Return the operation (as a string) declared in the SQL string.
         """
-        match = re.search(r'^([A-z]+)', sql_str, re.M)
+        match = re.search(r"^([A-z]+)", sql_str, re.M)
         if match:
-            past_tense = re.sub(r'E$', '', match.group())
-            return '%sed' % past_tense.lower()
+            past_tense = re.sub(r"E$", "", match.group())
+            return "%sed" % past_tense.lower()
         else:
-            return 'affected'
+            return "affected"
 
     def execute_custom_sql(self, file_name, params=None, composables=None):
         """
@@ -74,8 +76,6 @@ class CampaignFinanceManager(BulkLoadSQLManager):
 
         # Log the result
         operation = self._extract_operation_from_sql(raw_sql)
-        logger.debug('{} {} {}'.format(
-            row_count,
-            "row" + pluralize(row_count),
-            operation
-        ))
+        logger.debug(
+            "{} {} {}".format(row_count, "row" + pluralize(row_count), operation)
+        )

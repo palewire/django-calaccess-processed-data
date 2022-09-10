@@ -12,11 +12,13 @@ class RawFilerToFilerTypeCdProxy(FilerToFilerTypeCd):
     """
     Proxy model with extra tools for working with the calaccess_raw FilerToFilerTypeCd model.
     """
+
     objects = RawFilerToFilerTypeCdManager()
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True

@@ -7,7 +7,7 @@ from .calaccess_raw import RawFilerToFilerTypeCdManager
 from .calaccess_scraped import (
     ScrapedIncumbentElectionManager,
     ScrapedBallotMeasureManager,
-    ScrapedRecallMeasureManager
+    ScrapedRecallMeasureManager,
 )
 from .opencivicdata import (
     OCDCandidacyQuerySet,
@@ -27,7 +27,7 @@ from .opencivicdata import (
     OCDPostManager,
     OCDAssemblyPostManager,
     OCDExecutivePostManager,
-    OCDSenatePostManager
+    OCDSenatePostManager,
 )
 
 
@@ -53,5 +53,5 @@ __all__ = (
     "OCDPostManager",
     "OCDAssemblyPostManager",
     "OCDExecutivePostManager",
-    "OCDSenatePostManager"
+    "OCDSenatePostManager",
 )

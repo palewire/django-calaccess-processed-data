@@ -12,6 +12,7 @@ class CalAccessBaseModelTests(TestCase):
     """
     Test for Form460Filing model.
     """
+
     def test_doc(self):
         """
         Confirm doc method returns a non-empty string.
@@ -30,7 +31,9 @@ class CalAccessBaseModelTests(TestCase):
         """
         Confirm db_table property equals '{app_label}_{model_name}' string.
         """
-        self.assertEqual(Form460Filing().db_table, 'calaccess_processed_filings_form460filing')
+        self.assertEqual(
+            Form460Filing().db_table, "calaccess_processed_filings_form460filing"
+        )
 
     def test_klass(self):
         """
@@ -42,7 +45,7 @@ class CalAccessBaseModelTests(TestCase):
         """
         Confirm model name equals klass_name string.
         """
-        self.assertEqual('Form460Filing', Form460Filing().klass_name)
+        self.assertEqual("Form460Filing", Form460Filing().klass_name)
 
     def test_klass_group(self):
         """

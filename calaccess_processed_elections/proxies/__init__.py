@@ -30,7 +30,7 @@ from .opencivicdata import (
     OCDPersonProxy,
     OCDPersonIdentifierProxy,
     OCDPersonNameProxy,
-    OCDPostProxy
+    OCDPostProxy,
 )
 from .calaccess_raw import RawFilerToFilerTypeCdProxy
 from .calaccess_scraped import (
@@ -41,7 +41,7 @@ from .calaccess_scraped import (
     ScrapedCandidateElectionProxy,
     ScrapedIncumbentElectionProxy,
     ScrapedPropositionProxy,
-    ScrapedPropositionElectionProxy
+    ScrapedPropositionElectionProxy,
 )
 
 
@@ -63,23 +63,23 @@ __all__ = (
     "OCDRetentionContestIdentifierProxy",
     "OCDRetentionContestOptionProxy",
     "OCDRetentionContestSourceProxy",
-    'OCDDivisionProxy',
-    'OCDJurisdictionProxy',
-    'OCDMembershipProxy',
-    'OCDOrganizationProxy',
-    'OCDOrganizationIdentifierProxy',
-    'OCDOrganizationNameProxy',
-    'OCDPersonProxy',
-    'OCDPersonIdentifierProxy',
-    'OCDPersonNameProxy',
-    'OCDPostProxy',
+    "OCDDivisionProxy",
+    "OCDJurisdictionProxy",
+    "OCDMembershipProxy",
+    "OCDOrganizationProxy",
+    "OCDOrganizationIdentifierProxy",
+    "OCDOrganizationNameProxy",
+    "OCDPersonProxy",
+    "OCDPersonIdentifierProxy",
+    "OCDPersonNameProxy",
+    "OCDPostProxy",
     "RawFilerToFilerTypeCdProxy",
     "ScrapedElectionProxyMixin",
     "ScrapedNameMixin",
-    'ScrapedCandidateProxy',
-    'ScrapedCandidateElectionProxy',
-    'ScrapedIncumbentProxy',
-    'ScrapedIncumbentElectionProxy',
-    'ScrapedPropositionProxy',
-    'ScrapedPropositionElectionProxy',
+    "ScrapedCandidateProxy",
+    "ScrapedCandidateElectionProxy",
+    "ScrapedIncumbentProxy",
+    "ScrapedIncumbentElectionProxy",
+    "ScrapedPropositionProxy",
+    "ScrapedPropositionElectionProxy",
 )

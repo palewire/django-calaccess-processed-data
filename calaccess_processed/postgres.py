@@ -13,7 +13,8 @@ class JSONArrayLength(Func):
     """
     Returns the length of a JSON array.
     """
-    function = 'JSONB_ARRAY_LENGTH'
+
+    function = "JSONB_ARRAY_LENGTH"
     output_field = IntegerField()
 
 
@@ -21,6 +22,7 @@ class JSONExtractPath(Func):
     """
     Returns JSON value pointed to by key.
     """
+
     template = "JSONB_EXTRACT_PATH(%(expressions)s, '%(key)s')"
     output_field = JSONField()
 
@@ -35,6 +37,7 @@ class MaxFromJSONIntegerArray(Func):
     """
     Return the maximum value of an array of integers in key.
     """
+
     template = "(SORT_DESC(ARRAY(SELECT JSONB_ARRAY_ELEMENTS_TEXT(%(expressions)s->'%(key)s')::int)::int[]))[1]"
     output_field = IntegerField()
 
@@ -49,8 +52,9 @@ class CryptoExtension(CreateExtension):
     """
     Install the pgcrypto extension to PostgresSQL.
     """
+
     def __init__(self):
         """
         The name of the extension to install goes here.
         """
-        self.name = 'pgcrypto'
+        self.name = "pgcrypto"

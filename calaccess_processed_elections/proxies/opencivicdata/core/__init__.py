@@ -25,11 +25,10 @@ __all__ = (
     "OCDOrganizationProxy",
     "OCDOrganizationIdentifierProxy",
     "OCDOrganizationNameProxy",
-    "OCDJurisdictionProxy"
-    "OCDPersonProxy",
+    "OCDJurisdictionProxy" "OCDPersonProxy",
     "OCDPersonIdentifierProxy",
     "OCDPersonNameProxy",
     "OCDPostProxy",
     "OCDJurisdictionProxy",
-    "OCDPersonProxy"
+    "OCDPersonProxy",
 )

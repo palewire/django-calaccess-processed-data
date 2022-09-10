@@ -18,31 +18,33 @@ class OCDPersonProxy(Person, OCDProxyModelMixin):
     """
     A proxy on the OCD Person model with helper methods.
     """
+
     objects = OCDPersonManager()
 
     copy_to_fields = (
-        ('id',),
-        ('name',),
-        ('sort_name',),
-        ('family_name',),
-        ('given_name',),
-        ('image',),
-        ('gender',),
-        ('summary',),
-        ('national_identity',),
-        ('biography',),
-        ('birth_date',),
-        ('death_date',),
-        ('created_at',),
-        ('updated_at',),
-        ('extras',),
-        ('locked_fields',),
+        ("id",),
+        ("name",),
+        ("sort_name",),
+        ("family_name",),
+        ("given_name",),
+        ("image",),
+        ("gender",),
+        ("summary",),
+        ("national_identity",),
+        ("biography",),
+        ("birth_date",),
+        ("death_date",),
+        ("created_at",),
+        ("updated_at",),
+        ("extras",),
+        ("locked_fields",),
     )
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True
 
@@ -51,7 +53,9 @@ class OCDPersonProxy(Person, OCDProxyModelMixin):
         Update name field to the latest candidate record.
         """
         # Get the latest candidate name
-        latest_candidate_name = self.candidacies.latest('contest__election__date').candidate_name
+        latest_candidate_name = self.candidacies.latest(
+            "contest__election__date"
+        ).candidate_name
         # If the latest candidate name doesn't match the current name
         if self.name != latest_candidate_name:
             # Move the current name into other_names
@@ -78,7 +82,7 @@ class OCDPersonProxy(Person, OCDProxyModelMixin):
             # append the note, if not already there
             existing_name = self.other_names.get(name=name)
             if note not in existing_name.note:
-                existing_name.note = '{0}, {1}'.format(existing_name.note, note)
+                existing_name.note = "{0}, {1}".format(existing_name.note, note)
         else:
             created = True
             self.other_names.create(name=name, note=note)
@@ -88,10 +92,7 @@ class OCDPersonProxy(Person, OCDProxyModelMixin):
         """
         Adds the provided CAL-ACCESS filer_id to the object metadata.
         """
-        kwargs = dict(
-            scheme="calaccess_filer_id",
-            identifier=filer_id
-        )
+        kwargs = dict(scheme="calaccess_filer_id", identifier=filer_id)
         # If it already exists, quit out.
         if self.identifiers.filter(**kwargs).count():
             return False
@@ -112,8 +113,13 @@ class OCDPersonProxy(Person, OCDProxyModelMixin):
         Returns the scraped candidates linked to this candidacy.
         """
         from calaccess_processed_elections.proxies import ScrapedCandidateProxy
-        filer_ids = [i.identifier for i in self.identifiers.filter(scheme="calaccess_filer_id")]
-        return ScrapedCandidateProxy.objects.filter(scraped_id__in=filer_ids).order_by("-election")
+
+        filer_ids = [
+            i.identifier for i in self.identifiers.filter(scheme="calaccess_filer_id")
+        ]
+        return ScrapedCandidateProxy.objects.filter(scraped_id__in=filer_ids).order_by(
+            "-election"
+        )
 
     @property
     def form501s(self):
@@ -121,6 +127,7 @@ class OCDPersonProxy(Person, OCDProxyModelMixin):
         Returns any linked Form 501s filings.
         """
         from calaccess_processed_elections.proxies import OCDCandidacyProxy
+
         candidacies = OCDCandidacyProxy.objects.filter(person=self)
         form501s = []
         for c in candidacies:
@@ -134,12 +141,14 @@ class OCDPersonIdentifierProxy(PersonIdentifier, OCDProxyModelMixin):
     """
     A proxy on the OCD PersonIdentifier model.
     """
+
     objects = BulkLoadSQLManager()
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True
 
@@ -148,11 +157,13 @@ class OCDPersonNameProxy(PersonName, OCDProxyModelMixin):
     """
     A proxy on the OCD PersonName model with helper methods.
     """
+
     objects = BulkLoadSQLManager()
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True

@@ -18,12 +18,14 @@ class ScrapedIncumbentElectionProxy(ScrapedElectionProxyMixin, IncumbentElection
     """
     A proxy for the IncumbentElection model in calaccess_scraped.
     """
+
     objects = ScrapedIncumbentElectionManager()
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True
 
@@ -42,7 +44,7 @@ class ScrapedIncumbentElectionProxy(ScrapedElectionProxyMixin, IncumbentElection
                 ocd_election = OCDElectionProxy.objects.get(date=self.date)
             except (
                 OCDElectionProxy.DoesNotExist,
-                OCDElectionProxy.MultipleObjectsReturned
+                OCDElectionProxy.MultipleObjectsReturned,
             ):
                 raise
 
@@ -55,9 +57,9 @@ class ScrapedIncumbentElectionProxy(ScrapedElectionProxyMixin, IncumbentElection
 
         (e.g., "GENERAL", "PRIMARY", "SPECIAL ELECTION", "SPECIAL RUNOFF")
         """
-        if self.name == 'SPECIAL ELECTION':
+        if self.name == "SPECIAL ELECTION":
             election_type = self.name
         else:
-            election_type = self.name.replace('ELECTION', '').strip()
+            election_type = self.name.replace("ELECTION", "").strip()
 
         return election_type

@@ -13,6 +13,7 @@ class OCDPostManager(BulkLoadSQLManager):
     """
     Custom helpers for the OCD Post model.
     """
+
     def parse_office_name(self, office_name):
         """
         Parse string containg the name for an office.
@@ -21,15 +22,15 @@ class OCDPostManager(BulkLoadSQLManager):
 
         Return a dict with two keys: type and district.
         """
-        office_pattern = r'^(?P<type>[A-Z ]+)(?P<district>\d{2})?$'
+        office_pattern = r"^(?P<type>[A-Z ]+)(?P<district>\d{2})?$"
         try:
             parsed = re.match(office_pattern, office_name.upper()).groupdict()
         except AttributeError:
-            parsed = {'type': None, 'district': None}
+            parsed = {"type": None, "district": None}
         else:
-            parsed['type'] = parsed['type'].strip()
+            parsed["type"] = parsed["type"].strip()
             try:
-                parsed['district'] = int(parsed['district'])
+                parsed["district"] = int(parsed["district"])
             except TypeError:
                 pass
         return parsed
@@ -38,28 +39,31 @@ class OCDPostManager(BulkLoadSQLManager):
         """
         Get a Post object with an office string.
         """
-        from calaccess_processed_elections.proxies import OCDDivisionProxy, OCDOrganizationProxy
+        from calaccess_processed_elections.proxies import (
+            OCDDivisionProxy,
+            OCDOrganizationProxy,
+        )
 
         parsed_office = self.parse_office_name(office_name)
 
         # prepare to get or create post
-        label = office_name.title().replace('Of', 'of')
+        label = office_name.title().replace("Of", "of")
 
-        if parsed_office['type'] == 'STATE SENATE':
-            division = OCDDivisionProxy.senate.get(subid2=parsed_office['district'])
+        if parsed_office["type"] == "STATE SENATE":
+            division = OCDDivisionProxy.senate.get(subid2=parsed_office["district"])
             organization = OCDOrganizationProxy.objects.senate()
-            role = 'Senator'
-        elif parsed_office['type'] == 'ASSEMBLY':
-            division = OCDDivisionProxy.assembly.get(subid2=parsed_office['district'])
+            role = "Senator"
+        elif parsed_office["type"] == "ASSEMBLY":
+            division = OCDDivisionProxy.assembly.get(subid2=parsed_office["district"])
             organization = OCDOrganizationProxy.objects.assembly()
-            role = 'Assembly Member'
+            role = "Assembly Member"
         else:
             # If not Senate or Assembly, assume this is a state office
             division = OCDDivisionProxy.objects.california()
-            if parsed_office['type'] == 'MEMBER BOARD OF EQUALIZATION':
+            if parsed_office["type"] == "MEMBER BOARD OF EQUALIZATION":
                 organization = OCDOrganizationProxy.objects.board_of_equalization()
-                role = 'Board Member'
-            elif parsed_office['type'] == 'SECRETARY OF STATE':
+                role = "Board Member"
+            elif parsed_office["type"] == "SECRETARY OF STATE":
                 organization = OCDOrganizationProxy.objects.secretary_of_state()
                 role = label
             else:
@@ -71,10 +75,7 @@ class OCDPostManager(BulkLoadSQLManager):
 
         # Run it pass back the result.
         return func(
-            label=label,
-            role=role,
-            division=division,
-            organization=organization
+            label=label, role=role, division=division, organization=organization
         )
 
     def get_or_create_by_name(self, office_name):
@@ -92,7 +93,10 @@ class OCDPostManager(BulkLoadSQLManager):
 
         Return Post object or None if not found.
         """
-        from calaccess_processed_elections.proxies import RawFilerToFilerTypeCdProxy, OCDDivisionProxy
+        from calaccess_processed_elections.proxies import (
+            RawFilerToFilerTypeCdProxy,
+            OCDDivisionProxy,
+        )
 
         # Try to get it using office_name
         try:
@@ -101,9 +105,10 @@ class OCDPostManager(BulkLoadSQLManager):
             pass
 
         # Try extracting office and district from FilerToFilerTypeCd
-        filer_id_office_name = RawFilerToFilerTypeCdProxy.objects.get_office_by_filer_id_and_date(
-            form501.filer_id,
-            form501.ocd_election.date
+        filer_id_office_name = (
+            RawFilerToFilerTypeCdProxy.objects.get_office_by_filer_id_and_date(
+                form501.filer_id, form501.ocd_election.date
+            )
         )
 
         # If you can't find that, just quit
@@ -121,12 +126,17 @@ class OCDAssemblyPostManager(BulkLoadSQLManager):
     """
     Custom manager for State Assembly office Posts.
     """
+
     def get_queryset(self):
         """
         Filters down to State Assembly posts.
         """
-        return super(OCDAssemblyPostManager, self).get_queryset().filter(
-            organization__name='California State Assembly',
+        return (
+            super(OCDAssemblyPostManager, self)
+            .get_queryset()
+            .filter(
+                organization__name="California State Assembly",
+            )
         )
 
 
@@ -134,13 +144,18 @@ class OCDExecutivePostManager(BulkLoadSQLManager):
     """
     Custom manager for State Executive Branch office Posts.
     """
+
     def get_queryset(self):
         """
         Filters down to State Executive Branch posts.
         """
-        return super(OCDExecutivePostManager, self).get_queryset().filter(
-            Q(organization__name='California State Executive Branch')
-            | Q(organization__parent__name='California State Executive Branch')
+        return (
+            super(OCDExecutivePostManager, self)
+            .get_queryset()
+            .filter(
+                Q(organization__name="California State Executive Branch")
+                | Q(organization__parent__name="California State Executive Branch")
+            )
         )
 
 
@@ -148,10 +163,15 @@ class OCDSenatePostManager(BulkLoadSQLManager):
     """
     Custom manager for State Senate office Posts.
     """
+
     def get_queryset(self):
         """
         Filters down to State Senate posts.
         """
-        return super(OCDSenatePostManager, self).get_queryset().filter(
-            organization__name='California State Senate',
+        return (
+            super(OCDSenatePostManager, self)
+            .get_queryset()
+            .filter(
+                organization__name="California State Senate",
+            )
         )

@@ -14,14 +14,15 @@ class Form497FilingAdmin(BaseAdmin):
     """
     Custom admin for the Form497Filing model.
     """
+
     list_display = (
-        'filing_id',
-        'amendment_count',
-        'filer_id',
-        'filer_lastname',
-        'filer_firstname',
-        'date_filed',
-        'election_date',
+        "filing_id",
+        "amendment_count",
+        "filer_id",
+        "filer_lastname",
+        "filer_firstname",
+        "date_filed",
+        "election_date",
     )
 
 
@@ -30,14 +31,15 @@ class Form497FilingVersionAdmin(BaseAdmin):
     """
     Custom admin for the Form497FilingVersion model.
     """
+
     list_display = (
-        'filing',
-        'amend_id',
-        'filer_id',
-        'filer_lastname',
-        'filer_firstname',
-        'date_filed',
-        'election_date',
+        "filing",
+        "amend_id",
+        "filer_id",
+        "filer_lastname",
+        "filer_firstname",
+        "date_filed",
+        "election_date",
     )
 
 
@@ -46,15 +48,16 @@ class Form497Part1ItemAdmin(BaseAdmin):
     """
     Custom admin for the Form497Part1Item model.
     """
+
     list_display = (
-        'filing',
-        'line_item',
-        'date_received',
-        'amount_received',
-        'transaction_id',
-        'contributor_code',
-        'contributor_lastname',
-        'contributor_firstname',
+        "filing",
+        "line_item",
+        "date_received",
+        "amount_received",
+        "transaction_id",
+        "contributor_code",
+        "contributor_lastname",
+        "contributor_firstname",
     )
 
 
@@ -63,15 +66,16 @@ class Form497Part1ItemVersionAdmin(BaseAdmin):
     """
     Custom admin for the Form497Part1ItemVersion model.
     """
+
     list_display = (
-        'filing_version',
-        'line_item',
-        'date_received',
-        'amount_received',
-        'transaction_id',
-        'contributor_code',
-        'contributor_lastname',
-        'contributor_firstname',
+        "filing_version",
+        "line_item",
+        "date_received",
+        "amount_received",
+        "transaction_id",
+        "contributor_code",
+        "contributor_lastname",
+        "contributor_firstname",
     )
 
 
@@ -80,15 +84,16 @@ class Form497Part2ItemAdmin(BaseAdmin):
     """
     Custom admin for the Form497Part2Item model.
     """
+
     list_display = (
-        'filing',
-        'line_item',
-        'date_received',
-        'amount_received',
-        'transaction_id',
-        'recipient_code',
-        'recipient_lastname',
-        'recipient_firstname',
+        "filing",
+        "line_item",
+        "date_received",
+        "amount_received",
+        "transaction_id",
+        "recipient_code",
+        "recipient_lastname",
+        "recipient_firstname",
     )
 
 
@@ -97,13 +102,14 @@ class Form497Part2ItemVersionAdmin(BaseAdmin):
     """
     Custom admin for the Form497Part2ItemVersion model.
     """
+
     list_display = (
-        'filing_version',
-        'line_item',
-        'date_received',
-        'amount_received',
-        'transaction_id',
-        'recipient_code',
-        'recipient_lastname',
-        'recipient_firstname',
+        "filing_version",
+        "line_item",
+        "date_received",
+        "amount_received",
+        "transaction_id",
+        "recipient_code",
+        "recipient_lastname",
+        "recipient_firstname",
     )

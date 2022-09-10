@@ -12,10 +12,12 @@ class ScrapedIncumbentProxy(Incumbent, ScrapedNameMixin):
     """
     A proxy for the calaccess_scraped Incumbent model.
     """
+
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True
-        ordering = ['-session']
+        ordering = ["-session"]

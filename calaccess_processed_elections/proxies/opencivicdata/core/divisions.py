@@ -13,7 +13,7 @@ from opencivicdata.core.models import Division
 from calaccess_processed_elections.managers import (
     OCDAssemblyDivisionManager,
     OCDSenateDivisionManager,
-    OCDCaliforniaDivisionManager
+    OCDCaliforniaDivisionManager,
 )
 
 
@@ -21,6 +21,7 @@ class OCDDivisionProxy(Division, OCDProxyModelMixin):
     """
     A proxy on the OCD Division model with helper methods.
     """
+
     objects = OCDCaliforniaDivisionManager()
     assembly = OCDAssemblyDivisionManager()
     senate = OCDSenateDivisionManager()
@@ -29,5 +30,6 @@ class OCDDivisionProxy(Division, OCDProxyModelMixin):
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True

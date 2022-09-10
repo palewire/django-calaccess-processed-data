@@ -8,31 +8,28 @@ from .committees import (
     OCDCommitteeIdentifierProxy,
     OCDCommitteeNameProxy,
     OCDCommitteeSourceProxy,
-    OCDCommitteeTypeProxy
+    OCDCommitteeTypeProxy,
 )
 from .filings import (
     OCDFilingProxy,
     OCDFilingIdentifierProxy,
     OCDFilingSourceProxy,
     OCDFilingActionProxy,
-    OCDFilingActionSummaryAmountProxy
+    OCDFilingActionSummaryAmountProxy,
 )
-from .transactions import (
-    OCDTransactionProxy,
-    OCDTransactionIdentifierProxy
-)
+from .transactions import OCDTransactionProxy, OCDTransactionIdentifierProxy
 
 __all__ = (
-    'OCDCommitteeProxy',
-    'OCDCommitteeIdentifierProxy',
-    'OCDCommitteeNameProxy',
-    'OCDCommitteeSourceProxy',
-    'OCDCommitteeTypeProxy',
-    'OCDFilingProxy',
-    'OCDFilingIdentifierProxy',
-    'OCDFilingSourceProxy',
-    'OCDFilingActionProxy',
-    'OCDFilingActionSummaryAmountProxy',
-    'OCDTransactionProxy',
-    'OCDTransactionIdentifierProxy',
+    "OCDCommitteeProxy",
+    "OCDCommitteeIdentifierProxy",
+    "OCDCommitteeNameProxy",
+    "OCDCommitteeSourceProxy",
+    "OCDCommitteeTypeProxy",
+    "OCDFilingProxy",
+    "OCDFilingIdentifierProxy",
+    "OCDFilingSourceProxy",
+    "OCDFilingActionProxy",
+    "OCDFilingActionSummaryAmountProxy",
+    "OCDTransactionProxy",
+    "OCDTransactionIdentifierProxy",
 )

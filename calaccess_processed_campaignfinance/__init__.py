@@ -3,4 +3,6 @@
 """
 General utilities for the application.
 """
-default_app_config = 'calaccess_processed_campaignfinance.apps.CalAccessProcessedCampaignFinanceConfig'
+default_app_config = (
+    "calaccess_processed_campaignfinance.apps.CalAccessProcessedCampaignFinanceConfig"
+)

@@ -8,11 +8,7 @@ from django.utils.text import get_text_list
 
 # Models
 from django.db.models import Count
-from opencivicdata.elections.models import (
-    Election,
-    ElectionIdentifier,
-    ElectionSource
-)
+from opencivicdata.elections.models import Election, ElectionIdentifier, ElectionSource
 from calaccess_processed.proxies import OCDProxyModelMixin
 from ..core.posts import OCDPostProxy
 from .candidatecontests import OCDCandidateContestProxy
@@ -21,7 +17,7 @@ from .candidatecontests import OCDCandidateContestProxy
 from calaccess_processed.managers import BulkLoadSQLManager
 from calaccess_processed_elections.managers import (
     OCDPartisanPrimaryManager,
-    OCDElectionManager
+    OCDElectionManager,
 )
 
 
@@ -29,25 +25,27 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
     """
     A proxy on the OCD Election model.
     """
+
     objects = OCDElectionManager()
     partisan_primaries = OCDPartisanPrimaryManager()
 
     copy_to_fields = (
-        ('id',),
-        ('name',),
-        ('date',),
-        ('division_id',),
-        ('administrative_organization_id',),
-        ('created_at',),
-        ('updated_at',),
-        ('extras',),
-        ('locked_fields',),
+        ("id",),
+        ("name",),
+        ("date",),
+        ("division_id",),
+        ("administrative_organization_id",),
+        ("created_at",),
+        ("updated_at",),
+        ("extras",),
+        ("locked_fields",),
     )
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True
 
@@ -55,18 +53,16 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
         """
         Add election_type to 'calaccess_election_type' in extras field (if missing).
         """
-        if 'calaccess_election_type' in self.extras.keys():
+        if "calaccess_election_type" in self.extras.keys():
             # and if this one isn't included
-            if election_type not in self.extras[
-                'calaccess_election_type'
-            ]:
+            if election_type not in self.extras["calaccess_election_type"]:
                 # then append
-                self.extras['calaccess_election_type'].append(election_type)
+                self.extras["calaccess_election_type"].append(election_type)
                 # and save
                 self.save()
         else:
             # if election doesn't already have types, add the key
-            self.extras['calaccess_election_type'] = [election_type]
+            self.extras["calaccess_election_type"] = [election_type]
             # and save
             self.save()
 
@@ -77,11 +73,11 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
         Add election_id to identifiers, if missing.
         """
         if not self.identifiers.filter(
-            scheme='calaccess_election_id',
+            scheme="calaccess_election_id",
             identifier=election_id,
         ).exists():
             self.identifiers.create(
-                scheme='calaccess_election_id',
+                scheme="calaccess_election_id",
                 identifier=election_id,
             )
             self.save()
@@ -96,14 +92,16 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
             # in gubernatorial elections,
             # odd-numbered senate districts should not contested
             contests = [
-                c for c in self.senate_contests.regular()
+                c
+                for c in self.senate_contests.regular()
                 if int(c.division.subid2) % 2 != 0
             ]
         else:
             # in non-gubernatorial elections,
             # even-numbered senate districts should not be contests
             contests = [
-                c for c in self.senate_contests.regular()
+                c
+                for c in self.senate_contests.regular()
                 if int(c.division.subid2) % 2 == 0
             ]
         return contests
@@ -127,7 +125,7 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
         """
         Returns the primary CAL-ACCESS election type included with this record.
         """
-        for et in self.extras.get('calaccess_election_type', []):
+        for et in self.extras.get("calaccess_election_type", []):
             if et in self.name:
                 return et
 
@@ -136,7 +134,7 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
         """
         Returns all the CAL-ACCESS election types included with this record.
         """
-        return self.extras.get('calaccess_election_type', [])
+        return self.extras.get("calaccess_election_type", [])
 
     @property
     def executive_contests(self):
@@ -150,12 +148,8 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
         """
         This election includes contests outside the regular election calendar.
         """
-        special_election_types = set(
-            ("SPECIAL ELECTION", "SPECIAL RUNOFF", "RECALL")
-        )
-        return len(
-            special_election_types.intersection(self.election_types)
-        ) > 0
+        special_election_types = set(("SPECIAL ELECTION", "SPECIAL RUNOFF", "RECALL"))
+        return len(special_election_types.intersection(self.election_types)) > 0
 
     @property
     def identifier_list(self):
@@ -179,7 +173,7 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
         """
         Returns whether or not this was a primary election held in the partisan era prior to 2012.
         """
-        if 'PRIMARY' in self.election_types:
+        if "PRIMARY" in self.election_types:
             if self.date.year < 2012:
                 return True
         return False
@@ -206,13 +200,15 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
                 # of the (80) assembly seats
                 expected_contest_count = 0
                 contests_q = self.assembly_contests.regular()
-                contest_counts_by_party = contests_q.order_by().values(
-                    'candidacies__party__name'
-                ).annotate(
-                    contest_count=Count('candidacies__contest', distinct=True)
+                contest_counts_by_party = (
+                    contests_q.order_by()
+                    .values("candidacies__party__name")
+                    .annotate(
+                        contest_count=Count("candidacies__contest", distinct=True)
+                    )
                 )
                 for party in contest_counts_by_party:
-                    expected_contest_count += party['contest_count']
+                    expected_contest_count += party["contest_count"]
             else:
                 expected_contest_count = assembly_office_count
         else:
@@ -243,13 +239,15 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
                     # of the executive branch offices (12)
                     expected_contest_count = 0
                     contests_q = self.executive_contests.regular()
-                    contest_counts_by_party = contests_q.order_by().values(
-                        'candidacies__party__name'
-                    ).annotate(
-                        contest_count=Count('candidacies__contest', distinct=True)
+                    contest_counts_by_party = (
+                        contests_q.order_by()
+                        .values("candidacies__party__name")
+                        .annotate(
+                            contest_count=Count("candidacies__contest", distinct=True)
+                        )
                     )
                     for party in contest_counts_by_party:
-                        expected_contest_count += party['contest_count']
+                        expected_contest_count += party["contest_count"]
                 else:
                     expected_contest_count = exec_office_count
             else:
@@ -282,13 +280,15 @@ class OCDElectionProxy(Election, OCDProxyModelMixin):
                 # other senate district (20)
                 expected_contest_count = 0
                 contests_q = self.senate_contests.regular()
-                contest_counts_by_party = contests_q.order_by().values(
-                    'candidacies__party__name'
-                ).annotate(
-                    contest_count=Count('candidacies__contest', distinct=True)
+                contest_counts_by_party = (
+                    contests_q.order_by()
+                    .values("candidacies__party__name")
+                    .annotate(
+                        contest_count=Count("candidacies__contest", distinct=True)
+                    )
                 )
                 for party in contest_counts_by_party:
-                    expected_contest_count += party['contest_count']
+                    expected_contest_count += party["contest_count"]
             else:
                 expected_contest_count = senate_office_count
         else:
@@ -315,12 +315,14 @@ class OCDElectionIdentifierProxy(ElectionIdentifier, OCDProxyModelMixin):
     """
     A proxy on the OCD ElectionIdentifier model.
     """
+
     objects = BulkLoadSQLManager()
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True
 
@@ -329,11 +331,13 @@ class OCDElectionSourceProxy(ElectionSource, OCDProxyModelMixin):
     """
     A proxy on the OCD ElectionSource model.
     """
+
     objects = BulkLoadSQLManager()
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True

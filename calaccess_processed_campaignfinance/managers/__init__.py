@@ -8,13 +8,13 @@ from .committees import (
     OCDCommitteeManager,
     OCDCommitteeIdentifierManager,
     OCDCommitteeNameManager,
-    OCDCommitteeTypeManager
+    OCDCommitteeTypeManager,
 )
 from .filings import (
     OCDFilingManager,
     OCDFilingIdentifierManager,
     OCDFilingActionManager,
-    OCDFilingActionSummaryAmountManager
+    OCDFilingActionSummaryAmountManager,
 )
 from .transactions import OCDTransactionManager
 
@@ -29,5 +29,5 @@ __all__ = (
     "OCDFilingIdentifierManager",
     "OCDFilingActionManager",
     "OCDFilingActionSummaryAmountManager",
-    "OCDTransactionManager"
+    "OCDTransactionManager",
 )

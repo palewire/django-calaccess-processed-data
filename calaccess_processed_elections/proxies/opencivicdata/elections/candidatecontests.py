@@ -7,7 +7,7 @@ from __future__ import unicode_literals
 from opencivicdata.elections.models import (
     CandidateContest,
     CandidateContestPost,
-    CandidateContestSource
+    CandidateContestSource,
 )
 from calaccess_processed.proxies import OCDProxyModelMixin
 from calaccess_processed.managers import BulkLoadSQLManager
@@ -18,27 +18,29 @@ class OCDCandidateContestProxy(CandidateContest, OCDProxyModelMixin):
     """
     A proxy on the OCD CandidateContest model with helper methods.
     """
+
     objects = OCDCandidateContestManager()
 
     copy_to_fields = (
-        ('id',),
-        ('name',),
-        ('division_id',),
-        ('election_id',),
-        ('party_id',),
-        ('previous_term_unexpired',),
-        ('number_elected',),
-        ('runoff_for_contest_id',),
-        ('created_at',),
-        ('updated_at',),
-        ('extras',),
-        ('locked_fields',),
+        ("id",),
+        ("name",),
+        ("division_id",),
+        ("election_id",),
+        ("party_id",),
+        ("previous_term_unexpired",),
+        ("number_elected",),
+        ("runoff_for_contest_id",),
+        ("created_at",),
+        ("updated_at",),
+        ("extras",),
+        ("locked_fields",),
     )
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True
 
@@ -57,7 +59,7 @@ class OCDCandidateContestProxy(CandidateContest, OCDProxyModelMixin):
             return CandidateContest.objects.filter(
                 posts__post=post,
                 election__date__lt=self.election.date,
-            ).latest('election__date')
+            ).latest("election__date")
         except CandidateContest.DoesNotExist:
             return None
 
@@ -66,12 +68,14 @@ class OCDCandidateContestPostProxy(CandidateContestPost, OCDProxyModelMixin):
     """
     A proxy on the OCD CandidateContestPost model.
     """
+
     objects = BulkLoadSQLManager()
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True
 
@@ -80,11 +84,13 @@ class OCDCandidateContestSourceProxy(CandidateContestSource, OCDProxyModelMixin)
     """
     A proxy on the OCD CandidateContestSource model.
     """
+
     objects = BulkLoadSQLManager()
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True

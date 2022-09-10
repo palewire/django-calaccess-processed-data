@@ -17,11 +17,12 @@ from calaccess_processed_campaignfinance.managers import (
     OCDCommitteeManager,
     OCDCommitteeIdentifierManager,
     OCDCommitteeNameManager,
-    OCDCommitteeTypeManager
+    OCDCommitteeTypeManager,
 )
 
 # Logging
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -29,6 +30,7 @@ class OCDCommitteeProxy(Committee, OCDProxyModelMixin):
     """
     Proxy of the OCD Committee model.
     """
+
     objects = OCDCommitteeManager()
 
     @property
@@ -43,7 +45,9 @@ class OCDCommitteeProxy(Committee, OCDProxyModelMixin):
         """
         Returns the URL of the committee's detail page on the CAL-ACCESS website.
         """
-        url_template = "http://cal-access.sos.ca.gov/Campaign/Committees/Detail.aspx?id={}"
+        url_template = (
+            "http://cal-access.sos.ca.gov/Campaign/Committees/Detail.aspx?id={}"
+        )
         return url_template.format(self.calaccess_filer_id.identifier)
 
     @property
@@ -52,12 +56,14 @@ class OCDCommitteeProxy(Committee, OCDProxyModelMixin):
         A QuerySet of OCDCandidateContestProxy for the election.
         """
         from .filings import OCDFilingProxy
+
         return OCDFilingProxy.objects.filter(filer=self)
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_campaignfinance"
         proxy = True
 
@@ -66,12 +72,14 @@ class OCDCommitteeIdentifierProxy(CommitteeIdentifier, OCDProxyModelMixin):
     """
     Proxy of the OCD CommitteeIdentifier model.
     """
+
     objects = OCDCommitteeIdentifierManager()
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_campaignfinance"
         proxy = True
 
@@ -80,12 +88,14 @@ class OCDCommitteeNameProxy(CommitteeName, OCDProxyModelMixin):
     """
     Proxy of the OCD CommitteeName model.
     """
+
     objects = OCDCommitteeNameManager()
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_campaignfinance"
         proxy = True
 
@@ -94,12 +104,14 @@ class OCDCommitteeSourceProxy(CommitteeSource, OCDProxyModelMixin):
     """
     Proxy of the OCD CommitteeSource model.
     """
+
     objects = CampaignFinanceManager()
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_campaignfinance"
         proxy = True
 
@@ -108,11 +120,13 @@ class OCDCommitteeTypeProxy(CommitteeType, OCDProxyModelMixin):
     """
     Proxy of the OCD CommitteeSource model.
     """
+
     objects = OCDCommitteeTypeManager()
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_campaignfinance"
         proxy = True

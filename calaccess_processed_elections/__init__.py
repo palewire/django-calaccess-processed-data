@@ -5,7 +5,10 @@ General utilities for the application.
 """
 import logging
 from datetime import date
-default_app_config = 'calaccess_processed_elections.apps.CalAccessProcessedElectionsConfig'
+
+default_app_config = (
+    "calaccess_processed_elections.apps.CalAccessProcessedElectionsConfig"
+)
 logger = logging.getLogger(__name__)
 
 
@@ -23,10 +26,10 @@ def get_expected_election_date(year, election_type):
     logger.debug("Getting expected election date for {} {}".format(year, election_type))
     if year % 2 != 0:
         raise ValueError("Regular elections occur in even years.")
-    elif election_type.upper() == 'PRIMARY':
+    elif election_type.upper() == "PRIMARY":
         # Primary elections are in June
         month = 6
-    elif election_type.upper() == 'GENERAL':
+    elif election_type.upper() == "GENERAL":
         # General elections are in November
         month = 11
     else:
@@ -42,6 +45,4 @@ def get_expected_election_date(year, election_type):
     return date(year, month, day_or_month)
 
 
-__all__ = (
-    "get_expected_election_date"
-)
+__all__ = "get_expected_election_date"

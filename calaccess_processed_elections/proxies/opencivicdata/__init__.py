@@ -13,7 +13,7 @@ from .core import (
     OCDPersonProxy,
     OCDPersonIdentifierProxy,
     OCDPersonNameProxy,
-    OCDPostProxy
+    OCDPostProxy,
 )
 from .elections import (
     OCDBallotMeasureContestProxy,
@@ -36,17 +36,17 @@ from .elections import (
 )
 
 __all__ = (
-    'RawFilerToFilerTypeCdManager',
-    'OCDDivisionProxy',
-    'OCDJurisdictionProxy',
-    'OCDMembershipProxy',
-    'OCDOrganizationProxy',
-    'OCDOrganizationIdentifierProxy',
-    'OCDOrganizationNameProxy',
-    'OCDPersonProxy',
-    'OCDPersonIdentifierProxy',
-    'OCDPersonNameProxy',
-    'OCDPostProxy',
+    "RawFilerToFilerTypeCdManager",
+    "OCDDivisionProxy",
+    "OCDJurisdictionProxy",
+    "OCDMembershipProxy",
+    "OCDOrganizationProxy",
+    "OCDOrganizationIdentifierProxy",
+    "OCDOrganizationNameProxy",
+    "OCDPersonProxy",
+    "OCDPersonIdentifierProxy",
+    "OCDPersonNameProxy",
+    "OCDPostProxy",
     "OCDBallotMeasureContestProxy",
     "OCDBallotMeasureContestIdentifierProxy",
     "OCDBallotMeasureContestOptionProxy",
@@ -63,5 +63,5 @@ __all__ = (
     "OCDRetentionContestProxy",
     "OCDRetentionContestIdentifierProxy",
     "OCDRetentionContestOptionProxy",
-    "OCDRetentionContestSourceProxy"
+    "OCDRetentionContestSourceProxy",
 )

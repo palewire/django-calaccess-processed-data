@@ -6,18 +6,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('calaccess_processed_filings', '0005_auto_20180426_1731'),
+        ("calaccess_processed_filings", "0005_auto_20180426_1731"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='form496part1item',
-            name='candidate_id',
-            field=models.CharField(blank=True, help_text='Identifies the candidate to whom the contribution is connected (from S497_CD.CAND_ID). This can be translated to the filer_id by joining to FILER_XREF_CD.', max_length=9, verbose_name='candidate id'),
+            model_name="form496part1item",
+            name="candidate_id",
+            field=models.CharField(
+                blank=True,
+                help_text="Identifies the candidate to whom the contribution is connected (from S497_CD.CAND_ID). This can be translated to the filer_id by joining to FILER_XREF_CD.",
+                max_length=9,
+                verbose_name="candidate id",
+            ),
         ),
         migrations.AddField(
-            model_name='form496part1itemversion',
-            name='candidate_id',
-            field=models.CharField(blank=True, help_text='Identifies the candidate to whom the contribution is connected (from S497_CD.CAND_ID). This can be translated to the filer_id by joining to FILER_XREF_CD.', max_length=9, verbose_name='candidate id'),
+            model_name="form496part1itemversion",
+            name="candidate_id",
+            field=models.CharField(
+                blank=True,
+                help_text="Identifies the candidate to whom the contribution is connected (from S497_CD.CAND_ID). This can be translated to the filer_id by joining to FILER_XREF_CD.",
+                max_length=9,
+                verbose_name="candidate id",
+            ),
         ),
     ]

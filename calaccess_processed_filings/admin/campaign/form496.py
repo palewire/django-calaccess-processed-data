@@ -14,14 +14,15 @@ class Form496FilingAdmin(BaseAdmin):
     """
     Custom admin for the Form496Filing model.
     """
+
     list_display = (
-        'filing_id',
-        'amendment_count',
-        'filer_id',
-        'filer_lastname',
-        'filer_firstname',
-        'date_filed',
-        'election_date',
+        "filing_id",
+        "amendment_count",
+        "filer_id",
+        "filer_lastname",
+        "filer_firstname",
+        "date_filed",
+        "election_date",
     )
 
 
@@ -30,14 +31,15 @@ class Form496FilingVersionAdmin(BaseAdmin):
     """
     Custom admin for the Form496FilingVersion model.
     """
+
     list_display = (
-        'filing',
-        'amend_id',
-        'filer_id',
-        'filer_lastname',
-        'filer_firstname',
-        'date_filed',
-        'election_date',
+        "filing",
+        "amend_id",
+        "filer_id",
+        "filer_lastname",
+        "filer_firstname",
+        "date_filed",
+        "election_date",
     )
 
 
@@ -46,8 +48,9 @@ class Form496Part1ItemAdmin(BaseAdmin):
     """
     Custom admin for the Form496Part1Item model.
     """
+
     list_display = (
-        'filing',
+        "filing",
         "candidate_title",
         "candidate_lastname",
         "candidate_firstname",
@@ -56,7 +59,7 @@ class Form496Part1ItemAdmin(BaseAdmin):
         "ballot_measure_name",
         "ballot_measure_number",
         "ballot_measure_jurisdiction",
-        "support_opposition_code"
+        "support_opposition_code",
     )
 
 
@@ -65,8 +68,9 @@ class Form496Part1ItemVersionAdmin(BaseAdmin):
     """
     Custom admin for the Form496Part1ItemVersion model.
     """
+
     list_display = (
-        'filing_version',
+        "filing_version",
         "candidate_title",
         "candidate_lastname",
         "candidate_firstname",
@@ -75,7 +79,7 @@ class Form496Part1ItemVersionAdmin(BaseAdmin):
         "ballot_measure_name",
         "ballot_measure_number",
         "ballot_measure_jurisdiction",
-        "support_opposition_code"
+        "support_opposition_code",
     )
 
 
@@ -84,8 +88,9 @@ class Form496Part2ItemAdmin(BaseAdmin):
     """
     Custom admin for the Form496Part2Item model.
     """
+
     list_display = (
-        'filing',
+        "filing",
         "line_item",
         "expense_date",
         "amount",
@@ -98,8 +103,9 @@ class Form496Part2ItemVersionAdmin(BaseAdmin):
     """
     Custom admin for the Form496Part2ItemVersion model.
     """
+
     list_display = (
-        'filing_version',
+        "filing_version",
         "line_item",
         "expense_date",
         "amount",
@@ -112,15 +118,16 @@ class Form496Part3ItemAdmin(BaseAdmin):
     """
     Custom admin for the Form496Part3Item model.
     """
+
     list_display = (
-        'filing',
-        'line_item',
-        'date_received',
-        'amount',
-        'transaction_id',
-        'contributor_code',
-        'contributor_lastname',
-        'contributor_firstname',
+        "filing",
+        "line_item",
+        "date_received",
+        "amount",
+        "transaction_id",
+        "contributor_code",
+        "contributor_lastname",
+        "contributor_firstname",
     )
 
 
@@ -129,13 +136,14 @@ class Form496Part3ItemVersionAdmin(BaseAdmin):
     """
     Custom admin for the Form496Part3ItemVersion model.
     """
+
     list_display = (
-        'filing_version',
-        'line_item',
-        'date_received',
-        'amount',
-        'transaction_id',
-        'contributor_code',
-        'contributor_lastname',
-        'contributor_firstname',
+        "filing_version",
+        "line_item",
+        "date_received",
+        "amount",
+        "transaction_id",
+        "contributor_code",
+        "contributor_lastname",
+        "contributor_firstname",
     )

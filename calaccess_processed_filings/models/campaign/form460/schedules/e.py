@@ -7,7 +7,7 @@ from django.db import models
 from calaccess_processed_filings.models.base import FilingBaseModel
 from calaccess_processed_filings.models.campaign import (
     CampaignExpenditureItemBase,
-    CampaignExpenditureSubItemBase
+    CampaignExpenditureSubItemBase,
 )
 
 #
@@ -21,23 +21,24 @@ class Form460ScheduleESummaryBase(FilingBaseModel):
 
     Includes totals for itemized versus unitemized expenditures.
     """
+
     itemized_expenditures = models.FloatField(
-        verbose_name='itemized expenditures',
+        verbose_name="itemized expenditures",
         null=True,
         help_text="Payments made this period of $100 or more. (Include all Schedule E subtotals.)",
     )
     unitemized_expenditures = models.FloatField(
-        verbose_name='unitemized expenditures',
+        verbose_name="unitemized expenditures",
         null=True,
         help_text="Unitemized payments made this period of under $100.",
     )
     interest_paid = models.FloatField(
-        verbose_name='interest paid',
+        verbose_name="interest paid",
         null=True,
         help_text="Total interest paid this period on loans. (Enter amount from Schedule B, Part 1, Column (e).)",
     )
     total_expenditures = models.FloatField(
-        verbose_name='total expenditures',
+        verbose_name="total expenditures",
         null=True,
         help_text="Total payments made this period. (Add lines 1, 2, and 3. Enter here and on the Summary Page, Column \
 A, Line 6.) ",
@@ -47,7 +48,8 @@ A, Line 6.) ",
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
+
+        app_label = "calaccess_processed_filings"
         abstract = True
 
 
@@ -57,24 +59,26 @@ class Form460ScheduleESummary(Form460ScheduleESummaryBase):
 
     Includes totals for itemized versus unitemized expenditures.
     """
+
     filing = models.ForeignKey(
-        'Form460Filing',
-        related_name='schedule_e_summaries',
+        "Form460Filing",
+        related_name="schedule_e_summaries",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the Form 460 on which the summary was reported',
+        help_text="Foreign key referring to the Form 460 on which the summary was reported",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
+
+        app_label = "calaccess_processed_filings"
         verbose_name = "Form 460 (Campaign Disclosure) Schedule E summary"
         verbose_name_plural = "Form 460 (Campaign Disclosure) Schedule E summaries"
 
     def __str__(self):
-        return '%s' % (self.filing)
+        return "%s" % (self.filing)
 
 
 class Form460ScheduleESummaryVersion(Form460ScheduleESummaryBase):
@@ -83,27 +87,30 @@ class Form460ScheduleESummaryVersion(Form460ScheduleESummaryBase):
 
     Includes totals for itemized versus unitemized expenditures.
     """
+
     filing_version = models.ForeignKey(
-        'Form460FilingVersion',
-        related_name='schedule_e_summaries',
+        "Form460FilingVersion",
+        related_name="schedule_e_summaries",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the version of the Form 460 that '
-                  'includes the summary'
+        help_text="Foreign key referring to the version of the Form 460 that "
+        "includes the summary",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
+
+        app_label = "calaccess_processed_filings"
         verbose_name = "Form 460 (Campaign Disclosure) Schedule E summary version"
 
     def __str__(self):
-        return '%s-%s' % (
+        return "%s-%s" % (
             self.filing_version.filing_id,
             self.filing_version.amend_id,
         )
+
 
 #
 # Items
@@ -129,28 +136,32 @@ class Form460ScheduleEItem(CampaignExpenditureItemBase):
 
     Derived from EXPN_CD records where FORM_TYPE is 'E'.
     """
+
     filing = models.ForeignKey(
-        'Form460Filing',
-        related_name='schedule_e_items',
+        "Form460Filing",
+        related_name="schedule_e_items",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the Form 460 on which the '
-                  'payment was reported (from EXPN_CD.FILING_ID)',
+        help_text="Foreign key referring to the Form 460 on which the "
+        "payment was reported (from EXPN_CD.FILING_ID)",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        unique_together = ((
-            'filing',
-            'line_item',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        unique_together = (
+            (
+                "filing",
+                "line_item",
+            ),
+        )
         verbose_name = "Form 460 (Campaign Disclosure) Schedule E item"
 
     def __str__(self):
-        return '%s-%s' % (self.filing, self.line_item)
+        return "%s-%s" % (self.filing, self.line_item)
 
 
 class Form460ScheduleEItemVersion(CampaignExpenditureItemBase):
@@ -171,35 +182,41 @@ class Form460ScheduleEItemVersion(CampaignExpenditureItemBase):
 
     Derived from EXPN_CD records where FORM_TYPE is 'E'.
     """
+
     filing_version = models.ForeignKey(
-        'Form460FilingVersion',
-        related_name='schedule_e_items',
+        "Form460FilingVersion",
+        related_name="schedule_e_items",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the version of the Form 460 that '
-                  'includes the payment made'
+        help_text="Foreign key referring to the version of the Form 460 that "
+        "includes the payment made",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        unique_together = ((
-            'filing_version',
-            'line_item',
-        ),)
-        index_together = ((
-            'filing_version',
-            'line_item',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        unique_together = (
+            (
+                "filing_version",
+                "line_item",
+            ),
+        )
+        index_together = (
+            (
+                "filing_version",
+                "line_item",
+            ),
+        )
         verbose_name = "Form 460 (Campaign Disclosure) Schedule E item version"
 
     def __str__(self):
-        return '%s-%s-%s' % (
+        return "%s-%s-%s" % (
             self.filing_version.filing_id,
             self.filing_version.amend_id,
-            self.line_item
+            self.line_item,
         )
 
 
@@ -225,28 +242,32 @@ class Form460ScheduleESubItem(CampaignExpenditureSubItemBase):
     Derived from EXPN_CD records where FORM_TYPE is 'E' and MEMO_CODE is not
     blank.
     """
+
     filing = models.ForeignKey(
-        'Form460Filing',
-        related_name='schedule_e_subitems',
+        "Form460Filing",
+        related_name="schedule_e_subitems",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the Form 460 on which the '
-                  'payment was reported (from EXPN_CD.FILING_ID)',
+        help_text="Foreign key referring to the Form 460 on which the "
+        "payment was reported (from EXPN_CD.FILING_ID)",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        unique_together = ((
-            'filing',
-            'line_item',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        unique_together = (
+            (
+                "filing",
+                "line_item",
+            ),
+        )
         verbose_name = "Form 460 (Campaign Disclosure) Schedule E subitem"
 
     def __str__(self):
-        return '%s-%s' % (self.filing, self.line_item)
+        return "%s-%s" % (self.filing, self.line_item)
 
 
 class Form460ScheduleESubItemVersion(CampaignExpenditureSubItemBase):
@@ -270,33 +291,39 @@ class Form460ScheduleESubItemVersion(CampaignExpenditureSubItemBase):
     Derived from EXPN_CD records where FORM_TYPE is 'E' and MEMO_CODE is not
     blank.
     """
+
     filing_version = models.ForeignKey(
-        'Form460FilingVersion',
-        related_name='schedule_e_subitems',
+        "Form460FilingVersion",
+        related_name="schedule_e_subitems",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the version of the Form 460 that '
-                  'includes the payment made'
+        help_text="Foreign key referring to the version of the Form 460 that "
+        "includes the payment made",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        unique_together = ((
-            'filing_version',
-            'line_item',
-        ),)
-        index_together = ((
-            'filing_version',
-            'line_item',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        unique_together = (
+            (
+                "filing_version",
+                "line_item",
+            ),
+        )
+        index_together = (
+            (
+                "filing_version",
+                "line_item",
+            ),
+        )
         verbose_name = "Form 460 (Campaign Disclosure) Schedule E subitem version"
 
     def __str__(self):
-        return '%s-%s-%s' % (
+        return "%s-%s-%s" % (
             self.filing_version.filing_id,
             self.filing_version.amend_id,
-            self.line_item
+            self.line_item,
         )
