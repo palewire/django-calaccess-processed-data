@@ -219,8 +219,7 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
             raise Form501Filing.DoesNotExist()
 
     def get_or_create_contest(self):
-        """
-        Get or create an OCD CandidateContest object.
+        """Get or create an OCD CandidateContest object.
 
         Primary contests before 2012 were each linked to a Party. Unless the user
         passes a value via the party keyword argument, the Party linked to the scraped

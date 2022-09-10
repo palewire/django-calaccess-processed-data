@@ -61,31 +61,31 @@ class Command(LoadOCDElectionsBase):
         call_command('loadocdelections', **options)
         self.duration()
 
-#        #
-#        # Load contests and candidates
-#        #
+        #
+        # Load contests and candidates
+        #
 
-#        call_command('loadocdcandidatecontests', **options)
-#        self.duration()
+        call_command('loadocdcandidatecontests', **options)
+        self.duration()
 
-#        call_command('loadocdballotmeasurecontests', **options)
-#        self.duration()
+        call_command('loadocdballotmeasurecontests', **options)
+        self.duration()
 
-#        call_command('loadocdretentioncontests', **options)
-#        self.duration()
+        call_command('loadocdretentioncontests', **options)
+        self.duration()
 
-#        call_command('loadocdcandidaciesfrom501s', **options)
-#        self.duration()
+        call_command('loadocdcandidaciesfrom501s', **options)
+        self.duration()
 
-#        call_command('loadocdincumbentofficeholders', **options)
-#        self.duration()
+        call_command('loadocdincumbentofficeholders', **options)
+        self.duration()
 
-#        #
-#        # Merge duplicates
-#        #
+        #
+        # Merge duplicates
+        #
 
-#        call_command('mergeocdpersonsbyfilerid', **options)
-#        self.duration()
+        call_command('mergeocdpersonsbyfilerid', **options)
+        self.duration()
 
-#        call_command('mergeocdpersonsbycontestandname', **options)
-#        self.duration()
+        call_command('mergeocdpersonsbycontestandname', **options)
+        self.duration()

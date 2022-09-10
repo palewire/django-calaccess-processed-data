@@ -1,8 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Load the OCD CandidateContest and related models with scraped CAL-ACCESS data.
-"""
+"""Load the OCD CandidateContest and related models with scraped CAL-ACCESS data."""
 from calaccess_processed_elections.proxies import (
     OCDCandidateContestProxy,
     OCDCandidacyProxy,
@@ -12,15 +8,11 @@ from calaccess_processed.management.commands import CalAccessCommand
 
 
 class Command(CalAccessCommand):
-    """
-    Load the OCD CandidateContest and related models with scraped CAL-ACCESS data.
-    """
+    """Load the OCD CandidateContest and related models with scraped CAL-ACCESS data."""
     help = 'Load the OCD CandidateContest and related models with scraped CAL-ACCESS data'
 
     def handle(self, *args, **options):
-        """
-        Make it happen.
-        """
+        """Make it happen."""
         super(Command, self).handle(*args, **options)
         self.header("Loading Candidate Contests")
         if self.verbosity > 2:
@@ -38,9 +30,7 @@ class Command(CalAccessCommand):
         self.success("Done!")
 
     def load_candidates_with_filer_ids(self):
-        """
-        Load scraped candidates that were collected with a filer_id.
-        """
+        """Load scraped candidates that were collected with a filer_id."""
         scraped_candidates = ScrapedCandidateProxy.objects.exclude(scraped_id='')
 
         for scraped_candidate in scraped_candidates:

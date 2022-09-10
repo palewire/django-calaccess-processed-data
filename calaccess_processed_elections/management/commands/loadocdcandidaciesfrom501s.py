@@ -1,18 +1,13 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-Load the OCD Candidacy model with data extracted from the Form501Filing model.
-"""
+"""Load the OCD Candidacy model with data extracted from the Form501Filing model."""
 from opencivicdata.elections.models import CandidateContest
+
 from calaccess_processed_filings.models import Form501Filing
 from calaccess_processed_elections.proxies import OCDCandidacyProxy
 from calaccess_processed.management.commands import CalAccessCommand
 
 
 class Command(CalAccessCommand):
-    """
-    Load the OCD Candidacy model with data extracted from the Form501Filing model.
-    """
+    """Load the OCD Candidacy model with data extracted from the Form501Filing model."""
     help = 'Load the OCD Candidacy model with data extracted from the Form501Filing model'
 
     def handle(self, *args, **options):
