@@ -20,6 +20,7 @@ twine = "*"
 pre-commit = "*"
 setuptools-scm = "*"
 black = "*"
+"backports.zoneinfo" = "*"
 
 [requires]
 python_version = "3.9"
