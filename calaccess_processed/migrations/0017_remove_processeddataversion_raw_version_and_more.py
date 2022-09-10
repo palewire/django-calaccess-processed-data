@@ -6,17 +6,17 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('calaccess_processed', '0016_auto_20210619_1139'),
+        ("calaccess_processed", "0016_auto_20210619_1139"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='ProcessedDataFile',
+            name="ProcessedDataFile",
         ),
         migrations.DeleteModel(
-            name='ProcessedDataVersion',
+            name="ProcessedDataVersion",
         ),
         migrations.DeleteModel(
-            name='ProcessedDataZip',
+            name="ProcessedDataZip",
         ),
     ]

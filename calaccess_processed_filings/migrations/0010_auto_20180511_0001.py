@@ -6,18 +6,18 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('calaccess_processed_filings', '0009_auto_20180427_0011'),
+        ("calaccess_processed_filings", "0009_auto_20180427_0011"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='form460filing',
-            old_name='begin_cash_balance',
-            new_name='beginning_cash_balance',
+            model_name="form460filing",
+            old_name="begin_cash_balance",
+            new_name="beginning_cash_balance",
         ),
         migrations.RenameField(
-            model_name='form460filingversion',
-            old_name='begin_cash_balance',
-            new_name='beginning_cash_balance',
+            model_name="form460filingversion",
+            old_name="begin_cash_balance",
+            new_name="beginning_cash_balance",
         ),
     ]

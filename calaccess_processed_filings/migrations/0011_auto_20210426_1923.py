@@ -6,18 +6,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('calaccess_processed_filings', '0010_auto_20180511_0001'),
+        ("calaccess_processed_filings", "0010_auto_20180511_0001"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='form501filing',
-            name='accepted_limit',
-            field=models.BooleanField(help_text='Indicates if either the "I accept the voluntary expenditure ceiling" or "I do not accept the voluntary expenditure" box is checked (from F501_502_CD.ACCEPT_LIMIT_YN)', null=True),
+            model_name="form501filing",
+            name="accepted_limit",
+            field=models.BooleanField(
+                help_text='Indicates if either the "I accept the voluntary expenditure ceiling" or "I do not accept the voluntary expenditure" box is checked (from F501_502_CD.ACCEPT_LIMIT_YN)',
+                null=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='form501filingversion',
-            name='accepted_limit',
-            field=models.BooleanField(help_text='Indicates if either the "I accept the voluntary expenditure ceiling" or "I do not accept the voluntary expenditure" box is checked (from F501_502_CD.ACCEPT_LIMIT_YN)', null=True),
+            model_name="form501filingversion",
+            name="accepted_limit",
+            field=models.BooleanField(
+                help_text='Indicates if either the "I accept the voluntary expenditure ceiling" or "I do not accept the voluntary expenditure" box is checked (from F501_502_CD.ACCEPT_LIMIT_YN)',
+                null=True,
+            ),
         ),
     ]

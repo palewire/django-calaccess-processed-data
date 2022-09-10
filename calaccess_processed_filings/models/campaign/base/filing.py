@@ -8,21 +8,22 @@ class CampaignFinanceFilingBase(FilingBaseModel):
     """
     Base and abstract model for campaign finance-related filings.
     """
+
     date_filed = models.DateField(
-        verbose_name='date filed',
+        verbose_name="date filed",
         db_index=True,
         null=False,
         help_text="Date this report was filed, according to the filer "
-                  "(from CVR_CAMPAIGN_DISCLOSURE.RPT_DATE)",
+        "(from CVR_CAMPAIGN_DISCLOSURE.RPT_DATE)",
     )
     filer_id = models.IntegerField(
-        verbose_name='filer id',
+        verbose_name="filer id",
         db_index=True,
         null=False,
         help_text="Numeric filer identification number (from FILER_XREF.FILER_ID)",
     )
     filer_lastname = models.CharField(
-        verbose_name='filer last name',
+        verbose_name="filer last name",
         max_length=200,
         null=False,
         blank=False,
@@ -34,19 +35,20 @@ class CampaignFinanceFilingBase(FilingBaseModel):
         null=False,
         blank=True,
         help_text="First name of the filer (from "
-                  "CVR_CAMPAIGN_DISCLOSURE.FILER_NAMF)",
+        "CVR_CAMPAIGN_DISCLOSURE.FILER_NAMF)",
     )
     election_date = models.DateField(
-        verbose_name='election date',
+        verbose_name="election date",
         db_index=True,
         null=True,
         help_text="Date of the election in which the filer is participating "
-                  "(from CVR_CAMPAIGN_DISCLOSURE.ELECT_DATE)",
+        "(from CVR_CAMPAIGN_DISCLOSURE.ELECT_DATE)",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed'
+
+        app_label = "calaccess_processed"
         abstract = True

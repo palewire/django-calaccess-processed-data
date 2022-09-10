@@ -65,20 +65,19 @@ class TestCommand(Command):
 setup(
     name='django-calaccess-processed-data',
     license='MIT',
-    description='A Django app to transform and refine campaign finance data from the California Secretary of State’s \
-CAL-ACCESS database',
+    description='A Django app to transform and refine campaign finance data from the California Secretary of State’s CAL-ACCESS database',
     long_description=read('README.rst'),
     url='http://django-calaccess.californiacivicdata.org',
-    author='California Civic Data Coalition',
+    author='Ben Welsh',
     author_email='b@palewi.re',
     packages=find_packages(),
     include_package_data=True,
     zip_safe=False,  # because we're including static files
     install_requires=(
-        'django-calaccess-raw-data==5.0.*',
+        'django-calaccess-raw-data==5.0.3',
         'django-calaccess-scraped-data==3.2.0',
         'django>=4.0.*',
-        'ccdc-opencivicdata==0.0.2',
+        'ccdc-opencivicdata==0.0.5',
         'django-internetarchive-storage',
         'pytz',
     ),

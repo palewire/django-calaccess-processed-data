@@ -11,14 +11,16 @@ class FilingBaseModel(CalAccessBaseModel):
     """
     Base model for all the filings models.
     """
+
     objects = FilingsManager()
 
     class Meta:
         """
         Meta model options.
         """
+
         abstract = True
-        app_label = 'calaccess_processed_filings'
+        app_label = "calaccess_processed_filings"
 
     @property
     def pdf_url(self):
@@ -27,10 +29,12 @@ class FilingBaseModel(CalAccessBaseModel):
         """
         # If it's a Filing, it will have an amendment count. If it's a Version it will have an amend_id.
         try:
-            amendid = getattr(self, 'amendment_count')
+            amendid = getattr(self, "amendment_count")
         except AttributeError:
-            amendid = getattr(self, 'amend_id')
-        return 'http://cal-access.sos.ca.gov/PDFGen/pdfgen.prg?filingid={}&amendid={}'.format(self.filing_id, amendid)
+            amendid = getattr(self, "amend_id")
+        return "http://cal-access.sos.ca.gov/PDFGen/pdfgen.prg?filingid={}&amendid={}".format(
+            self.filing_id, amendid
+        )
 
     @property
     def has_pdf(self):

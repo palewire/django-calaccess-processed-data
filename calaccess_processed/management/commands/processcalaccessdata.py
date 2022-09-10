@@ -10,20 +10,25 @@ from calaccess_processed.management.commands import CalAccessCommand
 
 class Command(CalAccessCommand):
     """Load data into processed CAL-ACCESS models, archive processed files and ZIP."""
-    help = 'Load data into processed CAL-ACCESS models, archive processed files and ZIP.'
+
+    help = (
+        "Load data into processed CAL-ACCESS models, archive processed files and ZIP."
+    )
 
     def handle(self, *args, **options):
         """Make it happen."""
         # Throw an error if the scraper hasn't been run.
         if not PropositionElection.objects.exists():
-            raise CommandError("Sorry. You must first run 'loadcalaccessscrapeddata' from the calaccess_scraped app.")
+            raise CommandError(
+                "Sorry. You must first run 'loadcalaccessscrapeddata' from the calaccess_scraped app."
+            )
 
         # Set options
         super(Command, self).handle(*args, **options)
 
         # Clear it out
         if self.verbosity > 2:
-            self.log('Flushing local copies of processed data files.')
+            self.log("Flushing local copies of processed data files.")
         for dirpath, dirnames, filenames in os.walk(self.processed_data_dir):
             file_paths = [os.path.join(dirpath, i) for i in filenames]
             for file_path in file_paths:
@@ -34,27 +39,27 @@ class Command(CalAccessCommand):
 
         # then load
         call_command(
-            'processcalaccessfilings',
+            "processcalaccessfilings",
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
         call_command(
-            'processcalaccesselections',
+            "processcalaccesselections",
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
         call_command(
-            'processcalaccessflatfiles',
+            "processcalaccessflatfiles",
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
 
         # then verify
         call_command(
-            'verifycalaccessprocesseddata',
+            "verifycalaccessprocesseddata",
             verbosity=self.verbosity,
             no_color=self.no_color,
         )
 
-        self.success('Processing complete')
+        self.success("Processing complete")
         self.duration()

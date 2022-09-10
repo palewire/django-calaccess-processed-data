@@ -11,5 +11,5 @@ from .retentioncontests import OCDFlatRetentionContestProxy
 __all__ = (
     "OCDFlatBallotMeasureContestProxy",
     "OCDFlatCandidacyProxy",
-    "OCDFlatRetentionContestProxy"
+    "OCDFlatRetentionContestProxy",
 )

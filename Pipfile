@@ -19,6 +19,7 @@ requests-mock = "*"
 twine = "*"
 pre-commit = "*"
 setuptools-scm = "*"
+black = "*"
 
 [requires]
 python_version = "3.9"

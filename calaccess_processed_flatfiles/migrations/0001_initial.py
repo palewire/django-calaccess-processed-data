@@ -9,44 +9,50 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('elections', '0008_auto_20181029_1527'),
+        ("elections", "0008_auto_20181029_1527"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='OCDFlatBallotMeasureContestProxy',
-            fields=[
-            ],
+            name="OCDFlatBallotMeasureContestProxy",
+            fields=[],
             options={
-                'verbose_name_plural': 'ballot measures',
-                'proxy': True,
-                'indexes': [],
-                'constraints': [],
+                "verbose_name_plural": "ballot measures",
+                "proxy": True,
+                "indexes": [],
+                "constraints": [],
             },
-            bases=('elections.ballotmeasurecontest', calaccess_processed.proxies.OCDProxyModelMixin),
+            bases=(
+                "elections.ballotmeasurecontest",
+                calaccess_processed.proxies.OCDProxyModelMixin,
+            ),
         ),
         migrations.CreateModel(
-            name='OCDFlatCandidacyProxy',
-            fields=[
-            ],
+            name="OCDFlatCandidacyProxy",
+            fields=[],
             options={
-                'verbose_name_plural': 'candidates',
-                'proxy': True,
-                'indexes': [],
-                'constraints': [],
+                "verbose_name_plural": "candidates",
+                "proxy": True,
+                "indexes": [],
+                "constraints": [],
             },
-            bases=('elections.candidacy', calaccess_processed.proxies.OCDProxyModelMixin),
+            bases=(
+                "elections.candidacy",
+                calaccess_processed.proxies.OCDProxyModelMixin,
+            ),
         ),
         migrations.CreateModel(
-            name='OCDFlatRetentionContestProxy',
-            fields=[
-            ],
+            name="OCDFlatRetentionContestProxy",
+            fields=[],
             options={
-                'verbose_name_plural': 'recall measures',
-                'proxy': True,
-                'indexes': [],
-                'constraints': [],
+                "verbose_name_plural": "recall measures",
+                "proxy": True,
+                "indexes": [],
+                "constraints": [],
             },
-            bases=('elections.retentioncontest', calaccess_processed.proxies.OCDProxyModelMixin),
+            bases=(
+                "elections.retentioncontest",
+                calaccess_processed.proxies.OCDProxyModelMixin,
+            ),
         ),
     ]

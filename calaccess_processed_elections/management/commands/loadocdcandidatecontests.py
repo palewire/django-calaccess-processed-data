@@ -2,14 +2,17 @@
 from calaccess_processed_elections.proxies import (
     OCDCandidateContestProxy,
     OCDCandidacyProxy,
-    ScrapedCandidateProxy
+    ScrapedCandidateProxy,
 )
 from calaccess_processed.management.commands import CalAccessCommand
 
 
 class Command(CalAccessCommand):
     """Load the OCD CandidateContest and related models with scraped CAL-ACCESS data."""
-    help = 'Load the OCD CandidateContest and related models with scraped CAL-ACCESS data'
+
+    help = (
+        "Load the OCD CandidateContest and related models with scraped CAL-ACCESS data"
+    )
 
     def handle(self, *args, **options):
         """Make it happen."""
@@ -24,14 +27,14 @@ class Command(CalAccessCommand):
 
         # connect runoffs to their previously undecided contests
         if self.verbosity > 2:
-            self.log(' Linking runoffs to previous contests')
+            self.log(" Linking runoffs to previous contests")
         OCDCandidateContestProxy.objects.set_parents()
 
         self.success("Done!")
 
     def load_candidates_with_filer_ids(self):
         """Load scraped candidates that were collected with a filer_id."""
-        scraped_candidates = ScrapedCandidateProxy.objects.exclude(scraped_id='')
+        scraped_candidates = ScrapedCandidateProxy.objects.exclude(scraped_id="")
 
         for scraped_candidate in scraped_candidates:
             if self.verbosity > 2:
@@ -60,11 +63,11 @@ class Command(CalAccessCommand):
         # He was on the ballot in the general but records and a phone
         # interview with the candidate show he did not run in any primary.
         scraped_candidates = ScrapedCandidateProxy.objects.filter(
-            scraped_id=''
+            scraped_id=""
         ).exclude(
-            name__contains='FITZGERALD',
-            election__name='2008 PRIMARY',
-            office_name='STATE SENATE 15'
+            name__contains="FITZGERALD",
+            election__name="2008 PRIMARY",
+            office_name="STATE SENATE 15",
         )
 
         for scraped_candidate in scraped_candidates:
@@ -96,20 +99,23 @@ class Command(CalAccessCommand):
             contest, contest_created = scraped_candidate.get_or_create_contest()
 
             # Create candidacy
-            candidacy, candidacy_created = OCDCandidacyProxy.objects.get_or_create_from_calaccess(
+            (
+                candidacy,
+                candidacy_created,
+            ) = OCDCandidacyProxy.objects.get_or_create_from_calaccess(
                 contest,
                 scraped_candidate.parsed_name,
-                candidate_status='qualified',
-                candidate_filer_id=scraped_candidate.scraped_id or None
+                candidate_status="qualified",
+                candidate_filer_id=scraped_candidate.scraped_id or None,
             )
             if candidacy_created and self.verbosity > 1:
-                self.log(' Created Candidacy: %s' % candidacy)
+                self.log(" Created Candidacy: %s" % candidacy)
         except OCDCandidacyProxy.MultipleObjectsReturned:
             # Get contest
             contest, contest_created = scraped_candidate.get_or_create_contest()
             # Add that to what we use to filter, but do a stricter name filter
             candidacy_list = OCDCandidacyProxy.objects.filter(
-                candidate_name=scraped_candidate.parsed_name['name']
+                candidate_name=scraped_candidate.parsed_name["name"]
             ).filter(contest=contest)
             assert len(candidacy_list) == 1
             candidacy = candidacy_list[0]
@@ -120,7 +126,7 @@ class Command(CalAccessCommand):
             if contest != candidacy.contest:
                 old_contest = candidacy.contest
                 if self.verbosity > 2:
-                    msg = ' Resetting {0} contest: {1} -> {2}'.format(
+                    msg = " Resetting {0} contest: {1} -> {2}".format(
                         candidacy,
                         old_contest,
                         contest,
@@ -133,14 +139,14 @@ class Command(CalAccessCommand):
                 if old_contest.candidacies.count() == 0:
                     old_contest.delete()
                     if self.verbosity > 2:
-                        self.log(' Deleting empty %s' % old_contest)
+                        self.log(" Deleting empty %s" % old_contest)
 
         # always update the source for the candidacy
         candidacy.sources.update_or_create(
             url=scraped_candidate.url,
-            note='Last scraped on {dt:%Y-%m-%d}'.format(
+            note="Last scraped on {dt:%Y-%m-%d}".format(
                 dt=scraped_candidate.last_modified,
-            )
+            ),
         )
         return candidacy
 
@@ -158,7 +164,7 @@ class Command(CalAccessCommand):
             # or if correction is different
             elif candidacy.party.id != corrected_party.id:
                 if self.verbosity > 2:
-                    msg = ' Resetting {0} party: {1} -> {2}'.format(
+                    msg = " Resetting {0} party: {1} -> {2}".format(
                         candidacy,
                         candidacy.party,
                         corrected_party,

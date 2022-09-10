@@ -11,13 +11,14 @@ class FilingsManager(BulkLoadSQLManager):
     """
     Utilities for more quickly loading bulk data.
     """
+
     app_name = "calaccess_processed_filings"
 
     def get_sql(self):
         """
         Return string of raw sql for loading the model.
         """
-        with open(self.sql_path, 'r') as fp:
+        with open(self.sql_path, "r") as fp:
             sql = fp.read()
         return sql
 
@@ -26,7 +27,7 @@ class FilingsManager(BulkLoadSQLManager):
         """
         Return the path to the .sql file with the model's loading query.
         """
-        file_name = f'load_{self.model._meta.model_name_model}'
+        file_name = f"load_{self.model._meta.model_name_model}"
         return self.get_sql_path(file_name)
 
     def load(self):
@@ -52,6 +53,7 @@ class Form501FilingManager(FilingsManager):
     """
     A custom manager for Form 501 filings.
     """
+
     def without_candidacy(self):
         """
         Returns Form 501 filings that do not have an OCD Candidacy yet.
@@ -61,5 +63,5 @@ class Form501FilingManager(FilingsManager):
         matched_qs = OCDCandidacyProxy.objects.matched_form501_ids()
         matched_list = [i for i in itertools.chain.from_iterable(matched_qs)]
         return self.get_queryset().exclude(
-            Q(filing_id__in=matched_list) | Q(office__icontains='RETIREMENT')
+            Q(filing_id__in=matched_list) | Q(office__icontains="RETIREMENT")
         )

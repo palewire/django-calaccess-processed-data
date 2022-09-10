@@ -4,10 +4,7 @@
 Abstract base models for campaign finance-related filings and transactions.
 """
 from .contribution import CampaignContributionBase
-from .expenditure import (
-    CampaignExpenditureItemBase,
-    CampaignExpenditureSubItemBase
-)
+from .expenditure import CampaignExpenditureItemBase, CampaignExpenditureSubItemBase
 from .filing import CampaignFinanceFilingBase
 from .loan import (
     CampaignLoanItemBase,

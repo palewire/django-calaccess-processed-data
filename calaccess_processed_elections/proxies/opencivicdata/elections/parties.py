@@ -13,12 +13,14 @@ class OCDPartyProxy(Organization, OCDProxyModelMixin):
     """
     A proxy on the OCD Organization model with helper methods for interacting with political parties.
     """
+
     objects = OCDPartyManager()
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True
 
@@ -26,4 +28,4 @@ class OCDPartyProxy(Organization, OCDProxyModelMixin):
         """
         Returns whether or not the provided party is unknown.
         """
-        return self.name == 'UNKNOWN'
+        return self.name == "UNKNOWN"

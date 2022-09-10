@@ -8,6 +8,7 @@ import os
 import logging
 from django.apps import apps
 from postgres_copy.managers import CopyManager
+
 logger = logging.getLogger(__name__)
 
 
@@ -15,6 +16,7 @@ class BulkLoadSQLManager(CopyManager):
     """
     Utilities for more quickly loading bulk data into a model with custom SQL.
     """
+
     app_name = "calaccess_processed"
 
     def get_sql(self):
@@ -28,4 +30,4 @@ class BulkLoadSQLManager(CopyManager):
         Return the full path with extenstion to file_name.
         """
         sql_path = apps.get_app_config(self.app_name).sql_directory_path
-        return os.path.join(sql_path, '%s.sql' % file_name)
+        return os.path.join(sql_path, "%s.sql" % file_name)

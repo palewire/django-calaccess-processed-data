@@ -15,89 +15,91 @@ class Form460ScheduleHItemBase(CampaignLoanMadeItemBase):
     currently outstanding to other recipients during the period covered by the
     filing.
     """
+
     begin_period_balance = models.DecimalField(
-        verbose_name='beginning period balance',
+        verbose_name="beginning period balance",
         decimal_places=2,
         max_digits=14,
         help_text="Outstanding balance of the loan at the beginning of the"
-                  "period covered by the filing (from LOAN_CD.LOAN_AMT4)"
+        "period covered by the filing (from LOAN_CD.LOAN_AMT4)",
     )
     amount_loaned = models.DecimalField(
-        verbose_name='amount loaned',
+        verbose_name="amount loaned",
         decimal_places=2,
         max_digits=14,
         help_text="Amount loaned during the period covered by the filing "
-                  "(from LOAN_CD.LOAN_AMT1)"
+        "(from LOAN_CD.LOAN_AMT1)",
     )
     amount_paid = models.DecimalField(
-        verbose_name='amount paid',
+        verbose_name="amount paid",
         decimal_places=2,
         max_digits=14,
         help_text="Amount paid back during the period covered by the filing "
-                  "(from LOAN_CD.LOAN_AMT5)"
+        "(from LOAN_CD.LOAN_AMT5)",
     )
     amount_forgiven = models.DecimalField(
-        verbose_name='amount forgiven',
+        verbose_name="amount forgiven",
         decimal_places=2,
         max_digits=14,
         help_text="Amount forgiven by the campaign filer during the period "
-                  "covered by the filing (from LOAN_CD.LOAN_AMT6)"
+        "covered by the filing (from LOAN_CD.LOAN_AMT6)",
     )
     end_period_balance = models.DecimalField(
-        verbose_name='end period balance',
+        verbose_name="end period balance",
         decimal_places=2,
         max_digits=14,
         help_text="Outstanding balance of the loan at the end of the period "
-                  "covered by the filing (from LOAN_CD.LOAN_AMT2)"
+        "covered by the filing (from LOAN_CD.LOAN_AMT2)",
     )
     date_due = models.DateField(
-        verbose_name='date due',
+        verbose_name="date due",
         null=True,
-        help_text="Date that the loan is due (from LOAN_CD.LOAN_DATE2)"
+        help_text="Date that the loan is due (from LOAN_CD.LOAN_DATE2)",
     )
     interest_received = models.DecimalField(
-        verbose_name='interest paid',
+        verbose_name="interest paid",
         decimal_places=2,
         max_digits=14,
         help_text="Amount of interest paid on the loan during the period "
-                  "covered by the campaign filing (from LOAN_CD.LOAN_AMT7)"
+        "covered by the campaign filing (from LOAN_CD.LOAN_AMT7)",
     )
     original_amount = models.DecimalField(
-        verbose_name='original amount',
+        verbose_name="original amount",
         decimal_places=2,
         max_digits=14,
         help_text="Original amount loaned by the lender to the campaign filer "
-                  "(from LOAN_CD.LOAN_AMT8)"
+        "(from LOAN_CD.LOAN_AMT8)",
     )
     date_incurred = models.DateField(
-        verbose_name='date incurred',
+        verbose_name="date incurred",
         null=True,
-        help_text="Date the loan was made or received (from LOAN_CD.LOAN_DATE1)"
+        help_text="Date the loan was made or received (from LOAN_CD.LOAN_DATE1)",
     )
     cumulative_ytd_contributions = models.DecimalField(
-        verbose_name='cumulative year-to-date contributions',
+        verbose_name="cumulative year-to-date contributions",
         decimal_places=2,
         max_digits=14,
         help_text="Cumulative amount of contributions (loans, monetary and "
-                  "nonmonetary contributions) from the campaign filer to the "
-                  "recipient during the calendar year covered by this statement"
-                  " (from LOAN_CD.LOAN_AMT3)"
+        "nonmonetary contributions) from the campaign filer to the "
+        "recipient during the calendar year covered by this statement"
+        " (from LOAN_CD.LOAN_AMT3)",
     )
     reported_on_h1 = models.BooleanField(
-        verbose_name='reported on H1',
+        verbose_name="reported on H1",
         default=False,
-        help_text='Indicates if the item was actually reported on Part 1 of '
-                  'Schedule H. Until 2001, campaign filers were required to '
-                  'report loans made to others on Part 1 of Schedule H, '
-                  'separate from repayments or forgiveness of those loans '
-                  '(Schedule H, Part 2)'
+        help_text="Indicates if the item was actually reported on Part 1 of "
+        "Schedule H. Until 2001, campaign filers were required to "
+        "report loans made to others on Part 1 of Schedule H, "
+        "separate from repayments or forgiveness of those loans "
+        "(Schedule H, Part 2)",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
+
+        app_label = "calaccess_processed_filings"
         abstract = True
 
 
@@ -111,28 +113,32 @@ class Form460ScheduleHItem(Form460ScheduleHItemBase):
 
     Derived from LOAN_CD records where FORM_TYPE is 'H' or 'H1'.
     """
+
     filing = models.ForeignKey(
-        'Form460Filing',
-        related_name='schedule_h_items',
+        "Form460Filing",
+        related_name="schedule_h_items",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the Form 460 on which the loan '
-                  'was reported (from LOAN_CD.FILING_ID)',
+        help_text="Foreign key referring to the Form 460 on which the loan "
+        "was reported (from LOAN_CD.FILING_ID)",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        unique_together = ((
-            'filing',
-            'line_item',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        unique_together = (
+            (
+                "filing",
+                "line_item",
+            ),
+        )
         verbose_name = "Form 460 (Campaign Disclosure) Schedule H item"
 
     def __str__(self):
-        return '%s-%s' % (self.filing, self.line_item)
+        return "%s-%s" % (self.filing, self.line_item)
 
 
 class Form460ScheduleHItemVersion(Form460ScheduleHItemBase):
@@ -144,35 +150,41 @@ class Form460ScheduleHItemVersion(Form460ScheduleHItemBase):
 
     Derived from LOAN_CD records where FORM_TYPE is 'H' or 'H1'.
     """
+
     filing_version = models.ForeignKey(
-        'Form460FilingVersion',
-        related_name='schedule_h_items',
+        "Form460FilingVersion",
+        related_name="schedule_h_items",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the version of the Form 460 that '
-                  'includes the outstanding loan'
+        help_text="Foreign key referring to the version of the Form 460 that "
+        "includes the outstanding loan",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        unique_together = ((
-            'filing_version',
-            'line_item',
-        ),)
-        index_together = ((
-            'filing_version',
-            'line_item',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        unique_together = (
+            (
+                "filing_version",
+                "line_item",
+            ),
+        )
+        index_together = (
+            (
+                "filing_version",
+                "line_item",
+            ),
+        )
         verbose_name = "Form 460 (Campaign Disclosure) Schedule H item version"
 
     def __str__(self):
-        return '%s-%s-%s' % (
+        return "%s-%s-%s" % (
             self.filing_version.filing_id,
             self.filing_version.amend_id,
-            self.line_item
+            self.line_item,
         )
 
 
@@ -184,50 +196,52 @@ class Form460ScheduleH2ItemBaseOld(CampaignLoanMadeItemBase):
     repayments on and forgiveness of loans made to others on Part 2 of Schedule
     H.
     """
+
     date_repaid_or_forgiven = models.DateField(
-        verbose_name='date paid or forgiven',
+        verbose_name="date paid or forgiven",
         null=True,
         help_text="Date when the loan repayment or forgiveness occurred (from "
-                  "LOAN_CD.LOAN_DATE2)"
+        "LOAN_CD.LOAN_DATE2)",
     )
     date_of_original_loan = models.DateField(
-        verbose_name='date of original loan',
+        verbose_name="date of original loan",
         null=True,
-        help_text="Date the loan was orginally made (from LOAN_CD.LOAN_DATE1)"
+        help_text="Date the loan was orginally made (from LOAN_CD.LOAN_DATE1)",
     )
     REPAYMENT_TYPE_CHOICES = (
-        ('H2F', 'Forgiven'),
-        ('H2R', 'Repay'),
-        ('H2T', 'Third party payment'),
+        ("H2F", "Forgiven"),
+        ("H2R", "Repay"),
+        ("H2T", "Third party payment"),
     )
     repayment_type = models.CharField(
-        verbose_name='repayment type',
+        verbose_name="repayment type",
         max_length=3,
         choices=REPAYMENT_TYPE_CHOICES,
-        help_text='Indicates whether the item is a loan repayment to the '
-                  'campaign filer, a repayment by a third-party or a loan '
-                  'forgiveness by the campaign filer (from LOAN_CD.LOAN_TYPE)',
+        help_text="Indicates whether the item is a loan repayment to the "
+        "campaign filer, a repayment by a third-party or a loan "
+        "forgiveness by the campaign filer (from LOAN_CD.LOAN_TYPE)",
     )
     amount_repaid_or_forgiven = models.DecimalField(
-        verbose_name='amount repaid or forgiven',
+        verbose_name="amount repaid or forgiven",
         decimal_places=2,
         max_digits=14,
         help_text="Amount paid back or forgiven during the period covered by "
-                  "the filing (from LOAN_CD.LOAN_AMT1)"
+        "the filing (from LOAN_CD.LOAN_AMT1)",
     )
     outstanding_principle = models.DecimalField(
-        verbose_name='outstanding principle',
+        verbose_name="outstanding principle",
         decimal_places=2,
         max_digits=14,
         help_text="Outstanding balance of the loan at the end of the period "
-                  "covered by the filing (from LOAN_CD.LOAN_AMT2)"
+        "covered by the filing (from LOAN_CD.LOAN_AMT2)",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
+
+        app_label = "calaccess_processed_filings"
         abstract = True
 
 
@@ -242,28 +256,32 @@ class Form460ScheduleH2ItemOld(Form460ScheduleH2ItemBaseOld):
 
     Derived from LOAN_CD records where FORM_TYPE is 'H2'.
     """
+
     filing = models.ForeignKey(
-        'Form460Filing',
-        related_name='schedule_h2_items_old',
+        "Form460Filing",
+        related_name="schedule_h2_items_old",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the Form 460 on which the loan '
-                  'was reported (from LOAN_CD.FILING_ID)',
+        help_text="Foreign key referring to the Form 460 on which the loan "
+        "was reported (from LOAN_CD.FILING_ID)",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        unique_together = ((
-            'filing',
-            'line_item',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        unique_together = (
+            (
+                "filing",
+                "line_item",
+            ),
+        )
         verbose_name = "Form 460 (Campaign Disclosure) Schedule H2 old item"
 
     def __str__(self):
-        return '%s-%s' % (self.filing, self.line_item)
+        return "%s-%s" % (self.filing, self.line_item)
 
 
 class Form460ScheduleH2ItemVersionOld(Form460ScheduleH2ItemBaseOld):
@@ -275,33 +293,39 @@ class Form460ScheduleH2ItemVersionOld(Form460ScheduleH2ItemBaseOld):
 
     Derived from LOAN_CD records where FORM_TYPE is 'H2'.
     """
+
     filing_version = models.ForeignKey(
-        'Form460FilingVersion',
-        related_name='schedule_h2_items_old',
+        "Form460FilingVersion",
+        related_name="schedule_h2_items_old",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the version of the Form 460 that '
-                  'includes the outstanding loan'
+        help_text="Foreign key referring to the version of the Form 460 that "
+        "includes the outstanding loan",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        unique_together = ((
-            'filing_version',
-            'line_item',
-        ),)
-        index_together = ((
-            'filing_version',
-            'line_item',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        unique_together = (
+            (
+                "filing_version",
+                "line_item",
+            ),
+        )
+        index_together = (
+            (
+                "filing_version",
+                "line_item",
+            ),
+        )
         verbose_name = "Form 460 (Campaign Disclosure) Schedule H2 old item version"
 
     def __str__(self):
-        return '%s-%s-%s' % (
+        return "%s-%s-%s" % (
             self.filing_version.filing_id,
             self.filing_version.amend_id,
-            self.line_item
+            self.line_item,
         )

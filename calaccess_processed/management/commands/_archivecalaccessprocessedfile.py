@@ -11,14 +11,15 @@ class Command(CalAccessCommand):
     """
     Export and archive a .csv file for a given model.
     """
-    help = 'Export and archive a .csv file for a given model.'
+
+    help = "Export and archive a .csv file for a given model."
 
     def add_arguments(self, parser):
         """
         Adds custom arguments specific to this command.
         """
         super(Command, self).add_arguments(parser)
-        parser.add_argument('model_name', help="Name of the model to archive")
+        parser.add_argument("model_name", help="Name of the model to archive")
 
     def get_model(self, processed_file):
         """
@@ -33,7 +34,7 @@ class Command(CalAccessCommand):
         super(Command, self).handle(*args, **options)
 
         # Parse model name
-        self.model_name = options['model_name']
+        self.model_name = options["model_name"]
 
         # Log out what we're doing ...
         self.log(" Archiving %s.csv" % self.model_name)
@@ -44,12 +45,10 @@ class Command(CalAccessCommand):
 
         # Figure out the path where we will save the file
         csv_dir = os.path.join(
-            get_data_directory(),
-            'processed',
-            data_model().klass_group.lower()
+            get_data_directory(), "processed", data_model().klass_group.lower()
         )
         os.path.exists(csv_dir) or os.mkdir(csv_dir)
-        csv_name = f'{self.model_name}.csv'
+        csv_name = f"{self.model_name}.csv"
         csv_path = os.path.join(csv_dir, csv_name)
 
         # Export a new one

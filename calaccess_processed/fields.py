@@ -10,13 +10,14 @@ class CopyToField(object):
     """
     Class to hold meta data about a field included in a CopyTo query.
     """
+
     def __init__(self, query, name, **kwargs):
         """
         Create a new instance of CopyToField.
         """
         self.query = query
         self.name = name
-        self._help_text = kwargs.get('help_text', None)
+        self._help_text = kwargs.get("help_text", None)
 
     @property
     def choices(self):

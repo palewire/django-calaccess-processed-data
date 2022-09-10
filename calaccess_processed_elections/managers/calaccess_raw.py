@@ -12,6 +12,7 @@ class RawFilerToFilerTypeCdManager(BulkLoadSQLManager):
     """
     Custom helpers for the calaccess_raw FilerToFilerTypeCd model.
     """
+
     def get_office_by_filer_id_and_date(self, filer_id, election_date):
         """
         Lookup the office for the given filer_id, effective before election_date.
@@ -23,7 +24,11 @@ class RawFilerToFilerTypeCdManager(BulkLoadSQLManager):
 
         # Try a straight query for it
         try:
-            ftft = self.get_queryset().filter(filer_id=filer_id, effect_dt__lte=election_date).latest('effect_dt')
+            ftft = (
+                self.get_queryset()
+                .filter(filer_id=filer_id, effect_dt__lte=election_date)
+                .latest("effect_dt")
+            )
         except (self.model.DoesNotExist, ValueError):
             # If you don't find it, quit.
             return None
@@ -46,4 +51,4 @@ class RawFilerToFilerTypeCdManager(BulkLoadSQLManager):
             return None
 
         # If you found a district, return the string with office combined in there
-        return '{} {}'.format(office, district).strip()
+        return "{} {}".format(office, district).strip()

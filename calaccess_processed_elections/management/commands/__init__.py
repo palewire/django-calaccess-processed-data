@@ -9,6 +9,7 @@ class LoadOCDElectionsBase(CalAccessCommand):
     """
     Base class for custom management commands that load the OCD Election model.
     """
+
     def handle(self, *args, **options):
         """
         Make it happen.
@@ -20,8 +21,8 @@ class LoadOCDElectionsBase(CalAccessCommand):
             OCDDivisionProxy.objects.california()
         except OCDDivisionProxy.DoesNotExist:
             if self.verbosity > 2:
-                self.log(' CA state division missing. Loading all U.S. divisions')
-            call_command('loaddivisions', 'us')
+                self.log(" CA state division missing. Loading all U.S. divisions")
+            call_command("loaddivisions", "us")
 
     def load_from_proxy(self, proxy):
         """Load OCD Election from scraped proxy model."""
@@ -37,10 +38,12 @@ class LoadOCDElectionsBase(CalAccessCommand):
 
             # If we made a new one, log it out
             if ocd_created and self.verbosity > 1:
-                self.log(f' Created new Election: {ocd_election}')
+                self.log(f" Created new Election: {ocd_election}")
 
             # Whether Election is new or not, update EventSource
             ocd_election.sources.update_or_create(
                 url=scraped_election.url,
-                note='Last scraped on {:%Y-%m-%d}'.format(scraped_election.last_modified)
+                note="Last scraped on {:%Y-%m-%d}".format(
+                    scraped_election.last_modified
+                ),
             )

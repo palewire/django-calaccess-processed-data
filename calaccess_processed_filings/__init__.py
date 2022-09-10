@@ -3,4 +3,4 @@
 """
 General utilities for the application.
 """
-default_app_config = 'calaccess_processed_filings.apps.CalAccessProcessedFilingsConfig'
+default_app_config = "calaccess_processed_filings.apps.CalAccessProcessedFilingsConfig"

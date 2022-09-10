@@ -51,7 +51,7 @@ from .schedules import (
     Form460ScheduleH2ItemVersionOld,
     Form460ScheduleIItemBase,
     Form460ScheduleIItem,
-    Form460ScheduleIItemVersion
+    Form460ScheduleIItemVersion,
 )
 
 
@@ -104,5 +104,5 @@ __all__ = (
     "Form460ScheduleH2ItemVersionOld",
     "Form460ScheduleIItemBase",
     "Form460ScheduleIItem",
-    "Form460ScheduleIItemVersion"
+    "Form460ScheduleIItemVersion",
 )

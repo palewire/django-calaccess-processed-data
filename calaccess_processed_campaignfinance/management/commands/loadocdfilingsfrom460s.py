@@ -11,6 +11,7 @@ class Command(CalAccessCommand):
     """
     Load data from CAL-ACCESS' Form 460 into standardized OCD models.
     """
+
     help = "Load data from CAL-ACCESS' Form 460 into standardized OCD models."
 
     def add_arguments(self, parser):
@@ -22,7 +23,7 @@ class Command(CalAccessCommand):
             action="store_true",
             dest="flush",
             default=False,
-            help="Flush OCD filing models prior to loading"
+            help="Flush OCD filing models prior to loading",
         )
 
     def handle(self, *args, **options):
@@ -30,7 +31,7 @@ class Command(CalAccessCommand):
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
-        if options['flush']:
+        if options["flush"]:
             self.flush()
         self.load()
 
@@ -38,7 +39,7 @@ class Command(CalAccessCommand):
         """
         Clear out the OCD models loaded by this command.
         """
-        self.header('Flushing OCD data extracted from Form 460 filings')
+        self.header("Flushing OCD data extracted from Form 460 filings")
         model_list = [
             # models.OCDTransactionProxy,
             models.OCDFilingActionSummaryAmountProxy,
@@ -59,7 +60,7 @@ class Command(CalAccessCommand):
         Loads the provided model.
         """
         # Print out what we're doing
-        self.log('  Loading {}'.format(model.__name__))
+        self.log("  Loading {}".format(model.__name__))
 
         # Count how many records are in the table now
         before = model.objects.count()
@@ -71,24 +72,24 @@ class Command(CalAccessCommand):
         after = model.objects.count()
 
         # Report the change
-        self.log('   {:,} added'.format(after - before))
+        self.log("   {:,} added".format(after - before))
 
     def load(self, *args, **kwargs):
         """
         Load data from Form 460 models into OCD models.
         """
-        self.header('Loading data extracted from Form 460 filings')
+        self.header("Loading data extracted from Form 460 filings")
 
         # Only load committee types if we haven't already
         if not models.OCDCommitteeTypeProxy.objects.exists():
-            self.log(' Creating committee types')
+            self.log(" Creating committee types")
             self.load_model(models.OCDCommitteeTypeProxy)
 
         #
         # Committees
         #
 
-        self.log(' Updating committee roster')
+        self.log(" Updating committee roster")
         self.load_model(models.OCDCommitteeProxy)
         self.load_model(models.OCDCommitteeIdentifierProxy)
         self.load_model(models.OCDCommitteeNameProxy)

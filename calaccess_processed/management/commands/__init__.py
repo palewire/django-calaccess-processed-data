@@ -12,6 +12,7 @@ class CalAccessCommand(BaseCommand):
     """
     Base class for all custom CalAccess-related management commands.
     """
+
     def handle(self, *args, **options):
         """
         Sets options common to all commands.
@@ -31,7 +32,7 @@ class CalAccessCommand(BaseCommand):
         self.data_dir = get_data_directory()
         self.processed_data_dir = os.path.join(
             self.data_dir,
-            'processed',
+            "processed",
         )
         if not os.path.exists(self.processed_data_dir):
             # make the processed data director
@@ -41,7 +42,7 @@ class CalAccessCommand(BaseCommand):
         """
         Writes out a string to stdout formatted to look like a header.
         """
-        if not getattr(self, 'no_color', None):
+        if not getattr(self, "no_color", None):
             string = colorize(string, fg="cyan", opts=("bold",))
         self.stdout.write(string)
 
@@ -49,7 +50,7 @@ class CalAccessCommand(BaseCommand):
         """
         Writes out a string to stdout formatted to look like a standard line.
         """
-        if not getattr(self, 'no_color', None):
+        if not getattr(self, "no_color", None):
             string = colorize("%s" % string, fg="white")
         self.stdout.write(string)
 
@@ -57,7 +58,7 @@ class CalAccessCommand(BaseCommand):
         """
         Writes out a string to stdout formatted green to communicate success.
         """
-        if not getattr(self, 'no_color', None):
+        if not getattr(self, "no_color", None):
             string = colorize(string, fg="green")
         self.stdout.write(string)
 
@@ -65,7 +66,7 @@ class CalAccessCommand(BaseCommand):
         """
         Writes string to stdout formatted yellow to communicate a warning.
         """
-        if not getattr(self, 'no_color', None):
+        if not getattr(self, "no_color", None):
             string = colorize(string, fg="yellow")
         self.stdout.write(string)
 
@@ -73,7 +74,7 @@ class CalAccessCommand(BaseCommand):
         """
         Writes string to stdout formatted red to communicate failure.
         """
-        if not getattr(self, 'no_color', None):
+        if not getattr(self, "no_color", None):
             string = colorize(string, fg="red")
         self.stdout.write(string)
 
@@ -82,7 +83,7 @@ class CalAccessCommand(BaseCommand):
         Calculates how long command has been running and writes it to stdout.
         """
         duration = timezone.now() - self.start_datetime
-        self.stdout.write('Duration: {}'.format(str(duration)))
+        self.stdout.write("Duration: {}".format(str(duration)))
 
     def __str__(self):
-        return re.sub(r'(.+\.)*', '', self.__class__.__module__)
+        return re.sub(r"(.+\.)*", "", self.__class__.__module__)

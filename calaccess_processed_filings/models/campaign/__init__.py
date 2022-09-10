@@ -20,7 +20,7 @@ from .form496 import (
     Form496Part2Item,
     Form496Part2ItemVersion,
     Form496Part3Item,
-    Form496Part3ItemVersion
+    Form496Part3ItemVersion,
 )
 from .form497 import (
     Form497Filing,
@@ -31,7 +31,7 @@ from .form497 import (
     Form497Part1ItemVersion,
     Form497Part2ItemBase,
     Form497Part2Item,
-    Form497Part2ItemVersion
+    Form497Part2ItemVersion,
 )
 from .form460 import (
     Form460FilingBase,
@@ -82,13 +82,13 @@ from .form460 import (
     Form460ScheduleH2ItemVersionOld,
     Form460ScheduleIItemBase,
     Form460ScheduleIItem,
-    Form460ScheduleIItemVersion
+    Form460ScheduleIItemVersion,
 )
 from .form461 import (
     Form461Filing,
     Form461FilingVersion,
     Form461Part5Item,
-    Form461Part5ItemVersion
+    Form461Part5ItemVersion,
 )
 from .form501 import (
     Form501FilingBase,

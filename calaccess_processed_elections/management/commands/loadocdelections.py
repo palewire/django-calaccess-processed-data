@@ -9,7 +9,10 @@ from calaccess_processed_elections.management.commands import LoadOCDElectionsBa
 
 class Command(LoadOCDElectionsBase):
     """Load the OCD Election model with data from the scraped models."""
-    help = 'Load the OCD Election model with data from the scraped CandidateElection model'
+
+    help = (
+        "Load the OCD Election model with data from the scraped CandidateElection model"
+    )
 
     def handle(self, *args, **options):
         """Make it happen."""

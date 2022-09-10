@@ -16,11 +16,12 @@ from opencivicdata.elections.models import CandidateContest
 from calaccess_processed_elections.proxies import (
     OCDPartyProxy,
     OCDCandidacyProxy,
-    OCDPostProxy
+    OCDPostProxy,
 )
 
 # Logging
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -28,10 +29,12 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
     """
     A proxy for the calaccess_scraped Candidate model.
     """
+
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True
 
@@ -71,8 +74,10 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
         from calaccess_processed_filings.models import Form501Filing
 
         # First, if the candidate is running for this office, it is by definition non-partisan
-        if self.office_name == 'SUPERINTENDENT OF PUBLIC INSTRUCTION':
-            logger.debug("{} party set to NO PARTY PREFERENCE based on office".format(self))
+        if self.office_name == "SUPERINTENDENT OF PUBLIC INSTRUCTION":
+            logger.debug(
+                "{} party set to NO PARTY PREFERENCE based on office".format(self)
+            )
             return OCDPartyProxy.objects.get(name="NO PARTY PREFERENCE")
 
         # Next pull the OCD election record so we have it to inspect
@@ -87,7 +92,7 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
 
         # Next, check if they have filed any Form 501s
         try:
-            form501s = self.get_form501s()[0].order_by('-date_filed')
+            form501s = self.get_form501s()[0].order_by("-date_filed")
         except Form501Filing.DoesNotExist:
             pass
         else:
@@ -100,20 +105,34 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
                     )
                     return party
                 # Try getting it from form 501 filer id
-                party = OCDPartyProxy.objects.get_by_filer_id(int(i.filer_id), scraped_election.date)
+                party = OCDPartyProxy.objects.get_by_filer_id(
+                    int(i.filer_id), scraped_election.date
+                )
                 if not party.is_unknown():
-                    logger.debug("{} party set to {} based on Form 501 filer id".format(self, party))
+                    logger.debug(
+                        "{} party set to {} based on Form 501 filer id".format(
+                            self, party
+                        )
+                    )
                     return party
 
         # If there's no 501, or if the 501 returned an unknown party ...
         # ... try one last stab at using the filer id (assuming it exists)
         if self.scraped_id:
-            party = OCDPartyProxy.objects.get_by_filer_id(int(self.scraped_id), scraped_election.date)
-            logger.debug("{} party set to {} after checking its scraped filer id".format(self, party))
+            party = OCDPartyProxy.objects.get_by_filer_id(
+                int(self.scraped_id), scraped_election.date
+            )
+            logger.debug(
+                "{} party set to {} after checking its scraped filer id".format(
+                    self, party
+                )
+            )
             return party
         # Otherwise just give up and return the unknown party
         else:
-            logger.debug("{} party set to UNKNOWN after failing to find a match".format(self))
+            logger.debug(
+                "{} party set to UNKNOWN after failing to find a match".format(self)
+            )
             return OCDPartyProxy.objects.get(name="UNKNOWN")
 
     def match_form501s_by_scraped_id(self):
@@ -136,15 +155,15 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
         # filter all form501 lookups by office type, district and election year
         # get the most recently filed Form501 within the election_year
         q = Form501Filing.objects.filter(
-            office__iexact=office_data['type'],
-            district=office_data['district'],
-            election_year__lte=election_data['year'],
+            office__iexact=office_data["type"],
+            district=office_data["district"],
+            election_year__lte=election_data["year"],
             filer_id=self.scraped_id,
         )
 
         # filter to election_type if it will yield results
-        if q.filter(election_type=election_data['type']).exists():
-            q = q.filter(election_type=election_data['type'])
+        if q.filter(election_type=election_data["type"]).exists():
+            q = q.filter(election_type=election_data["type"])
 
         return q
 
@@ -160,25 +179,25 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
         office_data = self.parse_office_name()
 
         q = Form501Filing.objects.filter(
-            office__iexact=office_data['type'],
-            district=office_data['district'],
-            election_year__lte=election_data['year'],
+            office__iexact=office_data["type"],
+            district=office_data["district"],
+            election_year__lte=election_data["year"],
         )
         # first, try "<last_name>, <first_name> <middle_name>" format
         last_first_middle_q = q.annotate(
             full_name=Concat(
-                'last_name',
-                Value(', '),
-                'first_name',
-                Value(' '),
-                'middle_name',
+                "last_name",
+                Value(", "),
+                "first_name",
+                Value(" "),
+                "middle_name",
                 output_field=CharField(),
             ),
         ).filter(full_name=self.name)
 
         # limit scope to election_type if it will yield results
-        if last_first_middle_q.filter(election_type=election_data['type']).exists():
-            q = last_first_middle_q.filter(election_type=election_data['type'])
+        if last_first_middle_q.filter(election_type=election_data["type"]).exists():
+            q = last_first_middle_q.filter(election_type=election_data["type"])
         # if not, check if dropping election_type filter yields results
         elif last_first_middle_q.exists():
             q = last_first_middle_q
@@ -186,16 +205,16 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
         else:
             last_first_q = q.annotate(
                 full_name=Concat(
-                    'last_name',
-                    Value(', '),
-                    'first_name',
+                    "last_name",
+                    Value(", "),
+                    "first_name",
                     output_field=CharField(),
                 ),
             ).filter(full_name=self.name)
 
             # again, limit to election_type at first
-            if last_first_q.filter(election_type=election_data['type']).exists():
-                q = last_first_q.filter(election_type=election_data['type'])
+            if last_first_q.filter(election_type=election_data["type"]).exists():
+                q = last_first_q.filter(election_type=election_data["type"])
             else:
                 q = last_first_q
 
@@ -212,9 +231,9 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
         from calaccess_processed_filings.models import Form501Filing
 
         if self.match_form501s_by_scraped_id().exists():
-            return (self.match_form501s_by_scraped_id(), 'scraped_id')
+            return (self.match_form501s_by_scraped_id(), "scraped_id")
         elif self.match_form501s_by_name().exists():
-            return (self.match_form501s_by_name(), 'name')
+            return (self.match_form501s_by_name(), "name")
         else:
             raise Form501Filing.DoesNotExist()
 
@@ -241,7 +260,9 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
             # We are not setting a contest party here for the reasons laid out in the following ticket:
             # https://github.com/california-civic-data-coalition/django-calaccess-processed-data/issues/70#issuecomment-300836502  # NOQA
             contest_party = None
-            contest_name = '{} ({})'.format(self.office_name, scraped_election.election_type)
+            contest_name = "{} ({})".format(
+                self.office_name, scraped_election.election_type
+            )
         # Otherwise, we assume this a typical election
         else:
             # At a minimum, that means that the previous term has expired for the office
@@ -252,15 +273,22 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
             # regardless of their party.
             # In the case of partisan elections, we want to make sure the candidates are separated by party.
             # The one exception to this is superintendent races which have always been non-partisan.
-            if scraped_election.is_partisan_primary and self.office_name != 'SUPERINTENDENT OF PUBLIC INSTRUCTION':
+            if (
+                scraped_election.is_partisan_primary
+                and self.office_name != "SUPERINTENDENT OF PUBLIC INSTRUCTION"
+            ):
                 # In this case, the contest party should be the same as the candidate party.
                 contest_party = candidate_party
                 # If the party is unknown, just tack party on the end of the contest name
                 if candidate_party.is_unknown():
-                    contest_name = '{} ({} PARTY)'.format(self.office_name, candidate_party.name)
+                    contest_name = "{} ({} PARTY)".format(
+                        self.office_name, candidate_party.name
+                    )
                 # For a regular party, we shouldn't have to do much here.
                 else:
-                    contest_name = '{} ({})'.format(self.office_name, candidate_party.name)
+                    contest_name = "{} ({})".format(
+                        self.office_name, candidate_party.name
+                    )
             # If this is a general election prior to 2012, or any non-special election since then ...
             else:
                 # ... there is no party for the contest ...
@@ -284,7 +312,7 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
         # Always update the source for the contest
         contest.sources.update_or_create(
             url=self.url,
-            note='Last scraped on {dt:%Y-%m-%d}'.format(dt=self.last_modified)
+            note="Last scraped on {dt:%Y-%m-%d}".format(dt=self.last_modified),
         )
 
         # Return the contest and whether or not it was created
@@ -323,13 +351,11 @@ class ScrapedCandidateProxy(Candidate, ScrapedNameMixin):
         elif scraped_election.is_regular:
             q = q.filter(contest__previous_term_unexpired=False)
         else:
-            raise Exception(
-                'Unknown election type for %s.' % scraped_election
-            )
+            raise Exception("Unknown election type for %s." % scraped_election)
 
         if self.scraped_id:
             candidacy = q.get_by_filer_id(self.scraped_id)
         else:
-            candidacy = q.get_by_name(self.parsed_name['name'])
+            candidacy = q.get_by_name(self.parsed_name["name"])
 
         return candidacy

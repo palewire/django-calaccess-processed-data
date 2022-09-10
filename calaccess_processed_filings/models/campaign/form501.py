@@ -19,17 +19,18 @@ class Form501FilingBase(FilingBaseModel):
     """
     Base and abstract model for Form 501 filings.
     """
+
     date_filed = models.DateField(
-        verbose_name='from date',
+        verbose_name="from date",
         null=True,
         db_index=True,
         help_text="Date when the Form 501 filing was filed (from F501_502_CD.RPT_DATE)",
     )
     statement_type = models.CharField(
         max_length=62,
-        verbose_name='statement type',
+        verbose_name="statement type",
         help_text='Describes the type of statement, e.g. "ORIGINAL", "AMENDMENT" '
-                  '(from LOOKUP_CODES.CODE_DESC)',
+        "(from LOOKUP_CODES.CODE_DESC)",
     )
     filer_id = models.CharField(
         verbose_name="filer identifier",
@@ -37,10 +38,10 @@ class Form501FilingBase(FilingBaseModel):
         help_text="Filer's unique identifier (from F501_502_CD.FILER_ID)",
     )
     committee_id = models.CharField(
-        verbose_name='committee identifier',
+        verbose_name="committee identifier",
         max_length=9,
         help_text="Candidate's committee's unique filer idenitifier (from "
-                  "F501_502_CD.COMMITTEE_ID)",
+        "F501_502_CD.COMMITTEE_ID)",
     )
     title = models.CharField(
         verbose_name="candidate name title",
@@ -78,23 +79,23 @@ class Form501FilingBase(FilingBaseModel):
         max_length=20,
         blank=True,
         help_text="Moniker (aka, nickname) of the candidate (from F501_502_CD"
-                  ".MONIKER)",
+        ".MONIKER)",
     )
     phone = models.CharField(
         max_length=20,
-        verbose_name='candidate phone number',
+        verbose_name="candidate phone number",
         blank=True,
         help_text="Phone number of the candidate (from F501_502_CD.CAND_PHON)",
     )
     fax = models.CharField(
         max_length=20,
-        verbose_name='fax number',
+        verbose_name="fax number",
         blank=True,
         help_text="Phone number of the candidate (from F501_502_CD.CAND_FAX)",
     )
     email = models.CharField(
         max_length=200,
-        verbose_name='email address',
+        verbose_name="email address",
         blank=True,
         help_text="Email address of the candidate (from F501_502_CD.CAND_EMAIL)",
     )
@@ -106,101 +107,102 @@ class Form501FilingBase(FilingBaseModel):
     )
     state = models.CharField(
         max_length=200,
-        verbose_name='candidate state',
+        verbose_name="candidate state",
         blank=True,
         help_text="State of the candidate (from F501_502_CD.CAND_ST)",
     )
     zip_code = models.CharField(
         max_length=10,
-        verbose_name='zip code',
+        verbose_name="zip code",
         blank=True,
-        help_text='Zip code (usually zip5, sometimes zip9) of the '
-                  'candidate (from F501_502_CD.CAND_ZIP4)',
+        help_text="Zip code (usually zip5, sometimes zip9) of the "
+        "candidate (from F501_502_CD.CAND_ZIP4)",
     )
     office = models.CharField(
-        verbose_name='office sought',
+        verbose_name="office sought",
         max_length=80,
         blank=True,
-        help_text='Position title of the office sought by the candidate (from '
-                  'LOOKUP_CODES_CD.CODE_DESC, unless NULL or 0, then F501_502_CD.'
-                  'OFFICE_DSCR)',
+        help_text="Position title of the office sought by the candidate (from "
+        "LOOKUP_CODES_CD.CODE_DESC, unless NULL or 0, then F501_502_CD."
+        "OFFICE_DSCR)",
     )
     agency = models.CharField(
-        verbose_name='agency name',
+        verbose_name="agency name",
         max_length=200,
         blank=True,
-        help_text='Name of the agency with the office sought (from '
-                  'F501_502_CD.AGENCY_NAM)',
+        help_text="Name of the agency with the office sought (from "
+        "F501_502_CD.AGENCY_NAM)",
     )
     district = models.IntegerField(
-        verbose_name='district',
+        verbose_name="district",
         null=True,
-        help_text='District of office sought, if applicable (from LOOKUP_CODES_CD'
-                  '.CODE_DESC, unless NULL or 0, then F501_502_CD.DIST_NO)',
+        help_text="District of office sought, if applicable (from LOOKUP_CODES_CD"
+        ".CODE_DESC, unless NULL or 0, then F501_502_CD.DIST_NO)",
     )
     party = models.CharField(
         max_length=30,
-        verbose_name='political party',
+        verbose_name="political party",
         blank=True,
-        help_text='Political party of the candidate (from LOOKUP_CODES_CD.'
-                  'CODE_DESC, unless NULL or 0, then F501_502_CD.PARTY)',
+        help_text="Political party of the candidate (from LOOKUP_CODES_CD."
+        "CODE_DESC, unless NULL or 0, then F501_502_CD.PARTY)",
     )
     jurisdiction = models.CharField(
         max_length=30,
-        verbose_name='jurisdiction',
+        verbose_name="jurisdiction",
         blank=True,
         help_text='Jurisdiction of the office sought, e.g., "LOCAL", "STATE" '
-                  '(from LOOKUP_CODES_CD.CODE_DESC)',
+        "(from LOOKUP_CODES_CD.CODE_DESC)",
     )
     election_type = models.CharField(
-        verbose_name='election type',
+        verbose_name="election type",
         max_length=16,
         null=True,
-        help_text='Type of election in which the candidate is declaring intention'
-                  ' to run, e.g. "PRIMARY", "GENERAL" (from LOOKUP_CODES_CD.'
-                  'CODE_DESC)',
+        help_text="Type of election in which the candidate is declaring intention"
+        ' to run, e.g. "PRIMARY", "GENERAL" (from LOOKUP_CODES_CD.'
+        "CODE_DESC)",
     )
     election_year = models.IntegerField(
-        verbose_name='election year',
+        verbose_name="election year",
         null=True,
-        help_text='Year in which the election is held (from F501_502_CD.YR_OF_ELEC)',
+        help_text="Year in which the election is held (from F501_502_CD.YR_OF_ELEC)",
     )
     accepted_limit = models.BooleanField(
         null=True,
         help_text='Indicates if either the "I accept the voluntary expenditure '
-                  'ceiling" or "I do not accept the voluntary expenditure" '
-                  'box is checked (from F501_502_CD.ACCEPT_LIMIT_YN)',
+        'ceiling" or "I do not accept the voluntary expenditure" '
+        "box is checked (from F501_502_CD.ACCEPT_LIMIT_YN)",
     )
     limit_not_exceeded_election_date = models.DateField(
-        verbose_name='limit not exceeded election date',
+        verbose_name="limit not exceeded election date",
         null=True,
-        help_text='Date of the primary or special election in which the candidate '
-                  'did not accept the voluntary expenditure ceiling but also did '
-                  'exceed the ceiling. Candidates may amend their Form 501 to accept '
-                  'the limits for the general election or special election runoff '
-                  'and receive all the benefits of accepting the ceiling (from '
-                  'F501_502_CD.DID_EXCEED_DT)'
+        help_text="Date of the primary or special election in which the candidate "
+        "did not accept the voluntary expenditure ceiling but also did "
+        "exceed the ceiling. Candidates may amend their Form 501 to accept "
+        "the limits for the general election or special election runoff "
+        "and receive all the benefits of accepting the ceiling (from "
+        "F501_502_CD.DID_EXCEED_DT)",
     )
     personal_funds_contrib_date = models.DateField(
-        verbose_name='personal funds contribution date',
+        verbose_name="personal funds contribution date",
         null=True,
-        help_text='Date on which the candidate contributed personal funds in excess '
-                  'of the voluntary expenditure ceiling for the (from F501_502_CD'
-                  '.CNTRB_PRSNL_FNDS_DT)',
+        help_text="Date on which the candidate contributed personal funds in excess "
+        "of the voluntary expenditure ceiling for the (from F501_502_CD"
+        ".CNTRB_PRSNL_FNDS_DT)",
     )
     executed_on = models.DateField(
-        verbose_name='executed on date',
+        verbose_name="executed on date",
         null=True,
-        help_text='Date on which the candidate intention statement was signed '
-                  '(from F501_502_CD.EXECUTE_DT)'
+        help_text="Date on which the candidate intention statement was signed "
+        "(from F501_502_CD.EXECUTE_DT)",
     )
 
     class Meta:
         """
         Model options.
         """
+
         abstract = True
-        app_label = 'calaccess_processed_filings'
+        app_label = "calaccess_processed_filings"
 
 
 class Form501Filing(Form501FilingBase):
@@ -210,19 +212,20 @@ class Form501Filing(Form501FilingBase):
     Includes information from the most recent version of each Form 501 filing.
     All versions of the filings can be found in Form501FilingVersion.
     """
+
     filing_id = models.IntegerField(
-        verbose_name='filing id',
+        verbose_name="filing id",
         primary_key=True,
         null=False,
-        help_text='Unique identification number for the Form 501 filing ('
-                  'from F501_502_CD.FILING_ID)',
+        help_text="Unique identification number for the Form 501 filing ("
+        "from F501_502_CD.FILING_ID)",
     )
     amendment_count = models.IntegerField(
-        verbose_name='Count amendments',
+        verbose_name="Count amendments",
         db_index=True,
         null=False,
-        help_text='Number of amendments to the Form 501 filing (from '
-                  'maximum value of F501_502_CD.AMEND_ID)',
+        help_text="Number of amendments to the Form 501 filing (from "
+        "maximum value of F501_502_CD.AMEND_ID)",
     )
     objects = Form501FilingManager()
 
@@ -230,11 +233,14 @@ class Form501Filing(Form501FilingBase):
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        index_together = ((
-            'filing_id',
-            'amendment_count',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        index_together = (
+            (
+                "filing_id",
+                "amendment_count",
+            ),
+        )
         verbose_name = "Form 501 (Candidate Intention) filing"
 
     def __str__(self):
@@ -245,9 +251,9 @@ class Form501Filing(Form501FilingBase):
         """
         Return the 'name' of the candidate to match the format we typically put in the OCD Person model.
         """
-        split_name = self.sort_name.split(',')
+        split_name = self.sort_name.split(",")
         split_name.reverse()
-        return ' '.join(split_name).strip()
+        return " ".join(split_name).strip()
 
     @property
     def sort_name(self):
@@ -256,17 +262,14 @@ class Form501Filing(Form501FilingBase):
 
         This is useful when trying to consolidate these forms with scraped data in our OCD models.
         """
-        return '{0.last_name}, {0.first_name} {0.middle_name}'.format(self).strip()
+        return "{0.last_name}, {0.first_name} {0.middle_name}".format(self).strip()
 
     @property
     def parsed_name(self):
         """
         The parsed name of the candidate ready to be converted into an OCD Person.
         """
-        return dict(
-            name=self.name,
-            sort_name=self.name
-        )
+        return dict(name=self.name, sort_name=self.name)
 
     @property
     def office_name(self):
@@ -276,7 +279,7 @@ class Form501Filing(Form501FilingBase):
         This is useful when trying to consolidate these forms with scraped data in our OCD models.
         """
         if self.district:
-            return '{0.office} {0.district}'.format(self).strip()
+            return "{0.office} {0.district}".format(self).strip()
         else:
             return self.office
 
@@ -296,9 +299,15 @@ class Form501Filing(Form501FilingBase):
                 date__year=self.election_year,
                 name__contains=self.election_type,
             )
-        except (OCDElectionProxy.DoesNotExist, OCDElectionProxy.MultipleObjectsReturned):
+        except (
+            OCDElectionProxy.DoesNotExist,
+            OCDElectionProxy.MultipleObjectsReturned,
+        ):
             # if it's a future primary, try to calculate the date
-            if self.election_year >= date.today().year and self.election_type == 'PRIMARY':
+            if (
+                self.election_year >= date.today().year
+                and self.election_type == "PRIMARY"
+            ):
                 try:
                     dt_obj = get_expected_election_date(
                         self.election_year, self.election_type
@@ -306,7 +315,7 @@ class Form501Filing(Form501FilingBase):
                 except ValueError:
                     return None
                 return OCDElectionProxy.objects.create_from_calaccess(
-                    '{0} {1}'.format(self.election_year, self.election_type),
+                    "{0} {1}".format(self.election_year, self.election_type),
                     dt_obj,
                     election_type=self.election_type,
                 )
@@ -323,10 +332,10 @@ class Form501Filing(Form501FilingBase):
 
         # first try the corrections
         party = corrections.candidate_party(
-            '{0.last_name}, {0.first_name} {0.middle_name}'.format(self).strip(),
+            "{0.last_name}, {0.first_name} {0.middle_name}".format(self).strip(),
             self.election_year,
             self.election_type,
-            '{0.office} {0.district}'.format(self).strip().upper(),
+            "{0.office} {0.district}".format(self).strip().upper(),
         )
         if party:
             return party
@@ -340,7 +349,9 @@ class Form501Filing(Form501FilingBase):
         ocd_election = self.ocd_election
         if not ocd_election:
             return OCDPartyProxy.objects.unknown()
-        return OCDPartyProxy.objects.get_by_filer_id(int(self.filer_id), ocd_election.date)
+        return OCDPartyProxy.objects.get_by_filer_id(
+            int(self.filer_id), ocd_election.date
+        )
 
     def get_or_create_contest(self):
         """
@@ -364,14 +375,14 @@ class Form501Filing(Form501FilingBase):
 
         # Seed contest data
         contest_data = {
-            'posts__post': post,
-            'division': post.division,
-            'election': ocd_election,
+            "posts__post": post,
+            "division": post.division,
+            "election": ocd_election,
         }
 
         # if looking for a pre-2012 primary, include party
         if ocd_election.is_partisan_primary:
-            contest_data['party'] = self.get_party()
+            contest_data["party"] = self.get_party()
 
         # Try to get it from the database
         try:
@@ -382,12 +393,12 @@ class Form501Filing(Form501FilingBase):
                 # make the contest (CAL-ACCESS website might behind)
                 contest = CandidateContest.objects.create(
                     name=post.label.upper(),
-                    division=contest_data['division'],
-                    election=contest_data['election'],
+                    division=contest_data["division"],
+                    election=contest_data["election"],
                 )
                 contest.posts.create(
                     contest=contest,
-                    post=contest_data['posts__post'],
+                    post=contest_data["posts__post"],
                 )
                 return contest
             # Otherwise give up
@@ -407,20 +418,21 @@ class Form501FilingVersion(Form501FilingBase):
     Includes information found on each version of each Form 501 filing. For the
     most recent version of each filing, see Form501Filing.
     """
+
     filing = models.ForeignKey(
-        'Form501Filing',
-        related_name='versions',
+        "Form501Filing",
+        related_name="versions",
         db_constraint=False,
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Unique identification number for the Form 501 filing ('
-                  'from F501_502_CD.FILING_ID)',
+        help_text="Unique identification number for the Form 501 filing ("
+        "from F501_502_CD.FILING_ID)",
     )
     amend_id = models.IntegerField(
-        verbose_name='amendment id',
+        verbose_name="amendment id",
         null=False,
-        help_text='Identifies the version of the Form 501 filing, with 0 '
-                  'representing the initial filing (from F501_502_CD.FILING_ID)',
+        help_text="Identifies the version of the Form 501 filing, with 0 "
+        "representing the initial filing (from F501_502_CD.FILING_ID)",
     )
     objects = Form501FilingManager()
 
@@ -428,16 +440,21 @@ class Form501FilingVersion(Form501FilingBase):
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        unique_together = ((
-            'filing',
-            'amend_id',
-        ),)
-        index_together = ((
-            'filing',
-            'amend_id',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        unique_together = (
+            (
+                "filing",
+                "amend_id",
+            ),
+        )
+        index_together = (
+            (
+                "filing",
+                "amend_id",
+            ),
+        )
         verbose_name = "Form 501 (Candidate Intention) filing version"
 
     def __str__(self):
-        return '{}-{}'.format(self.filing, self.amend_id)
+        return "{}-{}".format(self.filing, self.amend_id)

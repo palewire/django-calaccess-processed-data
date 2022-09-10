@@ -11,7 +11,8 @@ class Command(CalAccessCommand):
     """
     Archive flat files of CAL-ACCESS data.
     """
-    help = 'Archive flat files of CAL-ACCESS data'
+
+    help = "Archive flat files of CAL-ACCESS data"
 
     def handle(self, *args, **options):
         """
@@ -21,16 +22,18 @@ class Command(CalAccessCommand):
 
         # then archive
         if self.verbosity > 2:
-            self.log(' Archiving OCD processed data files.')
+            self.log(" Archiving OCD processed data files.")
 
         # create subdirectory in processed_data_dir, if missing
-        filings_data_path = os.path.join(self.processed_data_dir, 'flat')
+        filings_data_path = os.path.join(self.processed_data_dir, "flat")
         os.path.isdir(filings_data_path) or os.makedirs(filings_data_path)
 
         # now do flat files
-        flat_file_list = apps.get_app_config("calaccess_processed_flatfiles").get_flat_names_list()
+        flat_file_list = apps.get_app_config(
+            "calaccess_processed_flatfiles"
+        ).get_flat_names_list()
         for f in flat_file_list:
-            call_command('archivecalaccessflatfile', f)
+            call_command("archivecalaccessflatfile", f)
 
         # Wrap it up
-        self.success('Done!')
+        self.success("Done!")

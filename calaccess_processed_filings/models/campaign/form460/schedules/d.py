@@ -15,21 +15,23 @@ class Form460ScheduleDItemBase(CampaignExpenditureItemBase):
     and independent expenditures in support or opposition to other candidates
     and ballot measures.
     """
+
     cumulative_election_amount = models.DecimalField(
         decimal_places=2,
         max_digits=14,
         null=True,
         help_text="If the candidate is subject to contribution limits, the "
-                  "cumulative amount given by the filer during the election "
-                  "cycle as of the Form 460's filing date (from EXPN_CD."
-                  "CUM_OTH)"
+        "cumulative amount given by the filer during the election "
+        "cycle as of the Form 460's filing date (from EXPN_CD."
+        "CUM_OTH)",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
+
+        app_label = "calaccess_processed_filings"
         abstract = True
 
 
@@ -43,28 +45,32 @@ class Form460ScheduleDItem(Form460ScheduleDItemBase):
 
     Derived from EXPN_CD records where FORM_TYPE is 'D'.
     """
+
     filing = models.ForeignKey(
-        'Form460Filing',
-        related_name='schedule_d_items',
+        "Form460Filing",
+        related_name="schedule_d_items",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the Form 460 on which the '
-                  'payment was reported (from EXPN_CD.FILING_ID)',
+        help_text="Foreign key referring to the Form 460 on which the "
+        "payment was reported (from EXPN_CD.FILING_ID)",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        unique_together = ((
-            'filing',
-            'line_item',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        unique_together = (
+            (
+                "filing",
+                "line_item",
+            ),
+        )
         verbose_name = "Form 460 (Campaign Disclosure) Schedule D item"
 
     def __str__(self):
-        return '%s-%s' % (self.filing, self.line_item)
+        return "%s-%s" % (self.filing, self.line_item)
 
 
 class Form460ScheduleDItemVersion(Form460ScheduleDItemBase):
@@ -76,33 +82,39 @@ class Form460ScheduleDItemVersion(Form460ScheduleDItemBase):
 
     Derived from EXPN_CD records where FORM_TYPE is 'D'.
     """
+
     filing_version = models.ForeignKey(
-        'Form460FilingVersion',
-        related_name='schedule_d_items',
+        "Form460FilingVersion",
+        related_name="schedule_d_items",
         null=True,
         on_delete=models.SET_NULL,
-        help_text='Foreign key referring to the version of the Form 460 that '
-                  'includes the payment made'
+        help_text="Foreign key referring to the version of the Form 460 that "
+        "includes the payment made",
     )
 
     class Meta:
         """
         Model options.
         """
-        app_label = 'calaccess_processed_filings'
-        unique_together = ((
-            'filing_version',
-            'line_item',
-        ),)
-        index_together = ((
-            'filing_version',
-            'line_item',
-        ),)
+
+        app_label = "calaccess_processed_filings"
+        unique_together = (
+            (
+                "filing_version",
+                "line_item",
+            ),
+        )
+        index_together = (
+            (
+                "filing_version",
+                "line_item",
+            ),
+        )
         verbose_name = "Form 460 (Campaign Disclosure) Schedule D item version"
 
     def __str__(self):
-        return '%s-%s-%s' % (
+        return "%s-%s-%s" % (
             self.filing_version.filing_id,
             self.filing_version.amend_id,
-            self.line_item
+            self.line_item,
         )

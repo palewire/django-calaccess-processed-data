@@ -15,12 +15,14 @@ class ScrapedPropositionElectionProxy(ScrapedElectionProxyMixin, PropositionElec
     """
     A proxy for the PropositionElection model in calaccess_scraped.
     """
-    NAME_PATTERN = re.compile(r'^(?P<date>^[A-Z]+\s\d{1,2},\s\d{4}),?\s(?P<type>.+)$')
+
+    NAME_PATTERN = re.compile(r"^(?P<date>^[A-Z]+\s\d{1,2},\s\d{4}),?\s(?P<type>.+)$")
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True
 
@@ -34,7 +36,7 @@ class ScrapedPropositionElectionProxy(ScrapedElectionProxyMixin, PropositionElec
         # Extract the name and date from the election name
         match = self.NAME_PATTERN.match(self.name)
 
-        return match.groupdict()['type'].upper()
+        return match.groupdict()["type"].upper()
 
     @property
     def date(self):
@@ -47,7 +49,7 @@ class ScrapedPropositionElectionProxy(ScrapedElectionProxyMixin, PropositionElec
         match = self.NAME_PATTERN.match(self.name)
 
         # Convert it to a datetime object
-        return timezone.datetime.strptime(match.groupdict()['date'], '%B %d, %Y').date()
+        return timezone.datetime.strptime(match.groupdict()["date"], "%B %d, %Y").date()
 
     def get_ocd_election(self):
         """
@@ -64,7 +66,7 @@ class ScrapedPropositionElectionProxy(ScrapedElectionProxyMixin, PropositionElec
                 ocd_election = OCDElectionProxy.objects.get(date=self.date)
             except (
                 OCDElectionProxy.DoesNotExist,
-                OCDElectionProxy.MultipleObjectsReturned
+                OCDElectionProxy.MultipleObjectsReturned,
             ):
                 raise
 

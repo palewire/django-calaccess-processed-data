@@ -18,5 +18,5 @@ __all__ = (
     "Form497Part1ItemVersion",
     "Form497Part2ItemBase",
     "Form497Part2Item",
-    "Form497Part2ItemVersion"
+    "Form497Part2ItemVersion",
 )

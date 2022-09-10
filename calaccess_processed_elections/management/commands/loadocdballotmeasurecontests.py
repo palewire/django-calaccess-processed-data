@@ -5,21 +5,27 @@ Load OCD BallotMeasureContest and related models with scraped CAL-ACCESS data.
 """
 from opencivicdata.elections.models import BallotMeasureContest
 from calaccess_processed.management.commands import CalAccessCommand
-from calaccess_processed_elections.proxies import ScrapedPropositionProxy, OCDDivisionProxy
+from calaccess_processed_elections.proxies import (
+    ScrapedPropositionProxy,
+    OCDDivisionProxy,
+)
 
 
 class Command(CalAccessCommand):
     """
     Load OCD BallotMeasureContest and related models with scraped CAL-ACCESS data.
     """
-    help = 'Load OCD BallotMeasureContest and related models with scraped CAL-ACCESS data'
+
+    help = (
+        "Load OCD BallotMeasureContest and related models with scraped CAL-ACCESS data"
+    )
 
     def handle(self, *args, **options):
         """
         Make it happen.
         """
         super(Command, self).handle(*args, **options)
-        self.header('Loading Ballot Measure Contests')
+        self.header("Loading Ballot Measure Contests")
         self.load()
         self.success("Done!")
 
@@ -41,29 +47,29 @@ class Command(CalAccessCommand):
         """
         Load OCD ballot measure-related models with data scraped from CAL-ACCESS website.
         """
-        object_list = ScrapedPropositionProxy.objects.exclude(name__icontains='RECALL')
+        object_list = ScrapedPropositionProxy.objects.exclude(name__icontains="RECALL")
         for scraped_prop in object_list:
             ocd_election = scraped_prop.election_proxy.get_ocd_election()
             try:
                 # Try getting the contest using scraped_id
                 ocd_contest = ocd_election.ballotmeasurecontests.get(
-                    identifiers__scheme='calaccess_measure_id',
+                    identifiers__scheme="calaccess_measure_id",
                     identifiers__identifier=scraped_prop.scraped_id,
                 )
             except BallotMeasureContest.DoesNotExist:
                 # If not there, create one
                 ocd_contest = self.create_contest(scraped_prop, ocd_election)
                 # Add the options
-                ocd_contest.options.create(text='yes')
-                ocd_contest.options.create(text='no')
+                ocd_contest.options.create(text="yes")
+                ocd_contest.options.create(text="no")
                 # Add the identifiers
                 ocd_contest.identifiers.create(
-                    scheme='calaccess_measure_id',
+                    scheme="calaccess_measure_id",
                     identifier=scraped_prop.scraped_id,
                 )
                 if self.verbosity > 2:
                     self.log(
-                        'Created {0}: {1}'.format(
+                        "Created {0}: {1}".format(
                             ocd_contest._meta.object_name,
                             ocd_contest,
                         )
@@ -78,7 +84,7 @@ class Command(CalAccessCommand):
             # Update or create the Contest source
             ocd_contest.sources.update_or_create(
                 url=scraped_prop.url,
-                note='Last scraped on {dt:%Y-%m-%d}'.format(
+                note="Last scraped on {dt:%Y-%m-%d}".format(
                     dt=scraped_prop.last_modified,
-                )
+                ),
             )

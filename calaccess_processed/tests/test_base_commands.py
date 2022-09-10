@@ -11,6 +11,7 @@ class BaseCommandsTest(TestCase):
     """
     Tests to run with no data loaded.
     """
+
     def test_base_command(self):
         """
         Test options on base commands.

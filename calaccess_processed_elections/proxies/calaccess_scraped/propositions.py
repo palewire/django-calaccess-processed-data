@@ -8,7 +8,7 @@ from calaccess_scraped.models import Proposition
 from .propositionelections import ScrapedPropositionElectionProxy
 from calaccess_processed_elections.managers import (
     ScrapedBallotMeasureManager,
-    ScrapedRecallMeasureManager
+    ScrapedRecallMeasureManager,
 )
 
 
@@ -16,6 +16,7 @@ class ScrapedPropositionProxy(Proposition):
     """
     A proxy for the Proposition model in calaccess_scraped.
     """
+
     ballot_measures = ScrapedBallotMeasureManager()
     recall_measures = ScrapedRecallMeasureManager()
 
@@ -23,6 +24,7 @@ class ScrapedPropositionProxy(Proposition):
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True
 
@@ -39,9 +41,9 @@ class ScrapedPropositionProxy(Proposition):
         Clean up the type of proposition this is for standardizing in OCD models.
         """
         # Set the classification
-        if 'REFERENDUM' in self.name:
-            return 'referendum'
-        elif ('INITIATIVE' in self.name or 'INITATIVE' in self.name):
-            return 'initiative'
+        if "REFERENDUM" in self.name:
+            return "referendum"
+        elif "INITIATIVE" in self.name or "INITATIVE" in self.name:
+            return "initiative"
         else:
-            return 'ballot measure'
+            return "ballot measure"

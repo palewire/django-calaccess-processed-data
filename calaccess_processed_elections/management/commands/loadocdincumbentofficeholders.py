@@ -8,14 +8,18 @@ from django.db.models.functions import Cast
 from opencivicdata.core.models import Membership
 from calaccess_processed.management.commands import CalAccessCommand
 from opencivicdata.elections.models import Candidacy, CandidateContest
-from calaccess_processed_elections.proxies import OCDMembershipProxy, ScrapedIncumbentProxy
+from calaccess_processed_elections.proxies import (
+    OCDMembershipProxy,
+    ScrapedIncumbentProxy,
+)
 
 
 class Command(CalAccessCommand):
     """
     Load the OCD Membership model with data from the scraped Incumbent model.
     """
-    help = 'Load the OCD Membership model with data from the scraped Incumbent model'
+
+    help = "Load the OCD Membership model with data from the scraped Incumbent model"
 
     def handle(self, *args, **options):
         """
@@ -34,13 +38,14 @@ class Command(CalAccessCommand):
         Load OCD Election, Membership and related models with data scraped from CAL-ACCESS website.
         """
         for incumbent in ScrapedIncumbentProxy.objects.all():
-            membership, created = OCDMembershipProxy.objects.get_or_create_from_calaccess(
-                incumbent
-            )
+            (
+                membership,
+                created,
+            ) = OCDMembershipProxy.objects.get_or_create_from_calaccess(incumbent)
             if created and self.verbosity > 2:
-                self.log(' Created new Membership: %s' % membership)
+                self.log(" Created new Membership: %s" % membership)
             # Handle start_date on membershipbership
-            if created or membership.start_date == '':
+            if created or membership.start_date == "":
                 membership.start_date = incumbent.session
                 membership.save()
             else:
@@ -58,19 +63,24 @@ class Command(CalAccessCommand):
             # Each member's end year should be the start year of their successor.
             # Successor is the member in the same post with the earliest
             # start year greater than the incumbent's start year
-            if member.start_date == '':
+            if member.start_date == "":
                 start_year = 0
             else:
                 start_year = int(member.start_date)
 
-            successor_q = Membership.objects.exclude(
-                start_date='',
-            ).annotate(
-                start_year=Cast('start_date', IntegerField()),
-            ).filter(
-                start_year__gt=start_year,
-                post=member.post,
-            ).order_by('start_year')
+            successor_q = (
+                Membership.objects.exclude(
+                    start_date="",
+                )
+                .annotate(
+                    start_year=Cast("start_date", IntegerField()),
+                )
+                .filter(
+                    start_year__gt=start_year,
+                    post=member.post,
+                )
+                .order_by("start_year")
+            )
 
             if successor_q.exists():
                 member.end_date = int(successor_q[0].start_date)
@@ -91,7 +101,7 @@ class Command(CalAccessCommand):
                 post=member.post,
             ).exclude(is_incumbent=True)
             # Handle blank member end_date values
-            if member.end_date != '':
+            if member.end_date != "":
                 member_end_year = int(member.end_date)
                 candidacies_q = candidacies_q.filter(
                     contest__election__date__year__lte=member_end_year
@@ -101,19 +111,15 @@ class Command(CalAccessCommand):
                 rows = candidacies_q.update(is_incumbent=True)
                 if self.verbosity > 2:
                     self.log(
-                        ' {0} identified as incumbent in {1} contests'.format(
+                        " {0} identified as incumbent in {1} contests".format(
                             member.person.name,
                             rows,
                         )
                     )
         # loop over all contest with an incumbent candidate
-        contests_q = CandidateContest.objects.filter(
-            candidacies__is_incumbent=True
-        )
+        contests_q = CandidateContest.objects.filter(candidacies__is_incumbent=True)
         for contest in contests_q.all():
             # set is_incumbent False for all other candidacies in contest
-            contest.candidacies.exclude(
-                is_incumbent=True
-            ).update(is_incumbent=False)
+            contest.candidacies.exclude(is_incumbent=True).update(is_incumbent=False)
 
         return

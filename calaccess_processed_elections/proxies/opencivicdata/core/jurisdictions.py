@@ -17,11 +17,13 @@ class OCDJurisdictionProxy(Jurisdiction, OCDProxyModelMixin):
     """
     A proxy on the OCD Jurisdiction model with helper methods.
     """
+
     objects = OCDJurisdictionManager()
 
     class Meta:
         """
         Make this a proxy model.
         """
+
         app_label = "calaccess_processed_elections"
         proxy = True

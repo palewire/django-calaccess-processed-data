@@ -14,19 +14,20 @@ class Form501FilingAdmin(BaseAdmin):
     """
     Custom admin for the Form501Filing model.
     """
+
     list_display = (
-        'filing_id',
-        'amendment_count',
-        'date_filed',
-        'committee_id',
-        'last_name',
-        'first_name',
-        'office',
-        'district',
-        'party',
-        'jurisdiction',
-        'election_type',
-        'election_year',
+        "filing_id",
+        "amendment_count",
+        "date_filed",
+        "committee_id",
+        "last_name",
+        "first_name",
+        "office",
+        "district",
+        "party",
+        "jurisdiction",
+        "election_type",
+        "election_year",
     )
 
 
@@ -35,17 +36,18 @@ class Form501FilingVersionAdmin(BaseAdmin):
     """
     Custom admin for the Form501FilingVersion model.
     """
+
     list_display = (
-        'filing',
-        'amend_id',
-        'date_filed',
-        'committee_id',
-        'last_name',
-        'first_name',
-        'office',
-        'district',
-        'party',
-        'jurisdiction',
-        'election_type',
-        'election_year',
+        "filing",
+        "amend_id",
+        "date_filed",
+        "committee_id",
+        "last_name",
+        "first_name",
+        "office",
+        "district",
+        "party",
+        "jurisdiction",
+        "election_type",
+        "election_year",
     )

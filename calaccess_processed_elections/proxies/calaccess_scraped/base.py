@@ -12,6 +12,7 @@ class ScrapedElectionProxyMixin(object):
     """
     Mixin with properties and methods shared by all scraped Election proxy models.
     """
+
     def get_or_create_ocd_election(self):
         """
         Get the OCD Election for the scraped election instance, or create a new one.
@@ -26,7 +27,8 @@ class ScrapedElectionProxyMixin(object):
         specifying whether a Election was created.
         """
         from ..opencivicdata.elections import OCDElectionProxy
-        scraped_id = getattr(self, 'scraped_id', None)
+
+        scraped_id = getattr(self, "scraped_id", None)
         # Try getting the OCD election via the proxy's get method
         try:
             ocd_election = self.get_ocd_election()
@@ -56,28 +58,28 @@ class ScrapedElectionProxyMixin(object):
         """
         Returns whether or now the election was a primary.
         """
-        return 'PRIMARY' in self.name.upper()
+        return "PRIMARY" in self.name.upper()
 
     @property
     def is_general(self):
         """
         Returns whether or now the election was a general election.
         """
-        return 'GENERAL' in self.name.upper()
+        return "GENERAL" in self.name.upper()
 
     @property
     def is_special(self):
         """
         Returns whether or now the election was a special election.
         """
-        return 'SPECIAL' in self.name.upper()
+        return "SPECIAL" in self.name.upper()
 
     @property
     def is_recall(self):
         """
         Returns whether or now the election was a recall.
         """
-        return 'RECALL' in self.name.upper()
+        return "RECALL" in self.name.upper()
 
     @property
     def is_partisan_primary(self):
@@ -102,7 +104,7 @@ class ScrapedElectionProxyMixin(object):
             ocd_name = "2008 PRIMARY"
         # Otherwise return the format: "{YEAR} {ELECTION_TYPE}"
         else:
-            ocd_name = '{0} {1}'.format(self.date.year, self.election_type)
+            ocd_name = "{0} {1}".format(self.date.year, self.election_type)
         return ocd_name
 
 
@@ -110,6 +112,7 @@ class ScrapedNameMixin(object):
     """
     Tools for cleaning up scraped candidate names.
     """
+
     @property
     def corrected_name(self):
         """
@@ -117,7 +120,7 @@ class ScrapedNameMixin(object):
         """
         fixes = {
             # http://www.sos.ca.gov/elections/prior-elections/statewide-election-results/primary-election-march-7-2000/certified-list-candidates/ # noqa
-            'COURTRIGHT DONNA': 'COURTRIGHT, DONNA'
+            "COURTRIGHT DONNA": "COURTRIGHT, DONNA"
         }
         return fixes.get(self.name, self.name)
 
@@ -127,33 +130,33 @@ class ScrapedNameMixin(object):
         Return a dict of formatted Person name field values.
         """
         # sort_name is undoctored name from scrape
-        d = {
-            'sort_name': self.name.strip()
-        }
+        d = {"sort_name": self.name.strip()}
 
         # parse out these suffixes: JR, SR, II, III
-        suffix_pattern = r'(?:^|\s)((?:[JS]R\.?)|(?:I{2,3}))(?:,|\s|$)'
-        match = re.search(suffix_pattern, d['sort_name'])
+        suffix_pattern = r"(?:^|\s)((?:[JS]R\.?)|(?:I{2,3}))(?:,|\s|$)"
+        match = re.search(suffix_pattern, d["sort_name"])
         if match:
             # replace suffix with a comma
             # and replace any double commas, strip any trailing
-            d['sort_name'] = d['sort_name'].replace(match.group(), ',').replace(',,', ',')
-            d['sort_name'] = re.sub(r',\s?$', '', d['sort_name']).strip()
+            d["sort_name"] = (
+                d["sort_name"].replace(match.group(), ",").replace(",,", ",")
+            )
+            d["sort_name"] = re.sub(r",\s?$", "", d["sort_name"]).strip()
 
         # split once, strip and flip the sort_name to make name
-        split_name = [i.strip() for i in d['sort_name'].split(',', 1)]
+        split_name = [i.strip() for i in d["sort_name"].split(",", 1)]
         name_list = list(split_name)
         name_list.reverse()
-        d['name'] = ' '.join(name_list).strip()
-        d['family_name'] = split_name[0]
+        d["name"] = " ".join(name_list).strip()
+        d["family_name"] = split_name[0]
         if len(split_name) > 1:
-            d['given_name'] = split_name[1]
+            d["given_name"] = split_name[1]
         if match:
             # append suffix to end of name and given_name
-            suffix = ' %s' % match.group().replace(',', '').strip()
-            d['name'] += suffix
-            if 'given_name' in d:
-                d['given_name'] += suffix
+            suffix = " %s" % match.group().replace(",", "").strip()
+            d["name"] += suffix
+            if "given_name" in d:
+                d["given_name"] += suffix
 
         return d
 
@@ -165,15 +168,15 @@ class ScrapedNameMixin(object):
 
         Return a dict with two keys: type and district.
         """
-        office_pattern = r'^(?P<type>[A-Z ]+)(?P<district>\d{2})?$'
+        office_pattern = r"^(?P<type>[A-Z ]+)(?P<district>\d{2})?$"
         try:
             parsed = re.match(office_pattern, self.office_name.upper()).groupdict()
         except AttributeError:
-            parsed = {'type': None, 'district': None}
+            parsed = {"type": None, "district": None}
         else:
-            parsed['type'] = parsed['type'].strip()
+            parsed["type"] = parsed["type"].strip()
             try:
-                parsed['district'] = int(parsed['district'])
+                parsed["district"] = int(parsed["district"])
             except TypeError:
                 pass
         return parsed

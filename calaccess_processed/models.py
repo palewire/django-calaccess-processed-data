@@ -23,6 +23,7 @@ class CalAccessMetaClass(ModelBase):
 
     Automatically configures Meta attributes common to all models.
     """
+
     def __new__(cls, name, bases, attrs):
         """
         Override the default __new__ behavior.
@@ -50,6 +51,7 @@ class CalAccessBaseModel(models.Model):
     """
     An abstract model with some tricks we'll reuse.
     """
+
     __metaclass__ = CalAccessMetaClass
     objects = BulkLoadSQLManager()
 
@@ -58,7 +60,7 @@ class CalAccessBaseModel(models.Model):
         Return the model's docstring as a readable string ready to print.
         """
         if self.__doc__.startswith(self.klass_name):
-            return ''
+            return ""
         return textwrap.dedent(self.__doc__).strip()
 
     @property
@@ -99,5 +101,6 @@ class CalAccessBaseModel(models.Model):
         """
         Meta model options.
         """
+
         abstract = True
-        app_label = 'calaccess_processed'
+        app_label = "calaccess_processed"

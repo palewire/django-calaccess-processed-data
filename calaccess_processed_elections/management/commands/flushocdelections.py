@@ -8,14 +8,14 @@ from opencivicdata.core.models import (
     Membership,
     Organization,
     Person,
-    Post
+    Post,
 )
 from opencivicdata.elections.models import (
     Candidacy,
     CandidateContest,
     Election,
     BallotMeasureContest,
-    RetentionContest
+    RetentionContest,
 )
 from calaccess_processed.management.commands import CalAccessCommand
 
@@ -24,6 +24,7 @@ class Command(CalAccessCommand):
     """
     Flush data from OCD models.
     """
+
     help = "Flush data from OCD models."
 
     def handle(self, *args, **options):

@@ -1,5 +1,3 @@
 from . import proxies
 
-__all__ = (
-    'proxies',
-)
+__all__ = ("proxies",)
