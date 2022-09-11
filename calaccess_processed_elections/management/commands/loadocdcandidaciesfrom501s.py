@@ -53,7 +53,9 @@ class Command(CalAccessCommand):
             pass
         else:
             candidacy, created = OCDCandidacyProxy.objects.get_or_create_from_calaccess(
-                contest, form501.parsed_name, candidate_filer_id=form501.filer_id
+                contest,
+                form501.parsed_name,
+                candidate_filer_id=form501.filer_id
             )
 
             if created and self.verbosity > 2:

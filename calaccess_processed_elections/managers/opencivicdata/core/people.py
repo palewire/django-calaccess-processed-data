@@ -16,10 +16,16 @@ class OCDPersonManager(BulkLoadSQLManager):
         """
         Returns a Person object linked to a CAL-ACCESS filer_id, if it exists.
         """
-        return self.get_queryset().get(
-            identifiers__scheme="calaccess_filer_id",
-            identifiers__identifier=filer_id,
-        )
+        try:
+            return self.get_queryset().get(
+                identifiers__scheme="calaccess_filer_id",
+                identifiers__identifier=filer_id,
+            )
+        except self.model.MultipleObjectsReturned:
+            return self.get_queryset().filter(
+                identifiers__scheme="calaccess_filer_id",
+                identifiers__identifier=filer_id,
+            )[0]
 
     def get_or_create_from_calaccess(
         self, candidate_name_dict, candidate_filer_id=None
