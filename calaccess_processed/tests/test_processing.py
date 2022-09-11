@@ -90,11 +90,11 @@ class ProcessedDataTest(TransactionTestCase):
             headers=headers,
         )
 
-        call_command("updatecalaccessrawdata", verbosity=3, noinput=True)
+        call_command("updatecalaccessrawdata", verbosity=3)
         call_command("loadcalaccessscrapeddata")
         call_command("processcalaccessdata", verbosity=3)
 
-    def deactivated_test(self):
+    def test_everything(self):
         """
         Test the scraped propostions loaded into the database.
         """
