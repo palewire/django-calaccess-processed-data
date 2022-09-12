@@ -24,6 +24,16 @@ class FilingBaseModel(CalAccessBaseModel, OCDProxyModelMixin):
         app_label = "calaccess_processed_filings"
 
     @property
+    def file_name(self):
+        """
+        The name for the csv to which the model's contents will be dumped.
+
+        If the model is a flat model proxy, return the model's verbose_name_plural
+        in CamelCase. Otherwise, return the object_name of the base_model.
+        """
+        return self._meta.object_name
+
+    @property
     def pdf_url(self):
         """
         Returns the url for pdf of the most recent version of the CAL-ACCESS filing.
