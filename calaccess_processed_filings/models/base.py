@@ -3,11 +3,12 @@ from time import sleep
 
 import requests
 
+from calaccess_processed.proxies import OCDProxyModelMixin
 from calaccess_processed.models import CalAccessBaseModel
 from calaccess_processed_filings.managers import FilingsManager
 
 
-class FilingBaseModel(CalAccessBaseModel):
+class FilingBaseModel(CalAccessBaseModel, OCDProxyModelMixin):
     """
     Base model for all the filings models.
     """

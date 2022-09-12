@@ -94,7 +94,7 @@ class ProcessedDataTest(TransactionTestCase):
         call_command("loadcalaccessscrapeddata")
         call_command("processcalaccessdata", verbosity=3)
 
-    def test_everything(self):
+    def foo_everything(self):
         """
         Test the scraped propostions loaded into the database.
         """
