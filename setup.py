@@ -75,7 +75,7 @@ setup(
     zip_safe=False,  # because we're including static files
     install_requires=(
         'django-calaccess-raw-data==5.0.7',
-        'django-calaccess-scraped-data==3.2.0',
+        'django-calaccess-scraped-data==3.3.0',
         'django==4.0.*',
         'ccdc-opencivicdata==0.0.5',
         'django-internetarchive-storage',
