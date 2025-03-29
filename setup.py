@@ -77,7 +77,7 @@ setup(
         'django-calaccess-raw-data==5.0.7',
         'django-calaccess-scraped-data==3.3.0',
         'django==4.0.*',
-        'ccdc-opencivicdata==0.0.5',
+        'ccdc-opencivicdata==0.0.6',
         'django-internetarchive-storage',
         'pytz',
     ),
