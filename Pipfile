@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 django-calaccess-raw-data = "==5.0.7"
-django-calaccess-scraped-data = "==3.3.0"
+django-calaccess-scraped-data = "==3.4.0"
 ccdc-opencivicdata = "==0.0.6"
 Django = "==4.0.*"
 pytz = "*"
