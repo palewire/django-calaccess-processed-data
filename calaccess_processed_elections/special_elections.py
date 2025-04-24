@@ -11,6 +11,8 @@ Includes a mapping of special election names to dates.
 # * http://elections.cdn.sos.ca.gov/special-elections/pdf/special-elections-history.pdf
 
 names_to_dates = (
+    ("2025 SPECIAL ELECTION (ASSEMBLY 32)", "2025-02-25"),
+    ("2025 SPECIAL ELECTION (STATE SENATE 36)", "2025-02-25"),
     ("2022 SPECIAL ELECTION (ASSEMBLY 49)", "2022-02-15"),
     ("2022 SPECIAL ELECTION (ASSEMBLY 17)", "2022-02-15"),
     ("2022 SPECIAL ELECTION (ASSEMBLY 11)", "2022-04-05"),
